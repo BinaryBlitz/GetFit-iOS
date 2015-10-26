@@ -25,11 +25,13 @@
             </objects>
             <point key="canvasLocation" x="1547" y="151"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="gWq-bO-PlH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VxJ-0z-isC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="cls-9l-tCV"/>
+                    <tabBarItem key="tabBarItem" title="" image="Trainings" id="cls-9l-tCV">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
@@ -48,4 +50,7 @@
             <point key="canvasLocation" x="1006.5" y="151.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Trainings" width="25" height="25"/>
+    </resources>
 </document>

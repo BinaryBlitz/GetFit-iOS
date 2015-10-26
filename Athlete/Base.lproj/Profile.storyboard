@@ -23,13 +23,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zs7-Ad-DRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1899" y="328.5"/>
+            <point key="canvasLocation" x="1547" y="328"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="I3z-fZ-QqZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G9b-i0-MCk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Uii-js-EdN"/>
+                    <tabBarItem key="tabBarItem" title="" image="Profile" id="Uii-js-EdN">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
@@ -48,4 +50,7 @@
             <point key="canvasLocation" x="981" y="328.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Profile" width="21" height="25"/>
+    </resources>
 </document>

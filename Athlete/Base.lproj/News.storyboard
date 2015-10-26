@@ -3,47 +3,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--NEWS-->
-        <scene sceneID="gcC-vN-fcJ">
-            <objects>
-                <tableViewController id="DNh-UB-VEq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q7s-PB-pox">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8Zl-w4-f7U">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Zl-w4-f7U" id="u5O-Sa-4y7">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="DNh-UB-VEq" id="0Q6-sQ-vjF"/>
-                            <outlet property="delegate" destination="DNh-UB-VEq" id="BVd-0P-GrP"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="NEWS" id="DdN-Ec-OZG"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i1p-V2-ghF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1614" y="-600"/>
-        </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="571-cV-hyP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yFY-Tg-v2i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="muu-2N-KZe"/>
+                    <tabBarItem key="tabBarItem" title="" image="Home" selectedImage="HomeSelected" id="muu-2N-KZe">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0p-4T-djX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -52,12 +24,88 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DNh-UB-VEq" kind="relationship" relationship="rootViewController" id="mkR-UG-rJJ"/>
+                        <segue destination="2aZ-ET-Pey" kind="relationship" relationship="rootViewController" id="X1V-ft-Qns"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIt-mQ-9ne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="802" y="-600"/>
         </scene>
+        <!--NEWS-->
+        <scene sceneID="i2a-fY-Ufc">
+            <objects>
+                <tableViewController id="2aZ-ET-Pey" customClass="NewsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="3d3-wC-XZh">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="236" id="Uro-du-rY9" customClass="NewsTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="400" height="236"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uro-du-rY9" id="s7X-3E-RZ5">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="235.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nz-uM-dig">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2nz-uM-dig" secondAttribute="bottom" id="0Vw-Vv-vUw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2nz-uM-dig" secondAttribute="trailing" id="6LP-qd-agI"/>
+                                        <constraint firstItem="2nz-uM-dig" firstAttribute="top" secondItem="s7X-3E-RZ5" secondAttribute="topMargin" constant="-8" id="8o4-oh-q7N"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="2nz-uM-dig" secondAttribute="leading" id="AHa-Qa-SxS"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="2nz-uM-dig"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="0Vw-Vv-vUw"/>
+                                            <exclude reference="6LP-qd-agI"/>
+                                            <exclude reference="8o4-oh-q7N"/>
+                                            <exclude reference="AHa-Qa-SxS"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="2nz-uM-dig"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="0Vw-Vv-vUw"/>
+                                            <include reference="6LP-qd-agI"/>
+                                            <include reference="8o4-oh-q7N"/>
+                                            <include reference="AHa-Qa-SxS"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="contentImageView" destination="2nz-uM-dig" id="dEb-B9-mze"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2aZ-ET-Pey" id="VjF-xb-LQg"/>
+                            <outlet property="delegate" destination="2aZ-ET-Pey" id="W0G-hC-jWy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="NEWS" id="IPT-cv-8Jj">
+                        <barButtonItem key="rightBarButtonItem" image="Messages" id="6ao-sl-lIz"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBc-d0-PnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1593" y="-600"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Home" width="25" height="21"/>
+        <image name="HomeSelected" width="25" height="21"/>
+        <image name="Messages" width="22" height="21"/>
+    </resources>
 </document>

@@ -15,8 +15,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    setUpNavigationBar()
+    setUpTabBar()
+    
     return true
+  }
+  
+  private func setUpNavigationBar() {
+    UINavigationBar.appearance().barTintColor = UIColor.primaryYellowColor()
+    UINavigationBar.appearance().translucent = false
+    UINavigationBar.appearance().tintColor = UIColor.blackTextColor()
+    UINavigationBar.appearance().titleTextAttributes =
+      [NSForegroundColorAttributeName: UIColor.blackTextColor(),
+        NSFontAttributeName: UIFont.boldSystemFontOfSize(20) ]
+  }
+  
+  private func setUpTabBar() {
+//    UITabBar.appearance().backgroundColor = UIColor.tabBarBackgroundColor()
+    UITabBar.appearance().barTintColor = UIColor.tabBarBackgroundColor()
+    UITabBar.appearance().barStyle = UIBarStyle.Black
+    UITabBar.appearance().tintColor = UIColor.whiteColor()
+    UITabBar.appearance().translucent = false
   }
 
   func applicationWillResignActive(application: UIApplication) {

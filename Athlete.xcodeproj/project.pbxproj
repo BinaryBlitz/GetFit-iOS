@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
+		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
 		37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */; };
 		37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C441BDE527F00D1DA70 /* Main.storyboard */; };
 		37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C471BDE527F00D1DA70 /* Assets.xcassets */; };
@@ -17,6 +19,9 @@
 		37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */; };
 		37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C681BDE5A9D00D1DA70 /* Store.storyboard */; };
 		37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */; };
+		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
+		37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */; };
+		37FE685E1BDE73D100EE6C9A /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */; };
 		C63FAAF7468662834E19C38E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E4A795499BD0C36E4550CA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
+		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Athlete-Bridging-Header.h"; sourceTree = "<group>"; };
 		37A53C3B1BDE527F00D1DA70 /* Athlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A53C451BDE527F00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +53,9 @@
 		37A53C661BDE5A6400D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Trainings.storyboard; sourceTree = "<group>"; };
 		37A53C681BDE5A9D00D1DA70 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		37A53C6B1BDE5ACD00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
+		37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
+		37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		5DB4598A77E426C2258F015F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13A235849A4CE3AA4A26C77 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,8 +85,8 @@
 			children = (
 				37A53C441BDE527F00D1DA70 /* Main.storyboard */,
 				37A53C601BDE59C300D1DA70 /* News.storyboard */,
-				37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */,
 				37A53C631BDE59DF00D1DA70 /* Professionals.storyboard */,
+				37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */,
 				37A53C681BDE5A9D00D1DA70 /* Store.storyboard */,
 				37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */,
 				37A53C491BDE527F00D1DA70 /* LaunchScreen.storyboard */,
@@ -86,6 +97,8 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
+				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -93,6 +106,7 @@
 		374578941BDE5CF5004935BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */,
 				37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */,
 				37A53C4C1BDE527F00D1DA70 /* Info.plist */,
 			);
@@ -102,6 +116,8 @@
 		374578951BDE5D11004935BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */,
+				37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -116,6 +132,7 @@
 		374578971BDE5D28004935BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				374578981BDE5FDE004935BC /* UIColor+Athlete.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -339,6 +356,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
+				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
+				37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */,
+				37FE685E1BDE73D100EE6C9A /* NewsTableViewCell.swift in Sources */,
+				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
+				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,11 +513,14 @@
 			baseConfigurationReference = C13A235849A4CE3AA4A26C77 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Athlete/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.Athlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Athlete/Athlete-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -504,11 +529,13 @@
 			baseConfigurationReference = 5DB4598A77E426C2258F015F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Athlete/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.Athlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Athlete/Athlete-Bridging-Header.h";
 			};
 			name = Release;
 		};

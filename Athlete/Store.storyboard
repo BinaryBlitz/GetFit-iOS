@@ -31,17 +31,21 @@
                             <outlet property="delegate" destination="ikW-lv-FdO" id="QRd-pQ-9c6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="STORE" id="FUI-ha-9iV"/>
+                    <navigationItem key="navigationItem" title="STORE" id="FUI-ha-9iV">
+                        <barButtonItem key="rightBarButtonItem" image="Filter" id="EPh-S0-ugy"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fu-Iz-p6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1719" y="265.5"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="rwY-Ym-sgX">
             <objects>
                 <navigationController id="GmK-rj-2cT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="S3L-9h-PGS"/>
+                    <tabBarItem key="tabBarItem" title="" image="Search" id="S3L-9h-PGS">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DHa-e2-16j">
@@ -58,4 +62,8 @@
             <point key="canvasLocation" x="958.5" y="265.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Filter" width="22" height="20"/>
+        <image name="Search" width="25" height="22"/>
+    </resources>
 </document>
