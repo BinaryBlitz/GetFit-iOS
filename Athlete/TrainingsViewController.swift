@@ -16,8 +16,62 @@ class TrainingsViewController: UIViewController {
     Training(name: "Training3", type: .Football, duration: 50, date: NSDate())
   ]
   
+  @IBOutlet weak var titleButton: UIButton!
+  @IBOutlet weak var calendarViewHeightConstraint: NSLayoutConstraint!
+  private let calendarViewHeight: CGFloat = 260
+  
+  enum CalendarState {
+    case Opened
+    case InProgress
+    case Closed
+    
+    mutating func changeToOpositeState() {
+      switch self {
+      case .Opened:
+        self = .Closed
+      case .Closed:
+        self = .Opened
+      default:
+        break
+      }
+    }
+  }
+  
+  var calendarState: CalendarState {
+    get {
+      if calendarViewHeightConstraint.constant == calendarViewHeight {
+        return .Opened
+      } else if calendarViewHeightConstraint.constant == 0 {
+        return .Closed
+      }
+      
+      return .InProgress
+    }
+    set {
+      switch newValue {
+      case .Opened:
+        calendarViewHeightConstraint.constant = self.calendarViewHeight
+      case .Closed:
+        calendarViewHeightConstraint.constant = 0
+      default:
+        break
+      }
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
+    calendarState = .Closed
+  }
+  
+  @IBAction func titleButtonAction(sender: AnyObject) {
+    calendarState.changeToOpositeState()
+    
+    UIView.animateWithDuration(0.4) { () -> Void in
+      self.view.layoutIfNeeded()
+    }
   }
 }
 
