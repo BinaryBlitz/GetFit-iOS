@@ -59,12 +59,12 @@
                                     <constraint firstAttribute="width" constant="276" id="tQb-fm-gfF"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="216" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4GZ-yf-seD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="216" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4GZ-yf-seD">
                                 <rect key="frame" x="0.0" y="119" width="400" height="632"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="professionalCell" rowHeight="216" id="tJ0-mZ-Jw2" customClass="ProfessionalTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="professionalCell" rowHeight="216" id="tJ0-mZ-Jw2" customClass="ProfessionalTableViewCell" customModule="Athlete" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="400" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tJ0-mZ-Jw2" id="vMi-kd-KwD">

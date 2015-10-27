@@ -3,27 +3,43 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--STORE-->
         <scene sceneID="fCc-4T-24h">
             <objects>
-                <tableViewController id="ikW-lv-FdO" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ENL-xJ-VW2">
+                <tableViewController id="ikW-lv-FdO" customClass="StoreTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="168" sectionHeaderHeight="28" sectionFooterHeight="28" id="ENL-xJ-VW2">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sk5-kk-o8N">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="trainingCell" rowHeight="168" id="sk5-kk-o8N" customClass="TrainingProgramTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="400" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sk5-kk-o8N" id="lQ3-am-iFa">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="168"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-dY-rTd">
+                                            <rect key="frame" x="8" y="8" width="384" height="151.5"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="DD5-dY-rTd" secondAttribute="leading" id="0UO-g5-pyK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="DD5-dY-rTd" secondAttribute="trailing" id="Jg3-FK-H2c"/>
+                                        <constraint firstItem="DD5-dY-rTd" firstAttribute="top" secondItem="lQ3-am-iFa" secondAttribute="topMargin" id="ODR-1B-5TH"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="DD5-dY-rTd" secondAttribute="bottom" id="xyO-9J-8Xw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="contentImageView" destination="DD5-dY-rTd" id="P8N-v9-tW9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -37,7 +53,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fu-Iz-p6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="265.5"/>
+            <point key="canvasLocation" x="1719" y="265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rwY-Ym-sgX">

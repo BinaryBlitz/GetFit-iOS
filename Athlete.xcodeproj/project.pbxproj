@@ -19,8 +19,13 @@
 		37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */; };
 		37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C681BDE5A9D00D1DA70 /* Store.storyboard */; };
 		37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */; };
+		37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */; };
+		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
+		37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */; };
+		37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4531BDF8739004193BF /* TrainingsViewController.swift */; };
+		37E4A4561BDF8CE8004193BF /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4551BDF8CE8004193BF /* Training.swift */; };
 		37FE685E1BDE73D100EE6C9A /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */; };
 		C63FAAF7468662834E19C38E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E4A795499BD0C36E4550CA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -53,8 +58,13 @@
 		37A53C661BDE5A6400D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Trainings.storyboard; sourceTree = "<group>"; };
 		37A53C681BDE5A9D00D1DA70 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		37A53C6B1BDE5ACD00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
+		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
+		37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewCell.swift; sourceTree = "<group>"; };
+		37E4A4531BDF8739004193BF /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
+		37E4A4551BDF8CE8004193BF /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		5DB4598A77E426C2258F015F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +109,8 @@
 			children = (
 				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
 				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
+				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
+				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +130,8 @@
 			children = (
 				37FE685D1BDE73D100EE6C9A /* NewsTableViewCell.swift */,
 				37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */,
+				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
+				37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -125,6 +139,7 @@
 		374578961BDE5D19004935BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				37E4A4551BDF8CE8004193BF /* Training.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -357,10 +372,15 @@
 			files = (
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
+				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */,
+				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,
 				37FE685E1BDE73D100EE6C9A /* NewsTableViewCell.swift in Sources */,
+				37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */,
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
+				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
+				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
