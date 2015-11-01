@@ -100,6 +100,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qb0-11-vJC" firstAttribute="top" secondItem="4GZ-yf-seD" secondAttribute="bottom" id="5Fb-KA-3Wp"/>
                             <constraint firstItem="4GZ-yf-seD" firstAttribute="top" secondItem="8jn-E9-g8G" secondAttribute="bottom" constant="8" id="5Xt-5y-KX7"/>
                             <constraint firstItem="8jn-E9-g8G" firstAttribute="top" secondItem="cmv-bJ-1t2" secondAttribute="bottom" constant="8" id="9ux-7W-0kA"/>
                             <constraint firstItem="8jn-E9-g8G" firstAttribute="centerX" secondItem="OaK-cI-CkF" secondAttribute="centerX" id="Nte-aT-Lse"/>
@@ -107,6 +108,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="4GZ-yf-seD" secondAttribute="trailing" constant="-20" id="h6i-kV-tpB"/>
                             <constraint firstItem="4GZ-yf-seD" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-20" id="hRq-7G-bKy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UTj-Ts-jLW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="PROFESSIONALS" id="bjW-T4-6G6">
                         <barButtonItem key="rightBarButtonItem" image="Filter" id="A8B-MK-bhm"/>

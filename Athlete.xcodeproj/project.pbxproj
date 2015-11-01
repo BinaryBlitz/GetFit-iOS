@@ -10,6 +10,8 @@
 		37127B701BE29A18006656BC /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37127B6F1BE29A18006656BC /* Exercise.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */; };
+		372EAA4C1BE68BF40049DF73 /* NewsPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */; };
+		374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
 		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
@@ -27,6 +29,7 @@
 		37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */; };
 		37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */; };
 		37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */; };
+		37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D025371BE65DB80006145A /* ProfileTableViewController.swift */; };
 		37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */; };
@@ -52,6 +55,8 @@
 		37127B6F1BE29A18006656BC /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsPostViewController.swift; sourceTree = "<group>"; };
+		374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
 		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		37A53C6B1BDE5ACD00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
+		37D025371BE65DB80006145A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipsViewController.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,12 +131,15 @@
 			isa = PBXGroup;
 			children = (
 				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
+				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
 				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
 				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
+				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
 				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
 				37821F521BE1699500149523 /* TrainingViewController.swift */,
 				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
 				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+				37D025371BE65DB80006145A /* ProfileTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -419,8 +428,11 @@
 				37FE685E1BDE73D100EE6C9A /* NewsTableViewCell.swift in Sources */,
 				37821F531BE1699500149523 /* TrainingViewController.swift in Sources */,
 				37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */,
+				37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */,
 				371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */,
+				374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */,
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
+				372EAA4C1BE68BF40049DF73 /* NewsPostViewController.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,

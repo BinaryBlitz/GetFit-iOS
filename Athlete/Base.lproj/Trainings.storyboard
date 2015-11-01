@@ -60,7 +60,7 @@
                                         <rect key="frame" x="0.0" y="28" width="400" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zmt-X6-nl6" id="W2U-Ot-Xm3">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="130.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK1-bl-8Uw">
@@ -172,7 +172,7 @@
                     <navigationItem key="navigationItem" id="0kG-dH-ibj">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="gFL-FH-GF2">
-                            <rect key="frame" x="120" y="5.5" width="160" height="33"/>
+                            <rect key="frame" x="120" y="6" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
@@ -214,6 +214,7 @@
                         <outlet property="calendarMenuView" destination="n46-x0-NcM" id="bU9-BQ-4xu"/>
                         <outlet property="calendarView" destination="yad-zk-BN9" id="F5n-kb-g7z"/>
                         <outlet property="calendarViewTopConstaraint" destination="FzI-rz-WYB" id="K4h-e6-GbJ"/>
+                        <outlet property="tableView" destination="uqR-9N-LfB" id="X61-qm-vPk"/>
                         <outlet property="titleButton" destination="ON4-b3-HeQ" id="kaa-dB-sPb"/>
                         <segue destination="A5r-Qw-WnD" kind="show" identifier="trainingInfo" id="xdV-B9-oWw"/>
                     </connections>

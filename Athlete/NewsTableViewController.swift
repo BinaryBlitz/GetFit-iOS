@@ -17,6 +17,7 @@ class NewsTableViewController: UITableViewController {
     
     extendedLayoutIncludesOpaqueBars = true
     
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
   }
@@ -42,8 +43,17 @@ class NewsTableViewController: UITableViewController {
     return width / CGFloat(news[indexPath.row].1)
   }
   
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("post", sender: indexPath)
+  }
+  
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? NewsPostViewController,
+          postIndexPath = sender as? NSIndexPath
+          where segue.identifier == "post" {
+      destination.post = news[postIndexPath.row]
+    }
   }
 }

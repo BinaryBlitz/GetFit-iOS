@@ -3,31 +3,58 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--PROFILE-->
-        <scene sceneID="3mV-us-DNP">
+        <scene sceneID="3eQ-ko-9tk">
             <objects>
-                <viewController id="iGU-xy-QxN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FRJ-vd-0b9"/>
-                        <viewControllerLayoutGuide type="bottom" id="IZn-IQ-LHX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OFX-iC-Gxo">
+                <tableViewController id="Rin-7G-fVe" customClass="ProfileTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DXs-ft-1nd">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="PROFILE" id="Yfb-ir-j8G"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zs7-Ad-DRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="367" id="J7z-qX-QWM">
+                                <rect key="frame" x="0.0" y="92" width="400" height="367"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7z-qX-QWM" id="B8a-as-vSJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="367"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J8D-Wb-O1d">
+                                            <rect key="frame" x="0.0" y="8" width="400" height="351"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="J8D-Wb-O1d" firstAttribute="top" secondItem="B8a-as-vSJ" secondAttribute="topMargin" id="2gD-b7-JdU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="J8D-Wb-O1d" secondAttribute="trailing" constant="-8" id="5KN-wl-pjq"/>
+                                        <constraint firstItem="J8D-Wb-O1d" firstAttribute="leading" secondItem="B8a-as-vSJ" secondAttribute="leadingMargin" constant="-8" id="ALu-My-Fje"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="J8D-Wb-O1d" secondAttribute="bottom" id="qwk-uY-bA8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="Rin-7G-fVe" id="rqB-cq-Jux"/>
+                            <outlet property="delegate" destination="Rin-7G-fVe" id="X47-8Z-CTw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="PROFILE" id="dAG-8x-Zdv"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bor-cE-1Vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1547" y="328"/>
+            <point key="canvasLocation" x="1528" y="328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I3z-fZ-QqZ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jFW-hy-WGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G9b-i0-MCk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Profile" id="Uii-js-EdN">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
@@ -42,10 +69,9 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iGU-xy-QxN" kind="relationship" relationship="rootViewController" id="Wh3-It-yPf"/>
+                        <segue destination="Rin-7G-fVe" kind="relationship" relationship="rootViewController" id="ewC-T0-DhD"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jFW-hy-WGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="981" y="328.5"/>
         </scene>

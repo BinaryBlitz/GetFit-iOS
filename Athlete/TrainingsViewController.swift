@@ -21,6 +21,7 @@ class TrainingsViewController: UIViewController {
   @IBOutlet weak var titleButton: UIButton!
   private let calendarViewHeight: CGFloat = 260
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
+  @IBOutlet weak var tableView: UITableView!
   
   @IBOutlet weak var calendarView: CVCalendarView!
   
@@ -63,15 +64,21 @@ class TrainingsViewController: UIViewController {
     }
   }
   
+  func updateTitleDateWithDate(date: NSDate) {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "MMMM"
+    titleButton.setTitle(formatter.stringFromDate(date).uppercaseString, forState: .Normal)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "MMMM"
-    titleButton.setTitle(formatter.stringFromDate(NSDate()).uppercaseString, forState: .Normal)
+    updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
+    
+    tableView.tableFooterView = UIView()
     
     //add test data
     for training in trainings {
@@ -89,6 +96,20 @@ class TrainingsViewController: UIViewController {
     
     calendarView.commitCalendarViewUpdate()
     calendarMenuView.commitMenuViewUpdate()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    if let tabBarController = tabBarController {
+      tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
+    }
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    if let tabBarController = tabBarController {
+      tabBarController.tabBar.tintColor = UIColor.whiteColor()
+    }
   }
   
   @IBAction func titleButtonAction(sender: AnyObject) {
@@ -195,12 +216,10 @@ extension TrainingsViewController: CVCalendarViewDelegate {
     return false
   }
   
-  func shouldAutoSelectDayOnWeekChange() -> Bool {
-    return false
-  }
- 
-  func didSelectDayView(dayView: DayView) {
-//    print("\(calendarView.presentedDate.commonDescription) is selected!")
+  func presentedDateUpdated(date: Date) {
+    if let date = date.convertedDate() {
+      updateTitleDateWithDate(date)
+    }
   }
   
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {

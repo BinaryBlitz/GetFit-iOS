@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
   
-  private func setUpNavigationBar() {
+  func setUpNavigationBar() {
 //    navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "Back")
 //    navigationController?.navigationBar.backIndicatorImage = UIImage(named: "Back")
     UINavigationBar.appearance().backIndicatorImage = UIImage(named: "Back")

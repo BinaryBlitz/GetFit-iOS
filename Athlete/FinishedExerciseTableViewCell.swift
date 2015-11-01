@@ -29,6 +29,6 @@ class FinishedExerciseTableViewCell: MCSwipeTableViewCell {
     defaultColor = UIColor.primaryYellowColor()
   }
   
-//  func hideWeight(hide: Bool) {
-//  }
+  func hideWeight(hide: Bool) {
+  }
 }

@@ -17,6 +17,8 @@ class StoreTableViewController: UITableViewController {
     
     extendedLayoutIncludesOpaqueBars = true
     
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    
     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
   }
@@ -40,6 +42,10 @@ class StoreTableViewController: UITableViewController {
     let width = tableView.frame.width - 16
     
     return width / CGFloat(trainings[indexPath.row].1)
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("trainingDetails", sender: nil)
   }
   
   // MARK: - Navigation
