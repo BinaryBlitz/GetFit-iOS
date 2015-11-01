@@ -7,18 +7,22 @@
 //
 
 import UIKit
+import CVCalendar
 
 class TrainingsViewController: UIViewController {
   
-  let trainings = [
+  var trainings = [
     Training(name: "Training1", type: .Cardio, duration: 40, date: NSDate()),
     Training(name: "Training2", type: .Running, duration: 20, date: NSDate()),
     Training(name: "Training3", type: .Football, duration: 50, date: NSDate())
   ]
   
+  @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
-  @IBOutlet weak var calendarViewHeightConstraint: NSLayoutConstraint!
   private let calendarViewHeight: CGFloat = 260
+  @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
+  
+  @IBOutlet weak var calendarView: CVCalendarView!
   
   enum CalendarState {
     case Opened
@@ -39,9 +43,9 @@ class TrainingsViewController: UIViewController {
   
   var calendarState: CalendarState {
     get {
-      if calendarViewHeightConstraint.constant == calendarViewHeight {
+      if calendarViewTopConstaraint.constant == 0 {
         return .Opened
-      } else if calendarViewHeightConstraint.constant == 0 {
+      } else if calendarViewTopConstaraint.constant == -(calendarViewHeight) {
         return .Closed
       }
       
@@ -50,9 +54,9 @@ class TrainingsViewController: UIViewController {
     set {
       switch newValue {
       case .Opened:
-        calendarViewHeightConstraint.constant = self.calendarViewHeight
+        calendarViewTopConstaraint.constant = 0
       case .Closed:
-        calendarViewHeightConstraint.constant = 0
+        calendarViewTopConstaraint.constant = -(calendarViewHeight)
       default:
         break
       }
@@ -61,16 +65,47 @@ class TrainingsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "MMMM"
+    titleButton.setTitle(formatter.stringFromDate(NSDate()).uppercaseString, forState: .Normal)
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
+    
+    //add test data
+    for training in trainings {
+      training.exercises = [
+        Exercise(name: "Pushups", repetitions: 4, weight: 80),
+        Exercise(name: "Turns", repetitions: 5, weight: 80),
+        Exercise(name: "Power Ups", repetitions: 3, weight: 60),
+        Exercise(name: "Body Blast", repetitions: 8, weight:  30)
+      ]
+    }
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    calendarView.commitCalendarViewUpdate()
+    calendarMenuView.commitMenuViewUpdate()
   }
   
   @IBAction func titleButtonAction(sender: AnyObject) {
     calendarState.changeToOpositeState()
     
     UIView.animateWithDuration(0.4) { () -> Void in
-      self.view.layoutIfNeeded()
+      self.view.layoutSubviews()
+    }
+  }
+  
+  //MARK: - Navigation
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? TrainingViewController,
+        indexPath = sender as? NSIndexPath
+        where segue.identifier == "trainingInfo" {
+      destination.training = trainings[indexPath.row]
     }
   }
 }
@@ -94,13 +129,21 @@ extension TrainingsViewController: UITableViewDataSource {
     cell.selectionStyle = .None
     
     cell.setSwipeGestureWithView(doneView, color: UIColor.greenAccentColor(),
-        mode: .Switch, state: .State1) { (_, _, _) -> Void in
+        mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
           print("Done!")
+          if let indexPath = tableView.indexPathForCell(swipeCell) {
+            self.trainings.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+          }
     }
     
     cell.setSwipeGestureWithView(laterView, color: UIColor.primaryYellowColor(),
-        mode: .Switch, state: .State3) { (_, _, _) -> Void in
+        mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
           print("Later!")
+          if let indexPath = tableView.indexPathForCell(swipeCell) {
+            self.trainings.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+          }
     }
     
     let model = trainings[indexPath.row]
@@ -127,9 +170,80 @@ extension TrainingsViewController: UITableViewDataSource {
       return formatter.stringFromDate(date)
     }
   }
-  
 }
 
 extension TrainingsViewController: UITableViewDelegate {
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("trainingInfo", sender: indexPath)
+  }
+}
+
+extension TrainingsViewController: CVCalendarViewDelegate {
+  func presentationMode() -> CalendarMode {
+    return .MonthView
+  }
   
+  func firstWeekday() -> Weekday {
+    return .Monday
+  }
+  
+  func shouldShowWeekdaysOut() -> Bool {
+    return false
+  }
+  
+  func shouldAutoSelectDayOnMonthChange() -> Bool {
+    return false
+  }
+  
+  func shouldAutoSelectDayOnWeekChange() -> Bool {
+    return false
+  }
+ 
+  func didSelectDayView(dayView: DayView) {
+//    print("\(calendarView.presentedDate.commonDescription) is selected!")
+  }
+  
+  func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
+    let number = NSNumber(int: Int32(arc4random_uniform(2)))
+    return number.boolValue
+  }
+  
+  func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
+    let randomMasrer = arc4random_uniform(3)
+    if randomMasrer == 0 {
+      return []
+    } else {
+      return [UIColor.blueAccentColor()]
+    }
+  }
+  
+  func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
+    return true
+  }
+  
+  func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat {
+    return 13
+  }
+  
+  func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
+    return 16
+  }
+}
+
+extension TrainingsViewController: CVCalendarMenuViewDelegate {
+
+  func weekdaySymbolType() -> WeekdaySymbolType {
+    return WeekdaySymbolType.VeryShort
+  }
+  func dayOfWeekTextColor() -> UIColor {
+    return UIColor.blackTextColor()
+  }
+  
+  func dayOfWeekTextUppercase() -> Bool {
+    return true
+  }
+  
+  func dayOfWeekFont() -> UIFont {
+    return UIFont.boldSystemFontOfSize(15)
+  }
 }

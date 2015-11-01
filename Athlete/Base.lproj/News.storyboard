@@ -104,7 +104,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Home" width="25" height="21"/>
+        <image name="Home" width="319" height="320"/>
         <image name="HomeSelected" width="25" height="21"/>
         <image name="Messages" width="22" height="21"/>
     </resources>

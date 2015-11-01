@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    Fabric.with([Crashlytics.self])
     setUpNavigationBar()
     setUpTabBar()
     
@@ -22,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func setUpNavigationBar() {
+//    navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "Back")
+//    navigationController?.navigationBar.backIndicatorImage = UIImage(named: "Back")
+    UINavigationBar.appearance().backIndicatorImage = UIImage(named: "Back")
+    UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "Back")
     UINavigationBar.appearance().barTintColor = UIColor.primaryYellowColor()
     UINavigationBar.appearance().translucent = false
     UINavigationBar.appearance().tintColor = UIColor.blackTextColor()
@@ -36,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UITabBar.appearance().barStyle = UIBarStyle.Black
     UITabBar.appearance().tintColor = UIColor.whiteColor()
     UITabBar.appearance().translucent = false
+    
   }
 
   func applicationWillResignActive(application: UIApplication) {

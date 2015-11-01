@@ -32,5 +32,7 @@ class TrainingTableViewCell: MCSwipeTableViewCell {
     titleLabel.textColor = UIColor.blueAccentColor()
     
     durationLabel.textColor = UIColor.graySecondaryColor()
+    
+    defaultColor = UIColor.graySecondaryColor()
   }
 }

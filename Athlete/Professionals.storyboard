@@ -87,6 +87,7 @@
                                         <animations/>
                                         <connections>
                                             <outlet property="contentImageView" destination="QoB-ZK-eDV" id="orb-Kz-JPh"/>
+                                            <segue destination="pI9-LB-Ymd" kind="show" id="ROn-i5-2eg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -117,6 +118,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mO-Zo-4vn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1591" y="178"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Qav-VL-gVQ">
+            <objects>
+                <viewController id="pI9-LB-Ymd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YCd-MR-LPP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tp7-K9-opO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iRr-et-9aZ">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PSg-ZM-Gdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2195" y="78"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dy4-5L-iZQ">

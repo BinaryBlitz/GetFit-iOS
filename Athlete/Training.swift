@@ -6,7 +6,7 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
-struct Training {
+class Training {
   enum TrainingType: String {
     case Cardio
     case Running
@@ -18,6 +18,14 @@ struct Training {
   var type: TrainingType
   var duration: Int
   var date: NSDate
+  var exercises = [Exercise]()
+  
+  init() {
+    name = ""
+    type = TrainingType.Cardio
+    duration = 0
+    date = NSDate()
+  }
   
   init(name: String, type: TrainingType, duration: Int, date: NSDate) {
     self.name = name

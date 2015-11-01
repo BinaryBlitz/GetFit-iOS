@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Trainings View Controller-->
+        <!--Calendar Delegate-->
         <scene sceneID="o2H-Vp-xli">
             <objects>
                 <viewController id="qIZ-am-TBk" customClass="TrainingsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,10 +21,34 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-wI-McO">
                                 <rect key="frame" x="0.0" y="64" width="400" height="260"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
+                                        <rect key="frame" x="8" y="44" width="384" height="208"/>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n46-x0-NcM" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                        <rect key="frame" x="8" y="8" width="384" height="28"/>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="menuViewDelegate" destination="qIZ-am-TBk" id="Gf0-4O-RNu"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.8357924226267871" blue="0.0049915609029212993" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yad-zk-BN9" secondAttribute="trailing" constant="8" id="0fm-0Y-v81"/>
                                     <constraint firstAttribute="height" constant="260" id="3xe-WE-QdO"/>
+                                    <constraint firstAttribute="bottom" secondItem="yad-zk-BN9" secondAttribute="bottom" constant="8" id="DrT-Oq-olH"/>
+                                    <constraint firstItem="n46-x0-NcM" firstAttribute="width" secondItem="yad-zk-BN9" secondAttribute="width" id="MKj-k2-hre"/>
+                                    <constraint firstItem="n46-x0-NcM" firstAttribute="centerX" secondItem="yad-zk-BN9" secondAttribute="centerX" id="Ryr-2j-Chd"/>
+                                    <constraint firstItem="n46-x0-NcM" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="8" id="k6q-PH-dQT"/>
+                                    <constraint firstItem="yad-zk-BN9" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="8" id="lv4-Lz-Fr3"/>
+                                    <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="n46-x0-NcM" secondAttribute="bottom" constant="8" id="onq-0x-62q"/>
+                                    <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="44" id="zOl-VR-nCp"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uqR-9N-LfB">
@@ -36,35 +60,28 @@
                                         <rect key="frame" x="0.0" y="28" width="400" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zmt-X6-nl6" id="W2U-Ot-Xm3">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="130.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK1-bl-8Uw">
-                                                    <rect key="frame" x="15" y="19" width="73" height="21.5"/>
+                                                    <rect key="frame" x="15" y="19" width="73" height="22"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.25679612591068313" green="0.75131637289214881" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardio," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdP-4N-v22">
-                                                    <rect key="frame" x="15" y="49" width="53.5" height="18"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 exersizes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyD-Dk-pdF">
-                                                    <rect key="frame" x="70" y="49" width="76" height="18"/>
+                                                    <rect key="frame" x="70" y="48" width="76" height="18"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxD-t7-PBo">
-                                                    <rect key="frame" x="15" y="81" width="59.5" height="21"/>
+                                                    <rect key="frame" x="15" y="81" width="60" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WmJ-BV-p5F">
-                                                            <rect key="frame" x="9" y="3.5" width="42" height="14.5"/>
+                                                            <rect key="frame" x="9" y="3" width="42" height="15"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,10 +98,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="og5-bf-P3c">
-                                                    <rect key="frame" x="84.5" y="81" width="59.5" height="21"/>
+                                                    <rect key="frame" x="85" y="81" width="60" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUj-hS-zEP">
-                                                            <rect key="frame" x="9" y="3.5" width="42" height="14.5"/>
+                                                            <rect key="frame" x="9" y="3" width="42" height="15"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,6 +117,13 @@
                                                         <constraint firstAttribute="height" constant="21" id="xfi-R5-OHC"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cardio," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdP-4N-v22">
+                                                    <rect key="frame" x="15" y="49" width="54" height="18"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -155,7 +179,6 @@
                                     <rect key="frame" x="8" y="0.0" width="138" height="33"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <state key="normal" title="NOVEMBER"/>
                                     <connections>
                                         <action selector="titleButtonAction:" destination="qIZ-am-TBk" eventType="touchUpInside" id="YxI-Vc-9Z2"/>
                                     </connections>
@@ -188,8 +211,11 @@
                         <barButtonItem key="rightBarButtonItem" image="Add" id="Umi-GN-rgD"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="calendarViewHeightConstraint" destination="3xe-WE-QdO" id="cnV-gd-T94"/>
+                        <outlet property="calendarMenuView" destination="n46-x0-NcM" id="bU9-BQ-4xu"/>
+                        <outlet property="calendarView" destination="yad-zk-BN9" id="F5n-kb-g7z"/>
+                        <outlet property="calendarViewTopConstaraint" destination="FzI-rz-WYB" id="K4h-e6-GbJ"/>
                         <outlet property="titleButton" destination="ON4-b3-HeQ" id="kaa-dB-sPb"/>
+                        <segue destination="A5r-Qw-WnD" kind="show" identifier="trainingInfo" id="xdV-B9-oWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="em3-LF-2O5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,6 +245,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6z-o5-nrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006.5" y="151.5"/>
+        </scene>
+        <!--Training-->
+        <scene sceneID="fOu-sU-ePx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Training" id="A5r-Qw-WnD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMB-Wu-YMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2138" y="151"/>
         </scene>
     </scenes>
     <resources>
