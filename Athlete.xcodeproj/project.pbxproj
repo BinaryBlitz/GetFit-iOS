@@ -12,6 +12,7 @@
 		371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */; };
 		372EAA4C1BE68BF40049DF73 /* NewsPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */; };
 		374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */; };
+		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
 		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
@@ -57,6 +58,7 @@
 		371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsPostViewController.swift; sourceTree = "<group>"; };
 		374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewController.swift; sourceTree = "<group>"; };
+		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
 		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
 				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
 				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
+				374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */,
 				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
 				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
 				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
@@ -418,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,

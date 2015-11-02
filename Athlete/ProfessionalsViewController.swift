@@ -18,8 +18,16 @@ class ProfessionalsViewController: UIViewController {
     
     extendedLayoutIncludesOpaqueBars = true
     
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? ProfessionalTableViewController,
+        indexPath = sender as? NSIndexPath where segue.identifier == "professionalInfo" {
+      destination.trainer = dudes[indexPath.row]
+    }
   }
 }
 
@@ -48,5 +56,8 @@ extension ProfessionalsViewController: UITableViewDataSource {
 }
 
 extension ProfessionalsViewController: UITableViewDelegate {
-  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("professionalInfo", sender: indexPath)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
 }

@@ -48,8 +48,15 @@
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="8" id="k6q-PH-dQT"/>
                                     <constraint firstItem="yad-zk-BN9" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="8" id="lv4-Lz-Fr3"/>
                                     <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="n46-x0-NcM" secondAttribute="bottom" constant="8" id="onq-0x-62q"/>
+                                    <constraint firstAttribute="trailing" secondItem="n46-x0-NcM" secondAttribute="trailing" constant="8" id="w1Y-Kg-XXi"/>
                                     <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="44" id="zOl-VR-nCp"/>
+                                    <constraint firstItem="n46-x0-NcM" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="8" id="zkY-ez-I6c"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ryr-2j-Chd"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uqR-9N-LfB">
                                 <rect key="frame" x="0.0" y="324" width="400" height="427"/>
@@ -172,7 +179,7 @@
                     <navigationItem key="navigationItem" id="0kG-dH-ibj">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="gFL-FH-GF2">
-                            <rect key="frame" x="120" y="6" width="160" height="33"/>
+                            <rect key="frame" x="120" y="5.5" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
