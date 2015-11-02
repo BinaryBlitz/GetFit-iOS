@@ -97,20 +97,20 @@ class TrainingsViewController: UIViewController {
     calendarView.commitCalendarViewUpdate()
     calendarMenuView.commitMenuViewUpdate()
   }
-//  
-//  override func viewDidAppear(animated: Bool) {
-//    super.viewDidAppear(animated)
-//    if let tabBarController = tabBarController {
-//      tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
-//    }
-//  }
-//  
-//  override func viewWillDisappear(animated: Bool) {
-//    super.viewWillDisappear(animated)
-//    if let tabBarController = tabBarController {
-//      tabBarController.tabBar.tintColor = UIColor.whiteColor()
-//    }
-//  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    if let tabBarController = tabBarController {
+      tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
+    }
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    if let tabBarController = tabBarController {
+      tabBarController.tabBar.tintColor = UIColor.whiteColor()
+    }
+  }
   
   @IBAction func titleButtonAction(sender: AnyObject) {
     calendarState.changeToOpositeState()
@@ -164,6 +164,11 @@ extension TrainingsViewController: UITableViewDataSource {
           if let indexPath = tableView.indexPathForCell(swipeCell) {
             self.trainings.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+          }
+          
+          self.calendarState = .Opened
+          UIView.animateWithDuration(0.4) { () -> Void in
+            self.view.layoutSubviews()
           }
     }
     
