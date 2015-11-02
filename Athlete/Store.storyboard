@@ -61,15 +61,15 @@
         <!--Training Program Table View Controller-->
         <scene sceneID="Mwz-tf-dIP">
             <objects>
-                <tableViewController id="Syf-XJ-wxQ" customClass="TrainingProgramTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" id="h1E-Zo-NYf">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="TrainingProgramTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="108" id="yw0-Oe-epF">
-                                <rect key="frame" x="0.0" y="92" width="400" height="108"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="108" id="yw0-Oe-epF">
+                                <rect key="frame" x="0.0" y="113.5" width="400" height="108"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yw0-Oe-epF" id="wMx-ID-rlo">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="107.5"/>
@@ -90,8 +90,8 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="44" id="eX4-lO-rw7">
-                                <rect key="frame" x="0.0" y="200" width="400" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="44" id="eX4-lO-rw7">
+                                <rect key="frame" x="0.0" y="221.5" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>

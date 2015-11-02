@@ -45,11 +45,16 @@ class StoreTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("trainingDetails", sender: nil)
+    performSegueWithIdentifier("trainingDetails", sender: indexPath)
   }
   
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? TrainingProgramTableViewController,
+        indexPath = sender as? NSIndexPath
+        where segue.identifier == "trainingDetails" {
+      destination.training = trainings[indexPath.row]
+    }
   }
 }
