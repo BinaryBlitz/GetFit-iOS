@@ -78,7 +78,7 @@ class TrainingsViewController: UIViewController {
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
     
-    tableView.tableFooterView = UIView()
+//    tableView.tableFooterView = UIView()
     
     //add test data
     for training in trainings {
