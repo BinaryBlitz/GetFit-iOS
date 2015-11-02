@@ -29,6 +29,8 @@ class TrainingViewController: UIViewController {
     
     finishedExercises = training.exercises.filter { $0.finished }
     exercisesToDo = training.exercises.filter { !($0.finished) }
+    
+    updateCompleteStatus()
    
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
   }
@@ -42,6 +44,15 @@ class TrainingViewController: UIViewController {
     let total = training.exercises.count
     trainingStatusLabel.format = "%d%%"
     trainingStatusLabel.countFromCurrentValueTo(Float((finishedCount * 100) / total), withDuration: 0.4)
+    if Float((finishedCount * 100) / total) == 100 {
+      trainingStatusLabel.textColor = UIColor.blackTextColor()
+      endTrainingView.backgroundColor = UIColor.primaryYellowColor()
+      endTrainingButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
+    } else {
+      trainingStatusLabel.textColor = UIColor.whiteColor()
+      endTrainingView.backgroundColor = UIColor.blueAccentColor()
+      endTrainingButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    }
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -52,6 +63,14 @@ class TrainingViewController: UIViewController {
           exercise = sender as? Exercise
           where segue.identifier == "exerciseInfo" {
         destination.exercise = exercise
+    } else if let destinationNavController = segue.destinationViewController as? UINavigationController
+          where segue.identifier == "editExercise" {
+        let destination = destinationNavController.viewControllers.first as! EditExerciseTableViewController
+        if let data = sender as? EditExerciseData {
+          destination.exercise = data.exercise
+          destination.editType = data.editType
+          destination.delegate = self
+        }
     }
   }
 }
@@ -101,6 +120,9 @@ extension TrainingViewController: UITableViewDataSource {
         return UITableViewCell()
       }
       
+      cell.actionsDelegate = self
+      cell.defaultColor = UIColor.primaryYellowColor()
+      
       let exercise = finishedExercises[indexPath.row]
       cell.titleLabel.text = exercise.name
       cell.repetitionsButton.setTitle("\(exercise.repetitions) TIMES", forState: .Normal)
@@ -133,6 +155,9 @@ extension TrainingViewController: UITableViewDataSource {
       guard let cell = tableView.dequeueReusableCellWithIdentifier("exerciseCell", forIndexPath: indexPath) as? ExerciseTableViewCell else {
         return UITableViewCell()
       }
+      
+      cell.actionsDelegate = self
+      cell.defaultColor = UIColor.greenAccentColor()
       
       let exercise = exercisesToDo[indexPath.row]
       cell.titleLabel.text = exercise.name
@@ -231,5 +256,49 @@ extension TrainingViewController: UITableViewDelegate {
 extension TrainingViewController: TrainingTipsDelegate {
   func didDismissViewController() {
     view.alpha = 1
+  }
+}
+
+extension TrainingViewController: ExerciseCellDelegate {
+  
+  class EditExerciseData {
+    typealias EditType = EditExerciseTableViewController.EditType
+    
+    var exercise: Exercise
+    var editType: EditType
+    
+    init(exercise: Exercise, editType: EditType) {
+      self.exercise = exercise
+      self.editType = editType
+    }
+  }
+  
+  func didTapOnRepetitionsButton(cell: UITableViewCell) {
+    guard let indexPath = tableView.indexPathForCell(cell) else {
+      return
+    }
+    
+    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
+    
+    print("didTapOnRepetitionsButton")
+    let data = EditExerciseData(exercise: exercise, editType: .Repetitions)
+    performSegueWithIdentifier("editExercise", sender: data)
+  }
+  
+  func didTapOnWeightButton(cell: UITableViewCell) {
+    guard let indexPath = tableView.indexPathForCell(cell) else {
+      return
+    }
+    
+    print("didTapOnWeightButton")
+    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
+    let data = EditExerciseData(exercise: exercise, editType: .Weight)
+    performSegueWithIdentifier("editExercise", sender: data)
+  }
+}
+
+extension TrainingViewController: EditExerciseViewControllerDelegate {
+  func didUpdateValueForExercise(exercise: Exercise) {
+    tableView.reloadData()
   }
 }

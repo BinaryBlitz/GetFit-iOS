@@ -13,6 +13,7 @@ class FinishedExerciseTableViewCell: MCSwipeTableViewCell {
   @IBOutlet weak var repetitionsButton: UIButton!
   @IBOutlet weak var weightButton: UIButton!
   @IBOutlet weak var titleLabel: UILabel!
+  var actionsDelegate: ExerciseCellDelegate?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -27,6 +28,14 @@ class FinishedExerciseTableViewCell: MCSwipeTableViewCell {
     
     titleLabel.textColor = UIColor.graySecondaryColor()
     defaultColor = UIColor.primaryYellowColor()
+  }
+  
+  @IBAction func weightButtonAction(sender: AnyObject) {
+    actionsDelegate?.didTapOnWeightButton?(self)
+  }
+  
+  @IBAction func repetitionsButtonAction(sender: AnyObject) {
+    actionsDelegate?.didTapOnRepetitionsButton?(self)
   }
   
   func hideWeight(hide: Bool) {

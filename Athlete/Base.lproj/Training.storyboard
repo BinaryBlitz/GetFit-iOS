@@ -144,6 +144,9 @@
                                                         <constraint firstAttribute="height" constant="21" id="Q1M-s4-G3M"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="weightButtonAction:" destination="UMP-K3-JuF" eventType="touchUpInside" id="UJc-61-xVX"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcU-i4-Biu">
                                                     <rect key="frame" x="88" y="44" width="60" height="21"/>
@@ -153,6 +156,9 @@
                                                         <constraint firstAttribute="width" constant="59.5" id="exK-Bh-vov"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="repetitionsButtonAction:" destination="UMP-K3-JuF" eventType="touchUpInside" id="ZjT-FO-Bdt"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <animations/>
@@ -201,6 +207,9 @@
                                                         <constraint firstAttribute="width" constant="59.5" id="ilZ-cM-gbC"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="weightButtonAction:" destination="tC9-Ex-Ed7" eventType="touchUpInside" id="0is-KE-WYl"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVk-iM-Bm4">
                                                     <rect key="frame" x="88" y="44" width="60" height="21"/>
@@ -210,6 +219,9 @@
                                                         <constraint firstAttribute="width" constant="59.5" id="ViJ-Sq-9yh"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="repetitionsButtonAction:" destination="tC9-Ex-Ed7" eventType="touchUpInside" id="tGr-0w-lou"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <animations/>
@@ -259,6 +271,7 @@
                         <outlet property="trainingStatusLabel" destination="aIo-CS-fNa" id="dTI-eY-xM7"/>
                         <segue destination="fuA-cC-n8R" kind="showDetail" identifier="trainingTips" id="kvT-Zd-wVl"/>
                         <segue destination="Kad-Wi-IFN" kind="show" identifier="exerciseInfo" id="eeU-bb-HHf"/>
+                        <segue destination="bKl-R2-Nmb" kind="showDetail" identifier="editExercise" id="UpI-ji-ct5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvd-7W-tga" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,6 +384,89 @@
             </objects>
             <point key="canvasLocation" x="2728" y="794"/>
         </scene>
+        <!--Weight-->
+        <scene sceneID="X4F-cK-745">
+            <objects>
+                <tableViewController id="4vK-aP-EOW" customClass="EditExerciseTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="199" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ugy-vW-xt7">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Obz-GU-n1m">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="199" id="TVT-3M-dAQ">
+                                        <rect key="frame" x="0.0" y="99" width="400" height="199"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVT-3M-dAQ" id="wgF-H2-3ot">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="198.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNA-xk-Nod">
+                                                    <rect key="frame" x="8" y="8" width="384" height="182.5"/>
+                                                    <animations/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="4vK-aP-EOW" id="TKa-lM-lKD"/>
+                                                        <outlet property="delegate" destination="4vK-aP-EOW" id="ipD-rF-J9N"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="iNA-xk-Nod" secondAttribute="trailing" id="G3B-nE-f9B"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="iNA-xk-Nod" secondAttribute="bottom" id="K4a-sH-INK"/>
+                                                <constraint firstItem="iNA-xk-Nod" firstAttribute="leading" secondItem="wgF-H2-3ot" secondAttribute="leadingMargin" id="L0c-w3-8Fx"/>
+                                                <constraint firstItem="iNA-xk-Nod" firstAttribute="top" secondItem="wgF-H2-3ot" secondAttribute="topMargin" id="zJi-3W-iMC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="4vK-aP-EOW" id="dGh-c2-gsW"/>
+                            <outlet property="delegate" destination="4vK-aP-EOW" id="Gkf-hy-QXH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Weight" id="t5B-gB-JE6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hD9-1h-LF8">
+                            <connections>
+                                <action selector="cancelButtonAction:" destination="4vK-aP-EOW" id="FkS-Nd-Saf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bht-WF-A6t">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="4vK-aP-EOW" id="b4e-bp-ezp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pickerView" destination="iNA-xk-Nod" id="IIm-wY-d7z"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ezz-w2-NJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3290" y="-1058"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Wz-e5-Lnf">
+            <objects>
+                <navigationController id="bKl-R2-Nmb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gjU-X1-axW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4vK-aP-EOW" kind="relationship" relationship="rootViewController" id="HHL-uv-Fiz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f63-dW-pqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="-1058"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="aBN-4s-eGL">
             <objects>
@@ -459,7 +555,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AvatarExample" width="319" height="320"/>
+        <image name="AvatarExample" width="12" height="7"/>
         <image name="FinishedExerciseMark" width="213" height="211"/>
     </resources>
     <inferredMetricsTieBreakers>
