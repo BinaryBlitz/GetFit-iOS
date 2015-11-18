@@ -218,7 +218,7 @@ extension TrainingViewController: UITableViewDelegate {
     case 0:
       return 126
     default:
-      return 91
+      return 105
     }
   }
   
