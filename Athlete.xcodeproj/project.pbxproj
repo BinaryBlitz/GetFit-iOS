@@ -152,14 +152,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		374578941BDE5CF5004935BC /* Supporting Files */ = {
+		374578941BDE5CF5004935BC /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
 				37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */,
 				37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */,
 				37A53C4C1BDE527F00D1DA70 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 		374578951BDE5D11004935BC /* Views */ = {
@@ -220,7 +220,7 @@
 				374578961BDE5D19004935BC /* Models */,
 				374578921BDE5C29004935BC /* UI */,
 				374578971BDE5D28004935BC /* Extensions */,
-				374578941BDE5CF5004935BC /* Supporting Files */,
+				374578941BDE5CF5004935BC /* Configuration */,
 				37A53C471BDE527F00D1DA70 /* Assets.xcassets */,
 			);
 			path = Athlete;
