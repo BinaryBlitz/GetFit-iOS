@@ -215,7 +215,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Filter" width="12" height="7"/>
+        <image name="Filter" width="22" height="20"/>
         <image name="Professionals" width="26" height="19"/>
     </resources>
 </document>
