@@ -16,24 +16,9 @@ platform :ios do
 
   desc "Crashlytics beta"
   lane :beta do
-    # sigh
-    build_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
     gym(scheme: "Athlete")
-    crashlytics(crashlytics_path: "./Pods/Crashlytics", emails: 'twistedplane@gmail.com')
-    # gym(
-    #   scheme: "Athlete",
-    #   workspace: "Athlete.xcworkspace",
-    #   output_directory: "./builds/",
-    #   output_name: "Athlete#{build_number}.ipa"
-    # )
-    # dsym_zip
-    # crashlytics(
-    #   crashlytics_path: './Pods/Crashlytics', 
-    #   api_token: ENV['CRASHLYTICS_API_TOKEN'],
-    #   build_secret: ENV['CRASHLYTICS_BUILD_SECRET'],
-    #   # ipa_path: "./builds/Athlete#{build_number}.ipa",
-    #   emails: 'twistedplane@gmail.com'
-    # )
+    crashlytics(crashlytics_path: "./Pods/Crashlytics",
+                emails: 'twistedplane@gmail.com')
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"

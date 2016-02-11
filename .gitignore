@@ -19,11 +19,14 @@ DerivedData
 #OS X Stuff
 .localized
 .DS_Store
+*.zip
 
 # Pods
 Pods/
 
+# Editors
 .idea
-
-# Vim
 *.swp
+
+# Fastlane
+fastlane/report.xml
