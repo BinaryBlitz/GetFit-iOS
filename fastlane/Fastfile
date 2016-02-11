@@ -19,7 +19,7 @@ platform :ios do
     # sigh
     build_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
     gym(scheme: "Athlete")
-    crashlytics(crashlytics_path: "./Pods/Crashlytics")
+    crashlytics(crashlytics_path: "./Pods/Crashlytics", emails: 'twistedplane@gmail.com')
     # gym(
     #   scheme: "Athlete",
     #   workspace: "Athlete.xcworkspace",
