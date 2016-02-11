@@ -43,7 +43,7 @@ class TrainingViewController: UIViewController {
     let finishedCount = finishedExercises.count
     let total = training.exercises.count
     trainingStatusLabel.format = "%d%%"
-    trainingStatusLabel.countFromCurrentValueTo(Float((finishedCount * 100) / total), withDuration: 0.4)
+    trainingStatusLabel.countFromCurrentValueTo(CGFloat((finishedCount * 100) / total), withDuration: 0.4)
     if Float((finishedCount * 100) / total) == 100 {
       trainingStatusLabel.textColor = UIColor.blackTextColor()
       endTrainingView.backgroundColor = UIColor.primaryYellowColor()

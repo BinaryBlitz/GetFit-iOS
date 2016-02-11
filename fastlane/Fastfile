@@ -1,0 +1,61 @@
+fastlane_version "1.51.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    #cocoapods
+    increment_build_number
+    # xctool
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    # snapshot
+  end
+
+  desc "Crashlytics beta"
+  lane :beta do
+    # sigh
+    build_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
+    gym(scheme: "Athlete")
+    crashlytics(crashlytics_path: "./Pods/Crashlytics")
+    # gym(
+    #   scheme: "Athlete",
+    #   workspace: "Athlete.xcworkspace",
+    #   output_directory: "./builds/",
+    #   output_name: "Athlete#{build_number}.ipa"
+    # )
+    # dsym_zip
+    # crashlytics(
+    #   crashlytics_path: './Pods/Crashlytics', 
+    #   api_token: ENV['CRASHLYTICS_API_TOKEN'],
+    #   build_secret: ENV['CRASHLYTICS_BUILD_SECRET'],
+    #   # ipa_path: "./builds/Athlete#{build_number}.ipa",
+    #   emails: 'twistedplane@gmail.com'
+    # )
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :testflight do
+    sigh
+    gym(scheme: "Athlete") # Build your app - more options available
+    pilot
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :deploy do
+    # snapshot
+    sigh
+    gym(scheme: "Athlete") # Build your app - more options available
+    # deliver(force: true)
+    # frameit
+  end
+
+  after_all do |lane|
+    build_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
+    sh "git add -A"
+    sh "git commit -m \"Bulid \##{build_number}\""
+  end
+end
