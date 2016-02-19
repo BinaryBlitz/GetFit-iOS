@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (3.2.0)
-  - Crashlytics (3.6.0):
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - CVCalendar (1.2.8)
-  - Fabric (1.6.5)
+  - CVCalendar (1.2.9)
+  - Fabric (1.6.6)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -23,9 +23,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
-  CVCalendar: b7eda65b57b7ca6efae7c3d123a163882b3a3595
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
