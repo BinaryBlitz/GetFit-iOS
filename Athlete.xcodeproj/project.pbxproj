@@ -140,18 +140,11 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
-				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
-				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
-				374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */,
-				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
-				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
-				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
-				37821F521BE1699500149523 /* TrainingViewController.swift */,
-				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
-				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
-				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
-				37D025371BE65DB80006145A /* ProfileTableViewController.swift */,
+				37C5644B1C77D76000BC370E /* News */,
+				37C5644C1C77D77A00BC370E /* Professionals */,
+				37C5644D1C77D79C00BC370E /* Workout */,
+				37C5644E1C77D7AB00BC370E /* Store */,
+				37C5644F1C77D7CA00BC370E /* Profile */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -257,6 +250,53 @@
 				37C564481C77D2E600BC370E /* PostTableViewCell.xib */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		37C5644B1C77D76000BC370E /* News */ = {
+			isa = PBXGroup;
+			children = (
+				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
+				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		37C5644C1C77D77A00BC370E /* Professionals */ = {
+			isa = PBXGroup;
+			children = (
+				37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */,
+				374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */,
+			);
+			name = Professionals;
+			sourceTree = "<group>";
+		};
+		37C5644D1C77D79C00BC370E /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
+				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
+				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
+				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
+				37821F521BE1699500149523 /* TrainingViewController.swift */,
+				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+			);
+			name = Workout;
+			sourceTree = "<group>";
+		};
+		37C5644E1C77D7AB00BC370E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		37C5644F1C77D7CA00BC370E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				37D025371BE65DB80006145A /* ProfileTableViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
