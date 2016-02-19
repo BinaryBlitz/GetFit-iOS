@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yFY-Tg-v2i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yFY-Tg-v2i">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,7 +19,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0p-4T-djX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -37,57 +36,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="3d3-wC-XZh">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="236" id="Uro-du-rY9" customClass="NewsTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="400" height="236"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uro-du-rY9" id="s7X-3E-RZ5">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="236"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nz-uM-dig">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <animations/>
-                                        </imageView>
-                                    </subviews>
-                                    <animations/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="2nz-uM-dig" secondAttribute="bottom" id="0Vw-Vv-vUw"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="2nz-uM-dig" secondAttribute="trailing" id="6LP-qd-agI"/>
-                                        <constraint firstItem="2nz-uM-dig" firstAttribute="top" secondItem="s7X-3E-RZ5" secondAttribute="topMargin" constant="-8" id="8o4-oh-q7N"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="2nz-uM-dig" secondAttribute="leading" id="AHa-Qa-SxS"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="2nz-uM-dig"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <exclude reference="0Vw-Vv-vUw"/>
-                                            <exclude reference="6LP-qd-agI"/>
-                                            <exclude reference="8o4-oh-q7N"/>
-                                            <exclude reference="AHa-Qa-SxS"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="2nz-uM-dig"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <include reference="0Vw-Vv-vUw"/>
-                                            <include reference="6LP-qd-agI"/>
-                                            <include reference="8o4-oh-q7N"/>
-                                            <include reference="AHa-Qa-SxS"/>
-                                        </mask>
-                                    </variation>
-                                </tableViewCellContentView>
-                                <animations/>
-                                <connections>
-                                    <outlet property="contentImageView" destination="2nz-uM-dig" id="dEb-B9-mze"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="2aZ-ET-Pey" id="VjF-xb-LQg"/>
                             <outlet property="delegate" destination="2aZ-ET-Pey" id="W0G-hC-jWy"/>
@@ -121,13 +70,11 @@
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xeZ-94-0uy">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lq9-R8-ygu">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="27" id="etF-4F-mi4"/>
                                         </constraints>
@@ -144,7 +91,6 @@
                                         </variation>
                                     </button>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstItem="Lq9-R8-ygu" firstAttribute="leading" secondItem="xeZ-94-0uy" secondAttribute="trailing" constant="-8" id="0Hl-9S-fEK">
                                         <variation key="heightClass=regular-widthClass=compact" constant="8"/>
@@ -190,7 +136,6 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-de-rP9">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="636" id="hca-Uf-7my"/>
@@ -205,10 +150,8 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-Bf-b7S">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <animations/>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="jo4-Bf-b7S" firstAttribute="top" secondItem="xw5-vP-J4k" secondAttribute="topMargin" constant="-8" id="4ug-lb-HRp"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="jo4-Bf-b7S" secondAttribute="leading" id="LnW-m9-m4f"/>
@@ -238,7 +181,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="contentImageView" destination="jo4-Bf-b7S" id="DJ2-e9-pmy"/>
                                         </connections>
@@ -252,13 +194,11 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BDo-0W-Pdx">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <animations/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="8" y="0.0" width="224" height="46"/>
                                                     </variation>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="BDo-0W-Pdx" secondAttribute="bottom" id="3wO-u3-k3F">
                                                     <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
@@ -292,7 +232,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="contentImageView" destination="BDo-0W-Pdx" id="Nba-fn-DEs"/>
                                         </connections>
@@ -314,7 +253,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="hdh-8s-Gj5" secondAttribute="trailing" constant="-20" id="0O9-II-wyC"/>

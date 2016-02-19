@@ -93,11 +93,11 @@ extension NewsPostViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? NewsTableViewCell else {
+      guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
         return UITableViewCell()
       }
       
-      cell.contentImageView.image = UIImage(named: post.0)
+//      cell.contentImageView.image = UIImage(named: post.0)
       
       return cell
     case 1:

@@ -20,6 +20,9 @@ class NewsTableViewController: UITableViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    
+    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
+    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,11 +30,10 @@ class NewsTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as? NewsTableViewCell else {
+    guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
       return UITableViewCell()
     }
     
-    cell.contentImageView.image = UIImage(named: news[indexPath.row].0)
     cell.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     return cell
