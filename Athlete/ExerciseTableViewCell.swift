@@ -17,7 +17,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    [repetitionsButton, weightButton].forEach { (button) -> () in
+    [repetitionsButton, weightButton].forEach { button in
       button.layer.cornerRadius = 3
       button.layer.borderWidth = 1
       button.layer.borderColor = UIColor.blueAccentColor().CGColor
