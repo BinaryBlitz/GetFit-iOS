@@ -19,7 +19,7 @@ class User: Object {
   dynamic var name: String = ""
   dynamic var genderValue: String = Gender.Male.rawValue
   dynamic var birthdate: NSDate = NSDate()
-  dynamic var desctiption: String?
+  dynamic var userDescription: String?
   dynamic var avatarURLString: String?
   
   var gender: Gender {

@@ -23,7 +23,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureNavigationBar()
     configureTabBar()
     
+    configureTestDb()
+    
     return true
+  }
+  
+  func configureTestDb() {
+    let trainer = Trainer()
+    trainer.id = 1
+    let awesomePost = Post()
+    awesomePost.id = 1
+    awesomePost.trainer = trainer
+    
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(trainer)
+      realm.add(awesomePost)
+    }
+    
+    print(trainer.posts.count)
+    
+    let post1 = Post()
+    post1.id = 2
+    post1.trainer = trainer
+    
+    try! realm.write {
+      realm.add(post1)
+    }
+    
+    print(trainer.posts.count)
   }
   
   //MARK: - App configuration
