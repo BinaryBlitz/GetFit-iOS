@@ -27,32 +27,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
   
+  //MARK: - Test db
+  
   func configureTestDb() {
     try! dropDb()
     
     let trainer = Trainer()
     trainer.id = 1
-    let awesomePost = Post()
-    awesomePost.id = 1
-    awesomePost.trainer = trainer
     
     let realm = try! Realm()
+    
+    var posts = [Post]()
+    for i in 1...10 {
+      let post = Post()
+      post.id = i
+      post.content = "Hello world"
+      post.trainer = trainer
+      posts.append(post)
+    }
+    
     try! realm.write {
       realm.add(trainer)
-      realm.add(awesomePost)
+      realm.add(posts)
     }
     
-    print(trainer.posts.count)
-    
-    let post1 = Post()
-    post1.id = 2
-    post1.trainer = trainer
-    
-    try! realm.write {
-      realm.add(post1)
-    }
-    
-    print(trainer.posts.count)
+    print("Total posts: \(trainer.posts.count)")
   }
   
   private func dropDb() throws {

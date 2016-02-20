@@ -14,6 +14,7 @@ class Post: Object {
   dynamic var content: String = ""
   dynamic var trainer: Trainer?
   dynamic var program: Program?
+  dynamic var imageURLString: String?
   
   override static func primaryKey() -> String? {
     return "id"
