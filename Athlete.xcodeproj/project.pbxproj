@@ -163,11 +163,10 @@
 			isa = PBXGroup;
 			children = (
 				37C5644A1C77D32000BC370E /* News */,
-				37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */,
-				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
-				37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */,
-				37C279071BE80740004D3174 /* Exercise Cells */,
-				3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */,
+				37D7AD851C7877B800CA96E9 /* Professionals */,
+				37D7AD861C7877D000CA96E9 /* Workout */,
+				37D7AD871C78786600CA96E9 /* Store */,
+				37D7AD881C78786C00CA96E9 /* Profile */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -233,16 +232,6 @@
 			path = AthleteTests;
 			sourceTree = "<group>";
 		};
-		37C279071BE80740004D3174 /* Exercise Cells */ = {
-			isa = PBXGroup;
-			children = (
-				37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */,
-				371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */,
-				371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */,
-			);
-			name = "Exercise Cells";
-			sourceTree = "<group>";
-		};
 		37C5644A1C77D32000BC370E /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +284,41 @@
 			isa = PBXGroup;
 			children = (
 				37D025371BE65DB80006145A /* ProfileTableViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		37D7AD851C7877B800CA96E9 /* Professionals */ = {
+			isa = PBXGroup;
+			children = (
+				37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */,
+				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
+			);
+			name = Professionals;
+			sourceTree = "<group>";
+		};
+		37D7AD861C7877D000CA96E9 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */,
+				37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */,
+				37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */,
+				371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */,
+				371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */,
+			);
+			name = Workout;
+			sourceTree = "<group>";
+		};
+		37D7AD871C78786600CA96E9 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		37D7AD881C78786C00CA96E9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Profile;
 			sourceTree = "<group>";
