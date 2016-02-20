@@ -38,6 +38,8 @@
 		37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD891C787A2800CA96E9 /* Post.swift */; };
 		37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */; };
 		37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8D1C788FC300CA96E9 /* Program.swift */; };
+		37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD941C7896D200CA96E9 /* ServerManager.swift */; };
+		37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD961C78984800CA96E9 /* ServerError.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
@@ -96,6 +98,8 @@
 		37D7AD891C787A2800CA96E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainter.swift; sourceTree = "<group>"; };
 		37D7AD8D1C788FC300CA96E9 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		37D7AD941C7896D200CA96E9 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		37D7AD961C78984800CA96E9 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				37D7AD891C787A2800CA96E9 /* Post.swift */,
 				37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */,
 				37D7AD8D1C788FC300CA96E9 /* Program.swift */,
+				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			children = (
 				374578951BDE5D11004935BC /* Views */,
 				374578931BDE5CCA004935BC /* Controllers */,
+				37D7AD931C7896BD00CA96E9 /* Managers */,
 				374578961BDE5D19004935BC /* Models */,
 				374578921BDE5C29004935BC /* UI */,
 				374578971BDE5D28004935BC /* Extensions */,
@@ -330,6 +336,14 @@
 			children = (
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		37D7AD931C7896BD00CA96E9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
@@ -528,10 +542,12 @@
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
 				37F01C8E1C77CD3800910D58 /* User.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
+				37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */,
+				37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */,
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,
 				37127B701BE29A18006656BC /* Exercise.swift in Sources */,
 				37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */,
