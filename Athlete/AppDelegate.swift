@@ -17,18 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    Fabric.with([Crashlytics.self])
     
+    Fabric.with([Crashlytics.self])
     configureRealm()
     configureNavigationBar()
     configureTabBar()
-    
     configureTestDb()
     
     return true
   }
   
   func configureTestDb() {
+    try! dropDb()
+    
     let trainer = Trainer()
     trainer.id = 1
     let awesomePost = Post()
@@ -52,6 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     print(trainer.posts.count)
+  }
+  
+  private func dropDb() throws {
+    let realm = try Realm()
+    try realm.write {
+      realm.deleteAll()
+    }
   }
   
   //MARK: - App configuration
