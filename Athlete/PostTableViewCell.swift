@@ -7,14 +7,38 @@
 //
 
 import UIKit
+import Haneke
+
+//TODO: decompose me plz
+protocol ImagePresentable {
+  var imageURL: NSURL? { get }
+}
+
+protocol TrainerPresentable {
+  var trainerAvatarURL: NSURL? { get }
+  var trainerName: String { get }
+}
+
+protocol TextPresentable {
+  var text: String { get }
+}
+
+protocol DateTimePresentable {
+  var dateString: String { get }
+}
+
+typealias PostPresentable = protocol<TextPresentable, ImagePresentable, TrainerPresentable, DateTimePresentable>
 
 class PostTableViewCell: UITableViewCell {
+  
+  private let contentHeight: CGFloat = 208
+  private let spaceBetweenTextAndContent: CGFloat = 12
 
   @IBOutlet weak var cardView: CardView!
   
   //MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
-  @IBOutlet weak var tainerNameLabel: UILabel!
+  @IBOutlet weak var trainerNameLabel: UILabel!
   
   //MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
@@ -32,37 +56,58 @@ class PostTableViewCell: UITableViewCell {
   
   enum ContentType {
     case None
-    case Photo
-    case Program
+    case Photo(photoURL: NSURL)
+    case TrainingProgram(program: Program)
   }
   
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    contentView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    contentView.backgroundColor = .lightGrayBackgroundColor()
     
-    likeButton.setImage(UIImage(named: "LikesSelected"), forState: UIControlState.Selected)
-    likeButton.setImage(UIImage(named: "LikesSelected"), forState: UIControlState.Highlighted)
-    likeButton.setImage(UIImage(named: "Likes"), forState: UIControlState.Normal)
+    likeButton.setImage(UIImage(named: "Likes"), forState: .Normal)
+    likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Selected)
+    likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Highlighted)
     
-    dateView.style = BadgeView.Style.LightGray
-    //TODO: add date
-    dateView.text = "4/11"
-    
-    
-    updateContentWith(.None)
+    dateView.style = .LightGray
   }
   
-  func updateContentWith(type: ContentType) {
+  func configureWith(viewModel: PostPresentable) {
+    if let imageURL = viewModel.imageURL {
+      updateContentWith(.Photo(photoURL: imageURL))
+    } else {
+      updateContentWith(.None)
+    }
+    
+    postContentLabel.text = viewModel.text
+    
+    if let trainerAvatarURL = viewModel.trainerAvatarURL {
+      trainerAvatarImageView.hnk_setImageFromURL(trainerAvatarURL)
+    }
+    
+    trainerNameLabel.text = viewModel.trainerName
+    
+    dateView.text = viewModel.dateString
+  }
+  
+  private func updateContentWith(type: ContentType) {
     switch type {
     case .None:
       containerHeight.constant = 0
       containerToTextSpace.constant = 0
       containerView.hidden = true
-    case .Photo:
-      break
-    case .Program:
-      break
+    case .Photo(let photoURL):
+      containerHeight.constant = contentHeight
+      containerToTextSpace.constant = spaceBetweenTextAndContent
+      containerView.hidden = false
+      containerView.backgroundColor = UIColor.lightGrayColor()
+      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: contentHeight))
+      imageView.contentMode = UIViewContentMode.ScaleAspectFill
+      imageView.layer.masksToBounds = true
+      imageView.hnk_setImageFromURL(photoURL)
+      UIView.addContent(imageView, toView: containerView)
+    case .TrainingProgram(_):
+      fatalError("Posts with TrainingProgram are no implemented yet")
     }
   }
   

@@ -133,8 +133,8 @@
                 <outlet property="likeButton" destination="zvU-PF-CPv" id="orh-6T-rfH"/>
                 <outlet property="likesCountLabel" destination="Ylh-dM-qIl" id="Mfq-th-F4T"/>
                 <outlet property="postContentLabel" destination="SSw-3e-gir" id="USY-7U-8Ax"/>
-                <outlet property="tainerNameLabel" destination="VPq-gb-Gxg" id="0Rk-rc-1nm"/>
                 <outlet property="trainerAvatarImageView" destination="xsk-yN-fJ7" id="yGa-d5-a3y"/>
+                <outlet property="trainerNameLabel" destination="VPq-gb-Gxg" id="uca-VF-hdH"/>
             </connections>
             <point key="canvasLocation" x="644" y="180.5"/>
         </tableViewCell>
