@@ -40,6 +40,9 @@
 		37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8D1C788FC300CA96E9 /* Program.swift */; };
 		37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD941C7896D200CA96E9 /* ServerManager.swift */; };
 		37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD961C78984800CA96E9 /* ServerError.swift */; };
+		37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD981C79D5E000CA96E9 /* CardView.swift */; };
+		37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */; };
+		37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
@@ -100,6 +103,9 @@
 		37D7AD8D1C788FC300CA96E9 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		37D7AD941C7896D200CA96E9 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		37D7AD961C78984800CA96E9 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		37D7AD981C79D5E000CA96E9 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44D1BDEE50D004193BF /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 				37D7AD861C7877D000CA96E9 /* Workout */,
 				37D7AD871C78786600CA96E9 /* Store */,
 				37D7AD881C78786C00CA96E9 /* Profile */,
+				37D7AD981C79D5E000CA96E9 /* CardView.swift */,
+				37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */,
+				37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -259,8 +268,8 @@
 		37C5644B1C77D76000BC370E /* News */ = {
 			isa = PBXGroup;
 			children = (
-				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
 				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
+				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -537,6 +546,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
+				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
@@ -546,6 +557,7 @@
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
+				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
 				37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */,
 				37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */,
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,

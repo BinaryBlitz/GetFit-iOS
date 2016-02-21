@@ -9,24 +9,66 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController {
-
-  let news = [("news1", 0.9), ("news2", 1.4), ("news3", 0.9), ("news4", 1.3)]
+  
+  let posts: [Post] = [
+    Post(),
+    Post(),
+    Post()
+  ]
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
-    tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
-    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
-    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
+    configureTableView()
   }
   
+  private func configureTableView() {
+    
+    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
+    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
+    
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 400
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    delayFor(2) {
+      completion()
+    }
+  }
+  
+  func delayFor(delay: Double, closure: () -> Void) {
+    dispatch_after(
+      dispatch_time(
+        DISPATCH_TIME_NOW,
+        Int64(delay * Double(NSEC_PER_SEC))
+      ),
+      dispatch_get_main_queue(), closure)
+  }
+  
+  //MARK: - UITableViewDataSource
+  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return news.count
+    return posts.count
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -39,23 +81,19 @@ class NewsTableViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    let width = tableView.frame.width - 16
-    
-    return width / CGFloat(news[indexPath.row].1)
-  }
+  //MARK: - UITableViewDelegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("post", sender: indexPath)
+    print("did select row at index path")
   }
   
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? NewsPostViewController,
-          postIndexPath = sender as? NSIndexPath
-          where segue.identifier == "post" {
-      destination.post = news[postIndexPath.row]
-    }
+//    if let destination = segue.destinationViewController as? NewsPostViewController,
+//          postIndexPath = sender as? NSIndexPath
+//          where segue.identifier == "post" {
+//      destination.post = posts[postIndexPath.row].content
+//    }
   }
 }

@@ -43,6 +43,6 @@ extension UIColor {
   }
   
   static func lightGrayBackgroundColor() -> UIColor {
-    return UIColor(white: 244, alpha: 1)
+    return UIColor(white: 0.96, alpha: 1)
   }
 }
