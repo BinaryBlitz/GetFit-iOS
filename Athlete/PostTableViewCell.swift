@@ -18,7 +18,10 @@ class PostTableViewCell: UITableViewCell {
   
   //MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
+  
   @IBOutlet weak var containerView: UIView!
+  @IBOutlet weak var containerHeight: NSLayoutConstraint!
+  @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
   
   //MARK: - Footer
   @IBOutlet weak var dateView: BadgeView!
@@ -26,6 +29,12 @@ class PostTableViewCell: UITableViewCell {
   @IBOutlet weak var commentButton: UIButton!
   @IBOutlet weak var likesCountLabel: UILabel!
   @IBOutlet weak var likeButton: UIButton!
+  
+  enum ContentType {
+    case None
+    case Photo
+    case Program
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -39,6 +48,22 @@ class PostTableViewCell: UITableViewCell {
     dateView.style = BadgeView.Style.LightGray
     //TODO: add date
     dateView.text = "4/11"
+    
+    
+    updateContentWith(.None)
+  }
+  
+  func updateContentWith(type: ContentType) {
+    switch type {
+    case .None:
+      containerHeight.constant = 0
+      containerToTextSpace.constant = 0
+      containerView.hidden = true
+    case .Photo:
+      break
+    case .Program:
+      break
+    }
   }
   
   @IBAction func commentButtonAction(sender: AnyObject) {
