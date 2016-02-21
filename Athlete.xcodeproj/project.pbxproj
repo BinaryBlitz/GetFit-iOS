@@ -29,6 +29,7 @@
 		37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */; };
 		37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C681BDE5A9D00D1DA70 /* Store.storyboard */; };
 		37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */; };
+		37A6A1201C7A68B0007F0944 /* UIView+AddConent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6A11F1C7A68B0007F0944 /* UIView+AddConent.swift */; };
 		37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */; };
 		37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */; };
 		37C564491C77D2E600BC370E /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C564481C77D2E600BC370E /* PostTableViewCell.xib */; };
@@ -92,6 +93,7 @@
 		37A53C661BDE5A6400D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Trainings.storyboard; sourceTree = "<group>"; };
 		37A53C681BDE5A9D00D1DA70 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		37A53C6B1BDE5ACD00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		37A6A11F1C7A68B0007F0944 /* UIView+AddConent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AddConent.swift"; sourceTree = "<group>"; };
 		37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCellDelegate.swift; sourceTree = "<group>"; };
 		37C564481C77D2E600BC370E /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		374578971BDE5D28004935BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37A6A11F1C7A68B0007F0944 /* UIView+AddConent.swift */,
 				374578981BDE5FDE004935BC /* UIColor+Athlete.swift */,
 			);
 			name = Extensions;
@@ -555,6 +558,7 @@
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
+				37A6A1201C7A68B0007F0944 /* UIView+AddConent.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
