@@ -89,16 +89,21 @@ class NewsTableViewController: UITableViewController {
   //MARK: - UITableViewDelegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    print("did select row at index path")
+    guard let post = posts?[indexPath.row] else {
+      return
+    }
+    
+    performSegueWithIdentifier("viewPost", sender: post)
   }
   
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    if let destination = segue.destinationViewController as? NewsPostViewController,
-//          postIndexPath = sender as? NSIndexPath
-//          where segue.identifier == "post" {
-//      destination.post = posts[postIndexPath.row].content
-//    }
+    if let destination = segue.destinationViewController as? PostViewController,
+          post = sender as? Post
+          where segue.identifier == "viewPost" {
+      destination.post = post
+      print(destination.post!)
+    }
   }
 }

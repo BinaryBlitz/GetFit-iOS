@@ -10,7 +10,7 @@
 		37127B701BE29A18006656BC /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37127B6F1BE29A18006656BC /* Exercise.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */; };
-		372EAA4C1BE68BF40049DF73 /* NewsPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */; };
+		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
 		374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */; };
 		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
@@ -74,7 +74,7 @@
 		37127B6F1BE29A18006656BC /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedExerciseTableViewCell.swift; sourceTree = "<group>"; };
-		372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsPostViewController.swift; sourceTree = "<group>"; };
+		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewController.swift; sourceTree = "<group>"; };
 		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				3745789A1BDE6B18004935BC /* NewsTableViewController.swift */,
-				372EAA4B1BE68BF40049DF73 /* NewsPostViewController.swift */,
+				372EAA4B1BE68BF40049DF73 /* PostViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -602,7 +602,7 @@
 				374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */,
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
-				372EAA4C1BE68BF40049DF73 /* NewsPostViewController.swift in Sources */,
+				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,

@@ -46,7 +46,7 @@
                         <barButtonItem key="rightBarButtonItem" image="Messages" id="6ao-sl-lIz"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="eHR-Y0-aBE" kind="show" identifier="post" id="18Q-JA-Oub"/>
+                        <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPost" id="18Q-JA-Oub"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBc-d0-PnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,7 +56,7 @@
         <!--POST-->
         <scene sceneID="F2q-58-2Uy">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="eHR-Y0-aBE" customClass="NewsPostViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="eHR-Y0-aBE" customClass="PostViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1b-Kn-aMs"/>
                         <viewControllerLayoutGuide type="bottom" id="j57-hm-Aq4"/>
@@ -134,119 +134,9 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-de-rP9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="113" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-de-rP9">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="636" id="hca-Uf-7my"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="postCell" rowHeight="236" id="AHc-dz-Bwd" customClass="NewsTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="400" height="236"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AHc-dz-Bwd" id="xw5-vP-J4k">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="236"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-Bf-b7S">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="jo4-Bf-b7S" firstAttribute="top" secondItem="xw5-vP-J4k" secondAttribute="topMargin" constant="-8" id="4ug-lb-HRp"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="jo4-Bf-b7S" secondAttribute="leading" id="LnW-m9-m4f"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jo4-Bf-b7S" secondAttribute="bottom" id="PMU-WF-ZLg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jo4-Bf-b7S" secondAttribute="trailing" id="uOO-SG-vdp"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="jo4-Bf-b7S"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="4ug-lb-HRp"/>
-                                                    <exclude reference="LnW-m9-m4f"/>
-                                                    <exclude reference="PMU-WF-ZLg"/>
-                                                    <exclude reference="uOO-SG-vdp"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="jo4-Bf-b7S"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="4ug-lb-HRp"/>
-                                                    <include reference="LnW-m9-m4f"/>
-                                                    <include reference="PMU-WF-ZLg"/>
-                                                    <include reference="uOO-SG-vdp"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="contentImageView" destination="jo4-Bf-b7S" id="DJ2-e9-pmy"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="46" id="3mx-hy-6Yk" customClass="NewsTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="400" height="236"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3mx-hy-6Yk" id="vDq-Se-lOC">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="46"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BDo-0W-Pdx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="0.0" width="224" height="46"/>
-                                                    </variation>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="BDo-0W-Pdx" secondAttribute="bottom" id="3wO-u3-k3F">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
-                                                </constraint>
-                                                <constraint firstAttribute="trailingMargin" secondItem="BDo-0W-Pdx" secondAttribute="trailing" id="D1L-KV-tPc"/>
-                                                <constraint firstItem="BDo-0W-Pdx" firstAttribute="top" secondItem="vDq-Se-lOC" secondAttribute="topMargin" constant="-8" id="May-dY-DTy">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
-                                                </constraint>
-                                                <constraint firstAttribute="leadingMargin" secondItem="BDo-0W-Pdx" secondAttribute="leading" id="teI-jS-z15"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="BDo-0W-Pdx"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="3wO-u3-k3F"/>
-                                                    <exclude reference="D1L-KV-tPc"/>
-                                                    <exclude reference="May-dY-DTy"/>
-                                                    <exclude reference="teI-jS-z15"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="BDo-0W-Pdx"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="3wO-u3-k3F"/>
-                                                    <include reference="D1L-KV-tPc"/>
-                                                    <include reference="May-dY-DTy"/>
-                                                    <include reference="teI-jS-z15"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="contentImageView" destination="BDo-0W-Pdx" id="Nba-fn-DEs"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="hca-Uf-7my"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <exclude reference="hca-Uf-7my"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="eHR-Y0-aBE" id="UxA-Bd-z7z"/>
                                     <outlet property="delegate" destination="eHR-Y0-aBE" id="sWX-fF-KrL"/>
@@ -257,8 +147,10 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="hdh-8s-Gj5" secondAttribute="trailing" constant="-20" id="0O9-II-wyC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZCL-de-rP9" secondAttribute="trailing" constant="-20" id="4Hw-Dn-m2h"/>
+                            <constraint firstItem="j57-hm-Aq4" firstAttribute="top" secondItem="hdh-8s-Gj5" secondAttribute="bottom" id="8WP-a3-X5G">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="hdh-8s-Gj5" firstAttribute="leading" secondItem="Szb-vu-r2d" secondAttribute="leadingMargin" constant="-20" id="EnU-Vk-nt4"/>
-                            <constraint firstItem="j57-hm-Aq4" firstAttribute="top" secondItem="hdh-8s-Gj5" secondAttribute="bottom" id="I19-9s-y1E"/>
                             <constraint firstItem="ZCL-de-rP9" firstAttribute="leading" secondItem="Szb-vu-r2d" secondAttribute="leadingMargin" constant="-20" id="VIo-9B-Qc7"/>
                             <constraint firstItem="ZCL-de-rP9" firstAttribute="top" secondItem="A1b-Kn-aMs" secondAttribute="bottom" id="gQI-MH-2mc"/>
                             <constraint firstItem="hdh-8s-Gj5" firstAttribute="top" secondItem="ZCL-de-rP9" secondAttribute="bottom" constant="2" id="vu3-67-7cD">
@@ -270,35 +162,18 @@
                                 <exclude reference="hdh-8s-Gj5"/>
                                 <exclude reference="ZCL-de-rP9"/>
                             </mask>
-                            <mask key="constraints">
-                                <exclude reference="I19-9s-y1E"/>
-                                <exclude reference="4Hw-Dn-m2h"/>
-                                <exclude reference="VIo-9B-Qc7"/>
-                                <exclude reference="gQI-MH-2mc"/>
-                                <exclude reference="0O9-II-wyC"/>
-                                <exclude reference="EnU-Vk-nt4"/>
-                                <exclude reference="vu3-67-7cD"/>
-                            </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="hdh-8s-Gj5"/>
                                 <include reference="ZCL-de-rP9"/>
                             </mask>
-                            <mask key="constraints">
-                                <include reference="I19-9s-y1E"/>
-                                <include reference="4Hw-Dn-m2h"/>
-                                <include reference="VIo-9B-Qc7"/>
-                                <include reference="gQI-MH-2mc"/>
-                                <include reference="0O9-II-wyC"/>
-                                <include reference="EnU-Vk-nt4"/>
-                                <include reference="vu3-67-7cD"/>
-                            </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="POST" id="0XX-Nn-gKY"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="keyboardHeight" destination="I19-9s-y1E" id="EC2-mb-VRR"/>
+                        <outlet property="keyboardHeight" destination="8WP-a3-X5G" id="yrD-hA-MIJ"/>
                         <outlet property="tableView" destination="ZCL-de-rP9" id="Wuz-hM-XFW"/>
                     </connections>
                 </viewController>
