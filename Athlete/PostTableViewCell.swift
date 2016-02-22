@@ -9,24 +9,6 @@
 import UIKit
 import Haneke
 
-//TODO: decompose me plz
-protocol ImagePresentable {
-  var imageURL: NSURL? { get }
-}
-
-protocol TrainerPresentable {
-  var trainerAvatarURL: NSURL? { get }
-  var trainerName: String { get }
-}
-
-protocol TextPresentable {
-  var text: String { get }
-}
-
-protocol DateTimePresentable {
-  var dateString: String { get }
-}
-
 typealias PostPresentable = protocol<TextPresentable, ImagePresentable, TrainerPresentable, DateTimePresentable>
 
 class PostTableViewCell: UITableViewCell {

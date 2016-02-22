@@ -1,0 +1,11 @@
+//
+//  ImagePresenter.swift
+//  Athlete
+//
+//  Created by Dan Shevlyuk on 22/02/2016.
+//  Copyright © 2016 BinaryBlitz. All rights reserved.
+//
+
+protocol ImagePresentable {
+  var imageURL: NSURL? { get }
+}
