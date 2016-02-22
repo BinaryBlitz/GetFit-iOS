@@ -41,10 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let realm = try! Realm()
     
     var posts = [Post]()
-    for i in 80...100 {
+    for i in 1...100 {
       let post = Post()
       post.id = i
       post.content = "Hello world \(i)"
+      if i % 3 == 0 && i % 5 == 0 {
+        post.imageURLString = "https://pbs.twimg.com/media/Cb2nfVhWwAAOv8t.jpg"
+      }
       post.trainer = trainer
       post.commentsCount = 50
       post.likesCount = 100
