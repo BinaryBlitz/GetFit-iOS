@@ -36,6 +36,7 @@
 		37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */; };
 		37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */; };
 		37AC2ADE1C7B5C1B007543F4 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */; };
+		37AC2AE01C7BD798007543F4 /* UserPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */; };
 		37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */; };
 		37C564491C77D2E600BC370E /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C564481C77D2E600BC370E /* PostTableViewCell.xib */; };
 		37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */; };
@@ -105,6 +106,7 @@
 		37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPresentable.swift; sourceTree = "<group>"; };
 		37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPresentable.swift; sourceTree = "<group>"; };
 		37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCellDelegate.swift; sourceTree = "<group>"; };
 		37C564481C77D2E600BC370E /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				37A6A1241C7AEEB8007F0944 /* TrainerPresentable.swift */,
 				37A6A1281C7AEECE007F0944 /* DateTimePresentable.swift */,
 				37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */,
+				37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,
 				37127B701BE29A18006656BC /* Exercise.swift in Sources */,
 				37A6A1251C7AEEB8007F0944 /* TrainerPresentable.swift in Sources */,
+				37AC2AE01C7BD798007543F4 /* UserPresentable.swift in Sources */,
 				37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */,
 				37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */,
 				37821F531BE1699500149523 /* TrainingViewController.swift in Sources */,
