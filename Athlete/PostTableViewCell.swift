@@ -9,7 +9,7 @@
 import UIKit
 import Haneke
 
-typealias PostPresentable = protocol<TextPresentable, ImagePresentable, TrainerPresentable, DateTimePresentable>
+typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable>
 
 class PostTableViewCell: UITableViewCell {
   
@@ -54,7 +54,7 @@ class PostTableViewCell: UITableViewCell {
     dateView.style = .LightGray
   }
   
-  func configureWith(viewModel: PostPresentable) {
+  func configureWith(viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
       updateContentWith(.Photo(photoURL: imageURL))
     } else {
@@ -70,6 +70,9 @@ class PostTableViewCell: UITableViewCell {
     trainerNameLabel.text = viewModel.trainerName
     
     dateView.text = viewModel.dateString
+    
+    likesCountLabel.text = viewModel.likesCount
+    commentsCountLabel.text = viewModel.commentsCount
   }
   
   private func updateContentWith(type: ContentType) {

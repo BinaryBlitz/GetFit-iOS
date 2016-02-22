@@ -34,15 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let trainer = Trainer()
     trainer.id = 1
+    trainer.firstName = "Dan"
+    trainer.lastName = "Shevlyuk"
+    trainer.avatarURLString = "https://pbs.twimg.com/media/Cb0cYOjXIAEVP9p.jpg"
     
     let realm = try! Realm()
     
     var posts = [Post]()
-    for i in 1...10 {
+    for i in 80...100 {
       let post = Post()
       post.id = i
-      post.content = "Hello world"
+      post.content = "Hello world \(i)"
       post.trainer = trainer
+      post.commentsCount = 50
+      post.likesCount = 100
       posts.append(post)
     }
     

@@ -7,14 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsTableViewController: UITableViewController {
   
-  let posts: [Post] = [
-    Post(),
-    Post(),
-    Post()
-  ]
+  var posts: Results<Post>?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,6 +20,7 @@ class NewsTableViewController: UITableViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     
     configureTableView()
+    fetchPosts()
   }
   
   private func configureTableView() {
@@ -40,6 +38,12 @@ class NewsTableViewController: UITableViewController {
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  func fetchPosts() {
+    let realm = try! Realm()
+    posts = realm.objects(Post).sorted("dateCreated", ascending: false)
+    print(posts?.count ?? "lol")
   }
   
   //MARK: - Refresh
@@ -68,15 +72,16 @@ class NewsTableViewController: UITableViewController {
   //MARK: - UITableViewDataSource
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts.count
+    return posts?.count ?? 0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
+    guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell,
+        post = posts?[indexPath.row] else {
       return UITableViewCell()
     }
     
-    cell.backgroundColor = UIColor.lightGrayBackgroundColor()
+    cell.configureWith(PostViewModel(post: post))
     
     return cell
   }

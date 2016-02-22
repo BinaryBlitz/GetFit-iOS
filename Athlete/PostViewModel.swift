@@ -6,24 +6,12 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-//typealias PostPresentable = protocol<TextPresentable, ImagePresentable, TrainerPresentable, DateTimePresentable>
-
-class PostViewModel {
+struct PostViewModel {
   
   let post: Post
-  
-  init(post: Post) {
-    self.post = post
-  }
 }
 
-extension PostViewModel: TextPresentable {
-  var text: String {
-    return post.content
-  }
-}
-
-extension PostViewModel: ImagePresentable {
+extension PostViewModel: PostPresentable {
   var imageURL: NSURL? {
     guard let imageURLString = post.imageURLString,
         url = NSURL(string: imageURLString) else {
@@ -31,6 +19,18 @@ extension PostViewModel: ImagePresentable {
     }
     
     return url
+  }
+  
+  var text: String {
+    return post.content
+  }
+  
+  var likesCount: String {
+    return NumberFormatter.stringFromNumber(post.likesCount)
+  }
+  
+  var commentsCount: String {
+    return NumberFormatter.stringFromNumber(post.commentsCount)
   }
 }
 
