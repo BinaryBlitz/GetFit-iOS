@@ -15,6 +15,7 @@ class Post: Object {
   dynamic var trainer: Trainer?
   dynamic var program: Program?
   dynamic var imageURLString: String?
+  dynamic var dateCreated: NSDate = NSDate()
   
   override static func primaryKey() -> String? {
     return "id"
