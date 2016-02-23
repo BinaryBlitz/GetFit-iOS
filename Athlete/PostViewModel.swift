@@ -7,9 +7,10 @@
 //
 
 struct PostViewModel {
-  
   let post: Post
 }
+
+//MARK: - PostPresentable
 
 extension PostViewModel: PostPresentable {
   var imageURL: NSURL? {
@@ -30,11 +31,15 @@ extension PostViewModel: PostPresentable {
   }
 }
 
+//MARK: - TextPresentable
+
 extension PostViewModel: TextPresentable {
   var text: String {
     return post.content
   }
 }
+
+//MARK: - TrainerPresentable
 
 extension PostViewModel: TrainerPresentable {
   var trainerAvatarURL: NSURL? {
@@ -54,6 +59,8 @@ extension PostViewModel: TrainerPresentable {
     return "\(trainer.firstName) \(trainer.lastName)"
   }
 }
+
+//MARK: - DateTimePresentable
 
 extension PostViewModel: DateTimePresentable {
   var dateString: String {

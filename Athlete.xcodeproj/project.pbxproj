@@ -21,6 +21,7 @@
 		376F65751C7C958A0016071C /* PostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */; };
 		376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65761C7C97EE0016071C /* TextPresentable.swift */; };
 		376F65791C7C9EDA0016071C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65781C7C9EDA0016071C /* Comment.swift */; };
+		376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F657A1C7CA0B30016071C /* CommentViewModel.swift */; };
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
 		378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */; };
@@ -91,6 +92,7 @@
 		376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCommentTableViewCell.xib; sourceTree = "<group>"; };
 		376F65761C7C97EE0016071C /* TextPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPresentable.swift; sourceTree = "<group>"; };
 		376F65781C7C9EDA0016071C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		376F657A1C7CA0B30016071C /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseTableViewController.swift; sourceTree = "<group>"; };
@@ -222,8 +224,9 @@
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
 				37D7AD891C787A2800CA96E9 /* Post.swift */,
-				376F65781C7C9EDA0016071C /* Comment.swift */,
 				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
+				376F65781C7C9EDA0016071C /* Comment.swift */,
+				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
 				37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */,
 				37D7AD8D1C788FC300CA96E9 /* Program.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
@@ -609,6 +612,7 @@
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
 				37E4A44E1BDEE50D004193BF /* ProfessionalTableViewCell.swift in Sources */,
 				37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */,
+				376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */,
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,
 				37127B701BE29A18006656BC /* Exercise.swift in Sources */,
 				37A6A1251C7AEEB8007F0944 /* TrainerPresentable.swift in Sources */,
