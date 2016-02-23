@@ -13,9 +13,11 @@ typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, Da
 
 class PostTableViewCell: UITableViewCell {
   
+  //MARK: - Constants
   private let contentHeight: CGFloat = 208
   private let spaceBetweenTextAndContent: CGFloat = 12
 
+  //MARK: - Base
   @IBOutlet weak var cardView: CardView!
   
   //MARK: - Header
@@ -24,7 +26,6 @@ class PostTableViewCell: UITableViewCell {
   
   //MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
-  
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerHeight: NSLayoutConstraint!
   @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
@@ -53,6 +54,8 @@ class PostTableViewCell: UITableViewCell {
     
     dateView.style = .LightGray
   }
+  
+  //MARK: - Cell configuration
   
   func configureWith(viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
@@ -95,6 +98,8 @@ class PostTableViewCell: UITableViewCell {
       fatalError("Posts with TrainingProgram are no implemented yet")
     }
   }
+  
+  //MARK: - IBActions
   
   @IBAction func commentButtonAction(sender: AnyObject) {
     print("comment!")
