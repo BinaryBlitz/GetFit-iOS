@@ -9,7 +9,7 @@
 import UIKit
 import Haneke
 
-typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable>
+typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable, TextPresentable>
 
 class PostTableViewCell: UITableViewCell {
   

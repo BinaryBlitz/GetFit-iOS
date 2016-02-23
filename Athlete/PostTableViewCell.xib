@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="432" height="521"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gcn-m6-KiP" id="QFI-DR-OW5">
-                <rect key="frame" x="0.0" y="0.0" width="432" height="521"/>
+                <rect key="frame" x="0.0" y="0.0" width="432" height="520.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VR9-ZD-QiT" customClass="CardView" customModule="Athlete" customModuleProvider="target">
@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Selvestri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPq-gb-Gxg">
-                                <rect key="frame" x="62" y="22" width="105" height="21"/>
+                                <rect key="frame" x="62" y="21" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -72,8 +72,8 @@
                                     <action selector="commentButtonAction:" destination="gcn-m6-KiP" eventType="touchUpInside" id="WfB-HE-n0x"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pub-Ln-za6">
-                                <rect key="frame" x="286" y="459" width="11" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pub-Ln-za6">
+                                <rect key="frame" x="287" y="461" width="11" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

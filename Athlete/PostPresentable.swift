@@ -7,7 +7,6 @@
 //
 
 protocol PostPresentable {
-  var text: String { get }
   var imageURL: NSURL? { get }
   var likesCount: String { get }
   var commentsCount: String { get }

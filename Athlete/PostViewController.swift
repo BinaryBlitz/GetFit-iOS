@@ -37,6 +37,8 @@ class PostViewController: UIViewController {
     tableView.estimatedRowHeight = 400
     let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
+    let commentCellNib = UINib(nibName: String(PostCommentTableViewCell), bundle: nil)
+    tableView.registerNib(commentCellNib, forCellReuseIdentifier: "commentCell")
   }
   
   func scrollToBottom() {

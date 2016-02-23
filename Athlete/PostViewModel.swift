@@ -21,16 +21,18 @@ extension PostViewModel: PostPresentable {
     return url
   }
   
-  var text: String {
-    return post.content
-  }
-  
   var likesCount: String {
     return NumberFormatter.stringFromNumber(post.likesCount)
   }
   
   var commentsCount: String {
     return NumberFormatter.stringFromNumber(post.commentsCount)
+  }
+}
+
+extension PostViewModel: TextPresentable {
+  var text: String {
+    return post.content
   }
 }
 

@@ -42,6 +42,10 @@ class User: Object {
     self.genderValue = gender.rawValue
   }
   
+  var comments: [Comment] {
+    return linkingObjects(Comment.self, forProperty: "author")
+  }
+  
   override static func primaryKey() -> String? {
     return "id"
   }

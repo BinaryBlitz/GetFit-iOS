@@ -19,6 +19,10 @@ class Post: Object {
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
   
+  var comments: [Comment] {
+    return linkingObjects(Comment.self, forProperty: "post")
+  }
+  
   override static func primaryKey() -> String? {
     return "id"
   }
