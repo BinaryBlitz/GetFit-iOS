@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PostViewController: UIViewController {
-  
-//  let comments: [(String, Double)] = [("comment1", 6.78), ("comment2", 4.92)]
-  let comments: [(String, Double)] = []
 
+  var post: Post?
+  
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
-  var post: Post?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -98,8 +97,10 @@ extension PostViewController: UITableViewDataSource {
     switch section {
     case 0:
       return 1
+    case 1:
+      return post?.comments.count ?? 0
     default:
-      return comments.count
+      return 0
     }
   }
   
@@ -116,11 +117,12 @@ extension PostViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
-      
-      if let imageView = cell.viewWithTag(1) as? UIImageView {
-        imageView.image = UIImage(named: comments[indexPath.row].0)
+      guard let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as? PostCommentTableViewCell,
+          comment = post?.comments[indexPath.row] else {
+        return UITableViewCell()
       }
+      
+      cell.configureWith(CommentViewModel(comment: comment))
       
       return cell
     default:
@@ -128,3 +130,5 @@ extension PostViewController: UITableViewDataSource {
     }
   }
 }
+
+

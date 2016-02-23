@@ -38,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     trainer.lastName = "Shevlyuk"
     trainer.avatarURLString = "https://pbs.twimg.com/media/Cb0cYOjXIAEVP9p.jpg"
     
+    let user = User()
+    user.id = 1
+    user.gender = .Male
+    user.name = "Awesome Dude"
+    
     let realm = try! Realm()
     
     var posts = [Post]()
@@ -56,10 +61,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       post.commentsCount = 50
       post.likesCount = 100
       posts.append(post)
+      
+      for j in 1...7 {
+        let comment = Comment()
+        comment.id = j + i * 7
+        comment.content = "kek \(j)"
+        comment.author = user
+        post.comments.append(comment)
+      }
     }
     
     try! realm.write {
       realm.add(trainer)
+      realm.add(user)
       realm.add(posts)
     }
     

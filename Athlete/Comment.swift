@@ -11,9 +11,8 @@ import RealmSwift
 class Comment: Object {
   
   dynamic var id: Int = 0
-  dynamic var post: Post?
-  dynamic var content: String = ""
   dynamic var author: User?
+  dynamic var content: String = ""
   dynamic var dateCreated: NSDate = NSDate()
   
   override static func primaryKey() -> String? {

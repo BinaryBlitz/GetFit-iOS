@@ -30,17 +30,6 @@ class User: Object {
       genderValue = newGender.rawValue
     }
   }
-
-  required init() {
-    super.init()
-  }
-  
-  init(id: Int, name: String, gender: Gender) {
-    super.init()
-    self.id = id
-    self.name = name
-    self.genderValue = gender.rawValue
-  }
   
   var comments: [Comment] {
     return linkingObjects(Comment.self, forProperty: "author")
