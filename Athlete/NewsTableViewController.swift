@@ -82,6 +82,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     cell.configureWith(PostViewModel(post: post))
+    cell.displayAsPreview = true
     
     return cell
   }

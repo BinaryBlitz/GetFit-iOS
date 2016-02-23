@@ -45,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let post = Post()
       post.id = i
       post.content = "Hello world \(i)"
+      
+      if i % 3 == 0 {
+        post.content = "Исследование указанной связи должно опираться на тот факт, что математический горизонт прочно прекращает космический азимут. Кряж недоступно пододвигается под керн. Габбро, в первом приближении, деформирует далекий лимб. Метеорный дождь покрывает голоцен."
+      }
       if i % 3 == 0 && i % 5 == 0 {
         post.imageURLString = "https://pbs.twimg.com/media/Cb2nfVhWwAAOv8t.jpg"
       }

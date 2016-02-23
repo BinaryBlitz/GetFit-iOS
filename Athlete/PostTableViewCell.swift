@@ -16,6 +16,7 @@ class PostTableViewCell: UITableViewCell {
   //MARK: - Constants
   private let contentHeight: CGFloat = 208
   private let spaceBetweenTextAndContent: CGFloat = 12
+  private let numberOfLinesInPostPreview = 5
 
   //MARK: - Base
   @IBOutlet weak var cardView: CardView!
@@ -115,6 +116,19 @@ class PostTableViewCell: UITableViewCell {
       } else {
         likesCountLabel.text = String(likes - 1)
       }
+    }
+  }
+}
+
+//MARK: - Previewable
+
+extension PostTableViewCell: Previewable {
+  var displayAsPreview: Bool {
+    get {
+      return postContentLabel.numberOfLines != 0
+    }
+    set {
+      postContentLabel.numberOfLines = newValue ? numberOfLinesInPostPreview : 0
     }
   }
 }

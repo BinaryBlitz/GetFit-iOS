@@ -110,6 +110,7 @@ extension PostViewController: UITableViewDataSource {
       }
       
       cell.configureWith(PostViewModel(post: post))
+      cell.displayAsPreview = false
       
       return cell
     case 1:
@@ -124,17 +125,4 @@ extension PostViewController: UITableViewDataSource {
       return UITableViewCell()
     }
   }
-}
-
-extension PostViewController: UITableViewDelegate {
-//  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//    switch indexPath.section {
-//    case 0:
-//      let width = tableView.frame.width - 16
-//      return width / CGFloat(post.1)
-//    default:
-//      let width = tableView.frame.width - 16
-//      return width / CGFloat(comments[indexPath.row].1)
-//    }
-//  }
 }
