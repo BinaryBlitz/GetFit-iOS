@@ -6,6 +6,7 @@ PODS:
   - Fabric (1.6.6)
   - HanekeSwift (0.10.1)
   - MCSwipeTableViewCell (2.1.4)
+  - PagingMenuController (0.8.0)
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - Fabric
   - HanekeSwift
   - MCSwipeTableViewCell
+  - PagingMenuController
   - RealmSwift
   - SwiftyJSON
   - UICountingLabel
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
+  PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
