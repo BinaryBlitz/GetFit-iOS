@@ -43,7 +43,6 @@ class NewsTableViewController: UITableViewController {
   func fetchPosts() {
     let realm = try! Realm()
     posts = realm.objects(Post).sorted("dateCreated", ascending: false)
-    print(posts?.count ?? "lol")
   }
   
   //MARK: - Refresh
@@ -104,7 +103,6 @@ class NewsTableViewController: UITableViewController {
           post = sender as? Post
           where segue.identifier == "viewPost" {
       destination.post = post
-      print(destination.post!)
     }
   }
 }

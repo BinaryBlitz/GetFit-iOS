@@ -9,41 +9,64 @@
 import UIKit
 
 class ProfileTableViewController: UITableViewController {
-
-  let news = [("ProfileTitle", 1.138), ("Stat", 0.7)]
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
     
-    tableView.separatorStyle = .None
-    tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 3))
+    tableView.registerNib(UINib(nibName: String(ProfileCardTableViewCell), bundle: nil), forCellReuseIdentifier: "profileCard")
+    tableView.tableHeaderView = tableView.dequeueReusableCellWithIdentifier("profileCard")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    navigationController?.navigationBarHidden = true
+  }
+  
+  //MARK: - UITableViewDataSource
+  
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 5
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return news.count
+    return 10
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("cell") else {
+    guard let cell = tableView.dequeueReusableCellWithIdentifier("stuff") else {
       return UITableViewCell()
     }
-    
-    cell.selectionStyle = .None
-    if let imageView = cell.viewWithTag(1) as? UIImageView {
-      imageView.image = UIImage(named: news[indexPath.row].0)
-    }
-    cell.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    let width = tableView.frame.width
+  //MARK: - UITableViewDelegate
+  
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return "section #\(section)"
+  }
+//  
+//  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    guard section == 0 else {
+//      return nil
+//    }
+//    
+//    return UIView()
+//  }
+  
+  override func scrollViewDidScroll(scrollView: UIScrollView) {
+    guard let navigationBarHidden = navigationController?.navigationBarHidden else {
+      return
+    }
     
-    return width / CGFloat(news[indexPath.row].1)
+//    if navigationBarHidden {
+//      if scrollView.contentOffset.y >= 130 {
+//        self.navigationController?.presentTransparentNavigationBar()
+//      }
+//    } else {
+//      if scrollView.contentOffset.y < 130 {
+//        UIView.animateWithDuration(0.3) {
+//          self.navigationController?.hideTransparentNavigationBar()
+//        }
+//      }
+//    }
   }
 }

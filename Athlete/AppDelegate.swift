@@ -76,8 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       realm.add(user)
       realm.add(posts)
     }
-    
-    print("Total posts: \(trainer.posts.count)")
   }
   
   private func dropDb() throws {

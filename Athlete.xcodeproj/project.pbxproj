@@ -16,6 +16,8 @@
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
 		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
+		3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */; };
+		3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */; };
 		376F65711C7C8E6B0016071C /* Previewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65701C7C8E6B0016071C /* Previewable.swift */; };
 		376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */; };
 		376F65751C7C958A0016071C /* PostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */; };
@@ -87,6 +89,8 @@
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
 		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
+		3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardTableViewCell.swift; sourceTree = "<group>"; };
+		3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardTableViewCell.xib; sourceTree = "<group>"; };
 		376F65701C7C8E6B0016071C /* Previewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewable.swift; sourceTree = "<group>"; };
 		376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentTableViewCell.swift; sourceTree = "<group>"; };
 		376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -390,6 +394,8 @@
 		37D7AD881C78786C00CA96E9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */,
+				3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */,
 				37A53C641BDE59DF00D1DA70 /* Professionals.storyboard in Resources */,
 				376F65751C7C958A0016071C /* PostCommentTableViewCell.xib in Resources */,
+				3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +639,7 @@
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
+				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
