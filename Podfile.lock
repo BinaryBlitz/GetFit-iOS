@@ -6,7 +6,6 @@ PODS:
   - Fabric (1.6.6)
   - HanekeSwift (0.10.1)
   - MCSwipeTableViewCell (2.1.4)
-  - PagingMenuController (0.8.0)
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
@@ -14,6 +13,7 @@ PODS:
     - Realm (= 0.98.2)
   - SwiftyJSON (2.3.2)
   - UICountingLabel (1.4.0)
+  - XLPagerTabStrip (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -22,10 +22,10 @@ DEPENDENCIES:
   - Fabric
   - HanekeSwift
   - MCSwipeTableViewCell
-  - PagingMenuController
   - RealmSwift
   - SwiftyJSON
   - UICountingLabel
+  - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
@@ -34,10 +34,10 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
-  PagingMenuController: 1a9ff8ad0ab9704f215706997c1a624bc951f508
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
+  XLPagerTabStrip: a39467a6e71017d2be92807ed9308b4d06557c80
 
 COCOAPODS: 0.39.0
