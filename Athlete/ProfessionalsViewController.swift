@@ -7,57 +7,40 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class ProfessionalsViewController: UIViewController {
-  
-  let dudes = [("dude1", 1.01), ("dude2", 1.01), ("dude3", 1.01)]
-  @IBOutlet weak var tableView: UITableView!
+class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
   
   override func viewDidLoad() {
-    super.viewDidLoad()
     
-    extendedLayoutIncludesOpaqueBars = true
+    settings.style.buttonBarBackgroundColor = UIColor.lightGrayBackgroundColor()
+    settings.style.buttonBarItemBackgroundColor = UIColor.lightGrayBackgroundColor()
+//        settings.style.selectedBarBackgroundColor = UIColor(red: 33/255.0, green: 174/255.0, blue: 67/255.0, alpha: 1.0)
+    settings.style.buttonBarItemFont = UIFont.boldSystemFontOfSize(15)
+    settings.style.selectedBarHeight = 0
+    settings.style.buttonBarMinimumInteritemSpacing = 0
+    settings.style.buttonBarItemTitleColor = UIColor.blackTextColor()
+    settings.style.buttonBarItemsShouldFillAvailiableWidth = false
+  
+    changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        guard changeCurrentIndex == true else { return }
+        oldCell?.label.textColor = UIColor.graySecondaryColor()
+        newCell?.label.textColor = UIColor.blackTextColor()
+    }
+    
+    super.viewDidLoad()
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? ProfessionalTableViewController,
-        indexPath = sender as? NSIndexPath where segue.identifier == "professionalInfo" {
-      destination.trainer = dudes[indexPath.row]
-    }
-  }
-}
-
-extension ProfessionalsViewController: UITableViewDataSource {
+  // MARK: - PagerTabStripDataSource
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return dudes.count
-  }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("professionalCell") as? ProfessionalTableViewCell else {
-      return UITableViewCell()
-    }
+  override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+    let coaches = TrainersListTableViewController(category: .Coach)
+    let doctors = TrainersListTableViewController(category: .Doctor)
+    let nutritionists = TrainersListTableViewController(category: .Nutritionist)
     
-    cell.contentImageView.image = UIImage(named: dudes[indexPath.row].0)
-    cell.backgroundColor = UIColor.lightGrayBackgroundColor()
-    
-    return cell
-  }
-  
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    let width = tableView.frame.width - 16
-    
-    return width / CGFloat(dudes[indexPath.row].1)
-  }
-}
-
-extension ProfessionalsViewController: UITableViewDelegate {
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("professionalInfo", sender: indexPath)
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    return [coaches, nutritionists, doctors]
   }
 }

@@ -10,23 +10,17 @@ import RealmSwift
 
 class Trainer: Object {
   
-  enum Category: String {
-    case Coach = "coach"
-    case Doctor = "doctor"
-    case Nutritionist = "nutritionist"
-  }
-  
   dynamic var id: Int = 0
   dynamic var firstName: String = ""
   dynamic var lastName: String = ""
   dynamic var email: String = ""
-  dynamic var categoryValue: String = Category.Coach.rawValue
+  dynamic var categoryValue: String = TrainerCategory.Coach.rawValue
   dynamic var avatarURLString: String = ""
   dynamic var bannerURLString: String = ""
   
-  var category: Category {
+  var category: TrainerCategory {
     get {
-      return Category(rawValue: categoryValue)!
+      return TrainerCategory(rawValue: categoryValue)!
     }
     set(newCategory) {
       categoryValue = newCategory.rawValue

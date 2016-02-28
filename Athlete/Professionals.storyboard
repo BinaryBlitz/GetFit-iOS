@@ -16,12 +16,41 @@
                     <view key="view" contentMode="scaleToFill" id="OaK-cI-CkF">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SW2-e5-zI8" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="20" y="64" width="360" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Hbf-8N-VCo"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xl4-ND-6od">
+                                    <size key="itemSize" width="40" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-bY-reu">
+                                <rect key="frame" x="0.0" y="124" width="400" height="627"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SW2-e5-zI8" firstAttribute="top" secondItem="cmv-bJ-1t2" secondAttribute="bottom" id="4eA-mX-ORe"/>
+                            <constraint firstItem="Zbh-bY-reu" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-20" id="7UX-a8-SgF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zbh-bY-reu" secondAttribute="trailing" constant="-20" id="9NZ-SY-GGH"/>
+                            <constraint firstItem="Zbh-bY-reu" firstAttribute="top" secondItem="SW2-e5-zI8" secondAttribute="bottom" id="CQ6-t8-UHF"/>
+                            <constraint firstItem="qb0-11-vJC" firstAttribute="top" secondItem="Zbh-bY-reu" secondAttribute="bottom" id="CyA-Nr-Etg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SW2-e5-zI8" secondAttribute="trailing" id="ksS-dB-zaN"/>
+                            <constraint firstItem="SW2-e5-zI8" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" id="rrm-Jo-K4X"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PROFESSIONALS" id="bjW-T4-6G6">
                         <barButtonItem key="rightBarButtonItem" image="Filter" id="A8B-MK-bhm"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonBarView" destination="SW2-e5-zI8" id="6sl-kI-gs9"/>
+                        <outlet property="containerView" destination="Zbh-bY-reu" id="SZa-nV-Z2P"/>
                         <segue destination="gva-ft-Uh1" kind="show" identifier="professionalInfo" id="Zlp-04-R09"/>
                     </connections>
                 </viewController>
@@ -37,46 +66,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="106" id="mXa-sW-Sry">
-                                <rect key="frame" x="0.0" y="92" width="400" height="106"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mXa-sW-Sry" id="Umg-n2-NaX">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="106"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9gu-x9-Ws9">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="106"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9gu-x9-Ws9" firstAttribute="top" secondItem="Umg-n2-NaX" secondAttribute="topMargin" constant="-8" id="AgE-3k-g7c"/>
-                                        <constraint firstItem="9gu-x9-Ws9" firstAttribute="leading" secondItem="Umg-n2-NaX" secondAttribute="leadingMargin" constant="-8" id="Bva-LE-IRi"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="9gu-x9-Ws9" secondAttribute="bottom" constant="-8" id="dzh-xe-F1D"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="9gu-x9-Ws9" secondAttribute="trailing" constant="-8" id="lHQ-1t-f3P"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="programCell" rowHeight="106" id="9B2-qn-7wv">
-                                <rect key="frame" x="0.0" y="198" width="400" height="106"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9B2-qn-7wv" id="XyC-UD-5Ge">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="106"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V53-cw-NMV">
-                                            <rect key="frame" x="8" y="8" width="384" height="90"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="V53-cw-NMV" firstAttribute="top" secondItem="XyC-UD-5Ge" secondAttribute="topMargin" id="OHh-qp-yFJ"/>
-                                        <constraint firstItem="V53-cw-NMV" firstAttribute="leading" secondItem="XyC-UD-5Ge" secondAttribute="leadingMargin" id="S4Q-hJ-1Aq"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="V53-cw-NMV" secondAttribute="bottom" id="T25-Dg-Xwf"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="V53-cw-NMV" secondAttribute="trailing" id="pfr-O0-irY"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="gva-ft-Uh1" id="lXm-3R-E4t"/>
                             <outlet property="delegate" destination="gva-ft-Uh1" id="naN-Te-i0g"/>
