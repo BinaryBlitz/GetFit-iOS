@@ -233,11 +233,16 @@ extension TrainingsViewController: CVCalendarViewDelegate {
   }
   
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
-    let randomMasrer = arc4random_uniform(3)
-    if randomMasrer == 0 {
-      return []
-    } else {
-      return [UIColor.blueAccentColor()]
+    let color = UIColor.blackTextColor()
+
+    let numberOfDots = Int(arc4random_uniform(3) + 1)
+    switch(numberOfDots) {
+    case 2:
+        return [color, color]
+    case 3:
+        return [color, color, color]
+    default:
+        return [color]
     }
   }
   

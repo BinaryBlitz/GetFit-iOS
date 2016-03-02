@@ -352,10 +352,10 @@
 		37C5644D1C77D79C00BC370E /* Workout */ = {
 			isa = PBXGroup;
 			children = (
+				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
 				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
 				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
 				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
-				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
 				37821F521BE1699500149523 /* TrainingViewController.swift */,
 				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
 			);
