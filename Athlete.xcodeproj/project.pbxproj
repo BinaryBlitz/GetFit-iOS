@@ -20,6 +20,7 @@
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */; };
 		3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */; };
+		376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346B1C8707D300400FAF /* ChatsTableViewController.swift */; };
 		376F65711C7C8E6B0016071C /* Previewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65701C7C8E6B0016071C /* Previewable.swift */; };
 		376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */; };
 		376F65751C7C958A0016071C /* PostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */; };
@@ -95,6 +96,7 @@
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardTableViewCell.swift; sourceTree = "<group>"; };
 		3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardTableViewCell.xib; sourceTree = "<group>"; };
+		376A346B1C8707D300400FAF /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
 		376F65701C7C8E6B0016071C /* Previewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewable.swift; sourceTree = "<group>"; };
 		376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentTableViewCell.swift; sourceTree = "<group>"; };
 		376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
 				37C5644B1C77D76000BC370E /* News */,
 				37C5644C1C77D77A00BC370E /* Professionals */,
 				37C5644D1C77D79C00BC370E /* Workout */,
@@ -655,6 +658,7 @@
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
 				371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */,
+				376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

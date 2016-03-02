@@ -43,7 +43,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="NEWS" id="IPT-cv-8Jj">
-                        <barButtonItem key="rightBarButtonItem" image="Messages" id="6ao-sl-lIz"/>
+                        <barButtonItem key="rightBarButtonItem" image="Messages" id="6ao-sl-lIz">
+                            <connections>
+                                <action selector="chatsButtonAction:" destination="2aZ-ET-Pey" id="b8F-IU-if6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPost" id="18Q-JA-Oub"/>
