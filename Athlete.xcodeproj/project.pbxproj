@@ -21,6 +21,8 @@
 		3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */; };
 		3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */; };
 		376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346B1C8707D300400FAF /* ChatsTableViewController.swift */; };
+		376A346E1C8709E800400FAF /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346D1C8709E800400FAF /* Conversation.swift */; };
+		376A34701C870F6600400FAF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346F1C870F6600400FAF /* Message.swift */; };
 		376F65711C7C8E6B0016071C /* Previewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65701C7C8E6B0016071C /* Previewable.swift */; };
 		376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */; };
 		376F65751C7C958A0016071C /* PostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */; };
@@ -97,6 +99,8 @@
 		3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardTableViewCell.swift; sourceTree = "<group>"; };
 		3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardTableViewCell.xib; sourceTree = "<group>"; };
 		376A346B1C8707D300400FAF /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
+		376A346D1C8709E800400FAF /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		376A346F1C870F6600400FAF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		376F65701C7C8E6B0016071C /* Previewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Previewable.swift; sourceTree = "<group>"; };
 		376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentTableViewCell.swift; sourceTree = "<group>"; };
 		376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCommentTableViewCell.xib; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				37493D101C8336D0009C6C1A /* TrainerCategory.swift */,
 				37D7AD8D1C788FC300CA96E9 /* Program.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
+				376A346D1C8709E800400FAF /* Conversation.swift */,
+				376A346F1C870F6600400FAF /* Message.swift */,
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
 			);
 			name = Models;
@@ -613,6 +619,7 @@
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
+				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
@@ -648,6 +655,7 @@
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
+				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
