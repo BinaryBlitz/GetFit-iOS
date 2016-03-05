@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SW2-e5-zI8" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="20" y="64" width="360" height="60"/>
+                                <rect key="frame" x="10" y="64" width="380" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Hbf-8N-VCo"/>
                                 </constraints>
@@ -41,8 +41,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Zbh-bY-reu" secondAttribute="trailing" constant="-20" id="9NZ-SY-GGH"/>
                             <constraint firstItem="Zbh-bY-reu" firstAttribute="top" secondItem="SW2-e5-zI8" secondAttribute="bottom" id="CQ6-t8-UHF"/>
                             <constraint firstItem="qb0-11-vJC" firstAttribute="top" secondItem="Zbh-bY-reu" secondAttribute="bottom" id="CyA-Nr-Etg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SW2-e5-zI8" secondAttribute="trailing" id="ksS-dB-zaN"/>
-                            <constraint firstItem="SW2-e5-zI8" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" id="rrm-Jo-K4X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SW2-e5-zI8" secondAttribute="trailing" constant="-10" id="ksS-dB-zaN"/>
+                            <constraint firstItem="SW2-e5-zI8" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-10" id="rrm-Jo-K4X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PROFESSIONALS" id="bjW-T4-6G6">
