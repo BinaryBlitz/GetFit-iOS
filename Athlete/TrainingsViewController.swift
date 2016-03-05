@@ -56,8 +56,10 @@ class TrainingsViewController: UIViewController {
       switch newValue {
       case .Opened:
         calendarViewTopConstaraint.constant = 0
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: "toggleCurrentDayView")
       case .Closed:
         calendarViewTopConstaraint.constant = -(calendarViewHeight)
+        navigationItem.leftBarButtonItem = nil
       default:
         break
       }
@@ -69,6 +71,8 @@ class TrainingsViewController: UIViewController {
     formatter.dateFormat = "MMMM"
     titleButton.setTitle(formatter.stringFromDate(date).uppercaseString, forState: .Normal)
   }
+  
+  //MARK: - View controller lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -112,6 +116,12 @@ class TrainingsViewController: UIViewController {
     }
   }
   
+  //MARK: - Actions
+  
+  func toggleCurrentDayView() {
+    calendarView.toggleCurrentDayView()
+  }
+  
   @IBAction func titleButtonAction(sender: AnyObject) {
     calendarState.changeToOpositeState()
     
@@ -129,7 +139,23 @@ class TrainingsViewController: UIViewController {
       destination.training = trainings[indexPath.row]
     }
   }
+  
+  //MARK: - UIScrollViewDelegate
+  
+  func scrollViewDidScroll(scrollView: UIScrollView) {
+    let translation = scrollView.panGestureRecognizer.translationInView(view)
+    
+    if translation.y < 0 && calendarState != .Closed {
+      calendarState = .Closed
+      
+      UIView.animateWithDuration(0.2) { () -> Void in
+        self.view.layoutSubviews()
+      }
+    }
+  }
 }
+
+//MARK: - UITableViewDataSource
 
 extension TrainingsViewController: UITableViewDataSource {
   
@@ -198,11 +224,15 @@ extension TrainingsViewController: UITableViewDataSource {
   }
 }
 
+//MARK: - UITableViewDelegate
+
 extension TrainingsViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("trainingInfo", sender: indexPath)
   }
 }
+
+//MARK: - CVCalendarViewDelegate
 
 extension TrainingsViewController: CVCalendarViewDelegate {
   func presentationMode() -> CalendarMode {
@@ -214,10 +244,6 @@ extension TrainingsViewController: CVCalendarViewDelegate {
   }
   
   func shouldShowWeekdaysOut() -> Bool {
-    return false
-  }
-  
-  func shouldAutoSelectDayOnMonthChange() -> Bool {
     return false
   }
   
@@ -258,6 +284,8 @@ extension TrainingsViewController: CVCalendarViewDelegate {
     return 16
   }
 }
+
+//MARK: - CVCalendarMenuViewDelegate
 
 extension TrainingsViewController: CVCalendarMenuViewDelegate {
 
