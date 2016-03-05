@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */; };
+		37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */; };
 		37127B701BE29A18006656BC /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37127B6F1BE29A18006656BC /* Exercise.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */; };
@@ -85,6 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProvider.swift; sourceTree = "<group>"; };
+		37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProviderDelegate.swift; sourceTree = "<group>"; };
 		37127B6F1BE29A18006656BC /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		371E35701BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedExerciseTableViewCell.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
+				37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */,
+				37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -629,7 +635,9 @@
 				376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
 				37AC2ADE1C7B5C1B007543F4 /* NumberFormatter.swift in Sources */,
+				37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */,
 				37A6A1201C7A68B0007F0944 /* UIView+AddConent.swift in Sources */,
+				37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
