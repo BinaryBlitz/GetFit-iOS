@@ -62,12 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       post.likesCount = 100
       posts.append(post)
       
-      for j in 1...7 {
-        let comment = Comment()
-        comment.id = j + i * 7
-        comment.content = "kek \(j)"
-        comment.author = user
-        post.comments.append(comment)
+      if i != 1 {
+        for j in 1...7 {
+          let comment = Comment()
+          comment.id = j + i * 7
+          comment.content = "kek \(j)"
+          comment.author = user
+          post.comments.append(comment)
+        }
       }
     }
     
