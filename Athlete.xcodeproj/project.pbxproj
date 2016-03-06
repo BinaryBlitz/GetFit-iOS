@@ -240,18 +240,16 @@
 		374578961BDE5D19004935BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37D7AD931C7896BD00CA96E9 /* Managers */,
+				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
+				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 				37E4A4551BDF8CE8004193BF /* Training.swift */,
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
 				37D7AD891C787A2800CA96E9 /* Post.swift */,
-				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
 				376F65781C7C9EDA0016071C /* Comment.swift */,
-				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
 				37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */,
 				37493D101C8336D0009C6C1A /* TrainerCategory.swift */,
 				37D7AD8D1C788FC300CA96E9 /* Program.swift */,
-				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
@@ -268,6 +266,15 @@
 				374578981BDE5FDE004935BC /* UIColor+Athlete.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		376142DC1C8C7BF60073B5F4 /* View models */ = {
+			isa = PBXGroup;
+			children = (
+				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
+				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
+			);
+			name = "View models";
 			sourceTree = "<group>";
 		};
 		37A53C321BDE527F00D1DA70 = {
@@ -296,6 +303,7 @@
 				374578951BDE5D11004935BC /* Views */,
 				374578931BDE5CCA004935BC /* Controllers */,
 				37A6A1211C7AEE65007F0944 /* Protocols */,
+				376142DC1C8C7BF60073B5F4 /* View models */,
 				374578961BDE5D19004935BC /* Models */,
 				374578921BDE5C29004935BC /* UI */,
 				374578971BDE5D28004935BC /* Extensions */,
@@ -422,14 +430,6 @@
 				3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */,
 			);
 			name = Profile;
-			sourceTree = "<group>";
-		};
-		37D7AD931C7896BD00CA96E9 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
-			);
-			name = Managers;
 			sourceTree = "<group>";
 		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {

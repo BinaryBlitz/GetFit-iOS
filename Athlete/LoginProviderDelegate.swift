@@ -7,6 +7,6 @@
 //
 
 protocol LoginProviderDelegate {
-  func loginProvider(loginProvider: LoginProvider, didSucceed user: User)
-  func loginProvider(loginProvider: LoginProvider, didFailure error: ErrorType)
+  func loginProvider(loginProvider: LoginProvider, loggedInAs user: User)
+  func loginProvider(loginProvider: LoginProvider, failedWith error: ErrorType)
 }
