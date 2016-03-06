@@ -32,18 +32,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func configureTestDb() {
     try! dropDb()
     
+    let realm = try! Realm()
+    
     let trainer = Trainer()
     trainer.id = 1
     trainer.firstName = "Dan"
     trainer.lastName = "Shevlyuk"
     trainer.avatarURLString = "https://pbs.twimg.com/media/Cb0cYOjXIAEVP9p.jpg"
     
+    var trainers = [Trainer]()
+    for i in 1...10 {
+      let newTrainer = Trainer()
+      newTrainer.id = i + 1
+      newTrainer.firstName = "dude#\(i)"
+      newTrainer.avatarURLString = "https://robohash.org/dude\(newTrainer.id).jpg"
+      trainers.append(newTrainer)
+    }
+    
+    
     let user = User()
     user.id = 1
     user.gender = .Male
     user.name = "Awesome Dude"
-    
-    let realm = try! Realm()
     
     var posts = [Post]()
     for i in 1...100 {
@@ -75,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     try! realm.write {
       realm.add(trainer)
+      realm.add(trainers)
       realm.add(user)
       realm.add(posts)
     }
