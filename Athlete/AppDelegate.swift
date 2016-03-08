@@ -41,11 +41,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     trainer.avatarURLString = "https://pbs.twimg.com/media/Cb0cYOjXIAEVP9p.jpg"
     
     var trainers = [Trainer]()
-    for i in 1...10 {
+    for i in 1...30 {
       let newTrainer = Trainer()
       newTrainer.id = i + 1
       newTrainer.firstName = "dude#\(i)"
       newTrainer.avatarURLString = "https://robohash.org/dude\(newTrainer.id).jpg"
+      switch i % 3 {
+      case 0:
+        newTrainer.category = .Coach
+      case 1:
+        newTrainer.category = .Doctor
+      default:
+        newTrainer.category = .Nutritionist
+      }
       trainers.append(newTrainer)
     }
     
