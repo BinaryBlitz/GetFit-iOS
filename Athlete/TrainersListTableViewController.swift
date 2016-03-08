@@ -14,7 +14,7 @@ class TrainersListTableViewController: UITableViewController {
   
   var category: TrainerCategory = .Coach
   var trainers: Results<Trainer>?
-  
+
   convenience init(category: TrainerCategory) {
     self.init()
     self.category = category
@@ -25,13 +25,14 @@ class TrainersListTableViewController: UITableViewController {
     
     let trainerCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
     tableView.registerNib(trainerCellNib, forCellReuseIdentifier: String(ProfessionalTableViewCell))
-//    tableView.rowHeight = UITableViewAutomaticDimension
     tableView.rowHeight = 370
     tableView.separatorStyle = .None
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     let realm = try! Realm()
-    trainers = realm.objects(Trainer).sorted("id")
+
+    //TODO: sort by popularity
+    trainers = realm.objects(Trainer).filter("categoryValue = '\(category.rawValue)'").sorted("id")
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
