@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureTabBar()
     configureTestDb()
     
+    let serverManager = ServerManager.sharedManager
+    if !serverManager.authenticated {
+      let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+      let login = loginStoryboard.instantiateInitialViewController()
+      window?.rootViewController = login
+    }
+    
     return true
   }
   

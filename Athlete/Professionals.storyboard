@@ -79,7 +79,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dy4-5L-iZQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T5M-NG-ozN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="T5M-NG-ozN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Professionals" id="fcl-ol-jHa">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

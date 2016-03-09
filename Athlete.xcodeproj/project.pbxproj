@@ -22,6 +22,8 @@
 		37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */; };
 		37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D101C8336D0009C6C1A /* TrainerCategory.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
+		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
+		376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376142E01C90C8CB0073B5F4 /* LoginViewController.swift */; };
 		3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */; };
 		3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */; };
 		376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346B1C8707D300400FAF /* ChatsTableViewController.swift */; };
@@ -103,6 +105,8 @@
 		37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersListTableViewController.swift; sourceTree = "<group>"; };
 		37493D101C8336D0009C6C1A /* TrainerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCategory.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
+		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		376142E01C90C8CB0073B5F4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardTableViewCell.swift; sourceTree = "<group>"; };
 		3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardTableViewCell.xib; sourceTree = "<group>"; };
 		376A346B1C8707D300400FAF /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				37A53C681BDE5A9D00D1DA70 /* Store.storyboard */,
 				37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */,
 				37A53C491BDE527F00D1DA70 /* LaunchScreen.storyboard */,
+				376142DD1C90C6700073B5F4 /* Login.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				376142DF1C90C8B50073B5F4 /* Login */,
 				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
 				37C5644B1C77D76000BC370E /* News */,
 				37C5644C1C77D77A00BC370E /* Professionals */,
@@ -275,6 +281,14 @@
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
 			);
 			name = "View models";
+			sourceTree = "<group>";
+		};
+		376142DF1C90C8B50073B5F4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				376142E01C90C8CB0073B5F4 /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		37A53C321BDE527F00D1DA70 = {
@@ -537,6 +551,7 @@
 			files = (
 				37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */,
 				37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */,
+				376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */,
 				37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */,
 				37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */,
 				37C564491C77D2E600BC370E /* PostTableViewCell.xib in Resources */,
@@ -626,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
