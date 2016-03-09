@@ -10,10 +10,16 @@ import UIKit
 import XLPagerTabStrip
 import RealmSwift
 
+protocol TrainersListDelegate: class {
+  func trainersList(viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer)
+}
+
 class TrainersListTableViewController: UITableViewController {
   
   var category: TrainerCategory = .Coach
   var trainers: Results<Trainer>?
+
+  weak var delegate: TrainersListDelegate?
 
   convenience init(category: TrainerCategory) {
     self.init()
@@ -34,6 +40,8 @@ class TrainersListTableViewController: UITableViewController {
     //TODO: sort by popularity
     trainers = realm.objects(Trainer).filter("categoryValue = '\(category.rawValue)'").sorted("id")
   }
+
+  //MARK: - UITableViewDataSource
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return trainers?.count ?? 0
@@ -49,7 +57,19 @@ class TrainersListTableViewController: UITableViewController {
     
     return cell
   }
+
+  //MARK: - UITableViewDelegate
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    if let trainer = trainers?[indexPath.row] {
+      delegate?.trainersList(self, didSelectTrainer: trainer)
+    }
+
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
 }
+
+//MARK: - IndcatorInfoProvider
 
 extension TrainersListTableViewController: IndicatorInfoProvider {
   func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

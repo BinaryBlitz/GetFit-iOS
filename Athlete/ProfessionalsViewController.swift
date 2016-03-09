@@ -40,7 +40,18 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
     let coaches = TrainersListTableViewController(category: .Coach)
     let doctors = TrainersListTableViewController(category: .Doctor)
     let nutritionists = TrainersListTableViewController(category: .Nutritionist)
-    
+    let pages: [TrainersListTableViewController] = [coaches, nutritionists, doctors]
+    pages.forEach { page in
+      page.delegate = self
+    }
+
     return [coaches, nutritionists, doctors]
+  }
+}
+
+extension ProfessionalsViewController: TrainersListDelegate {
+
+  func trainersList(viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer) {
+    performSegueWithIdentifier("professionalInfo", sender: trainer)
   }
 }
