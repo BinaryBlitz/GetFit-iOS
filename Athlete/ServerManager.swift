@@ -13,7 +13,7 @@ class ServerManager {
   static let sharedManager = ServerManager()
   
   private var manager = Manager.sharedInstance
-  let baseURL = "http://athleteapp.co/"
+  let baseURL = "http://getfit.binaryblitz.ru/"
   
 #if DEBUG
   var apiToken: String? {
