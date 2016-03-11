@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginBG" translatesAutoresizingMaskIntoConstraints="NO" id="Hgp-Bb-qOR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hgp-Bb-qOR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GetFit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHD-yb-s1o">
@@ -26,29 +26,38 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luY-hb-fdt">
-                                <rect key="frame" x="193" y="227" width="214" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="214" id="GPs-wB-ZjM"/>
-                                    <constraint firstAttribute="height" constant="60" id="Yqi-Sd-xrK"/>
-                                </constraints>
-                                <state key="normal" title="Facebook"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Poz-20-nn5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Poz-20-nn5" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
                                 <rect key="frame" x="193" y="310" width="214" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="XtC-zw-g8A"/>
                                     <constraint firstAttribute="width" constant="214" id="a2l-hG-7wL"/>
                                 </constraints>
                                 <state key="normal" title="VKONTAKTE"/>
+                                <connections>
+                                    <action selector="vkButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="MkJ-16-m9V"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-Zk-RaC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-Zk-RaC" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
                                 <rect key="frame" x="193" y="393" width="214" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="214" id="Yhz-up-OjF"/>
                                     <constraint firstAttribute="height" constant="60" id="c47-9v-Q7j"/>
                                 </constraints>
-                                <state key="normal" title="Phone"/>
+                                <state key="normal" title="PHONE"/>
+                                <connections>
+                                    <action selector="phoneButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="Rcz-xE-mvC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luY-hb-fdt" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
+                                <rect key="frame" x="193" y="227" width="214" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="214" id="GPs-wB-ZjM"/>
+                                    <constraint firstAttribute="height" constant="60" id="Yqi-Sd-xrK"/>
+                                </constraints>
+                                <state key="normal" title="FACEBOOK"/>
+                                <connections>
+                                    <action selector="facebookButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="ldq-sU-HKf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,7 +111,4 @@
             <point key="canvasLocation" x="390" y="154"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LoginBG" width="1242" height="2208"/>
-    </resources>
 </document>

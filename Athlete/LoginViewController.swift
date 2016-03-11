@@ -11,19 +11,38 @@ import UIKit
 class LoginViewController: UIViewController {
 
   @IBOutlet weak var backgroundImageView: UIImageView!
-  @IBOutlet weak var facebookButton: UIButton!
-  @IBOutlet weak var vkButton: UIButton!
-  @IBOutlet weak var phoneButton: UIButton!
+  @IBOutlet weak var facebookButton: LoginButton!
+  @IBOutlet weak var vkButton: LoginButton!
+  @IBOutlet weak var phoneButton: LoginButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    backgroundImageView.image = UIImage(named: "LoginBG")
     let overlay = UIView(frame: backgroundImageView.frame)
     overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.51)
     backgroundImageView.addSubview(overlay)
+    
+    facebookButton.text = "facebook".uppercaseString
+    vkButton.text = "vkontakte".uppercaseString
+    phoneButton.text = "phone".uppercaseString
   }
   
   override func prefersStatusBarHidden() -> Bool {
     return true
+  }
+  
+  //MARK: - Actions
+  
+  @IBAction func facebookButtonAction(sender: AnyObject) {
+    print("facebook")
+  }
+  
+  @IBAction func vkButtonAction(sender: AnyObject) {
+    print("vk")
+  }
+  
+  @IBAction func phoneButtonAction(sender: AnyObject) {
+    print("phone")
   }
 }

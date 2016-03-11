@@ -24,6 +24,7 @@
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
 		376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376142E01C90C8CB0073B5F4 /* LoginViewController.swift */; };
+		376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376142E21C91C17B0073B5F4 /* LoginButton.swift */; };
 		3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */; };
 		3767BCA81C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */; };
 		376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376A346B1C8707D300400FAF /* ChatsTableViewController.swift */; };
@@ -107,6 +108,7 @@
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		376142E01C90C8CB0073B5F4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		376142E21C91C17B0073B5F4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardTableViewCell.swift; sourceTree = "<group>"; };
 		3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardTableViewCell.xib; sourceTree = "<group>"; };
 		376A346B1C8707D300400FAF /* ChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				37D7AD981C79D5E000CA96E9 /* CardView.swift */,
 				37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */,
 				37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */,
+				376142E21C91C17B0073B5F4 /* LoginButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
