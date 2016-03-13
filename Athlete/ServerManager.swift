@@ -15,7 +15,7 @@ class ServerManager {
   static let sharedManager = ServerManager()
   
   private var manager = Manager.sharedInstance
-  let baseURL = "http://getfit.binaryblitz.ru/"
+  let baseURL = "http://getfit.binaryblitz.ru/api/"
   
   //MARK: - Tokens
   
