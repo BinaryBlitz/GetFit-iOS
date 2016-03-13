@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import PhoneNumberKit
 
 class ServerManager {
   
@@ -84,12 +85,12 @@ class ServerManager {
   
   //MARK: - Login
   
-  func createVerificationTokenFor(phoneNumber: String,
+  func createVerificationTokenFor(phoneNumber: PhoneNumber,
         completion: ((response: ServerResponse<String, ServerError>) -> Void)? = nil) -> Request {
           
     typealias Response = ServerResponse<String, ServerError>
           
-    let parameters = ["phone_number" : phoneNumber]
+    let parameters = ["phone_number" : phoneNumber.toE164()]
     let path = ServerRoute.VerificationTokens.path
     let req = manager.request(.POST, path, parameters: parameters, encoding: .JSON)
     
@@ -115,13 +116,11 @@ class ServerManager {
     return req
   }
   
-  //TODO: use PhoneNumber class for phoneNumber parameter
-  
-  func verifyPhoneNumber(phoneNumber: String, withCode code: String, andToken token: String,
+  func verifyPhoneNumber(phoneNumber: PhoneNumber, withCode code: String, andToken token: String,
       completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request {
   
     typealias Response = ServerResponse<Bool, ServerError>
-    let parameters = ["phone_number": phoneNumber, "code": code]
+    let parameters = ["phone_number": phoneNumber.toE164(), "code": code]
     let path = ServerRoute.VerificationTokens.pathWith(token)
     let req = manager.request(.PATCH, path, parameters: parameters, encoding: .JSON)
         
