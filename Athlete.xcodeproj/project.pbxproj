@@ -41,6 +41,8 @@
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
 		378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */; };
+		379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912A1C95F47D00D96175 /* ServerResponse.swift */; };
+		379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912C1C95F4AC00D96175 /* ServerRoute.swift */; };
 		37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */; };
 		37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C441BDE527F00D1DA70 /* Main.storyboard */; };
 		37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C471BDE527F00D1DA70 /* Assets.xcassets */; };
@@ -127,6 +129,8 @@
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseTableViewController.swift; sourceTree = "<group>"; };
+		379E912A1C95F47D00D96175 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
+		379E912C1C95F4AC00D96175 /* ServerRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
 		37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Athlete-Bridging-Header.h"; sourceTree = "<group>"; };
 		37A53C3B1BDE527F00D1DA70 /* Athlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
+				379E912A1C95F47D00D96175 /* ServerResponse.swift */,
+				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 				37E4A4551BDF8CE8004193BF /* Training.swift */,
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
@@ -698,6 +704,7 @@
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
+				379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */,
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
@@ -705,6 +712,7 @@
 				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
+				379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */,
 				371E35711BE171AD0011DF69 /* FinishedExerciseTableViewCell.swift in Sources */,
 				376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */,
 			);
