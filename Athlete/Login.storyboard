@@ -100,7 +100,7 @@
                         <sections>
                             <tableViewSection headerTitle="Номер телефона" footerTitle="Для продолжения необходимо ввести номер телефона. Вам придет СМС с кодом для подтверждения номера." id="cWL-HK-y7i">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="jZI-X6-eYg" customClass="PhoneNumberTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="jZI-X6-eYg">
                                         <rect key="frame" x="0.0" y="49.5" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jZI-X6-eYg" id="XCW-E7-4CL">
@@ -119,9 +119,6 @@
                                                 <constraint firstItem="QKk-dV-DQq" firstAttribute="leading" secondItem="XCW-E7-4CL" secondAttribute="leadingMargin" constant="5" id="h5W-fY-omQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="phoneNumberField" destination="QKk-dV-DQq" id="V2T-R1-yxK"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -131,6 +128,9 @@
                             <outlet property="delegate" destination="Pul-Ut-3Rd" id="e1g-XO-G6j"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="phoneNumberTextField" destination="QKk-dV-DQq" id="yBe-mZ-szL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KA8-R8-S5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

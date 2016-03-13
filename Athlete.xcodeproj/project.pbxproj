@@ -23,7 +23,6 @@
 		37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */; };
 		37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D101C8336D0009C6C1A /* TrainerCategory.swift */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
-		375E296E1C95BE1200E3CD2D /* PhoneNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296D1C95BE1200E3CD2D /* PhoneNumberTableViewCell.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
 		376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376142E01C90C8CB0073B5F4 /* LoginViewController.swift */; };
@@ -110,7 +109,6 @@
 		37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersListTableViewController.swift; sourceTree = "<group>"; };
 		37493D101C8336D0009C6C1A /* TrainerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCategory.swift; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
-		375E296D1C95BE1200E3CD2D /* PhoneNumberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberTableViewCell.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		376142E01C90C8CB0073B5F4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 				37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */,
 				37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */,
 				376142E21C91C17B0073B5F4 /* LoginButton.swift */,
-				375E296D1C95BE1200E3CD2D /* PhoneNumberTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -704,7 +701,6 @@
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
-				375E296E1C95BE1200E3CD2D /* PhoneNumberTableViewCell.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
 				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
