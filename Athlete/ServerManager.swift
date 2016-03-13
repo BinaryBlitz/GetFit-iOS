@@ -132,7 +132,6 @@ class ServerManager {
       case .Success(let resultValue):
         let json = JSON(resultValue)
         
-        // if api_token nil then create new user
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
           completion?(response: Response(value: true, error: nil))

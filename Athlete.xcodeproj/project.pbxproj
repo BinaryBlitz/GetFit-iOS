@@ -80,6 +80,8 @@
 		37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4531BDF8739004193BF /* TrainingsViewController.swift */; };
 		37E4A4561BDF8CE8004193BF /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4551BDF8CE8004193BF /* Training.swift */; };
 		37F01C8E1C77CD3800910D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F01C8D1C77CD3800910D58 /* User.swift */; };
+		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
+		37FD38D81C962AA700600682 /* NewUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserTableViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
 		C63FAAF7468662834E19C38E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E4A795499BD0C36E4550CA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -173,6 +175,8 @@
 		37E4A4531BDF8739004193BF /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
 		37E4A4551BDF8CE8004193BF /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		37F01C8D1C77CD3800910D58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneVerificationTableViewController.swift; sourceTree = "<group>"; };
+		37FD38D71C962AA700600682 /* NewUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserTableViewController.swift; sourceTree = "<group>"; };
 		37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5DB4598A77E426C2258F015F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +303,8 @@
 			children = (
 				376142E01C90C8CB0073B5F4 /* LoginViewController.swift */,
 				375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */,
+				37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */,
+				37FD38D71C962AA700600682 /* NewUserTableViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -701,6 +707,7 @@
 				37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */,
 				37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */,
 				371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */,
+				37FD38D81C962AA700600682 /* NewUserTableViewController.swift in Sources */,
 				376F65711C7C8E6B0016071C /* Previewable.swift in Sources */,
 				37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */,
 				374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */,
@@ -709,6 +716,7 @@
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
+				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,

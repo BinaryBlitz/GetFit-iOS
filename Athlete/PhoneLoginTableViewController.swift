@@ -9,9 +9,16 @@
 import UIKit
 import PhoneNumberKit
 
+struct LoginSessionData {
+  let phoneNumber: PhoneNumber
+  let verificationToken: String
+}
+
 class PhoneLoginTableViewController: UITableViewController {
 
   @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
+  
+  var sessionData: LoginSessionData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,6 +36,8 @@ class PhoneLoginTableViewController: UITableViewController {
     UIView.animateWithDuration(0.15) {
       self.navigationController?.navigationBarHidden = false
     }
+    
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
   }
   
   private func setUpPhoneNumberTextField() {
@@ -49,6 +58,38 @@ class PhoneLoginTableViewController: UITableViewController {
   //MARK: - Actions
   
   func getCodeButtonAction() {
-    self.presentAlertWithMessage("yo")
+    guard let phone = phoneNumberTextField.text where phone != "" else {
+      presentAlertWithMessage("Номер телефона не может быть пустым!")
+      return
+    }
+    
+    do {
+      let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
+      print(phoneNumber.toE164())
+      
+      let serverManager = ServerManager.sharedManager
+      
+      serverManager.createVerificationTokenFor(phoneNumber) { response in
+        switch response.result {
+        case .Success(let token):
+          self.sessionData = LoginSessionData(phoneNumber: phoneNumber, verificationToken: token)
+          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+        case .Failure(let error):
+          print(error)
+          //TODO: specify error messages
+          self.presentAlertWithTitle("Ошибка", andMessage: "Что-то не так с интернетом")
+        }
+      }
+    } catch {
+      presentAlertWithMessage("Номер введен некорректно")
+    }
+  }
+  
+  //MARK: - Navigation
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? PhoneVerificationTableViewController {
+      destination.sessionData = sessionData
+    }
   }
 }

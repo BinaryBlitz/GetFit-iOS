@@ -21,10 +21,10 @@ enum ServerRoute {
   }
   
   func pathWith<Value: CustomStringConvertible>(value: Value) -> String {
-    return self.path + "\(value)"
+    return self.path + "/\(value)"
   }
   
   func pathWith(value: String) -> String {
-    return self.path + value
+    return self.path + "/\(value)"
   }
 }
