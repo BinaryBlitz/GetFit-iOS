@@ -257,10 +257,7 @@
 		374578961BDE5D19004935BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
-				379E912A1C95F47D00D96175 /* ServerResponse.swift */,
-				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
-				37D7AD961C78984800CA96E9 /* ServerError.swift */,
+				379E912E1C95F73300D96175 /* ServerManager */,
 				37E4A4551BDF8CE8004193BF /* Training.swift */,
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
@@ -304,6 +301,17 @@
 				375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		379E912E1C95F73300D96175 /* ServerManager */ = {
+			isa = PBXGroup;
+			children = (
+				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
+				379E912A1C95F47D00D96175 /* ServerResponse.swift */,
+				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
+				37D7AD961C78984800CA96E9 /* ServerError.swift */,
+			);
+			name = ServerManager;
 			sourceTree = "<group>";
 		};
 		37A53C321BDE527F00D1DA70 = {
