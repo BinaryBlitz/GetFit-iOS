@@ -37,17 +37,6 @@
                                     <action selector="vkButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="MkJ-16-m9V"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-Zk-RaC" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
-                                <rect key="frame" x="193" y="393" width="214" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="214" id="Yhz-up-OjF"/>
-                                    <constraint firstAttribute="height" constant="60" id="c47-9v-Q7j"/>
-                                </constraints>
-                                <state key="normal" title="PHONE"/>
-                                <connections>
-                                    <action selector="phoneButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="Rcz-xE-mvC"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luY-hb-fdt" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
                                 <rect key="frame" x="193" y="227" width="214" height="60"/>
                                 <constraints>
@@ -57,6 +46,18 @@
                                 <state key="normal" title="FACEBOOK"/>
                                 <connections>
                                     <action selector="facebookButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="ldq-sU-HKf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-Zk-RaC" customClass="LoginButton" customModule="Athlete" customModuleProvider="target">
+                                <rect key="frame" x="193" y="393" width="214" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="214" id="Yhz-up-OjF"/>
+                                    <constraint firstAttribute="height" constant="60" id="c47-9v-Q7j"/>
+                                </constraints>
+                                <state key="normal" title="PHONE"/>
+                                <connections>
+                                    <action selector="phoneButtonAction:" destination="Wrn-fB-L6I" eventType="touchUpInside" id="Rcz-xE-mvC"/>
+                                    <segue destination="Pul-Ut-3Rd" kind="show" id="rfO-S4-rvB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -87,6 +88,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mr5-jM-8rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1202" y="154"/>
+        </scene>
+        <!--Phone Login Table View Controller-->
+        <scene sceneID="Adx-KH-W67">
+            <objects>
+                <tableViewController id="Pul-Ut-3Rd" customClass="PhoneLoginTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ndg-XH-Cm7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Номер телефона" footerTitle="Для продолжения необходимо ввести номер телефона. Вам придет СМС с кодом для подтверждения номера." id="cWL-HK-y7i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="jZI-X6-eYg" customClass="PhoneNumberTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jZI-X6-eYg" id="XCW-E7-4CL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QKk-dV-DQq" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                                    <rect key="frame" x="13" y="23.5" width="574" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QKk-dV-DQq" firstAttribute="centerY" secondItem="XCW-E7-4CL" secondAttribute="centerY" id="Iln-KP-Ggl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QKk-dV-DQq" secondAttribute="trailing" constant="5" id="feP-Sy-9dt"/>
+                                                <constraint firstItem="QKk-dV-DQq" firstAttribute="leading" secondItem="XCW-E7-4CL" secondAttribute="leadingMargin" constant="5" id="h5W-fY-omQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="phoneNumberField" destination="QKk-dV-DQq" id="V2T-R1-yxK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Pul-Ut-3Rd" id="Tgb-CF-ncV"/>
+                            <outlet property="delegate" destination="Pul-Ut-3Rd" id="e1g-XO-G6j"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KA8-R8-S5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1883" y="154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NgG-cX-SGw">

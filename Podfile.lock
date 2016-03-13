@@ -6,6 +6,7 @@ PODS:
   - Fabric (1.6.6)
   - HanekeSwift (0.10.1)
   - MCSwipeTableViewCell (2.1.4)
+  - PhoneNumberKit (0.6)
   - Realm (0.98.3):
     - Realm/Headers (= 0.98.3)
   - Realm/Headers (0.98.3)
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - Fabric
   - HanekeSwift
   - MCSwipeTableViewCell
+  - PhoneNumberKit
   - RealmSwift
   - SwiftyJSON
   - UICountingLabel
@@ -34,6 +36,7 @@ SPEC CHECKSUMS:
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
+  PhoneNumberKit: 683f1287a88c1f27386b27cad851081c7c45cb62
   Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
   RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

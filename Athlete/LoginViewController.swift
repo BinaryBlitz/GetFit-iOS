@@ -26,6 +26,12 @@ class LoginViewController: UIViewController {
     facebookButton.text = "facebook".uppercaseString
     vkButton.text = "vkontakte".uppercaseString
     phoneButton.text = "phone".uppercaseString
+    
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    navigationController?.navigationBarHidden = true
   }
   
   override func prefersStatusBarHidden() -> Bool {
