@@ -8,15 +8,15 @@
 
 enum ServerRoute {
   case VerificationTokens
-  case Users
+  case User
   
   var path: String {
     let baseURL = ServerManager.sharedManager.baseURL
     switch self {
     case .VerificationTokens:
       return baseURL + "verification_tokens"
-    case .Users:
-      return baseURL + "users"
+    case .User:
+      return baseURL + "user"
     }
   }
   
