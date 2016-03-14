@@ -28,6 +28,29 @@ class NewUserTableViewController: UITableViewController {
   //MARK: - Actions
   
   func doneButtonAction() {
-    presentAlertWithMessage("Hello, \(firstNameTextField.text)!")
+    guard let firstName = firstNameTextField.text, lastName = lastNameTextField.text
+          where firstName != "" && lastName != "" else {
+            
+      presentAlertWithMessage("Oops! Имя не может быть пустым!")
+      return
+    }
+    
+    let serverManager = ServerManager.sharedManager
+    
+    sessionData.name = "\(firstName) \(lastName)"
+    serverManager.createNewUserWithData(sessionData) { response in
+      switch response.result {
+      case .Success(let user):
+        print("User: \(user)")
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let initialViewController = mainStoryboard.instantiateInitialViewController() {
+          self.presentViewController(initialViewController, animated: true, completion: nil)
+        }
+      case .Failure(let serverError):
+        //TODO: specify server errors
+        print(serverError)
+        self.presentAlertWithMessage("Ого! Что-то сломалось")
+      }
+    }
   }
 }

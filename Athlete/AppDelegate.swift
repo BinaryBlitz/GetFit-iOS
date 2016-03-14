@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     configureRealm()
     configureNavigationBar()
+    configureServerManager()
     configureTabBar()
     configureTestDb()
     
@@ -123,6 +124,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
     )
     Realm.Configuration.defaultConfiguration = realmDefaultConfig
+  }
+  
+  func configureServerManager() {
+    if let apiToken: String = LocalStorageHelper.loadObjectForKey(.ApiToken) {
+      ServerManager.sharedManager.apiToken = apiToken
+    }
   }
   
   func configureNavigationBar() {

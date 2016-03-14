@@ -23,6 +23,7 @@
 		37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */; };
 		37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D101C8336D0009C6C1A /* TrainerCategory.swift */; };
 		374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */; };
+		374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78421C977C99004D30AD /* LocalStorageHelper.swift */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
@@ -114,6 +115,7 @@
 		37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersListTableViewController.swift; sourceTree = "<group>"; };
 		37493D101C8336D0009C6C1A /* TrainerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCategory.swift; sourceTree = "<group>"; };
 		374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSighUpSessionData.swift; sourceTree = "<group>"; };
+		374A78421C977C99004D30AD /* LocalStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
 				37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */,
 				37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */,
+				374A78421C977C99004D30AD /* LocalStorageHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */,
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,

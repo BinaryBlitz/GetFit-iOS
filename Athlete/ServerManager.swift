@@ -9,6 +9,7 @@
 import Alamofire
 import SwiftyJSON
 import PhoneNumberKit
+import SwiftDate
 
 class ServerManager {
   
@@ -16,6 +17,7 @@ class ServerManager {
   
   private var manager = Manager.sharedInstance
   let baseURL = "http://getfit.binaryblitz.ru/api/"
+//  let baseURL = "http://localhost:3000/api/"
   
   //MARK: - Tokens
   
@@ -134,6 +136,7 @@ class ServerManager {
         
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
+          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
           completion?(response: Response(value: true, error: nil))
         } else {
           completion?(response: Response(value: false, error: nil))
@@ -146,36 +149,46 @@ class ServerManager {
     return req
   }
   
-//  func createNewUserWith(phoneNumber: String, andVerificationToken token: String, completion: ((error: ErrorType?) -> Void)?) -> Request {
-//    
-//    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//    let parameters: [String: AnyObject] = [
-//      "user": [
-//        "phone_number": phoneNumber,
-//        "verification_token": token,
+  func createNewUserWithData(userData: PhoneSighUpSessionData,
+      completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request {
+        
+    typealias Response = ServerResponse<User, ServerError>
+  
+        //TODO: Send real user data
+        let parameters: [String: [String: AnyObject]] = [
+      "user": [
+        "phone_number": userData.phoneNumber.toE164(),
+        "verification_token": userData.verificationToken,
+        "name": userData.name ?? "awesome dude",
+        "height": 170,
+        "weight": 65,
+        "birthdate": NSDate().toString(DateFormat.ISO8601Format(.Date)) ?? "",
+        "gender": "male"
 //        "device_token": ServerManager.sharedInstance.deviceToken ?? NSNull(),
 //        "platform": "ios"
-//      ]
-//    ]
-//    
-//    let req = manager.request(.POST, baseURL + "user", parameters: parameters, encoding: .JSON)
-//    req.validate().responseJSON { (response) -> Void in
-//      UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//      switch response.result {
-//      case .Success(let resultValue):
-//        let json = JSON(resultValue)
-//        
-//        if let apiToken = json["api_token"].string {
-//          self.apiToken = apiToken
-//          completion?(error: nil)
-//        } else {
-//          completion?(error: ServerError.InvalidData)
-//        }
-//      case .Failure(let error):
-//        completion?(error: error)
-//      }
-//    }
-//    
-//    return req
-//  }
+      ]
+    ]
+    
+    let req = manager.request(.POST, ServerRoute.User.path, parameters: parameters, encoding: .JSON)
+    activityIndicatorVisible = true
+    req.validate().responseJSON { response in
+      self.activityIndicatorVisible = false
+      switch response.result {
+      case .Success(let resultValue):
+        let json = JSON(resultValue)
+        
+        if let apiToken = json["api_token"].string {
+          self.apiToken = apiToken
+          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+          completion?(response: Response(value: User(), error: nil))
+        } else {
+          completion?(response: Response(value: nil, error: ServerError.InvalidData))
+        }
+      case .Failure(let error):
+        completion?(response: Response(value: nil, error: ServerError(error: error)))
+      }
+    }
+    
+    return req
+  }
 }
