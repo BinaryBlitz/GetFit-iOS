@@ -9,16 +9,11 @@
 import UIKit
 import PhoneNumberKit
 
-struct LoginSessionData {
-  let phoneNumber: PhoneNumber
-  let verificationToken: String
-}
-
 class PhoneLoginTableViewController: UITableViewController {
 
   @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
   
-  var sessionData: LoginSessionData?
+  var sessionData: PhoneSighUpSessionData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -72,7 +67,7 @@ class PhoneLoginTableViewController: UITableViewController {
       serverManager.createVerificationTokenFor(phoneNumber) { response in
         switch response.result {
         case .Success(let token):
-          self.sessionData = LoginSessionData(phoneNumber: phoneNumber, verificationToken: token)
+          self.sessionData = PhoneSighUpSessionData(phoneNumber: phoneNumber, verificationToken: token)
           self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
         case .Failure(let error):
           print(error)

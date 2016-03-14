@@ -11,7 +11,7 @@ import PhoneNumberKit
 
 class PhoneVerificationTableViewController: UITableViewController {
   
-  var sessionData: LoginSessionData!
+  var sessionData: PhoneSighUpSessionData!
   
   @IBOutlet weak var verificationCodeTextField: UITextField!
   

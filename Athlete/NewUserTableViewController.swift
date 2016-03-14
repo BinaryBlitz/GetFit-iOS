@@ -11,7 +11,7 @@ import PhoneNumberKit
 
 class NewUserTableViewController: UITableViewController {
   
-  var sessionData: LoginSessionData!
+  var sessionData: PhoneSighUpSessionData!
 
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!

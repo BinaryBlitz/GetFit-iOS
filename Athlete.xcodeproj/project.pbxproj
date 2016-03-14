@@ -22,6 +22,7 @@
 		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
 		37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */; };
 		37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D101C8336D0009C6C1A /* TrainerCategory.swift */; };
+		374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
@@ -112,6 +113,7 @@
 		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		37493D0E1C832FDC009C6C1A /* TrainersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersListTableViewController.swift; sourceTree = "<group>"; };
 		37493D101C8336D0009C6C1A /* TrainerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCategory.swift; sourceTree = "<group>"; };
+		374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSighUpSessionData.swift; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				379E912E1C95F73300D96175 /* ServerManager */,
+				374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */,
 				37E4A4551BDF8CE8004193BF /* Training.swift */,
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
@@ -725,6 +728,7 @@
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
+				374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */,
 				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
