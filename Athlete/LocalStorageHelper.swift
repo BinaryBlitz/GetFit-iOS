@@ -9,6 +9,7 @@
 struct LocalStorageHelper {
   
   enum StorageKey: String {
+    //TODO: save api token to the keychain
     case ApiToken
     case DeviceToken
   }
