@@ -12,6 +12,7 @@ PODS:
   - Realm/Headers (0.98.3)
   - RealmSwift (0.98.3):
     - Realm (= 0.98.3)
+  - SwiftDate (3.0.8)
   - SwiftyJSON (2.3.2)
   - UICountingLabel (1.4.0)
   - XLPagerTabStrip (4.0.1)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - MCSwipeTableViewCell
   - PhoneNumberKit
   - RealmSwift
+  - SwiftDate
   - SwiftyJSON
   - UICountingLabel
   - XLPagerTabStrip
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   PhoneNumberKit: 683f1287a88c1f27386b27cad851081c7c45cb62
   Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
   RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
+  SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   XLPagerTabStrip: a39467a6e71017d2be92807ed9308b4d06557c80
