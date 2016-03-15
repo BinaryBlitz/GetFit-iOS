@@ -41,11 +41,11 @@ class LoginViewController: UIViewController {
   //MARK: - Actions
   
   @IBAction func facebookButtonAction(sender: AnyObject) {
-    print("facebook")
+    presentAlertWithMessage("Facebook login")
   }
   
   @IBAction func vkButtonAction(sender: AnyObject) {
-    print("vk")
+    presentAlertWithMessage("VK login")
   }
   
   @IBAction func phoneButtonAction(sender: AnyObject) {
