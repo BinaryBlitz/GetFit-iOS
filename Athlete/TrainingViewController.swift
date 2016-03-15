@@ -126,8 +126,8 @@ extension TrainingViewController: UITableViewDataSource {
       let exercise = finishedExercises[indexPath.row]
       cell.titleLabel.text = exercise.name
       cell.repetitionsButton.setTitle("\(exercise.repetitions) TIMES", forState: .Normal)
-      if let weight = exercise.weight {
-        cell.weightButton.setTitle("\(Int(weight)) KG", forState: .Normal)
+      if exercise.weight != 0 {
+        cell.weightButton.setTitle("\(exercise.weight) KG", forState: .Normal)
       } else {
 //        cell.weightView.hidden = true
       }
@@ -162,8 +162,8 @@ extension TrainingViewController: UITableViewDataSource {
       let exercise = exercisesToDo[indexPath.row]
       cell.titleLabel.text = exercise.name
       cell.repetitionsButton.setTitle("\(exercise.repetitions) TIMES", forState: .Normal)
-      if let weight = exercise.weight {
-        cell.weightButton.setTitle("\(Int(weight)) KG", forState: .Normal)
+      if exercise.weight != 0 {
+        cell.weightButton.setTitle("\(exercise.weight) KG", forState: .Normal)
       } else {
 //        cell.weightView.hidden = true
       }

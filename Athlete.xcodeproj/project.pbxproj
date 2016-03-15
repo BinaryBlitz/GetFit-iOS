@@ -24,6 +24,8 @@
 		37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493D101C8336D0009C6C1A /* TrainerCategory.swift */; };
 		374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */; };
 		374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78421C977C99004D30AD /* LocalStorageHelper.swift */; };
+		374A78451C982B7A004D30AD /* ProgramType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78441C982B7A004D30AD /* ProgramType.swift */; };
+		374A78471C982E94004D30AD /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78461C982E94004D30AD /* ExerciseType.swift */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
@@ -116,6 +118,8 @@
 		37493D101C8336D0009C6C1A /* TrainerCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCategory.swift; sourceTree = "<group>"; };
 		374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSighUpSessionData.swift; sourceTree = "<group>"; };
 		374A78421C977C99004D30AD /* LocalStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
+		374A78441C982B7A004D30AD /* ProgramType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramType.swift; sourceTree = "<group>"; };
+		374A78461C982E94004D30AD /* ExerciseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseType.swift; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -269,12 +273,14 @@
 				374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */,
 				37E4A4551BDF8CE8004193BF /* Training.swift */,
 				37127B6F1BE29A18006656BC /* Exercise.swift */,
+				374A78461C982E94004D30AD /* ExerciseType.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
 				37D7AD891C787A2800CA96E9 /* Post.swift */,
 				376F65781C7C9EDA0016071C /* Comment.swift */,
 				37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */,
 				37493D101C8336D0009C6C1A /* TrainerCategory.swift */,
 				37D7AD8D1C788FC300CA96E9 /* Program.swift */,
+				374A78441C982B7A004D30AD /* ProgramType.swift */,
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
@@ -708,12 +714,14 @@
 				37A6A1251C7AEEB8007F0944 /* TrainerPresentable.swift in Sources */,
 				37AC2AE01C7BD798007543F4 /* UserPresentable.swift in Sources */,
 				37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */,
+				374A78471C982E94004D30AD /* ExerciseType.swift in Sources */,
 				37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */,
 				37821F531BE1699500149523 /* TrainingViewController.swift in Sources */,
 				37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */,
 				37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */,
 				37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */,
 				371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */,
+				374A78451C982B7A004D30AD /* ProgramType.swift in Sources */,
 				37FD38D81C962AA700600682 /* NewUserTableViewController.swift in Sources */,
 				376F65711C7C8E6B0016071C /* Previewable.swift in Sources */,
 				37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */,
