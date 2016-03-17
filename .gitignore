@@ -30,3 +30,4 @@ Pods/
 
 # Fastlane
 fastlane/report.xml
+*.mobileprovision
