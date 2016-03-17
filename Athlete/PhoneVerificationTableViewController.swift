@@ -65,7 +65,7 @@ class PhoneVerificationTableViewController: UITableViewController {
   //MARK: - Navigtion
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? NewUserTableViewController {
+    if let destination = segue.destinationViewController as? NewUserViewController {
       destination.sessionData = sessionData
     }
   }

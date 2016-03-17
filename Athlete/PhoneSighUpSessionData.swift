@@ -9,10 +9,16 @@
 import PhoneNumberKit
 
 struct PhoneSighUpSessionData {
+  
   let phoneNumber: PhoneNumber
   let verificationToken: String
-  var name: String?
-  
+  var firstName: String?
+  var lastName: String?
+  var birthdate: NSDate?
+  var gender: User.Gender?
+  var weight: UInt?
+  var height: UInt?
+
   init(phoneNumber: PhoneNumber, verificationToken: String) {
     self.phoneNumber = phoneNumber
     self.verificationToken = verificationToken

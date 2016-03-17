@@ -153,20 +153,24 @@ class ServerManager {
       completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request {
         
     typealias Response = ServerResponse<User, ServerError>
-  
-        //TODO: Send real user data
-        let parameters: [String: [String: AnyObject]] = [
-      "user": [
-        "phone_number": userData.phoneNumber.toE164(),
-        "verification_token": userData.verificationToken,
-        "name": userData.name ?? "awesome dude",
-        "height": 170,
-        "weight": 65,
-        "birthdate": NSDate().toString(DateFormat.ISO8601Format(.Date)) ?? "",
-        "gender": "male"
+        
+    let name = "\(userData.firstName ?? "") \(userData.lastName ?? "")"
+    let birthdate = userData.birthdate?.toString(DateFormat.ISO8601Format(.Date)) ?? ""
+        
+    let user: [String: AnyObject] = [
+      "phone_number": userData.phoneNumber.toE164(),
+      "verification_token": userData.verificationToken,
+      "name": name,
+      "height": userData.height ?? 0,
+      "weight": userData.weight ?? 0,
+      "birthdate": birthdate,
+      "gender": userData.gender?.rawValue ?? User.Gender.Male.rawValue
 //        "device_token": ServerManager.sharedInstance.deviceToken ?? NSNull(),
 //        "platform": "ios"
-      ]
+    ]
+        
+    let parameters: [String: AnyObject] = [
+      "user": user
     ]
     
     let req = manager.request(.POST, ServerRoute.User.path, parameters: parameters, encoding: .JSON)
