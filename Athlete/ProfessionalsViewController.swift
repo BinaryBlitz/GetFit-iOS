@@ -15,14 +15,14 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
     
     settings.style.buttonBarBackgroundColor = UIColor.lightGrayBackgroundColor()
     settings.style.buttonBarItemBackgroundColor = UIColor.lightGrayBackgroundColor()
-//        settings.style.selectedBarBackgroundColor = UIColor(red: 33/255.0, green: 174/255.0, blue: 67/255.0, alpha: 1.0)
     settings.style.buttonBarItemFont = UIFont.boldSystemFontOfSize(15)
     settings.style.selectedBarHeight = 0
     settings.style.buttonBarMinimumInteritemSpacing = 0
     settings.style.buttonBarItemTitleColor = UIColor.blackTextColor()
     settings.style.buttonBarItemsShouldFillAvailiableWidth = false
   
-    changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+    changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?,
+           progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
         guard changeCurrentIndex == true else { return }
         oldCell?.label.textColor = UIColor.graySecondaryColor()
         newCell?.label.textColor = UIColor.blackTextColor()
@@ -46,6 +46,16 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
     }
 
     return [coaches, nutritionists, doctors]
+  }
+  
+  //MARK: - Navigation
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destination = segue.destinationViewController as? ProfessionalTableViewController,
+        trainer = sender as? Trainer
+        where segue.identifier == "professionalInfo" {
+      destination.trainer = trainer
+    }
   }
 }
 
