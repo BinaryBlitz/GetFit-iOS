@@ -10,7 +10,19 @@ import UIKit
 import Haneke
 
 class ProfessionalTableViewCell: UITableViewCell {
+  
+  enum ProfessionalCellState {
+    case Normal
+    case Card
+  }
+  
+  var state: ProfessionalCellState = .Card {
+    didSet {
+      updateWithState(state)
+    }
+  }
 
+  @IBOutlet var cardViewConstraints: [NSLayoutConstraint]!
   @IBOutlet weak var bannerImageView: UIImageView!
   @IBOutlet weak var programsBadge: BadgeView!
   @IBOutlet weak var ratingLabel: UILabel!
@@ -31,7 +43,7 @@ class ProfessionalTableViewCell: UITableViewCell {
     bannerImageView.layer.masksToBounds = true
   }
   
-  func configureWith(trainer: Trainer) {
+  func configureWith(trainer: Trainer, andState state: ProfessionalCellState = .Card) {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
     programsBadge.text = "10 programs".uppercaseString
@@ -43,6 +55,8 @@ class ProfessionalTableViewCell: UITableViewCell {
     if let url = bannerURL {
       bannerImageView.hnk_setImageFromURL(url)
     }
+    
+    self.state = state
   }
   
   private func resetImages() {
@@ -50,5 +64,18 @@ class ProfessionalTableViewCell: UITableViewCell {
     bannerImageView.hnk_cancelSetImage()
     avatarImageView.image = nil
     bannerImageView.image = nil
+  }
+  
+  private func updateWithState(state: ProfessionalCellState) {
+    switch state {
+    case .Card:
+      cardViewConstraints.forEach { constraint in
+        constraint.constant = 7
+      }
+    case .Normal:
+      cardViewConstraints.forEach { constraint in
+        constraint.constant = 0
+      }
+    }
   }
 }

@@ -16,18 +16,17 @@ class ProfessionalTableViewController: UITableViewController {
     super.viewDidLoad()
     
     configureTableView()
-//    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-//    tableView.separatorStyle = .None
   }
   
   func configureTableView() {
     let trainerInfoCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
     tableView.registerNib(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
+    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
   }
 
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = tableView.dequeueReusableCellWithIdentifier("infoHeader") as! ProfessionalTableViewCell
-    header.configureWith(trainer)
+    header.configureWith(trainer, andState: .Normal)
     
     return header
   }
