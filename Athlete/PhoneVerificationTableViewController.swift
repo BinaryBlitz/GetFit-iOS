@@ -32,6 +32,10 @@ class PhoneVerificationTableViewController: UITableViewController {
     verificationCodeTextField.becomeFirstResponder()
   }
   
+  override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    return "На номер \(sessionData.phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
+  }
+  
   //MARK: - Actions
   
   func submitButtonAction() {
