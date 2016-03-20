@@ -98,12 +98,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="odH-lR-Cy3">
-                            <rect key="frame" x="0.0" y="162.5" width="600" height="112"/>
+                            <rect key="frame" x="0.0" y="162.5" width="600" height="96"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4H-Gs-KqQ">
-                                    <rect key="frame" x="0.0" y="33" width="600" height="79"/>
+                                    <rect key="frame" x="0.0" y="34" width="600" height="62"/>
                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="62" id="tFx-Iz-jA2"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <state key="normal" title="Получить код"/>
@@ -114,7 +117,6 @@
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="p4H-Gs-KqQ" firstAttribute="top" secondItem="odH-lR-Cy3" secondAttribute="top" constant="33" id="Ppy-tj-78j"/>
                                 <constraint firstAttribute="bottom" secondItem="p4H-Gs-KqQ" secondAttribute="bottom" id="bHl-MN-VE1"/>
                                 <constraint firstItem="p4H-Gs-KqQ" firstAttribute="leading" secondItem="odH-lR-Cy3" secondAttribute="leading" id="bwm-sK-wH5"/>
                                 <constraint firstAttribute="trailing" secondItem="p4H-Gs-KqQ" secondAttribute="trailing" id="yvD-h6-iLh"/>
@@ -169,6 +171,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ppw-7p-xoS">
+                            <rect key="frame" x="0.0" y="137.5" width="600" height="96"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksM-bx-Ny2">
+                                    <rect key="frame" x="0.0" y="34" width="600" height="62"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="62" id="MiS-n3-m40"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Получить код"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ksM-bx-Ny2" secondAttribute="trailing" id="Sef-GR-cHH"/>
+                                <constraint firstAttribute="bottom" secondItem="ksM-bx-Ny2" secondAttribute="bottom" id="TTQ-Yp-rLy"/>
+                                <constraint firstItem="ksM-bx-Ny2" firstAttribute="leading" secondItem="ppw-7p-xoS" secondAttribute="leading" id="dCS-vQ-r9F"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Код" id="kBf-PS-eUD">
                                 <cells>
@@ -201,46 +225,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="submitButton" destination="ksM-bx-Ny2" id="2bF-xR-fcP"/>
                         <outlet property="verificationCodeTextField" destination="86y-wh-rMH" id="7jv-qt-dcp"/>
-                        <segue destination="YHc-gj-29y" kind="show" identifier="registerNewUser" id="RNR-mc-WKS"/>
+                        <segue destination="gLi-GB-fLe" kind="show" identifier="registerNewUser" id="tvP-ab-eIx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHx-3t-drJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2586" y="154"/>
-        </scene>
-        <!--New User View Controller-->
-        <scene sceneID="re7-M3-FQy">
-            <objects>
-                <viewController id="YHc-gj-29y" customClass="NewUserViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hVY-jt-M1L"/>
-                        <viewControllerLayoutGuide type="bottom" id="XUV-eP-8lo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CxJ-fw-vHU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-bL-YMn">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XTI-bL-YMn" firstAttribute="leading" secondItem="CxJ-fw-vHU" secondAttribute="leadingMargin" constant="-20" id="3oY-2M-oyb"/>
-                            <constraint firstItem="XTI-bL-YMn" firstAttribute="top" secondItem="hVY-jt-M1L" secondAttribute="bottom" id="8hg-Te-gy5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XTI-bL-YMn" secondAttribute="trailing" constant="-20" id="A7b-0o-IHF"/>
-                            <constraint firstItem="XUV-eP-8lo" firstAttribute="top" secondItem="XTI-bL-YMn" secondAttribute="bottom" id="LBv-Xs-RvE"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="XTI-bL-YMn" id="3lj-WV-CWt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="isX-HQ-eqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3275" y="154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NgG-cX-SGw">
@@ -280,6 +272,97 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2wO-df-WoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--New User View Controller-->
+        <scene sceneID="oJW-B0-bwR">
+            <objects>
+                <tableViewController id="gLi-GB-fLe" customClass="NewUserViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="J2k-x6-GhY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="W0V-pJ-HmZ">
+                            <rect key="frame" x="0.0" y="207.5" width="600" height="96"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iu0-jb-yfo">
+                                    <rect key="frame" x="0.0" y="34" width="600" height="62"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="62" id="0cN-hx-AhA"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Получить код"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Iu0-jb-yfo" firstAttribute="leading" secondItem="W0V-pJ-HmZ" secondAttribute="leading" id="4ua-WQ-myO"/>
+                                <constraint firstAttribute="bottom" secondItem="Iu0-jb-yfo" secondAttribute="bottom" id="XJc-rx-fLZ"/>
+                                <constraint firstAttribute="trailing" secondItem="Iu0-jb-yfo" secondAttribute="trailing" id="ffb-dW-Ffe"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection headerTitle="Расскажите о себе" id="iuj-TF-fs1">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="9Hf-Pl-rEW">
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hf-Pl-rEW" id="L8B-qa-YEe">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-Gu-Qxv">
+                                                    <rect key="frame" x="13" y="23.5" width="574" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DaG-Gu-Qxv" firstAttribute="centerY" secondItem="L8B-qa-YEe" secondAttribute="centerY" id="KOk-f4-iYT"/>
+                                                <constraint firstItem="DaG-Gu-Qxv" firstAttribute="leading" secondItem="L8B-qa-YEe" secondAttribute="leadingMargin" constant="5" id="PRv-Va-sby"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DaG-Gu-Qxv" secondAttribute="trailing" constant="5" id="Zeh-CD-Ozy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="oEL-sT-eC5">
+                                        <rect key="frame" x="0.0" y="119.5" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oEL-sT-eC5" id="HbP-tK-ewJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFP-kZ-Dyx">
+                                                    <rect key="frame" x="13" y="23.5" width="574" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fFP-kZ-Dyx" firstAttribute="centerY" secondItem="HbP-tK-ewJ" secondAttribute="centerY" id="B1H-pV-k7Y"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fFP-kZ-Dyx" secondAttribute="trailing" constant="5" id="W2S-dT-dbN"/>
+                                                <constraint firstItem="fFP-kZ-Dyx" firstAttribute="leading" secondItem="HbP-tK-ewJ" secondAttribute="leadingMargin" constant="5" id="ncZ-Kh-UnH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="gLi-GB-fLe" id="L5m-P4-TY6"/>
+                            <outlet property="delegate" destination="gLi-GB-fLe" id="UUn-NY-i4p"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="doneButton" destination="Iu0-jb-yfo" id="LUZ-8G-fTL"/>
+                        <outlet property="firstNameTextField" destination="DaG-Gu-Qxv" id="j8E-0z-mK8"/>
+                        <outlet property="lastNameTextField" destination="fFP-kZ-Dyx" id="MUq-dc-aA5"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBb-Aq-2Xs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3308" y="154"/>
         </scene>
     </scenes>
 </document>

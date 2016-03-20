@@ -13,18 +13,15 @@ class PhoneVerificationTableViewController: UITableViewController {
   
   var sessionData: PhoneSighUpSessionData!
   
+  @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var verificationCodeTextField: UITextField!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let submitButton = UIBarButtonItem(title: "Продолжить",
-      style: .Done,
-      target: self,
-      action: "submitButtonAction"
-    )
-    
-    navigationItem.rightBarButtonItem = submitButton
+    submitButton.backgroundColor = UIColor.blueAccentColor()
+    submitButton.addTarget(self, action: "submitButtonAction", forControlEvents: .TouchUpInside)
+    submitButton.setTitle("Подтвердить", forState: .Normal)
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
   }
   
