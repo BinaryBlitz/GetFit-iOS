@@ -13,6 +13,7 @@ class PhoneLoginTableViewController: UITableViewController {
 
   @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
   
+  @IBOutlet weak var getCodeButton: UIButton!
   var sessionData: PhoneSighUpSessionData?
   
   override func viewDidLoad() {
@@ -20,7 +21,7 @@ class PhoneLoginTableViewController: UITableViewController {
     
     showNavigationBar()
     setUpPhoneNumberTextField()
-    setUpNavigationBarButtons()
+    getCodeButton.backgroundColor = UIColor.blueAccentColor()
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -40,19 +41,9 @@ class PhoneLoginTableViewController: UITableViewController {
     phoneNumberTextField.region = "RU"
   }
   
-  private func setUpNavigationBarButtons() {
-    let getCodeButton = UIBarButtonItem(title: "Получить код",
-      style: .Done,
-      target: self,
-      action: "getCodeButtonAction"
-    )
-    
-    navigationItem.rightBarButtonItem = getCodeButton
-  }
-  
   //MARK: - Actions
   
-  func getCodeButtonAction() {
+  @IBAction func getCodeButtonAction() {
     guard let phone = phoneNumberTextField.text where phone != "" else {
       presentAlertWithMessage("Номер телефона не может быть пустым!")
       return
