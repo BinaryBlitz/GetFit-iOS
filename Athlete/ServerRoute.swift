@@ -6,18 +6,13 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-enum ServerRoute {
-  case VerificationTokens
-  case User
+enum ServerRoute: String {
+  case VerificationTokens = "verification_tokens"
+  case User = "user"
+  case Posts = "posts"
   
   var path: String {
-    let baseURL = ServerManager.sharedManager.baseURL
-    switch self {
-    case .VerificationTokens:
-      return baseURL + "verification_tokens"
-    case .User:
-      return baseURL + "user"
-    }
+    return ServerManager.sharedManager.baseURL + rawValue
   }
   
   func pathWith<Value: CustomStringConvertible>(value: Value) -> String {
