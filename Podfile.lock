@@ -3,20 +3,20 @@ PODS:
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - CVCalendar (1.2.9)
-  - Eureka (1.4.1)
-  - Fabric (1.6.6)
+  - Eureka (1.5.0)
+  - Fabric (1.6.7)
   - HanekeSwift (0.10.1)
   - MCSwipeTableViewCell (2.1.4)
-  - PhoneNumberKit (0.6)
-  - Realm (0.98.3):
-    - Realm/Headers (= 0.98.3)
-  - Realm/Headers (0.98.3)
-  - RealmSwift (0.98.3):
-    - Realm (= 0.98.3)
+  - PhoneNumberKit (0.6.4)
+  - Realm (0.98.4):
+    - Realm/Headers (= 0.98.4)
+  - Realm/Headers (0.98.4)
+  - RealmSwift (0.98.4):
+    - Realm (= 0.98.4)
   - SwiftDate (3.0.8)
   - SwiftyJSON (2.3.2)
   - UICountingLabel (1.4.0)
-  - XLPagerTabStrip (4.0.1)
+  - XLPagerTabStrip (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - HanekeSwift
   - MCSwipeTableViewCell
   - PhoneNumberKit
-  - RealmSwift
+  - RealmSwift (= 0.98.4)
   - SwiftDate
   - SwiftyJSON
   - UICountingLabel
@@ -37,16 +37,16 @@ SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
-  Eureka: 2f1921d3162491921d2fef3b516bc4ef93a05122
-  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
-  PhoneNumberKit: 683f1287a88c1f27386b27cad851081c7c45cb62
-  Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
-  RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
+  PhoneNumberKit: 1d566d33c9840ed873bbfb0c54b171a5b1268ea4
+  Realm: 7745674cb1b7cb2a84a655bfd420b86efdaad36e
+  RealmSwift: 18742f4f13f98117aeec53b92058918ac93bf38f
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
-  XLPagerTabStrip: a39467a6e71017d2be92807ed9308b4d06557c80
+  XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
 COCOAPODS: 0.39.0

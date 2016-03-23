@@ -4,7 +4,7 @@ use_frameworks!
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'Fabric'
-pod 'RealmSwift'
+pod 'RealmSwift', '0.98.4'
 pod 'Crashlytics'
 pod 'UICountingLabel'
 pod 'MCSwipeTableViewCell'
