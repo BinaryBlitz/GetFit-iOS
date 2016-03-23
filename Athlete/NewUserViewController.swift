@@ -25,7 +25,7 @@ class NewUserViewController: UITableViewController {
     super.viewDidLoad()
     
     doneButton.setTitle("OK", forState: UIControlState.Normal)
-    doneButton.addTarget(self, action: "doneButtonAction", forControlEvents: .TouchUpInside)
+    doneButton.addTarget(self, action: #selector(self.doneButtonAction), forControlEvents: .TouchUpInside)
     doneButton.backgroundColor = UIColor.blueAccentColor()
     
     firstNameTextField.placeholder = "Имя"
