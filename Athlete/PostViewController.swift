@@ -16,6 +16,7 @@ class PostViewController: UIViewController {
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var commentTextField: UITextField!
+  @IBOutlet weak var commentFieldCard: UIView!
   
   var shouldShowKeyboadOnOpen = false
   
@@ -24,6 +25,9 @@ class PostViewController: UIViewController {
     
     setUpKeyboard()
     setUpTableView()
+    
+    commentFieldCard.layer.borderColor = UIColor.graySecondaryColor().colorWithAlphaComponent(0.2).CGColor
+    commentFieldCard.layer.borderWidth = 1
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -50,6 +54,7 @@ class PostViewController: UIViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
+    tableView.tableFooterView = UIView()
     let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
     let commentCellNib = UINib(nibName: String(PostCommentTableViewCell), bundle: nil)
@@ -130,6 +135,7 @@ extension PostViewController: UITableViewDataSource {
       
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
+      cell.state = .Normal
       
       return cell
     case 1:

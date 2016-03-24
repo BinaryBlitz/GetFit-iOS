@@ -139,9 +139,10 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="113" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-de-rP9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="113" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-de-rP9">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="eHR-Y0-aBE" id="UxA-Bd-z7z"/>
                                     <outlet property="delegate" destination="eHR-Y0-aBE" id="sWX-fF-KrL"/>
@@ -178,6 +179,7 @@
                     <navigationItem key="navigationItem" title="POST" id="0XX-Nn-gKY"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="commentFieldCard" destination="hdh-8s-Gj5" id="Xk8-bB-DVH"/>
                         <outlet property="commentTextField" destination="xeZ-94-0uy" id="EQW-7i-9Y3"/>
                         <outlet property="keyboardHeight" destination="8WP-a3-X5G" id="yrD-hA-MIJ"/>
                         <outlet property="tableView" destination="ZCL-de-rP9" id="Wuz-hM-XFW"/>

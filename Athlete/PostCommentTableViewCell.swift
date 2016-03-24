@@ -30,5 +30,7 @@ class PostCommentTableViewCell: UITableViewCell {
     usernameLabel.text = viewModel.name
     contentLabel.text = viewModel.text
     dateLabel.text = viewModel.dateString
+    
+    usernameLabel.textColor = UIColor.graySecondaryColor()
   }
 }

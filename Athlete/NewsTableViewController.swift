@@ -89,6 +89,7 @@ class NewsTableViewController: UITableViewController {
     
     cell.configureWith(PostViewModel(post: post))
     cell.displayAsPreview = true
+    cell.state = .Card
     cell.delegate = self
     
     return cell

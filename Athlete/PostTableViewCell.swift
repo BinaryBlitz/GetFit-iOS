@@ -20,6 +20,7 @@ class PostTableViewCell: UITableViewCell {
 
   //MARK: - Base
   @IBOutlet weak var cardView: CardView!
+  @IBOutlet var cardViewMarginConstraints: [NSLayoutConstraint]!
   
   //MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
@@ -42,6 +43,17 @@ class PostTableViewCell: UITableViewCell {
     case None
     case Photo(photoURL: NSURL)
     case TrainingProgram(program: Program)
+  }
+  
+  enum PostCellState {
+    case Normal
+    case Card
+  }
+  
+  var state: PostCellState = .Card {
+    didSet {
+      updateWithState(state)
+    }
   }
   
   //MARK: - Delegate
@@ -122,6 +134,19 @@ class PostTableViewCell: UITableViewCell {
         likesCountLabel.text = String(likes + 1)
       } else {
         likesCountLabel.text = String(likes - 1)
+      }
+    }
+  }
+  
+  private func updateWithState(state: PostCellState) {
+    switch state {
+    case .Card:
+      cardViewMarginConstraints.forEach { constraint in
+        constraint.constant = 7
+      }
+    case .Normal:
+      cardViewMarginConstraints.forEach { constraint in
+        constraint.constant = 0
       }
     }
   }
