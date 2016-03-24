@@ -30,10 +30,20 @@ class Post: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  //TODO: implement JSONSerializable
-  
   required init?(json: JSON) {
-    return nil
+    super.init()
+    
+    guard let id = json["id"].int, content = json["content"].string, createdAt = json["created_at"].string else {
+      return nil
+    }
+    
+    self.id = id
+    self.content = content
+    self.dateCreated = createdAt.toDateFromISO8601() ?? NSDate()
+    
+    if let url = json["image_url"].string {
+      self.imageURLString = url
+    }
   }
   
   override static func primaryKey() -> String? {

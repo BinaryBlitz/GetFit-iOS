@@ -22,8 +22,9 @@ class NewsTableViewController: UITableViewController {
                                                        target: nil,
                                                        action: Selector(nilLiteral: ()))
     
-    configureTableView()
     fetchPosts()
+    configureTableView()
+    refresh()
   }
   
   private func configureTableView() {
@@ -56,23 +57,23 @@ class NewsTableViewController: UITableViewController {
   
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
+      self.fetchPosts()
+      self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    delayFor(2) {
-      completion()
+    ServerManager.sharedManager.fetchPostsFor(0) { response in
+      switch response.result {
+      case .Success(_):
+        completion()
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithMessage("Oh, no!")
+        completion()
+      }
     }
-  }
-  
-  func delayFor(delay: Double, closure: () -> Void) {
-    dispatch_after(
-      dispatch_time(
-        DISPATCH_TIME_NOW,
-        Int64(delay * Double(NSEC_PER_SEC))
-      ),
-      dispatch_get_main_queue(), closure)
   }
   
   //MARK: - UITableViewDataSource

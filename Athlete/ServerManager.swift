@@ -50,7 +50,6 @@ class ServerManager {
   private func request(method: Alamofire.Method, path: String,
     parameters: [String : AnyObject]?,
     encoding: ParameterEncoding) throws -> Request {
-      let url = baseURL + path
       var parameters = parameters
       guard let token = apiToken else {
         throw ServerError.Unauthorized
@@ -62,7 +61,7 @@ class ServerManager {
         parameters = ["api_token": token]
       }
       
-      return manager.request(method, url, parameters: parameters, encoding: encoding)
+      return manager.request(method, path, parameters: parameters, encoding: encoding)
   }
   
   /// GET request with api token
@@ -202,7 +201,7 @@ class ServerManager {
     do {
       let request = try get(ServerRoute.Posts.path, params: parameters)
       activityIndicatorVisible = true
-      request.validate().responseJSON { response in
+      request.responseJSON { response in
         self.activityIndicatorVisible = false
         switch response.result {
         case .Success(let resultValue):
@@ -213,7 +212,7 @@ class ServerManager {
           
           let realm = try! Realm()
           try! realm.write {
-            realm.add(posts)
+            realm.add(posts, update: true)
           }
           
           completion?(response: Response(value: true))
@@ -222,6 +221,8 @@ class ServerManager {
           completion?(response: response)
         }
       }
+      
+      return request
     } catch {
       let response = Response(error: .Unauthorized)
       completion?(response: response)
