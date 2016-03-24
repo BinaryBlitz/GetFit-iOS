@@ -44,6 +44,10 @@ class PostTableViewCell: UITableViewCell {
     case TrainingProgram(program: Program)
   }
   
+  //MARK: - Delegate
+  
+  weak var delegate: PostTableViewCellDelegate?
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -102,13 +106,14 @@ class PostTableViewCell: UITableViewCell {
     }
   }
   
-  //MARK: - IBActions
+  //MARK: - Actions
   
   @IBAction func commentButtonAction(sender: AnyObject) {
-    print("comment!")
+    delegate?.didTouchCommentButton(self)
   }
   
   @IBAction func likeButtonAction(sender: AnyObject) {
+    defer { delegate?.didTouchLikeButton(self) }
     likeButton.selected = !likeButton.selected
     
     if let likesString = likesCountLabel.text,

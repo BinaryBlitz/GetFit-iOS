@@ -51,6 +51,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPost" id="18Q-JA-Oub"/>
+                        <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPostAndComment" id="1W4-iT-S2E"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBc-d0-PnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -177,6 +178,7 @@
                     <navigationItem key="navigationItem" title="POST" id="0XX-Nn-gKY"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="commentTextField" destination="xeZ-94-0uy" id="EQW-7i-9Y3"/>
                         <outlet property="keyboardHeight" destination="8WP-a3-X5G" id="yrD-hA-MIJ"/>
                         <outlet property="tableView" destination="ZCL-de-rP9" id="Wuz-hM-XFW"/>
                     </connections>
@@ -192,4 +194,7 @@
         <image name="Messages" width="22" height="21"/>
         <image name="photo" width="27" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1W4-iT-S2E"/>
+    </inferredMetricsTieBreakers>
 </document>

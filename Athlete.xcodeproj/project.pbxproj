@@ -17,6 +17,7 @@
 		3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */; };
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
 		373297291CA36161008AEB05 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373297281CA36161008AEB05 /* JSONSerializable.swift */; };
+		3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */; };
 		374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */; };
 		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
@@ -112,6 +113,7 @@
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		373297281CA36161008AEB05 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
+		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewController.swift; sourceTree = "<group>"; };
 		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				376F65701C7C8E6B0016071C /* Previewable.swift */,
 				376F65761C7C97EE0016071C /* TextPresentable.swift */,
 				373297281CA36161008AEB05 /* JSONSerializable.swift */,
+				3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
+				3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
 				374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */,
 				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,

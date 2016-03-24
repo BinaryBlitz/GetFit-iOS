@@ -15,6 +15,9 @@ class PostViewController: UIViewController {
   
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var commentTextField: UITextField!
+  
+  var shouldShowKeyboadOnOpen = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,12 +25,25 @@ class PostViewController: UIViewController {
     setUpKeyboard()
     setUpTableView()
   }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    if shouldShowKeyboadOnOpen {
+      commentTextField.becomeFirstResponder()
+      shouldShowKeyboadOnOpen = false
+    }
+  }
 
   func setUpKeyboard() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: "keyboardWillShow:", name:UIKeyboardWillShowNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "keyboardWillHide:", name:UIKeyboardWillHideNotification, object: nil)
-    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "dismissKeyboard:"))
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
+                                   name: UIKeyboardWillShowNotification, object: nil)
+    
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
+                                   name: UIKeyboardWillHideNotification, object: nil)
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+    view.addGestureRecognizer(tapGesture)
   }
   
   func setUpTableView() {

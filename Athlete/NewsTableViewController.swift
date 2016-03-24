@@ -17,7 +17,10 @@ class NewsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                       style: .Plain,
+                                                       target: nil,
+                                                       action: Selector(nilLiteral: ()))
     
     configureTableView()
     fetchPosts()
@@ -86,6 +89,7 @@ class NewsTableViewController: UITableViewController {
     
     cell.configureWith(PostViewModel(post: post))
     cell.displayAsPreview = true
+    cell.delegate = self
     
     return cell
   }
@@ -103,10 +107,14 @@ class NewsTableViewController: UITableViewController {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? PostViewController,
-          post = sender as? Post
-          where segue.identifier == "viewPost" {
+    if let destination = segue.destinationViewController as? PostViewController, post = sender as? Post {
       destination.post = post
+      switch segue.identifier {
+      case .Some("viewPostAndComment"):
+        destination.shouldShowKeyboadOnOpen = true
+      default:
+        break
+      }
     }
   }
   
@@ -116,5 +124,18 @@ class NewsTableViewController: UITableViewController {
     let chatsViewController = ChatsTableViewController()
     let navigationController = UINavigationController(rootViewController: chatsViewController)
     presentViewController(navigationController, animated: true, completion: nil)
+  }
+}
+
+//MARK: - PostTableViewCellDelegate
+
+extension NewsTableViewController: PostTableViewCellDelegate {
+  
+  func didTouchCommentButton(cell: PostTableViewCell) {
+    guard let row = tableView.indexPathForCell(cell)?.row, post = posts?[row] else {
+      return
+    }
+    
+    performSegueWithIdentifier("viewPostAndComment", sender: post)
   }
 }
