@@ -7,8 +7,9 @@
 //
 
 import RealmSwift
+import SwiftyJSON
 
-class Post: Object {
+class Post: Object, JSONSerializable {
 
   dynamic var id: Int = 0
   dynamic var content: String = ""
@@ -19,6 +20,16 @@ class Post: Object {
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
   let comments = List<Comment>()
+  
+  required init() {
+    super.init()
+  }
+  
+  //TODO: implement JSONSerializable
+  
+  required init?(json: JSON) {
+    return nil
+  }
   
   override static func primaryKey() -> String? {
     return "id"

@@ -10,8 +10,19 @@ import Alamofire
 
 struct ServerResponse<Value, Error: ErrorType> {
   
-  let value: Value?
-  let error: Error?
+  var value: Value? = nil
+  var error: Error? = nil
+  
+  init() {
+  }
+  
+  init(error: Error) {
+    self.error = error
+  }
+  
+  init(value: Value) {
+    self.value = value
+  }
   
   var result: Result<Value, Error> {
     if let value = value {

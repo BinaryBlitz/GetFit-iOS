@@ -10,6 +10,7 @@ import Alamofire
 import SwiftyJSON
 import PhoneNumberKit
 import SwiftDate
+import RealmSwift
 
 class ServerManager {
   
@@ -103,15 +104,15 @@ class ServerManager {
       case .Success(let value):
         let json = JSON(value)
         guard let token = json["token"].string else {
-          let serverResponse = Response(value: nil, error: .InvalidData)
+          let serverResponse = Response(error: .InvalidData)
           completion?(response: serverResponse)
           return
         }
         
-        let serverResponse = Response(value: token, error: nil)
+        let serverResponse = Response(value: token)
         completion?(response: serverResponse)
       case .Failure(let error):
-        completion?(response: Response(value: nil, error: ServerError(error: error)))
+        completion?(response: Response(error: ServerError(error: error)))
       }
     }
     
@@ -137,12 +138,12 @@ class ServerManager {
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
-          completion?(response: Response(value: true, error: nil))
+          completion?(response: Response(value: true))
         } else {
-          completion?(response: Response(value: false, error: nil))
+          completion?(response: Response(value: false))
         }
       case .Failure(let error):
-        completion?(response: Response(value: nil, error: ServerError(error: error)))
+        completion?(response: Response(error: ServerError(error: error)))
       }
     }
     
@@ -184,15 +185,54 @@ class ServerManager {
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
-          completion?(response: Response(value: User(), error: nil))
+          completion?(response: Response(value: User()))
         } else {
-          completion?(response: Response(value: nil, error: ServerError.InvalidData))
+          completion?(response: Response(error: ServerError.InvalidData))
         }
       case .Failure(let error):
-        completion?(response: Response(value: nil, error: ServerError(error: error)))
+        completion?(response: Response(error: ServerError(error: error)))
       }
     }
     
     return req
+  }
+  
+  //MARK: - Posts
+  
+  func fetchPostsFor(pageIndex: Int,
+                     completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    
+    typealias Response = ServerResponse<Bool, ServerError>
+    let parameters = ["page": pageIndex]
+    
+    do {
+      let request = try get(ServerRoute.Posts.path, params: parameters)
+      activityIndicatorVisible = true
+      request.validate().responseJSON { response in
+        self.activityIndicatorVisible = false
+        switch response.result {
+        case .Success(let resultValue):
+          let json = JSON(resultValue)
+          let posts = json.flatMap { (_, postJSON) -> Post? in
+            return Post(json: postJSON)
+          }
+          
+          let realm = try! Realm()
+          try! realm.write {
+            realm.add(posts)
+          }
+          
+          completion?(response: Response(value: true))
+        case .Failure(let error):
+          let response = Response(error: ServerError(error: error))
+          completion?(response: response)
+        }
+      }
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
   }
 }
