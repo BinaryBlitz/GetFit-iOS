@@ -155,17 +155,11 @@ class ServerManager {
         
     typealias Response = ServerResponse<User, ServerError>
         
-    let name = "\(userData.firstName ?? "") \(userData.lastName ?? "")"
-    let birthdate = userData.birthdate?.toString(DateFormat.ISO8601Format(.Date)) ?? ""
-        
     let user: [String: AnyObject] = [
       "phone_number": userData.phoneNumber.toE164(),
       "verification_token": userData.verificationToken,
-      "name": name,
-      "height": userData.height ?? 0,
-      "weight": userData.weight ?? 0,
-      "birthdate": birthdate,
-      "gender": userData.gender?.rawValue ?? User.Gender.Male.rawValue
+      "first_name": userData.firstName ?? "",
+      "last_name": userData.lastName ?? ""
 //        "device_token": ServerManager.sharedInstance.deviceToken ?? NSNull(),
 //        "platform": "ios"
     ]
