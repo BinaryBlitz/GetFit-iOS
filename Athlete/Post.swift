@@ -6,6 +6,7 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Realm
 import RealmSwift
 import SwiftyJSON
 
@@ -23,6 +24,10 @@ class Post: Object, JSONSerializable {
   
   required init() {
     super.init()
+  }
+  
+  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
   }
   
   //TODO: implement JSONSerializable
