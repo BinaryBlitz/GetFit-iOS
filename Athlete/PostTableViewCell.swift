@@ -54,6 +54,8 @@ class PostTableViewCell: UITableViewCell {
     likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Highlighted)
     
     dateView.style = .LightGray
+    
+    trainerNameLabel.textColor = UIColor.graySecondaryColor()
   }
   
   //MARK: - Cell configuration

@@ -17,7 +17,7 @@ class NewsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
     
     configureTableView()
     fetchPosts()
@@ -32,8 +32,12 @@ class NewsTableViewController: UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
     
+    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
+    headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    tableView.tableHeaderView = headerView
+    
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
