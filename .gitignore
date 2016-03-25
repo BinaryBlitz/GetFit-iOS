@@ -31,3 +31,8 @@ Pods/
 # Fastlane
 fastlane/report.xml
 *.mobileprovision
+
+# Keys
+*.pem
+*.pkey
+*.p12
