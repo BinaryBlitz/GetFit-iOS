@@ -17,8 +17,19 @@ class ServerManager {
   static let sharedManager = ServerManager()
   
   private var manager = Manager.sharedInstance
-  let baseURL = "http://getfit.binaryblitz.ru/api/"
+  let baseURL = "http://getfit.binaryblitz.ru"
 //  let baseURL = "http://localhost:3000/api/"
+  
+  var baseAPIURL: String {
+    return baseURL + "/api/"
+  }
+  
+  //TODO: - move to servermanager helper or smth 
+  
+  func pathToImage(imagePath: String) -> String {
+    let baseURL = ServerManager.sharedManager.baseURL
+    return baseURL + imagePath
+  }
   
   //MARK: - Tokens
   

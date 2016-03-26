@@ -12,7 +12,7 @@ enum ServerRoute: String {
   case Posts = "posts"
   
   var path: String {
-    return ServerManager.sharedManager.baseURL + rawValue
+    return ServerManager.sharedManager.baseAPIURL + rawValue
   }
   
   func pathWith<Value: CustomStringConvertible>(value: Value) -> String {

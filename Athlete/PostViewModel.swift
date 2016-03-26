@@ -15,7 +15,7 @@ struct PostViewModel {
 extension PostViewModel: PostPresentable {
   var imageURL: NSURL? {
     guard let imageURLString = post.imageURLString,
-        url = NSURL(string: imageURLString) else {
+        url = NSURL(string: ServerManager.sharedManager.pathToImage(imageURLString)) else {
       return nil
     }
     
