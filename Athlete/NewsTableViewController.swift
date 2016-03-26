@@ -17,10 +17,8 @@ class NewsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                       style: .Plain,
-                                                       target: nil,
-                                                       action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain,
+                                                       target: nil, action: Selector(nilLiteral: ()))
     
     fetchPosts()
     configureTableView()
