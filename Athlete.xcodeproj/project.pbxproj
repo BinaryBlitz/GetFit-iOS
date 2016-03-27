@@ -83,6 +83,8 @@
 		37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */; };
 		37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA52751CA8298B00FD58B8 /* StripButtonItem.swift */; };
 		37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */; };
+		37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA52791CA87DBD00FD58B8 /* ActionTableViewCell.swift */; };
+		37DA527C1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
 		37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */; };
@@ -186,6 +188,8 @@
 		37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		37DA52751CA8298B00FD58B8 /* StripButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripButtonItem.swift; sourceTree = "<group>"; };
 		37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStripViewDelegate.swift; sourceTree = "<group>"; };
+		37DA52791CA87DBD00FD58B8 /* ActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
+		37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
 		37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewCell.swift; sourceTree = "<group>"; };
@@ -474,6 +478,8 @@
 				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
 				37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */,
 				37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */,
+				37DA52791CA87DBD00FD58B8 /* ActionTableViewCell.swift */,
+				37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */,
 			);
 			name = Professionals;
 			sourceTree = "<group>";
@@ -716,6 +722,7 @@
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
+				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
@@ -734,6 +741,7 @@
 				37A6A1201C7A68B0007F0944 /* UIView+AddConent.swift in Sources */,
 				37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */,
 				37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */,
+				37DA527C1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,

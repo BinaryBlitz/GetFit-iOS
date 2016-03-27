@@ -23,6 +23,7 @@ class ProfessionalTableViewController: UITableViewController {
     let trainerInfoCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
     tableView.registerNib(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    tableView.registerClass(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
   }
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -32,7 +33,7 @@ class ProfessionalTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case 0:
-      return 1
+      return 2
     case 1:
       return 1
     default:
@@ -42,20 +43,31 @@ class ProfessionalTableViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     switch indexPath.section {
-    case 0:
-      let cell = tableView.dequeueReusableCellWithIdentifier("infoHeader") as! ProfessionalTableViewCell
+    case 0 where indexPath.row == 0:
+      guard let cell = tableView.dequeueReusableCellWithIdentifier("infoHeader") as? ProfessionalTableViewCell else {
+        break
+      }
       cell.configureWith(trainer, andState: .Normal)
+      return cell
+    case 0 where indexPath.row == 1:
+//      guard let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTraningCell") as? ActionTableViewCell else {
+//        break
+//      }
+      let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTrainingCell") as! ActionTableViewCell
+      cell.delegate = self
+      cell.title = "get personal training".uppercaseString
       return cell
     case 1:
       //TODO: - return programs, news and reviews
-      return UITableViewCell()
+      break
     default:
-      return UITableViewCell()
+      break
     }
+    
+    return UITableViewCell()
   }
 
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
     switch section {
     case 0:
       return nil
@@ -106,5 +118,11 @@ class ProfessionalTableViewController: UITableViewController {
 extension ProfessionalTableViewController: ButtonStripViewDelegate {
   func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     print("index selected: \(index)")
+  }
+}
+
+extension ProfessionalTableViewController: ActionTableViewCellDelegate {
+  func didSelectActionCell(cell: ActionTableViewCell) {
+    presentAlertWithMessage("personal training")
   }
 }
