@@ -18,7 +18,11 @@ class ButtonsStripView: UIView {
   }
   
   let stackView = UIStackView(frame: CGRect.zero)
-  var selectedIndex = 0
+  var selectedIndex = 0 {
+    didSet {
+      reloadButtons()
+    }
+  }
   
   weak var delegate: ButtonStripViewDelegate?
   
@@ -38,10 +42,11 @@ class ButtonsStripView: UIView {
   }
   
   private func setup() {
+    backgroundColor = UIColor.lightGrayBackgroundColor()
     stackView.alignment = .Fill
     stackView.distribution = .FillProportionally
     stackView.axis = .Horizontal
-    stackView.spacing = 9
+    stackView.spacing = 8
     addSubview(stackView)
     
     reloadButtons()
@@ -51,6 +56,7 @@ class ButtonsStripView: UIView {
   }
   
   private func reloadButtons() {
+    stackView.removeAllSubviews()
     let items = labels.map { (label) -> StripButtonItem in
       let button = StripButtonItem(title: label)
       button.titleColor = UIColor.graySecondaryColor()

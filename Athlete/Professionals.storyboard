@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T5M-NG-ozN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T5M-NG-ozN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,40 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SW2-e5-zI8" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="10" y="64" width="380" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Hbf-8N-VCo"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xl4-ND-6od">
-                                    <size key="itemSize" width="40" height="40"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-bY-reu">
-                                <rect key="frame" x="0.0" y="124" width="400" height="627"/>
-                            </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VsC-5f-1nU">
+                                <rect key="frame" x="0.0" y="64" width="400" height="687"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZVC-3L-7oU" id="XOe-hj-6kg"/>
+                                    <outlet property="delegate" destination="ZVC-3L-7oU" id="Apy-2C-tF7"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SW2-e5-zI8" firstAttribute="top" secondItem="cmv-bJ-1t2" secondAttribute="bottom" id="4eA-mX-ORe"/>
-                            <constraint firstItem="Zbh-bY-reu" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-20" id="7UX-a8-SgF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zbh-bY-reu" secondAttribute="trailing" constant="-20" id="9NZ-SY-GGH"/>
-                            <constraint firstItem="Zbh-bY-reu" firstAttribute="top" secondItem="SW2-e5-zI8" secondAttribute="bottom" id="CQ6-t8-UHF"/>
-                            <constraint firstItem="qb0-11-vJC" firstAttribute="top" secondItem="Zbh-bY-reu" secondAttribute="bottom" id="CyA-Nr-Etg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SW2-e5-zI8" secondAttribute="trailing" constant="-10" id="ksS-dB-zaN"/>
-                            <constraint firstItem="SW2-e5-zI8" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-10" id="rrm-Jo-K4X"/>
+                            <constraint firstItem="VsC-5f-1nU" firstAttribute="leading" secondItem="OaK-cI-CkF" secondAttribute="leadingMargin" constant="-20" id="1J7-Gi-JcP"/>
+                            <constraint firstItem="VsC-5f-1nU" firstAttribute="top" secondItem="cmv-bJ-1t2" secondAttribute="bottom" id="Aaj-WJ-tfz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VsC-5f-1nU" secondAttribute="trailing" constant="-20" id="DgO-fg-oXu"/>
+                            <constraint firstItem="qb0-11-vJC" firstAttribute="top" secondItem="VsC-5f-1nU" secondAttribute="bottom" id="uSc-9w-7ho"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PROFESSIONALS" id="bjW-T4-6G6">
                         <barButtonItem key="rightBarButtonItem" image="Filter" id="A8B-MK-bhm"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="buttonBarView" destination="SW2-e5-zI8" id="6sl-kI-gs9"/>
-                        <outlet property="containerView" destination="Zbh-bY-reu" id="SZa-nV-Z2P"/>
+                        <outlet property="tableView" destination="VsC-5f-1nU" id="0Q4-87-xRe"/>
                         <segue destination="gva-ft-Uh1" kind="show" identifier="professionalInfo" id="Zlp-04-R09"/>
                     </connections>
                 </viewController>
@@ -79,7 +67,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dy4-5L-iZQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="T5M-NG-ozN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T5M-NG-ozN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Professionals" id="fcl-ol-jHa">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

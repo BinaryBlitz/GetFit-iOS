@@ -7,44 +7,47 @@
 //
 
 import UIKit
-import XLPagerTabStrip
+import RealmSwift
+//import XLPagerTabStrip
 
-class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
+class ProfessionalsViewController: UIViewController {
+  
+//  var stripView: ButtonsStripView
+  
+  @IBOutlet weak var tableView: UITableView!
+  
+  private(set) var selectedCategory: TrainerCategory = .Coach
+  let categories: [TrainerCategory] = [.Coach, .Doctor, .Nutritionist]
+  
+  var coaches: Results<Trainer>?
+  var doctors: Results<Trainer>?
+  var nutritionists: Results<Trainer>?
   
   override func viewDidLoad() {
-    
-    settings.style.buttonBarBackgroundColor = UIColor.lightGrayBackgroundColor()
-    settings.style.buttonBarItemBackgroundColor = UIColor.lightGrayBackgroundColor()
-    settings.style.buttonBarItemFont = UIFont.boldSystemFontOfSize(15)
-    settings.style.selectedBarHeight = 0
-    settings.style.buttonBarItemTitleColor = UIColor.blackTextColor()
-    settings.style.buttonBarItemsShouldFillAvailiableWidth = false
-  
-    changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?,
-           progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-        guard changeCurrentIndex == true else { return }
-        oldCell?.label.textColor = UIColor.graySecondaryColor()
-        newCell?.label.textColor = UIColor.blackTextColor()
-    }
-    
     super.viewDidLoad()
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
-    view.backgroundColor = UIColor.lightGrayBackgroundColor()
+    setupTableView()
+    
+    let realm = try! Realm()
+    
+    //TODO: sort by popularity
+    coaches = realm.objects(Trainer).filter("categoryValue = '\(TrainerCategory.Coach.rawValue)'").sorted("id")
+    doctors = realm.objects(Trainer).filter("categoryValue = '\(TrainerCategory.Doctor.rawValue)'").sorted("id")
+    nutritionists = realm.objects(Trainer).filter("categoryValue = '\(TrainerCategory.Nutritionist.rawValue)'").sorted("id")
   }
   
-  // MARK: - PagerTabStripDataSource
+  private func setupTableView() {
+    view.backgroundColor = UIColor.lightGrayBackgroundColor()
+    let trainerCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
+    tableView.registerNib(trainerCellNib, forCellReuseIdentifier: String(ProfessionalTableViewCell))
+    tableView.rowHeight = 370
+    tableView.separatorStyle = .None
+    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+  }
   
-  override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-    let coaches = TrainersListTableViewController(category: .Coach)
-    let doctors = TrainersListTableViewController(category: .Doctor)
-    let nutritionists = TrainersListTableViewController(category: .Nutritionist)
-    let pages: [TrainersListTableViewController] = [coaches, nutritionists, doctors]
-    pages.forEach { page in
-      page.delegate = self
-    }
-
-    return [coaches, nutritionists, doctors]
+  func reloadTableViewWith(category: TrainerCategory) {
+    selectedCategory = category
   }
   
   //MARK: - Navigation
@@ -56,11 +59,86 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
       destination.trainer = trainer
     }
   }
+  
+  private func trainerAtIndexPath(indexPath: NSIndexPath) -> Trainer? {
+    var trainer: Trainer? = nil
+    
+    switch selectedCategory {
+    case .Coach:
+      if let coach = coaches?[indexPath.row] {
+        trainer = coach
+      }
+    case .Doctor:
+      if let doctor = doctors?[indexPath.row] {
+        trainer = doctor
+      }
+    case .Nutritionist:
+      if let nutritionist = nutritionists?[indexPath.row] {
+        trainer = nutritionist
+      }
+    }
+    
+    return trainer
+  }
 }
 
-extension ProfessionalsViewController: TrainersListDelegate {
+//MARK: - UITableViewDataSource
 
-  func trainersList(viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer) {
+extension ProfessionalsViewController: UITableViewDataSource {
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    switch selectedCategory {
+    case .Coach:
+      return coaches?.count ?? 0
+    case .Nutritionist:
+      return nutritionists?.count ?? 0
+    case .Doctor:
+      return doctors?.count ?? 0
+    }
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cellIdentifier = String(ProfessionalTableViewCell)
+    guard let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? ProfessionalTableViewCell,
+              trainer = trainerAtIndexPath(indexPath) else {
+      return UITableViewCell()
+    }
+    
+    cell.configureWith(trainer)
+    cell.state = .Card
+    
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let labels = categories.map { $0.pluralName() }
+    let buttonStrip = ButtonsStripView(labels: labels)
+    buttonStrip.delegate = self
+    buttonStrip.selectedIndex = categories.indexOf(selectedCategory) ?? 0
+    
+    return buttonStrip
+  }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 70
+  }
+}
+
+
+extension ProfessionalsViewController: UITableViewDelegate {
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    guard let trainer = trainerAtIndexPath(indexPath) else {
+      return
+    }
     performSegueWithIdentifier("professionalInfo", sender: trainer)
+  }
+}
+
+extension ProfessionalsViewController: ButtonStripViewDelegate {
+  
+  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
+    selectedCategory = categories[index]
+    tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
   }
 }
