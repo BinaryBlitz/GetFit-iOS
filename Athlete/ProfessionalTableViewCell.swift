@@ -46,7 +46,12 @@ class ProfessionalTableViewCell: UITableViewCell {
   func configureWith(trainer: Trainer, andState state: ProfessionalCellState = .Card) {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
-    programsBadge.text = "10 programs".uppercaseString
+    if state == .Card {
+      programsBadge.text = "10 programs".uppercaseString
+    } else {
+      programsBadge.text = trainer.category.rawValue.uppercaseString
+    }
+    
     let avatarURL = NSURL(string: trainer.avatarURLString)
     let bannerURL = NSURL(string: "https://pbs.twimg.com/media/Cc3s9UQVIAA0IWP.jpg")
     if let url = avatarURL {

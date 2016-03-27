@@ -81,6 +81,8 @@
 		37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD981C79D5E000CA96E9 /* CardView.swift */; };
 		37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */; };
 		37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */; };
+		37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA52751CA8298B00FD58B8 /* StripButtonItem.swift */; };
+		37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
 		37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */; };
@@ -182,6 +184,8 @@
 		37D7AD981C79D5E000CA96E9 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		37DA52751CA8298B00FD58B8 /* StripButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripButtonItem.swift; sourceTree = "<group>"; };
+		37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStripViewDelegate.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
 		37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewCell.swift; sourceTree = "<group>"; };
@@ -276,7 +280,7 @@
 		374578951BDE5D11004935BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */,
+				37DA52741CA8284000FD58B8 /* ButtonStripView */,
 				37C5644A1C77D32000BC370E /* News */,
 				37D7AD851C7877B800CA96E9 /* Professionals */,
 				37D7AD861C7877D000CA96E9 /* Workout */,
@@ -502,6 +506,16 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		37DA52741CA8284000FD58B8 /* ButtonStripView */ = {
+			isa = PBXGroup;
+			children = (
+				379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */,
+				37DA52751CA8298B00FD58B8 /* StripButtonItem.swift */,
+				37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */,
+			);
+			name = ButtonStripView;
+			sourceTree = "<group>";
+		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +720,7 @@
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
+				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
 				37F01C8E1C77CD3800910D58 /* User.swift in Sources */,
@@ -718,6 +733,7 @@
 				37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */,
 				37A6A1201C7A68B0007F0944 /* UIView+AddConent.swift in Sources */,
 				37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */,
+				37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */,
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
