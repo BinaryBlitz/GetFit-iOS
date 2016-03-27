@@ -6,6 +6,8 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Foundation
+
 protocol TrainerPresentable {
   var trainerAvatarURL: NSURL? { get }
   var trainerName: String { get }

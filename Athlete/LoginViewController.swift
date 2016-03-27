@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     vkButton.text = "vkontakte".uppercaseString
     phoneButton.text = "phone".uppercaseString
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
   }
   
   override func viewWillAppear(animated: Bool) {

@@ -47,6 +47,7 @@
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
 		378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */; };
+		379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */; };
 		379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912A1C95F47D00D96175 /* ServerResponse.swift */; };
 		379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912C1C95F4AC00D96175 /* ServerRoute.swift */; };
 		37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */; };
@@ -143,9 +144,9 @@
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseTableViewController.swift; sourceTree = "<group>"; };
+		379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsStripView.swift; sourceTree = "<group>"; };
 		379E912A1C95F47D00D96175 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		379E912C1C95F4AC00D96175 /* ServerRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
-		37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Athlete-Bridging-Header.h"; sourceTree = "<group>"; };
 		37A53C3B1BDE527F00D1DA70 /* Athlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A53C451BDE527F00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -266,7 +267,6 @@
 		374578941BDE5CF5004935BC /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				37A4C0F41BDEC7C40084B38F /* Athlete-Bridging-Header.h */,
 				37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */,
 				37A53C4C1BDE527F00D1DA70 /* Info.plist */,
 			);
@@ -276,6 +276,7 @@
 		374578951BDE5D11004935BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */,
 				37C5644A1C77D32000BC370E /* News */,
 				37D7AD851C7877B800CA96E9 /* Professionals */,
 				37D7AD861C7877D000CA96E9 /* Workout */,
@@ -745,6 +746,7 @@
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
+				379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
@@ -933,7 +935,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.GetFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Athlete/Athlete-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -952,7 +954,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.GetFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Athlete/Athlete-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

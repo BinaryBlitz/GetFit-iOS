@@ -6,6 +6,8 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Foundation
+
 protocol PostPresentable {
   var imageURL: NSURL? { get }
   var likesCount: String { get }

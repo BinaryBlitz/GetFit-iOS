@@ -14,7 +14,7 @@ class ChatsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     title = "Chats"
-    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "closeButtonAction:")
+    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closeButtonAction(_:)))
   }
   
   //MARK: - Actions

@@ -6,7 +6,9 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-class LoginButton: UIButton {
+import UIKit
+
+@objc class LoginButton: UIButton {
   
   var text: String? {
     didSet {

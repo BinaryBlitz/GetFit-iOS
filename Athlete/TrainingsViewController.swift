@@ -56,7 +56,7 @@ class TrainingsViewController: UIViewController {
       switch newValue {
       case .Opened:
         calendarViewTopConstaraint.constant = 0
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: "toggleCurrentDayView")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: #selector(TrainingsViewController.toggleCurrentDayView))
       case .Closed:
         calendarViewTopConstaraint.constant = -(calendarViewHeight)
         navigationItem.leftBarButtonItem = nil
@@ -76,7 +76,7 @@ class TrainingsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
     
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)

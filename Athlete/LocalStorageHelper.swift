@@ -6,6 +6,8 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Foundation
+
 struct LocalStorageHelper {
   
   enum StorageKey: String {

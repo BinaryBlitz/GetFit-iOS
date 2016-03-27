@@ -6,7 +6,9 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-class BadgeView: UIView {
+import UIKit
+
+@objc class BadgeView: UIView {
   
   private var label: UILabel
   private var darkColor = UIColor.graySecondaryColor()

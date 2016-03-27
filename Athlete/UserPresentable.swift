@@ -6,6 +6,8 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Foundation
+
 protocol UserPresentable {
   var name: String { get }
   var info: String { get }

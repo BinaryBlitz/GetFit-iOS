@@ -17,7 +17,7 @@ class StoreTableViewController: UITableViewController {
     
     extendedLayoutIncludesOpaqueBars = true
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
     
     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()

@@ -111,7 +111,7 @@ extension TrainingViewController: UITableViewDataSource {
       }
       
       if let showTipsButton = cell.viewWithTag(2) as? UIButton {
-        showTipsButton.addTarget(self, action: "showTrainingTips:", forControlEvents: .TouchUpInside)
+        showTipsButton.addTarget(self, action: #selector(TrainingViewController.showTrainingTips(_:)), forControlEvents: .TouchUpInside)
       }
       
       return cell

@@ -17,7 +17,6 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
     settings.style.buttonBarItemBackgroundColor = UIColor.lightGrayBackgroundColor()
     settings.style.buttonBarItemFont = UIFont.boldSystemFontOfSize(15)
     settings.style.selectedBarHeight = 0
-    settings.style.buttonBarMinimumInteritemSpacing = 0
     settings.style.buttonBarItemTitleColor = UIColor.blackTextColor()
     settings.style.buttonBarItemsShouldFillAvailiableWidth = false
   
@@ -30,7 +29,7 @@ class ProfessionalsViewController: ButtonBarPagerTabStripViewController {
     
     super.viewDidLoad()
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
   }
   

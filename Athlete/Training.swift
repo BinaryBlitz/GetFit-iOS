@@ -6,6 +6,8 @@
 //  Copyright © 2015 BinaryBlitz. All rights reserved.
 //
 
+import Foundation
+
 class Training {
   enum TrainingType: String {
     case Cardio

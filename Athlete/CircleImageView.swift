@@ -6,6 +6,8 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import UIKit
+
 class CircleImageView: UIImageView {
   
   private func baseInit() {

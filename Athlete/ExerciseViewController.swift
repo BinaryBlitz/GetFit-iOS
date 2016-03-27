@@ -46,7 +46,7 @@ extension ExerciseViewController: UITableViewDataSource {
       if let imageView = cell.viewWithTag(1) as? UIImageView {
         imageView.image = UIImage(named: content[indexPath.row].0)
         imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showTrainingTips:"))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ExerciseViewController.showTrainingTips(_:))))
       }
       return cell
     case 1, 2:

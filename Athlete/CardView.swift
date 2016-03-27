@@ -6,7 +6,9 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
-class CardView: UIView {
+import UIKit
+
+@objc class CardView: UIView {
   
   private func baseInit() {
     layer.cornerRadius = 2
