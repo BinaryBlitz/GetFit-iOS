@@ -23,6 +23,8 @@ class ProfessionalsViewController: UIViewController {
   var doctors: Results<Trainer>?
   var nutritionists: Results<Trainer>?
   
+  var refreshControl: UIRefreshControl?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -44,10 +46,41 @@ class ProfessionalsViewController: UIViewController {
     tableView.rowHeight = 370
     tableView.separatorStyle = .None
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
   }
   
   func reloadTableViewWith(category: TrainerCategory) {
     selectedCategory = category
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    delayFor(2) {
+      completion()
+    }
+  }
+  
+  func delayFor(delay: Double, closure: () -> Void) {
+    dispatch_after(
+      dispatch_time(
+        DISPATCH_TIME_NOW,
+        Int64(delay * Double(NSEC_PER_SEC))
+      ),
+      dispatch_get_main_queue(), closure)
   }
   
   //MARK: - Navigation

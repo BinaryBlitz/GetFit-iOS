@@ -8,6 +8,7 @@
 
 import UIKit
 import Haneke
+import PureLayout
 
 class ProfessionalTableViewCell: UITableViewCell {
   
@@ -22,7 +23,7 @@ class ProfessionalTableViewCell: UITableViewCell {
     }
   }
 
-  @IBOutlet var cardViewConstraints: [NSLayoutConstraint]!
+  @IBOutlet weak var cardView: CardView!
   @IBOutlet weak var bannerImageView: UIImageView!
   @IBOutlet weak var programsBadge: BadgeView!
   @IBOutlet weak var ratingLabel: UILabel!
@@ -74,13 +75,9 @@ class ProfessionalTableViewCell: UITableViewCell {
   private func updateWithState(state: ProfessionalCellState) {
     switch state {
     case .Card:
-      cardViewConstraints.forEach { constraint in
-        constraint.constant = 7
-      }
+      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 7, left: 11, bottom: 7, right: 11))
     case .Normal:
-      cardViewConstraints.forEach { constraint in
-        constraint.constant = 0
-      }
+      cardView.autoPinEdgesToSuperviewEdges()
     }
   }
 }

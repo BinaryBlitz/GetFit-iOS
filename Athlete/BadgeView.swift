@@ -95,6 +95,7 @@ import PureLayout
     super.updateConstraints()
     label.sizeToFit()
     print(label.frame)
-    autoSetDimension(ALDimension.Width, toSize: label.frame.width + 26)
+    autoSetDimension(.Width, toSize: label.frame.width + 26)
+    autoSetDimension(.Height, toSize: label.frame.height + 10)
   }
 }

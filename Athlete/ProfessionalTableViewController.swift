@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfessionalTableViewController: UITableViewController {
   
   var trainer: Trainer!
   private let tabsLabels = ["programs", "news"]
+  private var selectedTab = 0
+  var programms: Results<Program>?
+  var news = [Post]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
     configureTableView()
+    news = trainer.posts
   }
   
   func configureTableView() {
@@ -24,8 +29,12 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.registerNib(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.registerClass(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
+    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
+    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
     tableView.separatorStyle = .None
   }
+  
+  //MARK: - UITableViewDelegate && UITableViewDataSource
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
@@ -35,8 +44,10 @@ class ProfessionalTableViewController: UITableViewController {
     switch section {
     case 0:
       return 2
-    case 1:
-      return 1
+    case 1 where selectedTab == 0:
+      return 0
+    case 1 where selectedTab == 1:
+      return news.count
     default:
       return 0
     }
@@ -57,9 +68,19 @@ class ProfessionalTableViewController: UITableViewController {
       cell.title = "get personal training".uppercaseString
       cell.delegate = self
       return cell
-    case 1:
-      //TODO: - return programs, news and reviews
+    case 1 where selectedTab == 0:
       break
+    case 1 where selectedTab == 1:
+      guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
+        break
+      }
+      let post = news[indexPath.row]
+      cell.configureWith(PostViewModel(post: post))
+      cell.displayAsPreview = true
+      cell.state = .Card
+      cell.delegate = self
+      
+      return cell
     default:
       break
     }
@@ -74,6 +95,7 @@ class ProfessionalTableViewController: UITableViewController {
     case 1:
       let buttonStrip = ButtonsStripView(labels: tabsLabels)
       buttonStrip.delegate = self
+      buttonStrip.selectedIndex = selectedTab
       
       return buttonStrip
     default:
@@ -86,7 +108,7 @@ class ProfessionalTableViewController: UITableViewController {
     case 0:
       return 0
     case 1:
-      return 70
+      return 50
     default:
       return 0
     }
@@ -117,7 +139,16 @@ class ProfessionalTableViewController: UITableViewController {
 
 extension ProfessionalTableViewController: ButtonStripViewDelegate {
   func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
-    print("index selected: \(index)")
+    selectedTab = index
+//    let indexSet = 
+//    tableView.reloadSections(NSIndexSet(index: 1, index: 0), withRowAnimation: UITableViewRowAnimation.Top)
+    let offset = tableView.contentOffset
+    tableView.reloadData()
+    if tableView.numberOfRowsInSection(selectedTab) >= 2 {
+      tableView.setContentOffset(offset, animated: true)
+    } else {
+      tableView.setContentOffset(CGPoint.zero, animated: true)
+    }
   }
 }
 
@@ -126,3 +157,5 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
     presentAlertWithMessage("personal training")
   }
 }
+
+extension ProfessionalTableViewController: PostTableViewCellDelegate { }

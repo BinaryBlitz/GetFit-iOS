@@ -21,7 +21,6 @@ class PostTableViewCell: UITableViewCell {
 
   //MARK: - Base
   @IBOutlet weak var cardView: CardView!
-  @IBOutlet var cardViewMarginConstraints: [NSLayoutConstraint]!
   
   //MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
@@ -143,13 +142,9 @@ class PostTableViewCell: UITableViewCell {
   private func updateWithState(state: PostCellState) {
     switch state {
     case .Card:
-      cardViewMarginConstraints.forEach { constraint in
-        constraint.constant = 7
-      }
+      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 7, left: 11, bottom: 7, right: 11))
     case .Normal:
-      cardViewMarginConstraints.forEach { constraint in
-        constraint.constant = 0
-      }
+      cardView.autoPinEdgesToSuperviewEdges()
     }
   }
 }
