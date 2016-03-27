@@ -288,6 +288,7 @@
 				37D7AD861C7877D000CA96E9 /* Workout */,
 				37D7AD871C78786600CA96E9 /* Store */,
 				37D7AD881C78786C00CA96E9 /* Profile */,
+				37DA527D1CA8992800FD58B8 /* ActionTableViewCell */,
 				37D7AD981C79D5E000CA96E9 /* CardView.swift */,
 				37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */,
 				37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */,
@@ -475,8 +476,6 @@
 				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
 				37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */,
 				37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */,
-				37DA52791CA87DBD00FD58B8 /* ActionTableViewCell.swift */,
-				37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */,
 			);
 			name = Professionals;
 			sourceTree = "<group>";
@@ -517,6 +516,15 @@
 				37DA52771CA829F000FD58B8 /* ButtonStripViewDelegate.swift */,
 			);
 			name = ButtonStripView;
+			sourceTree = "<group>";
+		};
+		37DA527D1CA8992800FD58B8 /* ActionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				37DA52791CA87DBD00FD58B8 /* ActionTableViewCell.swift */,
+				37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */,
+			);
+			name = ActionTableViewCell;
 			sourceTree = "<group>";
 		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
