@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PureLayout
 
 @objc class BadgeView: UIView {
   
@@ -69,29 +70,8 @@ import UIKit
   private func configureLabel() {
     label.font = UIFont.boldSystemFontOfSize(13)
     
-    let centerHorizontally = NSLayoutConstraint(
-      item: label,
-      attribute: .CenterX,
-      relatedBy: .Equal,
-      toItem: self,
-      attribute: .CenterX,
-      multiplier: 1,
-      constant: 0
-    )
-    
-    let centerVertically = NSLayoutConstraint(
-      item: label,
-      attribute: .CenterY,
-      relatedBy: .Equal,
-      toItem: self,
-      attribute: .CenterY,
-      multiplier: 1,
-      constant: 0
-    )
-    
-    label.translatesAutoresizingMaskIntoConstraints = false
     addSubview(label)
-    addConstraints([centerHorizontally, centerVertically])
+    label.autoCenterInSuperview()
   }
   
   private func updateStyle(style: Style) {
@@ -109,5 +89,12 @@ import UIKit
       backgroundColor = UIColor.whiteColor()
       label.textColor = lightBlueColor
     }
+  }
+  
+  override func updateConstraints() {
+    super.updateConstraints()
+    label.sizeToFit()
+    print(label.frame)
+    autoSetDimension(ALDimension.Width, toSize: label.frame.width + 26)
   }
 }

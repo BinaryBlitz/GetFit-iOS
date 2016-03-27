@@ -8,6 +8,7 @@
 
 import UIKit
 import Haneke
+import PureLayout
 
 typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable, TextPresentable>
 
@@ -112,7 +113,8 @@ class PostTableViewCell: UITableViewCell {
       imageView.contentMode = UIViewContentMode.ScaleAspectFill
       imageView.layer.masksToBounds = true
       imageView.hnk_setImageFromURL(photoURL)
-      UIView.addContent(imageView, toView: containerView)
+      containerView.addSubview(imageView)
+      imageView.autoPinEdgesToSuperviewEdges()
     case .TrainingProgram(_):
       fatalError("Posts with TrainingProgram are no implemented yet")
     }
