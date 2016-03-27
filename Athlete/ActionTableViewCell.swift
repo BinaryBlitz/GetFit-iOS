@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import InnerShadowView
 
 class ActionTableViewCell: UITableViewCell {
 
@@ -24,14 +25,15 @@ class ActionTableViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
     selectionStyle = .None
-    addSubview(button)
+    contentView.addSubview(button)
     button.autoPinEdgesToSuperviewEdges()
-    button.backgroundColor = UIColor.blueAccentColor()
-    button.addTarget(self, action: #selector(buttonAction(_:)), forControlEvents: .TouchDragInside)
+    button.addTarget(self, action: #selector(buttonAction(_:)), forControlEvents: .TouchUpInside)
     button.setTitleShadowColor(UIColor.lightGrayBackgroundColor().colorWithAlphaComponent(0.3), forState: UIControlState.Normal)
     button.setTitleShadowColor(UIColor.lightGrayBackgroundColor(), forState: UIControlState.Highlighted)
     button.setTitleColor(UIColor.lightGrayBackgroundColor().colorWithAlphaComponent(0.4), forState: UIControlState.Highlighted)
     button.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
+    
+    contentView.backgroundColor = UIColor.blueAccentColor()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -40,5 +42,11 @@ class ActionTableViewCell: UITableViewCell {
   
   @objc private func buttonAction(sender: UIButton) {
     delegate?.didSelectActionCell(self)
+  }
+  
+  override func updateConstraints() {
+    super.updateConstraints()
+    contentView.addInsetShadowsWithRadius(0.7, atDirections: ShadowDirections.SHADOW_TOP)
+    contentView.bringSubviewToFront(button)
   }
 }

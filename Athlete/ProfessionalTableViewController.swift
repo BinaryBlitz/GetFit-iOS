@@ -24,6 +24,7 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.registerNib(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.registerClass(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
+    tableView.separatorStyle = .None
   }
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -50,12 +51,11 @@ class ProfessionalTableViewController: UITableViewController {
       cell.configureWith(trainer, andState: .Normal)
       return cell
     case 0 where indexPath.row == 1:
-//      guard let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTraningCell") as? ActionTableViewCell else {
-//        break
-//      }
-      let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTrainingCell") as! ActionTableViewCell
-      cell.delegate = self
+      guard let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTrainingCell") as? ActionTableViewCell else {
+        break
+      }
       cell.title = "get personal training".uppercaseString
+      cell.delegate = self
       return cell
     case 1:
       //TODO: - return programs, news and reviews

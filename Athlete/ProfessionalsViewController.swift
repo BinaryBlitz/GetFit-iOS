@@ -120,7 +120,7 @@ extension ProfessionalsViewController: UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 70
+    return 50
   }
 }
 
@@ -139,6 +139,7 @@ extension ProfessionalsViewController: ButtonStripViewDelegate {
   
   func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedCategory = categories[index]
+    tableView.contentOffset = CGPoint.zero
     tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
   }
 }

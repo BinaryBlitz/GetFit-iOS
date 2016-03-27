@@ -6,6 +6,7 @@ PODS:
   - Eureka (1.5.0)
   - Fabric (1.6.7)
   - HanekeSwift (0.10.1)
+  - InnerShadowView (1.0.0)
   - MCSwipeTableViewCell (2.1.4)
   - PhoneNumberKit (0.6.4)
   - PureLayout (3.0.1)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - Eureka
   - Fabric
   - HanekeSwift
+  - InnerShadowView
   - MCSwipeTableViewCell
   - PhoneNumberKit
   - PureLayout
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   PhoneNumberKit: 1d566d33c9840ed873bbfb0c54b171a5b1268ea4
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb

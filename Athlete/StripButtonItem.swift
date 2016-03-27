@@ -57,7 +57,7 @@ internal class StripButtonItem: UIButton {
     selectedTitleColor = UIColor.grayColor()
     //    setTitleColor(UIColor.blueColor().colorWithAlphaComponent(0.3), forState: .Highlighted)
     //    setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.3), forState: .Highlighted)
-    titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+    titleLabel?.font = UIFont.boldSystemFontOfSize(16)
   }
   
   required init?(coder aDecoder: NSCoder) {

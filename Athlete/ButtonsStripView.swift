@@ -46,7 +46,7 @@ class ButtonsStripView: UIView {
     stackView.alignment = .Fill
     stackView.distribution = .FillProportionally
     stackView.axis = .Horizontal
-    stackView.spacing = 8
+    stackView.spacing = 7
     addSubview(stackView)
     
     reloadButtons()
@@ -106,8 +106,8 @@ class ButtonsStripView: UIView {
         selectedItem?.itemState = .Normal
         item.itemState = .Selected
         selectedIndex = indexOfItemInStack(item) ?? 0
+        delegate?.stripView(self, didSelectItemAtIndex: selectedIndex)
       }
-      delegate?.stripView(self, didSelectItemAtIndex: selectedIndex)
     }
   }
 }
