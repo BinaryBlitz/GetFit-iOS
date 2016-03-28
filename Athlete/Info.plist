@@ -42,17 +42,6 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>pbs.twimg.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-				<string>1.0</string>
-				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
 			<key>getfit.binaryblitz.ru</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
@@ -65,6 +54,17 @@
 				<false/>
 			</dict>
 			<key>localhost</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>1.0</string>
+				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>pbs.twimg.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
