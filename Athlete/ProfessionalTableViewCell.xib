@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-Op-ZxF" customClass="CardView" customModule="Athlete" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="566" height="362"/>
+                        <rect key="frame" x="0.0" y="0.0" width="573" height="362"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP8-Tq-DMg" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
                                 <rect key="frame" x="17" y="315" width="135" height="27"/>
@@ -28,39 +28,39 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-fY-lwl">
-                                <rect key="frame" x="496" y="317" width="24" height="23"/>
+                                <rect key="frame" x="503" y="317" width="24" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-0e-VoB">
-                                <rect key="frame" x="526" y="317" width="23" height="22"/>
+                                <rect key="frame" x="533" y="317" width="23" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tRp-0e-VoB" secondAttribute="height" multiplier="100:95" id="5k0-2M-0AP"/>
                                 </constraints>
                                 <state key="normal" image="Rating"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTW-pg-3Nu">
-                                <rect key="frame" x="457" y="317" width="23" height="22"/>
+                                <rect key="frame" x="464" y="317" width="23" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RTW-pg-3Nu" secondAttribute="height" multiplier="100:99" id="PdS-9p-Myn"/>
                                 </constraints>
                                 <state key="normal" image="Followers"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJM-ez-Yse">
-                                <rect key="frame" x="440" y="316" width="11" height="23"/>
+                                <rect key="frame" x="447" y="316" width="11" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sa5-jg-ueE">
-                                <rect key="frame" x="0.0" y="0.0" width="566" height="96"/>
+                                <rect key="frame" x="0.0" y="0.0" width="573" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="Cyx-Yt-z1z"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-IC-YhJ">
-                                <rect key="frame" x="0.0" y="96" width="566" height="199"/>
+                                <rect key="frame" x="0.0" y="96" width="573" height="199"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dan Shevlyuk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8O-ei-c6v">
                                         <rect key="frame" x="13" y="57" width="112" height="21"/>
@@ -69,19 +69,29 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAB-wH-cce">
-                                        <rect key="frame" x="13" y="85" width="540" height="61"/>
+                                        <rect key="frame" x="13" y="85" width="547" height="61"/>
                                         <string key="text">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back,</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqC-zm-yD1" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
+                                        <rect key="frame" x="470" y="10" width="88" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" placeholder="YES" id="hT8-or-kJn"/>
+                                            <constraint firstAttribute="width" constant="88" placeholder="YES" id="mWR-v6-pN9"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mAB-wH-cce" secondAttribute="bottom" constant="2" id="0BS-yy-Ml2"/>
+                                    <constraint firstAttribute="trailing" secondItem="uqC-zm-yD1" secondAttribute="trailing" constant="15" id="2SQ-vD-hhy"/>
                                     <constraint firstItem="mAB-wH-cce" firstAttribute="leading" secondItem="L8O-ei-c6v" secondAttribute="leading" id="cXr-88-Oad"/>
                                     <constraint firstItem="mAB-wH-cce" firstAttribute="top" secondItem="L8O-ei-c6v" secondAttribute="bottom" constant="7.5" id="mzo-bc-Bkl"/>
                                     <constraint firstAttribute="trailing" secondItem="mAB-wH-cce" secondAttribute="trailing" constant="13" id="pMz-U6-fRx"/>
+                                    <constraint firstItem="uqC-zm-yD1" firstAttribute="top" secondItem="FZ1-IC-YhJ" secondAttribute="top" constant="10" id="vOT-o4-8D9"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="Phj-1b-VbW" customClass="CircleImageView" customModule="Athlete" customModuleProvider="target">
@@ -125,9 +135,9 @@
                 <color key="backgroundColor" white="0.87042511261261257" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="gfg-Op-ZxF" secondAttribute="bottom" constant="-8" placeholder="YES" id="Vhj-xv-iDg"/>
-                    <constraint firstItem="gfg-Op-ZxF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" placeholder="YES" id="ehy-MS-Nfs"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gfg-Op-ZxF" secondAttribute="trailing" constant="-1" placeholder="YES" id="yAg-f8-8SI"/>
-                    <constraint firstItem="gfg-Op-ZxF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" placeholder="YES" id="yiP-DV-5hb"/>
+                    <constraint firstItem="gfg-Op-ZxF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" placeholder="YES" id="ehy-MS-Nfs"/>
+                    <constraint firstAttribute="trailing" secondItem="gfg-Op-ZxF" secondAttribute="trailing" placeholder="YES" id="yAg-f8-8SI"/>
+                    <constraint firstItem="gfg-Op-ZxF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" placeholder="YES" id="yiP-DV-5hb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -135,6 +145,7 @@
                 <outlet property="bannerImageView" destination="Sa5-jg-ueE" id="NW6-tS-4Yc"/>
                 <outlet property="cardView" destination="gfg-Op-ZxF" id="vgx-Qx-cFd"/>
                 <outlet property="descriptionLabel" destination="mAB-wH-cce" id="Kya-ED-YJs"/>
+                <outlet property="followBadge" destination="uqC-zm-yD1" id="X67-DA-XOP"/>
                 <outlet property="followersLabel" destination="aJM-ez-Yse" id="hAY-hE-tVF"/>
                 <outlet property="nameLabel" destination="L8O-ei-c6v" id="OQE-Qf-LqS"/>
                 <outlet property="programsBadge" destination="gP8-Tq-DMg" id="hj6-n0-p97"/>

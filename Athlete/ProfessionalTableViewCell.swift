@@ -31,6 +31,7 @@ class ProfessionalTableViewCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var avatarImageView: CircleImageView!
+  @IBOutlet weak var followBadge: BadgeView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -61,6 +62,10 @@ class ProfessionalTableViewCell: UITableViewCell {
     if let url = bannerURL {
       bannerImageView.hnk_setImageFromURL(url)
     }
+    
+    followBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
+    followBadge.fontSize = 15
+    followBadge.text = "+ follow".uppercaseString
     
     self.state = state
   }

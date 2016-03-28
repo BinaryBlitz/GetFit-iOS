@@ -16,13 +16,28 @@ import PureLayout
   private var lightGrayColor = UIColor.whiteColor()
   private var lightBlueColor = UIColor.blueAccentColor()
   
-  enum Style {
+  struct Style {
+    let color: ColorScheme
+    let height: HeightType
+    
+    init(color: ColorScheme, height: HeightType = .Low) {
+      self.color = color
+      self.height = height
+    }
+  }
+  
+  enum ColorScheme {
     case Dark
     case LightGray
     case LightBlue
   }
   
-  var style: Style = .LightGray {
+  enum HeightType {
+    case Low
+    case Tall
+  }
+  
+  var style: Style = Style(color: .LightGray, height: .Low) {
     didSet {
       updateStyle(style)
     }
@@ -75,7 +90,7 @@ import PureLayout
   }
   
   private func updateStyle(style: Style) {
-    switch style {
+    switch style.color {
     case .LightGray:
       layer.borderColor = darkColor.CGColor
       backgroundColor = UIColor.whiteColor()
@@ -94,8 +109,12 @@ import PureLayout
   override func updateConstraints() {
     super.updateConstraints()
     label.sizeToFit()
-    print(label.frame)
+    switch style.height {
+    case .Low:
+      autoSetDimension(.Height, toSize: label.frame.height + 10)
+    case .Tall:
+      autoSetDimension(.Height, toSize: label.frame.height + 16)
+    }
     autoSetDimension(.Width, toSize: label.frame.width + 26)
-    autoSetDimension(.Height, toSize: label.frame.height + 10)
   }
 }

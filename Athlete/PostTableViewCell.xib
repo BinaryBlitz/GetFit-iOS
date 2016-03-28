@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -66,7 +65,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pub-Ln-za6">
-                                <rect key="frame" x="318" y="221" width="10" height="20"/>
+                                <rect key="frame" x="318" y="222" width="10" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -116,10 +115,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="VR9-ZD-QiT" firstAttribute="leading" secondItem="QFI-DR-OW5" secondAttribute="leadingMargin" constant="-8" placeholder="YES" id="3Q8-CR-z2C"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="VR9-ZD-QiT" secondAttribute="bottom" constant="-8" placeholder="YES" id="IYy-lh-N5A"/>
-                    <constraint firstItem="VR9-ZD-QiT" firstAttribute="top" secondItem="QFI-DR-OW5" secondAttribute="topMargin" constant="-8" placeholder="YES" id="NU8-MB-LwQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="VR9-ZD-QiT" secondAttribute="trailing" constant="-8" placeholder="YES" id="wAO-IV-bDM"/>
+                    <constraint firstItem="VR9-ZD-QiT" firstAttribute="leading" secondItem="QFI-DR-OW5" secondAttribute="leading" placeholder="YES" id="3Q8-CR-z2C"/>
+                    <constraint firstAttribute="bottom" secondItem="VR9-ZD-QiT" secondAttribute="bottom" placeholder="YES" id="IYy-lh-N5A"/>
+                    <constraint firstItem="VR9-ZD-QiT" firstAttribute="top" secondItem="QFI-DR-OW5" secondAttribute="top" placeholder="YES" id="NU8-MB-LwQ"/>
+                    <constraint firstAttribute="trailing" secondItem="VR9-ZD-QiT" secondAttribute="trailing" placeholder="YES" id="wAO-IV-bDM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
