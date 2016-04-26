@@ -30,3 +30,6 @@ pod 'HanekeSwift'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
+
+# VK
+pod "VK-ios-sdk"
