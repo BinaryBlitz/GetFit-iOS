@@ -10,6 +10,8 @@ enum ServerRoute: String {
   case VerificationTokens = "verification_tokens"
   case User = "user"
   case Posts = "posts"
+  case FBAuth = "user/authenticate_fb"
+  case VKAuth = "user/authenticate_vk"
   
   var path: String {
     return ServerManager.sharedManager.baseAPIURL + rawValue

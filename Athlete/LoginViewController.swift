@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
 
@@ -41,7 +43,38 @@ class LoginViewController: UIViewController {
   //MARK: - Actions
   
   @IBAction func facebookButtonAction(sender: AnyObject) {
-    presentAlertWithMessage("Facebook login")
+    let fbLoginManager = FBSDKLoginManager()
+    fbLoginManager.loginBehavior = FBSDKLoginBehavior.Browser
+    fbLoginManager.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
+      guard error == nil else {
+        print(error)
+        self.presentAlertWithMessage("Не удалось войти через Facebook")
+        return
+      }
+      
+      if let result = result {
+        if result.isCancelled {
+          print("cancelled")
+        } else {
+          print("loggend in!")
+          let token = result.token
+          
+          ServerManager.sharedManager.loginWithFacebookToken(token.tokenString) { (response) in
+            switch response.result {
+            case .Success(let user):
+              print("User: \(user)")
+              let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+              if let initialViewController = mainStoryboard.instantiateInitialViewController() {
+                self.presentViewController(initialViewController, animated: true, completion: nil)
+              }
+            case .Failure(let error):
+              print(error)
+              self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
+            }
+          }
+        }
+      }
+    }
   }
   
   @IBAction func vkButtonAction(sender: AnyObject) {

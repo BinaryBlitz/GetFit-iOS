@@ -98,6 +98,7 @@ class ServerManager {
   
   //MARK: - Login
   
+  /// Creates verirfication token for login with phone number
   func createVerificationTokenFor(phoneNumber: PhoneNumber,
         completion: ((response: ServerResponse<String, ServerError>) -> Void)? = nil) -> Request {
           
@@ -129,6 +130,7 @@ class ServerManager {
     return req
   }
   
+  /// Method for phone number verification
   func verifyPhoneNumber(phoneNumber: PhoneNumber, withCode code: String, andToken token: String,
       completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request {
   
@@ -200,6 +202,37 @@ class ServerManager {
     
     return req
   }
+  
+  /// Login with Facebook
+  func loginWithFacebookToken(token: String,
+                     completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request {
+    typealias Response = ServerResponse<User, ServerError>
+    
+    let parameters = ["token": token]
+    let request = manager.request(.POST, ServerRoute.FBAuth.path, parameters: parameters, encoding: .URL)
+    request.validate().responseJSON { (response) in
+      switch response.result {
+      case .Success(let resultValue):
+        let json = JSON(resultValue)
+        print(json)
+        if let apiToken = json["api_token"].string {
+          self.apiToken = apiToken
+          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+          if let user = User(json: json) {
+            completion?(response: Response(value: user))
+            return
+          }
+        }
+        
+        completion?(response: Response(error: .InvalidData))
+      case .Failure(let error):
+        completion?(response: Response(error: ServerError(error: error)))
+      }
+    }
+    
+    return request
+  }
+
   
   //MARK: - Posts
   
