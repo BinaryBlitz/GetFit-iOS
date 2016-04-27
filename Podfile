@@ -20,6 +20,7 @@ pod 'XLPagerTabStrip'
 pod 'PhoneNumberKit'
 pod 'Eureka'
 pod 'InnerShadowView'
+pod 'SwiftSpinner'
 
 # Tools
 pod 'SwiftDate'

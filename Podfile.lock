@@ -28,6 +28,7 @@ PODS:
   - RealmSwift (0.98.4):
     - Realm (= 0.98.4)
   - SwiftDate (3.0.8)
+  - SwiftSpinner (0.9.5)
   - SwiftyJSON (2.3.2)
   - UICountingLabel (1.4.0)
   - VK-ios-sdk (1.3.16)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - PureLayout
   - RealmSwift (= 0.98.4)
   - SwiftDate
+  - SwiftSpinner
   - SwiftyJSON
   - UICountingLabel
   - VK-ios-sdk
@@ -72,6 +74,7 @@ SPEC CHECKSUMS:
   Realm: 7745674cb1b7cb2a84a655bfd420b86efdaad36e
   RealmSwift: 18742f4f13f98117aeec53b92058918ac93bf38f
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   VK-ios-sdk: 7804776d9947cf9b6f54a259fac589b9212156f1
