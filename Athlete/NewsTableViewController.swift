@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
 class NewsTableViewController: UITableViewController {
   
@@ -137,5 +138,30 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     }
     
     performSegueWithIdentifier("viewPostAndComment", sender: post)
+  }
+  
+  func didTouchLikeButton(cell: PostTableViewCell) {
+    struct SharedRequest {
+      static var request: Request?
+    }
+    
+    SharedRequest.request?.cancel()
+    if let indexPath = tableView.indexPathForCell(cell),
+        post = posts?[indexPath.row] {
+      if cell.likeButton.selected {
+        SharedRequest.request = ServerManager.sharedManager.likePostWithId(post.id) { (response) in
+          switch response.result {
+          case .Success(let updated):
+            print(updated)
+            if !updated {
+              cell.liked = false
+            }
+          case .Failure(let error):
+            print(error)
+            //TODO: add likes queue
+          }
+        }
+      }
+    }
   }
 }

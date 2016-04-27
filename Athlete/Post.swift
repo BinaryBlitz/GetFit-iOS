@@ -20,6 +20,7 @@ class Post: Object, JSONSerializable {
   dynamic var dateCreated: NSDate = NSDate()
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
+  dynamic var likeId: Int = -1
   let comments = List<Comment>()
   
   required init() {
@@ -40,6 +41,10 @@ class Post: Object, JSONSerializable {
     self.id = id
     self.content = content
     self.dateCreated = createdAt.toDateFromISO8601() ?? NSDate()
+    
+    if let likeId = json["like_id"].int {
+      self.likeId = likeId
+    }
     
     if let url = json["image_url"].string {
       self.imageURLString = url

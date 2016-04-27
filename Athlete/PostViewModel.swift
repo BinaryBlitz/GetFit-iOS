@@ -31,6 +31,10 @@ extension PostViewModel: PostPresentable {
   var commentsCount: String {
     return NumberFormatter.stringFromNumber(post.commentsCount)
   }
+  
+  var liked: Bool {
+    return post.likeId != -1
+  }
 }
 
 //MARK: - TextPresentable

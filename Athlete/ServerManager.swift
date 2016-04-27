@@ -303,4 +303,39 @@ class ServerManager {
     
     return nil
   }
+  
+  func likePostWithId(postId: Int,
+                     completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Bool, ServerError>
+    
+    do {
+      let request = try post(ServerRoute.Posts.pathWith(String(postId)) + "/\(ServerRoute.Likes.rawValue)")
+      request.validate().responseJSON { (response) in
+        switch response.result {
+        case .Success(let responseValue):
+          let json = JSON(responseValue)
+          print(json)
+          let realm = try! Realm()
+          if let likeId = json["id"].int,
+              post = realm.objectForPrimaryKey(Post.self, key: postId) {
+            try! realm.write {
+              post.likeId = likeId
+            }
+            completion?(response: Response(value: true))
+          } else {
+            completion?(response: Response(value: false))
+          }
+        case .Failure(let error):
+          completion?(response: Response(error: ServerError(error: error)))
+        }
+      }
+      
+      return request
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
+  }
 }

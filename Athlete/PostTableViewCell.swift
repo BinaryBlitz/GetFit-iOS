@@ -56,6 +56,15 @@ class PostTableViewCell: UITableViewCell {
     }
   }
   
+  var liked: Bool {
+    get {
+      return likeButton.selected
+    }
+    set(newValue) {
+      likeButton.selected = newValue
+    }
+  }
+  
   //MARK: - Delegate
   
   weak var delegate: PostTableViewCellDelegate?
@@ -87,6 +96,7 @@ class PostTableViewCell: UITableViewCell {
       trainerAvatarImageView.hnk_setImageFromURL(trainerAvatarURL)
     }
     
+    likeButton.selected = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
     
     dateView.text = viewModel.dateString

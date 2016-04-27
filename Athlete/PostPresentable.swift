@@ -12,4 +12,5 @@ protocol PostPresentable {
   var imageURL: NSURL? { get }
   var likesCount: String { get }
   var commentsCount: String { get }
+  var liked: Bool { get }
 }

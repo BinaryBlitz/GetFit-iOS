@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureNavigationBar()
     configureServerManager()
     configureTabBar()
-    configureTestDb()
+//    configureTestDb()
     
     let serverManager = ServerManager.sharedManager
     if !serverManager.authenticated {
