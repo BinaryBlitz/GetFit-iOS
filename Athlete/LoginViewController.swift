@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import VK_ios_sdk
 
 class LoginViewController: UIViewController {
 
@@ -63,10 +64,11 @@ class LoginViewController: UIViewController {
             switch response.result {
             case .Success(let user):
               print("User: \(user)")
-              let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-              if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-                self.presentViewController(initialViewController, animated: true, completion: nil)
-              }
+//              let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//              if let initialViewController = mainStoryboard.instantiateInitialViewController() {
+//                self.presentViewController(initialViewController, animated: true, completion: nil)
+//              }
+              self.performSegueWithIdentifier("home", sender: self)
             case .Failure(let error):
               print(error)
               self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
@@ -78,10 +80,40 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func vkButtonAction(sender: AnyObject) {
-    presentAlertWithMessage("VK login")
+    let vk = VKSdk.initializeWithAppId(VKAppId)
+    vk.registerDelegate(self)
+    VKSdk.authorize([], withOptions: VKAuthorizationOptions.UnlimitedToken)
   }
   
   @IBAction func phoneButtonAction(sender: AnyObject) {
     print("phone")
+  }
+}
+
+extension LoginViewController: VKSdkDelegate {
+  
+  func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
+    if let error = result.error {
+      print(error)
+      presentAlertWithMessage("Не удалось авторизироваться чере VK")
+    }
+    
+    if let token = result.token.accessToken {
+      ServerManager.sharedManager.loginWithVKToken(token) { (response) in
+        switch response.result {
+        case .Success(let user):
+          print(user)
+          self.performSegueWithIdentifier("home", sender: self)
+        case .Failure(let error):
+          print(error)
+          //TODO: specify error
+          self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
+        }
+      }
+    }
+  }
+  
+  func vkSdkUserAuthorizationFailed() {
+    presentAlertWithMessage("Не удалось авторизироваться чере VK")
   }
 }

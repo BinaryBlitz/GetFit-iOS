@@ -12,6 +12,9 @@ import Crashlytics
 import RealmSwift
 import FBSDKCoreKit
 import FBSDKLoginKit
+import VK_ios_sdk
+
+let VKAppId = "5357520"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     FBSDKApplicationDelegate.sharedInstance().application(application,
                                                           didFinishLaunchingWithOptions: launchOptions)
-    
-    
     Fabric.with([Crashlytics.self])
     configureRealm()
     configureNavigationBar()
@@ -184,6 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    VKSdk.processOpenURL(url, fromApplication: sourceApplication)
     return FBSDKApplicationDelegate.sharedInstance().application(application,
                                                           openURL: url,
                                                           sourceApplication: sourceApplication,

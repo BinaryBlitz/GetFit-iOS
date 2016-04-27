@@ -233,6 +233,35 @@ class ServerManager {
     return request
   }
 
+  /// Login with VK
+  func loginWithVKToken(token: String,
+                     completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request {
+    typealias Response = ServerResponse<User, ServerError>
+    
+    let parameters = ["token": token]
+    let request = manager.request(.POST, ServerRoute.VKAuth.path, parameters: parameters, encoding: .URL)
+    request.validate().responseJSON { (response) in
+      switch response.result {
+      case .Success(let resultValue):
+        let json = JSON(resultValue)
+        print(json)
+        if let apiToken = json["api_token"].string {
+          self.apiToken = apiToken
+          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+          if let user = User(json: json) {
+            completion?(response: Response(value: user))
+            return
+          }
+        }
+        
+        completion?(response: Response(error: .InvalidData))
+      case .Failure(let error):
+        completion?(response: Response(error: ServerError(error: error)))
+      }
+    }
+    
+    return request
+  }
   
   //MARK: - Posts
   
