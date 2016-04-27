@@ -83,11 +83,20 @@
                         <outlet property="facebookButton" destination="luY-hb-fdt" id="qkN-4Y-Xe0"/>
                         <outlet property="phoneButton" destination="V7F-Zk-RaC" id="P9G-eD-Wk5"/>
                         <outlet property="vkButton" destination="Poz-20-nn5" id="VsL-ta-mLP"/>
+                        <segue destination="Esa-YR-M2f" kind="presentation" identifier="home" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="V97-0W-mRV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mr5-jM-8rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1202" y="154"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="RZ6-Z7-AtK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="Esa-YR-M2f" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9PO-pW-3pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1349.5" y="559"/>
         </scene>
         <!--Phone Login Table View Controller-->
         <scene sceneID="Adx-KH-W67">
@@ -115,7 +124,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="p4H-Gs-KqQ" secondAttribute="bottom" id="bHl-MN-VE1"/>
                                 <constraint firstItem="p4H-Gs-KqQ" firstAttribute="leading" secondItem="odH-lR-Cy3" secondAttribute="leading" id="bwm-sK-wH5"/>
@@ -186,7 +195,7 @@
                                     <state key="normal" title="Получить код"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ksM-bx-Ny2" secondAttribute="trailing" id="Sef-GR-cHH"/>
                                 <constraint firstAttribute="bottom" secondItem="ksM-bx-Ny2" secondAttribute="bottom" id="TTQ-Yp-rLy"/>
@@ -279,7 +288,7 @@
                                     <state key="normal" title="Получить код"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="Iu0-jb-yfo" firstAttribute="leading" secondItem="W0V-pJ-HmZ" secondAttribute="leading" id="4ua-WQ-myO"/>
                                 <constraint firstAttribute="bottom" secondItem="Iu0-jb-yfo" secondAttribute="bottom" id="XJc-rx-fLZ"/>

@@ -20,6 +20,30 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>10</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>vk5357520</string>
+				<string>fb789940354469829</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>789940354469829</string>
+	<key>FacebookDisplayName</key>
+	<string>getfitapp</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>vk</string>
+		<string>vk-share</string>
+		<string>vkauthorize</string>
+	</array>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -74,6 +98,15 @@
 				<string>1.0</string>
 				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
 				<false/>
+			</dict>
+			<key>vk.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
 			</dict>
 		</dict>
 	</dict>

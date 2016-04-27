@@ -1,14 +1,26 @@
 PODS:
-  - Alamofire (3.2.1)
+  - Alamofire (3.3.1)
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.7.0)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - CVCalendar (1.2.9)
   - Eureka (1.5.0)
   - Fabric (1.6.7)
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.11.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.11.0):
+    - FBSDKCoreKit
   - HanekeSwift (0.10.1)
   - InnerShadowView (1.0.0)
   - MCSwipeTableViewCell (2.1.4)
-  - PhoneNumberKit (0.6.4)
+  - PhoneNumberKit (0.7)
   - PureLayout (3.0.1)
   - Realm (0.98.4):
     - Realm/Headers (= 0.98.4)
@@ -16,8 +28,10 @@ PODS:
   - RealmSwift (0.98.4):
     - Realm (= 0.98.4)
   - SwiftDate (3.0.8)
+  - SwiftSpinner (0.9.5)
   - SwiftyJSON (2.3.2)
   - UICountingLabel (1.4.0)
+  - VK-ios-sdk (1.3.16)
   - XLPagerTabStrip (5.0.0)
 
 DEPENDENCIES:
@@ -26,6 +40,9 @@ DEPENDENCIES:
   - CVCalendar
   - Eureka
   - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - HanekeSwift
   - InnerShadowView
   - MCSwipeTableViewCell
@@ -33,26 +50,34 @@ DEPENDENCIES:
   - PureLayout
   - RealmSwift (= 0.98.4)
   - SwiftDate
+  - SwiftSpinner
   - SwiftyJSON
   - UICountingLabel
+  - VK-ios-sdk
   - XLPagerTabStrip
 
 SPEC CHECKSUMS:
-  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
-  PhoneNumberKit: 1d566d33c9840ed873bbfb0c54b171a5b1268ea4
+  PhoneNumberKit: 0c726536585867d4877f496fa57473c6449f45a9
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Realm: 7745674cb1b7cb2a84a655bfd420b86efdaad36e
   RealmSwift: 18742f4f13f98117aeec53b92058918ac93bf38f
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
+  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
+  VK-ios-sdk: 7804776d9947cf9b6f54a259fac589b9212156f1
   XLPagerTabStrip: 87b8b705f9a7178e76a063ffaa2d70045944a965
 
 COCOAPODS: 0.39.0

@@ -36,3 +36,6 @@ fastlane/report.xml
 *.pem
 *.pkey
 *.p12
+
+# Rbenv
+.ruby-version

@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import VK_ios_sdk
+import SwiftSpinner
+
+typealias Spinner = SwiftSpinner
 
 class LoginViewController: UIViewController {
 
@@ -27,7 +33,7 @@ class LoginViewController: UIViewController {
     vkButton.text = "vkontakte".uppercaseString
     phoneButton.text = "phone".uppercaseString
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -41,14 +47,79 @@ class LoginViewController: UIViewController {
   //MARK: - Actions
   
   @IBAction func facebookButtonAction(sender: AnyObject) {
-    presentAlertWithMessage("Facebook login")
+    let fbLoginManager = FBSDKLoginManager()
+    fbLoginManager.loginBehavior = FBSDKLoginBehavior.Browser
+    fbLoginManager.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
+      guard error == nil else {
+        print(error)
+        Spinner.hide()
+        self.presentAlertWithMessage("Не удалось войти через Facebook")
+        return
+      }
+      
+      if let result = result {
+        if result.isCancelled {
+          print("cancelled")
+        } else {
+          print("loggend in!")
+          let token = result.token
+          
+          Spinner.show("Идет авторизация")
+          ServerManager.sharedManager.loginWithFacebookToken(token.tokenString) { (response) in
+            Spinner.hide()
+            switch response.result {
+            case .Success(let user):
+              print("User: \(user)")
+              self.performSegueWithIdentifier("home", sender: self)
+            case .Failure(let error):
+              print(error)
+              self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
+            }
+          }
+        }
+      }
+    }
   }
   
   @IBAction func vkButtonAction(sender: AnyObject) {
-    presentAlertWithMessage("VK login")
+    Spinner.show("Идет авторизация")
+    let vk = VKSdk.initializeWithAppId(VKAppId)
+    vk.registerDelegate(self)
+    VKSdk.authorize([], withOptions: VKAuthorizationOptions.UnlimitedToken)
   }
   
   @IBAction func phoneButtonAction(sender: AnyObject) {
     print("phone")
+  }
+}
+
+extension LoginViewController: VKSdkDelegate {
+  
+  func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
+    if let error = result.error {
+      print(error)
+      Spinner.hide()
+      presentAlertWithMessage("Не удалось авторизироваться чере VK")
+    }
+    
+    if let token = result.token.accessToken {
+      ServerManager.sharedManager.loginWithVKToken(token) { (response) in
+        Spinner.hide()
+        switch response.result {
+        case .Success(let user):
+          print(user)
+          self.performSegueWithIdentifier("home", sender: self)
+        case .Failure(let error):
+          print(error)
+          //TODO: specify error
+          self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
+        }
+      }
+    }
+  }
+  
+  func vkSdkUserAuthorizationFailed() {
+    Spinner.hide()
+    presentAlertWithMessage("Не удалось авторизироваться чере VK")
   }
 }

@@ -6,9 +6,11 @@
 //  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
+import Realm
 import RealmSwift
+import SwiftyJSON
 
-class User: Object {
+class User: Object, JSONSerializable {
   
   enum Gender: String {
     case Male = "male"
@@ -16,18 +18,23 @@ class User: Object {
   }
   
   dynamic var id: Int = 0
-  dynamic var name: String = ""
-  dynamic var genderValue: String = Gender.Male.rawValue
+  dynamic var firstName: String = ""
+  dynamic var lastName: String = ""
+  dynamic var genderValue: String = ""
   dynamic var birthdate: NSDate = NSDate()
   dynamic var userDescription: String?
   dynamic var avatarURLString: String?
   
-  var gender: Gender {
+  var name: String{
+    return "\(firstName) \(lastName)"
+  }
+  
+  var gender: Gender? {
     get {
-      return Gender(rawValue: genderValue)!
+      return Gender(rawValue: genderValue)
     }
     set(newGender) {
-      genderValue = newGender.rawValue
+      genderValue = newGender?.rawValue ?? ""
     }
   }
   
@@ -37,5 +44,33 @@ class User: Object {
   
   override static func primaryKey() -> String? {
     return "id"
+  }
+  
+  required init() {
+    super.init()
+  }
+  
+  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
+  }
+  
+  required init?(json: JSON) {
+    super.init()
+    
+    if let id = json["id"].int, firstName = json["first_name"].string, lastName = json["last_name"].string {
+      self.id = id
+      self.firstName = firstName
+      self.lastName = lastName
+    } else {
+      return nil
+    }
+    
+    if let genderValue = json["gender"].string {
+      self.genderValue = genderValue
+    }
+    
+    if let avatarURLString = json["avatar_url"].string {
+      self.avatarURLString = avatarURLString
+    }
   }
 }
