@@ -42,6 +42,10 @@ class Post: Object, JSONSerializable {
     self.content = content
     self.dateCreated = createdAt.toDateFromISO8601() ?? NSDate()
     
+    if let likesCount = json["likes_count"].int {
+      self.likesCount = likesCount
+    }
+    
     if let likeId = json["like_id"].int {
       self.likeId = likeId
     }
