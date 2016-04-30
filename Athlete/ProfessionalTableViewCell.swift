@@ -31,7 +31,16 @@ class ProfessionalTableViewCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var avatarImageView: CircleImageView!
-  @IBOutlet weak var followBadge: BadgeView!
+  
+  @IBOutlet weak var followButtonBackground: UIView!
+  @IBOutlet weak var followButtonIcon: UIImageView!
+  @IBOutlet weak var followButtonLabel: UILabel!
+  
+  private var following: Bool = false {
+    didSet {
+      updateFollowingStatus(following)
+    }
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -43,6 +52,41 @@ class ProfessionalTableViewCell: UITableViewCell {
     avatarImageView.layer.borderWidth = 3
     bannerImageView.contentMode = UIViewContentMode.ScaleAspectFill
     bannerImageView.layer.masksToBounds = true
+    
+    setupFollowButton()
+    updateFollowingStatus(following)
+  }
+  
+  func setupFollowButton() {
+    let button = UIButton()
+    followButtonBackground.addSubview(button)
+    button.autoPinEdgesToSuperviewEdges()
+    button.addTarget(self, action: #selector(followButtonAction(_:)), forControlEvents: .TouchUpInside)
+    followButtonBackground.layer.borderWidth = 1
+    followButtonBackground.layer.cornerRadius = 2
+  }
+  
+  func followButtonAction(sender: UIButton) {
+    //TODO: add follow request
+    following = !following
+  }
+  
+  func updateFollowingStatus(following: Bool) {
+    if following {
+      followButtonLabel.textColor = UIColor.whiteColor()
+      followButtonLabel.text = "follow".uppercaseString
+      followButtonIcon.tintColor = UIColor.whiteColor()
+      followButtonIcon.image = UIImage(named: "Checkmark")?.imageWithRenderingMode(.AlwaysTemplate)
+      followButtonBackground.backgroundColor = UIColor.blueAccentColor()
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+    } else {
+      followButtonLabel.textColor = UIColor.blueAccentColor()
+      followButtonLabel.text = "follow".uppercaseString
+      followButtonIcon.tintColor = UIColor.blueAccentColor()
+      followButtonIcon.image = UIImage(named: "Add")?.imageWithRenderingMode(.AlwaysTemplate)
+      followButtonBackground.backgroundColor = UIColor.whiteColor()
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+    }
   }
   
   func configureWith(trainer: Trainer, andState state: ProfessionalCellState = .Card) {
@@ -63,10 +107,6 @@ class ProfessionalTableViewCell: UITableViewCell {
       bannerImageView.hnk_setImageFromURL(url)
     }
     
-    followBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
-    followBadge.fontSize = 15
-    followBadge.text = "+ follow".uppercaseString
-    
     self.state = state
   }
   
@@ -80,7 +120,7 @@ class ProfessionalTableViewCell: UITableViewCell {
   private func updateWithState(state: ProfessionalCellState) {
     switch state {
     case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 7, left: 11, bottom: 7, right: 11))
+      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
     case .Normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }

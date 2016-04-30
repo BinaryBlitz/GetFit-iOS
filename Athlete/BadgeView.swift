@@ -11,7 +11,7 @@ import PureLayout
 
 @objc class BadgeView: UIView {
   
-  private var label: UILabel
+  var label: UILabel
   private var darkColor = UIColor.graySecondaryColor()
   private var lightGrayColor = UIColor.whiteColor()
   private var lightBlueColor = UIColor.blueAccentColor()
