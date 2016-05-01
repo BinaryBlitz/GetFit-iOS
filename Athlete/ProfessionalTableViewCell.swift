@@ -64,6 +64,7 @@ class ProfessionalTableViewCell: UITableViewCell {
     button.addTarget(self, action: #selector(followButtonAction(_:)), forControlEvents: .TouchUpInside)
     followButtonBackground.layer.borderWidth = 1
     followButtonBackground.layer.cornerRadius = 2
+    followButtonLabel.text = "follow".uppercaseString
   }
   
   func followButtonAction(sender: UIButton) {
@@ -74,14 +75,12 @@ class ProfessionalTableViewCell: UITableViewCell {
   func updateFollowingStatus(following: Bool) {
     if following {
       followButtonLabel.textColor = UIColor.whiteColor()
-      followButtonLabel.text = "follow".uppercaseString
       followButtonIcon.tintColor = UIColor.whiteColor()
       followButtonIcon.image = UIImage(named: "Checkmark")?.imageWithRenderingMode(.AlwaysTemplate)
       followButtonBackground.backgroundColor = UIColor.blueAccentColor()
       followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
     } else {
       followButtonLabel.textColor = UIColor.blueAccentColor()
-      followButtonLabel.text = "follow".uppercaseString
       followButtonIcon.tintColor = UIColor.blueAccentColor()
       followButtonIcon.image = UIImage(named: "Add")?.imageWithRenderingMode(.AlwaysTemplate)
       followButtonBackground.backgroundColor = UIColor.whiteColor()
