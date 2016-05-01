@@ -14,8 +14,6 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import VK_ios_sdk
 
-let VKAppId = "5357520"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

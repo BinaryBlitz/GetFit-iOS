@@ -83,6 +83,7 @@ class LoginViewController: UIViewController {
   
   @IBAction func vkButtonAction(sender: AnyObject) {
     Spinner.show("Идет авторизация")
+    let VKAppId = NSBundle.mainBundle().objectForInfoDictionaryKey("VKAppID") as! String
     let vk = VKSdk.initializeWithAppId(VKAppId)
     vk.registerDelegate(self)
     VKSdk.authorize([], withOptions: VKAuthorizationOptions.UnlimitedToken)

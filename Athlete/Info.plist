@@ -34,6 +34,8 @@
 	<string>789940354469829</string>
 	<key>FacebookDisplayName</key>
 	<string>getfitapp</string>
+	<key>VKAppID</key>
+	<string>5357520</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
