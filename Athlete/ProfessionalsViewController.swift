@@ -28,7 +28,7 @@ class ProfessionalsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     setupTableView()
     
     let realm = try! Realm()

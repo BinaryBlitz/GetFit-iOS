@@ -76,7 +76,7 @@ class TrainingsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
