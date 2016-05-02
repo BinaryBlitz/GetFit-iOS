@@ -19,6 +19,7 @@ class Program: Object {
   dynamic var name: String = ""
   dynamic var programDescription: String = ""
   dynamic var bannerURLString: String = ""
+  dynamic var trainer: Trainer?
   dynamic var typeValue: String = Type.Cardio.rawValue
   
   var type: Type {

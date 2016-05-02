@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureNavigationBar()
     configureServerManager()
     configureTabBar()
-//    configureTestDb()
+    configureTestDb()
     
     let serverManager = ServerManager.sharedManager
     if !serverManager.authenticated {
@@ -104,11 +104,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
     }
     
+    var programs = [Program]()
+    for i in 1...5 {
+      let program = Program()
+      program.id = i
+      program.name = "Awesome program #\(i)"
+      program.programDescription = "Исследование указанной связи должно опираться на тот факт, что математический горизонт прочно прекращает космический азимут. Кряж недоступно пододвигается под керн. Габбро, в первом приближении, деформирует далекий лимб. Метеорный дождь покрывает голоцен."
+      program.bannerURLString = "https://pbs.twimg.com/media/Chb_PkNU0AAR7cv.jpg:large"
+      switch i % 2 {
+      case 0:
+        program.type = .Running
+      default:
+        program.type = .Cardio
+      }
+      
+      program.trainer = trainer
+      programs.append(program)
+    }
+    
     try! realm.write {
       realm.add(trainer)
       realm.add(trainers)
       realm.add(user)
       realm.add(posts)
+      realm.add(programs)
     }
   }
   
