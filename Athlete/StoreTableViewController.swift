@@ -18,9 +18,12 @@ class StoreTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-    
+    configureTableView()
+    fetchPrograms()
+  }
+  
+  func configureTableView() {
     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
@@ -41,10 +44,48 @@ class StoreTableViewController: UITableViewController {
       label.autoPinEdgeToSuperviewEdge(.Top, withInset: -50, relation: .Equal)
       return view
     }()
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 400
+    
+    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
+    headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    tableView.tableHeaderView = headerView
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
   }
   
+  func fetchPrograms() {
+    let realm = try! Realm()
+    //TODO: add programs sorting
+    programs = realm.objects(Program)
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.fetchPrograms()
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    completion()
+  }
+  
+  //MARK: - TableView DataSource and Delegate
+  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return programs?.count ?? 0
+    let numberOfRows = programs?.count ?? 0
+    tableView.backgroundView?.hidden = numberOfRows != 0
+    
+    return numberOfRows
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -55,7 +96,7 @@ class StoreTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("trainingDetails", sender: indexPath)
+//    performSegueWithIdentifier("trainingDetails", sender: indexPath)
   }
   
   // MARK: - Navigation
