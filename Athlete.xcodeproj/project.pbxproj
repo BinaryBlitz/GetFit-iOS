@@ -28,6 +28,8 @@
 		374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78421C977C99004D30AD /* LocalStorageHelper.swift */; };
 		374A78451C982B7A004D30AD /* ProgramType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78441C982B7A004D30AD /* ProgramType.swift */; };
 		374A78471C982E94004D30AD /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78461C982E94004D30AD /* ExerciseType.swift */; };
+		374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */; };
+		374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
 		3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3760E91B1BE16C9900B62CB7 /* Training.storyboard */; };
 		376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376142DD1C90C6700073B5F4 /* Login.storyboard */; };
@@ -86,7 +88,6 @@
 		37DA527C1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */; };
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
-		37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */; };
 		37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4531BDF8739004193BF /* TrainingsViewController.swift */; };
 		37E4A4561BDF8CE8004193BF /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4551BDF8CE8004193BF /* Training.swift */; };
 		37F01C8E1C77CD3800910D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F01C8D1C77CD3800910D58 /* User.swift */; };
@@ -128,6 +129,8 @@
 		374A78421C977C99004D30AD /* LocalStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		374A78441C982B7A004D30AD /* ProgramType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramType.swift; sourceTree = "<group>"; };
 		374A78461C982E94004D30AD /* ExerciseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseType.swift; sourceTree = "<group>"; };
+		374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTableViewCell.swift; sourceTree = "<group>"; };
+		374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramTableViewCell.xib; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
 		3760E91C1BE16C9900B62CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Training.storyboard; sourceTree = "<group>"; };
 		376142DD1C90C6700073B5F4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -190,7 +193,6 @@
 		37DA527B1CA87EA800FD58B8 /* ActionTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
-		37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewCell.swift; sourceTree = "<group>"; };
 		37E4A4531BDF8739004193BF /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
 		37E4A4551BDF8CE8004193BF /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		37F01C8D1C77CD3800910D58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -473,7 +475,6 @@
 		37D7AD851C7877B800CA96E9 /* Professionals */ = {
 			isa = PBXGroup;
 			children = (
-				37E4A4511BDF81E6004193BF /* TrainingProgramTableViewCell.swift */,
 				37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */,
 				37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */,
 			);
@@ -495,6 +496,8 @@
 		37D7AD871C78786600CA96E9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */,
+				374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */,
 				37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */,
 				37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */,
 				376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */,
@@ -766,7 +770,6 @@
 				374A78471C982E94004D30AD /* ExerciseType.swift in Sources */,
 				37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */,
 				37821F531BE1699500149523 /* TrainingViewController.swift in Sources */,
-				37E4A4521BDF81E6004193BF /* TrainingProgramTableViewCell.swift in Sources */,
 				37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */,
 				37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */,
 				371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */,
@@ -783,6 +786,7 @@
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
+				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
 				379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */,

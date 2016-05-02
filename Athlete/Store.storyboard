@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GmK-rj-2cT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GmK-rj-2cT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -9,38 +9,10 @@
         <scene sceneID="fCc-4T-24h">
             <objects>
                 <tableViewController id="ikW-lv-FdO" customClass="StoreTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="168" sectionHeaderHeight="28" sectionFooterHeight="28" id="ENL-xJ-VW2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="168" sectionHeaderHeight="18" sectionFooterHeight="18" id="ENL-xJ-VW2">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="trainingCell" rowHeight="168" id="sk5-kk-o8N" customClass="TrainingProgramTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="400" height="168"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sk5-kk-o8N" id="lQ3-am-iFa">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="168"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-dY-rTd">
-                                            <rect key="frame" x="8" y="8" width="384" height="151.5"/>
-                                            <animations/>
-                                        </imageView>
-                                    </subviews>
-                                    <animations/>
-                                    <constraints>
-                                        <constraint firstAttribute="leadingMargin" secondItem="DD5-dY-rTd" secondAttribute="leading" id="0UO-g5-pyK"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="DD5-dY-rTd" secondAttribute="trailing" id="Jg3-FK-H2c"/>
-                                        <constraint firstItem="DD5-dY-rTd" firstAttribute="top" secondItem="lQ3-am-iFa" secondAttribute="topMargin" id="ODR-1B-5TH"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="DD5-dY-rTd" secondAttribute="bottom" id="xyO-9J-8Xw"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <animations/>
-                                <connections>
-                                    <outlet property="contentImageView" destination="DD5-dY-rTd" id="P8N-v9-tW9"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <connections>
                             <outlet property="dataSource" destination="ikW-lv-FdO" id="adH-Oo-wrP"/>
                             <outlet property="delegate" destination="ikW-lv-FdO" id="QRd-pQ-9c6"/>
@@ -64,7 +36,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="108" id="yw0-Oe-epF">
@@ -76,10 +47,8 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-ud-785">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="107.5"/>
-                                            <animations/>
                                         </imageView>
                                     </subviews>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="vNR-ud-785" secondAttribute="bottom" constant="-8" id="Txz-qm-73g"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="vNR-ud-785" secondAttribute="trailing" constant="-8" id="dia-c5-tAr"/>
@@ -87,7 +56,6 @@
                                         <constraint firstItem="vNR-ud-785" firstAttribute="leading" secondItem="wMx-ID-rlo" secondAttribute="leadingMargin" constant="-8" id="jh8-2g-Ag7"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <animations/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="44" id="eX4-lO-rw7">
                                 <rect key="frame" x="0.0" y="221.5" width="400" height="44"/>
@@ -95,9 +63,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </tableViewCellContentView>
-                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -122,7 +88,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DHa-e2-16j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ikW-lv-FdO" kind="relationship" relationship="rootViewController" id="SV4-3M-k4y"/>
