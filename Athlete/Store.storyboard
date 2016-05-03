@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="1719" y="265"/>
         </scene>
-        <!--Training Program Table View Controller-->
+        <!--Program Details Table View Controller-->
         <scene sceneID="Mwz-tf-dIP">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="TrainingProgramTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,9 +61,10 @@
                                 <rect key="frame" x="0.0" y="222" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

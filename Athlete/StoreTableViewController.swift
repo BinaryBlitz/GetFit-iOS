@@ -24,7 +24,6 @@ class StoreTableViewController: UITableViewController {
   }
   
   func configureTableView() {
-    tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     let programCellNib = UINib(nibName: String(ProgramTableViewCell), bundle: nil)
@@ -109,10 +108,17 @@ class StoreTableViewController: UITableViewController {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? TrainingProgramTableViewController,
-        indexPath = sender as? NSIndexPath
-        where segue.identifier == "programDetails" {
+    guard let identifier = segue.identifier else {
+      return
+    }
+    
+    switch identifier {
+    case "programDetails":
+      let destination = segue.destinationViewController as! ProgramDetailsTableViewController
+      let indexPath = sender as! NSIndexPath
       destination.program = programs?[indexPath.row]
+    default:
+      break
     }
   }
 }

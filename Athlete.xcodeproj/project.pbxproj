@@ -18,7 +18,7 @@
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
 		373297291CA36161008AEB05 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373297281CA36161008AEB05 /* JSONSerializable.swift */; };
 		3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */; };
-		374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */; };
+		374407AA1BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */; };
 		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
 		3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3745789A1BDE6B18004935BC /* NewsTableViewController.swift */; };
@@ -121,7 +121,7 @@
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		373297281CA36161008AEB05 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
-		374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingProgramTableViewController.swift; sourceTree = "<group>"; };
+		374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailsTableViewController.swift; sourceTree = "<group>"; };
 		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
 		3745789A1BDE6B18004935BC /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
@@ -465,7 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */,
-				374407A91BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift */,
+				374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -784,7 +784,7 @@
 				37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */,
 				376F65711C7C8E6B0016071C /* Previewable.swift in Sources */,
 				37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */,
-				374407AA1BE6A33A00C7ECBD /* TrainingProgramTableViewController.swift in Sources */,
+				374407AA1BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift in Sources */,
 				376F65791C7C9EDA0016071C /* Comment.swift in Sources */,
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
