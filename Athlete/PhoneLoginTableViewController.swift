@@ -33,12 +33,7 @@ class PhoneLoginTableViewController: UITableViewController {
       self.navigationController?.navigationBarHidden = false
     }
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(
-      title: "",
-      style: .Plain,
-      target: nil,
-      action: Selector(nilLiteral: ())
-    )
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
   
   private func setUpPhoneNumberTextField() {

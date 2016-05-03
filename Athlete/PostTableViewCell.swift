@@ -150,7 +150,7 @@ class PostTableViewCell: UITableViewCell {
   private func updateWithState(state: PostCellState) {
     switch state {
     case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 7, left: 11, bottom: 7, right: 11))
+      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
     case .Normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }

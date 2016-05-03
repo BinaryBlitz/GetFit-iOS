@@ -22,7 +22,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     submitButton.backgroundColor = UIColor.blueAccentColor()
     submitButton.addTarget(self, action: #selector(self.submitButtonAction), forControlEvents: .TouchUpInside)
     submitButton.setTitle("Подтвердить", forState: .Normal)
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: Selector(nilLiteral: ()))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
   
   override func viewDidAppear(animated: Bool) {

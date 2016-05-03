@@ -31,6 +31,10 @@ class Trainer: Object {
     return linkingObjects(Post.self, forProperty: "trainer")
   }
   
+  var programs: [Program] {
+    return linkingObjects(Program.self, forProperty: "trainer")
+  }
+  
   override static func primaryKey() -> String? {
     return "id"
   }
