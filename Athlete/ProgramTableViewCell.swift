@@ -12,6 +12,10 @@ import Haneke
 
 typealias ProgramCellPresentable = protocol<TrainerPresentable, ProgramPresentable>
 
+protocol ProgramCellDelegate: class {
+  func didTouchBuyButtonInCell(cell: ProgramTableViewCell)
+}
+
 class ProgramTableViewCell: UITableViewCell {
   
   //MARK: - Base
@@ -38,6 +42,8 @@ class ProgramTableViewCell: UITableViewCell {
       updateWithState(state)
     }
   }
+  
+  weak var delegate: ProgramCellDelegate?
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -46,6 +52,17 @@ class ProgramTableViewCell: UITableViewCell {
     durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
     trainerAvatar.layer.borderColor = UIColor.whiteColor().CGColor
     trainerAvatar.layer.borderWidth = 1
+    
+    let buyButton = UIButton()
+    priceBadge.addSubview(buyButton)
+    buyButton.autoPinEdgesToSuperviewEdges()
+    buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), forControlEvents: .TouchUpInside)
+  }
+  
+  //MARK: - Actions
+  
+  func buyButtonAction(button: UIButton) {
+    delegate?.didTouchBuyButtonInCell(self)
   }
   
   //MARK: - Cell configuration

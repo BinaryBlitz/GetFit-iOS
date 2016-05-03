@@ -12,7 +12,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="168" sectionHeaderHeight="18" sectionFooterHeight="18" id="ENL-xJ-VW2">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="ikW-lv-FdO" id="adH-Oo-wrP"/>
                             <outlet property="delegate" destination="ikW-lv-FdO" id="QRd-pQ-9c6"/>
@@ -22,7 +22,7 @@
                         <barButtonItem key="rightBarButtonItem" image="Filter" id="EPh-S0-ugy"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="Syf-XJ-wxQ" kind="show" identifier="trainingDetails" id="Wd8-f0-QRc"/>
+                        <segue destination="Syf-XJ-wxQ" kind="show" identifier="programDetails" id="Wd8-f0-QRc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fu-Iz-p6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -36,17 +36,17 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="108" id="yw0-Oe-epF">
-                                <rect key="frame" x="0.0" y="113.5" width="400" height="108"/>
+                                <rect key="frame" x="0.0" y="114" width="400" height="108"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yw0-Oe-epF" id="wMx-ID-rlo">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="107.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-ud-785">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="107.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="108"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -58,10 +58,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="44" id="eX4-lO-rw7">
-                                <rect key="frame" x="0.0" y="221.5" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="222" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

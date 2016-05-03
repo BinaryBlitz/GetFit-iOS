@@ -97,12 +97,13 @@ class StoreTableViewController: UITableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier(programCellId) as! ProgramTableViewCell
     cell.state = .Card
     cell.configureWith(ProgramViewModel(program: program))
+    cell.delegate = self
     
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    performSegueWithIdentifier("trainingDetails", sender: indexPath)
+    performSegueWithIdentifier("programDetails", sender: indexPath)
   }
   
   // MARK: - Navigation
@@ -111,7 +112,13 @@ class StoreTableViewController: UITableViewController {
     if let destination = segue.destinationViewController as? TrainingProgramTableViewController,
         indexPath = sender as? NSIndexPath
         where segue.identifier == "programDetails" {
-//      destination.training = programs?[indexPath.row]
+      destination.program = programs?[indexPath.row]
     }
+  }
+}
+
+extension StoreTableViewController: ProgramCellDelegate {
+  func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
+    self.presentAlertWithMessage("gimme da progam b0ss")
   }
 }

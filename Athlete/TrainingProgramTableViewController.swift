@@ -10,18 +10,12 @@ import UIKit
 
 class TrainingProgramTableViewController: UITableViewController {
   
-  var training: (String, Double)!
+  var program: Program!
   var exercises = ["Push Ups", "Turns", "Body Blast", "Power Ups"]
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //TODO: Transparent navigationBar
-//    navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-//    navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//    navigationController?.navigationBar.shadowImage = UIImage()
-//    navigationController?.navigationBar.translucent = true
-//    navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
   }
   
   // MARK: - Table view data source
@@ -40,9 +34,9 @@ class TrainingProgramTableViewController: UITableViewController {
         return UITableViewCell()
       }
       
-      if let imageView = cell.viewWithTag(1) as? UIImageView {
-        imageView.image = UIImage(named: training.0)
-      }
+//      if let imageView = cell.viewWithTag(1) as? UIImageView {
+//        imageView.image = UIImage(named: training.0)
+//      }
       
       return cell
     } else {
@@ -77,7 +71,8 @@ class TrainingProgramTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     if indexPath.section == 0 {
       let width = tableView.frame.width
-      return width / CGFloat(training.1)
+//      return width / CGFloat(training.1)
+      return 100
     } else {
       return 50
     }
