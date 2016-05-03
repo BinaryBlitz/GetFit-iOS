@@ -89,8 +89,14 @@ class StoreTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    guard let program = programs?[indexPath.row] else {
+      return UITableViewCell()
+    }
+    
     let programCellId = String(ProgramTableViewCell)
     let cell = tableView.dequeueReusableCellWithIdentifier(programCellId) as! ProgramTableViewCell
+    cell.state = .Card
+    cell.configureWith(ProgramViewModel(program: program))
     
     return cell
   }

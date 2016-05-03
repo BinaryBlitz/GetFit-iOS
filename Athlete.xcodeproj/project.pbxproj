@@ -47,6 +47,8 @@
 		376F65791C7C9EDA0016071C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65781C7C9EDA0016071C /* Comment.swift */; };
 		376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F657A1C7CA0B30016071C /* CommentViewModel.swift */; };
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
+		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
+		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
 		378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */; };
 		379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */; };
@@ -148,6 +150,8 @@
 		376F65781C7C9EDA0016071C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		376F657A1C7CA0B30016071C /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
+		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
+		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseTableViewController.swift; sourceTree = "<group>"; };
 		379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsStripView.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 			children = (
 				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
+				3781B2741CD917B70059D841 /* ProgramViewModel.swift */,
 			);
 			name = "View models";
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				376F65761C7C97EE0016071C /* TextPresentable.swift */,
 				373297281CA36161008AEB05 /* JSONSerializable.swift */,
 				3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */,
+				3781B2721CD915230059D841 /* ProgramPresentable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -747,6 +753,7 @@
 				37F01C8E1C77CD3800910D58 /* User.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */,
+				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,
 				376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
 				37AC2ADE1C7B5C1B007543F4 /* NumberFormatter.swift in Sources */,
@@ -786,6 +793,7 @@
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
+				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
 				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
