@@ -10,14 +10,6 @@ import UIKit
 import MCSwipeTableViewCell
 import Reusable
 
-protocol TrainingPresentable {
-  var trainingTitle: String { get }
-  var trainingCategory: String { get }
-  var trainingExercisesCount: String { get }
-  var trainingDurationString: String { get }
-  var trainingDateString: String { get }
-}
-
 class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
   
   @IBOutlet weak var infoLabel: UILabel!
