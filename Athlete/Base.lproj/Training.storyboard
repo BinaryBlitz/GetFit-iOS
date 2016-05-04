@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pvK-mg-zyo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pvK-mg-zyo">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -103,124 +103,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="EGi-gv-wZM" secondAttribute="trailing" constant="-8" id="uFz-Ps-Ail"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="finishedExerciseCell" rowHeight="123" id="UMP-K3-JuF" customClass="FinishedExerciseTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="176" width="400" height="123"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UMP-K3-JuF" id="kSg-Yr-RS4">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="123"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight Lift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRd-6g-LYi">
-                                                    <rect key="frame" x="20" y="19" width="97" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinishedExerciseMark" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-J9-ML8">
-                                                    <rect key="frame" x="328" y="50" width="72" height="72"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="72" id="HsL-CC-PUn"/>
-                                                        <constraint firstAttribute="height" constant="72" id="f2t-Fa-dM3"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5F-gl-NFv">
-                                                    <rect key="frame" x="20" y="79" width="70" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="OcC-9I-g4a"/>
-                                                        <constraint firstAttribute="height" constant="26" id="Q1M-s4-G3M"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="weightButtonAction:" destination="UMP-K3-JuF" eventType="touchUpInside" id="UJc-61-xVX"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcU-i4-Biu">
-                                                    <rect key="frame" x="98" y="79" width="70" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="3Iu-YT-v31"/>
-                                                        <constraint firstAttribute="width" constant="70" id="exK-Bh-vov"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="repetitionsButtonAction:" destination="UMP-K3-JuF" eventType="touchUpInside" id="ZjT-FO-Bdt"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Y5F-gl-NFv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uRd-6g-LYi" secondAttribute="bottom" constant="5" id="0W6-RK-VZ8"/>
-                                                <constraint firstItem="uRd-6g-LYi" firstAttribute="top" secondItem="kSg-Yr-RS4" secondAttribute="topMargin" constant="11" id="9GM-R4-rNc"/>
-                                                <constraint firstItem="Y5F-gl-NFv" firstAttribute="leading" secondItem="uRd-6g-LYi" secondAttribute="leading" id="DIr-6P-Gv0"/>
-                                                <constraint firstItem="Y5F-gl-NFv" firstAttribute="leading" secondItem="kSg-Yr-RS4" secondAttribute="leadingMargin" constant="12" id="JAK-hn-VH4"/>
-                                                <constraint firstItem="hcU-i4-Biu" firstAttribute="centerY" secondItem="Y5F-gl-NFv" secondAttribute="centerY" id="aCz-JO-j9N"/>
-                                                <constraint firstItem="uRd-6g-LYi" firstAttribute="leading" secondItem="kSg-Yr-RS4" secondAttribute="leadingMargin" constant="12" id="hxT-eT-TNn"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7iK-J9-ML8" secondAttribute="trailing" constant="-8" id="lmT-9c-WfL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Y5F-gl-NFv" secondAttribute="bottom" constant="10" id="mic-4Q-qVj"/>
-                                                <constraint firstItem="hcU-i4-Biu" firstAttribute="leading" secondItem="Y5F-gl-NFv" secondAttribute="trailing" constant="8" id="sQz-iX-Ttn"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7iK-J9-ML8" secondAttribute="bottom" constant="-8" id="srX-yL-Cbj"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="JAK-hn-VH4"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="repetitionsButton" destination="hcU-i4-Biu" id="U8G-0R-Vlt"/>
-                                            <outlet property="titleLabel" destination="uRd-6g-LYi" id="84u-6y-YiR"/>
-                                            <outlet property="weightButton" destination="Y5F-gl-NFv" id="Adh-MI-uFd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="121" id="tC9-Ex-Ed7" customClass="ExerciseTableViewCell" customModule="Athlete" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="299" width="400" height="121"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tC9-Ex-Ed7" id="zKC-m5-a5t">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="121"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight Lift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfk-tw-wAn">
-                                                    <rect key="frame" x="20" y="19" width="97" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XZ-H6-Vts">
-                                                    <rect key="frame" x="20" y="77" width="70" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="DYT-x4-gk3"/>
-                                                        <constraint firstAttribute="width" constant="70" id="ilZ-cM-gbC"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="weightButtonAction:" destination="tC9-Ex-Ed7" eventType="touchUpInside" id="0is-KE-WYl"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVk-iM-Bm4">
-                                                    <rect key="frame" x="98" y="77" width="70" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="Gia-5v-CT7"/>
-                                                        <constraint firstAttribute="width" constant="70" id="ViJ-Sq-9yh"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="repetitionsButtonAction:" destination="tC9-Ex-Ed7" eventType="touchUpInside" id="tGr-0w-lou"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="lfk-tw-wAn" firstAttribute="leading" secondItem="zKC-m5-a5t" secondAttribute="leadingMargin" constant="12" id="7cU-v3-QEr"/>
-                                                <constraint firstItem="lfk-tw-wAn" firstAttribute="top" secondItem="zKC-m5-a5t" secondAttribute="topMargin" constant="11" id="DbR-n7-O1d"/>
-                                                <constraint firstItem="OVk-iM-Bm4" firstAttribute="leading" secondItem="7XZ-H6-Vts" secondAttribute="trailing" constant="8" id="NmA-M9-wGF"/>
-                                                <constraint firstItem="7XZ-H6-Vts" firstAttribute="leading" secondItem="lfk-tw-wAn" secondAttribute="leading" id="bUh-3f-tkd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7XZ-H6-Vts" secondAttribute="bottom" constant="10" id="g52-nN-f1o"/>
-                                                <constraint firstItem="7XZ-H6-Vts" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lfk-tw-wAn" secondAttribute="bottom" constant="5" id="joo-Kt-QUu"/>
-                                                <constraint firstItem="7XZ-H6-Vts" firstAttribute="centerY" secondItem="OVk-iM-Bm4" secondAttribute="centerY" id="s9C-uG-wO3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="repetitionsButton" destination="OVk-iM-Bm4" id="P8p-B6-qzR"/>
-                                            <outlet property="titleLabel" destination="lfk-tw-wAn" id="btk-7y-fHG"/>
-                                            <outlet property="weightButton" destination="7XZ-H6-Vts" id="Jg3-xB-oLa"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -516,7 +398,6 @@
     </scenes>
     <resources>
         <image name="AvatarExample" width="25" height="21"/>
-        <image name="FinishedExerciseMark" width="213" height="211"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kvT-Zd-wVl"/>

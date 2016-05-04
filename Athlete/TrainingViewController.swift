@@ -8,6 +8,7 @@
 
 import UIKit
 import UICountingLabel
+import Reusable
 
 class TrainingViewController: UIViewController {
   
@@ -18,8 +19,8 @@ class TrainingViewController: UIViewController {
   
   var training: Training!
   
-  var finishedExercises: [Exercise]!
-  var exercisesToDo: [Exercise]!
+  var finishedExercises: [ExerciseSession]!
+  var exercisesToDo: [ExerciseSession]!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,15 +28,45 @@ class TrainingViewController: UIViewController {
     endTrainingView.backgroundColor = UIColor.blueAccentColor()
     trainingStatusLabel.text = "0%"
     
-    finishedExercises = training.exercises.filter { $0.finished }
-    exercisesToDo = training.exercises.filter { !($0.finished) }
+    //TODO: add test data
+    finishedExercises = training.exercises.filter { $0.finished }.map { exercise -> ExerciseSession in
+      let session = ExerciseSession()
+      session.exercise = exercise
+      session.distance = exercise.distance
+      session.reps = exercise.repetitions
+      session.completed = exercise.finished
+      
+      return session
+    }
+    
+    exercisesToDo = training.exercises.filter { !($0.finished) }.map { exercise -> ExerciseSession in
+      let session = ExerciseSession()
+      session.exercise = exercise
+      session.distance = exercise.distance
+      session.reps = exercise.repetitions
+      session.completed = exercise.finished
+      
+      return session
+    }
     
     updateCompleteStatus()
    
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: "")
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    
+    tableView.registerReusableCell(ExerciseTableViewCell)
+    tableView.rowHeight = UITableViewAutomaticDimension
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    if let selectedCellIndex = tableView.indexPathForSelectedRow {
+      tableView.deselectRowAtIndexPath(selectedCellIndex, animated: true)
+    }
   }
   
   @IBAction func endTrainingAction(sender: AnyObject) {
+    //TODO: update db
     navigationController?.popViewControllerAnimated(true)
   }
   
@@ -54,23 +85,30 @@ class TrainingViewController: UIViewController {
       endTrainingButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
   }
+  
+  //MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? UINavigationController
-          where segue.identifier == "trainingTips" {
-//      destination.modalPresentationStyle = .OverCurrentContext
-    } else if let destination = segue.destinationViewController as? ExerciseViewController,
-          exercise = sender as? Exercise
-          where segue.identifier == "exerciseInfo" {
-        destination.exercise = exercise
-    } else if let destinationNavController = segue.destinationViewController as? UINavigationController
-          where segue.identifier == "editExercise" {
-        let destination = destinationNavController.viewControllers.first as! EditExerciseTableViewController
-        if let data = sender as? EditExerciseData {
-          destination.exercise = data.exercise
-          destination.editType = data.editType
-          destination.delegate = self
-        }
+    guard let identifier = segue.identifier else { return }
+    
+    switch identifier {
+    case "trainingTips":
+      break
+    case "exerciseInfo":
+      let destination = segue.destinationViewController as! ExerciseViewController
+      let exercise = sender as! Exercise
+      destination.exercise = exercise
+    case "editExercise":
+      let destinationNavController = segue.destinationViewController as! UINavigationController
+      let destination = destinationNavController.viewControllers.first as! EditExerciseTableViewController
+      
+      if let data = sender as? EditExerciseData {
+        destination.exercise = data.exercise
+        destination.editType = data.editType
+        destination.delegate = self
+      }
+    default:
+      break
     }
   }
 }
@@ -116,80 +154,66 @@ extension TrainingViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("finishedExerciseCell", forIndexPath: indexPath) as? FinishedExerciseTableViewCell else {
-        return UITableViewCell()
-      }
-      
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
-      cell.defaultColor = UIColor.primaryYellowColor()
       
-      let exercise = finishedExercises[indexPath.row]
-      cell.titleLabel.text = exercise.name
-      cell.repetitionsButton.setTitle("\(exercise.repetitions) TIMES", forState: .Normal)
-      if exercise.weight != 0 {
-        cell.weightButton.setTitle("\(exercise.weight) KG", forState: .Normal)
-      } else {
-//        cell.weightView.hidden = true
-      }
+      let session = finishedExercises[indexPath.row]
+      cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
+      addSwipesToCell(cell)
       
+      
+      return cell
+    case 2:
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
+      cell.actionsDelegate = self
+      
+      let session = exercisesToDo[indexPath.row]
+      cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
+      addSwipesToCell(cell)
+      
+      return cell
+    default:
+      return UITableViewCell()
+    }
+  }
+  
+  private func addSwipesToCell(cell: ExerciseTableViewCell) {
+    switch cell.status {
+    case .Complete:
       let doneView = UIImageView(image: UIImage(named: "first"))
       doneView.contentMode = .Center
 
       cell.setSwipeGestureWithView(doneView, color: UIColor.primaryYellowColor(),
           mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
-            print("undo")
-            if let indexPath = tableView.indexPathForCell(swipeCell) {
-              tableView.beginUpdates()
-              self.finishedExercises[indexPath.row].finished = false
+            if let indexPath = self.tableView.indexPathForCell(swipeCell) {
+              self.tableView.beginUpdates()
+              self.finishedExercises[indexPath.row].completed = false
               self.exercisesToDo.append(self.finishedExercises[indexPath.row])
               self.finishedExercises.removeAtIndex(indexPath.row)
-              tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-              tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: tableView.numberOfRowsInSection(2), inSection: 2)], withRowAnimation: .Fade)
-              tableView.endUpdates()
+              self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+              self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableView.numberOfRowsInSection(2), inSection: 2)], withRowAnimation: .Fade)
+              self.tableView.endUpdates()
             }
             self.updateCompleteStatus()
       }
-      
-      return cell
-    case 2:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("exerciseCell", forIndexPath: indexPath) as? ExerciseTableViewCell else {
-        return UITableViewCell()
-      }
-      
-      cell.actionsDelegate = self
-      cell.defaultColor = UIColor.greenAccentColor()
-      
-      let exercise = exercisesToDo[indexPath.row]
-      cell.titleLabel.text = exercise.name
-      cell.repetitionsButton.setTitle("\(exercise.repetitions) TIMES", forState: .Normal)
-      if exercise.weight != 0 {
-        cell.weightButton.setTitle("\(exercise.weight) KG", forState: .Normal)
-      } else {
-//        cell.weightView.hidden = true
-      }
-      
+    case .Uncomplete:
       let doneView = UIImageView(image: UIImage(named: "Checkmark"))
       doneView.contentMode = .Center
     
       cell.setSwipeGestureWithView(doneView, color: UIColor.greenAccentColor(),
           mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
-            print("Done!")
-            if let indexPath = tableView.indexPathForCell(swipeCell) {
-              tableView.beginUpdates()
-              self.exercisesToDo[indexPath.row].finished = true
+            if let indexPath = self.tableView.indexPathForCell(swipeCell) {
+              self.tableView.beginUpdates()
+              self.exercisesToDo[indexPath.row].completed = true
               self.finishedExercises.append(self.exercisesToDo[indexPath.row])
               self.exercisesToDo.removeAtIndex(indexPath.row)
-              tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-              tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: tableView.numberOfRowsInSection(1), inSection: 1)], withRowAnimation: .Fade)
-              tableView.endUpdates()
+              self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+              self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableView.numberOfRowsInSection(1), inSection: 1)], withRowAnimation: .Fade)
+              self.tableView.endUpdates()
             }
             
             self.updateCompleteStatus()
       }
-      
-      return cell
-    default:
-      return UITableViewCell()
     }
   }
 }
@@ -212,13 +236,12 @@ extension TrainingViewController: UITableViewDelegate {
     }
   }
   
-  
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
       return 126
     default:
-      return 105
+      return 90
     }
   }
   
@@ -281,8 +304,8 @@ extension TrainingViewController: ExerciseCellDelegate {
     let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
     
     print("didTapOnRepetitionsButton")
-    let data = EditExerciseData(exercise: exercise, editType: .Repetitions)
-    performSegueWithIdentifier("editExercise", sender: data)
+//    let data = EditExerciseData(exercise: exercise, editType: .Repetitions)
+//    performSegueWithIdentifier("editExercise", sender: data)
   }
   
   func didTapOnWeightButton(cell: UITableViewCell) {
@@ -292,8 +315,8 @@ extension TrainingViewController: ExerciseCellDelegate {
     
     print("didTapOnWeightButton")
     let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
-    let data = EditExerciseData(exercise: exercise, editType: .Weight)
-    performSegueWithIdentifier("editExercise", sender: data)
+//    let data = EditExerciseData(exercise: exercise, editType: .Weight)
+//    performSegueWithIdentifier("editExercise", sender: data)
   }
 }
 
