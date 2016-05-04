@@ -26,6 +26,7 @@ pod 'SwiftSpinner'
 pod 'SwiftDate'
 pod 'PureLayout'
 pod 'HanekeSwift'
+pod 'Reusable'
 
 # Facebook SDK
 pod 'FBSDKCoreKit'

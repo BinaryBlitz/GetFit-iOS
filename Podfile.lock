@@ -27,6 +27,7 @@ PODS:
   - Realm/Headers (0.98.4)
   - RealmSwift (0.98.4):
     - Realm (= 0.98.4)
+  - Reusable (2.2.1)
   - SwiftDate (3.0.8)
   - SwiftSpinner (0.9.5)
   - SwiftyJSON (2.3.2)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - PhoneNumberKit
   - PureLayout
   - RealmSwift (= 0.98.4)
+  - Reusable
   - SwiftDate
   - SwiftSpinner
   - SwiftyJSON
@@ -73,6 +75,7 @@ SPEC CHECKSUMS:
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Realm: 7745674cb1b7cb2a84a655bfd420b86efdaad36e
   RealmSwift: 18742f4f13f98117aeec53b92058918ac93bf38f
+  Reusable: 4a86b0fa0eefbe3126675617a7e921b673d530c1
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

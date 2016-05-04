@@ -8,32 +8,53 @@
 
 import UIKit
 import MCSwipeTableViewCell
+import Reusable
 
-class TrainingTableViewCell: MCSwipeTableViewCell {
+protocol TrainingPresentable {
+  var trainingTitle: String { get }
+  var trainingCategory: String { get }
+  var trainingExercisesCount: String { get }
+  var trainingDurationString: String { get }
+  var trainingDateString: String { get }
+}
+
+class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
   
-  @IBOutlet weak var durationLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var dateView: UIView!
-  @IBOutlet weak var durationView: UIView!
-  @IBOutlet weak var exersizesLabel: UILabel!
-  @IBOutlet weak var typeLabel: UILabel!
+  @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var badgesStackView: UIStackView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    dateView.backgroundColor = UIColor.graySecondaryColor()
-    dateView.layer.cornerRadius = 3
-    
-    durationView.layer.borderWidth = 1
-    durationView.layer.cornerRadius = 3
-    durationView.layer.borderColor = UIColor.graySecondaryColor().CGColor
-    durationView.backgroundColor = UIColor.whiteColor()
-    
     titleLabel.textColor = UIColor.blueAccentColor()
-    
-    durationLabel.textColor = UIColor.graySecondaryColor()
-    
     defaultColor = UIColor.graySecondaryColor()
+    
+    let dateBadge = BadgeView()
+    dateBadge.style = BadgeView.Style(color: .Dark, height: .Low)
+    badgesStackView.addArrangedSubview(dateBadge)
+    
+    let durationBadge = BadgeView()
+    durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
+    badgesStackView.addArrangedSubview(durationBadge)
+  }
+  
+  func configureWith(viewModel: TrainingPresentable) {
+    titleLabel.text = viewModel.trainingTitle
+    
+    let infoFontSize: CGFloat = 15
+    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
+    let infoString = NSMutableAttributedString(string:viewModel.trainingCategory.capitalizedString, attributes:boldTextAttrebutes)
+    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
+    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.trainingExercisesCount)", attributes: plainTextAttrebutes))
+    infoLabel.attributedText = infoString
+    
+    if let dateBadge = badgesStackView.arrangedSubviews.first as? BadgeView {
+      dateBadge.text = viewModel.trainingDateString
+    }
+    
+    if let durationBadge = badgesStackView.arrangedSubviews.last as? BadgeView {
+      durationBadge.text = viewModel.trainingDurationString
+    }
   }
 }

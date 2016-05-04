@@ -8,6 +8,7 @@
 
 import UIKit
 import CVCalendar
+import Reusable
 
 class TrainingsViewController: UIViewController {
   
@@ -83,6 +84,7 @@ class TrainingsViewController: UIViewController {
     calendarState = .Closed
     
 //    tableView.tableFooterView = UIView()
+    tableView.registerReusableCell(TrainingTableViewCell)
     
     //add test data
     for training in trainings {
@@ -133,10 +135,15 @@ class TrainingsViewController: UIViewController {
   //MARK: - Navigation
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? TrainingViewController,
-        indexPath = sender as? NSIndexPath
-        where segue.identifier == "trainingInfo" {
+    guard let identifier = segue.identifier else { return }
+    
+    switch identifier {
+    case "trainingInfo":
+      let destination = segue.destinationViewController as! TrainingViewController
+      let indexPath = sender as! NSIndexPath
       destination.training = trainings[indexPath.row]
+    default:
+      break
     }
   }
   
@@ -164,9 +171,7 @@ extension TrainingsViewController: UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("trainingCell") as? TrainingTableViewCell else {
-      return UITableViewCell()
-    }
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
     let doneView = UIImageView(image: UIImage(named: "Checkmark"))
     doneView.contentMode = .Center
     
@@ -199,28 +204,9 @@ extension TrainingsViewController: UITableViewDataSource {
     }
     
     let model = trainings[indexPath.row]
-    cell.titleLabel.text = model.name
-    cell.typeLabel.text = "\(model.type.rawValue),"
-    cell.durationLabel.text = "\(model.duration) MIN"
-    cell.dateLabel.text = stringFromTrainingDate(model.date)
+    cell.configureWith(TrainingViewModel(training: model))
     
     return cell
-  }
-  
-  func stringFromTrainingDate(date: NSDate) -> String {
-    let calendar = NSCalendar.currentCalendar()
-    let dateCompnents = calendar.components([.Day, .Year, .Month], fromDate: date)
-    let currentDateCompnents = calendar.components([.Day, .Year, .Month], fromDate: NSDate())
-  
-    if dateCompnents.day == currentDateCompnents.day &&
-        dateCompnents.year == currentDateCompnents.year &&
-        dateCompnents.month == currentDateCompnents.month {
-      return "TODAY"
-    } else {
-      let formatter = NSDateFormatter()
-      formatter.dateFormat = "dd/MM"
-      return formatter.stringFromDate(date)
-    }
   }
 }
 
