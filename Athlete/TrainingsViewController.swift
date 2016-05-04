@@ -19,7 +19,7 @@ class TrainingsViewController: UIViewController {
   
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
-  private let calendarViewHeight: CGFloat = 260
+  private let calendarViewHeight: CGFloat = 300
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
   @IBOutlet weak var tableView: UITableView!
   
@@ -273,7 +273,7 @@ extension TrainingsViewController: CVCalendarViewDelegate {
   }
   
   func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
-    return true
+    return false
   }
   
   func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat {
@@ -281,8 +281,9 @@ extension TrainingsViewController: CVCalendarViewDelegate {
   }
   
   func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-    return 16
+    return 14
   }
+
 }
 
 //MARK: - CVCalendarMenuViewDelegate
