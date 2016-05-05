@@ -232,14 +232,6 @@ extension TrainingViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 0 {
       performSegueWithIdentifier("trainingTips", sender: nil)
-      // because fuck segues
-//      tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//      view.alpha = 0.2
-//      
-//      let destination = storyboard?.instantiateViewControllerWithIdentifier("TraningTips") as! TrainingTipsViewController
-//      destination.delegate = self
-//      destination.modalPresentationStyle = .OverCurrentContext
-//      presentViewController(destination, animated: true, completion: nil)
     } else {
       performSegueWithIdentifier("exerciseInfo", sender: training.exercises[indexPath.row])
     }
