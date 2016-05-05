@@ -67,7 +67,16 @@ class TrainingViewController: UIViewController {
   
   @IBAction func endTrainingAction(sender: AnyObject) {
     //TODO: update db
-    navigationController?.popViewControllerAnimated(true)
+    if finishedExercises.count != training.exercises.count {
+      let alert = UIAlertController(title: "Конец тренировки", message: "Вы уверены, что хотите закончить не выполнив все упражнения?", preferredStyle: .Alert)
+      alert.addAction(UIAlertAction(title: "Закончить", style: .Default, handler: { (action) in
+        self.navigationController?.popViewControllerAnimated(true)
+      }))
+      alert.addAction(UIAlertAction(title: "Отмена", style: .Cancel, handler: nil))
+      presentViewController(alert, animated: true, completion: nil)
+    } else {
+      navigationController?.popViewControllerAnimated(true)
+    }
   }
   
   func updateCompleteStatus() {
