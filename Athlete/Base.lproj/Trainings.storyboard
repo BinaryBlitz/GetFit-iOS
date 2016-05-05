@@ -73,35 +73,30 @@
                             <rect key="frame" x="120" y="5.5" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
-                                    <rect key="frame" x="8" y="0.0" width="138" height="33"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <connections>
-                                        <action selector="titleButtonAction:" destination="qIZ-am-TBk" eventType="touchUpInside" id="YxI-Vc-9Z2"/>
-                                    </connections>
-                                </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarOpenMark" translatesAutoresizingMaskIntoConstraints="NO" id="dR4-rz-j77">
-                                    <rect key="frame" x="146" y="12" width="14" height="8"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="14" id="Kwi-bY-rdM"/>
-                                        <constraint firstAttribute="width" secondItem="dR4-rz-j77" secondAttribute="height" multiplier="25:15" id="cIe-tU-2lj"/>
-                                    </constraints>
-                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
+                                    <rect key="frame" x="58" y="-2" width="49" height="36"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <connections>
+                                                <action selector="titleButtonAction:" destination="qIZ-am-TBk" eventType="touchUpInside" id="YxI-Vc-9Z2"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CalendarOpenMark" translatesAutoresizingMaskIntoConstraints="NO" id="dR4-rz-j77">
+                                            <rect key="frame" x="35" y="14" width="14" height="8"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="14" id="Kwi-bY-rdM"/>
+                                                <constraint firstAttribute="width" secondItem="dR4-rz-j77" secondAttribute="height" multiplier="25:15" id="cIe-tU-2lj"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="ON4-b3-HeQ" secondAttribute="trailing" constant="8" id="Cf4-og-9yQ"/>
-                                <constraint firstItem="dR4-rz-j77" firstAttribute="centerY" secondItem="gFL-FH-GF2" secondAttribute="centerY" id="HPw-oP-4lg"/>
-                                <constraint firstItem="ON4-b3-HeQ" firstAttribute="top" secondItem="gFL-FH-GF2" secondAttribute="top" id="Jtb-ns-S4m"/>
-                                <constraint firstItem="ON4-b3-HeQ" firstAttribute="leading" secondItem="gFL-FH-GF2" secondAttribute="leading" constant="8" id="KFg-pl-sNm"/>
-                                <constraint firstAttribute="bottom" secondItem="ON4-b3-HeQ" secondAttribute="bottom" id="Kx2-1y-dSy"/>
-                                <constraint firstAttribute="trailing" secondItem="dR4-rz-j77" secondAttribute="trailing" id="jKu-pv-vGN"/>
-                                <constraint firstItem="dR4-rz-j77" firstAttribute="leading" secondItem="ON4-b3-HeQ" secondAttribute="trailing" id="wW2-PB-pLX"/>
+                                <constraint firstItem="I3q-Kc-UKm" firstAttribute="centerY" secondItem="gFL-FH-GF2" secondAttribute="centerY" id="KaW-jK-st3"/>
+                                <constraint firstItem="I3q-Kc-UKm" firstAttribute="centerX" secondItem="gFL-FH-GF2" secondAttribute="centerX" id="YZU-EL-Iom"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Cf4-og-9yQ"/>
-                                </mask>
-                            </variation>
                         </view>
                         <barButtonItem key="rightBarButtonItem" image="Add" id="Umi-GN-rgD"/>
                     </navigationItem>
