@@ -57,7 +57,7 @@
                                         <rect key="frame" x="0.0" y="50" width="400" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hk5-7n-SXo" id="90F-hw-dmW">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="125.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Silvestri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNY-JA-5u0">
@@ -136,7 +136,7 @@
                         <outlet property="trainingStatusLabel" destination="aIo-CS-fNa" id="dTI-eY-xM7"/>
                         <segue destination="Kad-Wi-IFN" kind="show" identifier="exerciseInfo" id="eeU-bb-HHf"/>
                         <segue destination="bKl-R2-Nmb" kind="showDetail" identifier="editExercise" id="UpI-ji-ct5"/>
-                        <segue destination="mh2-UO-UDc" kind="presentation" identifier="trainingTips" modalPresentationStyle="overCurrentContext" id="bcj-Qg-Af1"/>
+                        <segue destination="mh2-UO-UDc" kind="presentation" identifier="trainingTips" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="bcj-Qg-Af1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvd-7W-tga" userLabel="First Responder" sceneMemberID="firstResponder"/>
