@@ -192,24 +192,24 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up4-ze-e2z">
-                                                    <rect key="frame" x="15" y="8" width="362" height="90"/>
+                                                    <rect key="frame" x="20" y="18" width="352" height="90"/>
                                                     <string key="text">I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..</string>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5eP-oL-BPu">
-                                                    <rect key="frame" x="15" y="106" width="362" height="67"/>
+                                                    <rect key="frame" x="20" y="116" width="352" height="57"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="60q-gd-Dsr" secondAttribute="bottom" id="3wl-1i-2Ho"/>
                                                 <constraint firstItem="5eP-oL-BPu" firstAttribute="width" secondItem="up4-ze-e2z" secondAttribute="width" id="IM6-cJ-avg"/>
-                                                <constraint firstItem="up4-ze-e2z" firstAttribute="leading" secondItem="ysm-0A-IzO" secondAttribute="leading" constant="15" id="JFf-kz-vg9"/>
-                                                <constraint firstAttribute="topMargin" secondItem="up4-ze-e2z" secondAttribute="top" id="KcC-ob-C5l"/>
+                                                <constraint firstItem="up4-ze-e2z" firstAttribute="leading" secondItem="ysm-0A-IzO" secondAttribute="leading" constant="20" id="JFf-kz-vg9"/>
+                                                <constraint firstItem="up4-ze-e2z" firstAttribute="top" secondItem="ysm-0A-IzO" secondAttribute="topMargin" constant="10" id="KcC-ob-C5l"/>
                                                 <constraint firstItem="5eP-oL-BPu" firstAttribute="top" secondItem="up4-ze-e2z" secondAttribute="bottom" constant="8" id="NYa-Ho-JWn"/>
                                                 <constraint firstItem="60q-gd-Dsr" firstAttribute="top" secondItem="5eP-oL-BPu" secondAttribute="bottom" constant="14" id="SoW-BR-dc7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="up4-ze-e2z" secondAttribute="trailing" constant="15" id="WGA-i6-dKz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="up4-ze-e2z" secondAttribute="trailing" constant="20" id="WGA-i6-dKz"/>
                                                 <constraint firstItem="60q-gd-Dsr" firstAttribute="leading" secondItem="ysm-0A-IzO" secondAttribute="leading" id="bC9-kv-fIW"/>
                                                 <constraint firstAttribute="trailing" secondItem="60q-gd-Dsr" secondAttribute="trailing" id="kKU-1g-niR"/>
                                                 <constraint firstItem="5eP-oL-BPu" firstAttribute="centerX" secondItem="up4-ze-e2z" secondAttribute="centerX" id="uwe-Nl-n0V"/>
