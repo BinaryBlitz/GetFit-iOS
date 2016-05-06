@@ -8,8 +8,9 @@
 
 import UIKit
 import Haneke
+import Reusable
 
-class ProfileCardTableViewCell: UITableViewCell {
+class ProfileCardTableViewCell: UITableViewCell, NibReusable {
 
   @IBOutlet weak var bannerImageView: UIImageView!
   @IBOutlet weak var avatarImageView: CircleImageView!

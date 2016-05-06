@@ -9,8 +9,9 @@
 import UIKit
 import Haneke
 import PureLayout
+import Reusable
 
-class ProfessionalTableViewCell: UITableViewCell {
+class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   
   enum ProfessionalCellState {
     case Normal

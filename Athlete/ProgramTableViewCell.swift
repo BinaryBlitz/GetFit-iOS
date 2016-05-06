@@ -9,6 +9,7 @@
 import UIKit
 import PureLayout
 import Haneke
+import Reusable
 
 typealias ProgramCellPresentable = protocol<TrainerPresentable, ProgramPresentable>
 
@@ -16,7 +17,7 @@ protocol ProgramCellDelegate: class {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell)
 }
 
-class ProgramTableViewCell: UITableViewCell {
+class ProgramTableViewCell: UITableViewCell, NibReusable {
   
   //MARK: - Base
   @IBOutlet weak var cardView: CardView!
