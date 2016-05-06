@@ -21,6 +21,8 @@ class ExerciseInfoTableViewCell: UITableViewCell {
   }
   
   func configureWith(session: ExerciseSession) {
+    parametersStackView.removeAllSubviews()
+    
     if session.reps > 0 {
       let repsView = loadExerciseParamsViewFor(ExerciseParameter(name: "reps", value: session.reps))
       parametersStackView.addArrangedSubview(repsView)
