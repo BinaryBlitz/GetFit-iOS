@@ -21,8 +21,30 @@ class ExerciseInfoTableViewCell: UITableViewCell {
   }
   
   func configureWith(session: ExerciseSession) {
-    let repsView = NSBundle.mainBundle().loadNibNamed(String(ExerciseParamsView), owner: self, options: nil).first as! ExerciseParamsView
-    repsView.configureWithExerciseParameter(ExerciseParameter(name: "reps".uppercaseString, value: String(session.reps)))
-    parametersStackView.addArrangedSubview(repsView)
+    if session.reps > 0 {
+      let repsView = loadExerciseParamsViewFor(ExerciseParameter(name: "reps", value: session.reps))
+      parametersStackView.addArrangedSubview(repsView)
+    }
+    
+    if session.distance > 0 {
+      let distView = loadExerciseParamsViewFor(ExerciseParameter(name: "distance, km", value: session.distance))
+      parametersStackView.addArrangedSubview(distView)
+    }
+    
+    if session.sets > 0 {
+      let setsView = loadExerciseParamsViewFor(ExerciseParameter(name: "sets", value: session.sets))
+      parametersStackView.addArrangedSubview(setsView)
+    }
+    
+    if session.weight > 0 {
+      let weightView = loadExerciseParamsViewFor(ExerciseParameter(name: "weight, kg", value: session.weight))
+      parametersStackView.addArrangedSubview(weightView)
+    }
+  }
+  
+  private func loadExerciseParamsViewFor(parameter: ExerciseParameter) -> ExerciseParamsView {
+    let view = NSBundle.mainBundle().loadNibNamed(String(ExerciseParamsView), owner: self, options: nil).first as! ExerciseParamsView
+    view.configureWithExerciseParameter(parameter)
+    return view
   }
 }

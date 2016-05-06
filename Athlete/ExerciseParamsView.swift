@@ -11,7 +11,7 @@ import PureLayout
 
 struct ExerciseParameter {
   let name: String
-  let value: String
+  let value: Int
 }
 
 class ExerciseParamsView: UIStackView {
@@ -31,11 +31,11 @@ class ExerciseParamsView: UIStackView {
   }
   
   func configureWithExerciseParameter(parameter: ExerciseParameter) {
-    titleLabel.text = parameter.name
+    titleLabel.text = parameter.name.uppercaseString
     updateValue(parameter.value)
   }
   
-  func updateValue(value: String) {
-    valueLabel.text = value
+  func updateValue(value: Int) {
+    valueLabel.text = String(value)
   }
 }
