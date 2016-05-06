@@ -54,6 +54,7 @@ extension ExerciseViewController: UITableViewDataSource {
       session.reps = 10
       session.weight = 100
       session.distance = 500
+      session.sets = 2
       cell.configureWith(session)
       cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), forControlEvents: .TouchUpInside)
       
