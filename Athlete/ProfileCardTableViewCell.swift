@@ -16,6 +16,7 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var avatarImageView: CircleImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
+  @IBOutlet weak var settingsBadge: BadgeView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -24,5 +25,8 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     avatarImageView.layer.borderWidth = 5
     
     bannerImageView.hnk_setImageFromURL(NSURL(string: "https://pbs.twimg.com/media/Cbvs8PvWAAAmYYR.jpg")!)
+    
+    settingsBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
+    settingsBadge.text = "Settings"
   }
 }

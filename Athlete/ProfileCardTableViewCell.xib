@@ -49,10 +49,20 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-c6-9D4" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
+                                                <rect key="frame" x="358" y="16" width="80" height="31"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" placeholder="YES" id="NeK-pC-KWb"/>
+                                                    <constraint firstAttribute="height" constant="31" placeholder="YES" id="ZCJ-Ev-919"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="u4D-c6-9D4" firstAttribute="top" secondItem="6bL-fE-pPX" secondAttribute="top" constant="16" id="8rl-ER-a6J"/>
                                             <constraint firstItem="wfW-Pr-Cqa" firstAttribute="leading" secondItem="6bL-fE-pPX" secondAttribute="leading" constant="13" id="O5O-0r-TrD"/>
+                                            <constraint firstAttribute="trailing" secondItem="u4D-c6-9D4" secondAttribute="trailing" constant="13" id="RKO-jK-diZ"/>
                                             <constraint firstAttribute="trailing" secondItem="wfW-Pr-Cqa" secondAttribute="trailing" constant="13" id="frd-f3-VR9"/>
                                             <constraint firstItem="wfW-Pr-Cqa" firstAttribute="top" secondItem="6bL-fE-pPX" secondAttribute="top" constant="55" id="sgj-C9-DKH"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wfW-Pr-Cqa" secondAttribute="bottom" id="t81-bt-Clo"/>
@@ -91,6 +101,7 @@
                 <outlet property="bannerImageView" destination="hsv-Kr-S6d" id="a5X-gL-ONA"/>
                 <outlet property="descriptionLabel" destination="YGf-gj-yyV" id="Vyl-se-NhT"/>
                 <outlet property="nameLabel" destination="Iud-hi-xaE" id="L7I-sq-Vwr"/>
+                <outlet property="settingsBadge" destination="u4D-c6-9D4" id="ZMs-bV-UdZ"/>
             </connections>
             <point key="canvasLocation" x="453.5" y="394"/>
         </tableViewCell>
