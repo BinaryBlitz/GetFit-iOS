@@ -30,6 +30,7 @@ class ProfileTableViewController: UITableViewController {
   private func setupTableView() {
     tableView.registerReusableCell(ProfileCardTableViewCell)
     tableView.registerReusableCell(ProgramTableViewCell)
+    tableView.registerReusableCell(StatisticsTableViewCell)
     
     tableView.separatorStyle = .None
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -85,8 +86,8 @@ class ProfileTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTabIndex == 0:
-//      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as
-      return UITableViewCell()
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as StatisticsTableViewCell
+      return cell
     case 1 where selectedTabIndex == 1:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
       cell.state = .Card
@@ -104,7 +105,7 @@ class ProfileTableViewController: UITableViewController {
     case 0:
       return 300
     case 1 where selectedTabIndex == 0:
-      return 300
+      return tableView.frame.width
     case 1 where selectedTabIndex == 1:
       return 320
     default:

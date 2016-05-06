@@ -29,6 +29,8 @@
 		374A78471C982E94004D30AD /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78461C982E94004D30AD /* ExerciseType.swift */; };
 		374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A80A61CDCF9D40099225E /* ExerciseVideoTableViewCell.swift */; };
 		374A80A91CDCF9D40099225E /* ExerciseVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374A80A71CDCF9D40099225E /* ExerciseVideoTableViewCell.xib */; };
+		374A80AC1CDD466B0099225E /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A80AA1CDD466B0099225E /* StatisticsTableViewCell.swift */; };
+		374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374A80AB1CDD466B0099225E /* StatisticsTableViewCell.xib */; };
 		374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */; };
 		374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
@@ -143,6 +145,8 @@
 		374A78461C982E94004D30AD /* ExerciseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseType.swift; sourceTree = "<group>"; };
 		374A80A61CDCF9D40099225E /* ExerciseVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseVideoTableViewCell.swift; sourceTree = "<group>"; };
 		374A80A71CDCF9D40099225E /* ExerciseVideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseVideoTableViewCell.xib; sourceTree = "<group>"; };
+		374A80AA1CDD466B0099225E /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		374A80AB1CDD466B0099225E /* StatisticsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsTableViewCell.xib; sourceTree = "<group>"; };
 		374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTableViewCell.swift; sourceTree = "<group>"; };
 		374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramTableViewCell.xib; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 			children = (
 				3767BCA51C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift */,
 				3767BCA61C7F8DED00DF5D01 /* ProfileCardTableViewCell.xib */,
+				374A80AA1CDD466B0099225E /* StatisticsTableViewCell.swift */,
+				374A80AB1CDD466B0099225E /* StatisticsTableViewCell.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -723,6 +729,7 @@
 				37A295E41CDA1B05000C0D57 /* TrainingTableViewCell.xib in Resources */,
 				37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */,
 				37A53C621BDE59C300D1DA70 /* News.storyboard in Resources */,
+				374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */,
 				37A295EB1CDA94D2000C0D57 /* ExerciseTableViewCell.xib in Resources */,
 				37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */,
 				37A53C641BDE59DF00D1DA70 /* Professionals.storyboard in Resources */,
@@ -860,6 +867,7 @@
 				37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */,
 				374407AA1BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift in Sources */,
 				37A295EE1CDAAA3D000C0D57 /* ExerciseSession.swift in Sources */,
+				374A80AC1CDD466B0099225E /* StatisticsTableViewCell.swift in Sources */,
 				376F65791C7C9EDA0016071C /* Comment.swift in Sources */,
 				37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */,
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
