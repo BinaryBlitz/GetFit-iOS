@@ -21,6 +21,7 @@ pod 'PhoneNumberKit'
 pod 'Eureka'
 pod 'InnerShadowView'
 pod 'SwiftSpinner'
+pod 'XCDYouTubeKit'
 
 # Tools
 pod 'SwiftDate'
