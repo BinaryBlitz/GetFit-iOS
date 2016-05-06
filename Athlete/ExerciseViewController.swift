@@ -22,7 +22,7 @@ class ExerciseViewController: UIViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
     
-    navigationItem.title = exercise.name
+    navigationItem.title = exercise.name.uppercaseString
   }
   
   @IBAction func endExerciseAction(sender: AnyObject) {
