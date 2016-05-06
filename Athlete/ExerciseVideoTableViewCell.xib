@@ -7,36 +7,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="118" id="KGk-i7-Jjw" customClass="ExerciseVideoTableViewCell" customModule="Athlete" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="410" height="118"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="ExerciseVideoTableViewCell" customModule="Athlete" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="96"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="410" height="117.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="410" height="95.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0j-Fh-i02" customClass="CardView" customModule="Athlete" customModuleProvider="target">
-                        <rect key="frame" x="20" y="10" width="370" height="98"/>
+                        <rect key="frame" x="20" y="9" width="370" height="77.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jjg-vN-hAD">
-                                <rect key="frame" x="10" y="10" width="350" height="78"/>
+                                <rect key="frame" x="10" y="10" width="350" height="57.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="training3" translatesAutoresizingMaskIntoConstraints="NO" id="1jp-7Y-9rs">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="78"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="84.5" height="57.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" secondItem="1jp-7Y-9rs" secondAttribute="width" multiplier="68:100" id="vOK-5j-qsN"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="sJC-gA-6Ga">
-                                        <rect key="frame" x="119" y="0.0" width="231" height="78"/>
+                                        <rect key="frame" x="88.5" y="0.0" width="261.5" height="57.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="How to done this exercise" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOE-Fh-FGW">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="261.5" height="39.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcH-nZ-Nfr">
-                                                <rect key="frame" x="0.0" y="60" width="29" height="18"/>
+                                                <rect key="frame" x="0.0" y="39.5" width="29" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -45,6 +45,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="A4k-bo-p7I"/>
                                     <constraint firstItem="1jp-7Y-9rs" firstAttribute="height" secondItem="jjg-vN-hAD" secondAttribute="height" id="swQ-dE-eCZ"/>
                                 </constraints>
                             </stackView>
@@ -61,9 +62,9 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="h0j-Fh-i02" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="9L4-85-cEx"/>
-                    <constraint firstItem="h0j-Fh-i02" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Wwz-Nx-nQP"/>
+                    <constraint firstItem="h0j-Fh-i02" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Wwz-Nx-nQP"/>
                     <constraint firstAttribute="trailing" secondItem="h0j-Fh-i02" secondAttribute="trailing" constant="20" id="exo-wm-ei8"/>
-                    <constraint firstAttribute="bottom" secondItem="h0j-Fh-i02" secondAttribute="bottom" constant="10" id="iBE-qq-0bm"/>
+                    <constraint firstAttribute="bottom" secondItem="h0j-Fh-i02" secondAttribute="bottom" constant="9" id="iBE-qq-0bm"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -72,7 +73,7 @@
                 <outlet property="videoDurtionLabel" destination="kcH-nZ-Nfr" id="oKh-dj-Fou"/>
                 <outlet property="videoTitleLabel" destination="eOE-Fh-FGW" id="4Fe-iq-TCH"/>
             </connections>
-            <point key="canvasLocation" x="455" y="377"/>
+            <point key="canvasLocation" x="455" y="366"/>
         </tableViewCell>
     </objects>
     <resources>
