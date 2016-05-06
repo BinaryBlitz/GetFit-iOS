@@ -42,12 +42,6 @@ extension ExerciseViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     switch indexPath.row {
     case 0:
-//      let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath)
-//      if let imageView = cell.viewWithTag(1) as? UIImageView {
-//        imageView.image = UIImage(named: content[indexPath.row].0)
-//        imageView.userInteractionEnabled = true
-//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ExerciseViewController.showTrainingTips(_:))))
-//      }
       let cell = tableView.dequeueReusableCellWithIdentifier("infoCell") as! ExerciseInfoTableViewCell
       let session = ExerciseSession()
       session.exercise = exercise
