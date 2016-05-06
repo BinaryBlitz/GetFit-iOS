@@ -250,11 +250,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OKs-KH-dix" firstAttribute="top" secondItem="BjM-ea-WDA" secondAttribute="bottom" id="8Zv-8Y-0gf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OKs-KH-dix" secondAttribute="trailing" constant="-20" id="Ke3-1O-dp0"/>
-                            <constraint firstItem="BjM-ea-WDA" firstAttribute="leading" secondItem="lz6-rT-ZyC" secondAttribute="leadingMargin" constant="-20" id="SJL-T0-eYK"/>
-                            <constraint firstItem="OKs-KH-dix" firstAttribute="leading" secondItem="lz6-rT-ZyC" secondAttribute="leadingMargin" constant="-20" id="Vfm-J9-wcm"/>
+                            <constraint firstAttribute="trailing" secondItem="OKs-KH-dix" secondAttribute="trailing" id="Ke3-1O-dp0"/>
+                            <constraint firstItem="BjM-ea-WDA" firstAttribute="leading" secondItem="lz6-rT-ZyC" secondAttribute="leading" id="SJL-T0-eYK"/>
+                            <constraint firstAttribute="leading" secondItem="OKs-KH-dix" secondAttribute="leading" id="Vfm-J9-wcm"/>
                             <constraint firstItem="BjM-ea-WDA" firstAttribute="top" secondItem="D7A-y1-6X8" secondAttribute="bottom" id="Ye9-Gq-Vgu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BjM-ea-WDA" secondAttribute="trailing" constant="-20" id="b3d-aU-Qrd"/>
+                            <constraint firstAttribute="trailing" secondItem="BjM-ea-WDA" secondAttribute="trailing" id="b3d-aU-Qrd"/>
                             <constraint firstItem="zsP-4K-Y4w" firstAttribute="top" secondItem="OKs-KH-dix" secondAttribute="bottom" id="hfa-lj-NDW"/>
                         </constraints>
                     </view>
@@ -275,7 +275,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="199" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ugy-vW-xt7">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="Obz-GU-n1m">
                                 <cells>

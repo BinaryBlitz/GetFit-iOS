@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Reusable
 
 class ExerciseViewController: UIViewController {
   
@@ -20,6 +21,7 @@ class ExerciseViewController: UIViewController {
     super.viewDidLoad()
     
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
+    tableView.registerReusableCell(ExerciseVideoTableViewCell)
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
     
     navigationItem.title = exercise.name.uppercaseString
@@ -54,12 +56,8 @@ extension ExerciseViewController: UITableViewDataSource {
       
       return cell
     case 1, 2:
-      let cell = tableView.dequeueReusableCellWithIdentifier("videoCell", forIndexPath: indexPath)
-      cell.backgroundColor = UIColor.lightGrayBackgroundColor()
-      
-      if let imageView = cell.viewWithTag(1) as? UIImageView {
-        imageView.image = UIImage(named: content[indexPath.row].0)
-      }
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      cell.videoTitleLabel.text = content[indexPath.row].0
       
       return cell
     default:

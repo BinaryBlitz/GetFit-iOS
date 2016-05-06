@@ -27,6 +27,8 @@
 		374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78421C977C99004D30AD /* LocalStorageHelper.swift */; };
 		374A78451C982B7A004D30AD /* ProgramType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78441C982B7A004D30AD /* ProgramType.swift */; };
 		374A78471C982E94004D30AD /* ExerciseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A78461C982E94004D30AD /* ExerciseType.swift */; };
+		374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A80A61CDCF9D40099225E /* ExerciseVideoTableViewCell.swift */; };
+		374A80A91CDCF9D40099225E /* ExerciseVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374A80A71CDCF9D40099225E /* ExerciseVideoTableViewCell.xib */; };
 		374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */; };
 		374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */; };
 		375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */; };
@@ -139,6 +141,8 @@
 		374A78421C977C99004D30AD /* LocalStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		374A78441C982B7A004D30AD /* ProgramType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramType.swift; sourceTree = "<group>"; };
 		374A78461C982E94004D30AD /* ExerciseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseType.swift; sourceTree = "<group>"; };
+		374A80A61CDCF9D40099225E /* ExerciseVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseVideoTableViewCell.swift; sourceTree = "<group>"; };
+		374A80A71CDCF9D40099225E /* ExerciseVideoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseVideoTableViewCell.xib; sourceTree = "<group>"; };
 		374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTableViewCell.swift; sourceTree = "<group>"; };
 		374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramTableViewCell.xib; sourceTree = "<group>"; };
 		375E296B1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLoginTableViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +351,15 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		374A80A51CDCF9AD0099225E /* ExerciseVideoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				374A80A61CDCF9D40099225E /* ExerciseVideoTableViewCell.swift */,
+				374A80A71CDCF9D40099225E /* ExerciseVideoTableViewCell.xib */,
+			);
+			name = ExerciseVideoTableViewCell;
+			sourceTree = "<group>";
+		};
 		376142DC1C8C7BF60073B5F4 /* View models */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +559,7 @@
 				37A295E51CDA1B0A000C0D57 /* TrainingTableViewCell */,
 				37A295EC1CDA94D7000C0D57 /* ExerciseTableViewCell */,
 				379943F71CDCC9B100A3F36A /* ExerciseInfoTableViewCell */,
+				374A80A51CDCF9AD0099225E /* ExerciseVideoTableViewCell */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -700,6 +714,7 @@
 				37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */,
 				37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */,
 				376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */,
+				374A80A91CDCF9D40099225E /* ExerciseVideoTableViewCell.xib in Resources */,
 				37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */,
 				37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */,
 				37C564491C77D2E600BC370E /* PostTableViewCell.xib in Resources */,
@@ -801,6 +816,7 @@
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
+				374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
 				379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */,
