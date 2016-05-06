@@ -158,6 +158,7 @@ extension TrainingViewController: UITableViewDataSource {
       }
       
       if let showTipsButton = cell.viewWithTag(2) as? UIButton {
+        showTipsButton.backgroundColor = UIColor.blueAccentColor()
         showTipsButton.addTarget(self, action: #selector(TrainingViewController.showTrainingTips(_:)), forControlEvents: .TouchUpInside)
       }
       

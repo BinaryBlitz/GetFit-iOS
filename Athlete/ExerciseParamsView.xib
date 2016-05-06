@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" id="cYt-6c-Msi" customClass="ExerciseParamsView" customModule="Athlete" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="WEIGHT, KG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB0-hM-isd">
+                    <rect key="frame" x="0.0" y="0.0" width="79" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="80" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gH-8f-Lty">
+                    <rect key="frame" x="0.0" y="25" width="27" height="24"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAd-9w-72k">
+                    <rect key="frame" x="0.0" y="57" width="156" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Xzs-2c-zHO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="kAd-9w-72k" firstAttribute="width" secondItem="cYt-6c-Msi" secondAttribute="width" id="kzU-Ot-ytd"/>
+            </constraints>
+            <connections>
+                <outlet property="separatorView" destination="kAd-9w-72k" id="hTo-2i-BCI"/>
+                <outlet property="separatorViewHeightConstraint" destination="Xzs-2c-zHO" id="T1M-ce-Hac"/>
+                <outlet property="titleLabel" destination="mB0-hM-isd" id="ywg-oI-WFp"/>
+                <outlet property="valueLabel" destination="9gH-8f-Lty" id="s6K-be-Kpv"/>
+            </connections>
+            <point key="canvasLocation" x="405" y="143"/>
+        </stackView>
+    </objects>
+</document>

@@ -173,27 +173,56 @@
                                 <rect key="frame" x="0.0" y="64" width="400" height="635"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="173" id="NW2-P8-C47">
-                                        <rect key="frame" x="0.0" y="28" width="400" height="173"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NW2-P8-C47" id="vEQ-ac-wdU">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="173"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="226" id="mpi-be-cyy" customClass="ExerciseInfoTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="400" height="226"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mpi-be-cyy" id="ysm-0A-IzO">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="226"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inZ-oA-zsC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="173"/>
-                                                </imageView>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-gd-Dsr">
+                                                    <rect key="frame" x="0.0" y="187" width="400" height="39"/>
+                                                    <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="39" id="rTg-9E-342"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <state key="normal" title="SHOW ME TRAINING TIPS">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up4-ze-e2z">
+                                                    <rect key="frame" x="15" y="8" width="362" height="90"/>
+                                                    <string key="text">I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..</string>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5eP-oL-BPu">
+                                                    <rect key="frame" x="15" y="106" width="362" height="67"/>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="inZ-oA-zsC" secondAttribute="bottom" constant="-8" id="81c-AJ-cvT"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="inZ-oA-zsC" secondAttribute="leading" constant="8" id="kjn-6b-3Or"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="inZ-oA-zsC" secondAttribute="trailing" constant="-8" id="toK-3r-z3r"/>
-                                                <constraint firstAttribute="topMargin" secondItem="inZ-oA-zsC" secondAttribute="top" constant="8" id="w5h-2M-Mhz"/>
+                                                <constraint firstAttribute="bottom" secondItem="60q-gd-Dsr" secondAttribute="bottom" id="3wl-1i-2Ho"/>
+                                                <constraint firstItem="5eP-oL-BPu" firstAttribute="width" secondItem="up4-ze-e2z" secondAttribute="width" id="IM6-cJ-avg"/>
+                                                <constraint firstItem="up4-ze-e2z" firstAttribute="leading" secondItem="ysm-0A-IzO" secondAttribute="leading" constant="15" id="JFf-kz-vg9"/>
+                                                <constraint firstAttribute="topMargin" secondItem="up4-ze-e2z" secondAttribute="top" id="KcC-ob-C5l"/>
+                                                <constraint firstItem="5eP-oL-BPu" firstAttribute="top" secondItem="up4-ze-e2z" secondAttribute="bottom" constant="8" id="NYa-Ho-JWn"/>
+                                                <constraint firstItem="60q-gd-Dsr" firstAttribute="top" secondItem="5eP-oL-BPu" secondAttribute="bottom" constant="14" id="SoW-BR-dc7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="up4-ze-e2z" secondAttribute="trailing" constant="15" id="WGA-i6-dKz"/>
+                                                <constraint firstItem="60q-gd-Dsr" firstAttribute="leading" secondItem="ysm-0A-IzO" secondAttribute="leading" id="bC9-kv-fIW"/>
+                                                <constraint firstAttribute="trailing" secondItem="60q-gd-Dsr" secondAttribute="trailing" id="kKU-1g-niR"/>
+                                                <constraint firstItem="5eP-oL-BPu" firstAttribute="centerX" secondItem="up4-ze-e2z" secondAttribute="centerX" id="uwe-Nl-n0V"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="up4-ze-e2z" id="bhi-4Q-Zzm"/>
+                                            <outlet property="parametersStackView" destination="5eP-oL-BPu" id="hHb-Ok-sc2"/>
+                                            <outlet property="showTipsButton" destination="60q-gd-Dsr" id="yqq-iT-lgT"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="videoCell" rowHeight="173" id="iEB-Im-3mY">
-                                        <rect key="frame" x="0.0" y="201" width="400" height="173"/>
+                                        <rect key="frame" x="0.0" y="254" width="400" height="173"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iEB-Im-3mY" id="F9d-4N-vLq">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="173"/>
@@ -237,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNn-BS-gLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2728" y="794"/>
+            <point key="canvasLocation" x="2904" y="805"/>
         </scene>
         <!--Weight-->
         <scene sceneID="X4F-cK-745">
@@ -299,7 +328,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ezz-w2-NJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3290" y="-1058"/>
+            <point key="canvasLocation" x="3438" y="-982"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Wz-e5-Lnf">
@@ -315,7 +344,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f63-dW-pqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2756" y="-1058"/>
+            <point key="canvasLocation" x="2904" y="-982"/>
         </scene>
         <!--Training Tips View Controller-->
         <scene sceneID="u7T-0K-cEg">
@@ -416,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmO-iI-GLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="-124"/>
+            <point key="canvasLocation" x="2904" y="-84"/>
         </scene>
     </scenes>
     <resources>

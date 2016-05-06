@@ -50,6 +50,9 @@
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
 		378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */; };
+		379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */; };
+		379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */; };
+		379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */; };
 		379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */; };
 		379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912A1C95F47D00D96175 /* ServerResponse.swift */; };
 		379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E912C1C95F4AC00D96175 /* ServerRoute.swift */; };
@@ -159,6 +162,9 @@
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExerciseTableViewController.swift; sourceTree = "<group>"; };
+		379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseInfoTableViewCell.swift; sourceTree = "<group>"; };
+		379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseParamsView.swift; sourceTree = "<group>"; };
+		379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseParamsView.xib; sourceTree = "<group>"; };
 		379C641C1CA6E71600A32C90 /* ButtonsStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsStripView.swift; sourceTree = "<group>"; };
 		379E912A1C95F47D00D96175 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		379E912C1C95F4AC00D96175 /* ServerRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRoute.swift; sourceTree = "<group>"; };
@@ -363,6 +369,16 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		379943F71CDCC9B100A3F36A /* ExerciseInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */,
+				379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */,
+				379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */,
+			);
+			name = ExerciseInfoTableViewCell;
+			sourceTree = "<group>";
+		};
 		379E912E1C95F73300D96175 /* Server Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +545,7 @@
 			children = (
 				37A295E51CDA1B0A000C0D57 /* TrainingTableViewCell */,
 				37A295EC1CDA94D7000C0D57 /* ExerciseTableViewCell */,
+				379943F71CDCC9B100A3F36A /* ExerciseInfoTableViewCell */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -678,6 +695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */,
 				374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */,
 				37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */,
 				37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */,
@@ -778,12 +796,14 @@
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
+				379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */,
 				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
+				379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,
 				3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */,
 				37F01C8E1C77CD3800910D58 /* User.swift in Sources */,
