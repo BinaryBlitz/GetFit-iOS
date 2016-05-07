@@ -30,9 +30,8 @@ class NewsTableViewController: UITableViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
-    
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 400
+    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithImage")
+    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
     
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -81,9 +80,16 @@ class NewsTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell,
-        post = posts?[indexPath.row] else {
-      return UITableViewCell()
+    guard let post = posts?[indexPath.row] else { return UITableViewCell() }
+    
+    let cell: PostTableViewCell
+    
+    if post.imageURLString != nil {
+      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithImage", forIndexPath: indexPath) as! PostTableViewCell
+    } else if post.program != nil {
+      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithProgram", forIndexPath: indexPath) as! PostTableViewCell
+    } else {
+      cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostTableViewCell
     }
     
     cell.configureWith(PostViewModel(post: post))
@@ -92,6 +98,18 @@ class NewsTableViewController: UITableViewController {
     cell.delegate = self
     
     return cell
+  }
+  
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    let post = posts![indexPath.row]
+    
+    if post.imageURLString != nil {
+      return 400
+    } else if post.program != nil {
+      return 400
+    } else {
+      return 300
+    }
   }
   
   //MARK: - UITableViewDelegate
