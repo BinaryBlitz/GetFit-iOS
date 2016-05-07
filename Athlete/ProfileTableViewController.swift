@@ -92,6 +92,7 @@ class ProfileTableViewController: UITableViewController {
       return cell
     case 1 where selectedTabIndex == 0:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as StatisticsTableViewCell
+      cell.layoutSubviews()
       return cell
     case 1 where selectedTabIndex == 1:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
@@ -102,6 +103,20 @@ class ProfileTableViewController: UITableViewController {
       return cell
     default:
       return UITableViewCell()
+    }
+  }
+  
+  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    if let statistics = cell as? StatisticsTableViewCell {
+      statistics.layoutSubviews()
+    }
+  }
+  
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    if selectedTabIndex == 0 {
+      let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+      cell?.layoutSubviews()
     }
   }
   

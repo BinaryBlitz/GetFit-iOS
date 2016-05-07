@@ -21,12 +21,19 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
     
     [caloriesView, distanceView, lengthView, trainingsView].forEach { (view) in
       view.layer.borderWidth = 3
-      view.layer.cornerRadius = 55
     }
     
     caloriesView.layer.borderColor = UIColor.redColor().CGColor
     trainingsView.layer.borderColor = UIColor.blueAccentColor().CGColor
     lengthView.layer.borderColor = UIColor.primaryYellowColor().CGColor
     distanceView.layer.borderColor = UIColor.greenAccentColor().CGColor
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    [caloriesView, distanceView, lengthView, trainingsView].forEach { (view) in
+      view.layer.masksToBounds = true
+      view.layer.cornerRadius = view.bounds.width / 2
+    }
   }
 }
