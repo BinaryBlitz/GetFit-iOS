@@ -54,10 +54,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="trainingInfoCell" rowHeight="126" id="hk5-7n-SXo">
-                                        <rect key="frame" x="0.0" y="50" width="400" height="126"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="400" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hk5-7n-SXo" id="90F-hw-dmW">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="125.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Silvestri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNY-JA-5u0">
@@ -221,25 +221,6 @@
                                             <outlet property="showTipsButton" destination="60q-gd-Dsr" id="yqq-iT-lgT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="videoCell" rowHeight="173" id="iEB-Im-3mY">
-                                        <rect key="frame" x="0.0" y="254" width="400" height="173"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iEB-Im-3mY" id="F9d-4N-vLq">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="173"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="usS-b2-9Jz">
-                                                    <rect key="frame" x="16" y="12" width="368" height="149"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="leadingMargin" secondItem="usS-b2-9Jz" secondAttribute="leading" constant="-8" id="HNS-DY-F4O"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="usS-b2-9Jz" secondAttribute="trailing" constant="8" id="Jun-lz-2Kd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="usS-b2-9Jz" secondAttribute="bottom" constant="4" id="jWt-gI-6kT"/>
-                                                <constraint firstAttribute="topMargin" secondItem="usS-b2-9Jz" secondAttribute="top" constant="-4" id="sXr-Cb-kd0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Kad-Wi-IFN" id="6Is-rO-CVa"/>
@@ -266,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNn-BS-gLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904" y="805"/>
+            <point key="canvasLocation" x="2904" y="915"/>
         </scene>
         <!--Weight-->
         <scene sceneID="X4F-cK-745">
@@ -283,7 +264,7 @@
                                         <rect key="frame" x="0.0" y="99" width="400" height="199"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVT-3M-dAQ" id="wgF-H2-3ot">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="198.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNA-xk-Nod">
