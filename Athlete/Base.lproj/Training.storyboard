@@ -243,6 +243,7 @@
                     <connections>
                         <outlet property="endExerciseButton" destination="OKs-KH-dix" id="xya-Xv-8ag"/>
                         <outlet property="tableView" destination="BjM-ea-WDA" id="7xw-tS-5Pg"/>
+                        <segue destination="mh2-UO-UDc" kind="presentation" identifier="trainingTips" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="bv2-mj-NkC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNn-BS-gLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,4 +434,7 @@
         <image name="Close" width="25" height="25"/>
         <image name="avatarExample" width="319" height="320"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bv2-mj-NkC"/>
+    </inferredMetricsTieBreakers>
 </document>
