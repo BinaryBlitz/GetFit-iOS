@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="548" height="303"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="548" height="303"/>
+                <rect key="frame" x="0.0" y="0.0" width="548" height="302.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvp-P6-3vB" customClass="CardView" customModule="Athlete" customModuleProvider="target">
@@ -163,7 +163,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bannerImageView" destination="0AY-dT-SNQ" id="kvT-bn-EhH"/>
+                <outlet property="bannerView" destination="rpS-m8-mk5" id="n61-8P-KlS"/>
                 <outlet property="cardView" destination="Dvp-P6-3vB" id="NDl-0k-SzB"/>
+                <outlet property="contentStackView" destination="UmT-oj-uk6" id="0mJ-sM-9XD"/>
                 <outlet property="descriptionLabel" destination="AKm-x3-Cwp" id="fgN-gR-Di6"/>
                 <outlet property="durationBadge" destination="IqL-EM-YMW" id="fxA-rl-juP"/>
                 <outlet property="followersLabel" destination="vat-n8-kff" id="4GB-Lo-k1W"/>

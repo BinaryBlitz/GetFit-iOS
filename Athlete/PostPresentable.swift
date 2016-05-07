@@ -13,4 +13,5 @@ protocol PostPresentable {
   var likesCount: String { get }
   var commentsCount: String { get }
   var liked: Bool { get }
+  var program: Program? { get }
 }

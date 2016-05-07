@@ -35,6 +35,10 @@ extension PostViewModel: PostPresentable {
   var liked: Bool {
     return post.likeId != -1
   }
+  
+  var program: Program? {
+    return post.program
+  }
 }
 
 //MARK: - TextPresentable

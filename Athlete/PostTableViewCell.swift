@@ -86,6 +86,8 @@ class PostTableViewCell: UITableViewCell {
   func configureWith(viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
       updateContentWith(.Photo(photoURL: imageURL))
+    } else if let program = viewModel.program {
+      updateContentWith(.TrainingProgram(program: program))
     } else {
       updateContentWith(.None)
     }
@@ -122,8 +124,17 @@ class PostTableViewCell: UITableViewCell {
       imageView.hnk_setImageFromURL(photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
-    case .TrainingProgram(_):
-      fatalError("Posts with TrainingProgram are no implemented yet")
+    case .TrainingProgram(let program):
+      containerHeight.constant = contentHeight
+      containerToTextSpace.constant = spaceBetweenTextAndContent
+      containerView.hidden = false
+      containerView.backgroundColor = UIColor.lightGrayColor()
+      let programView = NSBundle.mainBundle().loadNibNamed(String(ProgramTableViewCell), owner: self, options: nil).first as! ProgramTableViewCell
+      programView.state = .Normal
+      programView.configureWith(ProgramViewModel(program: program))
+      programView.hideBanner()
+      containerView.addSubview(programView)
+      programView.autoPinEdgesToSuperviewEdges()
     }
   }
   

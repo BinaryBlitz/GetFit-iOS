@@ -33,6 +33,9 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var trainerAvatar: CircleImageView!
   @IBOutlet weak var bannerImageView: UIImageView!
   
+  @IBOutlet weak var bannerView: UIView!
+  @IBOutlet weak var contentStackView: UIStackView!
+  
   enum ProgramCellState {
     case Card
     case Normal
@@ -45,6 +48,11 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   }
   
   weak var delegate: ProgramCellDelegate?
+  
+  func hideBanner() {
+    bannerView.removeFromSuperview()
+    contentStackView.autoPinEdgeToSuperviewEdge(.Top, withInset: 14)
+  }
 
   override func awakeFromNib() {
     super.awakeFromNib()
