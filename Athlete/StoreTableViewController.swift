@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import PureLayout
+import Reusable
 
 class StoreTableViewController: UITableViewController {
 
@@ -26,23 +27,9 @@ class StoreTableViewController: UITableViewController {
   func configureTableView() {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
-    let programCellNib = UINib(nibName: String(ProgramTableViewCell), bundle: nil)
-    tableView.registerNib(programCellNib, forCellReuseIdentifier: String(ProgramTableViewCell))
+    tableView.registerReusableCell(ProgramTableViewCell)
     
-    tableView.backgroundView = {
-      let view = UIView()
-      let label = UILabel()
-      label.text = "No data 😓"
-      label.textAlignment = .Center
-      label.font = UIFont.systemFontOfSize(22)
-      label.textColor = UIColor.graySecondaryColor()
-      view.addSubview(label)
-      label.autoPinEdgeToSuperviewEdge(.Left)
-      label.autoPinEdgeToSuperviewEdge(.Right)
-      label.autoPinEdgeToSuperviewEdge(.Bottom)
-      label.autoPinEdgeToSuperviewEdge(.Top, withInset: -50, relation: .Equal)
-      return view
-    }()
+    tableView.backgroundView = createBackgroundView()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
     
@@ -56,6 +43,22 @@ class StoreTableViewController: UITableViewController {
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  func createBackgroundView() -> UIView {
+      let view = UIView()
+      let label = UILabel()
+      label.text = "No data 😓"
+      label.textAlignment = .Center
+      label.font = UIFont.systemFontOfSize(22)
+      label.textColor = UIColor.graySecondaryColor()
+      view.addSubview(label)
+      label.autoPinEdgeToSuperviewEdge(.Left)
+      label.autoPinEdgeToSuperviewEdge(.Right)
+      label.autoPinEdgeToSuperviewEdge(.Bottom)
+      label.autoPinEdgeToSuperviewEdge(.Top, withInset: -50, relation: .Equal)
+    
+      return view
   }
   
   func fetchPrograms() {
@@ -92,10 +95,9 @@ class StoreTableViewController: UITableViewController {
       return UITableViewCell()
     }
     
-    let programCellId = String(ProgramTableViewCell)
-    let cell = tableView.dequeueReusableCellWithIdentifier(programCellId) as! ProgramTableViewCell
-    cell.state = .Card
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
     cell.configureWith(ProgramViewModel(program: program))
+    cell.state = .Card
     cell.delegate = self
     
     return cell

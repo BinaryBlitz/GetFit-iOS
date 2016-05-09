@@ -9,6 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 import RealmSwift
+import Reusable
 
 protocol TrainersListDelegate: class {
   func trainersList(viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer)
@@ -29,8 +30,7 @@ class TrainersListTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let trainerCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
-    tableView.registerNib(trainerCellNib, forCellReuseIdentifier: String(ProfessionalTableViewCell))
+    tableView.registerReusableCell(ProfessionalTableViewCell)
     tableView.rowHeight = 370
     tableView.separatorStyle = .None
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -48,11 +48,9 @@ class TrainersListTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier(String(ProfessionalTableViewCell)) as? ProfessionalTableViewCell,
-        trainer = trainers?[indexPath.row] else {
-      return UITableViewCell()
-    }
+    guard let trainer = trainers?[indexPath.row] else { return UITableViewCell() }
     
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     
     return cell

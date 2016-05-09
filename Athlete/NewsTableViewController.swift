@@ -28,7 +28,7 @@ class NewsTableViewController: UITableViewController {
   private func configureTableView() {
     
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
+    let postCellNib = UINib(nibName: "PostTableViewCell", bundle: nil)
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithImage")
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
