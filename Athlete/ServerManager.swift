@@ -202,6 +202,34 @@ class ServerManager {
     
     return req
   }
+    
+  func updateDeviceToken(completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Bool, ServerError>
+    
+    let parameters: [String: AnyObject] = [
+      "device_token": ServerManager.sharedManager.deviceToken ?? NSNull(),
+      "platform": "ios"
+    ]
+    
+    let user: [String: AnyObject] = ["user": parameters]
+    
+    do {
+      let request = try patch(ServerRoute.User.path, params: user)
+      request.validate().responseJSON { (response) in
+        switch response.result {
+        case .Success(_):
+          completion?(response: Response(value: true))
+        case .Failure(let error):
+          completion?(response: Response(error: ServerError(error: error)))
+        }
+      }
+      
+      return request
+    } catch {
+      completion?(response: Response(error: .Unauthorized))
+      return nil
+    }
+  }
   
   /// Login with Facebook
   func loginWithFacebookToken(token: String,
