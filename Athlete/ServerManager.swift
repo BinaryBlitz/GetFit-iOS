@@ -50,7 +50,7 @@ class ServerManager {
   var deviceToken: String?
 #endif
   
-  //MARK: - Preperties
+  //MARK: - Properties
   
   var authenticated: Bool {
     return apiToken != nil
