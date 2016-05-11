@@ -24,6 +24,7 @@ class User: Object, JSONSerializable {
   dynamic var birthdate: NSDate = NSDate()
   dynamic var userDescription: String?
   dynamic var avatarURLString: String?
+  dynamic var bannerURLString: String?
   
   var name: String{
     return "\(firstName) \(lastName)"
@@ -71,6 +72,10 @@ class User: Object, JSONSerializable {
     
     if let avatarURLString = json["avatar_url"].string {
       self.avatarURLString = avatarURLString
+    }
+    
+    if let bannerURLString = json["banner_url"].string {
+      self.bannerURLString = bannerURLString
     }
   }
 }
