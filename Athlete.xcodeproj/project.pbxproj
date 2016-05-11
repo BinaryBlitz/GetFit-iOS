@@ -54,6 +54,10 @@
 		377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39151CE28BF800BF5ABC /* UserManger.swift */; };
 		377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39171CE3251800BF5ABC /* UserViewModel.swift */; };
 		377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */; };
+		377C391C1CE368DD00BF5ABC /* ServerManger+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C391B1CE368DD00BF5ABC /* ServerManger+User.swift */; };
+		377C39201CE3690300BF5ABC /* ServerManager+Trainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */; };
+		377C39221CE3694500BF5ABC /* ServerManger+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39211CE3694500BF5ABC /* ServerManger+Posts.swift */; };
+		377C39241CE36A7300BF5ABC /* ServerManger+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */; };
 		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
@@ -174,6 +178,10 @@
 		377C39151CE28BF800BF5ABC /* UserManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
 		377C39171CE3251800BF5ABC /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsPresentable.swift; sourceTree = "<group>"; };
+		377C391B1CE368DD00BF5ABC /* ServerManger+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+User.swift"; sourceTree = "<group>"; };
+		377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Trainers.swift"; sourceTree = "<group>"; };
+		377C39211CE3694500BF5ABC /* ServerManger+Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+Posts.swift"; sourceTree = "<group>"; };
+		377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+Login.swift"; sourceTree = "<group>"; };
 		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +418,10 @@
 			isa = PBXGroup;
 			children = (
 				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
+				377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */,
+				377C391B1CE368DD00BF5ABC /* ServerManger+User.swift */,
+				377C39211CE3694500BF5ABC /* ServerManger+Posts.swift */,
+				377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */,
 				379E912A1C95F47D00D96175 /* ServerResponse.swift */,
 				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
@@ -874,6 +886,7 @@
 				37493D0F1C832FDC009C6C1A /* TrainersListTableViewController.swift in Sources */,
 				37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */,
 				371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */,
+				377C391C1CE368DD00BF5ABC /* ServerManger+User.swift in Sources */,
 				374A78451C982B7A004D30AD /* ProgramType.swift in Sources */,
 				37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */,
 				376F65711C7C8E6B0016071C /* Previewable.swift in Sources */,
@@ -898,6 +911,7 @@
 				379E912D1C95F4AC00D96175 /* ServerRoute.swift in Sources */,
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
+				377C39221CE3694500BF5ABC /* ServerManger+Posts.swift in Sources */,
 				37A295E91CDA28F1000C0D57 /* TrainingPresentable.swift in Sources */,
 				37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */,
 				3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */,
@@ -907,6 +921,8 @@
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
 				377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */,
 				374A80AF1CDD514C0099225E /* SettingsTableViewController.swift in Sources */,
+				377C39241CE36A7300BF5ABC /* ServerManger+Login.swift in Sources */,
+				377C39201CE3690300BF5ABC /* ServerManager+Trainers.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
 				379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */,
 				376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */,
