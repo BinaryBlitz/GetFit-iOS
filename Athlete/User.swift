@@ -26,6 +26,11 @@ class User: Object, JSONSerializable {
   dynamic var avatarURLString: String?
   dynamic var bannerURLString: String?
   
+  // Statistics
+  dynamic var totalWorkouts: Int = 0
+  dynamic var totalDuration: Int = 0
+  dynamic var totalDistance: Int = 0
+  
   var name: String{
     return "\(firstName) \(lastName)"
   }
