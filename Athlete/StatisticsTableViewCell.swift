@@ -16,6 +16,15 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var lengthView: UIView!
   @IBOutlet weak var trainingsView: UIView!
   
+  @IBOutlet weak var totalTrainingsLabel: UILabel!
+  @IBOutlet weak var trainingsTitleLabel: UILabel!
+  
+  @IBOutlet weak var totalDurationLabel: UILabel!
+  @IBOutlet weak var durationTitleLabel: UILabel!
+  
+  @IBOutlet weak var totalDistanceLabel: UILabel!
+  @IBOutlet weak var distanceTitleLabel: UILabel!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -35,5 +44,11 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
       view.layer.masksToBounds = true
       view.layer.cornerRadius = view.bounds.width / 2
     }
+  }
+  
+  func configureWith(viewModel: StatisticsPresentable) {
+    totalDistanceLabel.text = viewModel.totalDistance
+    totalTrainingsLabel.text = viewModel.totalWorkouts
+    totalDurationLabel.text = viewModel.totalDuration
   }
 }

@@ -42,6 +42,7 @@ class ProfileTableViewController: UITableViewController {
         case .Success(let user):
           UserManger.currentUser = user
           self.user = user
+          self.loadStatistics()
         case .Failure(let error):
           switch error {
           case .NetworkConnectionLost, .NotConnectedToInternet:
@@ -50,6 +51,18 @@ class ProfileTableViewController: UITableViewController {
             break
           }
         }
+      }
+    }
+  }
+  
+  private func loadStatistics() {
+    guard let user = user else { return }
+    ServerManager.sharedManager.updateStatisticsFor(user) { (response) in
+      switch response.result {
+      case .Success(let user):
+        self.user = user
+      case .Failure(let error):
+        print(error)
       }
     }
   }
@@ -123,6 +136,10 @@ class ProfileTableViewController: UITableViewController {
     case 1 where selectedTabIndex == 0:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as StatisticsTableViewCell
       cell.layoutSubviews()
+      if let user = user {
+        cell.configureWith(UserViewModel(user: user))
+      }
+      
       return cell
     case 1 where selectedTabIndex == 1:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell

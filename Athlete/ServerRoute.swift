@@ -9,7 +9,9 @@
 enum ServerRoute: String {
   case VerificationTokens = "verification_tokens"
   case User = "user"
+  case Users = "users"
   case Posts = "posts"
+  case Statistics = "statistics"
   case Likes = "likes"
   case FBAuth = "user/authenticate_fb"
   case VKAuth = "user/authenticate_vk"

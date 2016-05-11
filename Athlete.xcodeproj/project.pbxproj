@@ -53,6 +53,7 @@
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
 		377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39151CE28BF800BF5ABC /* UserManger.swift */; };
 		377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39171CE3251800BF5ABC /* UserViewModel.swift */; };
+		377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */; };
 		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
@@ -172,6 +173,7 @@
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
 		377C39151CE28BF800BF5ABC /* UserManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
 		377C39171CE3251800BF5ABC /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsPresentable.swift; sourceTree = "<group>"; };
 		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				37A6A1281C7AEECE007F0944 /* DateTimePresentable.swift */,
 				37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */,
 				37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */,
+				377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */,
 				376F65701C7C8E6B0016071C /* Previewable.swift */,
 				376F65761C7C97EE0016071C /* TextPresentable.swift */,
 				373297281CA36161008AEB05 /* JSONSerializable.swift */,
@@ -902,6 +905,7 @@
 				374A78411C970707004D30AD /* PhoneSighUpSessionData.swift in Sources */,
 				37E4A4561BDF8CE8004193BF /* Training.swift in Sources */,
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
+				377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */,
 				374A80AF1CDD514C0099225E /* SettingsTableViewController.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
 				379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */,

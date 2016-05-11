@@ -202,8 +202,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="caloriesView" destination="OX0-bi-DBf" id="jHD-py-zv2"/>
+                <outlet property="distanceTitleLabel" destination="MfV-hz-GIs" id="gVe-7t-njx"/>
                 <outlet property="distanceView" destination="w0f-Cr-HUN" id="wy0-8L-juX"/>
+                <outlet property="durationTitleLabel" destination="m86-fi-rF7" id="4SW-Jp-pH0"/>
                 <outlet property="lengthView" destination="hHQ-VT-MBA" id="zyx-9y-oD4"/>
+                <outlet property="totalDistanceLabel" destination="D9e-Yu-lsP" id="6I7-JM-wLk"/>
+                <outlet property="totalDurationLabel" destination="0KU-RQ-aiT" id="A5j-4e-yrB"/>
+                <outlet property="totalTrainingsLabel" destination="vRz-kb-hcG" id="nnc-Sf-qVy"/>
+                <outlet property="trainingsTitleLabel" destination="CHk-sp-R23" id="acz-fy-YBa"/>
                 <outlet property="trainingsView" destination="c0d-e5-JyB" id="paS-4z-PEk"/>
             </connections>
             <point key="canvasLocation" x="343.5" y="239.5"/>

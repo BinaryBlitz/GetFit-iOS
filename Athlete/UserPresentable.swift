@@ -14,3 +14,4 @@ protocol UserPresentable {
   var avatarURL: NSURL? { get }
   var coverImageURL: NSURL? { get }
 }
+

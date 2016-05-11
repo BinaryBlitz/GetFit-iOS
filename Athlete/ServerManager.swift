@@ -125,6 +125,43 @@ class ServerManager {
     }
   }
   
+  func updateStatisticsFor(user: User, completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<User, ServerError>
+    
+    do {
+      let request = try get("\(ServerRoute.Users.pathWith(user.id))/\(ServerRoute.Statistics.rawValue)")
+      request.validate().responseJSON { (response) in
+        switch response.result {
+        case .Success(let resultValue):
+          let json = JSON(resultValue)
+          
+          if let totalWorkouts = json["workouts_count"].int {
+            user.totalWorkouts = totalWorkouts
+          }
+          
+          if let totalDuration = json["total_duration"].int {
+            user.totalDuration = totalDuration
+          }
+          
+          if let totalDistance = json["total_distance"].int {
+            user.totalDistance = totalDistance
+          }
+          
+          completion?(response: Response(value: user))
+        case .Failure(let error):
+          print(error)
+          let serverError = ServerError(error: error)
+          completion?(response: Response(error: serverError))
+        }
+      }
+      
+      return request
+    } catch {
+      completion?(response: Response(error: .Unauthorized))
+      return nil
+    }
+  }
+  
   //MARK: - Login
   
   /// Creates verirfication token for login with phone number

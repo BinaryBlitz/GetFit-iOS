@@ -32,3 +32,9 @@ extension UserViewModel: UserPresentable {
     return NSURL(string: urlString)
   }
 }
+
+extension UserViewModel: StatisticsPresentable {
+  var totalWorkouts: String { return "\(user.totalWorkouts)" }
+  var totalDistance: String { return "\(user.totalDistance)" }
+  var totalDuration: String { return "\(user.totalDuration)" }
+}
