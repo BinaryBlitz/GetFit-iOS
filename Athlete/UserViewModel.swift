@@ -19,7 +19,7 @@ extension UserViewModel: UserPresentable {
   }
   
   var info: String {
-    return user.description
+    return user.userDescription ?? "No description"
   }
   
   var avatarURL: NSURL? {

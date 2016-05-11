@@ -29,4 +29,19 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     settingsBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
     settingsBadge.text = "Settings"
   }
+  
+  func configureWith(viewModel: UserPresentable) {
+    nameLabel.text = viewModel.name
+    descriptionLabel.text = viewModel.info
+    
+    bannerImageView.hnk_cancelSetImage()
+    if let bannerURL = viewModel.coverImageURL {
+      bannerImageView.hnk_setImageFromURL(bannerURL)
+    }
+    
+    avatarImageView.hnk_cancelSetImage()
+    if let avatarURL = viewModel.avatarURL {
+      bannerImageView.hnk_setImageFromURL(avatarURL)
+    }
+  }
 }

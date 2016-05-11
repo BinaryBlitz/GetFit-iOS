@@ -16,16 +16,42 @@ class ProfileTableViewController: UITableViewController {
   private var selectedTabIndex = 0
   
   var programs: Results<Program>?
-  var user: User!
+  var user: User? {
+    didSet {
+      tableView.reloadData()
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    loadUser()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     setupTableView()
     
-    let realm = try! Realm()
-    programs = realm.objects(Program)
+//    let realm = try! Realm()
+//    programs = realm.objects(Program)
+  }
+  
+  private func loadUser() {
+    if let user = UserManger.currentUser {
+      self.user = user
+    } else {
+      ServerManager.sharedManager.loadCurrentUser { (response) in
+        switch response.result {
+        case .Success(let user):
+          UserManger.currentUser = user
+          self.user = user
+        case .Failure(let error):
+          switch error {
+          case .NetworkConnectionLost, .NotConnectedToInternet:
+            self.presentAlertWithTitle("Ошибка", andMessage: "Не удалось загрузить данные")
+          default:
+            break
+          }
+        }
+      }
+    }
   }
   
   private func setupTableView() {
@@ -84,6 +110,10 @@ class ProfileTableViewController: UITableViewController {
     switch indexPath.section {
     case 0:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfileCardTableViewCell
+      if let user = user {
+        cell.configureWith(UserViewModel(user: user))
+      }
+      
       let button = UIButton()
       button.addTarget(self, action: #selector(settingsButtonAction(_:)), forControlEvents: .TouchUpInside)
       cell.settingsBadge.addSubview(button)
@@ -123,7 +153,7 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 300
+      return 270
     case 1 where selectedTabIndex == 0:
       return tableView.frame.width
     case 1 where selectedTabIndex == 1:
