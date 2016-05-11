@@ -51,6 +51,8 @@
 		376F65791C7C9EDA0016071C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F65781C7C9EDA0016071C /* Comment.swift */; };
 		376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F657A1C7CA0B30016071C /* CommentViewModel.swift */; };
 		3778CA261BE2E40D003E5941 /* TrainingTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */; };
+		377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39151CE28BF800BF5ABC /* UserManger.swift */; };
+		377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39171CE3251800BF5ABC /* UserViewModel.swift */; };
 		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
@@ -168,6 +170,8 @@
 		376F65781C7C9EDA0016071C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		376F657A1C7CA0B30016071C /* CommentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipTableViewCell.swift; sourceTree = "<group>"; };
+		377C39151CE28BF800BF5ABC /* UserManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
+		377C39171CE3251800BF5ABC /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */,
 				37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */,
 				374A78421C977C99004D30AD /* LocalStorageHelper.swift */,
+				377C39151CE28BF800BF5ABC /* UserManger.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
 				3781B2741CD917B70059D841 /* ProgramViewModel.swift */,
+				377C39171CE3251800BF5ABC /* UserViewModel.swift */,
 			);
 			name = "View models";
 			sourceTree = "<group>";
@@ -839,6 +845,7 @@
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,
 				376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
+				377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */,
 				37AC2ADE1C7B5C1B007543F4 /* NumberFormatter.swift in Sources */,
 				375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */,
 				37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */,
@@ -876,6 +883,7 @@
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
 				379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */,
+				377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
