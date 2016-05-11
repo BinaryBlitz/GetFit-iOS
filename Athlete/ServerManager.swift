@@ -96,6 +96,35 @@ class ServerManager {
     }
   }
   
+  //MARK: - User
+  
+  func loadCurrentUser(completion: ((response: ServerResponse<User, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<User, ServerError>
+    
+    do {
+      let request = try get(ServerRoute.User.path)
+      request.validate().responseJSON { (response) in
+        switch response.result {
+        case .Success(let resultValue):
+          let json = JSON(resultValue)
+          if let user = User(json: json) {
+            completion?(response: Response(value: user))
+          } else {
+          completion?(response: Response(error: .InvalidData))
+          }
+        case .Failure(let error):
+          let serverError = ServerError(error: error)
+          completion?(response: Response(error: serverError))
+        }
+      }
+      
+      return request
+    } catch {
+      completion?(response: Response(error: .Unauthorized))
+      return nil
+    }
+  }
+  
   //MARK: - Login
   
   /// Creates verirfication token for login with phone number
