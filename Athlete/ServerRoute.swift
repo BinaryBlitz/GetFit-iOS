@@ -11,7 +11,7 @@ enum ServerRoute: String {
   case User = "user"
   case Users = "users"
   case Posts = "posts"
-  case Trainers = "trainer"
+  case Trainers = "trainers"
   case Statistics = "statistics"
   case Likes = "likes"
   case FBAuth = "user/authenticate_fb"

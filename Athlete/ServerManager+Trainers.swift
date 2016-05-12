@@ -12,13 +12,15 @@ import SwiftyJSON
 import RealmSwift
 
 //MARK: - Trainers
+
 extension ServerManager {
   
-  func fetchTrainers(completion: ((response: ServerResponse<[Trainer], ServerError>) -> Void)? = nil) -> Request? {
+    func fetchTrainersForCategory(category: TrainerCategory, completion: ((response: ServerResponse<[Trainer], ServerError>) -> Void)? = nil) -> Request? {
     typealias Response = ServerResponse<[Trainer], ServerError>
     
     do {
-      let request = try get(ServerRoute.Trainers.path)
+      let parameters = ["category": category.rawValue]
+      let request = try get(ServerRoute.Trainers.path, params: parameters)
       activityIndicatorVisible = true
       request.responseJSON { response in
         self.activityIndicatorVisible = false
@@ -36,6 +38,7 @@ extension ServerManager {
           
           completion?(response: Response(value: trainers))
         case .Failure(let error):
+          print(error)
           let response = Response(error: ServerError(error: error))
           completion?(response: response)
         }
