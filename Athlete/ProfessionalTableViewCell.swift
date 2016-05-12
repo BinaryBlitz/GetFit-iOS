@@ -11,6 +11,10 @@ import Haneke
 import PureLayout
 import Reusable
 
+protocol ProfessionalCellDelegate: class {
+  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
+}
+
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   
   enum ProfessionalCellState {
@@ -36,6 +40,8 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var followButtonBackground: UIView!
   @IBOutlet weak var followButtonIcon: UIImageView!
   @IBOutlet weak var followButtonLabel: UILabel!
+  
+  weak var delegate: ProfessionalCellDelegate?
   
   private var following: Bool = false {
     didSet {
@@ -69,8 +75,8 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   }
   
   func followButtonAction(sender: UIButton) {
-    //TODO: add follow request
     following = !following
+    delegate?.professionalCell(self, didChangeFollowingTo: following)
   }
   
   func updateFollowingStatus(following: Bool) {

@@ -133,6 +133,7 @@ extension ProfessionalsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     cell.state = .Card
+    cell.delegate = self
     
     return cell
   }
@@ -169,5 +170,15 @@ extension ProfessionalsViewController: ButtonStripViewDelegate {
     refresh()
     tableView.contentOffset = CGPoint.zero
     tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+  }
+}
+
+extension ProfessionalsViewController: ProfessionalCellDelegate {
+  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
+    guard let indexPath = tableView.indexPathForCell(cell), trainer = trainerAtIndexPath(indexPath) else {
+      return
+    }
+    
+    print("trainer: \(trainer.firstName)")
   }
 }
