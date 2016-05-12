@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureNavigationBar()
     configureServerManager()
     configureTabBar()
-    configureTestDb()
     
     let serverManager = ServerManager.sharedManager
     if !serverManager.authenticated {
@@ -37,109 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     return true
-  }
-  
-  //MARK: - Test db
-  
-  func configureTestDb() {
-    try! dropDb()
-    
-    let realm = try! Realm()
-    
-    let trainer = Trainer()
-    trainer.id = 1
-    trainer.firstName = "Dan"
-    trainer.lastName = "Shevlyuk"
-    trainer.avatarURLString = "https://pbs.twimg.com/media/Cb0cYOjXIAEVP9p.jpg"
-    
-    var trainers = [Trainer]()
-    for i in 1...30 {
-      let newTrainer = Trainer()
-      newTrainer.id = i + 1
-      newTrainer.firstName = "dude#\(i)"
-      newTrainer.avatarURLString = "https://robohash.org/dude\(newTrainer.id).jpg"
-      switch i % 3 {
-      case 0:
-        newTrainer.category = .Coach
-      case 1:
-        newTrainer.category = .Doctor
-      default:
-        newTrainer.category = .Nutritionist
-      }
-      trainers.append(newTrainer)
-    }
-    
-    
-    let user = User()
-    user.id = 1
-    user.gender = .Male
-    user.firstName = "Awesome"
-    user.lastName = "Dude"
-    
-    var programs = [Program]()
-    for i in 1...5 {
-      let program = Program()
-      program.id = i
-      program.name = "Awesome program #\(i)"
-      program.programDescription = "Исследование указанной связи должно опираться на тот факт, что математический горизонт прочно прекращает космический азимут. Кряж недоступно пододвигается под керн. Габбро, в первом приближении, деформирует далекий лимб. Метеорный дождь покрывает голоцен."
-      program.bannerURLString = "https://pbs.twimg.com/media/Chb_PkNU0AAR7cv.jpg:large"
-      switch i % 2 {
-      case 0:
-        program.type = .Running
-      default:
-        program.type = .Cardio
-      }
-      
-      program.trainer = trainer
-      programs.append(program)
-    }
-    
-    var posts = [Post]()
-    for i in 1...100 {
-      let post = Post()
-      post.id = i
-      post.content = "Hello world \(i)"
-      
-      if i % 3 == 0 {
-        post.content = "Исследование указанной связи должно опираться на тот факт, что математический горизонт прочно прекращает космический азимут. Кряж недоступно пододвигается под керн. Габбро, в первом приближении, деформирует далекий лимб. Метеорный дождь покрывает голоцен."
-      }
-      
-      post.program = programs.first
-      
-//      if i % 3 == 0 && i % 5 == 0 {
-//        post.imageURLString = "https://pbs.twimg.com/media/Cb2nfVhWwAAOv8t.jpg"
-//      }
-      post.trainer = trainer
-      post.commentsCount = 50
-      post.likesCount = 100
-      posts.append(post)
-      
-      if i != 1 {
-        for j in 1...7 {
-          let comment = Comment()
-          comment.id = j + i * 7
-          comment.content = "kek \(j)"
-          comment.author = user
-          post.comments.append(comment)
-        }
-      }
-    }
-    
-    
-    try! realm.write {
-      realm.add(trainer)
-      realm.add(trainers)
-      realm.add(user)
-      realm.add(programs)
-      realm.add(posts)
-    }
-  }
-  
-  private func dropDb() throws {
-    let realm = try Realm()
-    try realm.write {
-      realm.deleteAll()
-    }
   }
   
   //MARK: - App configuration
