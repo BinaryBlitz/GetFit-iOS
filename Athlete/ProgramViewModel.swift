@@ -14,11 +14,11 @@ struct ProgramViewModel {
 
 extension ProgramViewModel: TrainerPresentable {
   var trainerAvatarURL: NSURL? {
-    guard let trainer = program.trainer else {
+    guard let trainer = program.trainer, avatarURLString = trainer.avatarURLString else {
       return nil
     }
     
-    return NSURL(string: trainer.avatarURLString)
+    return NSURL(string: avatarURLString)
   }
   
   var trainerName: String {

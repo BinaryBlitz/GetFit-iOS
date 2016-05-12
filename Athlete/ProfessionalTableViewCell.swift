@@ -98,13 +98,14 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
       programsBadge.text = trainer.category.rawValue.uppercaseString
     }
     
-    let avatarURL = NSURL(string: trainer.avatarURLString)
-    let bannerURL = NSURL(string: "https://pbs.twimg.com/media/Cc3s9UQVIAA0IWP.jpg")
-    if let url = avatarURL {
-      avatarImageView.hnk_setImageFromURL(url)
+    if let avatarURLString = trainer.avatarURLString,
+          avatarURL = NSURL(string: avatarURLString) {
+      avatarImageView.hnk_setImageFromURL(avatarURL)
     }
-    if let url = bannerURL {
-      bannerImageView.hnk_setImageFromURL(url)
+    
+    if let bannerURLString = trainer.bannerURLString,
+        bannerURL = NSURL(string: bannerURLString) {
+      bannerImageView.hnk_setImageFromURL(bannerURL)
     }
     
     self.state = state

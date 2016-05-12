@@ -54,7 +54,8 @@ extension PostViewModel: TextPresentable {
 extension PostViewModel: TrainerPresentable {
   var trainerAvatarURL: NSURL? {
     guard let trainer = post.trainer,
-        url = NSURL(string: trainer.avatarURLString) else {
+        avatarURLString = trainer.avatarURLString,
+        url = NSURL(string: avatarURLString) else {
       return nil
     }
     
