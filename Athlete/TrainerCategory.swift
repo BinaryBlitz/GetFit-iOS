@@ -7,8 +7,8 @@
 //
 
 enum TrainerCategory: String {
-  case Coach = "coach"
-  case Doctor = "doctor"
+  case Coach = "trainer"
+  case Doctor = "physician"
   case Nutritionist = "nutritionist"
   
   func pluralName() -> String {
