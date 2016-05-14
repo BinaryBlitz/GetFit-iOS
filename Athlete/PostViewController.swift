@@ -11,7 +11,7 @@ import RealmSwift
 
 class PostViewController: UIViewController {
 
-  var post: Post?
+  var post: Post!
   
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
@@ -37,6 +37,8 @@ class PostViewController: UIViewController {
       commentTextField.becomeFirstResponder()
       shouldShowKeyboadOnOpen = false
     }
+    
+    fetchComments()
   }
 
   func setUpKeyboard() {
@@ -105,6 +107,31 @@ class PostViewController: UIViewController {
 
   func dismissKeyboard(sender: AnyObject) {
      view.endEditing(true)
+  }
+  
+  //MARK: - Server stuff
+  
+  func fetchComments() {
+    ServerManager.sharedManager.commentsFotPostWithId(post.id) { response in
+      switch response.result {
+      case .Success(let comments):
+        
+        // save comments
+        let realm = try! Realm()
+        try! realm.write {
+          self.post.comments.removeAll()
+          realm.add(comments, update: true)
+          comments.forEach { comment in
+            self.post.comments.append(comment)
+          }
+        }
+        
+        // update comments section
+        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+      case .Failure(let error):
+        print("error in fetchComments: \(error)")
+      }
+    }
   }
 }
 

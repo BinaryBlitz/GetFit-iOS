@@ -88,4 +88,30 @@ extension ServerManager {
     
     return nil
   }
+  
+  func commentsFotPostWithId(postId: Int, completion: ((response: ServerResponse<[Comment], ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<[Comment], ServerError>
+    
+    do {
+      let request = try get(ServerRoute.Posts.pathWith(String(postId)) + "/\(ServerRoute.Comments.rawValue)")
+      request.validate().responseJSON { (response) in
+        switch response.result {
+        case .Success(let responseValue):
+          let json = JSON(responseValue)
+          let comments = json.flatMap { (_, commentJSON) -> Comment? in
+            return Comment(json: commentJSON)
+          }
+        
+          completion?(response: Response(value: comments))
+        case .Failure(let error):
+          completion?(response: Response(error: ServerError(error: error)))
+        }
+      }
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
+  }
 }
