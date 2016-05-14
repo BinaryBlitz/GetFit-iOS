@@ -17,6 +17,7 @@ class PostViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var commentTextField: UITextField!
   @IBOutlet weak var commentFieldCard: UIView!
+  @IBOutlet weak var sendCommentButton: UIButton!
   
   var shouldShowKeyboadOnOpen = false
   
@@ -126,12 +127,33 @@ class PostViewController: UIViewController {
           }
         }
         
-        // update comments section
-        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.reloadCommentsSection()
       case .Failure(let error):
         print("error in fetchComments: \(error)")
       }
     }
+  }
+  
+  @IBAction func createCommentButtonAction(sender: AnyObject) {
+    guard let content = commentTextField.text else { return }
+    sendCommentButton.userInteractionEnabled = false
+    let comment = Comment()
+    comment.content = content
+    ServerManager.sharedManager.createComment(comment, forPostWithId: post.id) { (response) in
+      self.sendCommentButton.userInteractionEnabled = true
+      switch response.result {
+      case .Success(_):
+        self.commentTextField.text = nil
+        self.fetchComments()
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithMessage("Ну удалось отправить комментарий")
+      }
+    }
+  }
+  
+  func reloadCommentsSection() {
+    tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
   }
 }
 

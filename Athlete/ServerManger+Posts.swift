@@ -114,4 +114,28 @@ extension ServerManager {
     
     return nil
   }
+  
+  func createComment(comment: Comment, forPostWithId postId: Int, completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Bool, ServerError>
+    
+    do {
+      let parameters = ["comment": ["content": comment.content]]
+      activityIndicatorVisible = true
+      let request = try post(ServerRoute.Posts.pathWith(String(postId)) + "/\(ServerRoute.Comments.rawValue)", params: parameters)
+      request.validate().responseJSON { (response) in
+        self.activityIndicatorVisible = false
+        switch response.result {
+        case .Success(_):
+          completion?(response: Response(value: true))
+        case .Failure(let error):
+          completion?(response: Response(error: ServerError(error: error)))
+        }
+      }
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
+  }
 }
