@@ -36,15 +36,19 @@ extension ProgramViewModel: ProgramPresentable {
   }
   
   var price: String {
-    return "free"
+    if program.price == 0 {
+      return "free"
+    }
+    
+    return "$\(program.price)"
   }
   
   var category: String {
-    return program.type.rawValue
+    return program.type
   }
   
   var exercisesCount: String {
-    return "10 exercises"
+    return "\(program.workoutsCount) workouts"
   }
   
   var description: String {
@@ -60,7 +64,7 @@ extension ProgramViewModel: ProgramPresentable {
   }
   
   var duration: String {
-    return "40 MIN"
+    return "\(program.duration) MIN"
   }
   
   var bannerURL: NSURL? {

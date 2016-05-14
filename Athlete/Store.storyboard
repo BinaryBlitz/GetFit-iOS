@@ -9,7 +9,7 @@
         <scene sceneID="fCc-4T-24h">
             <objects>
                 <tableViewController id="ikW-lv-FdO" customClass="StoreTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="168" sectionHeaderHeight="18" sectionFooterHeight="18" id="ENL-xJ-VW2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="168" sectionHeaderHeight="1" sectionFooterHeight="1" id="ENL-xJ-VW2">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,7 +61,7 @@
                                 <rect key="frame" x="0.0" y="222" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

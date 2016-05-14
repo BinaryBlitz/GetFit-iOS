@@ -13,7 +13,7 @@ import Reusable
 
 class StoreTableViewController: UITableViewController {
 
-  var programs: Results<Program>?
+  var programs = [Program]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,12 +30,13 @@ class StoreTableViewController: UITableViewController {
     tableView.registerReusableCell(ProgramTableViewCell)
     
     tableView.backgroundView = createBackgroundView()
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 400
+    tableView.rowHeight = 320
     
-    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
-    headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.tableHeaderView = headerView
+    let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
+    header.backgroundColor = UIColor.clearColor()
+    tableView.tableHeaderView = header
+    
+    refresh()
     
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
@@ -63,38 +64,45 @@ class StoreTableViewController: UITableViewController {
   
   func fetchPrograms() {
     let realm = try! Realm()
-    //TODO: add programs sorting
-    programs = realm.objects(Program)
+    programs = Array(realm.objects(Program).sorted("usersCount"))
   }
   
   //MARK: - Refresh
   
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
-      self.fetchPrograms()
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    completion()
+    ServerManager.sharedManager.fetchPrograms { (response) in
+      switch response.result {
+      case .Success(let programs):
+        self.programs = programs
+        let realm = try! Realm()
+        try! realm.write {
+          realm.add(programs, update: true)
+        }
+      case .Failure(let error):
+        print(error)
+      }
+      completion()
+    }
   }
   
   //MARK: - TableView DataSource and Delegate
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let numberOfRows = programs?.count ?? 0
+    let numberOfRows = programs.count
     tableView.backgroundView?.hidden = numberOfRows != 0
     
     return numberOfRows
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let program = programs?[indexPath.row] else {
-      return UITableViewCell()
-    }
-    
+    let program = programs[indexPath.row]
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
     cell.configureWith(ProgramViewModel(program: program))
     cell.state = .Card
@@ -110,20 +118,19 @@ class StoreTableViewController: UITableViewController {
   // MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    guard let identifier = segue.identifier else {
-      return
-    }
-    
+    guard let identifier = segue.identifier else { return }
     switch identifier {
     case "programDetails":
       let destination = segue.destinationViewController as! ProgramDetailsTableViewController
       let indexPath = sender as! NSIndexPath
-      destination.program = programs?[indexPath.row]
+      destination.program = programs[indexPath.row]
     default:
       break
     }
   }
 }
+
+//MARK: - ProgramCellDelegate
 
 extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
