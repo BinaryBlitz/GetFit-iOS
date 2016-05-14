@@ -38,7 +38,6 @@ class PhoneLoginTableViewController: UITableViewController {
   
   private func setUpPhoneNumberTextField() {
     phoneNumberTextField.placeholder = "8 926 123-45-67"
-    phoneNumberTextField.region = "RU"
   }
   
   //MARK: - Actions
