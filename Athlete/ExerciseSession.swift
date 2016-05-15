@@ -11,13 +11,14 @@ import RealmSwift
 class ExerciseSession: Object {
   
   dynamic var id: Int = 0
-  dynamic var exercise: Exercise?
-  
   dynamic var completed: Bool = false
   dynamic var reps: Int = 0
   dynamic var distance: Int = 0
   dynamic var sets: Int = 0
   dynamic var weight: Int = 0
+  dynamic var name: String = ""
+  dynamic var exersiceDescription: String = ""
+  dynamic var videoURLString: String = ""
   
   override static func primaryKey() -> String? {
     return "id"

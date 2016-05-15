@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EditExerciseViewControllerDelegate {
-  func didUpdateValueForExercise(exercise: Exercise)
+  func didUpdateValueForExercise(exercise: ExerciseSession)
 }
 
 class EditExerciseTableViewController: UITableViewController {
@@ -19,7 +19,7 @@ class EditExerciseTableViewController: UITableViewController {
     case Repetitions
   }
 
-  var exercise: Exercise!
+  var exercise: ExerciseSession!
   var editType: EditType = .Weight
   var delegate: EditExerciseViewControllerDelegate?
   @IBOutlet weak var pickerView: UIPickerView!
@@ -32,7 +32,7 @@ class EditExerciseTableViewController: UITableViewController {
     if editType == .Weight {
       pickerView.selectRow(Int(exercise.weight ?? 1) / 10, inComponent: 0, animated: true)
     } else {
-      pickerView.selectRow(Int(exercise.repetitions ?? 1), inComponent: 0, animated: true)
+      pickerView.selectRow(Int(exercise.reps ?? 1), inComponent: 0, animated: true)
     }
     
   }
@@ -40,9 +40,9 @@ class EditExerciseTableViewController: UITableViewController {
   @IBAction func doneButtonAction(sender: AnyObject) {
     let selectedRow = pickerView.selectedRowInComponent(0)
     if editType == .Weight {
-      exercise.weight = Double(selectedRow * 10)
+      exercise.weight = Int(selectedRow * 10)
     } else {
-      exercise.repetitions = selectedRow
+      exercise.reps = selectedRow
     }
     
     delegate?.didUpdateValueForExercise(exercise)

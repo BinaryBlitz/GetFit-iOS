@@ -22,7 +22,7 @@ class ExerciseViewController: UIViewController {
   
   @IBOutlet weak var endExerciseButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
-  var exercise: Exercise!
+  var exercise: ExerciseSession!
 
   var videos = [Video]()
   
@@ -85,7 +85,6 @@ extension ExerciseViewController: UITableViewDataSource {
     case 0:
       let cell = tableView.dequeueReusableCellWithIdentifier("infoCell") as! ExerciseInfoTableViewCell
       let session = ExerciseSession()
-      session.exercise = exercise
       session.reps = 10
 //      session.weight = 100
 //      session.distance = 500

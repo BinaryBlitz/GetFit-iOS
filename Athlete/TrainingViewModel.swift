@@ -9,20 +9,21 @@
 import Foundation
 
 struct TrainingViewModel {
-  let training: Training
+  let training: WorkoutSession
 }
 
 extension TrainingViewModel: TrainingPresentable {
+  
   var trainingTitle: String {
     return training.name
   }
   
-  var trainingCategory: String {
-    return training.type.rawValue.capitalizedString
+  var trainingInfo: String {
+    return training.name
   }
   
   var trainingExercisesCount: String {
-    return "\(training.exercises.count) exercises"
+    return "\(training.exercisesCount) exercises"
   }
   
   var trainingDurationString: String {

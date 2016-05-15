@@ -17,7 +17,7 @@ class TrainingViewController: UIViewController {
   @IBOutlet weak var trainingStatusLabel: UICountingLabel!
   @IBOutlet weak var endTrainingButton: UIButton!
   
-  var training: Training!
+  var training: WorkoutSession!
   
   var finishedExercises: [ExerciseSession]!
   var exercisesToDo: [ExerciseSession]!
@@ -29,25 +29,8 @@ class TrainingViewController: UIViewController {
     trainingStatusLabel.text = "0%"
     
     //TODO: add test data
-    finishedExercises = training.exercises.filter { $0.finished }.map { exercise -> ExerciseSession in
-      let session = ExerciseSession()
-      session.exercise = exercise
-      session.distance = exercise.distance
-      session.reps = exercise.repetitions
-      session.completed = exercise.finished
-      
-      return session
-    }
-    
-    exercisesToDo = training.exercises.filter { !($0.finished) }.map { exercise -> ExerciseSession in
-      let session = ExerciseSession()
-      session.exercise = exercise
-      session.distance = exercise.distance
-      session.reps = exercise.repetitions
-      session.completed = exercise.finished
-      
-      return session
-    }
+    finishedExercises = Array(training.exercises)
+    exercisesToDo = Array(training.exercises)
     
     updateCompleteStatus()
    
@@ -105,7 +88,7 @@ class TrainingViewController: UIViewController {
       break
     case "exerciseInfo":
       let destination = segue.destinationViewController as! ExerciseViewController
-      let exercise = sender as! Exercise
+      let exercise = sender as! ExerciseSession
       destination.exercise = exercise
     case "editExercise":
       let destinationNavController = segue.destinationViewController as! UINavigationController
@@ -289,10 +272,10 @@ extension TrainingViewController: ExerciseCellDelegate {
   class EditExerciseData {
     typealias EditType = EditExerciseTableViewController.EditType
     
-    var exercise: Exercise
+    var exercise: ExerciseSession
     var editType: EditType
     
-    init(exercise: Exercise, editType: EditType) {
+    init(exercise: ExerciseSession, editType: EditType) {
       self.exercise = exercise
       self.editType = editType
     }
@@ -323,7 +306,7 @@ extension TrainingViewController: ExerciseCellDelegate {
 }
 
 extension TrainingViewController: EditExerciseViewControllerDelegate {
-  func didUpdateValueForExercise(exercise: Exercise) {
+  func didUpdateValueForExercise(exercise: ExerciseSession) {
     tableView.reloadData()
   }
 }

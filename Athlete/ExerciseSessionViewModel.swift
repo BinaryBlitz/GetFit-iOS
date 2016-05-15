@@ -12,7 +12,7 @@ struct ExerciseSessionViewModel {
 
 extension ExerciseSessionViewModel: ExerciseSessionPresentable {
   var exerciseName: String {
-    return exerciseSession.exercise?.name ?? ""
+    return exerciseSession.name ?? ""
   }
   
   var repetitions: String? {

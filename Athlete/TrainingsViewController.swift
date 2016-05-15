@@ -12,11 +12,7 @@ import Reusable
 
 class TrainingsViewController: UIViewController {
   
-  var trainings = [
-    Training(name: "Training1", type: .Cardio, duration: 40, date: NSDate()),
-    Training(name: "Training2", type: .Running, duration: 20, date: NSDate()),
-    Training(name: "Training3", type: .Football, duration: 50, date: NSDate())
-  ]
+  var trainings = [WorkoutSession]()
   
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
@@ -25,6 +21,8 @@ class TrainingsViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   @IBOutlet weak var calendarView: CVCalendarView!
+  
+  var refreshControl: UIRefreshControl?
   
   enum CalendarState {
     case Opened
@@ -82,19 +80,6 @@ class TrainingsViewController: UIViewController {
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
-    
-//    tableView.tableFooterView = UIView()
-    tableView.registerReusableCell(TrainingTableViewCell)
-    
-    //add test data
-    for training in trainings {
-      training.exercises = [
-        Exercise(name: "Pushups", repetitions: 4, weight: 80),
-        Exercise(name: "Turns", repetitions: 5, weight: 80),
-        Exercise(name: "Power Ups", repetitions: 3, weight: 60),
-        Exercise(name: "Body Blast", repetitions: 8, weight:  30)
-      ]
-    }
   }
   
   override func viewDidLayoutSubviews() {
@@ -116,6 +101,31 @@ class TrainingsViewController: UIViewController {
     if let tabBarController = tabBarController {
       tabBarController.tabBar.tintColor = UIColor.whiteColor()
     }
+  }
+  
+  //MARK: - Setup
+  func setupTableView() {
+    
+    tableView.registerReusableCell(TrainingTableViewCell)
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    completion()
   }
   
   //MARK: - Actions

@@ -36,7 +36,7 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
     
     let infoFontSize: CGFloat = 15
     let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
-    let infoString = NSMutableAttributedString(string:viewModel.trainingCategory.capitalizedString, attributes:boldTextAttrebutes)
+    let infoString = NSMutableAttributedString(string:viewModel.trainingInfo, attributes:boldTextAttrebutes)
     let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
     infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.trainingExercisesCount)", attributes: plainTextAttrebutes))
     infoLabel.attributedText = infoString
