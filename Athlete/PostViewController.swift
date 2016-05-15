@@ -24,8 +24,8 @@ class PostViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    setUpKeyboard()
-    setUpTableView()
+    setupKeyboard()
+    setupTableView()
     
     commentFieldCard.layer.borderColor = UIColor.graySecondaryColor().colorWithAlphaComponent(0.2).CGColor
     commentFieldCard.layer.borderWidth = 1
@@ -41,8 +41,10 @@ class PostViewController: UIViewController {
     
     fetchComments()
   }
+  
+  //MARK: - Setup methods
 
-  func setUpKeyboard() {
+  func setupKeyboard() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
                                    name: UIKeyboardWillShowNotification, object: nil)
@@ -53,7 +55,7 @@ class PostViewController: UIViewController {
     view.addGestureRecognizer(tapGesture)
   }
   
-  func setUpTableView() {
+  func setupTableView() {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
@@ -64,13 +66,108 @@ class PostViewController: UIViewController {
     tableView.registerNib(commentCellNib, forCellReuseIdentifier: "commentCell")
   }
   
+  //MARK: - Server stuff
+  
+  func fetchComments() {
+    ServerManager.sharedManager.commentsFotPostWithId(post.id) { response in
+      switch response.result {
+      case .Success(let comments):
+        
+        // save comments
+        let realm = try! Realm()
+        try! realm.write {
+          self.post.comments.removeAll()
+          realm.add(comments, update: true)
+          comments.forEach { comment in
+            self.post.comments.append(comment)
+          }
+        }
+        
+        self.reloadCommentsSection()
+      case .Failure(let error):
+        print("error in fetchComments: \(error)")
+      }
+    }
+  }
+  
+  //MARK: - Actions
+  
+  @IBAction func createCommentButtonAction(sender: AnyObject) {
+    guard let content = commentTextField.text else { return }
+    sendCommentButton.userInteractionEnabled = false
+    let comment = Comment()
+    comment.content = content
+    ServerManager.sharedManager.createComment(comment, forPostWithId: post.id) { (response) in
+      self.sendCommentButton.userInteractionEnabled = true
+      switch response.result {
+      case .Success(_):
+        self.commentTextField.text = nil
+        self.fetchComments()
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithMessage("Ну удалось отправить комментарий")
+      }
+    }
+  }
+  
+  //MARK: - Tools
+  
+  func reloadCommentsSection() {
+    tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+  }
+  
   func scrollToBottom() {
     let numberOfRows = tableView.numberOfRowsInSection(1)
     let indexPath = NSIndexPath(forRow: numberOfRows - 1, inSection: 1)
     tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
   }
+}
 
-  //MARK: - Keyboard events
+extension PostViewController: UITableViewDataSource {
+  
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 2
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    switch section {
+    case 0:
+      return 1
+    case 1:
+      return post.comments.count
+    default:
+      return 0
+    }
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    switch indexPath.section {
+    case 0:
+      guard let post = post else { return UITableViewCell() }
+      let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
+      
+      cell.configureWith(PostViewModel(post: post))
+      cell.displayAsPreview = false
+      cell.state = .Normal
+      
+      return cell
+    case 1:
+      guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
+      let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! PostCommentTableViewCell
+      
+      cell.configureWith(CommentViewModel(comment: comment))
+      
+      return cell
+    default:
+      return UITableViewCell()
+    }
+  }
+}
+
+//MARK: - Keyboard events
+
+extension PostViewController {
+  
   func keyboardWillShow(notification: NSNotification) {
     guard let userInfo = notification.userInfo else {
       return
@@ -108,97 +205,6 @@ class PostViewController: UIViewController {
 
   func dismissKeyboard(sender: AnyObject) {
      view.endEditing(true)
-  }
-  
-  //MARK: - Server stuff
-  
-  func fetchComments() {
-    ServerManager.sharedManager.commentsFotPostWithId(post.id) { response in
-      switch response.result {
-      case .Success(let comments):
-        
-        // save comments
-        let realm = try! Realm()
-        try! realm.write {
-          self.post.comments.removeAll()
-          realm.add(comments, update: true)
-          comments.forEach { comment in
-            self.post.comments.append(comment)
-          }
-        }
-        
-        self.reloadCommentsSection()
-      case .Failure(let error):
-        print("error in fetchComments: \(error)")
-      }
-    }
-  }
-  
-  @IBAction func createCommentButtonAction(sender: AnyObject) {
-    guard let content = commentTextField.text else { return }
-    sendCommentButton.userInteractionEnabled = false
-    let comment = Comment()
-    comment.content = content
-    ServerManager.sharedManager.createComment(comment, forPostWithId: post.id) { (response) in
-      self.sendCommentButton.userInteractionEnabled = true
-      switch response.result {
-      case .Success(_):
-        self.commentTextField.text = nil
-        self.fetchComments()
-      case .Failure(let error):
-        print(error)
-        self.presentAlertWithMessage("Ну удалось отправить комментарий")
-      }
-    }
-  }
-  
-  func reloadCommentsSection() {
-    tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-  }
-}
-
-extension PostViewController: UITableViewDataSource {
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 2
-  }
-  
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch section {
-    case 0:
-      return 1
-    case 1:
-      return post?.comments.count ?? 0
-    default:
-      return 0
-    }
-  }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    switch indexPath.section {
-    case 0:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell,
-          post = post else {
-        return UITableViewCell()
-      }
-      
-      cell.configureWith(PostViewModel(post: post))
-      cell.displayAsPreview = false
-      cell.state = .Normal
-      
-      return cell
-    case 1:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as? PostCommentTableViewCell,
-          comment = post?.comments[indexPath.row] else {
-        return UITableViewCell()
-      }
-      
-      cell.configureWith(CommentViewModel(comment: comment))
-      
-      return cell
-    default:
-      return UITableViewCell()
-    }
   }
 }
 
