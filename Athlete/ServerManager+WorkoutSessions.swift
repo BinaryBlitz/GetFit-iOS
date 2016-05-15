@@ -1,5 +1,5 @@
 //
-//  ServerManager+Workouts.swift
+//  ServerManager+WorkoutSessions.swift
 //  Athlete
 //
 //  Created by Dan Shevlyuk on 15/05/2016.
@@ -11,11 +11,11 @@ import SwiftyJSON
 
 extension ServerManager {
   
-  func fetchWorkouts(completion: ((response: ServerResponse<[Workout], ServerError>) -> Void)? = nil) -> Request? {
-    typealias Response = ServerResponse<[Workout], ServerError>
+  func fetchWorkoutSessions(completion: ((response: ServerResponse<[WorkoutSession], ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<[WorkoutSession], ServerError>
     
     do {
-      let request = try get(ServerRoute.Workouts.path)
+      let request = try get(ServerRoute.WorkoutSessions.path)
       activityIndicatorVisible = true
       request.responseJSON { response in
         self.activityIndicatorVisible = false
@@ -23,11 +23,11 @@ extension ServerManager {
         case .Success(let resultValue):
           let json = JSON(resultValue)
           print(json)
-          let workouts = json.flatMap { (_, workoutJSON) -> Workout? in
-            return Workout(json: workoutJSON)
+          let sessions = json.flatMap { (_, workoutSessionJSON) -> WorkoutSession? in
+            return WorkoutSession(json: workoutSessionJSON)
           }
           
-          completion?(response: Response(value: workouts))
+          completion?(response: Response(value: sessions))
         case .Failure(let error):
           print(error)
           let response = Response(error: ServerError(error: error))

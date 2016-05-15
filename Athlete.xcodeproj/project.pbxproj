@@ -64,6 +64,8 @@
 		378C17431CE8A8E600B3FAED /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17421CE8A8E600B3FAED /* Workout.swift */; };
 		378C17451CE8A8F600B3FAED /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17441CE8A8F600B3FAED /* WorkoutSession.swift */; };
 		378C17471CE8FE0B00B3FAED /* ServerManager+Workouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17461CE8FE0B00B3FAED /* ServerManager+Workouts.swift */; };
+		378C17491CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17481CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift */; };
+		378C174B1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C174A1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift */; };
 		379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */; };
 		379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */; };
 		379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */; };
@@ -189,6 +191,8 @@
 		378C17421CE8A8E600B3FAED /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		378C17441CE8A8F600B3FAED /* WorkoutSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
 		378C17461CE8FE0B00B3FAED /* ServerManager+Workouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Workouts.swift"; sourceTree = "<group>"; };
+		378C17481CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSessionsTableViewController.swift; sourceTree = "<group>"; };
+		378C174A1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+WorkoutSessions.swift"; sourceTree = "<group>"; };
 		379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseInfoTableViewCell.swift; sourceTree = "<group>"; };
 		379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseParamsView.swift; sourceTree = "<group>"; };
 		379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseParamsView.xib; sourceTree = "<group>"; };
@@ -425,6 +429,7 @@
 				377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */,
 				377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */,
 				378C17461CE8FE0B00B3FAED /* ServerManager+Workouts.swift */,
+				378C174A1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift */,
 				379E912A1C95F47D00D96175 /* ServerResponse.swift */,
 				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
@@ -549,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				37E4A4531BDF8739004193BF /* TrainingsViewController.swift */,
+				378C17481CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift */,
 				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
 				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
 				37821F521BE1699500149523 /* TrainingViewController.swift */,
@@ -849,9 +855,11 @@
 				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,
 				37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */,
+				378C174B1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
+				378C17491CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift in Sources */,
 				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
 				379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */,
 				37A53C3F1BDE527F00D1DA70 /* AppDelegate.swift in Sources */,

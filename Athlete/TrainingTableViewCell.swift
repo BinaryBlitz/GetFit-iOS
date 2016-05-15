@@ -34,12 +34,7 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
   func configureWith(viewModel: TrainingPresentable) {
     titleLabel.text = viewModel.trainingTitle
     
-    let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
-    let infoString = NSMutableAttributedString(string:viewModel.trainingInfo, attributes:boldTextAttrebutes)
-    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
-    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.trainingExercisesCount)", attributes: plainTextAttrebutes))
-    infoLabel.attributedText = infoString
+    updateInfoLabelWithTitle(viewModel.trainingInfo, andSubtitle: "\(viewModel.trainingExercisesCount) exercises")
     
     if let dateBadge = badgesStackView.arrangedSubviews.first as? BadgeView {
       dateBadge.text = viewModel.trainingDateString
@@ -48,5 +43,31 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
     if let durationBadge = badgesStackView.arrangedSubviews.last as? BadgeView {
       durationBadge.text = viewModel.trainingDurationString
     }
+  }
+  
+  private func updateInfoLabelWithTitle(title: String, andSubtitle subtitle: String) {
+    let infoFontSize: CGFloat = 15
+    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
+    let infoString = NSMutableAttributedString(string: title, attributes:boldTextAttrebutes)
+    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
+    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(subtitle)", attributes: plainTextAttrebutes))
+    infoLabel.attributedText = infoString
+  }
+  
+  //FIXME: 😢😭
+  func configureWith(workout: Workout) {
+    titleLabel.text = workout.programName
+    updateInfoLabelWithTitle(workout.name, andSubtitle: "\(workout.exercisesCount) exercises")
+    
+    //remove all badges
+    for subview in badgesStackView.arrangedSubviews {
+      badgesStackView.removeArrangedSubview(subview)
+      subview.removeFromSuperview()
+    }
+    
+    let durationBadge = BadgeView()
+    durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
+    durationBadge.text = "\(workout.duration) MIN"
+    badgesStackView.addArrangedSubview(durationBadge)
   }
 }

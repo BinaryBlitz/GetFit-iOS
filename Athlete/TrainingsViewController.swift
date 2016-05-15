@@ -159,6 +159,12 @@ class TrainingsViewController: UIViewController {
     }
   }
   
+  @IBAction func addWorkoutSessionsButtonAction(sender: UIButton) {
+    let createWorkoutSessionsViewController = CreateWorkoutSessionsTableViewController(style: .Grouped)
+    let navigation = UINavigationController(rootViewController: createWorkoutSessionsViewController)
+    presentViewController(navigation, animated: true, completion: nil)
+  }
+  
   //MARK: - Navigation
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

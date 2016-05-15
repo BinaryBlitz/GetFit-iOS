@@ -98,7 +98,11 @@
                                 <constraint firstItem="I3q-Kc-UKm" firstAttribute="centerX" secondItem="gFL-FH-GF2" secondAttribute="centerX" id="YZU-EL-Iom"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="Add" id="Umi-GN-rgD"/>
+                        <barButtonItem key="rightBarButtonItem" image="Add" id="Umi-GN-rgD">
+                            <connections>
+                                <action selector="addWorkoutSessionsButtonAction:" destination="qIZ-am-TBk" id="CdK-h4-ouE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calendarMenuView" destination="n46-x0-NcM" id="bU9-BQ-4xu"/>

@@ -35,12 +35,37 @@ class Workout: Object, JSONSerializable {
   required init?(json: JSON) {
     super.init()
     
-    guard let id = json["id"].int, name = json["name"].string else {
+    guard let id = json["id"].int else {
       return nil
     }
     
     self.id = id
-    self.name = name
+    
+    if let name = json["name"].string {
+      self.name = name
+    } else {
+      self.name = "workout name"
+    }
+    
+    if let exercisesCount = json["exercises_count"].int {
+      self.exercisesCount = exercisesCount
+    }
+    
+    if let programId = json["program"]["id"].int {
+      self.programId = programId
+    }
+    
+    if let programName = json["program"]["name"].string {
+      self.programName = programName
+    }
+    
+    if let position = json["position"].int {
+      self.position = position
+    }
+    
+    if let duration = json["duration"].int {
+      self.duration = duration
+    }
   }
   
 }
