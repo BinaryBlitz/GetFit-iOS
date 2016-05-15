@@ -13,6 +13,8 @@ enum ServerRoute: String {
   case Posts = "posts"
   case Trainers = "trainers"
   case Statistics = "statistics"
+  case Workouts = "workouts"
+  case WorkoutSessions = "workout_sessions"
   case Comments = "comments"
   case Programs = "programs"
   case Likes = "likes"

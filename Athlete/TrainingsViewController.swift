@@ -9,6 +9,7 @@
 import UIKit
 import CVCalendar
 import Reusable
+import RealmSwift
 
 class TrainingsViewController: UIViewController {
   
@@ -80,6 +81,10 @@ class TrainingsViewController: UIViewController {
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
+    setupTableView()
+    
+    let realm = try! Realm()
+    trainings = Array(realm.objects(WorkoutSession).sorted("date"))
   }
   
   override func viewDidLayoutSubviews() {
@@ -94,6 +99,8 @@ class TrainingsViewController: UIViewController {
     if let tabBarController = tabBarController {
       tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
     }
+    
+    refresh()
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -104,6 +111,7 @@ class TrainingsViewController: UIViewController {
   }
   
   //MARK: - Setup
+  
   func setupTableView() {
     
     tableView.registerReusableCell(TrainingTableViewCell)
@@ -119,13 +127,22 @@ class TrainingsViewController: UIViewController {
   
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
-      self.tableView.reloadData()
+      self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
       self.refreshControl?.endRefreshing()
     }
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    completion()
+    ServerManager.sharedManager.fetchWorkoutSessions { (response) in
+      switch response.result {
+      case .Success(let workoutSessions):
+        self.trainings = workoutSessions
+        completion()
+      case .Failure(let error):
+        self.presentAlertWithMessage(String(error))
+        completion()
+      }
+    }
   }
   
   //MARK: - Actions
