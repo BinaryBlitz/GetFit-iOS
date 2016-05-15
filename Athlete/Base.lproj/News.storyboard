@@ -81,16 +81,20 @@
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lq9-R8-ygu">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="27" id="etF-4F-mi4"/>
+                                            <constraint firstAttribute="width" constant="27" id="etF-4F-mi4">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                            </constraint>
                                         </constraints>
-                                        <state key="normal" image="Trainings"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" red="0.0" green="0.38823529410000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="etF-4F-mi4"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="357" y="14" width="27" height="22"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <include reference="etF-4F-mi4"/>
                                             </mask>
@@ -106,7 +110,7 @@
                                     </constraint>
                                     <constraint firstItem="xeZ-94-0uy" firstAttribute="centerY" secondItem="hdh-8s-Gj5" secondAttribute="centerY" id="3bS-4a-Uw3"/>
                                     <constraint firstAttribute="trailing" secondItem="Lq9-R8-ygu" secondAttribute="trailing" constant="8" id="gPc-4l-gbC">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="13"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="49" id="mQm-Cv-Yie"/>
                                     <constraint firstItem="xeZ-94-0uy" firstAttribute="leading" secondItem="hdh-8s-Gj5" secondAttribute="leading" constant="8" id="r9o-nW-IrJ">
@@ -199,7 +203,6 @@
         <image name="Home" width="25" height="21"/>
         <image name="HomeSelected" width="25" height="21"/>
         <image name="Messages" width="22" height="21"/>
-        <image name="Trainings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1W4-iT-S2E"/>

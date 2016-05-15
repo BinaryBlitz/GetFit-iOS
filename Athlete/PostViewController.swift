@@ -30,6 +30,8 @@ class PostViewController: UIViewController {
     
     commentFieldCard.layer.borderColor = UIColor.graySecondaryColor().colorWithAlphaComponent(0.2).CGColor
     commentFieldCard.layer.borderWidth = 1
+    sendCommentButton.tintColor = UIColor.blueAccentColor()
+    sendCommentButton.setTitle("Send", forState: .Normal)
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -184,7 +186,7 @@ extension PostViewController {
         self.view.layoutIfNeeded()
       },
       completion: { (_) -> Void in
-//        self.scrollToBottom()
+        self.scrollToBottom()
       })
   }
 
