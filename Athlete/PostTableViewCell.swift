@@ -9,10 +9,11 @@
 import UIKit
 import Haneke
 import PureLayout
+import Reusable
 
 typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable, TextPresentable>
 
-class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell, NibReusable {
   
   //MARK: - Constants
   private let contentHeight: CGFloat = 208

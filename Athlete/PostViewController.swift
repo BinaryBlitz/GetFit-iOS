@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Reusable
 
 class PostViewController: UIViewController {
 
@@ -60,10 +61,8 @@ class PostViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
     tableView.tableFooterView = UIView()
-    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
-    let commentCellNib = UINib(nibName: String(PostCommentTableViewCell), bundle: nil)
-    tableView.registerNib(commentCellNib, forCellReuseIdentifier: "commentCell")
+    tableView.registerReusableCell(PostTableViewCell)
+    tableView.registerReusableCell(PostCommentTableViewCell)
   }
   
   //MARK: - Server stuff
@@ -144,7 +143,7 @@ extension PostViewController: UITableViewDataSource {
     switch indexPath.section {
     case 0:
       guard let post = post else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as! PostTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostTableViewCell
       
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
@@ -153,7 +152,7 @@ extension PostViewController: UITableViewDataSource {
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! PostCommentTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostCommentTableViewCell
       
       cell.configureWith(CommentViewModel(comment: comment))
       

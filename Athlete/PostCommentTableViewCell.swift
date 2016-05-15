@@ -8,10 +8,11 @@
 
 import UIKit
 import Haneke
+import Reusable
 
 typealias PostCommentPresentable = protocol<DateTimePresentable, UserPresentable, TextPresentable>
 
-class PostCommentTableViewCell: UITableViewCell {
+class PostCommentTableViewCell: UITableViewCell, NibReusable {
 
   @IBOutlet weak var userAvatarImageView: CircleImageView!
   @IBOutlet weak var usernameLabel: UILabel!
