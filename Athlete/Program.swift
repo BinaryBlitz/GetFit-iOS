@@ -86,5 +86,16 @@ class Program: Object, JSONSerializable {
     if let rating = json["rating"].double {
       self.rating = rating
     }
+    
+    let workouts = json["workouts"].flatMap { (_, workoutJSON) -> Workout? in
+      let workout = Workout(json: workoutJSON)
+      workout?.programId = self.id
+      return workout
+    }
+    
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(workouts, update: true)
+    }
   }
 }

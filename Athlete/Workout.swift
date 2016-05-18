@@ -19,6 +19,7 @@ class Workout: Object, JSONSerializable {
   dynamic var programId: Int = 0
   dynamic var position: Int = 0
   dynamic var exercisesCount: Int = 0
+  let exercises = List<Exercise>()
   
   override static func primaryKey() -> String? {
     return "id"
@@ -66,6 +67,16 @@ class Workout: Object, JSONSerializable {
     if let duration = json["duration"].int {
       self.duration = duration
     }
+    
+    let exercises = json["exercises"].flatMap { (_, exerciseJSON) -> Exercise? in
+      return Exercise(json: exerciseJSON)
+    }
+    
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(exercises)
+      self.exercises.removeAll()
+      self.exercises.appendContentsOf(exercises)
+    }
   }
-  
 }

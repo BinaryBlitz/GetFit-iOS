@@ -43,4 +43,36 @@ extension ServerManager {
     
     return nil
   }
+    
+  func showProgramWithId(programId: Int, completion: ((response: ServerResponse<Program, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Program, ServerError>
+    
+    do {
+      let request = try get(ServerRoute.Programs.pathWith(programId))
+      activityIndicatorVisible = true
+      request.responseJSON { response in
+        self.activityIndicatorVisible = false
+        switch response.result {
+        case .Success(let resultValue):
+          let json = JSON(resultValue)
+          if let program = Program(json: json) {
+            completion?(response: Response(value: program))
+          } else {
+            completion?(response: Response(error: .InvalidData))
+          }
+        case .Failure(let error):
+          print(error)
+          let response = Response(error: ServerError(error: error))
+          completion?(response: response)
+        }
+      }
+      
+      return request
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
+  }
 }
