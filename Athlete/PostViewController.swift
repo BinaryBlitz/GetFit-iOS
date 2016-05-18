@@ -114,13 +114,18 @@ class PostViewController: UIViewController {
   //MARK: - Tools
   
   func reloadCommentsSection() {
-    tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+    if tableView.numberOfSections >= 2 {
+      tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+    }
   }
   
   func scrollToBottom() {
-    let numberOfRows = tableView.numberOfRowsInSection(1)
-    let indexPath = NSIndexPath(forRow: numberOfRows - 1, inSection: 1)
-    tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+    let lastSection = tableView.numberOfSections - 1
+    let lastRowInLastSection = tableView.numberOfRowsInSection(lastSection) - 1
+    if lastRowInLastSection > 0 {
+      let indexPath = NSIndexPath(forRow: lastRowInLastSection, inSection: lastSection)
+      tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+    }
   }
 }
 
