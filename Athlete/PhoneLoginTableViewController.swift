@@ -47,10 +47,10 @@ class PhoneLoginTableViewController: UITableViewController {
       presentAlertWithMessage("Номер телефона не может быть пустым!")
       return
     }
+    getCodeButton.userInteractionEnabled = false
     
     do {
-      let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
-      print(phoneNumber.toE164())
+      let phoneNumber = try PhoneNumber(rawNumber: phone)
       
       let serverManager = ServerManager.sharedManager
       
@@ -64,9 +64,11 @@ class PhoneLoginTableViewController: UITableViewController {
           //TODO: specify error messages
           self.presentAlertWithTitle("Ошибка", andMessage: "Что-то не так с интернетом")
         }
+        self.getCodeButton.userInteractionEnabled = true
       }
     } catch {
       presentAlertWithMessage("Номер введен некорректно")
+      getCodeButton.userInteractionEnabled = true
     }
   }
   
