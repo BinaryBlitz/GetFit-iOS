@@ -83,7 +83,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
     let infoString = NSMutableAttributedString(string:viewModel.category.capitalizedString, attributes:boldTextAttrebutes)
     let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
-    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.exercisesCount)", attributes: plainTextAttrebutes))
+    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.workoutsCount)", attributes: plainTextAttrebutes))
     infoLabel.attributedText = infoString
     
     descriptionLabel.text = viewModel.description

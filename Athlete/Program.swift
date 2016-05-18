@@ -95,6 +95,7 @@ class Program: Object, JSONSerializable {
     
     let realm = try! Realm()
     try! realm.write {
+      realm.delete(realm.objects(Workout).filter("programId == \(self.id)"))
       realm.add(workouts, update: true)
     }
   }

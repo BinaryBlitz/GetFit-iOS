@@ -47,7 +47,7 @@ extension ProgramViewModel: ProgramPresentable {
     return program.type
   }
   
-  var exercisesCount: String {
+  var workoutsCount: String {
     return "\(program.workoutsCount) workouts"
   }
   
