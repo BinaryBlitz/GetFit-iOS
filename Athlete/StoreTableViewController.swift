@@ -30,7 +30,7 @@ class StoreTableViewController: UITableViewController {
     tableView.registerReusableCell(ProgramTableViewCell)
     
     tableView.backgroundView = createBackgroundView()
-    tableView.rowHeight = 320
+    tableView.rowHeight = 265
     
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     header.backgroundColor = UIColor.clearColor()
@@ -104,9 +104,9 @@ class StoreTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let program = programs[indexPath.row]
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
-    cell.configureWith(ProgramViewModel(program: program))
-    cell.state = .Card
     cell.delegate = self
+    cell.state = .Card
+    cell.configureWith(ProgramViewModel(program: program))
     
     return cell
   }

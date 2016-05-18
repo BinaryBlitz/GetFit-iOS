@@ -84,7 +84,11 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.workoutsCount)", attributes: plainTextAttrebutes))
     infoLabel.attributedText = infoString
     
-    descriptionLabel.text = viewModel.description
+    if state == .Card {
+      descriptionLabel.text = viewModel.preview
+    } else {
+      descriptionLabel.text = viewModel.description
+    }
     followersLabel.text = viewModel.followers
     ratingLabel.text = viewModel.rating
     

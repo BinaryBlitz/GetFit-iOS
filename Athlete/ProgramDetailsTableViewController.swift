@@ -19,7 +19,6 @@ class ProgramDetailsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 400
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     tableView.registerReusableCell(ProgramTableViewCell)
@@ -69,9 +68,9 @@ class ProgramDetailsTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
-      cell.configureWith(ProgramViewModel(program: program))
-      cell.state = .Normal
       cell.delegate = self
+      cell.state = .Normal
+      cell.configureWith(ProgramViewModel(program: program))
       
       return cell
     } else {
@@ -105,7 +104,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 400
+      return 300
     default:
       return 55
     }

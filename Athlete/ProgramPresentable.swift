@@ -14,6 +14,7 @@ protocol ProgramPresentable {
   var category: String { get }
   var workoutsCount: String { get }
   var description: String { get }
+  var preview: String { get }
   var followers: String { get }
   var rating: String { get }
   var duration: String { get }

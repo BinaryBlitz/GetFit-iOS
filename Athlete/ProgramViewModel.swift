@@ -55,6 +55,10 @@ extension ProgramViewModel: ProgramPresentable {
     return program.programDescription
   }
   
+  var preview: String {
+    return program.programPreview
+  }
+  
   var followers: String {
     return String(100)
   }
