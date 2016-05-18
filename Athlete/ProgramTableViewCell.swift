@@ -26,7 +26,6 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var priceBadge: BadgeView!
   @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
-  @IBOutlet weak var durationBadge: BadgeView!
   @IBOutlet weak var followersLabel: UILabel!
   @IBOutlet weak var ratingLabel: UILabel!
   @IBOutlet weak var trainerNameLabel: UILabel!
@@ -58,7 +57,6 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     super.awakeFromNib()
     
     priceBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
-    durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
     trainerAvatar.layer.borderColor = UIColor.whiteColor().CGColor
     trainerAvatar.layer.borderWidth = 1
     
@@ -87,7 +85,6 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     infoLabel.attributedText = infoString
     
     descriptionLabel.text = viewModel.description
-    durationBadge.text = viewModel.duration
     followersLabel.text = viewModel.followers
     ratingLabel.text = viewModel.rating
     
