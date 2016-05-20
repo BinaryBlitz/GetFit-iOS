@@ -62,6 +62,11 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     
     setupFollowButton()
     updateFollowingStatus(following)
+    
+    let maskView = UIView()
+    maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    bannerImageView.addSubview(maskView)
+    maskView.autoPinEdgesToSuperviewEdges()
   }
   
   func setupFollowButton() {

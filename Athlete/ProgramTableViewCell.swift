@@ -64,6 +64,11 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     priceBadge.addSubview(buyButton)
     buyButton.autoPinEdgesToSuperviewEdges()
     buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), forControlEvents: .TouchUpInside)
+    
+    let maskView = UIView()
+    maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    bannerImageView.addSubview(maskView)
+    maskView.autoPinEdgesToSuperviewEdges()
   }
   
   //MARK: - Actions
