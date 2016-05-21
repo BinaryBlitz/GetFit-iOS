@@ -41,7 +41,7 @@ class Post: Object, JSONSerializable {
     
     self.id = id
     self.content = content
-    self.dateCreated = createdAt.toDateFromISO8601() ?? NSDate()
+    self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
     
     if let likesCount = json["likes_count"].int {
       self.likesCount = likesCount
@@ -53,6 +53,14 @@ class Post: Object, JSONSerializable {
     
     if let url = json["image_url"].string {
       self.imageURLString = url
+    }
+    
+    if let trainer = Trainer(json: json["trainer"]) {
+      self.trainer = trainer
+      let realm = try! Realm()
+      try! realm.write {
+        realm.add(trainer, update: true)
+      }
     }
     
     let program = Program()
