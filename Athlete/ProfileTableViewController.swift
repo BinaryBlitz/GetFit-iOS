@@ -33,23 +33,28 @@ class ProfileTableViewController: UITableViewController {
 //    programs = realm.objects(Program)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    loadUser()
+  }
+  
   private func loadUser() {
     if let user = UserManger.currentUser {
       self.user = user
-    } else {
-      ServerManager.sharedManager.loadCurrentUser { (response) in
-        switch response.result {
-        case .Success(let user):
-          UserManger.currentUser = user
-          self.user = user
-          self.loadStatistics()
-        case .Failure(let error):
-          switch error {
-          case .NetworkConnectionLost, .NotConnectedToInternet:
-            self.presentAlertWithTitle("Ошибка", andMessage: "Не удалось загрузить данные")
-          default:
-            break
-          }
+    }
+    
+    ServerManager.sharedManager.loadCurrentUser { (response) in
+      switch response.result {
+      case .Success(let user):
+        UserManger.currentUser = user
+        self.user = user
+        self.loadStatistics()
+      case .Failure(let error):
+        switch error {
+        case .NetworkConnectionLost, .NotConnectedToInternet:
+          self.presentAlertWithTitle("Ошибка", andMessage: "Не удалось загрузить данные")
+        default:
+          break
         }
       }
     }
