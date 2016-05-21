@@ -47,7 +47,13 @@ class SettingsTableViewController: UITableViewController {
         switch response.result {
         case .Success(let result):
           print(result)
-//          ServerManager.sharedManager.get
+          self.presentAlertWithMessage("Yay! Your profile is updated!")
+          if let user = UserManger.currentUser {
+            user.firstName = firstName
+            user.lastName = lastName
+            UserManger.currentUser = user
+          }
+          self.view.endEditing(true)
         case .Failure(let error):
           self.presentAlertWithMessage("error: \(error)")
         }
