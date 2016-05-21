@@ -106,7 +106,7 @@ class NewsTableViewController: UITableViewController {
     if post.imageURLString != nil {
       return 400
     } else if post.program != nil {
-      return 400
+      return 300
     } else {
       return 300
     }

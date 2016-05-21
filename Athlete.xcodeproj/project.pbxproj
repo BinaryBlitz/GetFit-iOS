@@ -57,6 +57,8 @@
 		377C39221CE3694500BF5ABC /* ServerManger+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39211CE3694500BF5ABC /* ServerManger+Posts.swift */; };
 		377C39241CE36A7300BF5ABC /* ServerManger+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */; };
 		377C39261CE51CBC00BF5ABC /* ServerManager+Programs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */; };
+		37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */; };
+		37811F9E1CEFC57600AFB47E /* ProgramPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37811F9D1CEFC57600AFB47E /* ProgramPreviewView.xib */; };
 		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
@@ -187,6 +189,8 @@
 		377C39211CE3694500BF5ABC /* ServerManger+Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+Posts.swift"; sourceTree = "<group>"; };
 		377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+Login.swift"; sourceTree = "<group>"; };
 		377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Programs.swift"; sourceTree = "<group>"; };
+		37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPreviewView.swift; sourceTree = "<group>"; };
+		37811F9D1CEFC57600AFB47E /* ProgramPreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramPreviewView.xib; sourceTree = "<group>"; };
 		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
@@ -534,6 +538,8 @@
 				37C564481C77D2E600BC370E /* PostTableViewCell.xib */,
 				376F65721C7C958A0016071C /* PostCommentTableViewCell.swift */,
 				376F65731C7C958A0016071C /* PostCommentTableViewCell.xib */,
+				37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */,
+				37811F9D1CEFC57600AFB47E /* ProgramPreviewView.xib */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -769,6 +775,7 @@
 				37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */,
 				3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */,
 				37A295E41CDA1B05000C0D57 /* TrainingTableViewCell.xib in Resources */,
+				37811F9E1CEFC57600AFB47E /* ProgramPreviewView.xib in Resources */,
 				37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */,
 				37A53C621BDE59C300D1DA70 /* News.storyboard in Resources */,
 				374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */,
@@ -877,6 +884,7 @@
 				378C17431CE8A8E600B3FAED /* Workout.swift in Sources */,
 				37F01C8E1C77CD3800910D58 /* User.swift in Sources */,
 				37A295F21CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift in Sources */,
+				37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */,
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,

@@ -16,7 +16,8 @@ typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, Da
 class PostTableViewCell: UITableViewCell, NibReusable {
   
   //MARK: - Constants
-  private let contentHeight: CGFloat = 208
+  private let imageContentHeight: CGFloat = 208
+  private let programContrentHeight: CGFloat = 100
   private let spaceBetweenTextAndContent: CGFloat = 12
   private let numberOfLinesInPostPreview = 5
 
@@ -115,28 +116,31 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       containerToTextSpace.constant = 0
       containerView.hidden = true
     case .Photo(let photoURL):
-      containerHeight.constant = contentHeight
+      containerHeight.constant = imageContentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.hidden = false
       containerView.backgroundColor = UIColor.lightGrayColor()
-      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: contentHeight))
+      let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: imageContentHeight))
       imageView.contentMode = UIViewContentMode.ScaleAspectFill
       imageView.layer.masksToBounds = true
       imageView.hnk_setImageFromURL(photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
     case .TrainingProgram(let program):
-      containerHeight.constant = contentHeight
+      containerHeight.constant = programContrentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.hidden = false
       containerView.backgroundColor = UIColor.lightGrayColor()
-      let programView = NSBundle.mainBundle().loadNibNamed(String(ProgramTableViewCell), owner: self, options: nil).first as! ProgramTableViewCell
-      programView.state = .Normal
+      let programView = loadProgramPreviewView()
       programView.configureWith(ProgramViewModel(program: program))
-      programView.hideBanner()
       containerView.addSubview(programView)
       programView.autoPinEdgesToSuperviewEdges()
     }
+  }
+  
+  func loadProgramPreviewView() -> ProgramPreviewView {
+    let nibName = String(ProgramPreviewView)
+    return NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as! ProgramPreviewView
   }
   
   //MARK: - Actions

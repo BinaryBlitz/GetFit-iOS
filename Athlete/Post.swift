@@ -54,6 +54,13 @@ class Post: Object, JSONSerializable {
     if let url = json["image_url"].string {
       self.imageURLString = url
     }
+    
+    let program = Program()
+    program.name = "awesome program"
+    program.price = 100
+    program.type = "Cardio"
+    program.workoutsCount = 10
+    self.program = program
   }
   
   override static func primaryKey() -> String? {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ProgramViewModel {
   let program: Program
@@ -73,5 +74,15 @@ extension ProgramViewModel: ProgramPresentable {
   
   var bannerURL: NSURL? {
     return NSURL(string: program.bannerURLString)
+  }
+  
+  var info: NSAttributedString {
+    let infoFontSize: CGFloat = 15
+    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
+    let infoString = NSMutableAttributedString(string:category.capitalizedString, attributes:boldTextAttrebutes)
+    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
+    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(workoutsCount)", attributes: plainTextAttrebutes))
+    
+    return infoString
   }
 }

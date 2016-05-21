@@ -82,12 +82,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   func configureWith(viewModel: ProgramCellPresentable) {
     nameLabel.text = viewModel.title
     priceBadge.text = viewModel.price
-    let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
-    let infoString = NSMutableAttributedString(string:viewModel.category.capitalizedString, attributes:boldTextAttrebutes)
-    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
-    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(viewModel.workoutsCount)", attributes: plainTextAttrebutes))
-    infoLabel.attributedText = infoString
+    infoLabel.attributedText = viewModel.info
     
     if state == .Card {
       descriptionLabel.text = viewModel.preview
