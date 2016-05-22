@@ -10,10 +10,16 @@ import UIKit
 import Reusable
 import RealmSwift
 
+enum Image: String {
+  case Banner
+  case Avatar
+}
+
 class ProfileTableViewController: UITableViewController {
   
   private let tabsLabels = ["statistic", "programs"]
   private var selectedTabIndex = 0
+  private var imageTypeToSelect: Image?
   
   var programs: Results<Program>?
   var user: User? {
@@ -88,6 +94,37 @@ class ProfileTableViewController: UITableViewController {
     tableView.sendSubviewToBack(refreshControl)
   }
   
+  //MARK: - Actions
+  
+  func updateAvatar() {
+    update(.Avatar)
+  }
+  
+  func updateBanner() {
+    update(.Banner)
+  }
+  
+  private func update(image: Image) {
+    let title = "Update \(image.rawValue.lowercaseString)"
+    let alert = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
+    alert.addAction(UIAlertAction(title: "Choose from library", style: .Default, handler: { (action) in
+      self.presentImagePickerWithImagesFrom(.PhotoLibrary, toUpdate: image)
+    }))
+    alert.addAction(UIAlertAction(title: "Take a photo", style: .Default, handler: { (action) in
+      self.presentImagePickerWithImagesFrom(.Camera, toUpdate: image)
+    }))
+    alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+    presentViewController(alert, animated: true, completion: nil)
+  }
+  
+  func presentImagePickerWithImagesFrom(sourceType: UIImagePickerControllerSourceType, toUpdate image: Image) {
+    self.imageTypeToSelect = image
+    let imagePicker = UIImagePickerController()
+    imagePicker.delegate = self
+    imagePicker.sourceType = sourceType
+    presentViewController(imagePicker, animated: true, completion: nil)
+  }
+  
   //MARK: - Refresh
   
   func refresh(sender: AnyObject? = nil) {
@@ -136,6 +173,14 @@ class ProfileTableViewController: UITableViewController {
       button.addTarget(self, action: #selector(settingsButtonAction(_:)), forControlEvents: .TouchUpInside)
       cell.settingsBadge.addSubview(button)
       button.autoPinEdgesToSuperviewEdges()
+      
+      cell.avatarImageView.userInteractionEnabled = true
+      let avatarTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateAvatar))
+      cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
+      
+      cell.bannerImageView.userInteractionEnabled = true
+      let bannerTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateBanner))
+      cell.bannerImageView.addGestureRecognizer(bannerTapGesture)
       
       return cell
     case 1 where selectedTabIndex == 0:
@@ -207,6 +252,30 @@ class ProfileTableViewController: UITableViewController {
   
   func settingsButtonAction(sender: UIButton) {
     performSegueWithIdentifier("settings", sender: nil)
+  }
+}
+
+//MARK: - UIImagePickerControllerDelegate
+
+extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    guard let imageType = imageTypeToSelect else { return }
+    picker.dismissViewControllerAnimated(true, completion: nil)
+    
+    ServerManager.sharedManager.update(imageType, withImage: image) { (response) in
+      switch response.result {
+      case .Success(_):
+        self.refresh()
+      case .Failure(let error):
+        print("error: \(error)")
+        self.presentAlertWithMessage("Upload failed")
+      }
+    }
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
   }
 }
 

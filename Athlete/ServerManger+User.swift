@@ -103,4 +103,33 @@ extension ServerManager {
       return nil
     }
   }
+  
+  func update(imageType: Image, withImage image: UIImage,  completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Bool, ServerError>
+    
+    do {
+      guard let image = UIImage.cropToBounds(image, width: 100, height: 100) else { return nil }
+      let imageKey = imageType.rawValue.lowercaseString
+      let imageData = [imageKey: (image.base64String ?? NSNull())]
+      let parameters: [String: AnyObject] = ["user": imageData]
+      let request = try patch(ServerRoute.User.path, params: parameters)
+      activityIndicatorVisible = true
+      request.validate().responseData { (response) in
+        self.activityIndicatorVisible = false
+        switch response.result {
+        case .Success(let responseValue):
+          completion?(response: Response(value: true))
+        case .Failure(let error):
+          print(error)
+          let serverError = ServerError(error: error)
+          completion?(response: Response(error: serverError))
+        }
+      }
+      
+      return request
+    } catch {
+      completion?(response: Response(error: .Unauthorized))
+      return nil
+    }
+  }
 }

@@ -59,6 +59,7 @@
 		377C39261CE51CBC00BF5ABC /* ServerManager+Programs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */; };
 		37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */; };
 		37811F9E1CEFC57600AFB47E /* ProgramPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37811F9D1CEFC57600AFB47E /* ProgramPreviewView.xib */; };
+		37811FA21CF0B14A00AFB47E /* UIImage+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37811FA11CF0B14A00AFB47E /* UIImage+Base64.swift */; };
 		3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2721CD915230059D841 /* ProgramPresentable.swift */; };
 		3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781B2741CD917B70059D841 /* ProgramViewModel.swift */; };
 		37821F531BE1699500149523 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37821F521BE1699500149523 /* TrainingViewController.swift */; };
@@ -121,6 +122,7 @@
 		37E4A44C1BDEE2D4004193BF /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */; };
 		37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */; };
 		37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E4A4531BDF8739004193BF /* TrainingsViewController.swift */; };
+		37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E949B41CF0B731008F3CA5 /* UIImage+Resize.swift */; };
 		37F01C8E1C77CD3800910D58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F01C8D1C77CD3800910D58 /* User.swift */; };
 		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
@@ -191,6 +193,7 @@
 		377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Programs.swift"; sourceTree = "<group>"; };
 		37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPreviewView.swift; sourceTree = "<group>"; };
 		37811F9D1CEFC57600AFB47E /* ProgramPreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramPreviewView.xib; sourceTree = "<group>"; };
+		37811FA11CF0B14A00AFB47E /* UIImage+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64.swift"; sourceTree = "<group>"; };
 		3781B2721CD915230059D841 /* ProgramPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPresentable.swift; sourceTree = "<group>"; };
 		3781B2741CD917B70059D841 /* ProgramViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		37821F521BE1699500149523 /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 		37E4A44B1BDEE2D4004193BF /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		37E4A44F1BDF81B8004193BF /* StoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewController.swift; sourceTree = "<group>"; };
 		37E4A4531BDF8739004193BF /* TrainingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingsViewController.swift; sourceTree = "<group>"; };
+		37E949B41CF0B731008F3CA5 /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		37F01C8D1C77CD3800910D58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneVerificationTableViewController.swift; sourceTree = "<group>"; };
 		37FD38D71C962AA700600682 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 			children = (
 				374578981BDE5FDE004935BC /* UIColor+Athlete.swift */,
 				3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */,
+				37811FA11CF0B14A00AFB47E /* UIImage+Base64.swift */,
+				37E949B41CF0B731008F3CA5 /* UIImage+Resize.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -895,6 +901,7 @@
 				375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */,
 				37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */,
 				37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */,
+				37811FA21CF0B14A00AFB47E /* UIImage+Base64.swift in Sources */,
 				37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */,
 				37A295F01CDAB0C1000C0D57 /* ExerciseSessionPresentable.swift in Sources */,
 				37B483DF1CECAB0C00904662 /* Exercise.swift in Sources */,
@@ -932,6 +939,7 @@
 				377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
+				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
