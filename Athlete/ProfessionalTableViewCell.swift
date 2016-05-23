@@ -52,13 +52,17 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    contentView.backgroundColor = .lightGrayBackgroundColor()
-    avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
+    avatarImageView.contentMode = .ScaleAspectFill
     avatarImageView.layer.masksToBounds = true
     avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
     avatarImageView.layer.borderWidth = 3
-    bannerImageView.contentMode = UIViewContentMode.ScaleAspectFill
+    avatarImageView.backgroundColor = UIColor.yellowColor()
+    avatarImageView.image = nil
+    
+    bannerImageView.contentMode = .ScaleAspectFill
     bannerImageView.layer.masksToBounds = true
+    bannerImageView.backgroundColor = UIColor.blueAccentColor()
+    bannerImageView.image = nil
     
     setupFollowButton()
     updateFollowingStatus(following)
