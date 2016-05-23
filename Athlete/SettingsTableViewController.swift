@@ -13,6 +13,12 @@ class SettingsTableViewController: UITableViewController {
   @IBOutlet weak var firstNameLabel: UITextField!
   @IBOutlet weak var lastNameLabel: UITextField!
 
+  var versionNumber: String {
+    let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+    let buildVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+    return "Version: \(appVersion) (\(buildVersion))"
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -22,6 +28,17 @@ class SettingsTableViewController: UITableViewController {
       firstNameLabel.text = user.firstName
       lastNameLabel.text = user.lastName
     }
+    
+    let footerView = UIView()
+    footerView.backgroundColor = UIColor.clearColor()
+    let label = UILabel()
+    label.font = UIFont.systemFontOfSize(14)
+    label.textColor = UIColor.lightGrayColor()
+    label.text = versionNumber
+    footerView.addSubview(label)
+    label.autoCenterInSuperview()
+    
+    tableView.tableFooterView = footerView
   }
   
   //MARK: - Actions
