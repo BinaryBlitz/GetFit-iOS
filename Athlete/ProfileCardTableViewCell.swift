@@ -23,12 +23,18 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     
     avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
     avatarImageView.layer.borderWidth = 5
+    avatarImageView.image = nil
+    avatarImageView.backgroundColor = UIColor.primaryYellowColor()
+    avatarImageView.contentMode = .ScaleAspectFill
     
-    bannerImageView.hnk_setImageFromURL(NSURL(string: "https://pbs.twimg.com/media/Cbvs8PvWAAAmYYR.jpg")!)
+    bannerImageView.image = nil
+    bannerImageView.backgroundColor = UIColor.blueAccentColor()
+    bannerImageView.contentMode = .ScaleAspectFill
     
     settingsBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
     settingsBadge.text = "Settings"
   }
+ 
   
   func configureWith(viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
@@ -36,12 +42,21 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     
     bannerImageView.hnk_cancelSetImage()
     if let bannerURL = viewModel.coverImageURL {
+      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+      bannerImageView.addSubview(activityIndicator)
+      activityIndicator.autoCenterInSuperview()
       bannerImageView.hnk_setImageFromURL(bannerURL)
+//      bannerImageView.hnk_setImageFromURL(bannerURL, placeholder: nil, format: nil, failure: { (error) in
+//          activityIndicator.removeFromSuperview()
+//          print("error: \(error)")
+//        }, success: { (image) in
+//          activityIndicator.removeFromSuperview()
+//      })
     }
     
     avatarImageView.hnk_cancelSetImage()
     if let avatarURL = viewModel.avatarURL {
-      bannerImageView.hnk_setImageFromURL(avatarURL)
+      avatarImageView.hnk_setImageFromURL(avatarURL)
     }
   }
 }

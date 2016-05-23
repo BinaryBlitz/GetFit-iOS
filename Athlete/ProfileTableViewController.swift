@@ -13,6 +13,15 @@ import RealmSwift
 enum Image: String {
   case Banner
   case Avatar
+  
+  var imageSize: CGSize {
+    switch self {
+    case .Avatar:
+      return CGSize(width: 180, height: 180)
+    case .Banner:
+      return CGSize(width: 800, height: 320)
+    }
+  }
 }
 
 class ProfileTableViewController: UITableViewController {
@@ -44,7 +53,7 @@ class ProfileTableViewController: UITableViewController {
     loadUser()
   }
   
-  private func loadUser() {
+  private func loadUser(completion: (() -> Void)? = nil) {
     if let user = UserManger.currentUser {
       self.user = user
     }
@@ -63,6 +72,8 @@ class ProfileTableViewController: UITableViewController {
           break
         }
       }
+      
+      completion?()
     }
   }
   
@@ -135,7 +146,7 @@ class ProfileTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    completion()
+    loadUser(completion)
   }
   
   //MARK: - UITableViewDataSource
@@ -266,6 +277,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     ServerManager.sharedManager.update(imageType, withImage: image) { (response) in
       switch response.result {
       case .Success(_):
+        self.presentAlertWithMessage("\(imageType.rawValue) updated!")
         self.refresh()
       case .Failure(let error):
         print("error: \(error)")

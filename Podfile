@@ -28,6 +28,7 @@ pod 'SwiftDate'
 pod 'PureLayout'
 pod 'HanekeSwift'
 pod 'Reusable'
+pod 'Toucan'
 
 # Facebook SDK
 pod 'FBSDKCoreKit'

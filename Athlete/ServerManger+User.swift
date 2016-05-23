@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Toucan
 
 //MARK: - User
 
@@ -108,7 +109,7 @@ extension ServerManager {
     typealias Response = ServerResponse<Bool, ServerError>
     
     do {
-      guard let image = UIImage.cropToBounds(image, width: 100, height: 100) else { return nil }
+      let image = Toucan(image: image).resizeByCropping(imageType.imageSize).image
       let imageKey = imageType.rawValue.lowercaseString
       let imageData = [imageKey: (image.base64String ?? NSNull())]
       let parameters: [String: AnyObject] = ["user": imageData]

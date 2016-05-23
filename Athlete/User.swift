@@ -23,8 +23,18 @@ class User: Object, JSONSerializable {
   dynamic var genderValue: String = ""
   dynamic var birthdate: NSDate = NSDate()
   dynamic var userDescription: String?
-  dynamic var avatarURLString: String?
-  dynamic var bannerURLString: String?
+  dynamic var avatarURLPath: String?
+  dynamic var bannerURLPath: String?
+  
+  var avatarURLString: String? {
+    guard let path = avatarURLPath else { return nil }
+    return ServerManager.sharedManager.pathToImage(path)
+  }
+  
+  var bannerURLString: String? {
+    guard let path = bannerURLPath else { return nil }
+    return ServerManager.sharedManager.pathToImage(path)
+  }
   
   // Statistics
   dynamic var totalWorkouts: Int = 0
@@ -75,12 +85,12 @@ class User: Object, JSONSerializable {
       self.genderValue = genderValue
     }
     
-    if let avatarURLString = json["avatar_url"].string {
-      self.avatarURLString = avatarURLString
+    if let avatarPath = json["avatar_url"].string {
+      self.avatarURLPath = avatarPath
     }
     
-    if let bannerURLString = json["banner_url"].string {
-      self.bannerURLString = bannerURLString
+    if let bannerPath = json["banner_url"].string {
+      self.bannerURLPath = bannerPath
     }
   }
 }
