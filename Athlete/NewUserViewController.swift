@@ -8,7 +8,6 @@
 
 import UIKit
 import PhoneNumberKit
-import Eureka
 import Alamofire
 
 class NewUserViewController: UITableViewController {

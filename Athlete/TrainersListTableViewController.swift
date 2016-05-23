@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 import RealmSwift
 import Reusable
 
@@ -66,12 +65,3 @@ class TrainersListTableViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 }
-
-//MARK: - IndcatorInfoProvider
-
-extension TrainersListTableViewController: IndicatorInfoProvider {
-  func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-    return IndicatorInfo(title: category.pluralName().uppercaseString)
-  }
-}
-

@@ -16,9 +16,7 @@ pod 'RealmSwift', '0.98.4'
 pod 'UICountingLabel'
 pod 'MCSwipeTableViewCell'
 pod 'CVCalendar'
-pod 'XLPagerTabStrip'
 pod 'PhoneNumberKit'
-pod 'Eureka'
 pod 'InnerShadowView'
 pod 'SwiftSpinner'
 pod 'XCDYouTubeKit'
@@ -32,8 +30,8 @@ pod 'Toucan'
 
 # Facebook SDK
 pod 'FBSDKCoreKit'
-pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
 
 # VK
 pod "VK-ios-sdk"
+
