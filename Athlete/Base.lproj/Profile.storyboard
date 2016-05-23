@@ -139,7 +139,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIa-zy-zdr">
-                                                    <rect key="frame" x="274" y="7" width="52" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                                     <state key="normal" title="Log out">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -149,8 +149,10 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hIa-zy-zdr" firstAttribute="centerY" secondItem="OIq-ww-P2X" secondAttribute="centerY" id="6V4-3v-F5J"/>
-                                                <constraint firstItem="hIa-zy-zdr" firstAttribute="centerX" secondItem="OIq-ww-P2X" secondAttribute="centerX" id="hGW-df-hxl"/>
+                                                <constraint firstAttribute="bottom" secondItem="hIa-zy-zdr" secondAttribute="bottom" id="299-EC-Mp7"/>
+                                                <constraint firstAttribute="trailing" secondItem="hIa-zy-zdr" secondAttribute="trailing" id="GGh-hs-FNS"/>
+                                                <constraint firstItem="hIa-zy-zdr" firstAttribute="leading" secondItem="OIq-ww-P2X" secondAttribute="leading" id="M3K-eU-RY9"/>
+                                                <constraint firstItem="hIa-zy-zdr" firstAttribute="top" secondItem="OIq-ww-P2X" secondAttribute="top" id="QqH-ol-b2y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
