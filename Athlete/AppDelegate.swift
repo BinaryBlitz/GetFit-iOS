@@ -57,8 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func configureNavigationBar() {
-//    navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "Back")
-//    navigationController?.navigationBar.backIndicatorImage = UIImage(named: "Back")
     UINavigationBar.appearance().backIndicatorImage = UIImage(named: "Back")
     UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "Back")
     UINavigationBar.appearance().barTintColor = UIColor.primaryYellowColor()
@@ -70,12 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func configureTabBar() {
-//    UITabBar.appearance().backgroundColor = UIColor.tabBarBackgroundColor()
     UITabBar.appearance().barTintColor = UIColor.tabBarBackgroundColor()
     UITabBar.appearance().barStyle = UIBarStyle.Black
     UITabBar.appearance().tintColor = UIColor.whiteColor()
     UITabBar.appearance().translucent = false
-    
   }
 
   func applicationWillResignActive(application: UIApplication) {
