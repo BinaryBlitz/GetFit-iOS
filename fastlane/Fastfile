@@ -21,12 +21,11 @@ platform :ios do
       scheme: "Athlete",
       use_legacy_build_api: true
     )
-    testers = 'twistedplane@gmail.com'
     crashlytics(
       api_token: ENV["CRASHLYTICS_API_TOKEN"],
       build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
       notes: "add some stuff",
-      emails: testers
+      groups: ['dev-team-athlete']
     )
 end
 
