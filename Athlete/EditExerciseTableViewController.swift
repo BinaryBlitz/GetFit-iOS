@@ -64,12 +64,11 @@ extension EditExerciseTableViewController: UIPickerViewDataSource {
     return 10
   }
   
-  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, var reusingView view: UIView?) -> UIView {
+  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
     if let pickerLabel = view as? UILabel {
       pickerLabel.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
       return pickerLabel
     } else {
-      view = UILabel()
       let label = view as! UILabel
       label.font = UIFont.boldSystemFontOfSize(19)
       label.textAlignment = NSTextAlignment.Center
