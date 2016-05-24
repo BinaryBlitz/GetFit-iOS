@@ -75,4 +75,32 @@ extension ServerManager {
     
     return nil
   }
+  
+  func createPurchaseFor(program: Program, completion: ((response: ServerResponse<Bool, ServerError>) -> Void)? = nil) -> Request? {
+    typealias Response = ServerResponse<Bool, ServerError>
+    
+    do {
+      let request = try post(ServerRoute.Programs.pathWith(program.id) + "/\(ServerRoute.Purchase.rawValue)")
+      activityIndicatorVisible = true
+      request.responseJSON { response in
+        self.activityIndicatorVisible = false
+        switch response.result {
+        case .Success(let resultValue):
+          let json = JSON(resultValue)
+          print(json)
+          completion?(response: Response(value: true))
+        case .Failure(let error):
+          let response = Response(error: ServerError(error: error))
+          completion?(response: response)
+        }
+      }
+      
+      return request
+    } catch {
+      let response = Response(error: .Unauthorized)
+      completion?(response: response)
+    }
+    
+    return nil
+  }
 }

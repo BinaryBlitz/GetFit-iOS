@@ -122,6 +122,13 @@ class ProgramDetailsTableViewController: UITableViewController {
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
-    self.presentAlertWithMessage("gimme da progam b0ss")
+    ServerManager.sharedManager.createPurchaseFor(program) { (response) in
+      switch response.result {
+      case .Success(_):
+        self.presentAlertWithMessage("Yeah! Program is yours")
+      case .Failure(let error):
+        self.presentAlertWithMessage("Error: \(error)")
+      }
+    }
   }
 }

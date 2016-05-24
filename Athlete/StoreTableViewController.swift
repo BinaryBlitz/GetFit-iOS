@@ -134,6 +134,15 @@ class StoreTableViewController: UITableViewController {
 
 extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
-    self.presentAlertWithMessage("gimme da progam b0ss")
+    guard let indexPath = tableView.indexPathForCell(cell) else { return }
+    let program = programs[indexPath.row]
+    ServerManager.sharedManager.createPurchaseFor(program) { (response) in
+      switch response.result {
+      case .Success(_):
+        self.presentAlertWithMessage("Yeah! Program is yours")
+      case .Failure(let error):
+        self.presentAlertWithMessage("Error: \(error)")
+      }
+    }
   }
 }
