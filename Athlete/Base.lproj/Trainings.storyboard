@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VxJ-0z-isC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VxJ-0z-isC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Calendar Delegate-->
         <scene sceneID="o2H-Vp-xli">
             <objects>
-                <viewController id="qIZ-am-TBk" customClass="TrainingsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bhw-Jn-tKn"/>
                         <viewControllerLayoutGuide type="bottom" id="fG1-tU-IoS"/>
@@ -148,10 +149,66 @@
             </objects>
             <point key="canvasLocation" x="2138" y="151"/>
         </scene>
+        <!--Create Workout Sessions View Controller-->
+        <scene sceneID="sR7-1m-PJl">
+            <objects>
+                <viewController storyboardIdentifier="select_days" id="PSF-b6-s4x" customClass="CreateWorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Al6-wr-jM0"/>
+                        <viewControllerLayoutGuide type="bottom" id="n4W-2l-qaI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="byG-IS-ydD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-aw-uHV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="92"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HD0-Oz-51C">
+                                        <rect key="frame" x="13" y="30" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="54l-AQ-qto"/>
+                                            <constraint firstAttribute="height" constant="20" id="gCS-vB-Drs"/>
+                                        </constraints>
+                                        <state key="normal" image="Close"/>
+                                        <connections>
+                                            <action selector="closeButtonAction:" destination="PSF-b6-s4x" eventType="touchUpInside" id="E4M-qN-evt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="HD0-Oz-51C" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="top" constant="30" id="1Js-9S-0J1"/>
+                                    <constraint firstItem="HD0-Oz-51C" firstAttribute="leading" secondItem="7Rt-aw-uHV" secondAttribute="leading" constant="13" id="WL1-Hu-bm9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGH-Al-hb5">
+                                <rect key="frame" x="0.0" y="92" width="600" height="508"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pGH-Al-hb5" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="bottom" id="6wL-di-2rg"/>
+                            <constraint firstItem="pGH-Al-hb5" firstAttribute="leading" secondItem="byG-IS-ydD" secondAttribute="leading" id="9Ze-Dh-AfT"/>
+                            <constraint firstAttribute="trailing" secondItem="pGH-Al-hb5" secondAttribute="trailing" id="Evl-bE-UhW"/>
+                            <constraint firstItem="7Rt-aw-uHV" firstAttribute="height" secondItem="byG-IS-ydD" secondAttribute="height" multiplier="10:65" id="Hl1-Vy-QxX"/>
+                            <constraint firstAttribute="trailing" secondItem="7Rt-aw-uHV" secondAttribute="trailing" id="HvL-eW-hfn"/>
+                            <constraint firstItem="7Rt-aw-uHV" firstAttribute="leading" secondItem="byG-IS-ydD" secondAttribute="leading" id="dKP-eJ-cZa"/>
+                            <constraint firstItem="n4W-2l-qaI" firstAttribute="top" secondItem="pGH-Al-hb5" secondAttribute="bottom" id="gzk-Ep-yPg"/>
+                            <constraint firstItem="7Rt-aw-uHV" firstAttribute="top" secondItem="byG-IS-ydD" secondAttribute="top" id="xew-id-cPP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="98u-Ze-BYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2225" y="657"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="22" height="22"/>
         <image name="CalendarOpenMark" width="12" height="7"/>
+        <image name="Close" width="25" height="25"/>
         <image name="Trainings" width="25" height="25"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  TrainingsViewController.swift
+//  WorkoutSessionsViewController.swift
 //  Athlete
 //
 //  Created by Dan Shevlyuk on 27/10/15.
@@ -11,7 +11,7 @@ import CVCalendar
 import Reusable
 import RealmSwift
 
-class TrainingsViewController: UIViewController {
+class WorkoutSessionsViewController: UIViewController {
   
   var workoutSessions = [WorkoutSession]()
   let workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
@@ -57,7 +57,7 @@ class TrainingsViewController: UIViewController {
       switch newValue {
       case .Opened:
         calendarViewTopConstaraint.constant = 0
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: #selector(TrainingsViewController.toggleCurrentDayView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: #selector(toggleCurrentDayView))
       case .Closed:
         calendarViewTopConstaraint.constant = -(calendarViewHeight)
         navigationItem.leftBarButtonItem = nil
@@ -169,8 +169,8 @@ class TrainingsViewController: UIViewController {
   }
   
   @IBAction func addWorkoutSessionsButtonAction(sender: UIButton) {
-    let createWorkoutSessionsViewController = CreateWorkoutSessionsTableViewController(style: .Grouped)
-    let navigation = UINavigationController(rootViewController: createWorkoutSessionsViewController)
+    let workoutsViewController = WorkoutsTableViewController(style: .Grouped)
+    let navigation = UINavigationController(rootViewController: workoutsViewController)
     presentViewController(navigation, animated: true, completion: nil)
   }
   
@@ -206,7 +206,7 @@ class TrainingsViewController: UIViewController {
 
 //MARK: - UITableViewDataSource
 
-extension TrainingsViewController: UITableViewDataSource {
+extension WorkoutSessionsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return workoutSessions.count
@@ -254,7 +254,7 @@ extension TrainingsViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 
-extension TrainingsViewController: UITableViewDelegate {
+extension WorkoutSessionsViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("trainingInfo", sender: indexPath)
   }
@@ -262,7 +262,7 @@ extension TrainingsViewController: UITableViewDelegate {
 
 //MARK: - CVCalendarViewDelegate
 
-extension TrainingsViewController: CVCalendarViewDelegate {
+extension WorkoutSessionsViewController: CVCalendarViewDelegate {
   func presentationMode() -> CalendarMode {
     return .MonthView
   }
@@ -316,7 +316,7 @@ extension TrainingsViewController: CVCalendarViewDelegate {
 
 //MARK: - CVCalendarMenuViewDelegate
 
-extension TrainingsViewController: CVCalendarMenuViewDelegate {
+extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
   func weekdaySymbolType() -> WeekdaySymbolType {
     return WeekdaySymbolType.VeryShort
