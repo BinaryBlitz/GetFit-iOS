@@ -21,6 +21,8 @@ class PostCommentTableViewCell: UITableViewCell, NibReusable {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    
+    layoutMargins = UIEdgeInsetsZero
   }
   
   func configureWith(viewModel: PostCommentPresentable) {

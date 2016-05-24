@@ -81,6 +81,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Highlighted)
     
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
+    layoutMargins = UIEdgeInsetsZero
   }
   
   //MARK: - Cell configuration

@@ -282,24 +282,24 @@ extension TrainingViewController: ExerciseCellDelegate {
   }
   
   func didTapOnRepetitionsButton(cell: UITableViewCell) {
-    guard let indexPath = tableView.indexPathForCell(cell) else {
-      return
-    }
-    
-    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
-    
+//    guard let indexPath = tableView.indexPathForCell(cell) else {
+//      return
+//    }
+//    
+//    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
+//    
     print("didTapOnRepetitionsButton")
 //    let data = EditExerciseData(exercise: exercise, editType: .Repetitions)
 //    performSegueWithIdentifier("editExercise", sender: data)
   }
   
   func didTapOnWeightButton(cell: UITableViewCell) {
-    guard let indexPath = tableView.indexPathForCell(cell) else {
-      return
-    }
+//    guard let indexPath = tableView.indexPathForCell(cell) else {
+//      return
+//    }
     
     print("didTapOnWeightButton")
-    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
+//    let exercise = indexPath.section == 1 ? finishedExercises[indexPath.row] : exercisesToDo[indexPath.row]
 //    let data = EditExerciseData(exercise: exercise, editType: .Weight)
 //    performSegueWithIdentifier("editExercise", sender: data)
   }

@@ -118,7 +118,7 @@ extension ServerManager {
       request.validate().responseData { (response) in
         self.activityIndicatorVisible = false
         switch response.result {
-        case .Success(let responseValue):
+        case .Success(_):
           completion?(response: Response(value: true))
         case .Failure(let error):
           print(error)

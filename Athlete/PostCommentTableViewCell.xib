@@ -53,6 +53,7 @@
                     <constraint firstAttribute="trailing" secondItem="Djt-H1-fYc" secondAttribute="trailing" constant="12" id="umj-pw-1Md"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="contentLabel" destination="hpi-HD-rY2" id="xsU-SC-c4o"/>
                 <outlet property="dateLabel" destination="Djt-H1-fYc" id="Kh5-4J-RPc"/>
