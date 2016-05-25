@@ -102,7 +102,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="notifications" id="EzG-gs-hUN">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="d4n-m6-M4I">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="d4n-m6-M4I">
                                         <rect key="frame" x="0.0" y="273.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4n-m6-M4I" id="Kod-Ik-Sy3">
@@ -131,7 +131,7 @@
                             </tableViewSection>
                             <tableViewSection id="U6f-g5-wzg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rGR-NX-18o">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="rGR-NX-18o">
                                         <rect key="frame" x="0.0" y="353.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rGR-NX-18o" id="OIq-ww-P2X">
