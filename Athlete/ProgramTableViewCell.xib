@@ -41,6 +41,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="0AY-dT-SNQ" secondAttribute="bottom" id="3Fb-kI-0RR"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3nT-JA-t5o" secondAttribute="trailing" constant="14" id="JA5-Iz-P7A"/>
                                     <constraint firstItem="0AY-dT-SNQ" firstAttribute="top" secondItem="rpS-m8-mk5" secondAttribute="top" id="SwJ-ld-OCx"/>
                                     <constraint firstAttribute="trailing" secondItem="0AY-dT-SNQ" secondAttribute="trailing" id="YEu-Cf-Vek"/>
                                     <constraint firstItem="0AY-dT-SNQ" firstAttribute="leading" secondItem="rpS-m8-mk5" secondAttribute="leading" id="gmu-cC-ddX"/>
@@ -52,7 +53,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UmT-oj-uk6">
                                 <rect key="frame" x="14" y="106" width="543" height="183"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CZc-vO-gR3">
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CZc-vO-gR3">
                                         <rect key="frame" x="0.0" y="0.0" width="543" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Easy training for everybody" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYQ-6B-JZM">
@@ -61,7 +62,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Np1-iJ-nBA" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Np1-iJ-nBA" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
                                                 <rect key="frame" x="453" y="2" width="90" height="37"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -86,7 +87,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNt-Rn-DU6">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNt-Rn-DU6">
                                         <rect key="frame" x="0.0" y="143" width="543" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="2ay-eh-z6W">

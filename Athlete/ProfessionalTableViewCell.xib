@@ -115,6 +115,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mAB-wH-cce" secondAttribute="bottom" constant="2" id="0BS-yy-Ml2"/>
                                     <constraint firstItem="pw6-8V-zAr" firstAttribute="top" secondItem="FZ1-IC-YhJ" secondAttribute="top" constant="13" id="2aX-nW-d6r"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L8O-ei-c6v" secondAttribute="trailing" constant="13" id="ZQj-zt-DB8"/>
                                     <constraint firstAttribute="trailing" secondItem="pw6-8V-zAr" secondAttribute="trailing" constant="12" id="aQH-eb-dGi"/>
                                     <constraint firstItem="mAB-wH-cce" firstAttribute="leading" secondItem="L8O-ei-c6v" secondAttribute="leading" id="cXr-88-Oad"/>
                                     <constraint firstItem="mAB-wH-cce" firstAttribute="top" secondItem="L8O-ei-c6v" secondAttribute="bottom" constant="7.5" id="mzo-bc-Bkl"/>
@@ -159,7 +160,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.87042511261261257" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="gfg-Op-ZxF" secondAttribute="bottom" constant="-8" placeholder="YES" id="Vhj-xv-iDg"/>
                     <constraint firstItem="gfg-Op-ZxF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" placeholder="YES" id="ehy-MS-Nfs"/>
@@ -167,6 +168,7 @@
                     <constraint firstItem="gfg-Op-ZxF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" placeholder="YES" id="yiP-DV-5hb"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarImageView" destination="Phj-1b-VbW" id="eGk-Hg-aTq"/>
                 <outlet property="bannerImageView" destination="Sa5-jg-ueE" id="NW6-tS-4Yc"/>

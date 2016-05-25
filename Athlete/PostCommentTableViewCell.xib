@@ -21,13 +21,13 @@
                             <constraint firstAttribute="height" constant="27" id="FPO-li-hYT"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome Dude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrV-jj-qQQ">
-                        <rect key="frame" x="47" y="10" width="106" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome Dude Awesome DudeAwesome DudeAwesome DudeAwesome DudeAwesome DudeAwesome DudeAwesome Dude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrV-jj-qQQ">
+                        <rect key="frame" x="47" y="10" width="219" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-H1-fYc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-H1-fYc">
                         <rect key="frame" x="276" y="10" width="18" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,6 +44,7 @@
                     <constraint firstItem="DwR-If-bFW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="1Yl-cI-xMi"/>
                     <constraint firstItem="LrV-jj-qQQ" firstAttribute="leading" secondItem="DwR-If-bFW" secondAttribute="trailing" constant="8" id="BYG-A2-YPG"/>
                     <constraint firstItem="Djt-H1-fYc" firstAttribute="baseline" secondItem="LrV-jj-qQQ" secondAttribute="baseline" id="L3z-0R-X87"/>
+                    <constraint firstItem="Djt-H1-fYc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LrV-jj-qQQ" secondAttribute="trailing" constant="10" id="afI-tb-FR8"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="hpi-HD-rY2" secondAttribute="trailing" id="frA-ca-OYe"/>
                     <constraint firstItem="LrV-jj-qQQ" firstAttribute="top" secondItem="DwR-If-bFW" secondAttribute="top" id="jTv-3v-hq6"/>
                     <constraint firstItem="hpi-HD-rY2" firstAttribute="leading" secondItem="LrV-jj-qQQ" secondAttribute="leading" id="n2i-Lr-PSO"/>
