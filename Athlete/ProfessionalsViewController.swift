@@ -41,7 +41,7 @@ class ProfessionalsViewController: UIViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh), forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)

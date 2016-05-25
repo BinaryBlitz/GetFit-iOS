@@ -24,38 +24,42 @@ class Post: Object, ALSwiftyJSONAble {
   dynamic var commentsCount: Int = 0
   dynamic var likeId: Int = -1
   let comments = List<Comment>()
-  
+
   required init() {
     super.init()
   }
-  
+
   required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
-  
+
   required init?(jsonData: JSON) {
     super.init()
-    
+
     guard let id = jsonData["id"].int, content = jsonData["content"].string, createdAt = jsonData["created_at"].string else {
       return nil
     }
-    
+
     self.id = id
     self.content = content
     self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
-    
+
     if let likesCount = jsonData["likes_count"].int {
       self.likesCount = likesCount
     }
-    
+
+    if let commentsCount = jsonData["comments_count"].int {
+      self.commentsCount = commentsCount
+    }
+
     if let likeId = jsonData["like_id"].int {
       self.likeId = likeId
     }
-    
+
     if let url = jsonData["image_url"].string {
       self.imageURLString = url
     }
-    
+
     if let trainer = Trainer(jsonData: jsonData["trainer"]) {
       self.trainer = trainer
       let realm = try! Realm()
@@ -64,11 +68,11 @@ class Post: Object, ALSwiftyJSONAble {
       }
     }
   }
-  
+
   required init(value: AnyObject, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
-  
+
   override static func primaryKey() -> String? {
     return "id"
   }
