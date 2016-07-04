@@ -13,8 +13,7 @@ class ServerManager {
   static let sharedManager = ServerManager()
   
   var manager = Manager.sharedInstance
-  let baseURL = "http://getfit.binaryblitz.ru"
-//  let baseURL = "http://localhost:3000/api/"
+  let baseURL = "http://getfit-staging.herokuapp.com"
   
   var baseAPIURL: String {
     return baseURL + "/api/"
