@@ -20,7 +20,7 @@ class PhoneLoginTableViewController: UITableViewController {
     super.viewDidLoad()
     
     showNavigationBar()
-    setUpPhoneNumberTextField()
+    setupPhoneNumberTextField()
     getCodeButton.backgroundColor = UIColor.blueAccentColor()
   }
   
@@ -36,8 +36,9 @@ class PhoneLoginTableViewController: UITableViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
   
-  private func setUpPhoneNumberTextField() {
+  private func setupPhoneNumberTextField() {
     phoneNumberTextField.placeholder = "8 926 123-45-67"
+    phoneNumberTextField.defaultRegion = "RU"
   }
   
   //MARK: - Actions
@@ -50,7 +51,7 @@ class PhoneLoginTableViewController: UITableViewController {
     getCodeButton.userInteractionEnabled = false
     
     do {
-      let phoneNumber = try PhoneNumber(rawNumber: phone)
+      let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
       
       let serverManager = ServerManager.sharedManager
       
@@ -66,7 +67,8 @@ class PhoneLoginTableViewController: UITableViewController {
         }
         self.getCodeButton.userInteractionEnabled = true
       }
-    } catch {
+    } catch let error {
+      print(error)
       presentAlertWithMessage("Номер введен некорректно")
       getCodeButton.userInteractionEnabled = true
     }
