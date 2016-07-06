@@ -73,7 +73,8 @@ extension ProgramViewModel: ProgramPresentable {
   }
   
   var bannerURL: NSURL? {
-    return NSURL(string: program.bannerURLString)
+    guard let urlString = program.bannerURLString else { return nil }
+    return NSURL(string: urlString)
   }
   
   var info: NSAttributedString {

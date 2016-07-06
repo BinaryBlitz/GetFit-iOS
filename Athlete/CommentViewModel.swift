@@ -35,7 +35,8 @@ extension CommentViewModel: DateTimePresentable {
 
 extension CommentViewModel: UserPresentable {
   var name: String {
-    return comment.author?.name ?? ""
+    guard let author = comment.author else { return "" }
+    return "\(author.firstName) \(author.lastName)"
   }
   
   var info: String {

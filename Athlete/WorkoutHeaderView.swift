@@ -15,7 +15,7 @@ class WorkoutHeaderView: UITableViewHeaderFooterView {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    backgroundColor = UIColor.clearColor()
+    contentView.backgroundColor = UIColor.clearColor()
     titleLabel.textColor = UIColor.darkGrayColor()
   }
   

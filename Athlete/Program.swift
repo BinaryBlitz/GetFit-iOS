@@ -16,7 +16,7 @@ class Program: Object, JSONSerializable {
   dynamic var name: String = ""
   dynamic var programPreview: String = ""
   dynamic var programDescription: String = ""
-  dynamic var bannerURLPath: String = ""
+  dynamic var bannerURLString: String? = ""
   dynamic var trainer: Trainer?
   dynamic var type: String = ""
   dynamic var price: Int = 0
@@ -24,10 +24,6 @@ class Program: Object, JSONSerializable {
   dynamic var workoutsCount: Int = 0
   dynamic var usersCount: Int = 0
   dynamic var rating: Double = 0
-  
-  dynamic var bannerURLString: String {
-    return ServerManager.sharedManager.pathToImage(bannerURLPath)
-  }
   
   override static func primaryKey() -> String? {
     return "id"
@@ -56,7 +52,7 @@ class Program: Object, JSONSerializable {
     self.price = price
     
     if let bannerURLPath = json["banner_url"].string {
-      self.bannerURLPath = bannerURLPath
+      self.bannerURLString = bannerURLPath
     }
     
     if let duration = json["duration"].int {

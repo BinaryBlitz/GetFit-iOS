@@ -15,7 +15,7 @@ struct UserViewModel {
 extension UserViewModel: UserPresentable {
   
   var name: String {
-    return user.name
+    return "\(user.firstName) \(user.lastName)"
   }
   
   var info: String {

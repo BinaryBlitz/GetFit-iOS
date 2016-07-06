@@ -22,8 +22,7 @@ class ServerManager {
   //TODO: - move to servermanager helper or smth 
   
   func pathToImage(imagePath: String) -> String {
-    let baseURL = ServerManager.sharedManager.baseURL
-    return baseURL + imagePath
+    return imagePath
   }
   
   //MARK: - Tokens

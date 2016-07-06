@@ -19,20 +19,10 @@ class Trainer: Object, JSONSerializable {
   dynamic var info: String = ""
   dynamic var email: String = ""
   dynamic var categoryValue: String = TrainerCategory.Coach.rawValue
-  dynamic var avatarURLPath: String? = ""
-  dynamic var bannerURLPath: String? = ""
+  dynamic var avatarURLString: String? = ""
+  dynamic var bannerURLString: String? = ""
   dynamic var programsCount: Int = 0
   dynamic var followersCount: Int = 0
-  
-  var bannerURLString: String? {
-    guard let imagePath = bannerURLPath else { return nil }
-    return ServerManager.sharedManager.baseURL + imagePath
-  }
-  
-  var avatarURLString: String? {
-    guard let imagePath = avatarURLPath else { return nil }
-    return ServerManager.sharedManager.baseURL + imagePath
-  }
   
   var category: TrainerCategory {
     get {
@@ -75,11 +65,11 @@ class Trainer: Object, JSONSerializable {
     }
     
     if let avatarURLPath = json["avatar_url"].string {
-      self.avatarURLPath = avatarURLPath
+      self.avatarURLString = avatarURLPath
     }
     
     if let bannerURLPath = json["banner_url"].string {
-      self.bannerURLPath = bannerURLPath
+      self.bannerURLString = bannerURLPath
     }
     
     if let followersCount = json["followers_count"].int {
