@@ -15,13 +15,13 @@ class ProfessionalTableViewController: UITableViewController {
   private let tabsLabels = ["programs", "news"]
   private var selectedTab = 0
   var programms: Results<Program>?
-  var news = [Post]()
+  var news: Results<Post>!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    news = trainer.posts.sorted("dateCreated")
     configureTableView()
-    news = trainer.posts
   }
   
   func configureTableView() {

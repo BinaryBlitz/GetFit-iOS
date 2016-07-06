@@ -37,7 +37,7 @@ class Program: Object, JSONSerializable {
     super.init()
   }
   
-  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
@@ -98,5 +98,9 @@ class Program: Object, JSONSerializable {
       realm.delete(realm.objects(Workout).filter("programId == \(self.id)"))
       realm.add(workouts, update: true)
     }
+  }
+  
+  required init(value: AnyObject, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
   }
 }

@@ -28,7 +28,7 @@ class Post: Object, JSONSerializable {
     super.init()
   }
   
-  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
@@ -69,6 +69,10 @@ class Post: Object, JSONSerializable {
     program.type = "Cardio"
     program.workoutsCount = 10
     self.program = program
+  }
+  
+  required init(value: AnyObject, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
   }
   
   override static func primaryKey() -> String? {

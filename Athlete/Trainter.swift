@@ -43,13 +43,9 @@ class Trainer: Object, JSONSerializable {
     }
   }
   
-  var posts: [Post] {
-    return linkingObjects(Post.self, forProperty: "trainer")
-  }
+  let posts = LinkingObjects(fromType: Post.self, property: "trainer")
   
-  var programs: [Program] {
-    return linkingObjects(Program.self, forProperty: "trainer")
-  }
+  let programs = LinkingObjects(fromType: Program.self, property: "trainer")
   
   override static func primaryKey() -> String? {
     return "id"
@@ -59,7 +55,7 @@ class Trainer: Object, JSONSerializable {
     super.init()
   }
   
-  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
@@ -93,5 +89,9 @@ class Trainer: Object, JSONSerializable {
     if let programsCount = json["programs_count"].int {
      self.programsCount = programsCount
     }
+  }
+  
+  required init(value: AnyObject, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
   }
 }

@@ -11,7 +11,7 @@ target 'Athlete' do
   pod 'SwiftyJSON'
 
   # DB
-  pod 'RealmSwift', '0.98.4'
+  pod 'RealmSwift'
 
   # UI
   pod 'UICountingLabel'

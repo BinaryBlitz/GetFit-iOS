@@ -19,11 +19,11 @@ PODS:
   - MCSwipeTableViewCell (2.1.4)
   - PhoneNumberKit (0.8.4)
   - PureLayout (3.0.2)
-  - Realm (0.98.4):
-    - Realm/Headers (= 0.98.4)
-  - Realm/Headers (0.98.4)
-  - RealmSwift (0.98.4):
-    - Realm (= 0.98.4)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
   - Reusable (2.3.0)
   - SwiftDate (3.0.8)
   - SwiftSpinner (0.9.5)
@@ -45,7 +45,7 @@ DEPENDENCIES:
   - MCSwipeTableViewCell
   - PhoneNumberKit
   - PureLayout
-  - RealmSwift (= 0.98.4)
+  - RealmSwift
   - Reusable
   - SwiftDate
   - SwiftSpinner
@@ -68,8 +68,8 @@ SPEC CHECKSUMS:
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   PhoneNumberKit: ec93d8c5e4614ecfc1ef333eb89f7eaadedcaa17
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  Realm: 7745674cb1b7cb2a84a655bfd420b86efdaad36e
-  RealmSwift: 18742f4f13f98117aeec53b92058918ac93bf38f
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
   Reusable: 0fec1f7fedf69acbc7710fc7cab86a1a1a3f2542
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: ac7150f279fdce24f16f5e6f9561e547be33ebf8
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: c592cd7abad64524956239b95c00dbefe9b6c2dd
+PODFILE CHECKSUM: 3842a0a4b83a534f201e9fc2e284849b39a7216f
 
 COCOAPODS: 1.0.1

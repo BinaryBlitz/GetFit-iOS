@@ -41,6 +41,8 @@ class User: Object, JSONSerializable {
   dynamic var totalDuration: Int = 0
   dynamic var totalDistance: Int = 0
   
+  let comments = LinkingObjects(fromType: Comment.self, property: "author")
+  
   var name: String{
     return "\(firstName) \(lastName)"
   }
@@ -54,10 +56,6 @@ class User: Object, JSONSerializable {
     }
   }
   
-  var comments: [Comment] {
-    return linkingObjects(Comment.self, forProperty: "author")
-  }
-  
   override static func primaryKey() -> String? {
     return "id"
   }
@@ -66,7 +64,7 @@ class User: Object, JSONSerializable {
     super.init()
   }
   
-  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
@@ -92,5 +90,9 @@ class User: Object, JSONSerializable {
     if let bannerPath = json["banner_url"].string {
       self.bannerURLPath = bannerPath
     }
+  }
+  
+  required init(value: AnyObject, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
   }
 }

@@ -25,7 +25,7 @@ class Comment: Object, JSONSerializable {
     super.init()
   }
   
-  override init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
@@ -46,5 +46,9 @@ class Comment: Object, JSONSerializable {
         realm.add(author, update: true)
       }
     }
+  }
+  
+  required init(value: AnyObject, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
   }
 }
