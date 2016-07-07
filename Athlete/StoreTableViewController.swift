@@ -30,7 +30,8 @@ class StoreTableViewController: UITableViewController {
     tableView.registerReusableCell(ProgramTableViewCell)
     
     tableView.backgroundView = createBackgroundView()
-    tableView.rowHeight = 265
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 265
     
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     header.backgroundColor = UIColor.clearColor()
