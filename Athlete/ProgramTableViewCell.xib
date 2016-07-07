@@ -25,14 +25,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="571" height="132"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="qej-Br-Knp" customClass="CircleImageView" customModule="Athlete" customModuleProvider="target">
-                                        <rect key="frame" x="14" y="80" width="35" height="35"/>
+                                        <rect key="frame" x="14" y="75" width="43" height="43"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="NXj-u8-MWZ"/>
-                                            <constraint firstAttribute="width" constant="35" id="y8u-2H-vO8"/>
+                                            <constraint firstAttribute="height" constant="43" id="NXj-u8-MWZ"/>
+                                            <constraint firstAttribute="width" constant="43" id="y8u-2H-vO8"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dan Shevlyuk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nT-JA-t5o">
-                                        <rect key="frame" x="57" y="89" width="94" height="18"/>
+                                        <rect key="frame" x="65" y="88" width="94" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                     <constraint firstAttribute="height" constant="132" id="at7-hW-ZCP"/>
                                     <constraint firstItem="0AY-dT-SNQ" firstAttribute="leading" secondItem="rpS-m8-mk5" secondAttribute="leading" id="gmu-cC-ddX"/>
                                     <constraint firstItem="3nT-JA-t5o" firstAttribute="leading" secondItem="qej-Br-Knp" secondAttribute="trailing" constant="8" id="gvk-Z8-IMB"/>
-                                    <constraint firstAttribute="bottom" secondItem="qej-Br-Knp" secondAttribute="bottom" constant="17" id="pIG-XE-grg"/>
+                                    <constraint firstAttribute="bottom" secondItem="qej-Br-Knp" secondAttribute="bottom" constant="14" id="pIG-XE-grg"/>
                                     <constraint firstItem="3nT-JA-t5o" firstAttribute="centerY" secondItem="qej-Br-Knp" secondAttribute="centerY" id="rpl-Fa-pGt"/>
                                 </constraints>
                             </view>
