@@ -17,6 +17,16 @@ PODS:
   - HanekeSwift (0.10.1)
   - InnerShadowView (1.0.0)
   - MCSwipeTableViewCell (2.1.4)
+  - Moya (6.5.0):
+    - Moya/Core (= 6.5.0)
+  - Moya-SwiftyJSONMapper (1.0.4):
+    - Moya-SwiftyJSONMapper/Core (= 1.0.4)
+  - Moya-SwiftyJSONMapper/Core (1.0.4):
+    - Moya
+    - SwiftyJSON (~> 2.3.2)
+  - Moya/Core (6.5.0):
+    - Alamofire (~> 3.0)
+    - Result (~> 2.0)
   - PhoneNumberKit (0.8.4)
   - PureLayout (3.0.2)
   - Realm (1.0.1):
@@ -24,6 +34,7 @@ PODS:
   - Realm/Headers (1.0.1)
   - RealmSwift (1.0.1):
     - Realm (= 1.0.1)
+  - Result (2.1.2)
   - Reusable (2.3.0)
   - SwiftDate (3.0.8)
   - SwiftSpinner (0.9.5)
@@ -34,7 +45,6 @@ PODS:
   - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
-  - Alamofire
   - Crashlytics
   - CVCalendar
   - Fabric
@@ -43,13 +53,14 @@ DEPENDENCIES:
   - HanekeSwift
   - InnerShadowView
   - MCSwipeTableViewCell
+  - Moya
+  - Moya-SwiftyJSONMapper
   - PhoneNumberKit
   - PureLayout
   - RealmSwift
   - Reusable
   - SwiftDate
   - SwiftSpinner
-  - SwiftyJSON
   - Toucan
   - UICountingLabel
   - VK-ios-sdk
@@ -66,10 +77,13 @@ SPEC CHECKSUMS:
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
+  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
+  Moya-SwiftyJSONMapper: 174dfe333c4c06bae5b941448c443ff92ca4fa0a
   PhoneNumberKit: ec93d8c5e4614ecfc1ef333eb89f7eaadedcaa17
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
   Reusable: 0fec1f7fedf69acbc7710fc7cab86a1a1a3f2542
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
@@ -79,6 +93,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: ac7150f279fdce24f16f5e6f9561e547be33ebf8
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: 3842a0a4b83a534f201e9fc2e284849b39a7216f
+PODFILE CHECKSUM: d486387c3918ad70cf6ee59393f3aa8c9eab5ba7
 
 COCOAPODS: 1.0.1
