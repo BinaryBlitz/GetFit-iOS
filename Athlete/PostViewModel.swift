@@ -25,11 +25,11 @@ extension PostViewModel: PostPresentable {
   }
   
   var likesCount: String {
-    return NumberFormatter.stringFromNumber(post.likesCount)
+    return post.likesCount.format()
   }
   
   var commentsCount: String {
-    return NumberFormatter.stringFromNumber(post.commentsCount)
+    return post.commentsCount.format()
   }
   
   var liked: Bool {
