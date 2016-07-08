@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */; };
-		37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */; };
 		37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */; };
 		37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */; };
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
@@ -143,8 +141,6 @@
 
 /* Begin PBXFileReference section */
 		0CBAE558B91A460DF5F7AB23 /* Pods-Athlete.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athlete.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Athlete/Pods-Athlete.debug.xcconfig"; sourceTree = "<group>"; };
-		37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProvider.swift; sourceTree = "<group>"; };
-		37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProviderDelegate.swift; sourceTree = "<group>"; };
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -374,12 +370,9 @@
 		374578961BDE5D19004935BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				379E912E1C95F73300D96175 /* Server Manager */,
 				3732972C1CA4AB25008AEB05 /* Domain Model */,
 				374A78401C970707004D30AD /* PhoneSighUpSessionData.swift */,
 				37AC2ADD1C7B5C1B007543F4 /* NumberFormatter.swift */,
-				37044EA81C8B0EFD00010AB7 /* LoginProvider.swift */,
-				37044EAA1C8B0F9600010AB7 /* LoginProviderDelegate.swift */,
 				374A78421C977C99004D30AD /* LocalStorageHelper.swift */,
 				377C39151CE28BF800BF5ABC /* UserManger.swift */,
 				3706E9821CF33D1A00DF2FB1 /* Image.swift */,
@@ -503,6 +496,7 @@
 				374578931BDE5CCA004935BC /* Controllers */,
 				37A6A1211C7AEE65007F0944 /* Protocols */,
 				376142DC1C8C7BF60073B5F4 /* View models */,
+				379E912E1C95F73300D96175 /* Server Manager */,
 				374578961BDE5D19004935BC /* Models */,
 				374578921BDE5C29004935BC /* UI */,
 				374578971BDE5D28004935BC /* Extensions */,
@@ -905,8 +899,6 @@
 				377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */,
 				37AC2ADE1C7B5C1B007543F4 /* NumberFormatter.swift in Sources */,
 				375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */,
-				37044EAB1C8B0F9600010AB7 /* LoginProviderDelegate.swift in Sources */,
-				37044EA91C8B0EFD00010AB7 /* LoginProvider.swift in Sources */,
 				37811FA21CF0B14A00AFB47E /* UIImage+Base64.swift in Sources */,
 				37DA52781CA829F000FD58B8 /* ButtonStripViewDelegate.swift in Sources */,
 				37A295F01CDAB0C1000C0D57 /* ExerciseSessionPresentable.swift in Sources */,
