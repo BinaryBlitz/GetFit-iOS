@@ -12,8 +12,22 @@ import Toucan
 import Moya_SwiftyJSONMapper
 import SwiftyJSON
 
+// MARK: - Provider setup
+
+private func JSONResponseDataFormatter(data: NSData) -> NSData {
+    do {
+        let dataAsJSON = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+        let prettyData =  try NSJSONSerialization.dataWithJSONObject(dataAsJSON, options: .PrettyPrinted)
+        return prettyData
+    } catch {
+        return data //fallback to original data if it cant be serialized
+    }
+}
+
 //TODO: - add activity indicator manager
-let getFitProvider = MoyaProvider<GetFit>(plugins: [NetworkLoggerPlugin()])
+let getFitProvider = MoyaProvider<GetFit>(
+  plugins: [NetworkLoggerPlugin(responseDataFormatter: JSONResponseDataFormatter)]
+)
 
 public enum GetFit {
   
