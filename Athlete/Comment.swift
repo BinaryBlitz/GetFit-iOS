@@ -39,7 +39,7 @@ class Comment: Object, JSONSerializable {
     self.id = id
     self.content = content
     self.dateCreated = dateCreatedString.toDate(.ISO8601Format(.Extended)) ?? NSDate()
-    if let author = User(json: json["author"]) {
+    if let author = User(jsonData: json["author"]) {
       self.author = author
       let realm = try! Realm()
       try! realm.write {

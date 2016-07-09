@@ -163,7 +163,7 @@ extension ServerManager {
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
-          if let user = User(json: json) {
+          if let user = User(jsonData: json) {
             completion?(response: Response(value: user))
             return
           }
@@ -193,7 +193,7 @@ extension ServerManager {
         if let apiToken = json["api_token"].string {
           self.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
-          if let user = User(json: json) {
+          if let user = User(jsonData: json) {
             completion?(response: Response(value: user))
             return
           }

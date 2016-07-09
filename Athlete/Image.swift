@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Image: String {
+public enum Image: String {
   case Banner
   case Avatar
   

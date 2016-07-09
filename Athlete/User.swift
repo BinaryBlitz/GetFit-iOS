@@ -8,9 +8,10 @@
 
 import Realm
 import RealmSwift
+import Moya_SwiftyJSONMapper
 import SwiftyJSON
 
-class User: Object, JSONSerializable {
+class User: Object, ALSwiftyJSONAble {
   
   enum Gender: String {
     case Male = "male"
@@ -27,9 +28,9 @@ class User: Object, JSONSerializable {
   dynamic var bannerURLString: String?
   
   // Statistics
-  dynamic var totalWorkouts: Int = 0
-  dynamic var totalDuration: Int = 0
-  dynamic var totalDistance: Int = 0
+  dynamic private(set) var totalWorkouts: Int = 0
+  dynamic private(set) var totalDuration: Int = 0
+  dynamic private(set) var totalDistance: Int = 0
   
   let comments = LinkingObjects(fromType: Comment.self, property: "author")
   
@@ -39,6 +40,17 @@ class User: Object, JSONSerializable {
     }
     set(newGender) {
       genderValue = newGender?.rawValue ?? ""
+    }
+  }
+  
+  var statistics: Statistics {
+    get {
+      return Statistics(workouts: totalWorkouts, duration: totalDuration, distance: totalDistance)
+    }
+    set {
+      totalWorkouts = newValue.totalWorkouts
+      totalDistance = newValue.totalDistance
+      totalDuration = newValue.totalDuration
     }
   }
   
@@ -54,10 +66,10 @@ class User: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    if let id = json["id"].int, firstName = json["first_name"].string, lastName = json["last_name"].string {
+    if let id = jsonData["id"].int, firstName = jsonData["first_name"].string, lastName = jsonData["last_name"].string {
       self.id = id
       self.firstName = firstName
       self.lastName = lastName
@@ -65,15 +77,15 @@ class User: Object, JSONSerializable {
       return nil
     }
     
-    if let genderValue = json["gender"].string {
+    if let genderValue = jsonData["gender"].string {
       self.genderValue = genderValue
     }
     
-    if let avatarPath = json["avatar_url"].string {
+    if let avatarPath = jsonData["avatar_url"].string {
       self.avatarURLString = avatarPath
     }
     
-    if let bannerPath = json["banner_url"].string {
+    if let bannerPath = jsonData["banner_url"].string {
       self.bannerURLString = bannerPath
     }
   }
@@ -81,4 +93,37 @@ class User: Object, JSONSerializable {
   required init(value: AnyObject, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
+}
+
+//MARK: - Statistics
+
+extension User {
+  
+  struct Statistics: ALSwiftyJSONAble {
+    let totalWorkouts: Int
+    let totalDuration: Int
+    let totalDistance: Int
+    
+    init(workouts: Int, duration: Int, distance: Int) {
+      totalWorkouts = workouts
+      totalDuration = duration
+      totalDistance = distance
+    }
+    
+    init?(jsonData: JSON) {
+      guard let totalWorkouts = jsonData["workouts_count"].int,
+          totalDuration = jsonData["total_duration"].int,
+          totalDistance = jsonData["total_distance"].int else {
+        self.totalWorkouts = 0
+        self.totalDuration = 0
+        self.totalDistance = 0
+        return
+      }
+      
+      self.totalWorkouts = totalWorkouts
+      self.totalDuration = totalDuration
+      self.totalDistance = totalDistance
+    }
+  }
+  
 }

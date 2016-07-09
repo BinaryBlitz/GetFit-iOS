@@ -16,6 +16,7 @@
 		373297291CA36161008AEB05 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373297281CA36161008AEB05 /* JSONSerializable.swift */; };
 		3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */; };
 		373C20A61D2FF89900DF72EB /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A51D2FF89900DF72EB /* Int+Format.swift */; };
+		373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */; };
 		374407AA1BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */; };
 		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
@@ -150,6 +151,7 @@
 		373297281CA36161008AEB05 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		373C20A51D2FF89900DF72EB /* Int+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
+		373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFitAPI.swift; sourceTree = "<group>"; };
 		374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailsTableViewController.swift; sourceTree = "<group>"; };
 		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		379E912E1C95F73300D96175 /* Server Manager */ = {
 			isa = PBXGroup;
 			children = (
+				373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */,
 				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
 				377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */,
 				377C391B1CE368DD00BF5ABC /* ServerManger+User.swift */,
@@ -936,6 +939,7 @@
 				379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */,
 				377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
+				373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
