@@ -12,6 +12,7 @@ class SettingsTableViewController: UITableViewController {
   
   @IBOutlet weak var firstNameLabel: UITextField!
   @IBOutlet weak var lastNameLabel: UITextField!
+  let userProvider = APIProvider<GetFit.Users>()
 
   var versionNumber: String {
     let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
@@ -61,7 +62,7 @@ class SettingsTableViewController: UITableViewController {
     if let user = UserManger.currentUser
         where user.firstName != firstName || user.lastName != lastName {
       
-      getFitProvider.request(.UpdateUser(firstName: firstName, lastName: lastName)) { result in
+      userProvider.request(.Update(firstName: firstName, lastName: lastName)) { result in
         switch result {
         case .Success(let response):
           do {

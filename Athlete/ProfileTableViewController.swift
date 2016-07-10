@@ -16,6 +16,7 @@ class ProfileTableViewController: UITableViewController {
   private let tabsLabels = ["statistic", "programs"]
   private var selectedTabIndex = 0
   private var imageTypeToSelect: Image?
+  let userProvider = APIProvider<GetFit.Users>()
   
   var programs: Results<Program>?
   var user: User? {
@@ -45,7 +46,7 @@ class ProfileTableViewController: UITableViewController {
       self.user = user
     }
     
-    getFitProvider.request(.GetCurrentUser) { (result) in
+    userProvider.request(.GetCurrent) { (result) in
       switch result {
       case .Success(let response):
         do {
@@ -66,7 +67,7 @@ class ProfileTableViewController: UITableViewController {
   
   private func loadStatistics() {
     guard let user = user else { return }
-    getFitProvider.request(GetFit.GetStatisticsForUser(id: user.id)) { (result) in
+    userProvider.request(.GetStatistics(forUserWithId: user.id)) { (result) in
       switch result {
       case .Success(let response):
         do {
@@ -266,7 +267,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     guard let imageType = imageTypeToSelect else { return }
     picker.dismissViewControllerAnimated(true, completion: nil)
     
-    getFitProvider.request(GetFit.UpdateUserImage(type: imageType, image: image)) { (result) in
+    userProvider.request(.UpdateImage(type: imageType, image: image)) { (result) in
       switch result {
       case .Success(let response):
         do {
@@ -279,7 +280,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
         }
       case .Failure(let error):
         print("error: \(error)")
-        self.presentAlertWithMessage(error.nsError.description)
+        self.presentAlertWithMessage("Error: \(error)")
       }
     }
   }
