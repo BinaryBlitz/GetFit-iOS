@@ -60,21 +60,28 @@ class SettingsTableViewController: UITableViewController {
     
     if let user = UserManger.currentUser
         where user.firstName != firstName || user.lastName != lastName {
-      ServerManager.sharedManager.updateUser(firstName, lastName: lastName) { response in
-        switch response.result {
-        case .Success(let result):
-          print(result)
-          self.presentAlertWithMessage("Yay! Your profile is updated!")
-          if let user = UserManger.currentUser {
-            user.firstName = firstName
-            user.lastName = lastName
-            UserManger.currentUser = user
+      
+      getFitProvider.request(.UpdateUser(firstName: firstName, lastName: lastName)) { result in
+        switch result {
+        case .Success(let response):
+          do {
+            try response.filterSuccessfulStatusCodes()
+            self.view.endEditing(true)
+            self.presentAlertWithMessage("Yay! Your profile is updated!")
+            if let user = UserManger.currentUser {
+              user.firstName = firstName
+              user.lastName = lastName
+              UserManger.currentUser = user
+            }
+          } catch {
+            self.view.endEditing(true)
+            self.presentAlertWithMessage("Error with code \(response.statusCode)")
           }
-          self.view.endEditing(true)
         case .Failure(let error):
           self.presentAlertWithMessage("error: \(error)")
         }
       }
+      
     }
   }
   
