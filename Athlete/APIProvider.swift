@@ -35,9 +35,10 @@ enum ServerEnvironment<Target: TargetType> {
   
   /// Creates parametes dictionary with api token
   private func parametersWithAPIToken(parameters: [String: AnyObject]?) -> [String: AnyObject]? {
-    var params = parameters
+    var params = parameters ?? [:]
+    //TODO: move token to user class
     if let token = ServerManager.sharedManager.apiToken {
-      params?["api_token"] = token
+      params["api_token"] = token
     }
     
     return params

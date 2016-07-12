@@ -35,24 +35,16 @@ extension GetFit.Users: TargetType {
   }
   
   public var parameters: [String: AnyObject]? {
-    var parameters = [String: AnyObject]()
     
     switch self {
     case .GetCurrent, .GetStatistics(_):
-      break
+      return nil
     case let .Update(firstName, lastName):
-      parameters = ["user": ["first_name": firstName, "last_name": lastName]]
+      return ["user": ["first_name": firstName, "last_name": lastName]]
     case let .UpdateImage(type, image):
       let image = Toucan(image: image).resizeByCropping(type.imageSize).image
       let imageKey = type.rawValue.lowercaseString
-      parameters = ["user": [imageKey: (image.base64String ?? NSNull())]]
+      return ["user": [imageKey: (image.base64String ?? NSNull())]]
     }
-    
-    //TODO: move token to user class
-    if let token = ServerManager.sharedManager.apiToken {
-      parameters["api_token"] = token
-    }
-    
-    return parameters
   }
 }
