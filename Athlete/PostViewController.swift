@@ -13,6 +13,7 @@ import Reusable
 class PostViewController: UIViewController {
 
   var post: Post!
+  var postsProvider: APIProvider<GetFit.Posts>!
   
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
@@ -70,18 +71,24 @@ class PostViewController: UIViewController {
   //MARK: - Server stuff
   
   func fetchComments() {
-    ServerManager.sharedManager.commentsFotPostWithId(post.id) { response in
-      switch response.result {
-      case .Success(let comments):
+    postsProvider.request(.GetComments(postId: post.id)) { (result) in
+      switch result {
+      case .Success(let response):
         
-        // save comments
-        let realm = try! Realm()
-        try! realm.write {
-          self.post.comments.removeAll()
-          realm.add(comments, update: true)
-          comments.forEach { comment in
-            self.post.comments.append(comment)
+        do {
+          let commentsResponse = try response.filterSuccessfulStatusCodes()
+          let comments = try commentsResponse.mapArray(Comment.self)
+          
+          let realm = try Realm()
+          try realm.write {
+            self.post.comments.removeAll()
+            realm.add(comments, update: true)
+            comments.forEach { comment in
+              self.post.comments.append(comment)
+            }
           }
+        } catch {
+          print("Cannot load comments")
         }
         
         self.reloadCommentsSection()
@@ -98,9 +105,9 @@ class PostViewController: UIViewController {
     sendCommentButton.userInteractionEnabled = false
     let comment = Comment()
     comment.content = content
-    ServerManager.sharedManager.createComment(comment, forPostWithId: post.id) { (response) in
+    postsProvider.request(.CreateComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.userInteractionEnabled = true
-      switch response.result {
+      switch result {
       case .Success(_):
         self.commentTextField.text = nil
         self.fetchComments()

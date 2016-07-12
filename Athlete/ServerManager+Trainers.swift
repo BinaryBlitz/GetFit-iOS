@@ -28,7 +28,7 @@ extension ServerManager {
         case .Success(let resultValue):
           let json = JSON(resultValue)
           let trainers = json.flatMap { (_, trainerJSON) -> Trainer? in
-            return Trainer(json: trainerJSON)
+            return Trainer(jsonData: trainerJSON)
           }
           
           let realm = try! Realm()

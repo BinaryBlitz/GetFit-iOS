@@ -63,7 +63,7 @@ class Program: Object, JSONSerializable {
       self.type = type
     }
     
-    if let trainer = Trainer(json: json["trainer"]) {
+    if let trainer = Trainer(jsonData: json["trainer"]) {
       self.trainer = trainer
       let realm = try! Realm()
       try! realm.write {
