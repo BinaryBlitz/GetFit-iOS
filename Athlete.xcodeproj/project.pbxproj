@@ -61,7 +61,6 @@
 		377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39151CE28BF800BF5ABC /* UserManger.swift */; };
 		377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39171CE3251800BF5ABC /* UserViewModel.swift */; };
 		377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */; };
-		377C39201CE3690300BF5ABC /* ServerManager+Trainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */; };
 		377C39241CE36A7300BF5ABC /* ServerManger+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */; };
 		377C39261CE51CBC00BF5ABC /* ServerManager+Programs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */; };
 		37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */; };
@@ -105,6 +104,7 @@
 		37A6A12F1C7B4F97007F0944 /* PostPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */; };
 		37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */; };
 		37AC2AE01C7BD798007543F4 /* UserPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */; };
+		37B351DE1D3657E900DE2010 /* TrainersFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B351DD1D3657E900DE2010 /* TrainersFilter.swift */; };
 		37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B483DA1CEC8A0300904662 /* WorkoutHeaderView.swift */; };
 		37B483DD1CEC8A0300904662 /* WorkoutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37B483DB1CEC8A0300904662 /* WorkoutHeaderView.xib */; };
 		37B483DF1CECAB0C00904662 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B483DE1CECAB0C00904662 /* Exercise.swift */; };
@@ -202,7 +202,6 @@
 		377C39151CE28BF800BF5ABC /* UserManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManger.swift; sourceTree = "<group>"; };
 		377C39171CE3251800BF5ABC /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		377C39191CE3583900BF5ABC /* StatisticsPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsPresentable.swift; sourceTree = "<group>"; };
-		377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Trainers.swift"; sourceTree = "<group>"; };
 		377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManger+Login.swift"; sourceTree = "<group>"; };
 		377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerManager+Programs.swift"; sourceTree = "<group>"; };
 		37811F9B1CEFC56400AFB47E /* ProgramPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPreviewView.swift; sourceTree = "<group>"; };
@@ -250,6 +249,7 @@
 		37A6A12E1C7B4F97007F0944 /* PostPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPresentable.swift; sourceTree = "<group>"; };
 		37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		37AC2ADF1C7BD798007543F4 /* UserPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPresentable.swift; sourceTree = "<group>"; };
+		37B351DD1D3657E900DE2010 /* TrainersFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersFilter.swift; sourceTree = "<group>"; };
 		37B483DA1CEC8A0300904662 /* WorkoutHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutHeaderView.swift; sourceTree = "<group>"; };
 		37B483DB1CEC8A0300904662 /* WorkoutHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkoutHeaderView.xib; sourceTree = "<group>"; };
 		37B483DE1CECAB0C00904662 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -389,6 +389,7 @@
 				374A78421C977C99004D30AD /* LocalStorageHelper.swift */,
 				377C39151CE28BF800BF5ABC /* UserManger.swift */,
 				3706E9821CF33D1A00DF2FB1 /* Image.swift */,
+				37B351DD1D3657E900DE2010 /* TrainersFilter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -461,7 +462,7 @@
 			name = ExerciseInfoTableViewCell;
 			sourceTree = "<group>";
 		};
-		379E912E1C95F73300D96175 /* Server Manager */ = {
+		379E912E1C95F73300D96175 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				374E85561D32C440006887E3 /* APIProvider.swift */,
@@ -469,7 +470,6 @@
 				374E85661D32D276006887E3 /* TargetTypes */,
 				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
 				377C39231CE36A7300BF5ABC /* ServerManger+Login.swift */,
-				377C391F1CE3690300BF5ABC /* ServerManager+Trainers.swift */,
 				377C39251CE51CBC00BF5ABC /* ServerManager+Programs.swift */,
 				378C17461CE8FE0B00B3FAED /* ServerManager+Workouts.swift */,
 				378C174A1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift */,
@@ -477,7 +477,7 @@
 				379E912C1C95F4AC00D96175 /* ServerRoute.swift */,
 				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 			);
-			name = "Server Manager";
+			name = API;
 			sourceTree = "<group>";
 		};
 		37A295E51CDA1B0A000C0D57 /* TrainingTableViewCell */ = {
@@ -525,7 +525,7 @@
 				374578931BDE5CCA004935BC /* Controllers */,
 				37A6A1211C7AEE65007F0944 /* Protocols */,
 				376142DC1C8C7BF60073B5F4 /* View models */,
-				379E912E1C95F73300D96175 /* Server Manager */,
+				379E912E1C95F73300D96175 /* API */,
 				374578961BDE5D19004935BC /* Models */,
 				374578921BDE5C29004935BC /* UI */,
 				374578971BDE5D28004935BC /* Extensions */,
@@ -910,6 +910,7 @@
 				378C174B1CE9096700B3FAED /* ServerManager+WorkoutSessions.swift in Sources */,
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374E855B1D32D121006887E3 /* LoginTarget.swift in Sources */,
+				37B351DE1D3657E900DE2010 /* TrainersFilter.swift in Sources */,
 				374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				374E85651D32D171006887E3 /* WorkoutSessionsTarget.swift in Sources */,
@@ -996,7 +997,6 @@
 				374E85611D32D14F006887E3 /* ProgramsTarget.swift in Sources */,
 				374A80AF1CDD514C0099225E /* SettingsTableViewController.swift in Sources */,
 				377C39241CE36A7300BF5ABC /* ServerManger+Login.swift in Sources */,
-				377C39201CE3690300BF5ABC /* ServerManager+Trainers.swift in Sources */,
 				37A6A1291C7AEECE007F0944 /* DateTimePresentable.swift in Sources */,
 				379E912B1C95F47D00D96175 /* ServerResponse.swift in Sources */,
 				376A346C1C8707D300400FAF /* ChatsTableViewController.swift in Sources */,
