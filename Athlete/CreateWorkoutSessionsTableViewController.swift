@@ -13,6 +13,7 @@ import Reusable
 class CreateWorkoutSessionsTableViewController: UITableViewController {
   
   var workouts = [Workout]()
+  let workoutsProvider = APIProvider<GetFit.Workouts>()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,15 +32,23 @@ class CreateWorkoutSessionsTableViewController: UITableViewController {
   }
   
   func loadWorkouts() {
-    ServerManager.sharedManager.fetchWorkouts { (response) in
-      switch response.result {
-      case .Success(let workouts):
-        self.workouts = workouts
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-        let realm = try! Realm()
-        try! realm.write {
-          realm.add(workouts, update: true)
+    workoutsProvider.request(.Index) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          let workoutsResponse = try response.filterSuccessfulStatusCodes()
+          let workouts = try workoutsResponse.mapArray(Workout.self)
+          self.workouts = workouts
+          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+          
+          let realm = try Realm()
+          try realm.write {
+            realm.add(workouts, update: true)
+          }
+        } catch let error {
+          self.presentAlertWithMessage("Error: \(error)")
         }
+        
       case .Failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }

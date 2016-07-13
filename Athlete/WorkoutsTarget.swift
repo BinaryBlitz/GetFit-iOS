@@ -6,8 +6,23 @@ import Toucan
 extension GetFit {
   
   public enum Workouts {
+    case Index
   }
   
 }
 
-//extension GetFit.Workouts: TargetType {
+extension GetFit.Workouts: TargetType {
+  
+  public var path: String {
+    return "/workouts"
+  }
+  
+  public var method: Moya.Method {
+    return .GET
+  }
+  
+  public var parameters: [String: AnyObject]? {
+    return nil
+  }
+  
+}

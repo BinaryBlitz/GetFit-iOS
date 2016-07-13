@@ -13,7 +13,8 @@ import RealmSwift
 
 class TrainingsViewController: UIViewController {
   
-  var trainings = [WorkoutSession]()
+  var workoutSessions = [WorkoutSession]()
+  let workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
   
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
@@ -84,7 +85,7 @@ class TrainingsViewController: UIViewController {
     setupTableView()
     
     let realm = try! Realm()
-    trainings = Array(realm.objects(WorkoutSession).sorted("date"))
+    workoutSessions = Array(realm.objects(WorkoutSession).sorted("date"))
   }
   
   override func viewDidLayoutSubviews() {
@@ -133,11 +134,19 @@ class TrainingsViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    ServerManager.sharedManager.fetchWorkoutSessions { (response) in
-      switch response.result {
-      case .Success(let workoutSessions):
-        self.trainings = workoutSessions
-        completion()
+    workoutSessionsProvider.request(.Index) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          let sessionsResponse = try response.filterSuccessfulStatusCodes()
+          let sessions = try sessionsResponse.mapArray(WorkoutSession.self)
+          self.workoutSessions = sessions
+          
+          completion()
+        } catch let error {
+          self.presentAlertWithMessage(String(error))
+          completion()
+        }
       case .Failure(let error):
         self.presentAlertWithMessage(String(error))
         completion()
@@ -174,7 +183,7 @@ class TrainingsViewController: UIViewController {
     case "trainingInfo":
       let destination = segue.destinationViewController as! TrainingViewController
       let indexPath = sender as! NSIndexPath
-      destination.training = trainings[indexPath.row]
+      destination.training = workoutSessions[indexPath.row]
     default:
       break
     }
@@ -200,7 +209,7 @@ class TrainingsViewController: UIViewController {
 extension TrainingsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return trainings.count
+    return workoutSessions.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -217,7 +226,7 @@ extension TrainingsViewController: UITableViewDataSource {
         mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
           print("Done!")
           if let indexPath = tableView.indexPathForCell(swipeCell) {
-            self.trainings.removeAtIndex(indexPath.row)
+            self.workoutSessions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
           }
     }
@@ -226,7 +235,7 @@ extension TrainingsViewController: UITableViewDataSource {
         mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
           print("Later!")
           if let indexPath = tableView.indexPathForCell(swipeCell) {
-            self.trainings.removeAtIndex(indexPath.row)
+            self.workoutSessions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
           }
           
@@ -236,7 +245,7 @@ extension TrainingsViewController: UITableViewDataSource {
           }
     }
     
-    let model = trainings[indexPath.row]
+    let model = workoutSessions[indexPath.row]
     cell.configureWith(TrainingViewModel(training: model))
     
     return cell

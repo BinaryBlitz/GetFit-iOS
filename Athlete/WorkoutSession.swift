@@ -10,8 +10,9 @@ import Realm
 import RealmSwift
 import SwiftyJSON
 import SwiftDate
+import Moya_SwiftyJSONMapper
 
-class WorkoutSession: Object {
+class WorkoutSession: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var name: String = ""
@@ -35,10 +36,10 @@ class WorkoutSession: Object {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int, name = json["name"].string else {
+    guard let id = jsonData["id"].int, name = jsonData["name"].string else {
       return nil
     }
     
