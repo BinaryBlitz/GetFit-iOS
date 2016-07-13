@@ -14,6 +14,7 @@ import Reusable
 class StoreTableViewController: UITableViewController {
 
   var programs = [Program]()
+  let programsProvider = APIProvider<GetFit.Programs>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -78,14 +79,22 @@ class StoreTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    ServerManager.sharedManager.fetchPrograms { (response) in
-      switch response.result {
-      case .Success(let programs):
-        self.programs = programs
-        let realm = try! Realm()
-        try! realm.write {
-          realm.add(programs, update: true)
+    programsProvider.request(.Index(filter: ProgramsFilter())) { (result) in
+      switch result {
+      case .Success(let response):
+        
+        do {
+          let programsResponse = try response.filterSuccessfulStatusCodes()
+          let programs = try programsResponse.mapArray(Program.self)
+          self.programs = programs
+          let realm = try Realm()
+          try realm.write {
+            realm.add(programs, update: true)
+          }
+        } catch {
+          print("Cannot update programs")
         }
+        
       case .Failure(let error):
         print(error)
       }
@@ -125,6 +134,7 @@ class StoreTableViewController: UITableViewController {
       let destination = segue.destinationViewController as! ProgramDetailsTableViewController
       let indexPath = sender as! NSIndexPath
       destination.program = programs[indexPath.row]
+      destination.programsProvider = programsProvider
     default:
       break
     }
@@ -137,10 +147,16 @@ extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
     guard let indexPath = tableView.indexPathForCell(cell) else { return }
     let program = programs[indexPath.row]
-    ServerManager.sharedManager.createPurchaseFor(program) { (response) in
-      switch response.result {
-      case .Success(_):
-        self.presentAlertWithMessage("Yeah! Program is yours")
+    
+    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          self.presentAlertWithMessage("Yeah! Program is yours")
+        } catch let error {
+          self.presentAlertWithMessage("Error: \(error)")
+        }
       case .Failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }

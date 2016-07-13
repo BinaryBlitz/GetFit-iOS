@@ -9,8 +9,9 @@
 import SwiftyJSON
 import Realm
 import RealmSwift
+import Moya_SwiftyJSONMapper
 
-class Program: Object, JSONSerializable {
+class Program: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var name: String = ""
@@ -37,11 +38,11 @@ class Program: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int, name = json["name"].string, preview = json["preview"].string,
-          price = json["price"].int, programDescription = json["description"].string else {
+    guard let id = jsonData["id"].int, name = jsonData["name"].string, preview = jsonData["preview"].string,
+          price = jsonData["price"].int, programDescription = jsonData["description"].string else {
       return nil
     }
     
@@ -51,19 +52,19 @@ class Program: Object, JSONSerializable {
     self.programDescription = programDescription
     self.price = price
     
-    if let bannerURLPath = json["banner_url"].string {
+    if let bannerURLPath = jsonData["banner_url"].string {
       self.bannerURLString = bannerURLPath
     }
     
-    if let duration = json["duration"].int {
+    if let duration = jsonData["duration"].int {
       self.duration = duration
     }
     
-    if let type = json["program_type"]["name"].string {
+    if let type = jsonData["program_type"]["name"].string {
       self.type = type
     }
     
-    if let trainer = Trainer(jsonData: json["trainer"]) {
+    if let trainer = Trainer(jsonData: jsonData["trainer"]) {
       self.trainer = trainer
       let realm = try! Realm()
       try! realm.write {
@@ -71,20 +72,20 @@ class Program: Object, JSONSerializable {
       }
     }
    
-    if let workoutsCount = json["workouts_count"].int {
+    if let workoutsCount = jsonData["workouts_count"].int {
       self.workoutsCount = workoutsCount
     }
     
-    if let usersCount = json["users_count"].int {
+    if let usersCount = jsonData["users_count"].int {
       self.usersCount = usersCount
     }
     
-    if let rating = json["rating"].double {
+    if let rating = jsonData["rating"].double {
       self.rating = rating
     }
     
-    let workouts = json["workouts"].flatMap { (_, workoutJSON) -> Workout? in
-      let workout = Workout(json: workoutJSON)
+    let workouts = jsonData["workouts"].flatMap { (_, workoutJSON) -> Workout? in
+      let workout = Workout(jsonData: workoutJSON)
       workout?.programId = self.id
       return workout
     }

@@ -24,7 +24,7 @@ extension ServerManager {
           let json = JSON(resultValue)
           print(json)
           let workouts = json.flatMap { (_, workoutJSON) -> Workout? in
-            return Workout(json: workoutJSON)
+            return Workout(jsonData: workoutJSON)
           }
           
           completion?(response: Response(value: workouts))

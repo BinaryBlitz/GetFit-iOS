@@ -9,8 +9,9 @@
 import Realm
 import RealmSwift
 import SwiftyJSON
+import Moya_SwiftyJSONMapper
 
-class Workout: Object, JSONSerializable {
+class Workout: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var name: String = ""
@@ -33,42 +34,42 @@ class Workout: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int else {
+    guard let id = jsonData["id"].int else {
       return nil
     }
     
     self.id = id
     
-    if let name = json["name"].string {
+    if let name = jsonData["name"].string {
       self.name = name
     } else {
       self.name = "workout name"
     }
     
-    if let exercisesCount = json["exercises_count"].int {
+    if let exercisesCount = jsonData["exercises_count"].int {
       self.exercisesCount = exercisesCount
     }
     
-    if let programId = json["program"]["id"].int {
+    if let programId = jsonData["program"]["id"].int {
       self.programId = programId
     }
     
-    if let programName = json["program"]["name"].string {
+    if let programName = jsonData["program"]["name"].string {
       self.programName = programName
     }
     
-    if let position = json["position"].int {
+    if let position = jsonData["position"].int {
       self.position = position
     }
     
-    if let duration = json["duration"].int {
+    if let duration = jsonData["duration"].int {
       self.duration = duration
     }
     
-    let exercises = json["exercises"].flatMap { (_, exerciseJSON) -> Exercise? in
+    let exercises = jsonData["exercises"].flatMap { (_, exerciseJSON) -> Exercise? in
       return Exercise(json: exerciseJSON)
     }
     
