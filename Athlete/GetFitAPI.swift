@@ -5,6 +5,14 @@ import PhoneNumberKit
 /// GetFit server requests
 public struct GetFit {
   
-  //TODO: Add api and device tokens
+  static var apiToken: String? {
+    didSet {
+      print("Api token updated: \(apiToken)")
+    }
+  }
+  
+  static var authenticated: Bool {
+    return apiToken != nil
+  }
   
 }

@@ -37,7 +37,7 @@ enum ServerEnvironment<Target: TargetType> {
   private func parametersWithAPIToken(parameters: [String: AnyObject]?) -> [String: AnyObject]? {
     var params = parameters ?? [:]
     //TODO: move token to user class
-    if let token = ServerManager.sharedManager.apiToken {
+    if let token = GetFit.apiToken {
       params["api_token"] = token
     }
     

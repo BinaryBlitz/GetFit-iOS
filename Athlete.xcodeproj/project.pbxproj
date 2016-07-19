@@ -110,8 +110,6 @@
 		37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD891C787A2800CA96E9 /* Post.swift */; };
 		37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */; };
 		37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8D1C788FC300CA96E9 /* Program.swift */; };
-		37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD941C7896D200CA96E9 /* ServerManager.swift */; };
-		37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD961C78984800CA96E9 /* ServerError.swift */; };
 		37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD981C79D5E000CA96E9 /* CardView.swift */; };
 		37D7AD9B1C79D7B200CA96E9 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */; };
 		37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */; };
@@ -249,8 +247,6 @@
 		37D7AD891C787A2800CA96E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainter.swift; sourceTree = "<group>"; };
 		37D7AD8D1C788FC300CA96E9 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
-		37D7AD941C7896D200CA96E9 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
-		37D7AD961C78984800CA96E9 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		37D7AD981C79D5E000CA96E9 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
@@ -456,8 +452,6 @@
 				374E85561D32C440006887E3 /* APIProvider.swift */,
 				373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */,
 				374E85661D32D276006887E3 /* TargetTypes */,
-				37D7AD941C7896D200CA96E9 /* ServerManager.swift */,
-				37D7AD961C78984800CA96E9 /* ServerError.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -907,7 +901,6 @@
 				37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				374E85631D32D15C006887E3 /* WorkoutsTarget.swift in Sources */,
-				37D7AD971C78984800CA96E9 /* ServerError.swift in Sources */,
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,
 				376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
@@ -921,7 +914,6 @@
 				37E4A4541BDF8739004193BF /* TrainingsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
-				37D7AD951C7896D200CA96E9 /* ServerManager.swift in Sources */,
 				3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */,
 				376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */,
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,

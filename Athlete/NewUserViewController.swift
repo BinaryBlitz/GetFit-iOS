@@ -8,8 +8,8 @@
 
 import UIKit
 import PhoneNumberKit
-import Alamofire
 import SwiftyJSON
+import Moya
 
 class NewUserViewController: UITableViewController {
   
@@ -19,7 +19,7 @@ class NewUserViewController: UITableViewController {
   @IBOutlet weak var lastNameTextField: UITextField!
   @IBOutlet weak var doneButton: UIButton!
   
-  var request: Request?
+  var request: Cancellable?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,8 +65,8 @@ class NewUserViewController: UITableViewController {
         do {
           try response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
-          guard let apiToken = json["api_token"].string else  { throw ServerError.InvalidData }
-          ServerManager.sharedManager.apiToken = apiToken
+          guard let apiToken = json["api_token"].string else  { throw Error.JSONMapping(response) }
+          GetFit.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
         
 //          let user = try response.mapObject(User.self)

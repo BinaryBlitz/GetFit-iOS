@@ -9,6 +9,7 @@
 import UIKit
 import PhoneNumberKit
 import SwiftyJSON
+import Moya
 
 class PhoneLoginTableViewController: UITableViewController {
 
@@ -62,7 +63,7 @@ class PhoneLoginTableViewController: UITableViewController {
             try response.filterSuccessfulStatusCodes()
             let json = try JSON(response.mapJSON())
             guard let token = json["token"].string else {
-              throw ServerError.InvalidData
+              throw Error.JSONMapping(response)
             }
             
             GetFit.Login.currentSessionData?.verificationToken = token
