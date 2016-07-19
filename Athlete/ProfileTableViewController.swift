@@ -9,12 +9,14 @@
 import UIKit
 import Reusable
 import RealmSwift
+import Moya
 
 class ProfileTableViewController: UITableViewController {
   
   private let tabsLabels = ["statistic", "programs"]
   private var selectedTabIndex = 0
   private var imageTypeToSelect: Image?
+  let userProvider = APIProvider<GetFit.Users>()
   
   var programs: Results<Program>?
   var user: User? {
@@ -40,35 +42,40 @@ class ProfileTableViewController: UITableViewController {
   }
   
   private func loadUser(completion: (() -> Void)? = nil) {
-    if let user = UserManger.currentUser {
+    if let user = UserManager.currentUser {
       self.user = user
     }
     
-    ServerManager.sharedManager.loadCurrentUser { (response) in
-      switch response.result {
-      case .Success(let user):
-        UserManger.currentUser = user
-        self.user = user
-        self.loadStatistics()
-      case .Failure(let error):
-        switch error {
-        case .NetworkConnectionLost, .NotConnectedToInternet:
-          self.presentAlertWithTitle("Ошибка", andMessage: "Не удалось загрузить данные")
-        default:
-          break
+    userProvider.request(.GetCurrent) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          let user = try response.mapObject(User.self)
+          UserManager.currentUser = user
+          self.user = user
+          self.loadStatistics()
+        } catch {
+          print("kek")
         }
+      case .Failure(let error):
+        print(error)
+        break
       }
-      
-      completion?()
     }
+    completion?()
   }
   
   private func loadStatistics() {
     guard let user = user else { return }
-    ServerManager.sharedManager.updateStatisticsFor(user) { (response) in
-      switch response.result {
-      case .Success(let user):
-        self.user = user
+    userProvider.request(.GetStatistics(forUserWithId: user.id)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          user.statistics = try response.mapObject(User.Statistics.self)
+          self.user = user
+        } catch {
+          print("Cannot map response")
+        }
       case .Failure(let error):
         print(error)
       }
@@ -260,14 +267,20 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     guard let imageType = imageTypeToSelect else { return }
     picker.dismissViewControllerAnimated(true, completion: nil)
     
-    ServerManager.sharedManager.update(imageType, withImage: image) { (response) in
-      switch response.result {
-      case .Success(_):
-        self.presentAlertWithMessage("\(imageType.rawValue) updated!")
-        self.refresh()
+    userProvider.request(.UpdateImage(type: imageType, image: image)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          self.presentAlertWithMessage("\(imageType.rawValue) updated!")
+          self.refresh()
+        } catch {
+          print("response is not successful")
+          self.presentAlertWithMessage("Upload failed")
+        }
       case .Failure(let error):
         print("error: \(error)")
-        self.presentAlertWithMessage("Upload failed")
+        self.presentAlertWithMessage("Error: \(error)")
       }
     }
   }

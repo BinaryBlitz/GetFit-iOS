@@ -8,13 +8,15 @@
 
 import UIKit
 import PhoneNumberKit
+import SwiftyJSON
+import Moya
 
 class PhoneLoginTableViewController: UITableViewController {
 
-  @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
+  let loginProvider = APIProvider<GetFit.Login>()
   
+  @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
   @IBOutlet weak var getCodeButton: UIButton!
-  var sessionData: PhoneSighUpSessionData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,23 +55,31 @@ class PhoneLoginTableViewController: UITableViewController {
     do {
       let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
       
-      let serverManager = ServerManager.sharedManager
-      
-      serverManager.createVerificationTokenFor(phoneNumber) { response in
-        switch response.result {
-        case .Success(let token):
-          self.sessionData = PhoneSighUpSessionData(phoneNumber: phoneNumber, verificationToken: token)
-          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+      GetFit.Login.currentSessionData = LoginSessionData(phoneNumber: phoneNumber)
+      loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
+        switch result {
+        case .Success(let response):
+          do {
+            try response.filterSuccessfulStatusCodes()
+            let json = try JSON(response.mapJSON())
+            guard let token = json["token"].string else {
+              throw Error.JSONMapping(response)
+            }
+            
+            GetFit.Login.currentSessionData?.verificationToken = token
+            self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+          } catch {
+            self.presentAlertWithTitle("Error", andMessage: "Something was broken")
+          }
         case .Failure(let error):
           print(error)
-          //TODO: specify error messages
-          self.presentAlertWithTitle("Ошибка", andMessage: "Что-то не так с интернетом")
+          self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
         }
         self.getCodeButton.userInteractionEnabled = true
       }
     } catch let error {
       print(error)
-      presentAlertWithMessage("Номер введен некорректно")
+      presentAlertWithMessage("Invalid phone number")
       getCodeButton.userInteractionEnabled = true
     }
   }
@@ -78,7 +88,7 @@ class PhoneLoginTableViewController: UITableViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let destination = segue.destinationViewController as? PhoneVerificationTableViewController {
-      destination.sessionData = sessionData
+      destination.loginProvider = loginProvider
     }
   }
 }

@@ -8,10 +8,11 @@
 
 import UIKit
 import PhoneNumberKit
+import SwiftyJSON
 
 class PhoneVerificationTableViewController: UITableViewController {
   
-  var sessionData: PhoneSighUpSessionData!
+  var loginProvider: APIProvider<GetFit.Login>!
   
   @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var verificationCodeTextField: UITextField!
@@ -30,7 +31,8 @@ class PhoneVerificationTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    return "На номер \(sessionData.phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
+    guard let sessionData = GetFit.Login.currentSessionData, phoneNumber = sessionData.phoneNumber else { return nil }
+    return "На номер \(phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
   }
   
   //MARK: - Actions
@@ -41,33 +43,42 @@ class PhoneVerificationTableViewController: UITableViewController {
       return
     }
     
-    let serverManager = ServerManager.sharedManager
-    serverManager.verifyPhoneNumber(sessionData.phoneNumber,
-        withCode: code, andToken: sessionData.verificationToken) { response in
-          
-      switch response.result {
-      case .Success(let userExists):
-        if userExists {
-          let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-          if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-            self.presentViewController(initialViewController, animated: true, completion: nil)
+    loginProvider.request(GetFit.Login.ConfirmPhoneNumber(code: code)) { result in
+      switch result {
+      case .Success(let response):
+        
+        do {
+          try response.filterSuccessfulStatusCodes()
+          let json = try JSON(response.mapJSON())
+          if let apiToken = json["api_token"].string {
+            GetFit.apiToken = apiToken
+            LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            if let initialViewController = mainStoryboard.instantiateInitialViewController() {
+              self.presentViewController(initialViewController, animated: true, completion: nil)
+            }
+          } else {
+            self.performSegueWithIdentifier("registerNewUser", sender: nil)
           }
-        } else {
-          self.performSegueWithIdentifier("registerNewUser", sender: nil)
+        } catch let error {
+          print(error)
+          self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
       case .Failure(let error):
         print(error)
-        //TODO: specify error messages
-        self.presentAlertWithTitle("Ошибка", andMessage: "Что-то не так с интернетом")
+        self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
     }
   }
   
-  //MARK: - Navigtion
+  //MARK: - Navigation
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? NewUserViewController {
-      destination.sessionData = sessionData
+    if segue.identifier == "registerNewUser" {
+      let newUserController = segue.destinationViewController as! NewUserViewController
+      newUserController.loginProvider = loginProvider
     }
   }
+  
 }

@@ -10,8 +10,9 @@ import Realm
 import RealmSwift
 import SwiftyJSON
 import SwiftDate
+import Moya_SwiftyJSONMapper
 
-class Trainer: Object, JSONSerializable {
+class Trainer: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var firstName: String = ""
@@ -49,10 +50,11 @@ class Trainer: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int, firstName = json["first_name"].string, lastName = json["last_name"].string else {
+    guard let id = jsonData["id"].int, firstName = jsonData["first_name"].string,
+        lastName = jsonData["last_name"].string else {
       return nil
     }
     
@@ -60,23 +62,23 @@ class Trainer: Object, JSONSerializable {
     self.firstName = firstName
     self.lastName = lastName
     
-    if let description = json["description"].string {
+    if let description = jsonData["description"].string {
       self.info = description
     }
     
-    if let avatarURLPath = json["avatar_url"].string {
+    if let avatarURLPath = jsonData["avatar_url"].string {
       self.avatarURLString = avatarURLPath
     }
     
-    if let bannerURLPath = json["banner_url"].string {
+    if let bannerURLPath = jsonData["banner_url"].string {
       self.bannerURLString = bannerURLPath
     }
     
-    if let followersCount = json["followers_count"].int {
+    if let followersCount = jsonData["followers_count"].int {
       self.followersCount = followersCount
     }
     
-    if let programsCount = json["programs_count"].int {
+    if let programsCount = jsonData["programs_count"].int {
      self.programsCount = programsCount
     }
   }

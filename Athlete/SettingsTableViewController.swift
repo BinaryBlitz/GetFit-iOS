@@ -12,6 +12,7 @@ class SettingsTableViewController: UITableViewController {
   
   @IBOutlet weak var firstNameLabel: UITextField!
   @IBOutlet weak var lastNameLabel: UITextField!
+  let userProvider = APIProvider<GetFit.Users>()
 
   var versionNumber: String {
     let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
@@ -24,7 +25,7 @@ class SettingsTableViewController: UITableViewController {
     
     firstNameLabel.placeholder = "First name"
     lastNameLabel.placeholder = "Last name"
-    if let user = UserManger.currentUser {
+    if let user = UserManager.currentUser {
       firstNameLabel.text = user.firstName
       lastNameLabel.text = user.lastName
     }
@@ -58,30 +59,37 @@ class SettingsTableViewController: UITableViewController {
       return
     }
     
-    if let user = UserManger.currentUser
+    if let user = UserManager.currentUser
         where user.firstName != firstName || user.lastName != lastName {
-      ServerManager.sharedManager.updateUser(firstName, lastName: lastName) { response in
-        switch response.result {
-        case .Success(let result):
-          print(result)
-          self.presentAlertWithMessage("Yay! Your profile is updated!")
-          if let user = UserManger.currentUser {
-            user.firstName = firstName
-            user.lastName = lastName
-            UserManger.currentUser = user
+      
+      userProvider.request(.Update(firstName: firstName, lastName: lastName)) { result in
+        switch result {
+        case .Success(let response):
+          do {
+            try response.filterSuccessfulStatusCodes()
+            self.view.endEditing(true)
+            self.presentAlertWithMessage("Yay! Your profile is updated!")
+            if let user = UserManager.currentUser {
+              user.firstName = firstName
+              user.lastName = lastName
+              UserManager.currentUser = user
+            }
+          } catch {
+            self.view.endEditing(true)
+            self.presentAlertWithMessage("Error with code \(response.statusCode)")
           }
-          self.view.endEditing(true)
         case .Failure(let error):
           self.presentAlertWithMessage("error: \(error)")
         }
       }
+      
     }
   }
   
   @IBAction func logoutButtonAction(sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
-    ServerManager.sharedManager.apiToken = nil
+    GetFit.apiToken = nil
     LocalStorageHelper.save(nil, forKey: .ApiToken)
     presentViewController(loginViewController, animated: true, completion: nil)
   }

@@ -9,10 +9,12 @@
 import UIKit
 import RealmSwift
 import Alamofire
+import Moya
 
 class NewsTableViewController: UITableViewController {
   
   var posts: Results<Post>?
+  let postsProvider = APIProvider<GetFit.Posts>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,10 +63,22 @@ class NewsTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    ServerManager.sharedManager.fetchPostsFor(0) { response in
-      switch response.result {
-      case .Success(_):
-        completion()
+    postsProvider.request(.Index) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          let postsResponse = try response.filterSuccessfulStatusCodes()
+          let posts = try postsResponse.mapArray(Post.self)
+          let realm = try! Realm()
+          try realm.write {
+            realm.add(posts, update: true)
+          }
+          
+          completion()
+        } catch {
+          print("response is not successful")
+          self.presentAlertWithMessage("Cannot update feed")
+        }
       case .Failure(let error):
         print(error)
         self.presentAlertWithMessage("Oh, no!")
@@ -127,6 +141,7 @@ class NewsTableViewController: UITableViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let destination = segue.destinationViewController as? PostViewController, post = sender as? Post {
       destination.post = post
+      destination.postsProvider = postsProvider
       switch segue.identifier {
       case .Some("viewPostAndComment"):
         destination.shouldShowKeyboadOnOpen = true
@@ -159,18 +174,21 @@ extension NewsTableViewController: PostTableViewCellDelegate {
   
   func didTouchLikeButton(cell: PostTableViewCell) {
     struct SharedRequest {
-      static var request: Request?
+      static var request: Cancellable?
     }
     
+    //FIXME: this is just wrong
     SharedRequest.request?.cancel()
     if let indexPath = tableView.indexPathForCell(cell),
         post = posts?[indexPath.row] {
       if cell.likeButton.selected {
-        SharedRequest.request = ServerManager.sharedManager.likePostWithId(post.id) { (response) in
-          switch response.result {
-          case .Success(let updated):
-            print(updated)
-            if !updated {
+        SharedRequest.request = postsProvider.request(.CreateLike(postId: post.id)) { result in
+          switch result {
+          case .Success(let response):
+            do {
+              try response.filterSuccessfulStatusCodes()
+              print("yay! new like")
+            } catch {
               cell.liked = false
             }
           case .Failure(let error):

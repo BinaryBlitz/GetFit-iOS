@@ -16,6 +16,8 @@ class ProfessionalsViewController: UIViewController {
   private(set) var selectedCategory: TrainerCategory = .Coach
   let categories: [TrainerCategory] = [.Coach, .Doctor, .Nutritionist]
   
+  let trainersProvider = APIProvider<GetFit.Trainers>()
+  
   var coaches = [Trainer]()
   var doctors = [Trainer]()
   var nutritionists = [Trainer]()
@@ -60,21 +62,36 @@ class ProfessionalsViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    ServerManager.sharedManager.fetchTrainersForCategory(selectedCategory) { (response) in
+    trainersProvider.request(.Index(filter: TrainersFilter(category: selectedCategory))) { (result) in
       completion()
-      switch response.result {
-      case .Success(let trainers):
-        if let trainer = trainers.first {
-          switch trainer.category {
-          case .Coach:
-            self.coaches = trainers
-          case .Doctor:
-            self.doctors = trainers
-          case .Nutritionist:
-            self.nutritionists = trainers
+      switch result {
+      case .Success(let response):
+        
+        do {
+          let trainersResponse = try response.filterSuccessfulStatusCodes()
+          let trainers = try trainersResponse.mapArray(Trainer.self)
+          
+          let realm = try Realm()
+          try realm.write {
+            realm.add(trainers, update: true)
           }
+          
+          if let trainer = trainers.first {
+            switch trainer.category {
+            case .Coach:
+              self.coaches = trainers
+            case .Doctor:
+              self.doctors = trainers
+            case .Nutritionist:
+              self.nutritionists = trainers
+            }
+          }
+        
+          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+        } catch {
+          print("Cannot fetch trainers")
         }
-      self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+        
       case .Failure(let error):
         print(error)
       }

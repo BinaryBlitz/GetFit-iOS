@@ -14,6 +14,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   var program: Program!
   var workouts: Results<Workout>?
+  var programsProvider: APIProvider<GetFit.Programs>!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,11 +34,17 @@ class ProgramDetailsTableViewController: UITableViewController {
   }
   
   func updateProgramInfo() {
-    ServerManager.sharedManager.showProgramWithId(program.id) { (response) in
-      switch response.result {
-      case .Success(let program):
-        self.program = program
-        self.tableView.reloadData()
+    programsProvider.request(.Show(id: program.id)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          let programResponse = try response.filterSuccessfulStatusCodes()
+          let program = try programResponse.mapObject(Program.self)
+          self.program = program
+          self.tableView.reloadData()
+        } catch let error {
+          self.presentAlertWithMessage("error: \(error)")
+        }
       case .Failure(let error):
         self.presentAlertWithMessage("error: \(error)")
       }
@@ -122,10 +129,15 @@ class ProgramDetailsTableViewController: UITableViewController {
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
-    ServerManager.sharedManager.createPurchaseFor(program) { (response) in
-      switch response.result {
-      case .Success(_):
-        self.presentAlertWithMessage("Yeah! Program is yours")
+    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          self.presentAlertWithMessage("Yeah! Program is yours")
+        } catch let error {
+          self.presentAlertWithMessage("Error: \(error)")
+        }
       case .Failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }

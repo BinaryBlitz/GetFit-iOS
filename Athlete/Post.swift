@@ -10,8 +10,9 @@ import Realm
 import RealmSwift
 import SwiftyJSON
 import SwiftDate
+import Moya_SwiftyJSONMapper
 
-class Post: Object, JSONSerializable {
+class Post: Object, ALSwiftyJSONAble {
 
   dynamic var id: Int = 0
   dynamic var content: String = ""
@@ -32,10 +33,10 @@ class Post: Object, JSONSerializable {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int, content = json["content"].string, createdAt = json["created_at"].string else {
+    guard let id = jsonData["id"].int, content = jsonData["content"].string, createdAt = jsonData["created_at"].string else {
       return nil
     }
     
@@ -43,19 +44,19 @@ class Post: Object, JSONSerializable {
     self.content = content
     self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
     
-    if let likesCount = json["likes_count"].int {
+    if let likesCount = jsonData["likes_count"].int {
       self.likesCount = likesCount
     }
     
-    if let likeId = json["like_id"].int {
+    if let likeId = jsonData["like_id"].int {
       self.likeId = likeId
     }
     
-    if let url = json["image_url"].string {
+    if let url = jsonData["image_url"].string {
       self.imageURLString = url
     }
     
-    if let trainer = Trainer(json: json["trainer"]) {
+    if let trainer = Trainer(jsonData: jsonData["trainer"]) {
       self.trainer = trainer
       let realm = try! Realm()
       try! realm.write {

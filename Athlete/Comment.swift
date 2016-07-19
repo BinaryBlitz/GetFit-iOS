@@ -9,37 +9,38 @@
 import Realm
 import RealmSwift
 import SwiftyJSON
+import Moya_SwiftyJSONMapper
 
-class Comment: Object, JSONSerializable {
+public class Comment: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var author: User?
   dynamic var content: String = ""
   dynamic var dateCreated: NSDate = NSDate()
   
-  override static func primaryKey() -> String? {
+  override public static func primaryKey() -> String? {
     return "id"
   }
   
-  required init() {
+  required public init() {
     super.init()
   }
   
-  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+  required public init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
   
-  required init?(json: JSON) {
+  required public init?(jsonData: JSON) {
     super.init()
     
-    guard let id = json["id"].int, content = json["content"].string, dateCreatedString = json["created_at"].string else {
+    guard let id = jsonData["id"].int, content = jsonData["content"].string, dateCreatedString = jsonData["created_at"].string else {
       return nil
     }
     
     self.id = id
     self.content = content
     self.dateCreated = dateCreatedString.toDate(.ISO8601Format(.Extended)) ?? NSDate()
-    if let author = User(json: json["author"]) {
+    if let author = User(jsonData: jsonData["author"]) {
       self.author = author
       let realm = try! Realm()
       try! realm.write {
@@ -48,7 +49,7 @@ class Comment: Object, JSONSerializable {
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required public init(value: AnyObject, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

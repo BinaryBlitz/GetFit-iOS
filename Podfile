@@ -7,8 +7,8 @@ target 'Athlete' do
   pod 'Crashlytics'
 
   # Networking
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
+  pod 'Moya'
+  pod "Moya-SwiftyJSONMapper"
 
   # DB
   pod 'RealmSwift'

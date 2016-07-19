@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import VK_ios_sdk
 import SwiftSpinner
+import SwiftyJSON
 
 typealias Spinner = SwiftSpinner
 
@@ -20,6 +21,8 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var facebookButton: LoginButton!
   @IBOutlet weak var vkButton: LoginButton!
   @IBOutlet weak var phoneButton: LoginButton!
+  
+  let loginProvider = APIProvider<GetFit.Login>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,12 +68,24 @@ class LoginViewController: UIViewController {
           let token = result.token
           
           Spinner.show("Идет авторизация")
-          ServerManager.sharedManager.loginWithFacebookToken(token.tokenString) { (response) in
+          self.loginProvider.request(.Facebook(token: token.tokenString)) { (result) in
             Spinner.hide()
-            switch response.result {
-            case .Success(let user):
-              print("User: \(user)")
-              self.performSegueWithIdentifier("home", sender: self)
+            switch result {
+            case .Success(let response):
+              do {
+                let userResponse = try response.filterSuccessfulStatusCodes()
+                let json = try JSON(userResponse.mapJSON())
+                if let apiToken = json["api_token"].string {
+                  UserManager.apiToken = apiToken
+                  print("api_token: \(apiToken)")
+                }
+                let user = try userResponse.mapObject(User.self)
+                print("User: \(user)")
+                UserManager.currentUser = user
+                self.performSegueWithIdentifier("home", sender: self)
+              } catch {
+                self.presentAlertWithMessage("Server response code: \(response.statusCode)")
+              }
             case .Failure(let error):
               print(error)
               self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
@@ -104,15 +119,26 @@ extension LoginViewController: VKSdkDelegate {
     }
     
     if let token = result.token.accessToken {
-      ServerManager.sharedManager.loginWithVKToken(token) { (response) in
+      loginProvider.request(.VK(token: token)) { result in
         Spinner.hide()
-        switch response.result {
-        case .Success(let user):
-          print(user)
-          self.performSegueWithIdentifier("home", sender: self)
+        switch result {
+        case .Success(let response):
+          do {
+            let userResponse = try response.filterSuccessfulStatusCodes()
+            let json = try JSON(userResponse.mapJSON())
+            if let apiToken = json["api_token"].string {
+              UserManager.apiToken = apiToken
+              print("api_token: \(apiToken)")
+            }
+            let user = try userResponse.mapObject(User.self)
+            print("User: \(user)")
+            UserManager.currentUser = user
+            self.performSegueWithIdentifier("home", sender: self)
+          } catch {
+            self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
+          }
         case .Failure(let error):
           print(error)
-          //TODO: specify error
           self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
         }
       }
