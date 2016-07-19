@@ -9,10 +9,11 @@
 import UIKit
 import PhoneNumberKit
 import Alamofire
+import SwiftyJSON
 
 class NewUserViewController: UITableViewController {
   
-  var sessionData: PhoneSighUpSessionData!
+  var loginProvider: APIProvider<GetFit.Login>!
 
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
@@ -57,36 +58,28 @@ class NewUserViewController: UITableViewController {
       return
     }
     
-    sessionData.firstName = firstName
-    sessionData.lastName = lastName
-    
-    //FIXME: tmp data
-    sessionData.birthdate = NSDate()
-    sessionData.gender = .Male
-    sessionData.height = 171
-    sessionData.weight = 65
-    
-    let serverManager = ServerManager.sharedManager
-    
-    serverManager.createNewUserWithData(sessionData) { response in
-      switch response.result {
-      case .Success(let user):
-        print("User: \(user)")
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-          self.presentViewController(initialViewController, animated: true, completion: nil)
-        }
-      case .Failure(let serverError):
-        //TODO: specify server errors
-        print(serverError)
-        if serverError == .InvalidData {
+    loginProvider.request(.CreateUser(firstName: firstName, lastName: lastName)) { result in
+      switch result {
+      case .Success(let response):
+        
+        do {
+          try response.filterSuccessfulStatusCodes()
+          let json = try JSON(response.mapJSON())
+          guard let apiToken = json["api_token"].string else  { throw ServerError.InvalidData }
+          ServerManager.sharedManager.apiToken = apiToken
+          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+        
+//          let user = try response.mapObject(User.self)
           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
           if let initialViewController = mainStoryboard.instantiateInitialViewController() {
             self.presentViewController(initialViewController, animated: true, completion: nil)
           }
-        } else {
-          self.presentAlertWithMessage("Ого! Что-то сломалось")
+        } catch {
+          self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
     }
   }

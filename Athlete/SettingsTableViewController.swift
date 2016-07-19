@@ -25,7 +25,7 @@ class SettingsTableViewController: UITableViewController {
     
     firstNameLabel.placeholder = "First name"
     lastNameLabel.placeholder = "Last name"
-    if let user = UserManger.currentUser {
+    if let user = UserManager.currentUser {
       firstNameLabel.text = user.firstName
       lastNameLabel.text = user.lastName
     }
@@ -59,7 +59,7 @@ class SettingsTableViewController: UITableViewController {
       return
     }
     
-    if let user = UserManger.currentUser
+    if let user = UserManager.currentUser
         where user.firstName != firstName || user.lastName != lastName {
       
       userProvider.request(.Update(firstName: firstName, lastName: lastName)) { result in
@@ -69,10 +69,10 @@ class SettingsTableViewController: UITableViewController {
             try response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
             self.presentAlertWithMessage("Yay! Your profile is updated!")
-            if let user = UserManger.currentUser {
+            if let user = UserManager.currentUser {
               user.firstName = firstName
               user.lastName = lastName
-              UserManger.currentUser = user
+              UserManager.currentUser = user
             }
           } catch {
             self.view.endEditing(true)

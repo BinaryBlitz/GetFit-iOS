@@ -42,7 +42,7 @@ class ProfileTableViewController: UITableViewController {
   }
   
   private func loadUser(completion: (() -> Void)? = nil) {
-    if let user = UserManger.currentUser {
+    if let user = UserManager.currentUser {
       self.user = user
     }
     
@@ -51,7 +51,7 @@ class ProfileTableViewController: UITableViewController {
       case .Success(let response):
         do {
           let user = try response.mapObject(User.self)
-          UserManger.currentUser = user
+          UserManager.currentUser = user
           self.user = user
           self.loadStatistics()
         } catch {

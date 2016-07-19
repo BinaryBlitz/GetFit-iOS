@@ -1,11 +1,16 @@
-//
-//  UserManger.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 11/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
-struct UserManger {
+// Struct for managing logged in user data
+struct UserManager {
   static var currentUser: User?
+  
+  static var apiToken: String? {
+    didSet {
+      LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+    }
+  }
+  
+  static var deviceToken: String? {
+    didSet {
+      LocalStorageHelper.save(deviceToken, forKey: .DeviceToken)
+    }
+  }
 }
