@@ -17,7 +17,7 @@ enum ServerEnvironment<Target: TargetType> {
   var baseURL: NSURL {
     switch self {
     case .Staging:
-      return NSURL(string: "http://getfit-staging.herokuapp.com/api")!
+      return NSURL(string: "https://getfit-staging.herokuapp.com/api")!
     case.Production:
       return NSURL(string: "")! //TODO: Add production base url
     }
