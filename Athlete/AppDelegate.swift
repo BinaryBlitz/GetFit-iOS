@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 26/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Fabric
 import Crashlytics
@@ -28,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureServerManager()
     configureTabBar()
     
-    if !GetFit.authenticated {
+    if !UserManager.authenticated {
       let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
       let login = loginStoryboard.instantiateInitialViewController()
       window?.rootViewController = login
@@ -51,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func configureServerManager() {
     if let apiToken: String = LocalStorageHelper.loadObjectForKey(.ApiToken) {
-      GetFit.apiToken = apiToken
+      UserManager.apiToken = apiToken
     }
   }
   

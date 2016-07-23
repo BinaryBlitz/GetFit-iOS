@@ -36,8 +36,7 @@ enum ServerEnvironment<Target: TargetType> {
   /// Creates parametes dictionary with api token
   private func parametersWithAPIToken(parameters: [String: AnyObject]?) -> [String: AnyObject]? {
     var params = parameters ?? [:]
-    //TODO: move token to user class
-    if let token = GetFit.apiToken {
+    if let token = UserManager.apiToken {
       params["api_token"] = token
     }
     

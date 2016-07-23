@@ -89,7 +89,7 @@ class SettingsTableViewController: UITableViewController {
   @IBAction func logoutButtonAction(sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
-    GetFit.apiToken = nil
+    UserManager.apiToken = nil
     LocalStorageHelper.save(nil, forKey: .ApiToken)
     presentViewController(loginViewController, animated: true, completion: nil)
   }

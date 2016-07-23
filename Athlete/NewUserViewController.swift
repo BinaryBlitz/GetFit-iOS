@@ -66,7 +66,7 @@ class NewUserViewController: UITableViewController {
           try response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let apiToken = json["api_token"].string else  { throw Error.JSONMapping(response) }
-          GetFit.apiToken = apiToken
+          UserManager.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
         
 //          let user = try response.mapObject(User.self)
