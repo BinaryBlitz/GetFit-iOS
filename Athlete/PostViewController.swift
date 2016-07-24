@@ -15,6 +15,8 @@ class PostViewController: UIViewController {
   var post: Post!
   var postsProvider: APIProvider<GetFit.Posts>!
   
+  var refreshControl: UIRefreshControl!
+  
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var commentTextField: UITextField!
@@ -43,7 +45,7 @@ class PostViewController: UIViewController {
       shouldShowKeyboadOnOpen = false
     }
     
-    fetchComments()
+    refresh()
   }
   
   //MARK: - Setup methods
@@ -66,18 +68,36 @@ class PostViewController: UIViewController {
     tableView.tableFooterView = UIView()
     tableView.registerReusableCell(PostTableViewCell)
     tableView.registerReusableCell(PostCommentTableViewCell)
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
   }
   
-  //MARK: - Server stuff
+  //MARK: - Refresh
   
-  func fetchComments() {
+  func refresh(sender: AnyObject? = nil) {
+    let oldCommentsCount = post.comments.count
+    beginRefreshWithCompletion {
+      if oldCommentsCount != self.post.comments.count {
+        self.tableView.reloadData()
+        self.reloadCommentsSection()
+      }
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
     postsProvider.request(.GetComments(postId: post.id)) { (result) in
       switch result {
       case .Success(let response):
         
         do {
-          let commentsResponse = try response.filterSuccessfulStatusCodes()
-          let comments = try commentsResponse.mapArray(Comment.self)
+          try response.filterSuccessfulStatusCodes()
+          let comments = try response.mapArray(Comment.self)
           
           let realm = try Realm()
           try realm.write {
@@ -90,11 +110,11 @@ class PostViewController: UIViewController {
         } catch {
           print("Cannot load comments")
         }
-        
-        self.reloadCommentsSection()
       case .Failure(let error):
         print("error in fetchComments: \(error)")
       }
+      
+      completion()
     }
   }
   
@@ -105,17 +125,28 @@ class PostViewController: UIViewController {
     sendCommentButton.userInteractionEnabled = false
     let comment = Comment()
     comment.content = content
+    comment.dateCreated = NSDate()
+    comment.author = UserManager.currentUser
+    
     postsProvider.request(.CreateComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.userInteractionEnabled = true
       switch result {
       case .Success(_):
         self.commentTextField.text = nil
-        self.fetchComments()
+        self.refresh()
       case .Failure(let error):
         print(error)
         self.presentAlertWithMessage("Ну удалось отправить комментарий")
       }
     }
+  }
+  
+  private func insert(comment: Comment, inSection section: Int) {
+    guard tableView.numberOfSections >= 2 else { return }
+    let lastRowIndex = tableView.numberOfRowsInSection(1)
+    let indexPath = NSIndexPath(forRow: lastRowIndex, inSection: 1)
+    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Bottom)
+    tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
   }
   
   //MARK: - Tools
