@@ -63,13 +63,6 @@ class Post: Object, ALSwiftyJSONAble {
         realm.add(trainer, update: true)
       }
     }
-    
-    let program = Program()
-    program.name = "awesome program"
-    program.price = 100
-    program.type = "Cardio"
-    program.workoutsCount = 10
-    self.program = program
   }
   
   required init(value: AnyObject, schema: RLMSchema) {
