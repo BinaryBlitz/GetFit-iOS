@@ -40,6 +40,8 @@ class PostViewController: UIViewController {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     
+    tableView.reloadData()
+    
     if shouldShowKeyboadOnOpen {
       commentTextField.becomeFirstResponder()
       shouldShowKeyboadOnOpen = false
