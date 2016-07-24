@@ -13,4 +13,8 @@ struct UserManager {
       LocalStorageHelper.save(deviceToken, forKey: .DeviceToken)
     }
   }
+  
+  static var authenticated: Bool {
+    return apiToken != nil
+  }
 }
