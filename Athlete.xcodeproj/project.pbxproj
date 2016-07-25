@@ -12,6 +12,7 @@
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
 		3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD01D46141D00521932 /* ConversationViewController.swift */; };
 		3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD21D46270100521932 /* MessagesTarget.swift */; };
+		3718DCD51D46321B00521932 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD41D46321B00521932 /* Subscription.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */; };
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
@@ -147,6 +148,7 @@
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		3718DCD01D46141D00521932 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		3718DCD21D46270100521932 /* MessagesTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTarget.swift; sourceTree = "<group>"; };
+		3718DCD41D46321B00521932 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				374A78441C982B7A004D30AD /* ProgramType.swift */,
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
+				3718DCD41D46321B00521932 /* Subscription.swift */,
 			);
 			name = "Domain Model";
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */,
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
+				3718DCD51D46321B00521932 /* Subscription.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */,
 				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
