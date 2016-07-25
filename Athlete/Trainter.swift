@@ -34,6 +34,10 @@ class Trainer: Object, ALSwiftyJSONAble {
     }
   }
   
+  var name: String {
+    return "\(firstName) \(lastName)"
+  }
+  
   let posts = LinkingObjects(fromType: Post.self, property: "trainer")
   
   let programs = LinkingObjects(fromType: Program.self, property: "trainer")
