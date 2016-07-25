@@ -10,6 +10,7 @@
 		37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */; };
 		37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */; };
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
+		3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD01D46141D00521932 /* ConversationViewController.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */; };
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
@@ -143,6 +144,7 @@
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3718DCD01D46141D00521932 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +288,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3718DCCF1D4613E300521932 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
+				3718DCD01D46141D00521932 /* ConversationViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		3732972C1CA4AB25008AEB05 /* Domain Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				376142DF1C90C8B50073B5F4 /* Login */,
-				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
+				3718DCCF1D4613E300521932 /* Chat */,
 				37C5644B1C77D76000BC370E /* News */,
 				37C5644C1C77D77A00BC370E /* Professionals */,
 				37C5644D1C77D79C00BC370E /* Workout */,
@@ -955,6 +966,7 @@
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
+				3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
 				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
