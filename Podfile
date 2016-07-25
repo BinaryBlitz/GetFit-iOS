@@ -21,6 +21,7 @@ target 'Athlete' do
   pod 'InnerShadowView'
   pod 'SwiftSpinner'
   pod 'XCDYouTubeKit'
+  pod 'JSQMessagesViewController' 
 
   # Tools
   pod 'SwiftDate'

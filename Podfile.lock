@@ -16,6 +16,9 @@ PODS:
     - FBSDKCoreKit
   - HanekeSwift (0.10.1)
   - InnerShadowView (1.0.0)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - MCSwipeTableViewCell (2.1.4)
   - Moya (6.5.0):
     - Moya/Core (= 6.5.0)
@@ -52,6 +55,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - HanekeSwift
   - InnerShadowView
+  - JSQMessagesViewController
   - MCSwipeTableViewCell
   - Moya
   - Moya-SwiftyJSONMapper
@@ -76,6 +80,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
   Moya-SwiftyJSONMapper: 174dfe333c4c06bae5b941448c443ff92ca4fa0a
@@ -93,6 +99,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: ac7150f279fdce24f16f5e6f9561e547be33ebf8
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: d486387c3918ad70cf6ee59393f3aa8c9eab5ba7
+PODFILE CHECKSUM: 99d7e294bd064acc50d1b1f1d95473ee80eab6d6
 
 COCOAPODS: 1.0.1
