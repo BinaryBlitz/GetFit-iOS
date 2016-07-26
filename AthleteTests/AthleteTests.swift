@@ -2,12 +2,11 @@
 //  AthleteTests.swift
 //  AthleteTests
 //
-//  Created by Dan Shevlyuk on 26/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
+//  Created by Dan Shevlyuk on 26/07/2016.
+//  Copyright © 2016 BinaryBlitz. All rights reserved.
 //
 
 import XCTest
-@testable import Athlete
 
 class AthleteTests: XCTestCase {
     
