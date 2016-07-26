@@ -9,6 +9,28 @@ public class Message: Object, ALSwiftyJSONAble {
   dynamic var id: Int = 0
   dynamic var content: String?
   dynamic var createdAt: NSDate = NSDate()
+  private dynamic var categoryValue: String?
+  
+  var category: Category? {
+    get {
+      guard let value = categoryValue else { return nil }
+      
+      return Category(rawValue: value)
+    }
+    set {
+      guard let category = newValue else {
+        categoryValue = nil
+        return
+      }
+      
+      categoryValue = category.rawValue
+    }
+  }
+  
+  enum Category: String {
+    case User = "user"
+    case Trainer = "trainer"
+  }
   
   public required init() {
     super.init()
@@ -36,6 +58,10 @@ public class Message: Object, ALSwiftyJSONAble {
       self.createdAt = date
     } else {
       return nil
+    }
+    
+    if let categoryValue = jsonData["category"].string, category = Category(rawValue: categoryValue) {
+      self.category = category
     }
   }
 }
