@@ -9,7 +9,7 @@ public class Subscription: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var lastMessage: Message?
-  dynamic var trainerId: Int = 0
+  dynamic var trainer: Trainer!
   dynamic var createdAt: NSDate = NSDate()
   
   public required init() {
@@ -34,7 +34,15 @@ public class Subscription: Object, ALSwiftyJSONAble {
     }
     
     self.id = id
-    self.trainerId = trainerId
+    let realm = try! Realm()
+    if let trainer = realm.objectForPrimaryKey(Trainer.self, key: trainerId) {
+      self.trainer = trainer
+    } else if let trainer = Trainer(jsonData: jsonData["trainer"]) {
+      self.trainer = trainer
+    } else {
+      return nil
+    }
+    
     self.lastMessage = lastMessage
     if let date = createdAtString.toDate(DateFormat.ISO8601Format(.Extended)) {
       self.createdAt = date
