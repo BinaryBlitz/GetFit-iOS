@@ -11,6 +11,7 @@ public class Subscription: Object, ALSwiftyJSONAble {
   dynamic var lastMessage: Message?
   dynamic var trainer: Trainer!
   dynamic var createdAt: NSDate = NSDate()
+  let messages = List<Message>()
   
   public override static func primaryKey() -> String? {
     return "id"
