@@ -3,14 +3,16 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ensure_git_status_clean
+    ensure_git_status_clean
     cocoapods
-    # increment_build_number
+    increment_build_number
   end
 
   desc "Runs all the tests"
   lane :test do
-    scan
+    scan(
+      scheme: "Athlete"
+    )
   end
 
   desc "Crashlytics beta"
@@ -26,23 +28,6 @@ platform :ios do
       notes: "add some stuff",
       groups: ['dev-team-athlete']
     )
-  end
-
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :testflight do
-    sigh
-    gym(scheme: "Athlete") # Build your app - more options available
-    pilot
-  end
-
-  desc "Deploy a new version to the App Store"
-  lane :deploy do
-    # snapshot
-    sigh
-    gym(scheme: "Athlete") # Build your app - more options available
-    # deliver(force: true)
-    # frameit
   end
 
   after_all do |lane|
