@@ -16,18 +16,6 @@ Runs all the tests
 fastlane ios beta
 ```
 Crashlytics beta
-### ios testflight
-```
-fastlane ios testflight
-```
-Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
-### ios deploy
-```
-fastlane ios deploy
-```
-Deploy a new version to the App Store
 
 ----
 
