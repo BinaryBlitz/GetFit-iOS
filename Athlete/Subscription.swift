@@ -12,6 +12,10 @@ public class Subscription: Object, ALSwiftyJSONAble {
   dynamic var trainer: Trainer!
   dynamic var createdAt: NSDate = NSDate()
   
+  public override static func primaryKey() -> String? {
+    return "id"
+  }
+  
   public required init() {
     super.init()
   }
@@ -28,7 +32,6 @@ public class Subscription: Object, ALSwiftyJSONAble {
     super.init()
     
     guard let id = jsonData["id"].int, trainerId = jsonData["trainer_id"].int,
-          lastMessage = Message(jsonData: jsonData["message_preview"]),
           createdAtString = jsonData["created_at"].string else {
         return nil
     }
@@ -43,7 +46,10 @@ public class Subscription: Object, ALSwiftyJSONAble {
       return nil
     }
     
-    self.lastMessage = lastMessage
+    if let lastMessage = Message(jsonData: jsonData["message_preview"]) {
+      self.lastMessage = lastMessage
+    }
+    
     if let date = createdAtString.toDate(DateFormat.ISO8601Format(.Extended)) {
       self.createdAt = date
     }
