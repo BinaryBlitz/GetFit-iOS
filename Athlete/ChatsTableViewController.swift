@@ -15,8 +15,9 @@ class ChatsTableViewController: UITableViewController {
     subscriptions = realm.objects(Subscription.self).sorted("createdAt", ascending: true)
     
     configureTableView()
-    title = "Chats"
     
+    title = "Chats"
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     navigationItem.leftBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closeButtonAction(_:)))
   }
@@ -90,6 +91,15 @@ class ChatsTableViewController: UITableViewController {
     cell.configureWith(SubscriptionViewModel(subscription: subscription))
     
     return cell
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let subscription = subscriptions[indexPath.row]
+    let conversationViewController = ConversationViewController()
+    conversationViewController.subscriptionsProvider = subscriptionsProvider
+    conversationViewController.subscription = subscription
+    
+    navigationController?.pushViewController(conversationViewController, animated: true)
   }
   
 }
