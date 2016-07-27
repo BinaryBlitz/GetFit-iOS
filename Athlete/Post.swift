@@ -48,11 +48,11 @@ class Post: Object, ALSwiftyJSONAble {
       self.likesCount = likesCount
     }
 
-    if let commentsCount = json["comments_count"].int {
+    if let commentsCount = jsonData["comments_count"].int {
       self.commentsCount = commentsCount
     }
 
-    if let likeId = json["like_id"].int {
+    if let likeId = jsonData["like_id"].int {
       self.likeId = likeId
     }
 
