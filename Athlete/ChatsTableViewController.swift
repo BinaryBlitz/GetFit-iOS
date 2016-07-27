@@ -22,10 +22,14 @@ class ChatsTableViewController: UITableViewController {
         UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closeButtonAction(_:)))
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    refresh()
+  }
+  
   private func configureTableView() {
     tableView.registerReusableCell(ChatsTableViewCell)
     
-//    tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.backgroundColor = UIColor.whiteColor()
     tableView.tableFooterView = UIView()
     tableView.rowHeight = UITableViewAutomaticDimension
