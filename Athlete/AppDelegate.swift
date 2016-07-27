@@ -147,4 +147,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     NSNotificationCenter.defaultCenter().postNotificationName(ReloadMessagesNotification, object: nil)
   }
 }
+  
+func registerForPushNotifications() {
+  UIApplication.sharedApplication()
+    .registerUserNotificationSettings(
+      UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+  )
 
+  UIApplication.sharedApplication().registerForRemoteNotifications()
+}

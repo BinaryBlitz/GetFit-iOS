@@ -82,6 +82,8 @@ class LoginViewController: UIViewController {
                 let user = try userResponse.mapObject(User.self)
                 print("User: \(user)")
                 UserManager.currentUser = user
+                registerForPushNotifications()
+                
                 self.performSegueWithIdentifier("home", sender: self)
               } catch {
                 self.presentAlertWithMessage("Server response code: \(response.statusCode)")
@@ -133,6 +135,7 @@ extension LoginViewController: VKSdkDelegate {
             let user = try userResponse.mapObject(User.self)
             print("User: \(user)")
             UserManager.currentUser = user
+            registerForPushNotifications()
             self.performSegueWithIdentifier("home", sender: self)
           } catch {
             self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
