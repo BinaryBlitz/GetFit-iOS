@@ -38,7 +38,7 @@ extension GetFit.Login: TargetType {
     case .Phone(_):
       return "/verification_tokens"
     case .ConfirmPhoneNumber(_):
-      return "/verification_tokens/\(sessionData!.verificationToken)"
+      return "/verification_tokens/\(sessionData!.verificationToken!)"
     case .CreateUser(_, _):
       return "/user"
     }
@@ -70,8 +70,6 @@ extension GetFit.Login: TargetType {
         "verification_token": sessionData!.verificationToken!,
         "first_name": firstName,
         "last_name": lastName
-//        "device_token": ServerManager.sharedInstance.deviceToken ?? NSNull(),
-//        "platform": "ios"
       ]
     }
   }
