@@ -10,6 +10,8 @@ import VK_ios_sdk
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  
+  private lazy var usersProvider = APIProvider<GetFit.Users>()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     FBSDKApplicationDelegate.sharedInstance().application(application,
@@ -94,6 +96,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                           openURL: url,
                                                           sourceApplication: sourceApplication,
                                                           annotation: annotation)
+  }
+  
+  //MARK: - Push notifications
+  func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+    var token = ""
+    
+    for i in 0 ..< deviceToken.length {
+      token += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+    }
+    
+    LocalStorageHelper.save(token, forKey: .DeviceToken)
+    LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+    updateDeviceTokenIfNeeded()
+  }
+  
+  func updateDeviceTokenIfNeeded() {
+    guard let shouldUpdateToken: Bool = LocalStorageHelper.loadObjectForKey(.ShouldUpdateDeviceToken),
+        token: String = LocalStorageHelper.loadObjectForKey(.DeviceToken) where shouldUpdateToken else {
+      return
+    }
+    
+    LocalStorageHelper.save(false, forKey: .ShouldUpdateDeviceToken)
+    usersProvider.request(GetFit.Users.UpdateDeviceToken(token: token)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          print("Device token updated \(token)")
+        } catch {
+          LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+        }
+      case .Failure(_):
+        LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+      }
+    }
+  }
+  
+  func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    // develper.layOnTheFloor()
+    // do {
+    //    try developer.notToCry()
+    // } catch {
+    //    developer.cryALot()
+    // }
+  }
+  
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    NSNotificationCenter.defaultCenter().postNotificationName(ReloadMessagesNotification, object: nil)
   }
 }
 

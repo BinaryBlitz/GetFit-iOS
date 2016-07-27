@@ -14,6 +14,7 @@ struct LocalStorageHelper {
     //TODO: save api token to the keychain
     case ApiToken
     case DeviceToken
+    case ShouldUpdateDeviceToken
   }
   
   static func save(object: AnyObject?, forKey key: StorageKey) {
