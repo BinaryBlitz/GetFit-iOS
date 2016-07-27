@@ -2,6 +2,7 @@ import UIKit
 import JSQMessagesViewController
 import RealmSwift
 import Moya
+import Haneke
 
 class ConversationViewController: JSQMessagesViewController {
   
@@ -23,6 +24,7 @@ class ConversationViewController: JSQMessagesViewController {
     inputToolbar.contentView.leftBarButtonItem = nil
     
     configureChatViews()
+    addAvatarToNavigationBar()
     reloadMessages()
     scrollToBottomAnimated(true)
     
@@ -36,6 +38,22 @@ class ConversationViewController: JSQMessagesViewController {
       userInfo: nil,
       repeats: true
     )
+  }
+  
+  private func addAvatarToNavigationBar() {
+    guard let imageURL = SubscriptionViewModel(subscription: subscription).avatarImageURL else { return }
+    
+    let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    
+    let imageView = UIImageView(frame: CGRect(x: 7, y: 0, width: 37, height: 37))
+    imageView.hnk_setImageFromURL(imageURL)
+    imageView.contentMode = .ScaleAspectFill
+    imageView.layer.cornerRadius = imageView.frame.width / 2
+    imageView.layer.shouldRasterize = true
+    imageView.clipsToBounds = true
+    contentView.addSubview(imageView)
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: contentView)
   }
   
   private func configureChatViews() {

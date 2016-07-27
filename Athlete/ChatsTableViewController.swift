@@ -20,10 +20,7 @@ class ChatsTableViewController: UITableViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     navigationItem.leftBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closeButtonAction(_:)))
-  }
-  
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
+    
     refresh()
   }
   
