@@ -1,14 +1,7 @@
-//
-//  PhoneVerificationTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 14/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import PhoneNumberKit
 import SwiftyJSON
+import Moya
 
 class PhoneVerificationTableViewController: UITableViewController {
   
@@ -63,12 +56,23 @@ class PhoneVerificationTableViewController: UITableViewController {
           }
         } catch let error {
           print(error)
-          self.presentAlertWithTitle("Error", andMessage: "Something was broken")
+          self.handleErrorIn(response)
         }
       case .Failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
+    }
+  }
+  
+  private func handleErrorIn(response: Response) {
+    switch response.statusCode {
+    case 403:
+      presentAlertWithTitle("Error", andMessage: "Invalid verification code")
+    case 500...599:
+      presentAlertWithTitle("Error", andMessage: "Looks like our server was broken. Try again later.")
+    default:
+      presentAlertWithTitle("Error", andMessage: "Something was broken. Try again later.")
     }
   }
   
