@@ -1,36 +1,34 @@
 import Foundation
 import SwiftDate
 
-protocol SubscriptionPresentable {
-  var title: String { get }
-  var lastMessage: String? { get }
-  var avatarURL: NSURL { get }
-  var updatedAt: String { get }
-}
-
 struct SubscriptionViewModel {
   let subscription: Subscription
-  
-  private lazy var dateFormat = DateFormat.Custom("dd.MM")
 }
 
 extension SubscriptionViewModel: SubscriptionPresentable {
-  var title: String {
+  var name: String {
     return subscription.trainer.name
   }
-  
+
   var lastMessage: String? {
-    return subscription.lastMessage?.content
+    guard let message = subscription.lastMessage else { return "No messages" }
+
+    return message.content
   }
-  
-  var avatarURL: NSURL { get }
-  
-  var updatedAt: String {
-    if let lastMessage = subscription.lastMessage {
-      
+
+  var createdAt: String {
+    let dateFormat: DateFormat = .Custom("dd.MM")
+
+    if let message = subscription.lastMessage {
+      return message.createdAt.toString(dateFormat)!
     } else {
       return subscription.createdAt.toString(dateFormat)!
     }
   }
-  
+
+  var avatarImageURL: NSURL? {
+    guard let urlString = subscription.trainer.avatarURLString else { return nil }
+
+    return NSURL(string: urlString)
+  }
 }

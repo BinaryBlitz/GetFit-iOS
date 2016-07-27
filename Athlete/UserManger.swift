@@ -5,6 +5,7 @@ struct UserManager {
   static var apiToken: String? {
     didSet {
       LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+      print("API Token updated: \(apiToken)")
     }
   }
   

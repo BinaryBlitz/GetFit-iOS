@@ -154,10 +154,11 @@ class NewsTableViewController: UITableViewController {
   //MARK: - IBActions
   
   @IBAction func chatsButtonAction(sender: AnyObject) {
-    let chatsViewController = ChatsTableViewController()
+    let chatsViewController = ChatsTableViewController(style: .Plain)
     let navigationController = UINavigationController(rootViewController: chatsViewController)
     presentViewController(navigationController, animated: true, completion: nil)
   }
+  
 }
 
 //MARK: - PostTableViewCellDelegate

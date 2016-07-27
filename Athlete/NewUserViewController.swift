@@ -70,6 +70,7 @@ class NewUserViewController: UITableViewController {
           LocalStorageHelper.save(apiToken, forKey: .ApiToken)
         
 //          let user = try response.mapObject(User.self)
+          registerForPushNotifications()
           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
           if let initialViewController = mainStoryboard.instantiateInitialViewController() {
             self.presentViewController(initialViewController, animated: true, completion: nil)
@@ -83,4 +84,5 @@ class NewUserViewController: UITableViewController {
       }
     }
   }
+  
 }

@@ -10,6 +10,9 @@
 		37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */; };
 		37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */; };
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
+		3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD01D46141D00521932 /* ConversationViewController.swift */; };
+		3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD21D46270100521932 /* MessagesTarget.swift */; };
+		3718DCD51D46321B00521932 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD41D46321B00521932 /* Subscription.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */; };
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
@@ -17,6 +20,8 @@
 		3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */; };
 		373C20A61D2FF89900DF72EB /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A51D2FF89900DF72EB /* Int+Format.swift */; };
 		373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */; };
+		3743BD7D1D478B4400303059 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3743BD7B1D478B4400303059 /* ChatsTableViewCell.swift */; };
+		3743BD7E1D478B4400303059 /* ChatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3743BD7C1D478B4400303059 /* ChatsTableViewCell.xib */; };
 		374407AA1BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */; };
 		374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */; };
 		374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374578981BDE5FDE004935BC /* UIColor+Athlete.swift */; };
@@ -72,6 +77,9 @@
 		378C17431CE8A8E600B3FAED /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17421CE8A8E600B3FAED /* Workout.swift */; };
 		378C17451CE8A8F600B3FAED /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17441CE8A8F600B3FAED /* WorkoutSession.swift */; };
 		378C17491CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C17481CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift */; };
+		379081371D4795B100A7CD28 /* SubscriptionPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379081361D4795B100A7CD28 /* SubscriptionPresentable.swift */; };
+		379081391D47981400A7CD28 /* SubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379081381D47981400A7CD28 /* SubscriptionViewModel.swift */; };
+		3790813B1D48AF3C00A7CD28 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790813A1D48AF3C00A7CD28 /* Notification.swift */; };
 		379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */; };
 		379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */; };
 		379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */; };
@@ -143,6 +151,9 @@
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3718DCD01D46141D00521932 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		3718DCD21D46270100521932 /* MessagesTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTarget.swift; sourceTree = "<group>"; };
+		3718DCD41D46321B00521932 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +161,8 @@
 		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		373C20A51D2FF89900DF72EB /* Int+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFitAPI.swift; sourceTree = "<group>"; };
+		3743BD7B1D478B4400303059 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		3743BD7C1D478B4400303059 /* ChatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatsTableViewCell.xib; sourceTree = "<group>"; };
 		374407A91BE6A33A00C7ECBD /* ProgramDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailsTableViewController.swift; sourceTree = "<group>"; };
 		374407AB1BE7B71100C7ECBD /* ProfessionalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewController.swift; sourceTree = "<group>"; };
 		374578981BDE5FDE004935BC /* UIColor+Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Athlete.swift"; sourceTree = "<group>"; };
@@ -207,6 +220,9 @@
 		378C17421CE8A8E600B3FAED /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		378C17441CE8A8F600B3FAED /* WorkoutSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
 		378C17481CE9034100B3FAED /* CreateWorkoutSessionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSessionsTableViewController.swift; sourceTree = "<group>"; };
+		379081361D4795B100A7CD28 /* SubscriptionPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionPresentable.swift; sourceTree = "<group>"; };
+		379081381D47981400A7CD28 /* SubscriptionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionViewModel.swift; sourceTree = "<group>"; };
+		3790813A1D48AF3C00A7CD28 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		379943F31CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseInfoTableViewCell.swift; sourceTree = "<group>"; };
 		379943F51CDCC05E00A3F36A /* ExerciseParamsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseParamsView.swift; sourceTree = "<group>"; };
 		379943F81CDCC9CD00A3F36A /* ExerciseParamsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseParamsView.xib; sourceTree = "<group>"; };
@@ -286,6 +302,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3718DCCF1D4613E300521932 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
+				3718DCD01D46141D00521932 /* ConversationViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 		3732972C1CA4AB25008AEB05 /* Domain Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +327,26 @@
 				374A78441C982B7A004D30AD /* ProgramType.swift */,
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
+				3718DCD41D46321B00521932 /* Subscription.swift */,
 			);
 			name = "Domain Model";
+			sourceTree = "<group>";
+		};
+		3743BD7A1D478B3300303059 /* Chat  */ = {
+			isa = PBXGroup;
+			children = (
+				3743BD7F1D478B4E00303059 /* ChatsTableViewCell */,
+			);
+			name = "Chat ";
+			sourceTree = "<group>";
+		};
+		3743BD7F1D478B4E00303059 /* ChatsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3743BD7B1D478B4400303059 /* ChatsTableViewCell.swift */,
+				3743BD7C1D478B4400303059 /* ChatsTableViewCell.xib */,
+			);
+			name = ChatsTableViewCell;
 			sourceTree = "<group>";
 		};
 		374578921BDE5C29004935BC /* UI */ = {
@@ -326,7 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				376142DF1C90C8B50073B5F4 /* Login */,
-				376A346B1C8707D300400FAF /* ChatsTableViewController.swift */,
+				3718DCCF1D4613E300521932 /* Chat */,
 				37C5644B1C77D76000BC370E /* News */,
 				37C5644C1C77D77A00BC370E /* Professionals */,
 				37C5644D1C77D79C00BC370E /* Workout */,
@@ -352,6 +395,7 @@
 				37C5644A1C77D32000BC370E /* News */,
 				37D7AD851C7877B800CA96E9 /* Professionals */,
 				37D7AD861C7877D000CA96E9 /* Workout */,
+				3743BD7A1D478B3300303059 /* Chat  */,
 				37C279051BE80673004D3174 /* ExerciseCellDelegate.swift */,
 				3778CA251BE2E40D003E5941 /* TrainingTipTableViewCell.swift */,
 				37D7AD871C78786600CA96E9 /* Store */,
@@ -374,6 +418,7 @@
 				377C39151CE28BF800BF5ABC /* UserManger.swift */,
 				3706E9821CF33D1A00DF2FB1 /* Image.swift */,
 				37B351DD1D3657E900DE2010 /* TrainersFilter.swift */,
+				3790813A1D48AF3C00A7CD28 /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -418,6 +463,7 @@
 				374E85601D32D14F006887E3 /* ProgramsTarget.swift */,
 				374E85621D32D15C006887E3 /* WorkoutsTarget.swift */,
 				374E85641D32D171006887E3 /* WorkoutSessionsTarget.swift */,
+				3718DCD21D46270100521932 /* MessagesTarget.swift */,
 			);
 			name = TargetTypes;
 			sourceTree = "<group>";
@@ -430,6 +476,7 @@
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
 				3781B2741CD917B70059D841 /* ProgramViewModel.swift */,
 				377C39171CE3251800BF5ABC /* UserViewModel.swift */,
+				379081381D47981400A7CD28 /* SubscriptionViewModel.swift */,
 			);
 			name = "View models";
 			sourceTree = "<group>";
@@ -523,6 +570,7 @@
 		37A6A1211C7AEE65007F0944 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				379081361D4795B100A7CD28 /* SubscriptionPresentable.swift */,
 				37A295E81CDA28F1000C0D57 /* TrainingPresentable.swift */,
 				37A6A1241C7AEEB8007F0944 /* TrainerPresentable.swift */,
 				37A6A1281C7AEECE007F0944 /* DateTimePresentable.swift */,
@@ -782,6 +830,7 @@
 			files = (
 				379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */,
 				374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */,
+				3743BD7E1D478B4400303059 /* ChatsTableViewCell.xib in Resources */,
 				37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */,
 				37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */,
 				376142DE1C90C6700073B5F4 /* Login.storyboard in Resources */,
@@ -885,6 +934,7 @@
 				374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */,
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
+				3718DCD51D46321B00521932 /* Subscription.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */,
 				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
@@ -910,7 +960,9 @@
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				374E85631D32D15C006887E3 /* WorkoutsTarget.swift in Sources */,
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,
+				379081371D4795B100A7CD28 /* SubscriptionPresentable.swift in Sources */,
 				376F65741C7C958A0016071C /* PostCommentTableViewCell.swift in Sources */,
+				3743BD7D1D478B4400303059 /* ChatsTableViewCell.swift in Sources */,
 				374578991BDE5FDE004935BC /* UIColor+Athlete.swift in Sources */,
 				377C39161CE28BF800BF5ABC /* UserManger.swift in Sources */,
 				375E296C1C95BB8C00E3CD2D /* PhoneLoginTableViewController.swift in Sources */,
@@ -928,6 +980,7 @@
 				37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */,
 				37A6A1251C7AEEB8007F0944 /* TrainerPresentable.swift in Sources */,
 				37AC2AE01C7BD798007543F4 /* UserPresentable.swift in Sources */,
+				3790813B1D48AF3C00A7CD28 /* Notification.swift in Sources */,
 				37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */,
 				374E855F1D32D13E006887E3 /* TrainersTarget.swift in Sources */,
 				37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */,
@@ -949,12 +1002,15 @@
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
 				379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */,
+				379081391D47981400A7CD28 /* SubscriptionViewModel.swift in Sources */,
+				3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */,
 				377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */,
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
 				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
+				3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
 				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
@@ -1203,6 +1259,7 @@
 				374CF8511D4773F200D83A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37A53C361BDE527F00D1DA70 /* Build configuration list for PBXProject "Athlete" */ = {
 			isa = XCConfigurationList;

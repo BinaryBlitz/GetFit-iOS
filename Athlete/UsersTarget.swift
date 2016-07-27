@@ -10,6 +10,7 @@ extension GetFit {
     case Update(firstName: String, lastName: String)
     case UpdateImage(type: Image, image: UIImage)
     case GetStatistics(forUserWithId: Int)
+    case UpdateDeviceToken(token: String)
   }
   
 }
@@ -22,6 +23,8 @@ extension GetFit.Users: TargetType {
       return "/user"
     case .GetStatistics(let id):
       return "/users/\(id)/statistics"
+    case .UpdateDeviceToken(_):
+      return "/user"
     }
   }
   
@@ -29,7 +32,7 @@ extension GetFit.Users: TargetType {
     switch self {
     case .GetCurrent, .GetStatistics(_):
       return .GET
-    case .Update(_, _), .UpdateImage(_, _):
+    case .Update(_, _), .UpdateImage(_, _), .UpdateDeviceToken(_):
       return .PATCH
     }
   }
@@ -45,6 +48,8 @@ extension GetFit.Users: TargetType {
       let image = Toucan(image: image).resizeByCropping(type.imageSize).image
       let imageKey = type.rawValue.lowercaseString
       return ["user": [imageKey: (image.base64String ?? NSNull())]]
+    case .UpdateDeviceToken(let token):
+      return ["user": ["device_token": token, "platform": "ios"]]
     }
   }
 }
