@@ -144,7 +144,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    NSNotificationCenter.defaultCenter().postNotificationName(ReloadMessagesNotification, object: nil)
+//    NSNotificationCenter.defaultCenter().postNotificationName(ReloadMessagesNotification, object: nil)
+    NSNotificationCenter.defaultCenter().post(.ReloadMessages)
   }
 }
   

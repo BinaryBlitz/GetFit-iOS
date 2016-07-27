@@ -3,8 +3,6 @@ import JSQMessagesViewController
 import RealmSwift
 import Moya
 
-let ReloadMessagesNotification = "ReloadMessagesNotification"
-
 class ConversationViewController: JSQMessagesViewController {
   
   var subscription: Subscription!
@@ -28,8 +26,8 @@ class ConversationViewController: JSQMessagesViewController {
     reloadMessages()
     scrollToBottomAnimated(true)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refresh(_:)),
-            name: ReloadMessagesNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refresh),
+                                                     notification: .ReloadMessages)
     
     self.timer = NSTimer.scheduledTimerWithTimeInterval(
       10,
