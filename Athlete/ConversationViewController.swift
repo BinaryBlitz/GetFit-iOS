@@ -39,8 +39,8 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   private func configureChatViews() {
-    collectionView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.whiteColor())
+    collectionView.backgroundColor = UIColor.whiteColor()
+    incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.incomingMessageColor())
     outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.blueAccentColor())
     
     collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero

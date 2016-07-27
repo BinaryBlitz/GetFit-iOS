@@ -45,4 +45,8 @@ extension UIColor {
   static func lightGrayBackgroundColor() -> UIColor {
     return UIColor(white: 0.96, alpha: 1)
   }
+  
+  static func incomingMessageColor() -> UIColor {
+    return UIColor(white: 0.87, alpha: 1)
+  }
 }
