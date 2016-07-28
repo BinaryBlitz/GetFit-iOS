@@ -13,6 +13,9 @@ class CreateWorkoutSessionsViewController: UIViewController {
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
   @IBOutlet weak var calendarView: CVCalendarView!
   @IBOutlet weak var doneButton: UIButton!
+  
+  var workoutSessions: [WorkoutSession] = []
+  var selectedDates: [NSDate] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,6 +55,11 @@ class CreateWorkoutSessionsViewController: UIViewController {
 
 //MARK: - CVCalendarViewDelegate
 extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
+  
+  func shouldAutoSelectDayOnMonthChange() -> Bool {
+    return false
+  }
+  
   func presentationMode() -> CalendarMode {
     return .MonthView
   }
@@ -71,22 +79,32 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
   }
   
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
-    let number = NSNumber(int: Int32(arc4random_uniform(2)))
-    return number.boolValue
+    guard let date = dayView.date.convertedDate() else { return false }
+    
+    return selectedDates.indexOf(date) != nil
   }
   
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
-    let color = UIColor.blackTextColor()
-
-    let numberOfDots = Int(arc4random_uniform(3) + 1)
-    switch(numberOfDots) {
-    case 2:
-        return [color, color]
-    case 3:
-        return [color, color, color]
-    default:
-        return [color]
+    guard let date = dayView.date.convertedDate() else { return [] }
+    
+    if let _ = selectedDates.indexOf(date) {
+      return [UIColor.blueAccentColor()]
+    } else {
+      return []
     }
+  }
+  
+  func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+    guard let date = dayView.date.convertedDate() else { return }
+    
+    if let index = selectedDates.indexOf(date) {
+      selectedDates.removeAtIndex(index)
+    } else {
+      selectedDates.append(date)
+    }
+    
+    calendarView.contentController.refreshPresentedMonth()
+    calendarView.animator.animateDeselectionOnDayView(dayView)
   }
   
   func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
