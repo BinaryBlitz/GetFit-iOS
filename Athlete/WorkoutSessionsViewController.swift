@@ -49,8 +49,13 @@ class WorkoutSessionsViewController: UIViewController {
     set {
       switch newValue {
       case .Opened:
+        calendarView.commitCalendarViewUpdate()
+        calendarMenuView.commitMenuViewUpdate()
+        calendarView.contentController.refreshPresentedMonth()
+        
         calendarViewTopConstaraint.constant = 0
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.Done, target: self, action: #selector(toggleCurrentDayView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: .Done,
+                                                           target: self, action: #selector(toggleCurrentDayView))
       case .Closed:
         calendarViewTopConstaraint.constant = -(calendarViewHeight)
         navigationItem.leftBarButtonItem = nil
@@ -79,13 +84,6 @@ class WorkoutSessionsViewController: UIViewController {
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
     setupTableView()
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    
-    calendarView.commitCalendarViewUpdate()
-    calendarMenuView.commitMenuViewUpdate()
   }
   
   override func viewWillAppear(animated: Bool) {
