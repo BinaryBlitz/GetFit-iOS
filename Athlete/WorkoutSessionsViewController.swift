@@ -78,7 +78,7 @@ class WorkoutSessionsViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession)
+    workoutSessions = realm.objects(WorkoutSession).sorted("date")
     
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
