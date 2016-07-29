@@ -3,6 +3,7 @@ import CVCalendar
 import Reusable
 import RealmSwift
 import SwiftDate
+import MCSwipeTableViewCell
 
 class WorkoutSessionsViewController: UIViewController {
   
@@ -213,7 +214,6 @@ class WorkoutSessionsViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
-
 extension WorkoutSessionsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -222,13 +222,21 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
+    
+    let model = workoutSessions![indexPath.row]
+    cell.selectionStyle = .None
+    setSwipeGesturesFor(cell, in: tableView)
+    cell.configureWith(TrainingViewModel(training: model))
+    
+    return cell
+  }
+  
+  private func setSwipeGesturesFor(cell: MCSwipeTableViewCell, in tableView: UITableView) {
     let doneView = UIImageView(image: UIImage(named: "Checkmark"))
     doneView.contentMode = .Center
     
     let laterView = UIImageView(image: UIImage(named: "Clock"))
     laterView.contentMode = .Center
-    
-    cell.selectionStyle = .None
     
     cell.setSwipeGestureWithView(doneView, color: UIColor.greenAccentColor(),
         mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
@@ -252,11 +260,6 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
             self.view.layoutSubviews()
           }
     }
-    
-    let model = workoutSessions![indexPath.row]
-    cell.configureWith(TrainingViewModel(training: model))
-    
-    return cell
   }
 }
 
