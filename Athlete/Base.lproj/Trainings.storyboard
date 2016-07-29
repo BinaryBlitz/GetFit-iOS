@@ -22,16 +22,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-wI-McO">
                                 <rect key="frame" x="0.0" y="64" width="400" height="300"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
-                                        <rect key="frame" x="4" y="44" width="392" height="252"/>
-                                        <connections>
-                                            <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
-                                        </connections>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n46-x0-NcM" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                        <rect key="frame" x="4" y="4" width="392" height="32"/>
+                                        <rect key="frame" x="4" y="4" width="392" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="s7V-S3-HJW"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="menuViewDelegate" destination="qIZ-am-TBk" id="Gf0-4O-RNu"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
+                                        <rect key="frame" x="4" y="52" width="392" height="244"/>
+                                        <connections>
+                                            <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -39,12 +42,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="3xe-WE-QdO"/>
                                     <constraint firstAttribute="bottom" secondItem="yad-zk-BN9" secondAttribute="bottom" constant="4" id="DrT-Oq-olH"/>
-                                    <constraint firstItem="n46-x0-NcM" firstAttribute="width" secondItem="yad-zk-BN9" secondAttribute="width" id="MKj-k2-hre"/>
-                                    <constraint firstItem="yad-zk-BN9" firstAttribute="centerX" secondItem="n46-x0-NcM" secondAttribute="centerX" id="POe-uv-qnf"/>
+                                    <constraint firstAttribute="trailing" secondItem="yad-zk-BN9" secondAttribute="trailing" constant="4" id="Vqb-IJ-Hiv"/>
+                                    <constraint firstItem="yad-zk-BN9" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="4" id="cUs-1n-fOl"/>
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="4" id="k6q-PH-dQT"/>
                                     <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="n46-x0-NcM" secondAttribute="bottom" constant="8" id="onq-0x-62q"/>
                                     <constraint firstAttribute="trailing" secondItem="n46-x0-NcM" secondAttribute="trailing" constant="4" id="w1Y-Kg-XXi"/>
-                                    <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="44" id="zOl-VR-nCp"/>
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="4" id="zkY-ez-I6c"/>
                                 </constraints>
                             </view>
@@ -71,11 +73,11 @@
                     <navigationItem key="navigationItem" id="0kG-dH-ibj">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="gFL-FH-GF2">
-                            <rect key="frame" x="120" y="6" width="160" height="33"/>
+                            <rect key="frame" x="120" y="5.5" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
-                                    <rect key="frame" x="58" y="-2" width="49" height="36"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
+                                    <rect key="frame" x="55.5" y="-2" width="49" height="36"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>

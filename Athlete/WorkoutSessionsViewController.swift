@@ -1,19 +1,12 @@
-//
-//  WorkoutSessionsViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 27/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import CVCalendar
 import Reusable
 import RealmSwift
+import SwiftDate
 
 class WorkoutSessionsViewController: UIViewController {
   
-  var workoutSessions = [WorkoutSession]()
+  var workoutSessions: Results<WorkoutSession>?
   let workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
   
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
@@ -79,13 +72,13 @@ class WorkoutSessionsViewController: UIViewController {
     super.viewDidLoad()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
+    let realm = try! Realm()
+    workoutSessions = realm.objects(WorkoutSession)
+    
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
     setupTableView()
-    
-    let realm = try! Realm()
-    workoutSessions = Array(realm.objects(WorkoutSession).sorted("date"))
   }
   
   override func viewDidLayoutSubviews() {
@@ -114,7 +107,6 @@ class WorkoutSessionsViewController: UIViewController {
   //MARK: - Setup
   
   func setupTableView() {
-    
     tableView.registerReusableCell(TrainingTableViewCell)
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
@@ -129,28 +121,46 @@ class WorkoutSessionsViewController: UIViewController {
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+      self.calendarView.contentController.refreshPresentedMonth()
       self.refreshControl?.endRefreshing()
     }
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    workoutSessionsProvider.request(.Index) { (result) in
-      switch result {
-      case .Success(let response):
-        do {
-          let sessionsResponse = try response.filterSuccessfulStatusCodes()
-          let sessions = try sessionsResponse.mapArray(WorkoutSession.self)
-          self.workoutSessions = sessions
-          
-          completion()
-        } catch let error {
-          self.presentAlertWithMessage(String(error))
-          completion()
-        }
-      case .Failure(let error):
-        self.presentAlertWithMessage(String(error))
-        completion()
-      }
+    completion()
+//    workoutSessionsProvider.request(.Index) { (result) in
+//      switch result {
+//      case .Success(let response):
+//        do {
+//          try response.filterSuccessfulStatusCodes()
+//          let sessions = try response.mapArray(WorkoutSession.self)
+//          self.updateDataWith(sessions)
+//        } catch let error {
+//          self.presentAlertWithMessage(String(error))
+//        }
+//      case .Failure(let error):
+//        self.presentAlertWithMessage(String(error))
+//      }
+//      
+//      completion()
+//    }
+  }
+  
+  private func updateDataWith(workoutSessions: [WorkoutSession]) {
+    let indexes = workoutSessions.map { (session) -> Int in return session.id }
+    
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(workoutSessions, update: true)
+    }
+    
+    let storedSessions = realm.objects(WorkoutSession.self)
+    let sessionsToDelete = storedSessions.filter { (session) -> Bool in
+      return !indexes.contains(session.id)
+    }
+    
+    try! realm.write {
+      realm.delete(sessionsToDelete)
     }
   }
   
@@ -183,7 +193,7 @@ class WorkoutSessionsViewController: UIViewController {
     case "trainingInfo":
       let destination = segue.destinationViewController as! TrainingViewController
       let indexPath = sender as! NSIndexPath
-      destination.training = workoutSessions[indexPath.row]
+      destination.training = workoutSessions![indexPath.row]
     default:
       break
     }
@@ -209,7 +219,7 @@ class WorkoutSessionsViewController: UIViewController {
 extension WorkoutSessionsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return workoutSessions.count
+    return workoutSessions?.count ?? 0
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -226,7 +236,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
         mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
           print("Done!")
           if let indexPath = tableView.indexPathForCell(swipeCell) {
-            self.workoutSessions.removeAtIndex(indexPath.row)
+//            self.workoutSessions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
           }
     }
@@ -235,7 +245,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
         mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
           print("Later!")
           if let indexPath = tableView.indexPathForCell(swipeCell) {
-            self.workoutSessions.removeAtIndex(indexPath.row)
+//            self.workoutSessions.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
           }
           
@@ -245,7 +255,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
           }
     }
     
-    let model = workoutSessions[indexPath.row]
+    let model = workoutSessions![indexPath.row]
     cell.configureWith(TrainingViewModel(training: model))
     
     return cell
@@ -282,22 +292,34 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
   }
   
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
-    let number = NSNumber(int: Int32(arc4random_uniform(2)))
-    return number.boolValue
+    guard let date = dayView.date.convertedDate() else { return false }
+    
+    return workoutSessionsFor(date).count != 0
   }
   
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
-    let color = UIColor.blackTextColor()
-
-    let numberOfDots = Int(arc4random_uniform(3) + 1)
-    switch(numberOfDots) {
-    case 2:
-        return [color, color]
-    case 3:
-        return [color, color, color]
-    default:
-        return [color]
+    guard let date = dayView.date.convertedDate() else { return [] }
+    
+    let sessionsCount = workoutSessionsFor(date).count
+    if sessionsCount > 3 {
+      return Array(count: 3, repeatedValue: UIColor.blackTextColor())
+    } else {
+      return Array(count: sessionsCount, repeatedValue: UIColor.blackTextColor())
     }
+  }
+  
+  private func workoutSessionsFor(date: NSDate) -> [WorkoutSession] {
+    let sessions = workoutSessions?.filter { (session) -> Bool in
+      return isDate(session.date, theSameDayAs: date)
+    }
+    
+    return sessions ?? []
+  }
+  
+  private func isDate(date: NSDate, theSameDayAs otherDate: NSDate) -> Bool {
+    return date.year == otherDate.year &&
+           date.month == otherDate.month &&
+           date.day == otherDate.day
   }
   
   func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
