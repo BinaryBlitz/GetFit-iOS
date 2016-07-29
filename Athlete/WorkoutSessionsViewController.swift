@@ -7,8 +7,14 @@ import MCSwipeTableViewCell
 
 class WorkoutSessionsViewController: UIViewController {
   
-  var workoutSessions: Results<WorkoutSession>?
   let workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
+  
+  var workoutSessions: Results<WorkoutSession>?
+  var tableViewDataSource: [WorkoutSession] = [] {
+    didSet {
+      tableView.reloadData()
+    }
+  }
   
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
@@ -80,6 +86,7 @@ class WorkoutSessionsViewController: UIViewController {
     
     let realm = try! Realm()
     workoutSessions = realm.objects(WorkoutSession).sorted("date")
+    updateTableViewDataFor(NSDate())
     
     updateTitleDateWithDate(NSDate())
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
@@ -161,6 +168,16 @@ class WorkoutSessionsViewController: UIViewController {
     try! realm.write {
       realm.delete(sessionsToDelete)
     }
+    
+    updateDataWith(workoutSessions)
+  }
+  
+  private func updateTableViewDataFor(date: NSDate) {
+    guard let sessions = workoutSessions else { return }
+    
+    tableViewDataSource = sessions.filter { (session) -> Bool in
+      return date.isBefore([.Year, .Month, .Day], ofDate: session.date)
+    }
   }
   
   //MARK: - Actions
@@ -217,13 +234,13 @@ class WorkoutSessionsViewController: UIViewController {
 extension WorkoutSessionsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return workoutSessions?.count ?? 0
+    return tableViewDataSource.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
     
-    let model = workoutSessions![indexPath.row]
+    let model = tableViewDataSource[indexPath.row]
     cell.selectionStyle = .None
     setSwipeGesturesFor(cell, in: tableView)
     cell.configureWith(TrainingViewModel(training: model))
@@ -290,6 +307,12 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
     if let date = date.convertedDate() {
       updateTitleDateWithDate(date)
     }
+  }
+  
+  func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+    guard let date = dayView.date.convertedDate() else { return }
+    
+    updateTableViewDataFor(date)
   }
   
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
