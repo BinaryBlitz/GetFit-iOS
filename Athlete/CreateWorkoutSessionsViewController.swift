@@ -1,6 +1,7 @@
 import UIKit
 import CVCalendar
 import RealmSwift
+import Moya
 
 class CreateWorkoutSessionsViewController: UIViewController {
   
@@ -14,6 +15,8 @@ class CreateWorkoutSessionsViewController: UIViewController {
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
   @IBOutlet weak var calendarView: CVCalendarView!
   @IBOutlet weak var doneButton: UIButton!
+  
+  lazy var workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
   
   var workoutSessions: Results<WorkoutSession>!
   var selectedDates: [NSDate] = []
@@ -54,6 +57,38 @@ class CreateWorkoutSessionsViewController: UIViewController {
   //MARK: - Actions
   @IBAction func closeButtonAction(sender: UIButton) {
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  @IBAction func doneButtonAction(sender: UIButton) {
+    sender.userInteractionEnabled = false
+    let newSessions = selectedDates.map { (date) -> WorkoutSession in
+      let session = WorkoutSession()
+      session.updateWith(workout)
+      session.date = date
+      return session
+    }
+    
+    workoutSessionsProvider.request(.Create(sessions: newSessions)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          self.presentAlertWithMessage("success!")
+          self.dismissViewControllerAnimated(true, completion: nil)
+        } catch let error {
+          self.handleServerError(error, forRespnse: response)
+        }
+      case .Failure(let error):
+        self.handleServerError(error)
+      }
+      
+      sender.userInteractionEnabled = true
+    }
+    
+  }
+  
+  private func handleServerError(error: ErrorType, forRespnse response: Response? = nil) {
+    presentAlertWithMessage("code: \(response?.statusCode)")
   }
 }
 

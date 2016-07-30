@@ -15,11 +15,11 @@ struct TrainingViewModel {
 extension TrainingViewModel: TrainingPresentable {
   
   var trainingTitle: String {
-    return training.name
+    return training.programName
   }
   
   var trainingInfo: String {
-    return training.name
+    return training.workoutName
   }
   
   var trainingExercisesCount: String {

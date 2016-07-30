@@ -168,7 +168,9 @@ class WorkoutSessionsViewController: UIViewController {
       realm.delete(sessionsToDelete)
     }
     
-    updateDataWith(workoutSessions)
+    if let date = calendarView.presentedDate.convertedDate() {
+      updateTableViewDataFor(date)
+    }
   }
   
   private func updateTableViewDataFor(date: NSDate) {

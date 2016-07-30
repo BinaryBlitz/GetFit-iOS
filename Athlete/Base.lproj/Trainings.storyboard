@@ -194,6 +194,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <state key="normal" title="DONE"/>
+                                        <connections>
+                                            <action selector="doneButtonAction:" destination="PSF-b6-s4x" eventType="touchUpInside" id="4rk-Jx-Fp0"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djj-BY-KmO" customClass="CVCalendarMenuView" customModule="CVCalendar">
                                         <rect key="frame" x="12" y="80" width="576" height="40"/>
