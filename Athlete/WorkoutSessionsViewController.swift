@@ -133,23 +133,22 @@ class WorkoutSessionsViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(completion: () -> Void) {
-    completion()
-//    workoutSessionsProvider.request(.Index) { (result) in
-//      switch result {
-//      case .Success(let response):
-//        do {
-//          try response.filterSuccessfulStatusCodes()
-//          let sessions = try response.mapArray(WorkoutSession.self)
-//          self.updateDataWith(sessions)
-//        } catch let error {
-//          self.presentAlertWithMessage(String(error))
-//        }
-//      case .Failure(let error):
-//        self.presentAlertWithMessage(String(error))
-//      }
-//      
-//      completion()
-//    }
+    workoutSessionsProvider.request(.Index) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          let sessions = try response.mapArray(WorkoutSession.self)
+          self.updateDataWith(sessions)
+        } catch let error {
+          self.presentAlertWithMessage(String(error))
+        }
+      case .Failure(let error):
+        self.presentAlertWithMessage(String(error))
+      }
+      
+      completion()
+    }
   }
   
   private func updateDataWith(workoutSessions: [WorkoutSession]) {

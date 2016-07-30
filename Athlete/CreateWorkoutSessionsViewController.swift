@@ -1,5 +1,6 @@
 import UIKit
 import CVCalendar
+import RealmSwift
 
 class CreateWorkoutSessionsViewController: UIViewController {
   
@@ -14,11 +15,14 @@ class CreateWorkoutSessionsViewController: UIViewController {
   @IBOutlet weak var calendarView: CVCalendarView!
   @IBOutlet weak var doneButton: UIButton!
   
-  var workoutSessions: [WorkoutSession] = []
+  var workoutSessions: Results<WorkoutSession>!
   var selectedDates: [NSDate] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let realm = try! Realm()
+    workoutSessions = realm.objects(WorkoutSession.self)
     
     titleLabel.text = "choose date".uppercaseString
     
@@ -81,17 +85,44 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
     guard let date = dayView.date.convertedDate() else { return false }
     
-    return selectedDates.indexOf(date) != nil
+    return selectedDates.indexOf(date) != nil || workoutSessionsFor(date).count != 0
   }
   
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
     guard let date = dayView.date.convertedDate() else { return [] }
     
-    if let _ = selectedDates.indexOf(date) {
-      return [UIColor.blueAccentColor()]
-    } else {
-      return []
+    let sessionsCount = workoutSessionsFor(date).count
+    
+    var colors: [UIColor] = []
+    
+    if selectedDates.contains(date) {
+      colors.append(UIColor.blueAccentColor())
     }
+    
+    if sessionsCount + colors.count > 3 {
+      colors.appendContentsOf(Array(count: 2, repeatedValue: UIColor.blackTextColor()))
+      colors = colors.reverse()
+    } else {
+      colors.appendContentsOf(Array(count: sessionsCount, repeatedValue: UIColor.blackTextColor()))
+      colors = colors.reverse()
+    }
+    
+    
+    return colors
+  }
+  
+  private func workoutSessionsFor(date: NSDate) -> [WorkoutSession] {
+    let sessions = workoutSessions?.filter { (session) -> Bool in
+      return isDate(session.date, theSameDayAs: date)
+    }
+    
+    return sessions ?? []
+  }
+  
+  private func isDate(date: NSDate, theSameDayAs otherDate: NSDate) -> Bool {
+    return date.year == otherDate.year &&
+           date.month == otherDate.month &&
+           date.day == otherDate.day
   }
   
   func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
