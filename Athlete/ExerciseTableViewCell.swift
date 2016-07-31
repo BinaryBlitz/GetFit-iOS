@@ -88,7 +88,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
     status = viewModel.completed ? .Complete : .Uncomplete
     titleLabel.text = viewModel.exerciseName
     
-    repetitionsButton.setTitle(viewModel.repetitions, forState: .Normal)
+    repetitionsButton.setTitle(viewModel.repetitions ?? "0", forState: .Normal)
     
 //    if let weight = viewModel.weight {
 //      weightButton.setTitle(weight, forState: .Normal)

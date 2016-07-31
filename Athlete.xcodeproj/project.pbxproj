@@ -487,6 +487,7 @@
 		376142DC1C8C7BF60073B5F4 /* View models */ = {
 			isa = PBXGroup;
 			children = (
+				37A295F11CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift */,
 				37A295E61CDA2423000C0D57 /* TrainingViewModel.swift */,
 				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,

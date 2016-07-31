@@ -30,9 +30,9 @@ class EditExerciseTableViewController: UITableViewController {
     navigationItem.title = editType == .Weight ? "Weight".uppercaseString : "Repetitions".uppercaseString
   
     if editType == .Weight {
-      pickerView.selectRow(Int(exercise.weight ?? 1) / 10, inComponent: 0, animated: true)
+      pickerView.selectRow(Int(exercise.weight.value ?? 1) / 10, inComponent: 0, animated: true)
     } else {
-      pickerView.selectRow(Int(exercise.reps ?? 1), inComponent: 0, animated: true)
+      pickerView.selectRow(Int(exercise.reps.value ?? 1), inComponent: 0, animated: true)
     }
     
   }
@@ -40,9 +40,9 @@ class EditExerciseTableViewController: UITableViewController {
   @IBAction func doneButtonAction(sender: AnyObject) {
     let selectedRow = pickerView.selectedRowInComponent(0)
     if editType == .Weight {
-      exercise.weight = Int(selectedRow * 10)
+      exercise.weight.value = Int(selectedRow * 10)
     } else {
-      exercise.reps = selectedRow
+      exercise.reps.value = selectedRow
     }
     
     delegate?.didUpdateValueForExercise(exercise)

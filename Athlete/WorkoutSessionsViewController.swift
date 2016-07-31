@@ -242,7 +242,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
     let model = tableViewDataSource[indexPath.row]
     cell.selectionStyle = .None
     setSwipeGesturesFor(cell, in: tableView)
-    cell.configureWith(TrainingViewModel(training: model))
+    cell.configureWith(TrainingViewModel(workoutSession: model))
 
     return cell
   }
