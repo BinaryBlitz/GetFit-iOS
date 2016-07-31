@@ -208,7 +208,8 @@ class WorkoutSessionsViewController: UIViewController {
     case "trainingInfo":
       let destination = segue.destinationViewController as! TrainingViewController
       let indexPath = sender as! NSIndexPath
-      destination.training = workoutSessions![indexPath.row]
+      destination.workoutSession = workoutSessions![indexPath.row]
+      destination.workoutSessionsProvider = workoutSessionsProvider
     default:
       break
     }
