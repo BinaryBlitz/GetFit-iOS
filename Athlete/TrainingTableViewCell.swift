@@ -38,10 +38,12 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
     
     if let dateBadge = badgesStackView.arrangedSubviews.first as? BadgeView {
       dateBadge.text = viewModel.trainingDateString
+      dateBadge.updateConstraints()
     }
     
     if let durationBadge = badgesStackView.arrangedSubviews.last as? BadgeView {
       durationBadge.text = viewModel.trainingDurationString
+      durationBadge.updateConstraints()
     }
   }
   
