@@ -12,6 +12,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   dynamic var duration: Int = 0
   dynamic var programName: String = ""
   dynamic var programId: Int = 0
+  dynamic var completed: Bool = false
   dynamic var date: NSDate = NSDate()
   dynamic var position: Int = 0
   dynamic var exercisesCount: Int = 0
@@ -44,6 +45,10 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     
     if let position = jsonData["workout"]["position"].int {
       self.position = position
+    }
+    
+    if let completed = jsonData["completed"].bool {
+      self.completed = completed
     }
     
     self.workoutID = workoutID
