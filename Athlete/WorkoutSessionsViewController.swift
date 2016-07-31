@@ -177,7 +177,7 @@ class WorkoutSessionsViewController: UIViewController {
     guard let sessions = workoutSessions else { return }
     
     tableViewDataSource = sessions.filter { (session) -> Bool in
-      return date.isBefore([.Year, .Month, .Day], ofDate: session.date)
+      return session.date.isAfter([.Year, .Month, .Day], ofDate: 1.days.agoFromDate(date))
     }
   }
   
