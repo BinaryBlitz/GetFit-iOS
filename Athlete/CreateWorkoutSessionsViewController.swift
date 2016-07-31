@@ -2,6 +2,7 @@ import UIKit
 import CVCalendar
 import RealmSwift
 import Moya
+import PureLayout
 
 class CreateWorkoutSessionsViewController: UIViewController {
   
@@ -61,6 +62,13 @@ class CreateWorkoutSessionsViewController: UIViewController {
   
   @IBAction func doneButtonAction(sender: UIButton) {
     sender.userInteractionEnabled = false
+    sender.setTitle("", forState: .Normal)
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+    spinner.autoSetDimensionsToSize(CGSize(width: 20, height: 20))
+    sender.addSubview(spinner)
+    spinner.autoCenterInSuperview()
+    spinner.startAnimating()
+    
     let newSessions = selectedDates.map { (date) -> WorkoutSession in
       let session = WorkoutSession()
       session.updateWith(workout)
@@ -73,7 +81,6 @@ class CreateWorkoutSessionsViewController: UIViewController {
       case .Success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
-          self.presentAlertWithMessage("success!")
           self.dismissViewControllerAnimated(true, completion: nil)
         } catch let error {
           self.handleServerError(error, forRespnse: response)
@@ -82,13 +89,15 @@ class CreateWorkoutSessionsViewController: UIViewController {
         self.handleServerError(error)
       }
       
+      spinner.stopAnimating()
+      spinner.removeFromSuperview()
+      sender.setTitle("done".uppercaseString, forState: .Normal)
       sender.userInteractionEnabled = true
     }
-    
   }
   
   private func handleServerError(error: ErrorType, forRespnse response: Response? = nil) {
-    presentAlertWithMessage("code: \(response?.statusCode)")
+    presentAlertWithMessage("error with code: \(response?.statusCode)")
   }
 }
 
