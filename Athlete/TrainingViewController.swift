@@ -1,11 +1,3 @@
-//
-//  TrainingViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 28/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import UICountingLabel
 import Reusable
@@ -16,6 +8,7 @@ class TrainingViewController: UIViewController {
   @IBOutlet weak var endTrainingView: UIView!
   @IBOutlet weak var trainingStatusLabel: UICountingLabel!
   @IBOutlet weak var endTrainingButton: UIButton!
+  var refreshControl: UIRefreshControl!
   
   var training: WorkoutSession!
   
@@ -36,8 +29,7 @@ class TrainingViewController: UIViewController {
    
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
-    tableView.registerReusableCell(ExerciseTableViewCell)
-    tableView.rowHeight = UITableViewAutomaticDimension
+    setupTableView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -47,6 +39,33 @@ class TrainingViewController: UIViewController {
       tableView.deselectRowAtIndexPath(selectedCellIndex, animated: true)
     }
   }
+  
+  func setupTableView() {
+    tableView.registerReusableCell(ExerciseTableViewCell)
+    tableView.rowHeight = UITableViewAutomaticDimension
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    completion()
+  }
+  
+  //MARK: - Actions
   
   @IBAction func endTrainingAction(sender: AnyObject) {
     //TODO: update db
@@ -112,6 +131,7 @@ class TrainingViewController: UIViewController {
   }
 }
 
+//MARK: - UITableViewDataSource
 extension TrainingViewController: UITableViewDataSource {
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -218,6 +238,7 @@ extension TrainingViewController: UITableViewDataSource {
   }
 }
 
+//MARK: - UITableViewDelegate
 extension TrainingViewController: UITableViewDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -268,12 +289,14 @@ extension TrainingViewController: UITableViewDelegate {
   }
 }
 
+//MARK: - TrainingTipsDelegate
 extension TrainingViewController: TrainingTipsDelegate {
   func didDismissViewController() {
     view.alpha = 1
   }
 }
 
+//MARK: - ExerciseCellDelegate
 extension TrainingViewController: ExerciseCellDelegate {
   
   class EditExerciseData {
@@ -312,6 +335,7 @@ extension TrainingViewController: ExerciseCellDelegate {
   }
 }
 
+//MARK: - EditExerciseViewControllerDelegate
 extension TrainingViewController: EditExerciseViewControllerDelegate {
   func didUpdateValueForExercise(exercise: ExerciseSession) {
     tableView.reloadData()
