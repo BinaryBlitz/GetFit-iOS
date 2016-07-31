@@ -1,5 +1,5 @@
 //
-//  CreateWorkoutSessionsTableViewController.swift
+//  WorkoutsTableViewController.swift
 //  Athlete
 //
 //  Created by Dan Shevlyuk on 15/05/2016.
@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Reusable
 
-class CreateWorkoutSessionsTableViewController: UITableViewController {
+class WorkoutsTableViewController: UITableViewController {
   
   var workouts = [Workout]()
   let workoutsProvider = APIProvider<GetFit.Workouts>()
@@ -86,6 +86,12 @@ class CreateWorkoutSessionsTableViewController: UITableViewController {
   //MARK: - UITableViewDelegate
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
+    let selectDaysController = trainingsStoryboard.instantiateViewControllerWithIdentifier("select_days") as! CreateWorkoutSessionsViewController
+    selectDaysController.workout = workouts[indexPath.row]
+    
+    selectDaysController.modalPresentationStyle = .OverCurrentContext
+    presentViewController(selectDaysController, animated: true, completion: nil)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 }

@@ -1,12 +1,5 @@
-//
-//  TrainingViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 04/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
+import SwiftDate
 
 struct TrainingViewModel {
   let training: WorkoutSession
@@ -15,11 +8,11 @@ struct TrainingViewModel {
 extension TrainingViewModel: TrainingPresentable {
   
   var trainingTitle: String {
-    return training.name
+    return training.programName
   }
   
   var trainingInfo: String {
-    return training.name
+    return training.workoutName
   }
   
   var trainingExercisesCount: String {
@@ -31,19 +24,12 @@ extension TrainingViewModel: TrainingPresentable {
   }
   
   var trainingDateString: String {
-    let calendar = NSCalendar.currentCalendar()
-    let dateCompnents = calendar.components([.Day, .Year, .Month], fromDate: training.date)
-    let currentDateCompnents = calendar.components([.Day, .Year, .Month], fromDate: NSDate())
-  
-    if dateCompnents.day == currentDateCompnents.day &&
-        dateCompnents.year == currentDateCompnents.year &&
-        dateCompnents.month == currentDateCompnents.month {
+    let date = training.date
+    
+    if date.isInToday() {
       return "TODAY"
     } else {
-      let formatter = NSDateFormatter()
-      formatter.dateFormat = "dd/MM"
-      return formatter.stringFromDate(training.date)
+      return date.toString(.Custom("dd/MM"))!
     }
   }
 }
-

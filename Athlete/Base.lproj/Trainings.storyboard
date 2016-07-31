@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VxJ-0z-isC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VxJ-0z-isC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Calendar Delegate-->
         <scene sceneID="o2H-Vp-xli">
             <objects>
-                <viewController id="qIZ-am-TBk" customClass="TrainingsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bhw-Jn-tKn"/>
                         <viewControllerLayoutGuide type="bottom" id="fG1-tU-IoS"/>
@@ -21,16 +22,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-wI-McO">
                                 <rect key="frame" x="0.0" y="64" width="400" height="300"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
-                                        <rect key="frame" x="4" y="44" width="392" height="252"/>
-                                        <connections>
-                                            <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
-                                        </connections>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n46-x0-NcM" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                        <rect key="frame" x="4" y="4" width="392" height="32"/>
+                                        <rect key="frame" x="4" y="4" width="392" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="s7V-S3-HJW"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="menuViewDelegate" destination="qIZ-am-TBk" id="Gf0-4O-RNu"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
+                                        <rect key="frame" x="4" y="52" width="392" height="244"/>
+                                        <connections>
+                                            <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -38,12 +42,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="3xe-WE-QdO"/>
                                     <constraint firstAttribute="bottom" secondItem="yad-zk-BN9" secondAttribute="bottom" constant="4" id="DrT-Oq-olH"/>
-                                    <constraint firstItem="n46-x0-NcM" firstAttribute="width" secondItem="yad-zk-BN9" secondAttribute="width" id="MKj-k2-hre"/>
-                                    <constraint firstItem="yad-zk-BN9" firstAttribute="centerX" secondItem="n46-x0-NcM" secondAttribute="centerX" id="POe-uv-qnf"/>
+                                    <constraint firstAttribute="trailing" secondItem="yad-zk-BN9" secondAttribute="trailing" constant="4" id="Vqb-IJ-Hiv"/>
+                                    <constraint firstItem="yad-zk-BN9" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="4" id="cUs-1n-fOl"/>
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="4" id="k6q-PH-dQT"/>
                                     <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="n46-x0-NcM" secondAttribute="bottom" constant="8" id="onq-0x-62q"/>
                                     <constraint firstAttribute="trailing" secondItem="n46-x0-NcM" secondAttribute="trailing" constant="4" id="w1Y-Kg-XXi"/>
-                                    <constraint firstItem="yad-zk-BN9" firstAttribute="top" secondItem="QUI-wI-McO" secondAttribute="top" constant="44" id="zOl-VR-nCp"/>
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="4" id="zkY-ez-I6c"/>
                                 </constraints>
                             </view>
@@ -73,8 +76,8 @@
                             <rect key="frame" x="120" y="5.5" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
-                                    <rect key="frame" x="58" y="-2" width="49" height="36"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
+                                    <rect key="frame" x="55.5" y="-2" width="49" height="36"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -148,10 +151,139 @@
             </objects>
             <point key="canvasLocation" x="2138" y="151"/>
         </scene>
+        <!--Calendar Delegate-->
+        <scene sceneID="sR7-1m-PJl">
+            <objects>
+                <viewController storyboardIdentifier="select_days" id="PSF-b6-s4x" customClass="CreateWorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Al6-wr-jM0"/>
+                        <viewControllerLayoutGuide type="bottom" id="n4W-2l-qaI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="byG-IS-ydD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-aw-uHV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HD0-Oz-51C">
+                                        <rect key="frame" x="13" y="30" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="54l-AQ-qto"/>
+                                            <constraint firstAttribute="height" constant="20" id="gCS-vB-Drs"/>
+                                        </constraints>
+                                        <state key="normal" image="Close"/>
+                                        <connections>
+                                            <action selector="closeButtonAction:" destination="PSF-b6-s4x" eventType="touchUpInside" id="E4M-qN-evt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="HD0-Oz-51C" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="top" constant="30" id="1Js-9S-0J1"/>
+                                    <constraint firstItem="HD0-Oz-51C" firstAttribute="leading" secondItem="7Rt-aw-uHV" secondAttribute="leading" constant="13" id="WL1-Hu-bm9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGH-Al-hb5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPo-Uh-ZSD">
+                                        <rect key="frame" x="0.0" y="375" width="600" height="59"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="59" id="zcb-uj-ogt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <state key="normal" title="DONE"/>
+                                        <connections>
+                                            <action selector="doneButtonAction:" destination="PSF-b6-s4x" eventType="touchUpInside" id="4rk-Jx-Fp0"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djj-BY-KmO" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                        <rect key="frame" x="12" y="80" width="576" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Run-CR-MYx"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="menuViewDelegate" destination="PSF-b6-s4x" id="Wfj-iK-7zV"/>
+                                        </connections>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CHOOSE DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FA2-i7-mfr">
+                                        <rect key="frame" x="230" y="21" width="141" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="october" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByM-op-S5W">
+                                        <rect key="frame" x="273" y="50" width="56" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Fz-Or-DXn" customClass="CVCalendarView" customModule="CVCalendar">
+                                        <rect key="frame" x="12" y="120" width="576" height="411"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="n90-mF-FfA"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="calendarDelegate" destination="PSF-b6-s4x" id="TZs-1U-k6x"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bPo-Uh-ZSD" secondAttribute="trailing" id="3JL-DO-1Xq"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Fz-Or-DXn" secondAttribute="trailing" constant="8" id="7KQ-tC-I82"/>
+                                    <constraint firstItem="ByM-op-S5W" firstAttribute="top" secondItem="FA2-i7-mfr" secondAttribute="bottom" constant="5" id="FiI-J6-0pF"/>
+                                    <constraint firstItem="bPo-Uh-ZSD" firstAttribute="top" secondItem="9Fz-Or-DXn" secondAttribute="bottom" constant="10" id="K5h-fz-q9e"/>
+                                    <constraint firstItem="9Fz-Or-DXn" firstAttribute="top" secondItem="djj-BY-KmO" secondAttribute="bottom" id="N0j-VN-puG"/>
+                                    <constraint firstItem="FA2-i7-mfr" firstAttribute="top" secondItem="pGH-Al-hb5" secondAttribute="top" constant="10" id="cxB-7f-nuI"/>
+                                    <constraint firstItem="9Fz-Or-DXn" firstAttribute="leading" secondItem="pGH-Al-hb5" secondAttribute="leading" constant="8" id="dIM-SJ-M9T"/>
+                                    <constraint firstItem="bPo-Uh-ZSD" firstAttribute="leading" secondItem="pGH-Al-hb5" secondAttribute="leading" id="iba-WL-Wyy"/>
+                                    <constraint firstItem="FA2-i7-mfr" firstAttribute="centerX" secondItem="pGH-Al-hb5" secondAttribute="centerX" id="oBN-9n-fgM"/>
+                                    <constraint firstAttribute="bottom" secondItem="bPo-Uh-ZSD" secondAttribute="bottom" id="rcW-He-pd3"/>
+                                    <constraint firstAttribute="trailing" secondItem="djj-BY-KmO" secondAttribute="trailing" constant="8" id="sUZ-5Z-HeJ"/>
+                                    <constraint firstItem="ByM-op-S5W" firstAttribute="centerX" secondItem="FA2-i7-mfr" secondAttribute="centerX" id="tcd-nK-Rc4"/>
+                                    <constraint firstItem="djj-BY-KmO" firstAttribute="leading" secondItem="pGH-Al-hb5" secondAttribute="leading" constant="8" id="v17-dQ-rqF"/>
+                                    <constraint firstItem="djj-BY-KmO" firstAttribute="top" secondItem="ByM-op-S5W" secondAttribute="bottom" constant="12" id="zsf-aQ-3f8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pGH-Al-hb5" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="bottom" id="6wL-di-2rg"/>
+                            <constraint firstItem="pGH-Al-hb5" firstAttribute="leading" secondItem="byG-IS-ydD" secondAttribute="leading" id="9Ze-Dh-AfT"/>
+                            <constraint firstAttribute="trailing" secondItem="pGH-Al-hb5" secondAttribute="trailing" id="Evl-bE-UhW"/>
+                            <constraint firstAttribute="trailing" secondItem="7Rt-aw-uHV" secondAttribute="trailing" id="HvL-eW-hfn"/>
+                            <constraint firstItem="pGH-Al-hb5" firstAttribute="height" secondItem="byG-IS-ydD" secondAttribute="height" multiplier="47:65" id="JdI-4g-369"/>
+                            <constraint firstItem="7Rt-aw-uHV" firstAttribute="leading" secondItem="byG-IS-ydD" secondAttribute="leading" id="dKP-eJ-cZa"/>
+                            <constraint firstItem="n4W-2l-qaI" firstAttribute="top" secondItem="pGH-Al-hb5" secondAttribute="bottom" id="gzk-Ep-yPg"/>
+                            <constraint firstItem="7Rt-aw-uHV" firstAttribute="top" secondItem="byG-IS-ydD" secondAttribute="top" id="xew-id-cPP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JdI-4g-369"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="calendarMenuView" destination="djj-BY-KmO" id="1WU-fQ-6ym"/>
+                        <outlet property="calendarView" destination="9Fz-Or-DXn" id="JUY-ak-LRB"/>
+                        <outlet property="contentView" destination="pGH-Al-hb5" id="jt8-px-Iw6"/>
+                        <outlet property="doneButton" destination="bPo-Uh-ZSD" id="gIl-CC-RJo"/>
+                        <outlet property="mounthLabel" destination="ByM-op-S5W" id="Jpy-jr-SyK"/>
+                        <outlet property="titleLabel" destination="FA2-i7-mfr" id="ODJ-Op-V5G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="98u-Ze-BYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2225" y="657"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="22" height="22"/>
         <image name="CalendarOpenMark" width="12" height="7"/>
+        <image name="Close" width="25" height="25"/>
         <image name="Trainings" width="25" height="25"/>
     </resources>
 </document>

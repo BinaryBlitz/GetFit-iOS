@@ -63,8 +63,15 @@ class TrainingViewController: UIViewController {
   }
   
   func updateCompleteStatus() {
-    let finishedCount = finishedExercises.count
     let total = training.exercises.count
+    guard total > 0 else {
+      trainingStatusLabel.textColor = UIColor.whiteColor()
+      endTrainingView.backgroundColor = UIColor.blueAccentColor()
+      endTrainingButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+      return
+    }
+    
+    let finishedCount = finishedExercises.count
     trainingStatusLabel.format = "%d%%"
     trainingStatusLabel.countFromCurrentValueTo(CGFloat((finishedCount * 100) / total), withDuration: 0.4)
     if Float((finishedCount * 100) / total) == 100 {

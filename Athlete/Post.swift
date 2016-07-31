@@ -77,3 +77,4 @@ class Post: Object, ALSwiftyJSONAble {
     return "id"
   }
 }
+
