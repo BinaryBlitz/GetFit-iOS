@@ -122,7 +122,19 @@ class NewsTableViewController: UITableViewController {
     } else if post.program != nil {
       return 300
     } else {
+      return UITableViewAutomaticDimension
+    }
+  }
+  
+  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    let post = posts![indexPath.row]
+    
+    if post.imageURLString != nil {
+      return 400
+    } else if post.program != nil {
       return 300
+    } else {
+      return 180
     }
   }
   
