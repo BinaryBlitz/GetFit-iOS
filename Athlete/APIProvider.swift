@@ -5,6 +5,8 @@ import Moya
 class APIProvider<Target: TargetType>: MoyaProvider<Target> {
   
   init(environment: ServerEnvironment<Target> = .Staging, plugins: [PluginType] = []) {
+    var plugins = plugins
+    plugins.append(NetworkActivityManager.shared.plugin)
     super.init(endpointClosure: environment.endpointMapping, plugins: plugins)
   }
 }

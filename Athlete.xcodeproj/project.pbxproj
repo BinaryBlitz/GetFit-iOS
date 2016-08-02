@@ -115,6 +115,7 @@
 		37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */; };
 		37D025381BE65DB80006145A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D025371BE65DB80006145A /* ProfileTableViewController.swift */; };
 		37D3DD801BE2D04D00208543 /* TrainingTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */; };
+		37D65EDD1D5157FF008FE301 /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D65EDC1D5157FF008FE301 /* NetworkActivityManager.swift */; };
 		37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD891C787A2800CA96E9 /* Post.swift */; };
 		37D7AD8C1C787D1A00CA96E9 /* Trainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */; };
 		37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7AD8D1C788FC300CA96E9 /* Program.swift */; };
@@ -261,6 +262,7 @@
 		37C7F5BC1BDF9826007BA0A9 /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		37D025371BE65DB80006145A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingTipsViewController.swift; sourceTree = "<group>"; };
+		37D65EDC1D5157FF008FE301 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
 		37D7AD891C787A2800CA96E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainter.swift; sourceTree = "<group>"; };
 		37D7AD8D1C788FC300CA96E9 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 		379E912E1C95F73300D96175 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				37D65EDC1D5157FF008FE301 /* NetworkActivityManager.swift */,
 				374E85561D32C440006887E3 /* APIProvider.swift */,
 				373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */,
 				374E85661D32D276006887E3 /* TargetTypes */,
@@ -950,6 +953,7 @@
 				374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				374E85651D32D171006887E3 /* WorkoutSessionsTarget.swift in Sources */,
+				37D65EDD1D5157FF008FE301 /* NetworkActivityManager.swift in Sources */,
 				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
 				37B7BD191D48E75C003432D1 /* WorkoutsTableViewController.swift in Sources */,
 				374E85571D32C440006887E3 /* APIProvider.swift in Sources */,
