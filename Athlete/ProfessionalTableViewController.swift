@@ -1,13 +1,6 @@
-//
-//  ProfessionalTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 02/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
+import MWPhotoBrowser
 
 class ProfessionalTableViewController: UITableViewController {
   
@@ -20,6 +13,7 @@ class ProfessionalTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     news = trainer.posts.sorted("dateCreated")
     configureTableView()
   }
@@ -60,6 +54,12 @@ class ProfessionalTableViewController: UITableViewController {
         break
       }
       cell.configureWith(trainer, andState: .Normal)
+      cell.avatarImageView.userInteractionEnabled = true
+      cell.avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAvatar)))
+      
+      cell.bannerImageView.userInteractionEnabled = true
+      cell.bannerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBanner)))
+      
       return cell
     case 0 where indexPath.row == 1:
       guard let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTrainingCell") as? ActionTableViewCell else {
@@ -86,6 +86,18 @@ class ProfessionalTableViewController: UITableViewController {
     }
     
     return UITableViewCell()
+  }
+  
+  @objc private func showAvatar() {
+    let browser = MWPhotoBrowser(delegate: self)
+    browser.setCurrentPhotoIndex(0)
+    navigationController?.pushViewController(browser, animated: true)
+  }
+  
+  @objc private func showBanner() {
+    let browser = MWPhotoBrowser(delegate: self)
+    browser.setCurrentPhotoIndex(1)
+    navigationController?.pushViewController(browser, animated: true)
   }
 
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -159,3 +171,24 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
 }
 
 extension ProfessionalTableViewController: PostTableViewCellDelegate { }
+
+//MARK: - MWPhotoBrowserDelegate
+extension ProfessionalTableViewController: MWPhotoBrowserDelegate {
+  
+  func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    return 2
+  }
+  
+  func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    let urlString: String?
+    if index == 0 {
+      urlString = trainer.avatarURLString
+    } else {
+      urlString = trainer.bannerURLString
+    }
+    
+    guard let imageURLString = urlString, url = NSURL(string: imageURLString) else { return nil }
+    
+    return MWPhoto(URL: url)
+  }
+}
