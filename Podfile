@@ -22,6 +22,7 @@ target 'Athlete' do
   pod 'SwiftSpinner'
   pod 'XCDYouTubeKit'
   pod 'JSQMessagesViewController' 
+  pod 'MWPhotoBrowser'
 
   # Tools
   pod 'SwiftDate'
