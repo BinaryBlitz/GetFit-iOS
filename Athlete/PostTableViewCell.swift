@@ -30,6 +30,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   
   //MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
+  
+  var contentImageView: UIImageView?
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerHeight: NSLayoutConstraint!
   @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
@@ -121,12 +123,16 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.hidden = false
       containerView.backgroundColor = UIColor.lightGrayColor()
+      
+      // create image view
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: imageContentHeight))
+      self.contentImageView = imageView
       imageView.contentMode = UIViewContentMode.ScaleAspectFill
       imageView.layer.masksToBounds = true
       imageView.hnk_setImageFromURL(photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
+      
     case .TrainingProgram(let program):
       containerHeight.constant = programContrentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent

@@ -1,14 +1,7 @@
-//
-//  PostViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 01/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import Reusable
+import MWPhotoBrowser
 
 class PostViewController: UIViewController {
 
@@ -27,6 +20,8 @@ class PostViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
     setupKeyboard()
     setupTableView()
@@ -195,6 +190,10 @@ extension PostViewController: UITableViewDataSource {
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
       cell.state = .Normal
+      if let imageView = cell.contentImageView {
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImage)))
+      }
       
       return cell
     case 1:
@@ -208,10 +207,29 @@ extension PostViewController: UITableViewDataSource {
       return UITableViewCell()
     }
   }
+  
+  @objc private func showImage() {
+    let browser = MWPhotoBrowser(delegate: self)
+    browser.setCurrentPhotoIndex(0)
+    navigationController?.pushViewController(browser, animated: true)
+  }
+}
+
+//MARK: - MWPhotoBrowserDelegate
+extension PostViewController: MWPhotoBrowserDelegate {
+  
+  func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    return 1
+  }
+  
+  func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    guard let imageURLString = post.imageURLString, url = NSURL(string: imageURLString) else { return nil }
+    
+    return MWPhoto(URL: url)
+  }
 }
 
 //MARK: - Keyboard events
-
 extension PostViewController {
   
   func keyboardWillShow(notification: NSNotification) {
@@ -253,5 +271,3 @@ extension PostViewController {
      view.endEditing(true)
   }
 }
-
-
