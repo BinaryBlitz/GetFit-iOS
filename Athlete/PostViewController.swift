@@ -2,6 +2,7 @@ import UIKit
 import RealmSwift
 import Reusable
 import MWPhotoBrowser
+import SVPullToRefresh
 
 class PostViewController: UIViewController {
 
@@ -46,7 +47,6 @@ class PostViewController: UIViewController {
   }
   
   //MARK: - Setup methods
-
   func setupKeyboard() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
@@ -72,6 +72,10 @@ class PostViewController: UIViewController {
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubviewToBack(refreshControl)
+    
+    tableView.addInfiniteScrollingWithActionHandler {
+      self.refresh()
+    }
   }
   
   //MARK: - Refresh
@@ -84,6 +88,8 @@ class PostViewController: UIViewController {
         self.reloadCommentsSection()
       }
       self.refreshControl?.endRefreshing()
+      self.tableView.infiniteScrollingView.stopAnimating()
+      self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
   }
   
