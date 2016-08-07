@@ -23,6 +23,7 @@ target 'Athlete' do
   pod 'XCDYouTubeKit'
   pod 'JSQMessagesViewController' 
   pod 'MWPhotoBrowser'
+  pod 'SVPullToRefresh'
 
   # Tools
   pod 'SwiftDate'
