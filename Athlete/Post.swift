@@ -67,6 +67,14 @@ class Post: Object, ALSwiftyJSONAble {
         realm.add(trainer, update: true)
       }
     }
+    
+    if let program = Program(jsonData: jsonData["program"]) {
+      self.program = program
+      let realm = try! Realm()
+      try! realm.write {
+        realm.add(program, update: true)
+      }
+    }
   }
 
   required init(value: AnyObject, schema: RLMSchema) {
