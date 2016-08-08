@@ -65,12 +65,14 @@ extension GetFit.Login: TargetType {
     case .Facebook(let token):
       return ["token": token]
     case let .CreateUser(firstName, lastName):
-      return [
+      let userData = [
         "phone_number": sessionData!.phoneNumber!.toE164(),
         "verification_token": sessionData!.verificationToken!,
         "first_name": firstName,
         "last_name": lastName
       ]
+      
+      return ["user": userData]
     }
   }
   
