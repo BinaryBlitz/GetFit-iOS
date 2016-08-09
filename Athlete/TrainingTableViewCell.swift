@@ -1,11 +1,3 @@
-//
-//  TrainingTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 27/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import MCSwipeTableViewCell
 import Reusable
@@ -54,22 +46,5 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
     let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
     infoString.appendAttributedString(NSMutableAttributedString(string: ", \(subtitle)", attributes: plainTextAttrebutes))
     infoLabel.attributedText = infoString
-  }
-  
-  //FIXME: 😢😭
-  func configureWith(workout: Workout) {
-    titleLabel.text = workout.programName
-    updateInfoLabelWithTitle(workout.name, andSubtitle: "\(workout.exercisesCount) exercises")
-    
-    //remove all badges
-    for subview in badgesStackView.arrangedSubviews {
-      badgesStackView.removeArrangedSubview(subview)
-      subview.removeFromSuperview()
-    }
-    
-    let durationBadge = BadgeView()
-    durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
-    durationBadge.text = "\(workout.duration) MIN"
-    badgesStackView.addArrangedSubview(durationBadge)
   }
 }
