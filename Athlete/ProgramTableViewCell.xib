@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dvp-P6-3vB" customClass="CardView" customModule="Athlete" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="571" height="344.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="571" height="345"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpS-m8-mk5">
                                 <rect key="frame" x="0.0" y="0.0" width="571" height="132"/>
@@ -76,7 +76,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Dkl-6U-TxB"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Running, 6 exercises" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeM-mm-uKs">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="6 exercises" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeM-mm-uKs">
                                         <rect key="frame" x="0.0" y="42" width="543" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,7 +91,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNt-Rn-DU6">
                                         <rect key="frame" x="0.0" y="120" width="543" height="40"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="2ay-eh-z6W">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uka-FD-8i3" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="-1" width="93" height="42"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="93" placeholder="YES" id="cqg-tF-KtQ"/>
+                                                    <constraint firstAttribute="height" constant="41" placeholder="YES" id="kne-Le-Gm3"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="2ay-eh-z6W">
                                                 <rect key="frame" x="67" y="10" width="116" height="20"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="400" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vat-n8-kff">
@@ -123,9 +131,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Uka-FD-8i3" firstAttribute="leading" secondItem="VNt-Rn-DU6" secondAttribute="leading" id="AFr-9H-Q1H"/>
                                             <constraint firstItem="2ay-eh-z6W" firstAttribute="centerY" secondItem="VNt-Rn-DU6" secondAttribute="centerY" id="FFU-TP-uGS"/>
                                             <constraint firstAttribute="trailing" secondItem="2ay-eh-z6W" secondAttribute="trailing" id="I30-hj-evU"/>
                                             <constraint firstAttribute="height" constant="40" id="NL7-7e-TNX"/>
+                                            <constraint firstItem="Uka-FD-8i3" firstAttribute="centerY" secondItem="2ay-eh-z6W" secondAttribute="centerY" id="mFO-lS-1Bl"/>
                                             <constraint firstItem="2ay-eh-z6W" firstAttribute="height" secondItem="VNt-Rn-DU6" secondAttribute="height" multiplier="1:2" id="qOY-Hs-W0L"/>
                                         </constraints>
                                     </view>
@@ -158,6 +168,7 @@
                 <outlet property="bannerImageView" destination="0AY-dT-SNQ" id="kvT-bn-EhH"/>
                 <outlet property="bannerView" destination="rpS-m8-mk5" id="n61-8P-KlS"/>
                 <outlet property="cardView" destination="Dvp-P6-3vB" id="NDl-0k-SzB"/>
+                <outlet property="categoryBadge" destination="Uka-FD-8i3" id="Dft-mg-nCG"/>
                 <outlet property="contentStackView" destination="UmT-oj-uk6" id="0mJ-sM-9XD"/>
                 <outlet property="descriptionLabel" destination="AKm-x3-Cwp" id="fgN-gR-Di6"/>
                 <outlet property="followersLabel" destination="vat-n8-kff" id="4GB-Lo-k1W"/>
