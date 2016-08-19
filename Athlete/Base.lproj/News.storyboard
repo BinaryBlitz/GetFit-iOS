@@ -128,11 +128,20 @@
                         <outlet property="keyboardHeight" destination="8WP-a3-X5G" id="yrD-hA-MIJ"/>
                         <outlet property="sendCommentButton" destination="Lq9-R8-ygu" id="xZH-xh-oRP"/>
                         <outlet property="tableView" destination="ZCL-de-rP9" id="Wuz-hM-XFW"/>
+                        <segue destination="oHT-Am-BYv" kind="show" identifier="showTrainerPage" id="q6o-PP-46x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKo-hu-vU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2479.5" y="-600"/>
+        </scene>
+        <!--TrainerViewController-->
+        <scene sceneID="NCa-g0-3Pl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Professionals" referencedIdentifier="TrainerViewController" id="oHT-Am-BYv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tap-tu-m1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2921" y="-600"/>
         </scene>
     </scenes>
     <resources>
