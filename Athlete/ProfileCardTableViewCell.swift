@@ -1,11 +1,3 @@
-//
-//  ProfileCardTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 25/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Haneke
 import Reusable
@@ -15,7 +7,6 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var bannerImageView: UIImageView!
   @IBOutlet weak var avatarImageView: CircleImageView!
   @IBOutlet weak var nameLabel: UILabel!
-  @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var settingsBadge: BadgeView!
   
   override func awakeFromNib() {
@@ -38,7 +29,6 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
   
   func configureWith(viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
-    descriptionLabel.text = viewModel.info
     
     bannerImageView.hnk_cancelSetImage()
     if let bannerURL = viewModel.coverImageURL {
@@ -46,12 +36,6 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
       bannerImageView.addSubview(activityIndicator)
       activityIndicator.autoCenterInSuperview()
       bannerImageView.hnk_setImageFromURL(bannerURL)
-//      bannerImageView.hnk_setImageFromURL(bannerURL, placeholder: nil, format: nil, failure: { (error) in
-//          activityIndicator.removeFromSuperview()
-//          print("error: \(error)")
-//        }, success: { (image) in
-//          activityIndicator.removeFromSuperview()
-//      })
     }
     
     avatarImageView.hnk_cancelSetImage()

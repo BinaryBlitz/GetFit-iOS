@@ -99,7 +99,6 @@ class ProfileTableViewController: UITableViewController {
   }
   
   //MARK: - Actions
-  
   func updateAvatar() {
     update(.Avatar)
   }
@@ -130,7 +129,6 @@ class ProfileTableViewController: UITableViewController {
   }
   
   //MARK: - Refresh
-  
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -143,7 +141,6 @@ class ProfileTableViewController: UITableViewController {
   }
   
   //MARK: - UITableViewDataSource
-  
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
   }
@@ -224,7 +221,7 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 270
+      return 230
     case 1 where selectedTabIndex == 0:
       return tableView.frame.width
     case 1 where selectedTabIndex == 1:
