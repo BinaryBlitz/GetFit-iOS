@@ -11,6 +11,10 @@ class ProgramDetailsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    if programsProvider == nil {
+      programsProvider = APIProvider<GetFit.Programs>()
+    }
+    
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     

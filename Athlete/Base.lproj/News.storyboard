@@ -129,11 +129,20 @@
                         <outlet property="sendCommentButton" destination="Lq9-R8-ygu" id="xZH-xh-oRP"/>
                         <outlet property="tableView" destination="ZCL-de-rP9" id="Wuz-hM-XFW"/>
                         <segue destination="oHT-Am-BYv" kind="show" identifier="showTrainerPage" id="q6o-PP-46x"/>
+                        <segue destination="3XN-UQ-p6X" kind="show" identifier="showProgramPage" id="DjR-HW-BKg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKo-hu-vU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2479.5" y="-600"/>
+        </scene>
+        <!--ProgramDetails-->
+        <scene sceneID="zaC-0f-eco">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Store" referencedIdentifier="ProgramDetails" id="3XN-UQ-p6X" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDz-iI-t4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2939.5" y="-776"/>
         </scene>
         <!--TrainerViewController-->
         <scene sceneID="NCa-g0-3Pl">

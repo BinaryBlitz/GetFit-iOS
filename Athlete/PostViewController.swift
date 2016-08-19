@@ -159,6 +159,14 @@ class PostViewController: UIViewController {
     }
   }
   
+  @objc func showProgramPage() {
+    if post.program != nil {
+      performSegueWithIdentifier("showProgramPage", sender: self)
+    } else {
+      presentAlertWithMessage("Cannot load program")
+    }
+  }
+  
   @objc private func showImage() {
     let browser = MWPhotoBrowser(delegate: self)
     browser.setCurrentPhotoIndex(0)
@@ -186,7 +194,11 @@ class PostViewController: UIViewController {
     if segue.identifier == "showTrainerPage" {
       let destination = segue.destinationViewController as! ProfessionalTableViewController
       destination.trainer = post.trainer!
+    } else if segue.identifier == "showProgramPage" {
+      let destination = segue.destinationViewController as! ProgramDetailsTableViewController
+      destination.program = post.program
     }
+    
   }
 }
 
@@ -225,6 +237,10 @@ extension PostViewController: UITableViewDataSource {
       [cell.trainerNameLabel, cell.trainerAvatarImageView].forEach { view in
         view.userInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTrainerPage)))
+      }
+      
+      if post.program != nil {
+        cell.containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showProgramPage)))
       }
       
       return cell

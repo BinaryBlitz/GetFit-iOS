@@ -32,7 +32,7 @@
         <!--Program Details Table View Controller-->
         <scene sceneID="Mwz-tf-dIP">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProgramDetails" hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
