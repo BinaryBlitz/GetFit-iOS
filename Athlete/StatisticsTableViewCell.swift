@@ -1,11 +1,3 @@
-//
-//  StatisticsTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 07/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Reusable
 
@@ -25,6 +17,9 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var totalDistanceLabel: UILabel!
   @IBOutlet weak var distanceTitleLabel: UILabel!
   
+  @IBOutlet weak var totalWeightLabel: UILabel!
+  @IBOutlet weak var weightTitleLabel: UILabel!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -36,6 +31,15 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
     trainingsView.layer.borderColor = UIColor.blueAccentColor().CGColor
     lengthView.layer.borderColor = UIColor.primaryYellowColor().CGColor
     distanceView.layer.borderColor = UIColor.greenAccentColor().CGColor
+    
+    [totalDistanceLabel, totalDurationLabel, totalWeightLabel, totalTrainingsLabel].forEach { label in
+      label.text = "0"
+    }
+    
+    trainingsTitleLabel.text = "Workouts"
+    durationTitleLabel.text = "Duration"
+    distanceTitleLabel.text = "Distance"
+    weightTitleLabel.text = "Weight"
   }
   
   override func layoutSubviews() {
@@ -50,5 +54,6 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
     totalDistanceLabel.text = viewModel.totalDistance
     totalTrainingsLabel.text = viewModel.totalWorkouts
     totalDurationLabel.text = viewModel.totalDuration
+    totalWeightLabel.text = viewModel.totalWeight
   }
 }

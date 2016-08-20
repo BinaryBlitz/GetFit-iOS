@@ -1,11 +1,3 @@
-//
-//  UserViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 11/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
 
 struct UserViewModel {
@@ -35,6 +27,7 @@ extension UserViewModel: UserPresentable {
 
 extension UserViewModel: StatisticsPresentable {
   var totalWorkouts: String { return "\(user.totalWorkouts)" }
-  var totalDistance: String { return "\(user.totalDistance)" }
-  var totalDuration: String { return "\(user.totalDuration)" }
+  var totalDistance: String { return "\(user.totalDistance) km" }
+  var totalDuration: String { return "\(user.totalDuration) min" }
+  var totalWeight: String { return "\(0) kg" }
 }
