@@ -8,6 +8,7 @@ extension GetFit {
   public enum Trainers {
     case Index(filter: TrainersFilter)
     case Show(id: Int)
+    case Programs(trainerId: Int)
   }
   
 }
@@ -20,6 +21,8 @@ extension GetFit.Trainers: TargetType {
       return "/trainers"
     case .Show(let id):
       return "/trainers/\(id)"
+    case .Programs(let trainerId):
+      return "/trainers/\(trainerId)/programs"
     }
   }
   
@@ -31,7 +34,7 @@ extension GetFit.Trainers: TargetType {
     switch self {
     case .Index(let filter):
       return ["category": filter.category.rawValue]
-    case .Show(_):
+    case .Show(_), .Programs(_):
       return nil
     }
   }
