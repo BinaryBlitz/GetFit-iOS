@@ -122,7 +122,6 @@ class PostViewController: UIViewController {
   }
   
   //MARK: - Actions
-  
   @IBAction func createCommentButtonAction(sender: AnyObject) {
     guard let content = commentTextField.text else { return }
     sendCommentButton.userInteractionEnabled = false
@@ -152,8 +151,29 @@ class PostViewController: UIViewController {
     tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
   }
   
-  //MARK: - Tools
+  @objc func showTrainerPage() {
+    if post.trainer != nil {
+      performSegueWithIdentifier("showTrainerPage", sender: self)
+    } else {
+      presentAlertWithMessage("Cannot load trainer")
+    }
+  }
   
+  @objc func showProgramPage() {
+    if post.program != nil {
+      performSegueWithIdentifier("showProgramPage", sender: self)
+    } else {
+      presentAlertWithMessage("Cannot load program")
+    }
+  }
+  
+  @objc private func showImage() {
+    let browser = MWPhotoBrowser(delegate: self)
+    browser.setCurrentPhotoIndex(0)
+    navigationController?.pushViewController(browser, animated: true)
+  }
+  
+  //MARK: - Tools
   func reloadCommentsSection() {
     if tableView.numberOfSections >= 2 {
       tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
@@ -168,8 +188,21 @@ class PostViewController: UIViewController {
       tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
     }
   }
+  
+  //MARK: - Navigation 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "showTrainerPage" {
+      let destination = segue.destinationViewController as! ProfessionalTableViewController
+      destination.trainer = post.trainer!
+    } else if segue.identifier == "showProgramPage" {
+      let destination = segue.destinationViewController as! ProgramDetailsTableViewController
+      destination.program = post.program
+    }
+    
+  }
 }
 
+//MARK: - UITableViewDataSource
 extension PostViewController: UITableViewDataSource {
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -201,6 +234,15 @@ extension PostViewController: UITableViewDataSource {
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImage)))
       }
       
+      [cell.trainerNameLabel, cell.trainerAvatarImageView].forEach { view in
+        view.userInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTrainerPage)))
+      }
+      
+      if post.program != nil {
+        cell.containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showProgramPage)))
+      }
+      
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
@@ -214,11 +256,6 @@ extension PostViewController: UITableViewDataSource {
     }
   }
   
-  @objc private func showImage() {
-    let browser = MWPhotoBrowser(delegate: self)
-    browser.setCurrentPhotoIndex(0)
-    navigationController?.pushViewController(browser, animated: true)
-  }
 }
 
 //MARK: - MWPhotoBrowserDelegate

@@ -1,18 +1,10 @@
-//
-//  WorkoutsTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 15/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import Reusable
 
 class WorkoutsTableViewController: UITableViewController {
   
-  var workouts = [Workout]()
+  var workouts: Results<Workout>!
   let workoutsProvider = APIProvider<GetFit.Workouts>()
 
   override func viewDidLoad() {
@@ -22,13 +14,13 @@ class WorkoutsTableViewController: UITableViewController {
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self,
                                                        action: #selector(self.closeButtonAction(_:)))
     
+    let realm = try! Realm()
+    workouts = realm.objects(Workout).sorted("duration")
+    loadWorkouts()
+    
     tableView.registerReusableCell(TrainingTableViewCell)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 300
-    
-    let realm = try! Realm()
-    workouts = Array(realm.objects(Workout).sorted("duration"))
-    loadWorkouts()
   }
   
   func loadWorkouts() {
@@ -38,13 +30,14 @@ class WorkoutsTableViewController: UITableViewController {
         do {
           let workoutsResponse = try response.filterSuccessfulStatusCodes()
           let workouts = try workoutsResponse.mapArray(Workout.self)
-          self.workouts = workouts
           self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
           
           let realm = try Realm()
           try realm.write {
             realm.add(workouts, update: true)
           }
+          
+          self.tableView.reloadData()
         } catch let error {
           self.presentAlertWithMessage("Error: \(error)")
         }
@@ -89,9 +82,17 @@ class WorkoutsTableViewController: UITableViewController {
     let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
     let selectDaysController = trainingsStoryboard.instantiateViewControllerWithIdentifier("select_days") as! CreateWorkoutSessionsViewController
     selectDaysController.workout = workouts[indexPath.row]
+    selectDaysController.delegate = self
     
     selectDaysController.modalPresentationStyle = .OverCurrentContext
     presentViewController(selectDaysController, animated: true, completion: nil)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+}
+
+//MARK: - CreateWorkoutSessionsControllerDelegate
+extension WorkoutsTableViewController: CreateWorkoutSessionsControllerDelegate {
+  func didFinishWorkoutSessionsCreation() {
+    dismissViewControllerAnimated(true, completion: nil)
   }
 }

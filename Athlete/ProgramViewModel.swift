@@ -1,11 +1,3 @@
-//
-//  ProgramViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 03/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -80,10 +72,7 @@ extension ProgramViewModel: ProgramPresentable {
   var info: NSAttributedString {
     let infoFontSize: CGFloat = 15
     let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
-    let infoString = NSMutableAttributedString(string:category.capitalizedString, attributes:boldTextAttrebutes)
-    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFontOfSize(infoFontSize)]
-    infoString.appendAttributedString(NSMutableAttributedString(string: ", \(workoutsCount)", attributes: plainTextAttrebutes))
     
-    return infoString
+    return NSMutableAttributedString(string: workoutsCount, attributes: boldTextAttrebutes)
   }
 }

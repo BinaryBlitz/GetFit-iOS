@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GmK-rj-2cT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GmK-rj-2cT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
         <!--Program Details Table View Controller-->
         <scene sceneID="Mwz-tf-dIP">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProgramDetails" hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,10 +72,21 @@
                             <outlet property="delegate" destination="Syf-XJ-wxQ" id="PBg-Hu-jEH"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="nZd-3X-1IP" kind="show" identifier="showTrainerPage" id="WaG-Fl-kCW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tB2-ql-Ih8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2258" y="265"/>
+        </scene>
+        <!--TrainerViewController-->
+        <scene sceneID="EWL-8m-QIY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Professionals" referencedIdentifier="TrainerViewController" id="nZd-3X-1IP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="31J-Za-Lym" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2750" y="265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rwY-Ym-sgX">

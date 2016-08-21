@@ -4,9 +4,15 @@ import RealmSwift
 import Moya
 import PureLayout
 
+protocol CreateWorkoutSessionsControllerDelegate: class {
+  func didFinishWorkoutSessionsCreation()
+}
+
 class CreateWorkoutSessionsViewController: UIViewController {
   
   var workout: Workout!
+  
+  weak var delegate: CreateWorkoutSessionsControllerDelegate?
   
   @IBOutlet weak var contentView: UIView!
   
@@ -81,7 +87,9 @@ class CreateWorkoutSessionsViewController: UIViewController {
       case .Success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
-          self.dismissViewControllerAnimated(true, completion: nil)
+          self.dismissViewControllerAnimated(true) {
+            self.delegate?.didFinishWorkoutSessionsCreation()
+          }
         } catch let error {
           self.handleServerError(error, forRespnse: response)
         }

@@ -126,7 +126,7 @@ class WorkoutSessionsViewController: UIViewController {
   
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
-      self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+      self.tableView.reloadData()
       self.calendarView.contentController.refreshPresentedMonth()
       self.refreshControl?.endRefreshing()
     }

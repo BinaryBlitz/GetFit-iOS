@@ -32,6 +32,8 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var trainerAvatar: CircleImageView!
   @IBOutlet weak var bannerImageView: UIImageView!
   
+  @IBOutlet weak var categoryBadge: BadgeView!
+  
   @IBOutlet weak var bannerView: UIView!
   @IBOutlet weak var contentStackView: UIStackView!
   
@@ -57,6 +59,8 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     super.awakeFromNib()
     
     priceBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
+    categoryBadge.style = BadgeView.Style(color: .LightGray)
+    
     trainerAvatar.layer.borderColor = UIColor.whiteColor().CGColor
     trainerAvatar.layer.borderWidth = 1
     
@@ -83,6 +87,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     nameLabel.text = viewModel.title
     priceBadge.text = viewModel.price
     infoLabel.attributedText = viewModel.info
+    categoryBadge.text = viewModel.category
     
     if state == .Card {
       descriptionLabel.text = viewModel.preview

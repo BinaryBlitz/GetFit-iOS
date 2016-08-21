@@ -1,11 +1,3 @@
-//
-//  ProgramDetailsTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 01/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import Reusable
@@ -19,10 +11,15 @@ class ProgramDetailsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    if programsProvider == nil {
+      programsProvider = APIProvider<GetFit.Programs>()
+    }
+    
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     tableView.registerReusableCell(ProgramTableViewCell)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
     let headerNib = UINib(nibName: String(WorkoutHeaderView), bundle: nil)
     tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: String(WorkoutHeaderView))
@@ -79,6 +76,12 @@ class ProgramDetailsTableViewController: UITableViewController {
       cell.state = .Normal
       cell.configureWith(ProgramViewModel(program: program))
       
+      cell.trainerAvatar.userInteractionEnabled = true
+      cell.trainerAvatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openTrainerPage)))
+      
+      cell.trainerNameLabel.userInteractionEnabled = true
+      cell.trainerNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openTrainerPage)))
+      
       return cell
     } else {
       guard let exercises = workouts?[indexPath.section - 1].exercises else { return UITableViewCell() }
@@ -93,6 +96,14 @@ class ProgramDetailsTableViewController: UITableViewController {
       }
       
       return cell
+    }
+  }
+  
+  @objc private func openTrainerPage() {
+    if program.trainer != nil {
+      performSegueWithIdentifier("showTrainerPage", sender: self)
+    } else {
+      presentAlertWithMessage("On no! Cannot find trainer")
     }
   }
   
@@ -125,8 +136,18 @@ class ProgramDetailsTableViewController: UITableViewController {
     
     return headerView
   }
+  
+  //MARK: - Navigation 
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "showTrainerPage" {
+      let destination = segue.destinationViewController as! ProfessionalTableViewController
+      destination.trainer = program.trainer!
+    }
+  }
 }
 
+//MARK: - ProgramCellDelegate
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
     programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
