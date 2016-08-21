@@ -1,21 +1,29 @@
 import UIKit
 import RealmSwift
 import MWPhotoBrowser
+import Moya
+import Reusable
 
 class ProfessionalTableViewController: UITableViewController {
   
   var trainer: Trainer!
   private let tabsLabels = ["programs", "news"]
   private var selectedTab = 0
-  var programms: Results<Program>?
+  var programs: Results<Program>!
   var news: Results<Post>!
+  
+  let trainersProvider = APIProvider<GetFit.Trainers>()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    
     news = trainer.posts.sorted("dateCreated")
+    programs = trainer.programs.sorted("id")
+    
     configureTableView()
+    refresh()
   }
   
   func configureTableView() {
@@ -25,11 +33,55 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.registerClass(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
     let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
     tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
+    tableView.registerReusableCell(ProgramTableViewCell)
     tableView.separatorStyle = .None
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  //MARK: - Refresh
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
+  }
+  
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    trainersProvider.request(GetFit.Trainers.Programs(trainerId: trainer.id)) { result in
+      switch result {
+      case .Success(let response):
+        self.programsResponseHandler(response, completion: completion)
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithMessage("\(error)")
+      }
+    }
+  }
+  
+  private func programsResponseHandler(response: Response, completion: () -> Void) {
+    do {
+      try response.filterSuccessfulStatusCodes()
+      let programs = try response.mapArray(Program.self)
+      
+      let realm = try Realm()
+      try realm.write {
+        realm.add(programs, update: true)
+      }
+      
+      completion()
+    } catch let error {
+      print(error)
+      presentAlertWithMessage("\(error)")
+    }
   }
   
   //MARK: - UITableViewDelegate && UITableViewDataSource
-  
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
   }
@@ -39,7 +91,7 @@ class ProfessionalTableViewController: UITableViewController {
     case 0:
       return 2
     case 1 where selectedTab == 0:
-      return 0
+      return programs.count
     case 1 where selectedTab == 1:
       return news.count
     default:
@@ -68,8 +120,6 @@ class ProfessionalTableViewController: UITableViewController {
       cell.title = "get personal training".uppercaseString
       cell.delegate = self
       return cell
-    case 1 where selectedTab == 0:
-      break
     case 1 where selectedTab == 1:
       guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
         break
@@ -79,6 +129,12 @@ class ProfessionalTableViewController: UITableViewController {
       cell.displayAsPreview = true
       cell.state = .Card
       cell.delegate = self
+      
+      return cell
+    case 1 where selectedTab == 0:
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+      cell.state = .Card
+      cell.configureWith(ProgramViewModel(program: programs[indexPath.row]))
       
       return cell
     default:
