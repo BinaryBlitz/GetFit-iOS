@@ -38,14 +38,14 @@ class StoreTableViewController: UITableViewController {
     header.backgroundColor = UIColor.clearColor()
     tableView.tableHeaderView = header
     
-    refresh()
-    
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubviewToBack(refreshControl)
+    
+    refresh()
   }
   
   func createBackgroundView() -> UIView {
