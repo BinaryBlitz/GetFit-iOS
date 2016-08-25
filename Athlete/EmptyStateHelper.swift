@@ -9,6 +9,10 @@ class EmptyStateHelper {
     case Store
   }
   
+  static var avatarPlaceholderImage: UIImage {
+    return UIImage(named: "AvatarPlaceholder")!
+  }
+  
   static func backgroundViewFor(screenType: Screen) -> UIView {
     let view = UIView()
     let titleLable = UILabel()

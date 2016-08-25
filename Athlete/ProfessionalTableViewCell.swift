@@ -57,7 +57,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
     avatarImageView.layer.borderWidth = 3
     avatarImageView.backgroundColor = UIColor.yellowColor()
-    avatarImageView.image = nil
+    avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
     
     bannerImageView.contentMode = .ScaleAspectFill
     bannerImageView.layer.masksToBounds = true

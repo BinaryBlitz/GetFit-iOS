@@ -12,6 +12,7 @@ class ChatsTableViewCell: UITableViewCell, NibReusable {
   override func awakeFromNib() {
     super.awakeFromNib()
 
+    roundedImageView.image = EmptyStateHelper.avatarPlaceholderImage
     roundUp(roundedImageView)
   }
 
@@ -19,7 +20,7 @@ class ChatsTableViewCell: UITableViewCell, NibReusable {
     super.prepareForReuse()
 
     roundedImageView.hnk_cancelSetImage()
-    roundedImageView.image = nil
+    roundedImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
 
   private func roundUp(imageView: UIImageView) {

@@ -23,6 +23,8 @@ class PostCommentTableViewCell: UITableViewCell, NibReusable {
     super.awakeFromNib()
     
     layoutMargins = UIEdgeInsetsZero
+    
+    userAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
   
   func configureWith(viewModel: PostCommentPresentable) {

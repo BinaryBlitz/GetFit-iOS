@@ -63,6 +63,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     
     trainerAvatar.layer.borderColor = UIColor.whiteColor().CGColor
     trainerAvatar.layer.borderWidth = 1
+    trainerAvatar.image = EmptyStateHelper.avatarPlaceholderImage
     
     let buyButton = UIButton()
     priceBadge.addSubview(buyButton)
