@@ -34,6 +34,8 @@ class StoreTableViewController: UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 265
     
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Store)
+    
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     header.backgroundColor = UIColor.clearColor()
     tableView.tableHeaderView = header
