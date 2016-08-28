@@ -13,6 +13,17 @@ class EmptyStateHelper {
     return UIImage(named: "AvatarPlaceholder")!
   }
   
+  static func generateBannerImageFor(trainer: Trainer) -> UIImage? {
+    switch trainer.name.characters.count % 3 {
+    case 0:
+      return UIImage(color: .primaryYellowColor())
+    case 1:
+      return UIImage(color: .blueAccentColor())
+    default:
+      return UIImage(color: .greenAccentColor()) // for case 2 and default
+    }
+  }
+  
   static func backgroundViewFor(screenType: Screen) -> UIView {
     let view = UIView()
     let titleLable = UILabel()
@@ -47,5 +58,19 @@ class EmptyStateHelper {
     case .Store:
       return "No programs to show"
     }
+  }
+}
+
+public extension UIImage {
+  public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    let rect = CGRect(origin: .zero, size: size)
+    UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+    color.setFill()
+    UIRectFill(rect)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    guard let cgImage = image.CGImage else { return nil }
+    self.init(CGImage: cgImage)
   }
 }
