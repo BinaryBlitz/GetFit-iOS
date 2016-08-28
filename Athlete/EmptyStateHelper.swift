@@ -13,8 +13,8 @@ class EmptyStateHelper {
     return UIImage(named: "AvatarPlaceholder")!
   }
   
-  static func generateBannerImageFor(trainer: Trainer) -> UIImage? {
-    switch trainer.name.characters.count % 3 {
+  static func generateBannerImageFor(object: NamedObject) -> UIImage? {
+    switch object.objectName.characters.count % 3 {
     case 0:
       return UIImage(color: .primaryYellowColor())
     case 1:

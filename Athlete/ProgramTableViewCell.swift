@@ -11,7 +11,7 @@ import PureLayout
 import Haneke
 import Reusable
 
-typealias ProgramCellPresentable = protocol<TrainerPresentable, ProgramPresentable>
+typealias ProgramCellPresentable = protocol<TrainerPresentable, ProgramPresentable, NamedObject>
 
 protocol ProgramCellDelegate: class {
   func didTouchBuyButtonInCell(cell: ProgramTableViewCell)
@@ -36,6 +36,8 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   
   @IBOutlet weak var bannerView: UIView!
   @IBOutlet weak var contentStackView: UIStackView!
+  
+  var bannerMaskView: UIView?
   
   enum ProgramCellState {
     case Card
@@ -74,6 +76,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
+    bannerMaskView = maskView
   }
   
   //MARK: - Actions
@@ -106,8 +109,13 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     }
     
     bannerImageView.hnk_cancelSetImage()
+    bannerMaskView?.hidden = true
+    bannerImageView.image = EmptyStateHelper.generateBannerImageFor(viewModel)
     if let bannerURL = viewModel.bannerURL {
-      bannerImageView.hnk_setImageFromURL(bannerURL)
+      bannerImageView.hnk_setImageFromURL(bannerURL) { image in
+        self.bannerImageView.image = image
+        self.bannerMaskView?.hidden = false
+      }
     }
   }
   
