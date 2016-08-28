@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -21,30 +20,30 @@
                             <constraint firstAttribute="height" constant="72" id="hqW-DN-EQo"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OeH-V5-lxn">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OeH-V5-lxn">
                         <rect key="frame" x="16" y="16" width="312" height="110"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Weight Lift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQr-z8-z0e">
-                                <rect key="frame" x="0.0" y="0.0" width="312" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight Lift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQr-z8-z0e">
+                                <rect key="frame" x="0.0" y="0.0" width="97" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="DAZ-76-O1x">
-                                <rect key="frame" x="0.0" y="60" width="312" height="50"/>
+                                <rect key="frame" x="0.0" y="63" width="304" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="2NB-1E-T11"/>
+                                    <constraint firstAttribute="height" constant="47" id="2NB-1E-T11"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="OeH-V5-lxn" secondAttribute="trailing" constant="8" id="7Nv-H1-vI9"/>
                     <constraint firstAttribute="bottom" secondItem="Cpi-YI-6mM" secondAttribute="bottom" id="HRm-oG-jvJ"/>
-                    <constraint firstItem="OeH-V5-lxn" firstAttribute="top" secondItem="eOL-p6-fgf" secondAttribute="topMargin" constant="8" id="Xb1-u3-kma"/>
-                    <constraint firstItem="OeH-V5-lxn" firstAttribute="leading" secondItem="eOL-p6-fgf" secondAttribute="leadingMargin" constant="8" id="aEk-YI-Drd"/>
+                    <constraint firstItem="OeH-V5-lxn" firstAttribute="top" secondItem="eOL-p6-fgf" secondAttribute="top" constant="16" id="P2I-q5-SOY"/>
+                    <constraint firstAttribute="bottom" secondItem="OeH-V5-lxn" secondAttribute="bottom" constant="16" id="eF6-gu-3pM"/>
+                    <constraint firstItem="OeH-V5-lxn" firstAttribute="leading" secondItem="eOL-p6-fgf" secondAttribute="leading" constant="16" id="gg8-SA-uQi"/>
                     <constraint firstAttribute="trailing" secondItem="Cpi-YI-6mM" secondAttribute="trailing" id="ooK-Ek-ejl"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="OeH-V5-lxn" secondAttribute="bottom" constant="8" id="xra-Yd-Srh"/>
+                    <constraint firstAttribute="trailing" secondItem="OeH-V5-lxn" secondAttribute="trailing" constant="16" id="yFY-sn-VIS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
