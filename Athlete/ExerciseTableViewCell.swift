@@ -72,7 +72,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
     status = viewModel.completed ? .Complete : .Uncomplete
     titleLabel.text = viewModel.exerciseName
     
-    badgesStack.arrangedSubviews.forEach { view in badgesStack.removeArrangedSubview(view) }
+    badgesStack.arrangedSubviews.forEach { view in badgesStack.removeArrangedSubview(view); view.removeFromSuperview() }
     
     if let reps = viewModel.repetitions {
       badgesStack.addArrangedSubview(createBadgeWith(title: reps))
