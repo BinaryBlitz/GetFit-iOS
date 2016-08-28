@@ -509,6 +509,26 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		377403121D7330D900613E0C /* Create Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				37B7BD181D48E75C003432D1 /* WorkoutsTableViewController.swift */,
+				37E5DD701CF514DD0056B7A7 /* CreateWorkoutSessionsViewController.swift */,
+			);
+			name = "Create Sessions";
+			sourceTree = "<group>";
+		};
+		377403131D7330FF00613E0C /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				37821F521BE1699500149523 /* TrainingViewController.swift */,
+				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
+				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
+				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+			);
+			name = Session;
+			sourceTree = "<group>";
+		};
 		379943F71CDCC9B100A3F36A /* ExerciseInfoTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,7 +622,6 @@
 				3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */,
 				3781B2721CD915230059D841 /* ProgramPresentable.swift */,
 				37A295EF1CDAB0C1000C0D57 /* ExerciseSessionPresentable.swift */,
-				37A295F11CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift */,
 				377403101D7315CA00613E0C /* NamedObject.swift */,
 			);
 			name = Protocols;
@@ -644,12 +663,8 @@
 			isa = PBXGroup;
 			children = (
 				37E4A4531BDF8739004193BF /* WorkoutSessionsViewController.swift */,
-				37B7BD181D48E75C003432D1 /* WorkoutsTableViewController.swift */,
-				37E5DD701CF514DD0056B7A7 /* CreateWorkoutSessionsViewController.swift */,
-				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
-				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
-				37821F521BE1699500149523 /* TrainingViewController.swift */,
-				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+				377403121D7330D900613E0C /* Create Sessions */,
+				377403131D7330FF00613E0C /* Session */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
