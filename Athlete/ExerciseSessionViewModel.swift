@@ -23,7 +23,8 @@ extension ExerciseSessionViewModel: ExerciseSessionPresentable {
   }
   
   var sets: String? {
-    return "\(exerciseSession.sets)"
+    guard let sets = exerciseSession.sets.value else { return nil }
+    return "\(sets) sets".uppercaseString
   }
   
   var completed: Bool {
