@@ -16,6 +16,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   dynamic var date: NSDate = NSDate()
   dynamic var position: Int = 0
   dynamic var exercisesCount: Int = 0
+  dynamic var synced: Bool = true
   var exercises = List<ExerciseSession>()
   
   override static func primaryKey() -> String? {

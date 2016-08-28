@@ -108,13 +108,21 @@ class TrainingViewController: UIViewController {
     if finishedExercises.count != workoutSession.exercises.count {
       let alert = UIAlertController(title: nil, message: "You didn't complete all your exercises. Finish workout anyway?", preferredStyle: .Alert)
       alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action) in
-        self.navigationController?.popViewControllerAnimated(true)
+        self.finishWorkoutSession()
       }))
       alert.addAction(UIAlertAction(title: "Nope", style: .Cancel, handler: nil))
       presentViewController(alert, animated: true, completion: nil)
     } else {
-      navigationController?.popViewControllerAnimated(true)
+      finishWorkoutSession()
     }
+  }
+  
+  private func finishWorkoutSession() {
+    try! workoutSession.realm?.write {
+      workoutSession.completed = true
+      workoutSession.synced = false
+    }
+    navigationController?.popViewControllerAnimated(true)
   }
   
   func updateSessionProgress() {

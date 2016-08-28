@@ -97,6 +97,7 @@ class WorkoutSessionsViewController: UIViewController {
       tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
     }
 
+    updateTableViewData()
     refresh()
   }
 
@@ -152,11 +153,20 @@ class WorkoutSessionsViewController: UIViewController {
     let indexes = workoutSessions.map { (session) -> Int in return session.id }
 
     let realm = try! Realm()
+    
+    let storedSessions = realm.objects(WorkoutSession.self)
     try! realm.write {
-      realm.add(workoutSessions, update: true)
+      workoutSessions.forEach { session in
+        if let storedSession = realm.objectForPrimaryKey(WorkoutSession.self, key: session.id) {
+          if storedSession.synced {
+            realm.add(session, update: true)
+          }
+        } else {
+          realm.add(session)
+        }
+      }
     }
 
-    let storedSessions = realm.objects(WorkoutSession.self)
     let sessionsToDelete = storedSessions.filter { (session) -> Bool in
       return !indexes.contains(session.id)
     }
@@ -176,6 +186,13 @@ class WorkoutSessionsViewController: UIViewController {
 
     tableViewDataSource = sessions.filter { (session) -> Bool in
       return session.date.isAfter([.Year, .Month, .Day], ofDate: 1.days.agoFromDate(date))
+    }
+  }
+  
+  private func updateTableViewData() {
+    if let date = calendarView.presentedDate.convertedDate() {
+      updateTableViewDataFor(date)
+      tableView.reloadData()
     }
   }
 
@@ -262,6 +279,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
           let session = self.tableViewDataSource[indexPath.row]
           try! session.realm!.write {
             session.completed = true
+            session.synced = false
           }
           self.tableViewDataSource.removeAtIndex(indexPath.row)
           tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
