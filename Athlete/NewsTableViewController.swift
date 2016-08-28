@@ -39,6 +39,8 @@ class NewsTableViewController: UITableViewController {
     headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.tableHeaderView = headerView
     
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.News)
+    
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -88,9 +90,11 @@ class NewsTableViewController: UITableViewController {
   }
   
   //MARK: - UITableViewDataSource
-  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts?.count ?? 0
+    let numberOfRows = posts?.count ?? 0
+    tableView.backgroundView?.hidden = numberOfRows != 0
+    
+    return numberOfRows
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

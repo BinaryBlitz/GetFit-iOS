@@ -40,6 +40,8 @@ class ProfessionalsViewController: UIViewController {
     tableView.separatorStyle = .None
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Trainers)
+    
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh), forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -135,14 +137,18 @@ class ProfessionalsViewController: UIViewController {
 extension ProfessionalsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    let numberOfRows: Int
     switch selectedCategory {
     case .Coach:
-      return coaches.count
+      numberOfRows = coaches.count
     case .Nutritionist:
-      return nutritionists.count
+      numberOfRows = nutritionists.count
     case .Doctor:
-      return doctors.count
+      numberOfRows = doctors.count
     }
+    
+    tableView.backgroundView?.hidden = numberOfRows != 0
+    return numberOfRows
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

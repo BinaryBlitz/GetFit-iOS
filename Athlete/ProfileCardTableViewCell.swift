@@ -14,7 +14,7 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     
     avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
     avatarImageView.layer.borderWidth = 5
-    avatarImageView.image = nil
+    avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
     avatarImageView.backgroundColor = UIColor.primaryYellowColor()
     avatarImageView.contentMode = .ScaleAspectFill
     

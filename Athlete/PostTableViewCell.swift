@@ -84,6 +84,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
     layoutMargins = UIEdgeInsetsZero
+    
+    trainerAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
   
   //MARK: - Cell configuration
