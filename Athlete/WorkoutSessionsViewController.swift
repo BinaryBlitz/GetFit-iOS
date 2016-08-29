@@ -6,31 +6,27 @@ import SwiftDate
 import MCSwipeTableViewCell
 
 class WorkoutSessionsViewController: UIViewController {
-  
+
   let workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
-  
+
   var workoutSessions: Results<WorkoutSession>?
-  var tableViewDataSource: [WorkoutSession] = [] {
-    didSet {
-      tableView.reloadData()
-    }
-  }
-  
+  var tableViewDataSource: [WorkoutSession] = []
+
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
   private let calendarViewHeight: CGFloat = 300
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
   @IBOutlet weak var tableView: UITableView!
-  
+
   @IBOutlet weak var calendarView: CVCalendarView!
-  
+
   var refreshControl: UIRefreshControl?
-  
+
   enum CalendarState {
     case Opened
     case InProgress
     case Closed
-    
+
     mutating func changeToOpositeState() {
       switch self {
       case .Opened:
@@ -42,7 +38,7 @@ class WorkoutSessionsViewController: UIViewController {
       }
     }
   }
-  
+
   var calendarState: CalendarState {
     get {
       if calendarViewTopConstaraint.constant == 0 {
@@ -50,7 +46,7 @@ class WorkoutSessionsViewController: UIViewController {
       } else if calendarViewTopConstaraint.constant == -(calendarViewHeight) {
         return .Closed
       }
-      
+
       return .InProgress
     }
     set {
@@ -59,7 +55,7 @@ class WorkoutSessionsViewController: UIViewController {
         calendarView.commitCalendarViewUpdate()
         calendarMenuView.commitMenuViewUpdate()
         calendarView.contentController.refreshPresentedMonth()
-        
+
         calendarViewTopConstaraint.constant = 0
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: .Done,
                                                            target: self, action: #selector(toggleCurrentDayView))
@@ -71,38 +67,40 @@ class WorkoutSessionsViewController: UIViewController {
       }
     }
   }
-  
+
   func updateTitleDateWithDate(date: NSDate) {
     let formatter = NSDateFormatter()
     formatter.dateFormat = "MMMM"
     titleButton.setTitle(formatter.stringFromDate(date).uppercaseString, forState: .Normal)
   }
-  
+
   //MARK: - View controller lifecycle
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-    
+
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession).sorted("date")
+    workoutSessions = realm.objects(WorkoutSession).filter("completed == false").sorted("date")
     updateTableViewDataFor(NSDate())
-    
+
     updateTitleDateWithDate(NSDate())
+    tableView.reloadData()
     titleButton.setTitleColor(UIColor.blackTextColor(), forState: .Normal)
     calendarState = .Closed
     setupTableView()
   }
-  
+
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     if let tabBarController = tabBarController {
       tabBarController.tabBar.tintColor = UIColor.blueAccentColor()
     }
-    
+
+    updateTableViewData()
     refresh()
   }
-  
+
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     if let tabBarController = tabBarController {
@@ -111,7 +109,7 @@ class WorkoutSessionsViewController: UIViewController {
   }
   
   //MARK: - Setup
-  
+
   func setupTableView() {
     tableView.registerReusableCell(TrainingTableViewCell)
     let refreshControl = UIRefreshControl()
@@ -121,9 +119,9 @@ class WorkoutSessionsViewController: UIViewController {
     tableView.addSubview(refreshControl)
     tableView.sendSubviewToBack(refreshControl)
   }
-  
+
   //MARK: - Refresh
-  
+
   func refresh(sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -131,7 +129,7 @@ class WorkoutSessionsViewController: UIViewController {
       self.refreshControl?.endRefreshing()
     }
   }
-  
+
   func beginRefreshWithCompletion(completion: () -> Void) {
     workoutSessionsProvider.request(.Index) { (result) in
       switch result {
@@ -146,84 +144,102 @@ class WorkoutSessionsViewController: UIViewController {
       case .Failure(let error):
         self.presentAlertWithMessage(String(error))
       }
-      
+
       completion()
     }
   }
-  
+
   private func updateDataWith(workoutSessions: [WorkoutSession]) {
     let indexes = workoutSessions.map { (session) -> Int in return session.id }
-    
+
     let realm = try! Realm()
-    try! realm.write {
-      realm.add(workoutSessions, update: true)
-    }
     
     let storedSessions = realm.objects(WorkoutSession.self)
+    try! realm.write {
+      workoutSessions.forEach { session in
+        if let storedSession = realm.objectForPrimaryKey(WorkoutSession.self, key: session.id) {
+          if storedSession.synced {
+            realm.add(session, update: true)
+          }
+        } else {
+          realm.add(session)
+        }
+      }
+    }
+
     let sessionsToDelete = storedSessions.filter { (session) -> Bool in
       return !indexes.contains(session.id)
     }
-    
+
     try! realm.write {
       realm.delete(sessionsToDelete)
     }
-    
+
     if let date = calendarView.presentedDate.convertedDate() {
       updateTableViewDataFor(date)
+      tableView.reloadData()
     }
   }
-  
+
   private func updateTableViewDataFor(date: NSDate) {
     guard let sessions = workoutSessions else { return }
-    
+
     tableViewDataSource = sessions.filter { (session) -> Bool in
       return session.date.isAfter([.Year, .Month, .Day], ofDate: 1.days.agoFromDate(date))
     }
   }
   
+  private func updateTableViewData() {
+    if let date = calendarView.presentedDate.convertedDate() {
+      updateTableViewDataFor(date)
+      tableView.reloadData()
+    }
+  }
+
   //MARK: - Actions
-  
+
   func toggleCurrentDayView() {
     calendarView.toggleCurrentDayView()
   }
-  
+
   @IBAction func titleButtonAction(sender: AnyObject) {
     calendarState.changeToOpositeState()
-    
+
     UIView.animateWithDuration(0.4) { () -> Void in
       self.view.layoutSubviews()
     }
   }
-  
+
   @IBAction func addWorkoutSessionsButtonAction(sender: UIButton) {
     let workoutsViewController = WorkoutsTableViewController(style: .Grouped)
     let navigation = UINavigationController(rootViewController: workoutsViewController)
     presentViewController(navigation, animated: true, completion: nil)
   }
-  
+
   //MARK: - Navigation
-  
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     guard let identifier = segue.identifier else { return }
-    
+
     switch identifier {
     case "trainingInfo":
       let destination = segue.destinationViewController as! TrainingViewController
       let indexPath = sender as! NSIndexPath
-      destination.training = workoutSessions![indexPath.row]
+      destination.workoutSession = workoutSessions![indexPath.row]
+      destination.workoutSessionsProvider = workoutSessionsProvider
     default:
       break
     }
   }
-  
+
   //MARK: - UIScrollViewDelegate
-  
+
   func scrollViewDidScroll(scrollView: UIScrollView) {
     let translation = scrollView.panGestureRecognizer.translationInView(view)
-    
+
     if translation.y < 0 && calendarState != .Closed {
       calendarState = .Closed
-      
+
       UIView.animateWithDuration(0.2) { () -> Void in
         self.view.layoutSubviews()
       }
@@ -233,46 +249,50 @@ class WorkoutSessionsViewController: UIViewController {
 
 //MARK: - UITableViewDataSource
 extension WorkoutSessionsViewController: UITableViewDataSource {
-  
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tableViewDataSource.count
   }
-  
+
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
-    
+
     let model = tableViewDataSource[indexPath.row]
     cell.selectionStyle = .None
     setSwipeGesturesFor(cell, in: tableView)
-    cell.configureWith(TrainingViewModel(training: model))
-    
+    cell.configureWith(TrainingViewModel(workoutSession: model))
+
     return cell
   }
-  
+
   private func setSwipeGesturesFor(cell: MCSwipeTableViewCell, in tableView: UITableView) {
     let doneView = UIImageView(image: UIImage(named: "Checkmark"))
     doneView.contentMode = .Center
-    
+
     let laterView = UIImageView(image: UIImage(named: "Clock"))
     laterView.contentMode = .Center
-    
+
     cell.setSwipeGestureWithView(doneView, color: UIColor.greenAccentColor(),
         mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
-          print("Done!")
-          if let indexPath = tableView.indexPathForCell(swipeCell) {
-//            self.workoutSessions.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+          guard let indexPath = tableView.indexPathForCell(swipeCell) else { return }
+
+          let session = self.tableViewDataSource[indexPath.row]
+          try! session.realm!.write {
+            session.completed = true
+            session.synced = false
           }
+          self.tableViewDataSource.removeAtIndex(indexPath.row)
+          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
-    
+
     cell.setSwipeGestureWithView(laterView, color: UIColor.primaryYellowColor(),
         mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
           print("Later!")
-          if let indexPath = tableView.indexPathForCell(swipeCell) {
+//          if let indexPath = tableView.indexPathForCell(swipeCell) {
 //            self.workoutSessions.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-          }
-          
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//          }
+
           self.calendarState = .Opened
           UIView.animateWithDuration(0.4) { () -> Void in
             self.view.layoutSubviews()
@@ -295,36 +315,37 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
   func presentationMode() -> CalendarMode {
     return .MonthView
   }
-  
+
   func firstWeekday() -> Weekday {
     return .Monday
   }
-  
+
   func shouldShowWeekdaysOut() -> Bool {
     return false
   }
-  
+
   func presentedDateUpdated(date: Date) {
     if let date = date.convertedDate() {
       updateTitleDateWithDate(date)
     }
   }
-  
+
   func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
     guard let date = dayView.date.convertedDate() else { return }
-    
+
     updateTableViewDataFor(date)
+    tableView.reloadData()
   }
-  
+
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
     guard let date = dayView.date.convertedDate() else { return false }
-    
+
     return workoutSessionsFor(date).count != 0
   }
-  
+
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
     guard let date = dayView.date.convertedDate() else { return [] }
-    
+
     let sessionsCount = workoutSessionsFor(date).count
     if sessionsCount > 3 {
       return Array(count: 3, repeatedValue: UIColor.blackTextColor())
@@ -332,29 +353,29 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
       return Array(count: sessionsCount, repeatedValue: UIColor.blackTextColor())
     }
   }
-  
+
   private func workoutSessionsFor(date: NSDate) -> [WorkoutSession] {
     let sessions = workoutSessions?.filter { (session) -> Bool in
       return isDate(session.date, theSameDayAs: date)
     }
-    
+
     return sessions ?? []
   }
-  
+
   private func isDate(date: NSDate, theSameDayAs otherDate: NSDate) -> Bool {
     return date.year == otherDate.year &&
            date.month == otherDate.month &&
            date.day == otherDate.day
   }
-  
+
   func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
     return false
   }
-  
+
   func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat {
     return 13
   }
-  
+
   func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
     return 14
   }
@@ -371,11 +392,11 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
   func dayOfWeekTextColor() -> UIColor {
     return UIColor.blackTextColor()
   }
-  
+
   func dayOfWeekTextUppercase() -> Bool {
     return true
   }
-  
+
   func dayOfWeekFont() -> UIFont {
     return UIFont.boldSystemFontOfSize(15)
   }

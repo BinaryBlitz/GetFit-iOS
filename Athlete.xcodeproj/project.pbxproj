@@ -18,6 +18,7 @@
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
 		373297291CA36161008AEB05 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373297281CA36161008AEB05 /* JSONSerializable.swift */; };
 		3732972B1CA4856C008AEB05 /* PostTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */; };
+		373BDDEB1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373BDDEA1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift */; };
 		373C20A61D2FF89900DF72EB /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A51D2FF89900DF72EB /* Int+Format.swift */; };
 		373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */; };
 		3741A0091D6A6E1600C84B87 /* EmptyStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741A0081D6A6E1600C84B87 /* EmptyStateHelper.swift */; };
@@ -37,6 +38,8 @@
 		374A80AC1CDD466B0099225E /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A80AA1CDD466B0099225E /* StatisticsTableViewCell.swift */; };
 		374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374A80AB1CDD466B0099225E /* StatisticsTableViewCell.xib */; };
 		374A80AF1CDD514C0099225E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A80AE1CDD514C0099225E /* SettingsTableViewController.swift */; };
+		374A9ABC1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */; };
+		374A9ABE1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */; };
 		374CF84B1D4773F200D83A7A /* AthleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374CF84A1D4773F200D83A7A /* AthleteTests.swift */; };
 		374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */; };
 		374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */; };
@@ -163,6 +166,7 @@
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		373297281CA36161008AEB05 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		373BDDEA1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+InterfaceOrientation.swift"; sourceTree = "<group>"; };
 		373C20A51D2FF89900DF72EB /* Int+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFitAPI.swift; sourceTree = "<group>"; };
 		3741A0081D6A6E1600C84B87 /* EmptyStateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateHelper.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 		374A80AA1CDD466B0099225E /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
 		374A80AB1CDD466B0099225E /* StatisticsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsTableViewCell.xib; sourceTree = "<group>"; };
 		374A80AE1CDD514C0099225E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+InterfaceOrientation.swift"; sourceTree = "<group>"; };
+		374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift"; sourceTree = "<group>"; };
 		374CF8481D4773F200D83A7A /* AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AthleteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		374CF84A1D4773F200D83A7A /* AthleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteTests.swift; sourceTree = "<group>"; };
 		374CF84C1D4773F200D83A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -447,6 +453,9 @@
 				37811FA11CF0B14A00AFB47E /* UIImage+Base64.swift */,
 				37E949B41CF0B731008F3CA5 /* UIImage+Resize.swift */,
 				373C20A51D2FF89900DF72EB /* Int+Format.swift */,
+				373BDDEA1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift */,
+				374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */,
+				374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 		376142DC1C8C7BF60073B5F4 /* View models */ = {
 			isa = PBXGroup;
 			children = (
+				37A295F11CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift */,
 				37A295E61CDA2423000C0D57 /* TrainingViewModel.swift */,
 				37A6A12A1C7B1510007F0944 /* PostViewModel.swift */,
 				376F657A1C7CA0B30016071C /* CommentViewModel.swift */,
@@ -506,6 +516,26 @@
 				37FD38D71C962AA700600682 /* NewUserViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		377403121D7330D900613E0C /* Create Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				37B7BD181D48E75C003432D1 /* WorkoutsTableViewController.swift */,
+				37E5DD701CF514DD0056B7A7 /* CreateWorkoutSessionsViewController.swift */,
+			);
+			name = "Create Sessions";
+			sourceTree = "<group>";
+		};
+		377403131D7330FF00613E0C /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				37821F521BE1699500149523 /* TrainingViewController.swift */,
+				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
+				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
+				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+			);
+			name = Session;
 			sourceTree = "<group>";
 		};
 		379943F71CDCC9B100A3F36A /* ExerciseInfoTableViewCell */ = {
@@ -601,7 +631,6 @@
 				3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */,
 				3781B2721CD915230059D841 /* ProgramPresentable.swift */,
 				37A295EF1CDAB0C1000C0D57 /* ExerciseSessionPresentable.swift */,
-				37A295F11CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift */,
 				377403101D7315CA00613E0C /* NamedObject.swift */,
 			);
 			name = Protocols;
@@ -643,12 +672,8 @@
 			isa = PBXGroup;
 			children = (
 				37E4A4531BDF8739004193BF /* WorkoutSessionsViewController.swift */,
-				37B7BD181D48E75C003432D1 /* WorkoutsTableViewController.swift */,
-				37E5DD701CF514DD0056B7A7 /* CreateWorkoutSessionsViewController.swift */,
-				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
-				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
-				37821F521BE1699500149523 /* TrainingViewController.swift */,
-				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+				377403121D7330D900613E0C /* Create Sessions */,
+				377403131D7330FF00613E0C /* Session */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -964,6 +989,7 @@
 				376A34701C870F6600400FAF /* Message.swift in Sources */,
 				374E855B1D32D121006887E3 /* LoginTarget.swift in Sources */,
 				37B351DE1D3657E900DE2010 /* TrainersFilter.swift in Sources */,
+				374A9ABE1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift in Sources */,
 				374A80A81CDCF9D40099225E /* ExerciseVideoTableViewCell.swift in Sources */,
 				374407AC1BE7B71100C7ECBD /* ProfessionalTableViewController.swift in Sources */,
 				374E85651D32D171006887E3 /* WorkoutSessionsTarget.swift in Sources */,
@@ -980,6 +1006,8 @@
 				37A295F21CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift in Sources */,
 				3741A0091D6A6E1600C84B87 /* EmptyStateHelper.swift in Sources */,
 				37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */,
+				374A9ABC1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift in Sources */,
+				373BDDEB1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				374E85631D32D15C006887E3 /* WorkoutsTarget.swift in Sources */,
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,

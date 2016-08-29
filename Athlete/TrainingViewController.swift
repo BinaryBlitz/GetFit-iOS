@@ -1,26 +1,23 @@
-//
-//  TrainingViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 28/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import UICountingLabel
 import Reusable
+import Moya
+import RealmSwift
 
 class TrainingViewController: UIViewController {
+  
+  var workoutSessionsProvider: APIProvider<GetFit.WorkoutSessions>!
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var endTrainingView: UIView!
   @IBOutlet weak var trainingStatusLabel: UICountingLabel!
   @IBOutlet weak var endTrainingButton: UIButton!
+  var refreshControl: UIRefreshControl!
   
-  var training: WorkoutSession!
+  var workoutSession: WorkoutSession!
   
-  var finishedExercises: [ExerciseSession]!
-  var exercisesToDo: [ExerciseSession]!
+  var finishedExercises: Results<ExerciseSession>!
+  var exercisesToDo: Results<ExerciseSession>!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,16 +25,15 @@ class TrainingViewController: UIViewController {
     endTrainingView.backgroundColor = UIColor.blueAccentColor()
     trainingStatusLabel.text = "0%"
     
-    //TODO: add test data
-    finishedExercises = Array(training.exercises)
-    exercisesToDo = Array(training.exercises)
+    finishedExercises = workoutSession.exercises.filter("completed == true")
+    exercisesToDo = workoutSession.exercises.filter("completed == false")
     
-    updateCompleteStatus()
-   
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     
-    tableView.registerReusableCell(ExerciseTableViewCell)
-    tableView.rowHeight = UITableViewAutomaticDimension
+    updateSessionProgress()
+    setupTableView()
+    
+    refresh()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -48,22 +44,89 @@ class TrainingViewController: UIViewController {
     }
   }
   
-  @IBAction func endTrainingAction(sender: AnyObject) {
-    //TODO: update db
-    if finishedExercises.count != training.exercises.count {
-      let alert = UIAlertController(title: "Конец тренировки", message: "Вы уверены, что хотите закончить не выполнив все упражнения?", preferredStyle: .Alert)
-      alert.addAction(UIAlertAction(title: "Закончить", style: .Default, handler: { (action) in
-        self.navigationController?.popViewControllerAnimated(true)
-      }))
-      alert.addAction(UIAlertAction(title: "Отмена", style: .Cancel, handler: nil))
-      presentViewController(alert, animated: true, completion: nil)
-    } else {
-      navigationController?.popViewControllerAnimated(true)
+  func setupTableView() {
+    tableView.registerReusableCell(ExerciseTableViewCell)
+    tableView.rowHeight = UITableViewAutomaticDimension
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(self.refresh) , forControlEvents: .ValueChanged)
+    refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
+    self.refreshControl = refreshControl
+    tableView.addSubview(refreshControl)
+    tableView.sendSubviewToBack(refreshControl)
+  }
+  
+  //MARK: - Refresh
+  
+  func refresh(sender: AnyObject? = nil) {
+    beginRefreshWithCompletion {
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
     }
   }
   
-  func updateCompleteStatus() {
-    let total = training.exercises.count
+  func beginRefreshWithCompletion(completion: () -> Void) {
+    workoutSessionsProvider.request(.ExerciseSessions(workoutSession: workoutSession.id)) { (result) in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          try self.updateDataWith(response)
+        } catch let error {
+          self.handleRefreshError(error, withResponse: response)
+        }
+      case .Failure(let error):
+        self.handleRefreshError(error)
+      }
+      completion()
+    }
+  }
+  
+  private func updateDataWith(response: Response) throws {
+    let realm = try Realm()
+    let exercises = try response.mapArray(ExerciseSession.self)
+    
+    try realm.write {
+      workoutSession.exercises.removeAll()
+      realm.add(exercises, update: true)
+      workoutSession.exercises.appendContentsOf(exercises)
+    }
+  }
+  
+  private func handleRefreshError(error: ErrorType, withResponse response: Response? = nil) {
+    if let response = response {
+      self.presentAlertWithMessage("server response: \(response.statusCode)")
+    } else {
+      self.presentAlertWithMessage("omg so bad")
+    }
+  }
+  
+  //MARK: - Actions
+  
+  @IBAction func endTrainingAction(sender: AnyObject) {
+    //TODO: update db
+    if finishedExercises.count != workoutSession.exercises.count {
+      let alert = UIAlertController(title: nil, message: "You didn't complete all your exercises. Finish workout anyway?", preferredStyle: .Alert)
+      alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action) in
+        self.finishWorkoutSession()
+      }))
+      alert.addAction(UIAlertAction(title: "Nope", style: .Cancel, handler: nil))
+      presentViewController(alert, animated: true, completion: nil)
+    } else {
+      finishWorkoutSession()
+    }
+  }
+  
+  private func finishWorkoutSession() {
+    try! workoutSession.realm?.write {
+      workoutSession.completed = true
+      workoutSession.synced = false
+    }
+    navigationController?.popViewControllerAnimated(true)
+  }
+  
+  func updateSessionProgress() {
+    let total = workoutSession.exercises.count
     guard total > 0 else {
       trainingStatusLabel.textColor = UIColor.whiteColor()
       endTrainingView.backgroundColor = UIColor.blueAccentColor()
@@ -84,7 +147,7 @@ class TrainingViewController: UIViewController {
       endTrainingButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
   }
-  
+
   //MARK: - Navigation
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -112,6 +175,7 @@ class TrainingViewController: UIViewController {
   }
 }
 
+//MARK: - UITableViewDataSource
 extension TrainingViewController: UITableViewDataSource {
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -138,10 +202,8 @@ extension TrainingViewController: UITableViewDataSource {
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
-      let cell = tableView.dequeueReusableCellWithIdentifier("trainingInfoCell",
-          forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCellWithIdentifier("trainingInfoCell", forIndexPath: indexPath)
       
-      //TODO: do something with the cell
       if let avatarImageView = cell.viewWithTag(1) as? UIImageView {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
         avatarImageView.layer.masksToBounds = true
@@ -160,7 +222,6 @@ extension TrainingViewController: UITableViewDataSource {
       let session = finishedExercises[indexPath.row]
       cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
       addSwipesToCell(cell)
-      
       
       return cell
     case 2:
@@ -187,14 +248,15 @@ extension TrainingViewController: UITableViewDataSource {
           mode: .Exit, state: .State3) { (swipeCell, _, _) -> Void in
             if let indexPath = self.tableView.indexPathForCell(swipeCell) {
               self.tableView.beginUpdates()
-              self.finishedExercises[indexPath.row].completed = false
-              self.exercisesToDo.append(self.finishedExercises[indexPath.row])
-              self.finishedExercises.removeAtIndex(indexPath.row)
+              let session = self.finishedExercises[indexPath.row]
+              try! session.realm?.write {
+                session.completed = false
+              }
               self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
               self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableView.numberOfRowsInSection(2), inSection: 2)], withRowAnimation: .Fade)
               self.tableView.endUpdates()
             }
-            self.updateCompleteStatus()
+            self.updateSessionProgress()
       }
     case .Uncomplete:
       let doneView = UIImageView(image: UIImage(named: "Checkmark"))
@@ -204,27 +266,29 @@ extension TrainingViewController: UITableViewDataSource {
           mode: .Exit, state: .State1) { (swipeCell, _, _) -> Void in
             if let indexPath = self.tableView.indexPathForCell(swipeCell) {
               self.tableView.beginUpdates()
-              self.exercisesToDo[indexPath.row].completed = true
-              self.finishedExercises.append(self.exercisesToDo[indexPath.row])
-              self.exercisesToDo.removeAtIndex(indexPath.row)
+              let session = self.exercisesToDo[indexPath.row]
+              try! session.realm?.write {
+                session.completed = true
+              }
               self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
               self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.tableView.numberOfRowsInSection(1), inSection: 1)], withRowAnimation: .Fade)
               self.tableView.endUpdates()
             }
             
-            self.updateCompleteStatus()
+            self.updateSessionProgress()
       }
     }
   }
 }
 
+//MARK: - UITableViewDelegate
 extension TrainingViewController: UITableViewDelegate {
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 0 {
       performSegueWithIdentifier("trainingTips", sender: nil)
     } else {
-      performSegueWithIdentifier("exerciseInfo", sender: training.exercises[indexPath.row])
+      performSegueWithIdentifier("exerciseInfo", sender: workoutSession.exercises[indexPath.row])
     }
   }
   
@@ -268,12 +332,14 @@ extension TrainingViewController: UITableViewDelegate {
   }
 }
 
+//MARK: - TrainingTipsDelegate
 extension TrainingViewController: TrainingTipsDelegate {
   func didDismissViewController() {
     view.alpha = 1
   }
 }
 
+//MARK: - ExerciseCellDelegate
 extension TrainingViewController: ExerciseCellDelegate {
   
   class EditExerciseData {
@@ -312,6 +378,7 @@ extension TrainingViewController: ExerciseCellDelegate {
   }
 }
 
+//MARK: - EditExerciseViewControllerDelegate
 extension TrainingViewController: EditExerciseViewControllerDelegate {
   func didUpdateValueForExercise(exercise: ExerciseSession) {
     tableView.reloadData()
