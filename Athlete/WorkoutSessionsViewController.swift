@@ -107,7 +107,7 @@ class WorkoutSessionsViewController: UIViewController {
       tabBarController.tabBar.tintColor = UIColor.whiteColor()
     }
   }
-
+  
   //MARK: - Setup
 
   func setupTableView() {
