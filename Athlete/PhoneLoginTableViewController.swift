@@ -16,7 +16,7 @@ class PhoneLoginTableViewController: UITableViewController {
   let loginProvider = APIProvider<GetFit.Login>()
   
   @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
-  @IBOutlet weak var getCodeButton: UIButton!
+  @IBOutlet weak var getCodeButton: ActionButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,37 +50,40 @@ class PhoneLoginTableViewController: UITableViewController {
       presentAlertWithMessage("Номер телефона не может быть пустым!")
       return
     }
-    getCodeButton.userInteractionEnabled = false
     
+    getCodeButton.showActivityIndicator()
     do {
       let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
-      
       GetFit.Login.currentSessionData = LoginSessionData(phoneNumber: phoneNumber)
-      loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
-        switch result {
-        case .Success(let response):
-          do {
-            try response.filterSuccessfulStatusCodes()
-            let json = try JSON(response.mapJSON())
-            guard let token = json["token"].string else {
-              throw Error.JSONMapping(response)
-            }
-            
-            GetFit.Login.currentSessionData?.verificationToken = token
-            self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
-          } catch {
-            self.presentAlertWithTitle("Error", andMessage: "Something was broken")
-          }
-        case .Failure(let error):
-          print(error)
-          self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
-        }
-        self.getCodeButton.userInteractionEnabled = true
-      }
+      requestLoginCodeFor(phoneNumber: phoneNumber)
     } catch let error {
       print(error)
+      getCodeButton.hideActivityIndicator()
       presentAlertWithMessage("Invalid phone number")
-      getCodeButton.userInteractionEnabled = true
+    }
+  }
+  
+  private func requestLoginCodeFor(phoneNumber phoneNumber: PhoneNumber) {
+    loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          let json = try JSON(response.mapJSON())
+          guard let token = json["token"].string else {
+            throw Error.JSONMapping(response)
+          }
+          
+          GetFit.Login.currentSessionData?.verificationToken = token
+          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+        } catch {
+          self.presentAlertWithTitle("Error", andMessage: "Something was broken")
+        }
+      case .Failure(let error):
+        print(error)
+        self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
+      }
+      self.getCodeButton.hideActivityIndicator()
     }
   }
   
