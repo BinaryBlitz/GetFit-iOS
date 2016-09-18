@@ -3,8 +3,8 @@ import PureLayout
 
 class ActionButton: UIButton {
   
-  weak var activityIndicator: UIActivityIndicatorView?
-  var originalTitle: String?
+  private var activityIndicator: UIActivityIndicatorView?
+  private var originalTitle: String?
   
   func showActivityIndicator() {
     originalTitle = currentTitle
