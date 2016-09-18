@@ -1,6 +1,7 @@
 import UIKit
 import PureLayout
 
+/// Button with activity indicator
 class ActionButton: UIButton {
   
   private var activityIndicator: UIActivityIndicatorView?
