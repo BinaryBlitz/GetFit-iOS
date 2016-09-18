@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37038D061D8F5ABA0043C4D6 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37038D051D8F5ABA0043C4D6 /* ActionButton.swift */; };
 		37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */; };
 		37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */; };
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
@@ -155,6 +156,7 @@
 
 /* Begin PBXFileReference section */
 		0CBAE558B91A460DF5F7AB23 /* Pods-Athlete.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athlete.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Athlete/Pods-Athlete.debug.xcconfig"; sourceTree = "<group>"; };
+		37038D051D8F5ABA0043C4D6 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				37D7AD9A1C79D7B200CA96E9 /* CircleImageView.swift */,
 				37D7AD9E1C79D93100CA96E9 /* BadgeView.swift */,
 				376142E21C91C17B0073B5F4 /* LoginButton.swift */,
+				37038D051D8F5ABA0043C4D6 /* ActionButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
 				37C279061BE80673004D3174 /* ExerciseCellDelegate.swift in Sources */,
+				37038D061D8F5ABA0043C4D6 /* ActionButton.swift in Sources */,
 				374E85591D32C531006887E3 /* UsersTarget.swift in Sources */,
 				37A295E71CDA2423000C0D57 /* TrainingViewModel.swift in Sources */,
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
