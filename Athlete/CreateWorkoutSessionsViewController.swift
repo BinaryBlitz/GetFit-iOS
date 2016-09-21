@@ -21,7 +21,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
   
   @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
   @IBOutlet weak var calendarView: CVCalendarView!
-  @IBOutlet weak var doneButton: UIButton!
+  @IBOutlet weak var doneButton: ActionButton!
   
   lazy var workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
   
@@ -66,14 +66,8 @@ class CreateWorkoutSessionsViewController: UIViewController {
     dismissViewControllerAnimated(true, completion: nil)
   }
   
-  @IBAction func doneButtonAction(sender: UIButton) {
-    sender.userInteractionEnabled = false
-    sender.setTitle("", forState: .Normal)
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
-    spinner.autoSetDimensionsToSize(CGSize(width: 20, height: 20))
-    sender.addSubview(spinner)
-    spinner.autoCenterInSuperview()
-    spinner.startAnimating()
+  @IBAction func doneButtonAction(sender: ActionButton) {
+    sender.showActivityIndicator()
     
     let newSessions = selectedDates.map { (date) -> WorkoutSession in
       let session = WorkoutSession()
@@ -97,10 +91,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
         self.handleServerError(error)
       }
       
-      spinner.stopAnimating()
-      spinner.removeFromSuperview()
-      sender.setTitle("done".uppercaseString, forState: .Normal)
-      sender.userInteractionEnabled = true
+      sender.hideActivityIndicator()
     }
   }
   

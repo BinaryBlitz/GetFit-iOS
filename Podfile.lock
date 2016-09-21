@@ -86,12 +86,12 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
-  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
+  CVCalendar: '0799256e0bc3b43e83b7e86c0729ce9ff0624cb6'
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  HanekeSwift: '08e47d3d0f2899ec58e5d257beba0de619aca9e8'
   InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  Toucan: 0519c341148252ae114c5a657d2a85bb9ada9e40
+  Toucan: '0519c341148252ae114c5a657d2a85bb9ada9e40'
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   VK-ios-sdk: ac7150f279fdce24f16f5e6f9561e547be33ebf8
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78

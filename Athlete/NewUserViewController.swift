@@ -17,7 +17,7 @@ class NewUserViewController: UITableViewController {
 
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
-  @IBOutlet weak var doneButton: UIButton!
+  @IBOutlet weak var doneButton: ActionButton!
   
   var request: Cancellable?
   
@@ -58,6 +58,7 @@ class NewUserViewController: UITableViewController {
       return
     }
     
+    doneButton.showActivityIndicator()
     loginProvider.request(.CreateUser(firstName: firstName, lastName: lastName)) { result in
       switch result {
       case .Success(let response):
@@ -82,6 +83,8 @@ class NewUserViewController: UITableViewController {
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
+      
+      self.doneButton.hideActivityIndicator()
     }
   }
   
