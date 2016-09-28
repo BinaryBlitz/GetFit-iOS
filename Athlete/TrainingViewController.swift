@@ -66,16 +66,16 @@ class TrainingViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    workoutSessionsProvider.request(.ExerciseSessions(workoutSession: workoutSession.id)) { (result) in
+    workoutSessionsProvider.request(.exerciseSessions(workoutSession: workoutSession.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           try self.updateDataWith(response)
         } catch let error {
           self.handleRefreshError(error, withResponse: response)
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.handleRefreshError(error)
       }
       completion()
@@ -84,16 +84,16 @@ class TrainingViewController: UIViewController {
   
   fileprivate func updateDataWith(_ response: Response) throws {
     let realm = try Realm()
-    let exercises = try response.mapArray(ExerciseSession.self)
+    let exercises = try response.mapArray(type: ExerciseSession.self)
     
     try realm.write {
       workoutSession.exercises.removeAll()
       realm.add(exercises, update: true)
-      workoutSession.exercises.appendContentsOf(exercises)
+      workoutSession.exercises.append(objectsIn: exercises)
     }
   }
   
-  fileprivate func handleRefreshError(_ error: Error, withResponse response: Response? = nil) {
+  fileprivate func handleRefreshError(_ error: Swift.Error, withResponse response: Response? = nil) {
     if let response = response {
       self.presentAlertWithMessage("server response: \(response.statusCode)")
     } else {
@@ -216,7 +216,7 @@ extension TrainingViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
       
       let session = finishedExercises[indexPath.row]
@@ -225,7 +225,7 @@ extension TrainingViewController: UITableViewDataSource {
       
       return cell
     case 2:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
       
       let session = exercisesToDo[indexPath.row]

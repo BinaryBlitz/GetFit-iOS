@@ -37,7 +37,7 @@ class EditExerciseTableViewController: UITableViewController {
     
   }
   
-  @IBAction func doneButtonAction(_ sender: AnyObject) {
+  @IBAction func doneButtonAction(_ sender: Any) {
     let selectedRow = pickerView.selectedRow(inComponent: 0)
     if editType == .weight {
       exercise.weight.value = Int(selectedRow * 10)
@@ -49,7 +49,7 @@ class EditExerciseTableViewController: UITableViewController {
     dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func cancelButtonAction(_ sender: AnyObject) {
+  @IBAction func cancelButtonAction(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
 }
@@ -77,6 +77,7 @@ extension EditExerciseTableViewController: UIPickerViewDataSource {
       return label
     }
   }
+  
 }
 
 extension EditExerciseTableViewController: UIPickerViewDelegate {

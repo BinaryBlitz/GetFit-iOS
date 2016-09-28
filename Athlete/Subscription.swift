@@ -25,7 +25,7 @@ open class Subscription: Object, ALSwiftyJSONAble {
     super.init(realm: realm, schema: schema)
   }
   
-  public required init(value: AnyObject, schema: RLMSchema) {
+  public required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
   
@@ -39,7 +39,7 @@ open class Subscription: Object, ALSwiftyJSONAble {
     
     self.id = id
     let realm = try! Realm()
-    if let trainer = realm.objectForPrimaryKey(Trainer.self, key: trainerId) {
+    if let trainer = realm.object(ofType: Trainer.self, forPrimaryKey: trainerId) {
       self.trainer = trainer
     } else if let trainer = Trainer(jsonData: jsonData["trainer"]) {
       self.trainer = trainer
@@ -51,7 +51,7 @@ open class Subscription: Object, ALSwiftyJSONAble {
       self.lastMessage = lastMessage
     }
     
-    if let date = createdAtString.toDate(DateFormat.ISO8601Format(.Extended)) {
+    if let date = createdAtString.toDate(format: .iso8601Format(.extended)) {
       self.createdAt = date
     }
   }

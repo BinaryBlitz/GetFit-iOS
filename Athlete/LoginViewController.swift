@@ -68,10 +68,10 @@ class LoginViewController: UIViewController {
           let token = result.token
           
           Spinner.show("Идет авторизация")
-          self.loginProvider.request(.Facebook(token: token.tokenString)) { (result) in
+          self.loginProvider.request(.facebook(token: token!.tokenString)) { (result) in
             Spinner.hide()
             switch result {
-            case .Success(let response):
+            case .success(let response):
               do {
                 let userResponse = try response.filterSuccessfulStatusCodes()
                 let json = try JSON(userResponse.mapJSON())
@@ -79,16 +79,16 @@ class LoginViewController: UIViewController {
                   UserManager.apiToken = apiToken
                   print("api_token: \(apiToken)")
                 }
-                let user = try userResponse.mapObject(User.self)
+                let user = try userResponse.mapObject(type: User.self)
                 print("User: \(user)")
                 UserManager.currentUser = user
                 registerForPushNotifications()
                 
-                self.performSegueWithIdentifier("home", sender: self)
+                self.performSegue(withIdentifier: "home", sender: self)
               } catch {
                 self.presentAlertWithMessage("Server response code: \(response.statusCode)")
               }
-            case .Failure(let error):
+            case .failure(let error):
               print(error)
               self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
             }
@@ -121,10 +121,10 @@ extension LoginViewController: VKSdkDelegate {
     }
     
     if let token = result.token.accessToken {
-      loginProvider.request(.VK(token: token)) { result in
+      loginProvider.request(.vk(token: token)) { result in
         Spinner.hide()
         switch result {
-        case .Success(let response):
+        case .success(let response):
           do {
             let userResponse = try response.filterSuccessfulStatusCodes()
             let json = try JSON(userResponse.mapJSON())
@@ -132,15 +132,15 @@ extension LoginViewController: VKSdkDelegate {
               UserManager.apiToken = apiToken
               print("api_token: \(apiToken)")
             }
-            let user = try userResponse.mapObject(User.self)
+            let user = try userResponse.mapObject(type: User.self)
             print("User: \(user)")
             UserManager.currentUser = user
             registerForPushNotifications()
-            self.performSegueWithIdentifier("home", sender: self)
+            self.performSegue(withIdentifier: "home", sender: self)
           } catch {
             self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
           }
-        case .Failure(let error):
+        case .failure(let error):
           print(error)
           self.presentAlertWithMessage("Не удалось авторизироваться чере VK")
         }

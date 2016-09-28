@@ -23,7 +23,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
   @IBOutlet weak var calendarView: CVCalendarView!
   @IBOutlet weak var doneButton: ActionButton!
   
-  lazy var workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
+  lazy var workoutSessionsProvider: APIProvider<GetFit.WorkoutSessions> = APIProvider<GetFit.WorkoutSessions>()
   
   var workoutSessions: Results<WorkoutSession>!
   var selectedDates: [Date] = []
@@ -36,8 +36,8 @@ class CreateWorkoutSessionsViewController: UIViewController {
     
     titleLabel.text = "choose date".uppercased()
     
-    calendarView.backgroundColor = UIColor.clearColor()
-    calendarMenuView.backgroundColor = UIColor.clearColor()
+    calendarView.backgroundColor = UIColor.clear
+    calendarMenuView.backgroundColor = UIColor.clear
     
     contentView.backgroundColor = UIColor.primaryYellowColor()
     
@@ -76,9 +76,9 @@ class CreateWorkoutSessionsViewController: UIViewController {
       return session
     }
     
-    workoutSessionsProvider.request(.Create(sessions: newSessions)) { (result) in
+    workoutSessionsProvider.request(.create(sessions: newSessions)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           self.dismissViewControllerAnimated(true) {
@@ -87,7 +87,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
         } catch let error {
           self.handleServerError(error, forRespnse: response)
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.handleServerError(error)
       }
       
@@ -95,7 +95,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
     }
   }
   
-  fileprivate func handleServerError(_ error: Error, forRespnse response: Response? = nil) {
+  fileprivate func handleServerError(_ error: Swift.Error, forRespnse response: Response? = nil) {
     presentAlertWithMessage("error with code: \(response?.statusCode)")
   }
 }
@@ -108,11 +108,11 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
   }
   
   func presentationMode() -> CalendarMode {
-    return .MonthView
+    return .monthView
   }
   
   func firstWeekday() -> Weekday {
-    return .Monday
+    return .monday
   }
   
   func shouldShowWeekdaysOut() -> Bool {
@@ -120,7 +120,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
   }
   
   func presentedDateUpdated(_ date: Date) {
-    if let date = date.convertedDate() {
+    if let date = date.convertedDate {
       updateTitleDateWithDate(date)
     }
   }
@@ -128,7 +128,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
     guard let date = dayView.date.convertedDate() else { return false }
     
-    return selectedDates.indexOf(date) != nil || workoutSessionsFor(date).count != 0
+    return selectedDates.index(of: date) != nil || workoutSessionsFor(date).count != 0
   }
   
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
@@ -146,7 +146,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
       colors.append(contentsOf: Array(repeating: UIColor.blackTextColor(), count: 2))
       colors = colors.reversed()
     } else {
-      colors.appendContentsOf(Array(count: sessionsCount, repeatedValue: UIColor.blackTextColor()))
+      colors.appendContentsOf(Array(repeating: UIColor.blackTextColor(), count: sessionsCount))
       colors = colors.reversed()
     }
     

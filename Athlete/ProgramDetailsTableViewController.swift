@@ -21,19 +21,19 @@ class ProgramDetailsTableViewController: UITableViewController {
     tableView.registerReusableCell(ProgramTableViewCell)
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
-    let headerNib = UINib(nibName: String(describing: WorkoutHeaderView), bundle: nil)
-    tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: WorkoutHeaderView))
+    let headerNib = UINib(nibName: String(describing: WorkoutHeaderView.self), bundle: nil)
+    tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: WorkoutHeaderView.self))
     
     let realm = try! Realm()
-    workouts = realm.objects(Workout).filter("programId == \(program.id)").sorted("position")
+    workouts = realm.objects(Workout).filter("programId == \(program.id)").sorted(byProperty:"position")
     
     updateProgramInfo()
   }
   
   func updateProgramInfo() {
-    programsProvider.request(.Show(id: program.id)) { (result) in
+    programsProvider.request(.show(id: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let programResponse = try response.filterSuccessfulStatusCodes()
           let program = try programResponse.mapObject(Program.self)
@@ -42,7 +42,7 @@ class ProgramDetailsTableViewController: UITableViewController {
         } catch let error {
           self.presentAlertWithMessage("error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("error: \(error)")
       }
     }
@@ -71,7 +71,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if (indexPath as NSIndexPath).section == 0 {
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.delegate = self
       cell.state = .Normal
       cell.configureWith(ProgramViewModel(program: program))
@@ -130,7 +130,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard let workouts = workouts , section != 0 && workouts.count > 0 else { return nil }
-    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: WorkoutHeaderView)) as! WorkoutHeaderView
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: WorkoutHeaderView.self)) as! WorkoutHeaderView
     let workout = workouts[section - 1]
     headerView.configureWith(workout)
     
@@ -150,16 +150,16 @@ class ProgramDetailsTableViewController: UITableViewController {
 //MARK: - ProgramCellDelegate
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {
-    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
           self.presentAlertWithMessage("Error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }

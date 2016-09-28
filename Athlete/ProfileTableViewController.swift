@@ -46,18 +46,18 @@ class ProfileTableViewController: UITableViewController {
       self.user = user
     }
     
-    userProvider.request(.GetCurrent) { (result) in
+    userProvider.request(.getCurrent) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          let user = try response.mapObject(User.self)
+          let user = try response.mapObject(type: User.self)
           UserManager.currentUser = user
           self.user = user
           self.loadStatistics()
         } catch {
           print("kek")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         break
       }
@@ -67,16 +67,16 @@ class ProfileTableViewController: UITableViewController {
   
   fileprivate func loadStatistics() {
     guard let user = user else { return }
-    userProvider.request(.GetStatistics(forUserWithId: user.id)) { (result) in
+    userProvider.request(.getStatistics(forUserWithId: user.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           user.statistics = try response.mapObject(User.Statistics.self)
           self.user = user
         } catch {
           print("Cannot map response")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
     }
@@ -165,7 +165,7 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch (indexPath as NSIndexPath).section {
     case 0:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfileCardTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileCardTableViewCell
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
       }
@@ -185,7 +185,7 @@ class ProfileTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTabIndex == 0:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as StatisticsTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticsTableViewCell
       cell.layoutSubviews()
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
@@ -193,7 +193,7 @@ class ProfileTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTabIndex == 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .Card
       let program = programs![indexPath.row]
       cell.configureWith(ProgramViewModel(program: program))
@@ -266,7 +266,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     
     userProvider.request(.UpdateImage(type: imageType, image: image)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("\(imageType.rawValue) updated!")
@@ -275,7 +275,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
           print("response is not successful")
           self.presentAlertWithMessage("Upload failed")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print("error: \(error)")
         self.presentAlertWithMessage("Error: \(error)")
       }

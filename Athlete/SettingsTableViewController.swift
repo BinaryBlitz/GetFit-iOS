@@ -62,9 +62,9 @@ class SettingsTableViewController: UITableViewController {
     if let user = UserManager.currentUser
         , user.firstName != firstName || user.lastName != lastName {
       
-      userProvider.request(.Update(firstName: firstName, lastName: lastName)) { result in
+      userProvider.request(.update(firstName: firstName, lastName: lastName)) { result in
         switch result {
-        case .Success(let response):
+        case .success(let response):
           do {
             try response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
@@ -78,7 +78,7 @@ class SettingsTableViewController: UITableViewController {
             self.view.endEditing(true)
             self.presentAlertWithMessage("Error with code \(response.statusCode)")
           }
-        case .Failure(let error):
+        case .failure(let error):
           self.presentAlertWithMessage("error: \(error)")
         }
       }
@@ -90,7 +90,7 @@ class SettingsTableViewController: UITableViewController {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
     UserManager.apiToken = nil
-    LocalStorageHelper.save(nil, forKey: .ApiToken)
+    LocalStorageHelper.save(nil, forKey: .apiToken)
     present(loginViewController, animated: true, completion: nil)
   }
   

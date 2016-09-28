@@ -12,7 +12,7 @@ class ChatsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    subscriptions = realm.objects(Subscription.self).sorted("createdAt", ascending: true)
+    subscriptions = realm.objects(Subscription.self).sorted(byProperty:"createdAt", ascending: true)
     
     configureTableView()
     
@@ -41,7 +41,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   //MARK: - Refresh
-  func refresh(_ sender: AnyObject? = nil) {
+  func refresh(_ sender: Any? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
@@ -49,16 +49,16 @@ class ChatsTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    subscriptionsProvider.request(.List) { (result) in
+    subscriptionsProvider.request(.list) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           try self.updateDataWith(response)
         } catch let error {
           print(error)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
       
@@ -67,7 +67,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   fileprivate func updateDataWith(_ response: Response) throws {
-    let subscriptions = try response.mapArray(Subscription.self)
+    let subscriptions = try response.mapArray(type: Subscription.self)
     try self.realm.write {
       self.realm.delete(self.realm.objects(Subscription.self))
       self.realm.add(subscriptions, update: true)
@@ -76,7 +76,7 @@ class ChatsTableViewController: UITableViewController {
   
   
   //MARK: - Actions
-  func closeButtonAction(_ sender: AnyObject) {
+  func closeButtonAction(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
   
@@ -86,7 +86,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ChatsTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ChatsTableViewCell
     
     let subscription = subscriptions[indexPath.row]
     cell.configureWith(SubscriptionViewModel(subscription: subscription))

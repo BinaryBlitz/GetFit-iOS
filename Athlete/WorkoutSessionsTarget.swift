@@ -39,20 +39,20 @@ extension GetFit.WorkoutSessions: TargetType {
     }
   }
   
-  var parameters: [String: AnyObject]? {
+  var parameters: [String: Any]? {
     switch self {
     case .index, .exerciseSessions(_):
       return nil
     case .create(let workoutSessions):
-      let sessions = workoutSessions.map { session -> [String: AnyObject] in
-        return ["workout_id": session.workoutID as AnyObject,
-            "scheduled_for": session.date.toString(.ISO8601Format(.Date))!
+      let sessions = workoutSessions.map { session -> [String: Any] in
+        return ["workout_id": session.workoutID as Any,
+                "scheduled_for": session.date.toString(format: .iso8601Format(.date))!
         ]
       }
       return ["user": ["workout_sessions_attributes": sessions]]
     case .updateExerciseSession(let session):
       let sessionData = ["completed": session.completed]
-      return ["exercise_session": sessionData as AnyObject]
+      return ["exercise_session": sessionData]
     }
   }
   

@@ -39,11 +39,11 @@ extension GetFit.Programs: TargetType {
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
     case .index(let filter):
       //TODO: Add real filter
-      return ["order": "created_at" as AnyObject]
+      return ["order": "created_at"]
     case .show(_):
       return nil
     case .createPurchase(_):

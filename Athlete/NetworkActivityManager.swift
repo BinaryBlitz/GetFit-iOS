@@ -8,16 +8,16 @@ class NetworkActivityManager {
   
   func networkActivityChanged(_ change: Moya.NetworkActivityChangeType) {
     switch change {
-    case .Began:
+    case .began:
       numberOfProcesses += 1
-    case .Ended:
+    case .ended:
       numberOfProcesses -= 1
       if numberOfProcesses < 0 {
         numberOfProcesses = 0
       }
     }
     
-    UIApplication.sharedApplication().networkActivityIndicatorVisible = numberOfProcesses > 0
+    UIApplication.shared.isNetworkActivityIndicatorVisible = numberOfProcesses > 0
   }
   
   var plugin: PluginType {

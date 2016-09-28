@@ -42,7 +42,7 @@ class Post: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.content = content
-    self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
+    self.dateCreated = createdAt.toDate(format: .iso8601Format(.extended)) ?? Date()
 
     if let likesCount = jsonData["likes_count"].int {
       self.likesCount = likesCount
@@ -77,10 +77,10 @@ class Post: Object, ALSwiftyJSONAble {
     }
   }
 
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
-
+  
   override static func primaryKey() -> String? {
     return "id"
   }

@@ -21,7 +21,7 @@ extension GetFit.Workouts: TargetType {
     return .GET
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     return nil
   }
   

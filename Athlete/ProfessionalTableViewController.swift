@@ -19,21 +19,21 @@ class ProfessionalTableViewController: UITableViewController {
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
-    news = trainer.posts.sorted("dateCreated")
-    programs = trainer.programs.sorted("id")
+    news = trainer.posts.sorted(byProperty: "dateCreated")
+    programs = trainer.programs.sorted(byProperty: "id")
     
     configureTableView()
     refresh()
   }
   
   func configureTableView() {
-    let trainerInfoCellNib = UINib(nibName: String(describing: ProfessionalTableViewCell), bundle: nil)
+    let trainerInfoCellNib = UINib(nibName: String(describing: ProfessionalTableViewCell.self), bundle: nil)
     tableView.register(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.register(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
-    let postCellNib = UINib(nibName: String(describing: PostTableViewCell), bundle: nil)
+    let postCellNib = UINib(nibName: String(describing: PostTableViewCell.self), bundle: nil)
     tableView.register(postCellNib, forCellReuseIdentifier: "postCell")
-    tableView.registerReusableCell(ProgramTableViewCell)
+    tableView.registerReusableCell(ProgramTableViewCell.self)
     tableView.separatorStyle = .none
     
     let refreshControl = UIRefreshControl()
@@ -53,11 +53,11 @@ class ProfessionalTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    trainersProvider.request(GetFit.Trainers.Programs(trainerId: trainer.id)) { result in
+    trainersProvider.request(GetFit.Trainers.programs(trainerId: trainer.id)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         self.programsResponseHandler(response, completion: completion)
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("\(error)")
       }
@@ -67,7 +67,7 @@ class ProfessionalTableViewController: UITableViewController {
   fileprivate func programsResponseHandler(_ response: Response, completion: () -> Void) {
     do {
       try response.filterSuccessfulStatusCodes()
-      let programs = try response.mapArray(Program.self)
+      let programs = try response.mapArray(type: Program.self)
       
       let realm = try Realm()
       try realm.write {
@@ -132,7 +132,7 @@ class ProfessionalTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTab == 0:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .Card
       cell.configureWith(ProgramViewModel(program: programs[indexPath.row]))
       

@@ -85,7 +85,7 @@ class ConversationViewController: JSQMessagesViewController {
   
   //MARK: - Refresh
   
-  func refresh(_ sender: AnyObject? = nil) {
+  func refresh(_ sender: Any? = nil) {
     beginRefreshWithcompletion { () -> Void in
       self.collectionView?.reloadData()
       self.collectionView?.layoutIfNeeded()
@@ -94,9 +94,9 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   func beginRefreshWithcompletion(_ completion: () -> Void) {
-    subscriptionsProvider.request(GetFit.Subscriptions.ListMessages(subscriptionId: subscription.id)) { (result) in
+    subscriptionsProvider.request(GetFit.Subscriptions.listMessages(subscriptionId: subscription.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           try self.updateMessagesWith(response)
@@ -104,7 +104,7 @@ class ConversationViewController: JSQMessagesViewController {
           print(error)
           self.presentAlertWithMessage("Try again later")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Check your internet connection")
       }
@@ -112,7 +112,7 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   fileprivate func updateMessagesWith(_ response: Response) throws {
-    let messages = try response.mapArray(Message.self)
+    let messages = try response.mapArray(type: Message.self)
     let realm = try Realm()
     try realm.write {
       self.subscription.messages.removeAll()
@@ -122,7 +122,7 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   func reloadMessages() {
-    messages = subscription.messages.sorted("createdAt").map { message -> JSQMessage in
+    messages = subscription.messages.sorted(byProperty: "createdAt").map { message -> JSQMessage in
       return JSQMessage(senderId: message.category?.rawValue, senderDisplayName: "", date: message.createdAt, text: message.content)
     }
     collectionView?.reloadData()
@@ -135,9 +135,9 @@ class ConversationViewController: JSQMessagesViewController {
     message.content = text
     message.category = .User
     
-    subscriptionsProvider.request(.CreateMessage(subscriptionId: subscription.id, message: message)) { (result) in
+    subscriptionsProvider.request(.createMessage(subscriptionId: subscription.id, message: message)) { (result) in
       switch result  {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           let message = try response.mapObject(Message.self)
@@ -151,7 +151,7 @@ class ConversationViewController: JSQMessagesViewController {
           print(error)
           self.presentAlertWithMessage("Cannot send your message")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Cannot send your message. Check your internet conneciton")
       }

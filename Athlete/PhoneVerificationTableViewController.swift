@@ -37,9 +37,9 @@ class PhoneVerificationTableViewController: UITableViewController {
     }
     
     submitButton.showActivityIndicator()
-    loginProvider.request(GetFit.Login.ConfirmPhoneNumber(code: code)) { result in
+    loginProvider.request(GetFit.Login.confirmPhoneNumber(code: code)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
           try response.filterSuccessfulStatusCodes()
@@ -59,7 +59,7 @@ class PhoneVerificationTableViewController: UITableViewController {
           print(error)
           self.handleErrorIn(response)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }

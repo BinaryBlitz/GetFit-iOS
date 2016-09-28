@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   
-  fileprivate lazy var usersProvider = APIProvider<GetFit.Users>()
+  fileprivate lazy var usersProvider: APIProvider<GetFit.Users> = APIProvider<GetFit.Users>()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FBSDKApplicationDelegate.sharedInstance().application(application,
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func configureServerManager() {
-    if let apiToken: String = LocalStorageHelper.loadObjectForKey(.ApiToken) {
+    if let apiToken: String = LocalStorageHelper.loadObjectForKey(.apiToken) {
       UserManager.apiToken = apiToken
     }
   }
@@ -107,29 +107,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       token += String(format: "%02.2hhx", arguments: [tokenChars[i]])
     }
     
-    LocalStorageHelper.save(token, forKey: .DeviceToken)
-    LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+    LocalStorageHelper.save(token, forKey: .deviceToken)
+    LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)
     updateDeviceTokenIfNeeded()
   }
   
   func updateDeviceTokenIfNeeded() {
-    guard let shouldUpdateToken: Bool = LocalStorageHelper.loadObjectForKey(.ShouldUpdateDeviceToken),
-        let token: String = LocalStorageHelper.loadObjectForKey(.DeviceToken) , shouldUpdateToken else {
+    guard let shouldUpdateToken: Bool = LocalStorageHelper.loadObjectForKey(.shouldUpdateDeviceToken),
+        let token: String = LocalStorageHelper.loadObjectForKey(.deviceToken) , shouldUpdateToken else {
       return
     }
     
-    LocalStorageHelper.save(false, forKey: .ShouldUpdateDeviceToken)
-    usersProvider.request(GetFit.Users.UpdateDeviceToken(token: token)) { (result) in
+    LocalStorageHelper.save(false, forKey: .shouldUpdateDeviceToken)
+    usersProvider.request(GetFit.Users.updateDeviceToken(token: token)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           print("Device token updated \(token)")
         } catch {
-          LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+          LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)
         }
-      case .Failure(_):
-        LocalStorageHelper.save(true, forKey: .ShouldUpdateDeviceToken)
+      case .failure(_):
+        LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)
       }
     }
   }

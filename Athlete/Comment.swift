@@ -39,7 +39,7 @@ open class Comment: Object, ALSwiftyJSONAble {
     
     self.id = id
     self.content = content
-    self.dateCreated = dateCreatedString.toDate(.ISO8601Format(.Extended)) ?? NSDate()
+    self.dateCreated = dateCreatedString.toDate(format: .iso8601Format(.extended)) ?? Date()
     if let author = User(jsonData: jsonData["author"]) {
       self.author = author
       let realm = try! Realm()
@@ -49,7 +49,7 @@ open class Comment: Object, ALSwiftyJSONAble {
     }
   }
   
-  required public init(value: AnyObject, schema: RLMSchema) {
+  required public init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

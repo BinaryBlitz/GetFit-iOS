@@ -33,7 +33,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     
     self.id = id
     self.workoutID = workoutID
-    self.date = scheduledFor.toDate(.ISO8601Format(.Date))!
+    self.date = scheduledFor.toDate(format: .iso8601Format(.date))!
     
     guard let workoutName = jsonData["workout"]["name"].string,
       let duration = jsonData["workout"]["duration"].int,
@@ -70,7 +70,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.exercisesCount = workout.exercisesCount
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
   

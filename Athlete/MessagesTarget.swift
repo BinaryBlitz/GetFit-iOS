@@ -32,13 +32,13 @@ extension GetFit.Subscriptions : TargetType {
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
     case .list, .listMessages(_):
       return nil
     case .createMessage(_, let message):
-      let message: [String: AnyObject] = ["content": message.content! as AnyObject]
-      return ["message": message as AnyObject]
+      let message: [String: Any] = ["content": message.content! as AnyObject]
+      return ["message": message]
     }
   }
   

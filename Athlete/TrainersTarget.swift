@@ -30,10 +30,10 @@ extension GetFit.Trainers: TargetType {
     return .GET
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
     case .index(let filter):
-      return ["category": filter.category.rawValue as AnyObject]
+      return ["category": filter.category.rawValue]
     case .show(_), .programs(_):
       return nil
     }

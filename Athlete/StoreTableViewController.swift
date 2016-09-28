@@ -68,7 +68,7 @@ class StoreTableViewController: UITableViewController {
   
   func fetchPrograms() {
     let realm = try! Realm()
-    programs = Array(realm.objects(Program).sorted("usersCount"))
+    programs = Array(realm.objects(Program).sorted(byProperty:"usersCount"))
   }
   
   //MARK: - Refresh
@@ -81,13 +81,13 @@ class StoreTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    programsProvider.request(.Index(filter: ProgramsFilter())) { (result) in
+    programsProvider.request(.index(filter: ProgramsFilter())) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
           let programsResponse = try response.filterSuccessfulStatusCodes()
-          let programs = try programsResponse.mapArray(Program.self)
+          let programs = try programsResponse.mapArray(type: Program.self)
           self.programs = programs
           let realm = try Realm()
           try realm.write {
@@ -97,7 +97,7 @@ class StoreTableViewController: UITableViewController {
           print("Cannot update programs")
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
       completion()
@@ -115,7 +115,7 @@ class StoreTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let program = programs[(indexPath as NSIndexPath).row]
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
     cell.delegate = self
     cell.state = .Card
     cell.configureWith(ProgramViewModel(program: program))
@@ -150,16 +150,16 @@ extension StoreTableViewController: ProgramCellDelegate {
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     let program = programs[(indexPath as NSIndexPath).row]
     
-    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
           self.presentAlertWithMessage("Error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }

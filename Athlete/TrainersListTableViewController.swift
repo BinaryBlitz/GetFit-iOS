@@ -37,7 +37,7 @@ class TrainersListTableViewController: UITableViewController {
     let realm = try! Realm()
 
     //TODO: sort by popularity
-    trainers = realm.objects(Trainer).filter("categoryValue = '\(category.rawValue)'").sorted("id")
+    trainers = realm.objects(Trainer).filter("categoryValue = '\(category.rawValue)'").sorted(byProperty:"id")
   }
 
   //MARK: - UITableViewDataSource
@@ -49,7 +49,7 @@ class TrainersListTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let trainer = trainers?[indexPath.row] else { return UITableViewCell() }
     
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     
     return cell

@@ -18,11 +18,11 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
   }
   
   //MARK: - Actions
-  @IBAction func weightButtonAction(_ sender: AnyObject) {
+  @IBAction func weightButtonAction(_ sender: Any) {
     actionsDelegate?.didTapOnWeightButton?(self)
   }
   
-  @IBAction func repetitionsButtonAction(_ sender: AnyObject) {
+  @IBAction func repetitionsButtonAction(_ sender: Any) {
     actionsDelegate?.didTapOnRepetitionsButton?(self)
   }
   

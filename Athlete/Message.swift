@@ -40,7 +40,7 @@ open class Message: Object, ALSwiftyJSONAble {
     super.init(realm: realm, schema: schema)
   }
   
-  public required init(value: AnyObject, schema: RLMSchema) {
+  public required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
   
@@ -54,7 +54,7 @@ open class Message: Object, ALSwiftyJSONAble {
     
     self.id = id
     self.content = content
-    if let date = createdAtString.toDate(.ISO8601Format(.Extended)) {
+    if let date = createdAtString.toDate(format: .iso8601Format(.extended)) {
       self.createdAt = date
     } else {
       return nil

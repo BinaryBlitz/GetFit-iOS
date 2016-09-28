@@ -37,7 +37,7 @@ class ExerciseInfoTableViewCell: UITableViewCell {
   }
 
   fileprivate func loadExerciseParamsViewFor(_ parameter: ExerciseParameter) -> ExerciseParamsView {
-    let view = Bundle.main.loadNibNamed(String(describing: ExerciseParamsView), owner: self, options: nil)?.first as! ExerciseParamsView
+    let view = Bundle.main.loadNibNamed("ExerciseParamsView", owner: self, options: nil)?.first as! ExerciseParamsView
     view.configureWithExerciseParameter(parameter)
     return view
   }

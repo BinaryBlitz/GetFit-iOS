@@ -37,7 +37,7 @@ extension GetFit.Users: TargetType {
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     
     switch self {
     case .getCurrent, .getStatistics(_):

@@ -97,7 +97,7 @@ class Program: Object, ALSwiftyJSONAble {
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

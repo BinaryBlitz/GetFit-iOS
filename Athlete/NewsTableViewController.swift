@@ -51,7 +51,7 @@ class NewsTableViewController: UITableViewController {
   
   func fetchPosts() {
     let realm = try! Realm()
-    posts = realm.objects(Post).sorted("dateCreated", ascending: false)
+    posts = realm.objects(Post).sorted(byProperty:"dateCreated", ascending: false)
   }
   
   //MARK: - Refresh
@@ -65,12 +65,12 @@ class NewsTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    postsProvider.request(.Index) { (result) in
+    postsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let postsResponse = try response.filterSuccessfulStatusCodes()
-          let posts = try postsResponse.mapArray(Post.self)
+          let posts = try postsResponse.mapArray(type: Post.self)
           let realm = try! Realm()
           try realm.write {
             realm.add(posts, update: true)
@@ -81,7 +81,7 @@ class NewsTableViewController: UITableViewController {
           print("response is not successful")
           self.presentAlertWithMessage("Cannot update feed")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Oh, no!")
         completion()
@@ -186,7 +186,7 @@ extension NewsTableViewController: PostTableViewCellDelegate {
       return
     }
     
-    performSegueWithIdentifier("viewPostAndComment", sender: post)
+    performSegue(withIdentifier: "viewPostAndComment", sender: post)
   }
   
   func didTouchLikeButton(_ cell: PostTableViewCell) {
@@ -199,16 +199,16 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     if let indexPath = tableView.indexPath(for: cell),
         let post = posts?[indexPath.row] {
       if cell.likeButton.isSelected {
-        SharedRequest.request = postsProvider.request(.CreateLike(postId: post.id)) { result in
+        SharedRequest.request = postsProvider.request(.createLike(postId: post.id)) { result in
           switch result {
-          case .Success(let response):
+          case .success(let response):
             do {
               try response.filterSuccessfulStatusCodes()
               print("yay! new like")
             } catch {
               cell.liked = false
             }
-          case .Failure(let error):
+          case .failure(let error):
             print(error)
             //TODO: add likes queue
           }

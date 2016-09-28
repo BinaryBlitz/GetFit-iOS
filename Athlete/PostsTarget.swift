@@ -38,7 +38,7 @@ extension GetFit.Posts: TargetType {
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
     case .index, .getComments(_), .createLike(_):
       return nil

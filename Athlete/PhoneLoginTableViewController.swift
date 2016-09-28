@@ -64,22 +64,22 @@ class PhoneLoginTableViewController: UITableViewController {
   }
   
   fileprivate func requestLoginCodeFor(phoneNumber: PhoneNumber) {
-    loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
+    loginProvider.request(GetFit.Login.phone(phone: phoneNumber)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let token = json["token"].string else {
-            throw Error.JSONMapping(response)
+            throw Error.jsonMapping(response)
           }
           
           GetFit.Login.currentSessionData?.verificationToken = token
-          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+          self.performSegue(withIdentifier: "verifyPhoneWithCode", sender: nil)
         } catch {
           self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }

@@ -148,7 +148,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   }
   
   func loadProgramPreviewView() -> ProgramPreviewView {
-    let nibName = String(describing: ProgramPreviewView)
+    let nibName = String(describing: ProgramPreviewView.self)
     return Bundle.main.loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
   }
   

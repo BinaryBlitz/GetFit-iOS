@@ -15,22 +15,22 @@ class WorkoutsTableViewController: UITableViewController {
                                                        action: #selector(self.closeButtonAction(_:)))
     
     let realm = try! Realm()
-    workouts = realm.objects(Workout).sorted("duration")
+    workouts = realm.objects(Workout.self).sorted(byProperty: "duration")
     loadWorkouts()
     
-    tableView.registerReusableCell(TrainingTableViewCell)
+    tableView.registerReusableCell(TrainingTableViewCell.self)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 300
   }
   
   func loadWorkouts() {
-    workoutsProvider.request(.Index) { (result) in
+    workoutsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let workoutsResponse = try response.filterSuccessfulStatusCodes()
-          let workouts = try workoutsResponse.mapArray(Workout.self)
-          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+          let workouts = try workoutsResponse.mapArray(type: Workout.self)
+          self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
           
           let realm = try Realm()
           try realm.write {
@@ -42,7 +42,7 @@ class WorkoutsTableViewController: UITableViewController {
           self.presentAlertWithMessage("Error: \(error)")
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }
@@ -61,7 +61,7 @@ class WorkoutsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
     let workout = workouts[indexPath.row]
     
     let workoutSession = WorkoutSession()

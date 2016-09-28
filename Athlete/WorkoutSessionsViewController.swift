@@ -81,7 +81,7 @@ class WorkoutSessionsViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession).filter("completed == false").sorted("date")
+    workoutSessions = realm.objects(WorkoutSession).filter("completed == false").sorted(byProperty: "date")
     updateTableViewDataFor(Date())
 
     updateTitleDateWithDate(Date())
@@ -131,17 +131,17 @@ class WorkoutSessionsViewController: UIViewController {
   }
 
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    workoutSessionsProvider.request(.Index) { (result) in
+    workoutSessionsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
-          let sessions = try response.mapArray(WorkoutSession.self)
+          let sessions = try response.mapArray(type: WorkoutSession.self)
           self.updateDataWith(sessions)
         } catch let error {
           self.presentAlertWithMessage(String(error))
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage(String(error))
       }
 
@@ -255,7 +255,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
 
     let model = tableViewDataSource[(indexPath as NSIndexPath).row]
     cell.selectionStyle = .None

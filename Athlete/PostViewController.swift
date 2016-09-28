@@ -94,13 +94,13 @@ class PostViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    postsProvider.request(.GetComments(postId: post.id)) { (result) in
+    postsProvider.request(.getComments(postId: post.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
           try response.filterSuccessfulStatusCodes()
-          let comments = try response.mapArray(Comment.self)
+          let comments = try response.mapArray(type: Comment.self)
           
           let realm = try Realm()
           try realm.write {
@@ -113,7 +113,7 @@ class PostViewController: UIViewController {
         } catch {
           print("Cannot load comments")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print("error in fetchComments: \(error)")
       }
       
@@ -130,13 +130,13 @@ class PostViewController: UIViewController {
     comment.dateCreated = Date()
     comment.author = UserManager.currentUser
     
-    postsProvider.request(.CreateComment(comment: comment, postId: post.id)) { (result) in
+    postsProvider.request(.createComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.userInteractionEnabled = true
       switch result {
-      case .Success(_):
+      case .success(_):
         self.commentTextField.text = nil
         self.refresh()
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Ну удалось отправить комментарий")
       }
@@ -224,7 +224,7 @@ extension PostViewController: UITableViewDataSource {
     switch (indexPath as NSIndexPath).section {
     case 0:
       guard let post = post else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
       
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
@@ -246,7 +246,7 @@ extension PostViewController: UITableViewDataSource {
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostCommentTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as PostCommentTableViewCell
       
       cell.configureWith(CommentViewModel(comment: comment))
       

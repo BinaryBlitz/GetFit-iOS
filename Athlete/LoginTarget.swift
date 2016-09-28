@@ -35,7 +35,7 @@ extension GetFit.Login: TargetType {
       return "/user/authenticate_vk"
     case .facebook(_):
       return "/user/authenticate_fb"
-    case .Phone(_):
+    case .phone(_):
       return "/verification_tokens"
     case .confirmPhoneNumber(_):
       return "/verification_tokens/\(sessionData!.verificationToken!)"
@@ -46,24 +46,24 @@ extension GetFit.Login: TargetType {
   
   public var method: Moya.Method {
     switch self {
-    case .Phone(_), .vk(_), .facebook(_), .createUser(_, _):
+    case .phone(_), .vk(_), .facebook(_), .createUser(_, _):
       return .POST
     case .confirmPhoneNumber(_):
       return .PATCH
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     
     switch self {
-    case .Phone(let phone):
+    case .phone(let phone):
       return ["phone_number" : phone.toE164()]
     case .confirmPhoneNumber(let code):
       return ["phone_number": sessionData!.phoneNumber!.toE164(), "code": code]
     case .vk(let token):
-      return ["token": token as AnyObject]
+      return ["token": token]
     case .facebook(let token):
-      return ["token": token as AnyObject]
+      return ["token": token]
     case let .createUser(firstName, lastName):
       let userData = [
         "phone_number": sessionData!.phoneNumber!.toE164(),

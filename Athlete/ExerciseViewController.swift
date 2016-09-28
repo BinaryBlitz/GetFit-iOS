@@ -55,7 +55,7 @@ class ExerciseViewController: UIViewController {
   
   //MARK: - Actions
   
-  @IBAction func endExerciseAction(_ sender: AnyObject) {
+  @IBAction func endExerciseAction(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }
   
@@ -89,7 +89,7 @@ extension ExerciseViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
       let video = videos[(indexPath as NSIndexPath).row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)
