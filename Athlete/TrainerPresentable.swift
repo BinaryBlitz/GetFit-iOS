@@ -9,6 +9,6 @@
 import Foundation
 
 protocol TrainerPresentable {
-  var trainerAvatarURL: NSURL? { get }
+  var trainerAvatarURL: URL? { get }
   var trainerName: String { get }
 }

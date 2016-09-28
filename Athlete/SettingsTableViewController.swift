@@ -15,8 +15,8 @@ class SettingsTableViewController: UITableViewController {
   let userProvider = APIProvider<GetFit.Users>()
 
   var versionNumber: String {
-    let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-    let buildVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+    let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    let buildVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     return "Version: \(appVersion) (\(buildVersion))"
   }
   
@@ -31,10 +31,10 @@ class SettingsTableViewController: UITableViewController {
     }
     
     let footerView = UIView()
-    footerView.backgroundColor = UIColor.clearColor()
+    footerView.backgroundColor = UIColor.clear
     let label = UILabel()
-    label.font = UIFont.systemFontOfSize(14)
-    label.textColor = UIColor.lightGrayColor()
+    label.font = UIFont.systemFont(ofSize: 14)
+    label.textColor = UIColor.lightGray
     label.text = versionNumber
     footerView.addSubview(label)
     label.autoCenterInSuperview()
@@ -44,8 +44,8 @@ class SettingsTableViewController: UITableViewController {
   
   //MARK: - Actions
   
-  @IBAction func saveButtonAction(sender: AnyObject) {
-    guard let firstName = firstNameLabel.text, lastName = lastNameLabel.text else {
+  @IBAction func saveButtonAction(_ sender: AnyObject) {
+    guard let firstName = firstNameLabel.text, let lastName = lastNameLabel.text else {
       return
     }
     
@@ -60,7 +60,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     if let user = UserManager.currentUser
-        where user.firstName != firstName || user.lastName != lastName {
+        , user.firstName != firstName || user.lastName != lastName {
       
       userProvider.request(.Update(firstName: firstName, lastName: lastName)) { result in
         switch result {
@@ -86,12 +86,12 @@ class SettingsTableViewController: UITableViewController {
     }
   }
   
-  @IBAction func logoutButtonAction(sender: AnyObject) {
+  @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
     UserManager.apiToken = nil
     LocalStorageHelper.save(nil, forKey: .ApiToken)
-    presentViewController(loginViewController, animated: true, completion: nil)
+    present(loginViewController, animated: true, completion: nil)
   }
   
 }

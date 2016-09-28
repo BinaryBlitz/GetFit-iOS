@@ -4,12 +4,12 @@ import Moya_SwiftyJSONMapper
 import SwiftyJSON
 import SwiftDate
 
-public class Message: Object, ALSwiftyJSONAble {
+open class Message: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var content: String?
-  dynamic var createdAt: NSDate = NSDate()
-  private dynamic var categoryValue: String?
+  dynamic var createdAt: Date = Date()
+  fileprivate dynamic var categoryValue: String?
   
   var category: Category? {
     get {
@@ -47,8 +47,8 @@ public class Message: Object, ALSwiftyJSONAble {
   public required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, content = jsonData["content"].string,
-        createdAtString = jsonData["created_at"].string else {
+    guard let id = jsonData["id"].int, let content = jsonData["content"].string,
+        let createdAtString = jsonData["created_at"].string else {
       return nil
     }
     
@@ -60,7 +60,7 @@ public class Message: Object, ALSwiftyJSONAble {
       return nil
     }
     
-    if let categoryValue = jsonData["category"].string, category = Category(rawValue: categoryValue) {
+    if let categoryValue = jsonData["category"].string, let category = Category(rawValue: categoryValue) {
       self.category = category
     }
   }

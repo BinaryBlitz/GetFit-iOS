@@ -24,8 +24,8 @@ class NewUserViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    doneButton.setTitle("OK", forState: UIControlState.Normal)
-    doneButton.addTarget(self, action: #selector(self.doneButtonAction), forControlEvents: .TouchUpInside)
+    doneButton.setTitle("OK", for: UIControlState())
+    doneButton.addTarget(self, action: #selector(self.doneButtonAction), for: .touchUpInside)
     doneButton.backgroundColor = UIColor.blueAccentColor()
     
     firstNameTextField.placeholder = "Имя"
@@ -34,7 +34,7 @@ class NewUserViewController: UITableViewController {
     navigationItem.title = "Новый пользователь"
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     firstNameTextField.becomeFirstResponder()
   }
   
@@ -46,13 +46,13 @@ class NewUserViewController: UITableViewController {
       request.cancel()
     }
     
-    guard let firstName = firstNameTextField.text where firstName != "" else {
+    guard let firstName = firstNameTextField.text , firstName != "" else {
       presentAlertWithMessage("Укажите ваше имя")
       firstNameTextField.becomeFirstResponder()
       return
     }
     
-    guard let lastName = lastNameTextField.text where lastName != "" else {
+    guard let lastName = lastNameTextField.text , lastName != "" else {
       presentAlertWithMessage("Укажите вашу фамилию")
       lastNameTextField.becomeFirstResponder()
       return

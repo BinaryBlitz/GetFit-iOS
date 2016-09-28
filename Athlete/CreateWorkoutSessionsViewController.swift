@@ -26,7 +26,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
   lazy var workoutSessionsProvider = APIProvider<GetFit.WorkoutSessions>()
   
   var workoutSessions: Results<WorkoutSession>!
-  var selectedDates: [NSDate] = []
+  var selectedDates: [Date] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,18 +34,18 @@ class CreateWorkoutSessionsViewController: UIViewController {
     let realm = try! Realm()
     workoutSessions = realm.objects(WorkoutSession.self)
     
-    titleLabel.text = "choose date".uppercaseString
+    titleLabel.text = "choose date".uppercased()
     
     calendarView.backgroundColor = UIColor.clearColor()
     calendarMenuView.backgroundColor = UIColor.clearColor()
     
     contentView.backgroundColor = UIColor.primaryYellowColor()
     
-    doneButton.setTitle("Done".uppercaseString, forState: .Normal)
+    doneButton.setTitle("Done".uppercased(), for: UIControlState())
     doneButton.backgroundColor = UIColor.blueAccentColor()
-    doneButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    doneButton.setTitleColor(UIColor.white, for: UIControlState())
     
-    updateTitleDateWithDate(NSDate())
+    updateTitleDateWithDate(Date())
   }
   
   override func viewDidLayoutSubviews() {
@@ -55,18 +55,18 @@ class CreateWorkoutSessionsViewController: UIViewController {
     calendarMenuView.commitMenuViewUpdate()
   }
   
-  func updateTitleDateWithDate(date: NSDate) {
-    let formatter = NSDateFormatter()
+  func updateTitleDateWithDate(_ date: Date) {
+    let formatter = DateFormatter()
     formatter.dateFormat = "MMMM"
-    mounthLabel.text = formatter.stringFromDate(date).uppercaseString
+    mounthLabel.text = formatter.string(from: date).uppercased()
   }
   
   //MARK: - Actions
-  @IBAction func closeButtonAction(sender: UIButton) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func closeButtonAction(_ sender: UIButton) {
+    dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func doneButtonAction(sender: ActionButton) {
+  @IBAction func doneButtonAction(_ sender: ActionButton) {
     sender.showActivityIndicator()
     
     let newSessions = selectedDates.map { (date) -> WorkoutSession in
@@ -95,7 +95,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
     }
   }
   
-  private func handleServerError(error: ErrorType, forRespnse response: Response? = nil) {
+  fileprivate func handleServerError(_ error: Error, forRespnse response: Response? = nil) {
     presentAlertWithMessage("error with code: \(response?.statusCode)")
   }
 }
@@ -119,7 +119,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
     return false
   }
   
-  func presentedDateUpdated(date: Date) {
+  func presentedDateUpdated(_ date: Date) {
     if let date = date.convertedDate() {
       updateTitleDateWithDate(date)
     }
@@ -143,18 +143,18 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
     }
     
     if sessionsCount + colors.count > 3 {
-      colors.appendContentsOf(Array(count: 2, repeatedValue: UIColor.blackTextColor()))
-      colors = colors.reverse()
+      colors.append(contentsOf: Array(repeating: UIColor.blackTextColor(), count: 2))
+      colors = colors.reversed()
     } else {
       colors.appendContentsOf(Array(count: sessionsCount, repeatedValue: UIColor.blackTextColor()))
-      colors = colors.reverse()
+      colors = colors.reversed()
     }
     
     
     return colors
   }
   
-  private func workoutSessionsFor(date: NSDate) -> [WorkoutSession] {
+  fileprivate func workoutSessionsFor(_ date: Date) -> [WorkoutSession] {
     let sessions = workoutSessions?.filter { (session) -> Bool in
       return isDate(session.date, theSameDayAs: date)
     }
@@ -162,13 +162,13 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
     return sessions ?? []
   }
   
-  private func isDate(date: NSDate, theSameDayAs otherDate: NSDate) -> Bool {
+  fileprivate func isDate(_ date: Date, theSameDayAs otherDate: Date) -> Bool {
     return date.year == otherDate.year &&
            date.month == otherDate.month &&
            date.day == otherDate.day
   }
   
-  func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+  func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
     guard let date = dayView.date.convertedDate() else { return }
     
     if let index = selectedDates.indexOf(date) {
@@ -210,6 +210,6 @@ extension CreateWorkoutSessionsViewController: MenuViewDelegate {
   }
   
   func dayOfWeekFont() -> UIFont {
-    return UIFont.boldSystemFontOfSize(15)
+    return UIFont.boldSystemFont(ofSize: 15)
   }
 }

@@ -12,7 +12,7 @@ class ExerciseInfoTableViewCell: UITableViewCell {
     showTipsButton.backgroundColor = UIColor.blueAccentColor()
   }
 
-  func configureWith(session: ExerciseSession) {
+  func configureWith(_ session: ExerciseSession) {
     parametersStackView.removeAllSubviews()
     
     if let reps = session.reps.value {
@@ -36,8 +36,8 @@ class ExerciseInfoTableViewCell: UITableViewCell {
     }
   }
 
-  private func loadExerciseParamsViewFor(parameter: ExerciseParameter) -> ExerciseParamsView {
-    let view = NSBundle.mainBundle().loadNibNamed(String(ExerciseParamsView), owner: self, options: nil).first as! ExerciseParamsView
+  fileprivate func loadExerciseParamsViewFor(_ parameter: ExerciseParameter) -> ExerciseParamsView {
+    let view = Bundle.main.loadNibNamed(String(describing: ExerciseParamsView), owner: self, options: nil)?.first as! ExerciseParamsView
     view.configureWithExerciseParameter(parameter)
     return view
   }

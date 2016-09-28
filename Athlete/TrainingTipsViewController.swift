@@ -27,33 +27,33 @@ class TrainingTipsViewController: UIViewController {
     super.viewDidLoad()
     
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 18))
-    headerView.backgroundColor = UIColor.whiteColor()
+    headerView.backgroundColor = UIColor.white
     tableView.tableHeaderView = headerView
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 100
   }
   
-  @IBAction func closeButtonAction(sender: AnyObject) {
+  @IBAction func closeButtonAction(_ sender: AnyObject) {
     delegate?.didDismissViewController()
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 }
 
 extension TrainingTipsViewController: UITableViewDataSource {
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tips.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCellWithIdentifier("tipCell") as? TrainingTipTableViewCell else {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "tipCell") as? TrainingTipTableViewCell else {
       return UITableViewCell()
     }
     
-    cell.titleLabel.text = "\(indexPath.row + 1). \(tips[indexPath.row].0.uppercaseString)"
+    cell.titleLabel.text = "\((indexPath as NSIndexPath).row + 1). \(tips[(indexPath as NSIndexPath).row].0.uppercased())"
   
-    cell.tipLabel.text = tips[indexPath.row].1
+    cell.tipLabel.text = tips[(indexPath as NSIndexPath).row].1
     
     return cell
   }

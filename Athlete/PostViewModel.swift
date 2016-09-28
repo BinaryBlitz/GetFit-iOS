@@ -15,9 +15,9 @@ struct PostViewModel {
 //MARK: - PostPresentable
 
 extension PostViewModel: PostPresentable {
-  var imageURL: NSURL? {
+  var imageURL: URL? {
     guard let imageURLString = post.imageURLString,
-        url = NSURL(string: imageURLString) else {
+        let url = URL(string: imageURLString) else {
       return nil
     }
     
@@ -52,13 +52,13 @@ extension PostViewModel: TextPresentable {
 //MARK: - TrainerPresentable
 
 extension PostViewModel: TrainerPresentable {
-  var trainerAvatarURL: NSURL? {
+  var trainerAvatarURL: URL? {
     guard let trainer = post.trainer,
-        avatarURLString = trainer.avatarURLString else {
+        let avatarURLString = trainer.avatarURLString else {
       return nil
     }
     
-    return NSURL(string: avatarURLString)
+    return URL(string: avatarURLString)
   }
   
   var trainerName: String {
@@ -74,9 +74,9 @@ extension PostViewModel: TrainerPresentable {
 
 extension PostViewModel: DateTimePresentable {
   var dateString: String {
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM"
     
-    return dateFormatter.stringFromDate(post.dateCreated)
+    return dateFormatter.string(from: post.dateCreated as Date)
   }
 }

@@ -41,21 +41,21 @@ class ButtonsStripView: UIView {
     setup()
   }
   
-  private func setup() {
+  fileprivate func setup() {
     backgroundColor = UIColor.lightGrayBackgroundColor()
-    stackView.alignment = .Fill
-    stackView.distribution = .FillProportionally
-    stackView.axis = .Horizontal
+    stackView.alignment = .fill
+    stackView.distribution = .fillProportionally
+    stackView.axis = .horizontal
     stackView.spacing = 7
     addSubview(stackView)
     
     reloadButtons()
-    stackView.autoConstrainAttribute(.Height, toAttribute: .Height, ofView: self, withMultiplier: 0.6)
-    stackView.autoSetDimension(.Width, toSize: calculateStackWidth())
+    stackView.autoConstrainAttribute(.height, to: .height, of: self, withMultiplier: 0.6)
+    stackView.autoSetDimension(.width, toSize: calculateStackWidth())
     stackView.autoCenterInSuperview()
   }
   
-  private func reloadButtons() {
+  fileprivate func reloadButtons() {
     stackView.removeAllSubviews()
     let items = labels.map { (label) -> StripButtonItem in
       let button = StripButtonItem(title: label)
@@ -65,14 +65,14 @@ class ButtonsStripView: UIView {
       
       return button
     }
-    items[selectedIndex].itemState = .Selected
+    items[selectedIndex].itemState = .selected
     items.forEach { (item) in
-      item.addTarget(self, action: #selector(self.itemAction(_:)), forControlEvents: .TouchUpInside)
+      item.addTarget(self, action: #selector(self.itemAction(_:)), for: .touchUpInside)
       stackView.addArrangedSubview(item)
     }
   }
   
-  private func calculateStackWidth() -> CGFloat {
+  fileprivate func calculateStackWidth() -> CGFloat {
     var width: CGFloat = 0.0
     let items = stackView.arrangedSubviews
     items.forEach { item in
@@ -85,12 +85,12 @@ class ButtonsStripView: UIView {
     return width
   }
   
-  func indexOfItemInStack(item: UIView) -> Int? {
+  func indexOfItemInStack(_ item: UIView) -> Int? {
     let items = stackView.arrangedSubviews
-    return items.indexOf(item)
+    return items.index(of: item)
   }
   
-  func itemAtIndex(index: Int) -> StripButtonItem? {
+  func itemAtIndex(_ index: Int) -> StripButtonItem? {
     let items = stackView.arrangedSubviews
     guard index < items.count && index >= 0 else {
       return nil
@@ -99,12 +99,12 @@ class ButtonsStripView: UIView {
     return items[index] as? StripButtonItem
   }
   
-  @objc private func itemAction(sender: UIButton) {
+  @objc fileprivate func itemAction(_ sender: UIButton) {
     if let item = sender as? StripButtonItem {
-      if item.itemState == .Normal {
+      if item.itemState == .normal {
         let selectedItem = itemAtIndex(selectedIndex)
-        selectedItem?.itemState = .Normal
-        item.itemState = .Selected
+        selectedItem?.itemState = .normal
+        item.itemState = .selected
         selectedIndex = indexOfItemInStack(item) ?? 0
         delegate?.stripView(self, didSelectItemAtIndex: selectedIndex)
       }

@@ -13,20 +13,20 @@ class APIProvider<Target: TargetType>: MoyaProvider<Target> {
 
 /// Server environment specificaton. Use it to create a MoyaProvider
 enum ServerEnvironment<Target: TargetType> {
-  case Staging
-  case Production
+  case staging
+  case production
   
-  var baseURL: NSURL {
+  var baseURL: URL {
     switch self {
-    case .Staging:
-      return NSURL(string: "https://getfit-staging.herokuapp.com/api")!
-    case.Production:
-      return NSURL(string: "")! //TODO: Add production base url
+    case .staging:
+      return URL(string: "https://getfit-staging.herokuapp.com/api")!
+    case.production:
+      return URL(string: "")! //TODO: Add production base url
     }
   }
   
   /// Custom endpoint closure for MoyaProvider
-  func endpointMapping(target: Target) -> Endpoint<Target> {
+  func endpointMapping(_ target: Target) -> Endpoint<Target> {
     let url = baseURL.URLByAppendingPathComponent(target.path).absoluteString
     
     return Endpoint<Target>(
@@ -36,10 +36,10 @@ enum ServerEnvironment<Target: TargetType> {
   }
   
   /// Creates parametes dictionary with api token
-  private func parametersWithAPIToken(parameters: [String: AnyObject]?) -> [String: AnyObject]? {
+  fileprivate func parametersWithAPIToken(_ parameters: [String: AnyObject]?) -> [String: AnyObject]? {
     var params = parameters ?? [:]
     if let token = UserManager.apiToken {
-      params["api_token"] = token
+      params["api_token"] = token as AnyObject?
     }
     
     return params

@@ -10,8 +10,8 @@ class WorkoutsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.title = "choose training".uppercaseString
-    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self,
+    navigationItem.title = "choose training".uppercased()
+    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self,
                                                        action: #selector(self.closeButtonAction(_:)))
     
     let realm = try! Realm()
@@ -50,17 +50,17 @@ class WorkoutsTableViewController: UITableViewController {
   
   //MARK: - Actions
   
-  func closeButtonAction(sender: UIBarButtonItem) {
-    dismissViewControllerAnimated(true, completion: nil)
+  func closeButtonAction(_ sender: UIBarButtonItem) {
+    dismiss(animated: true, completion: nil)
   }
   
   //MARK: - UITableViewDataSource
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return workouts.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
     let workout = workouts[indexPath.row]
     
@@ -71,31 +71,31 @@ class WorkoutsTableViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 0.01
   }
   
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     return nil
   }
   
   //MARK: - UITableViewDelegate
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
-    let selectDaysController = trainingsStoryboard.instantiateViewControllerWithIdentifier("select_days") as! CreateWorkoutSessionsViewController
+    let selectDaysController = trainingsStoryboard.instantiateViewController(withIdentifier: "select_days") as! CreateWorkoutSessionsViewController
     selectDaysController.workout = workouts[indexPath.row]
     selectDaysController.delegate = self
     
-    selectDaysController.modalPresentationStyle = .OverCurrentContext
-    presentViewController(selectDaysController, animated: true, completion: nil)
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    selectDaysController.modalPresentationStyle = .overCurrentContext
+    present(selectDaysController, animated: true, completion: nil)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 
 //MARK: - CreateWorkoutSessionsControllerDelegate
 extension WorkoutsTableViewController: CreateWorkoutSessionsControllerDelegate {
   func didFinishWorkoutSessionsCreation() {
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 }

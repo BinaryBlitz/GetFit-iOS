@@ -4,9 +4,9 @@ class NetworkActivityManager {
   
   static let shared = NetworkActivityManager()
   
-  private var numberOfProcesses: Int = 0
+  fileprivate var numberOfProcesses: Int = 0
   
-  func networkActivityChanged(change: Moya.NetworkActivityChangeType) {
+  func networkActivityChanged(_ change: Moya.NetworkActivityChangeType) {
     switch change {
     case .Began:
       numberOfProcesses += 1

@@ -32,27 +32,27 @@ class LoginViewController: UIViewController {
     overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.51)
     backgroundImageView.addSubview(overlay)
     
-    facebookButton.text = "facebook".uppercaseString
-    vkButton.text = "vkontakte".uppercaseString
-    phoneButton.text = "phone".uppercaseString
+    facebookButton.text = "facebook".uppercased()
+    vkButton.text = "vkontakte".uppercased()
+    phoneButton.text = "phone".uppercased()
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
   
-  override func viewWillAppear(animated: Bool) {
-    navigationController?.navigationBarHidden = true
+  override func viewWillAppear(_ animated: Bool) {
+    navigationController?.isNavigationBarHidden = true
   }
   
-  override func prefersStatusBarHidden() -> Bool {
+  override var prefersStatusBarHidden : Bool {
     return true
   }
   
   //MARK: - Actions
   
-  @IBAction func facebookButtonAction(sender: AnyObject) {
+  @IBAction func facebookButtonAction(_ sender: AnyObject) {
     let fbLoginManager = FBSDKLoginManager()
-    fbLoginManager.loginBehavior = FBSDKLoginBehavior.Browser
-    fbLoginManager.logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) in
+    fbLoginManager.loginBehavior = FBSDKLoginBehavior.browser
+    fbLoginManager.logIn(withReadPermissions: ["public_profile"], from: self) { (result, error) in
       guard error == nil else {
         print(error)
         Spinner.hide()
@@ -98,22 +98,22 @@ class LoginViewController: UIViewController {
     }
   }
   
-  @IBAction func vkButtonAction(sender: AnyObject) {
+  @IBAction func vkButtonAction(_ sender: AnyObject) {
     Spinner.show("Идет авторизация")
-    let VKAppId = NSBundle.mainBundle().objectForInfoDictionaryKey("VKAppID") as! String
-    let vk = VKSdk.initializeWithAppId(VKAppId)
-    vk.registerDelegate(self)
-    VKSdk.authorize([], withOptions: VKAuthorizationOptions.UnlimitedToken)
+    let VKAppId = Bundle.main.object(forInfoDictionaryKey: "VKAppID") as! String
+    let vk = VKSdk.initialize(withAppId: VKAppId)
+    vk?.register(self)
+    VKSdk.authorize([], with: VKAuthorizationOptions.unlimitedToken)
   }
   
-  @IBAction func phoneButtonAction(sender: AnyObject) {
+  @IBAction func phoneButtonAction(_ sender: AnyObject) {
     print("phone")
   }
 }
 
 extension LoginViewController: VKSdkDelegate {
   
-  func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
+  func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
     if let error = result.error {
       print(error)
       Spinner.hide()

@@ -5,15 +5,15 @@ import SwiftyJSON
 import Moya_SwiftyJSONMapper
 import SwiftDate
 
-public class Subscription: Object, ALSwiftyJSONAble {
+open class Subscription: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var lastMessage: Message?
   dynamic var trainer: Trainer!
-  dynamic var createdAt: NSDate = NSDate()
+  dynamic var createdAt: Date = Date()
   let messages = List<Message>()
   
-  public override static func primaryKey() -> String? {
+  open override static func primaryKey() -> String? {
     return "id"
   }
   
@@ -32,8 +32,8 @@ public class Subscription: Object, ALSwiftyJSONAble {
   public required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, trainerId = jsonData["trainer_id"].int,
-          createdAtString = jsonData["created_at"].string else {
+    guard let id = jsonData["id"].int, let trainerId = jsonData["trainer_id"].int,
+          let createdAtString = jsonData["created_at"].string else {
         return nil
     }
     

@@ -22,8 +22,8 @@ class ExerciseSession: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, completed = jsonData["completed"].bool,
-        name = jsonData["exercise"]["exercise_type"]["name"].string else {
+    guard let id = jsonData["id"].int, let completed = jsonData["completed"].bool,
+        let name = jsonData["exercise"]["exercise_type"]["name"].string else {
       return nil
     }
     

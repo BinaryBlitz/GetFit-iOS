@@ -7,17 +7,17 @@
 //
 
 protocol PostTableViewCellDelegate: class {
-  func didTouchLikeButton(cell: PostTableViewCell)
-  func didTouchCommentButton(cell: PostTableViewCell)
+  func didTouchLikeButton(_ cell: PostTableViewCell)
+  func didTouchCommentButton(_ cell: PostTableViewCell)
 }
 
 extension PostTableViewCellDelegate {
   
-  func didTouchLikeButton(cell: PostTableViewCell) {
+  func didTouchLikeButton(_ cell: PostTableViewCell) {
     print("like button")
   }
   
-  func didTouchCommentButton(cell: PostTableViewCell) {
+  func didTouchCommentButton(_ cell: PostTableViewCell) {
     print("comment button")
   }
 }

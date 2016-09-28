@@ -14,24 +14,24 @@ class PhoneVerificationTableViewController: UITableViewController {
     super.viewDidLoad()
     
     submitButton.backgroundColor = UIColor.blueAccentColor()
-    submitButton.addTarget(self, action: #selector(self.submitButtonAction), forControlEvents: .TouchUpInside)
-    submitButton.setTitle("Подтвердить", forState: .Normal)
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    submitButton.addTarget(self, action: #selector(self.submitButtonAction), for: .touchUpInside)
+    submitButton.setTitle("Подтвердить", for: UIControlState())
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     verificationCodeTextField.becomeFirstResponder()
   }
   
-  override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard let sessionData = GetFit.Login.currentSessionData, phoneNumber = sessionData.phoneNumber else { return nil }
+  override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    guard let sessionData = GetFit.Login.currentSessionData, let phoneNumber = sessionData.phoneNumber else { return nil }
     return "На номер \(phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
   }
   
   //MARK: - Actions
   
   func submitButtonAction() {
-    guard let code = verificationCodeTextField.text where code != "" else {
+    guard let code = verificationCodeTextField.text , code != "" else {
       presentAlertWithMessage("Код не может быть пустым")
       return
     }
@@ -68,7 +68,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     }
   }
   
-  private func handleErrorIn(response: Response) {
+  fileprivate func handleErrorIn(_ response: Response) {
     switch response.statusCode {
     case 403:
       presentAlertWithTitle("Error", andMessage: "Invalid verification code")
@@ -81,9 +81,9 @@ class PhoneVerificationTableViewController: UITableViewController {
   
   //MARK: - Navigation
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "registerNewUser" {
-      let newUserController = segue.destinationViewController as! NewUserViewController
+      let newUserController = segue.destination as! NewUserViewController
       newUserController.loginProvider = loginProvider
     }
   }

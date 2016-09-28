@@ -13,7 +13,7 @@ class ProfessionalsViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
-  private(set) var selectedCategory: TrainerCategory = .Coach
+  fileprivate(set) var selectedCategory: TrainerCategory = .Coach
   let categories: [TrainerCategory] = [.Coach, .Doctor, .Nutritionist]
   
   let trainersProvider = APIProvider<GetFit.Trainers>()
@@ -27,43 +27,43 @@ class ProfessionalsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     setupTableView()
     
     refresh()
   }
   
-  private func setupTableView() {
+  fileprivate func setupTableView() {
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.registerReusableCell(ProfessionalTableViewCell)
     tableView.rowHeight = 370
-    tableView.separatorStyle = .None
+    tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
-    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Trainers)
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.trainers)
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh), forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
   
-  func reloadTableViewWith(category: TrainerCategory) {
+  func reloadTableViewWith(_ category: TrainerCategory) {
     selectedCategory = category
   }
   
   //MARK: - Refresh
   
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
-  func beginRefreshWithCompletion(completion: () -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     trainersProvider.request(.Index(filter: TrainersFilter(category: selectedCategory))) { (result) in
       completion()
       switch result {
@@ -102,29 +102,29 @@ class ProfessionalsViewController: UIViewController {
   
   //MARK: - Navigation
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? ProfessionalTableViewController,
-        trainer = sender as? Trainer
-        where segue.identifier == "professionalInfo" {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? ProfessionalTableViewController,
+        let trainer = sender as? Trainer
+        , segue.identifier == "professionalInfo" {
       destination.trainer = trainer
     }
   }
   
-  private func trainerAtIndexPath(indexPath: NSIndexPath) -> Trainer? {
+  fileprivate func trainerAtIndexPath(_ indexPath: IndexPath) -> Trainer? {
     var trainer: Trainer? = nil
     
     switch selectedCategory {
     case .Coach:
-      if indexPath.row < coaches.count {
-        trainer = coaches[indexPath.row]
+      if (indexPath as NSIndexPath).row < coaches.count {
+        trainer = coaches[(indexPath as NSIndexPath).row]
       }
     case .Doctor:
-      if indexPath.row < doctors.count {
-        trainer = doctors[indexPath.row]
+      if (indexPath as NSIndexPath).row < doctors.count {
+        trainer = doctors[(indexPath as NSIndexPath).row]
       }
     case .Nutritionist:
-      if indexPath.row < nutritionists.count {
-        trainer = nutritionists[indexPath.row]
+      if (indexPath as NSIndexPath).row < nutritionists.count {
+        trainer = nutritionists[(indexPath as NSIndexPath).row]
       }
     }
     
@@ -136,7 +136,7 @@ class ProfessionalsViewController: UIViewController {
 
 extension ProfessionalsViewController: UITableViewDataSource {
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows: Int
     switch selectedCategory {
     case .Coach:
@@ -147,11 +147,11 @@ extension ProfessionalsViewController: UITableViewDataSource {
       numberOfRows = doctors.count
     }
     
-    tableView.backgroundView?.hidden = numberOfRows != 0
+    tableView.backgroundView?.isHidden = numberOfRows != 0
     return numberOfRows
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let trainer = trainerAtIndexPath(indexPath) else { return UITableViewCell() }
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
@@ -161,16 +161,16 @@ extension ProfessionalsViewController: UITableViewDataSource {
     return cell
   }
   
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let labels = categories.map { $0.pluralName() }
     let buttonStrip = ButtonsStripView(labels: labels)
     buttonStrip.delegate = self
-    buttonStrip.selectedIndex = categories.indexOf(selectedCategory) ?? 0
+    buttonStrip.selectedIndex = categories.index(of: selectedCategory) ?? 0
     
     return buttonStrip
   }
   
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
 }
@@ -178,27 +178,27 @@ extension ProfessionalsViewController: UITableViewDataSource {
 
 extension ProfessionalsViewController: UITableViewDelegate {
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let trainer = trainerAtIndexPath(indexPath) else {
       return
     }
-    performSegueWithIdentifier("professionalInfo", sender: trainer)
+    performSegue(withIdentifier: "professionalInfo", sender: trainer)
   }
 }
 
 extension ProfessionalsViewController: ButtonStripViewDelegate {
   
-  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedCategory = categories[index]
     refresh()
     tableView.contentOffset = CGPoint.zero
-    tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+    tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.bottom)
   }
 }
 
 extension ProfessionalsViewController: ProfessionalCellDelegate {
-  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
-    guard let indexPath = tableView.indexPathForCell(cell), trainer = trainerAtIndexPath(indexPath) else {
+  func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
+    guard let indexPath = tableView.indexPath(for: cell), let trainer = trainerAtIndexPath(indexPath) else {
       return
     }
     

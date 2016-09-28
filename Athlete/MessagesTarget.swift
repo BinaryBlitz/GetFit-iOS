@@ -4,9 +4,9 @@ import Moya
 extension GetFit {
   
   public enum Subscriptions {
-    case List
-    case ListMessages(subscriptionId: Int)
-    case CreateMessage(subscriptionId: Int, message: Message)
+    case list
+    case listMessages(subscriptionId: Int)
+    case createMessage(subscriptionId: Int, message: Message)
   }
 }
 
@@ -14,31 +14,31 @@ extension GetFit.Subscriptions : TargetType {
   
   public var path: String {
     switch self {
-    case .List:
+    case .list:
       return "/subscriptions"
-    case .ListMessages(let subscriptionId):
+    case .listMessages(let subscriptionId):
       return "/subscriptions/\(subscriptionId)/messages"
-    case .CreateMessage(let subscriptionId, _):
+    case .createMessage(let subscriptionId, _):
       return "/subscriptions/\(subscriptionId)/messages"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .List, .ListMessages(_):
+    case .list, .listMessages(_):
       return .GET
-    case .CreateMessage(_, _):
+    case .createMessage(_, _):
       return .POST
     }
   }
   
   public var parameters: [String: AnyObject]? {
     switch self {
-    case .List, .ListMessages(_):
+    case .list, .listMessages(_):
       return nil
-    case .CreateMessage(_, let message):
-      let message: [String: AnyObject] = ["content": message.content!]
-      return ["message": message]
+    case .createMessage(_, let message):
+      let message: [String: AnyObject] = ["content": message.content! as AnyObject]
+      return ["message": message as AnyObject]
     }
   }
   

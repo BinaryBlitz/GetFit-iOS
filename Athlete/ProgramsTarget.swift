@@ -10,9 +10,9 @@ public struct ProgramsFilter {
 extension GetFit {
   
   public enum Programs {
-    case Index(filter: ProgramsFilter)
-    case Show(id: Int)
-    case CreatePurchase(programId: Int)
+    case index(filter: ProgramsFilter)
+    case show(id: Int)
+    case createPurchase(programId: Int)
   }
   
 }
@@ -21,32 +21,32 @@ extension GetFit.Programs: TargetType {
   
   public var path: String {
     switch self {
-    case .Index(_):
+    case .index(_):
       return "/programs"
-    case .Show(let id):
+    case .show(let id):
       return "/programs/\(id)"
-    case .CreatePurchase(let programId):
+    case .createPurchase(let programId):
       return "/programs/\(programId)/purchase"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .Index, .Show(_):
+    case .index, .show(_):
       return .GET
-    case .CreatePurchase(_):
+    case .createPurchase(_):
       return .POST
     }
   }
   
   public var parameters: [String: AnyObject]? {
     switch self {
-    case .Index(let filter):
+    case .index(let filter):
       //TODO: Add real filter
-      return ["order": "created_at"]
-    case .Show(_):
+      return ["order": "created_at" as AnyObject]
+    case .show(_):
       return nil
-    case .CreatePurchase(_):
+    case .createPurchase(_):
       return nil
     }
   }

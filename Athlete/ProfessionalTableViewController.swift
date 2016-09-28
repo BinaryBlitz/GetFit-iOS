@@ -7,8 +7,8 @@ import Reusable
 class ProfessionalTableViewController: UITableViewController {
   
   var trainer: Trainer!
-  private let tabsLabels = ["programs", "news"]
-  private var selectedTab = 0
+  fileprivate let tabsLabels = ["programs", "news"]
+  fileprivate var selectedTab = 0
   var programs: Results<Program>!
   var news: Results<Post>!
   
@@ -17,7 +17,7 @@ class ProfessionalTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
     news = trainer.posts.sorted("dateCreated")
     programs = trainer.programs.sorted("id")
@@ -27,32 +27,32 @@ class ProfessionalTableViewController: UITableViewController {
   }
   
   func configureTableView() {
-    let trainerInfoCellNib = UINib(nibName: String(ProfessionalTableViewCell), bundle: nil)
-    tableView.registerNib(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
+    let trainerInfoCellNib = UINib(nibName: String(describing: ProfessionalTableViewCell), bundle: nil)
+    tableView.register(trainerInfoCellNib, forCellReuseIdentifier: "infoHeader")
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.registerClass(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
-    let postCellNib = UINib(nibName: String(PostTableViewCell), bundle: nil)
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
+    tableView.register(ActionTableViewCell.self, forCellReuseIdentifier: "getPersonalTrainingCell")
+    let postCellNib = UINib(nibName: String(describing: PostTableViewCell), bundle: nil)
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCell")
     tableView.registerReusableCell(ProgramTableViewCell)
-    tableView.separatorStyle = .None
+    tableView.separatorStyle = .none
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(refresh(_:)) , for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
   
   //MARK: - Refresh
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
-  func beginRefreshWithCompletion(completion: () -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     trainersProvider.request(GetFit.Trainers.Programs(trainerId: trainer.id)) { result in
       switch result {
       case .Success(let response):
@@ -64,7 +64,7 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
   
-  private func programsResponseHandler(response: Response, completion: () -> Void) {
+  fileprivate func programsResponseHandler(_ response: Response, completion: () -> Void) {
     do {
       try response.filterSuccessfulStatusCodes()
       let programs = try response.mapArray(Program.self)
@@ -82,11 +82,11 @@ class ProfessionalTableViewController: UITableViewController {
   }
   
   //MARK: - UITableViewDelegate && UITableViewDataSource
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case 0:
       return 2
@@ -99,35 +99,35 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    switch indexPath.section {
-    case 0 where indexPath.row == 0:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("infoHeader") as? ProfessionalTableViewCell else {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    switch (indexPath as NSIndexPath).section {
+    case 0 where (indexPath as NSIndexPath).row == 0:
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "infoHeader") as? ProfessionalTableViewCell else {
         break
       }
-      cell.configureWith(trainer, andState: .Normal)
-      cell.avatarImageView.userInteractionEnabled = true
+      cell.configureWith(trainer, andState: .normal)
+      cell.avatarImageView.isUserInteractionEnabled = true
       cell.avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAvatar)))
       
-      cell.bannerImageView.userInteractionEnabled = true
+      cell.bannerImageView.isUserInteractionEnabled = true
       cell.bannerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBanner)))
       
       return cell
-    case 0 where indexPath.row == 1:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("getPersonalTrainingCell") as? ActionTableViewCell else {
+    case 0 where (indexPath as NSIndexPath).row == 1:
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "getPersonalTrainingCell") as? ActionTableViewCell else {
         break
       }
-      cell.title = "get personal training".uppercaseString
+      cell.title = "get personal training".uppercased()
       cell.delegate = self
       return cell
     case 1 where selectedTab == 1:
-      guard let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as? PostTableViewCell else {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as? PostTableViewCell else {
         break
       }
       let post = news[indexPath.row]
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = true
-      cell.state = .Card
+      cell.state = .card
       cell.delegate = self
       
       return cell
@@ -144,19 +144,19 @@ class ProfessionalTableViewController: UITableViewController {
     return UITableViewCell()
   }
   
-  @objc private func showAvatar() {
+  @objc fileprivate func showAvatar() {
     let browser = MWPhotoBrowser(delegate: self)
-    browser.setCurrentPhotoIndex(0)
-    navigationController?.pushViewController(browser, animated: true)
+    browser?.setCurrentPhotoIndex(0)
+    navigationController?.pushViewController(browser!, animated: true)
   }
   
-  @objc private func showBanner() {
+  @objc fileprivate func showBanner() {
     let browser = MWPhotoBrowser(delegate: self)
-    browser.setCurrentPhotoIndex(1)
-    navigationController?.pushViewController(browser, animated: true)
+    browser?.setCurrentPhotoIndex(1)
+    navigationController?.pushViewController(browser!, animated: true)
   }
 
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     switch section {
     case 0:
       return nil
@@ -171,7 +171,7 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     switch section {
     case 0:
       return 0
@@ -182,10 +182,10 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    switch indexPath.section {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    switch (indexPath as NSIndexPath).section {
     case 0:
-      return indexPath.row == 0 ? 320 : 40
+      return (indexPath as NSIndexPath).row == 0 ? 320 : 40
     case 1:
       return UITableViewAutomaticDimension
     default:
@@ -193,10 +193,10 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    switch indexPath.section {
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    switch (indexPath as NSIndexPath).section {
     case 0:
-      return indexPath.row == 0 ? 350 : 40
+      return (indexPath as NSIndexPath).row == 0 ? 350 : 40
     case 1:
       return 400
     default:
@@ -206,13 +206,13 @@ class ProfessionalTableViewController: UITableViewController {
 }
 
 extension ProfessionalTableViewController: ButtonStripViewDelegate {
-  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedTab = index
 //    let indexSet = 
 //    tableView.reloadSections(NSIndexSet(index: 1, index: 0), withRowAnimation: UITableViewRowAnimation.Top)
     let offset = tableView.contentOffset
     tableView.reloadData()
-    if tableView.numberOfRowsInSection(selectedTab) >= 2 {
+    if tableView.numberOfRows(inSection: selectedTab) >= 2 {
       tableView.setContentOffset(offset, animated: true)
     } else {
       tableView.setContentOffset(CGPoint.zero, animated: true)
@@ -221,7 +221,7 @@ extension ProfessionalTableViewController: ButtonStripViewDelegate {
 }
 
 extension ProfessionalTableViewController: ActionTableViewCellDelegate {
-  func didSelectActionCell(cell: ActionTableViewCell) {
+  func didSelectActionCell(_ cell: ActionTableViewCell) {
     presentAlertWithMessage("personal training")
   }
 }
@@ -231,11 +231,11 @@ extension ProfessionalTableViewController: PostTableViewCellDelegate { }
 //MARK: - MWPhotoBrowserDelegate
 extension ProfessionalTableViewController: MWPhotoBrowserDelegate {
   
-  func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+  func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
     return 2
   }
   
-  func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+  func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
     let urlString: String?
     if index == 0 {
       urlString = trainer.avatarURLString
@@ -243,8 +243,8 @@ extension ProfessionalTableViewController: MWPhotoBrowserDelegate {
       urlString = trainer.bannerURLString
     }
     
-    guard let imageURLString = urlString, url = NSURL(string: imageURLString) else { return nil }
+    guard let imageURLString = urlString, let url = URL(string: imageURLString) else { return nil }
     
-    return MWPhoto(URL: url)
+    return MWPhoto(url: url)
   }
 }

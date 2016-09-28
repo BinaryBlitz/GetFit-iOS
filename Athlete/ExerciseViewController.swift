@@ -13,7 +13,7 @@ import Haneke
 
 struct Video {
   let youtubeId: String
-  var previewImageURL: NSURL?
+  var previewImageURL: URL?
   var title: String
   var duration: String
 }
@@ -35,16 +35,16 @@ class ExerciseViewController: UIViewController {
     
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
     
-    navigationItem.title = exercise.name.uppercaseString
+    navigationItem.title = exercise.name.uppercased()
     
     ["LeMVDuIO3J0", "yN7KoXI9J0M"].forEach { (youtubeId) in
-      XCDYouTubeClient.defaultClient().getVideoWithIdentifier(youtubeId) { (video, error) in
+      XCDYouTubeClient.default().getVideoWithIdentifier(youtubeId) { (video, error) in
         if let xcdVideo = video {
           
-          let formatter = NSDateComponentsFormatter()
-          formatter.allowedUnits = [.Minute, .Second]
-          formatter.zeroFormattingBehavior = .Pad
-          let duration = formatter.stringFromTimeInterval(xcdVideo.duration)
+          let formatter = DateComponentsFormatter()
+          formatter.allowedUnits = [.minute, .second]
+          formatter.zeroFormattingBehavior = .pad
+          let duration = formatter.string(from: xcdVideo.duration)
           let video = Video(youtubeId: youtubeId!, previewImageURL: xcdVideo.smallThumbnailURL, title: xcdVideo.title, duration: duration!)
           self.videos.append(video)
           self.tableView.reloadData()
@@ -55,12 +55,12 @@ class ExerciseViewController: UIViewController {
   
   //MARK: - Actions
   
-  @IBAction func endExerciseAction(sender: AnyObject) {
-    navigationController?.popViewControllerAnimated(true)
+  @IBAction func endExerciseAction(_ sender: AnyObject) {
+    navigationController?.popViewController(animated: true)
   }
   
-  func showTrainingTips(recognizer: UITapGestureRecognizer) {
-    performSegueWithIdentifier("trainingTips", sender: self)
+  func showTrainingTips(_ recognizer: UITapGestureRecognizer) {
+    performSegue(withIdentifier: "trainingTips", sender: self)
   }
 }
 
@@ -68,11 +68,11 @@ class ExerciseViewController: UIViewController {
 
 extension ExerciseViewController: UITableViewDataSource {
   
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return 1
     }
@@ -80,17 +80,17 @@ extension ExerciseViewController: UITableViewDataSource {
     return videos.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    switch indexPath.section {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    switch (indexPath as NSIndexPath).section {
     case 0:
-      let cell = tableView.dequeueReusableCellWithIdentifier("infoCell") as! ExerciseInfoTableViewCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell") as! ExerciseInfoTableViewCell
       cell.configureWith(exercise)
-      cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), forControlEvents: .TouchUpInside)
+      cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), for: .touchUpInside)
       
       return cell
     case 1:
       let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
-      let video = videos[indexPath.row]
+      let video = videos[(indexPath as NSIndexPath).row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)
       cell.videoDurtionLabel.text = video.duration
@@ -106,19 +106,19 @@ extension ExerciseViewController: UITableViewDataSource {
 
 extension ExerciseViewController: UITableViewDelegate {
   
-  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    if indexPath.section == 0 {
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    if (indexPath as NSIndexPath).section == 0 {
       return 260
     }
     
     return 123
   }
   
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    guard indexPath.section != 0 else { return }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard (indexPath as NSIndexPath).section != 0 else { return }
     
-    let video = videos[indexPath.row]
+    let video = videos[(indexPath as NSIndexPath).row]
     let videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: video.youtubeId)
-    presentViewController(videoPlayerViewController, animated: true, completion: nil)
+    present(videoPlayerViewController, animated: true, completion: nil)
   }
 }

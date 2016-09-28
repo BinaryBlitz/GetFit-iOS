@@ -12,26 +12,26 @@ import InnerShadowView
 
 class ActionTableViewCell: UITableViewCell {
 
-  private let button = UIButton(frame: CGRect.zero)
+  fileprivate let button = UIButton(frame: CGRect.zero)
   weak var delegate: ActionTableViewCellDelegate?
   
   var title: String? = nil {
     didSet {
-      button.setTitle(title, forState: .Normal)
+      button.setTitle(title, for: UIControlState())
     }
   }
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    selectionStyle = .None
+    selectionStyle = .none
     contentView.addSubview(button)
     button.autoPinEdgesToSuperviewEdges()
-    button.addTarget(self, action: #selector(buttonAction(_:)), forControlEvents: .TouchUpInside)
-    button.setTitleShadowColor(UIColor.lightGrayBackgroundColor().colorWithAlphaComponent(0.3), forState: UIControlState.Normal)
-    button.setTitleShadowColor(UIColor.lightGrayBackgroundColor(), forState: UIControlState.Highlighted)
-    button.setTitleColor(UIColor.lightGrayBackgroundColor().colorWithAlphaComponent(0.4), forState: UIControlState.Highlighted)
-    button.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
+    button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+    button.setTitleShadowColor(UIColor.lightGrayBackgroundColor().withAlphaComponent(0.3), for: UIControlState())
+    button.setTitleShadowColor(UIColor.lightGrayBackgroundColor(), for: UIControlState.highlighted)
+    button.setTitleColor(UIColor.lightGrayBackgroundColor().withAlphaComponent(0.4), for: UIControlState.highlighted)
+    button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     
     contentView.backgroundColor = UIColor.blueAccentColor()
   }
@@ -40,13 +40,13 @@ class ActionTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @objc private func buttonAction(sender: UIButton) {
+  @objc fileprivate func buttonAction(_ sender: UIButton) {
     delegate?.didSelectActionCell(self)
   }
   
   override func updateConstraints() {
     super.updateConstraints()
-    contentView.addInsetShadowsWithRadius(0.7, atDirections: ShadowDirections.SHADOW_TOP)
-    contentView.bringSubviewToFront(button)
+    contentView.addInsetShadows(withRadius: 0.7, at: ShadowDirections.SHADOW_TOP)
+    contentView.bringSubview(toFront: button)
   }
 }

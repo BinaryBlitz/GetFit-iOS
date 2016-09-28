@@ -19,7 +19,7 @@ class Post: Object, ALSwiftyJSONAble {
   dynamic var trainer: Trainer?
   dynamic var program: Program?
   dynamic var imageURLString: String?
-  dynamic var dateCreated: NSDate = NSDate()
+  dynamic var dateCreated: Date = Date()
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
   dynamic var likeId: Int = -1
@@ -36,7 +36,7 @@ class Post: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
 
-    guard let id = jsonData["id"].int, content = jsonData["content"].string, createdAt = jsonData["created_at"].string else {
+    guard let id = jsonData["id"].int, let content = jsonData["content"].string, let createdAt = jsonData["created_at"].string else {
       return nil
     }
 

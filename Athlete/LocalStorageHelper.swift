@@ -17,14 +17,14 @@ struct LocalStorageHelper {
     case ShouldUpdateDeviceToken
   }
   
-  static func save(object: AnyObject?, forKey key: StorageKey) {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    userDefaults.setObject(object, forKey: key.rawValue)
+  static func save(_ object: AnyObject?, forKey key: StorageKey) {
+    let userDefaults = UserDefaults.standard
+    userDefaults.set(object, forKey: key.rawValue)
   }
   
-  static func loadObjectForKey<T>(key: StorageKey) -> T? {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    let object = userDefaults.objectForKey(key.rawValue)
+  static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
+    let userDefaults = UserDefaults.standard
+    let object = userDefaults.object(forKey: key.rawValue)
     return object as? T
   }
 }

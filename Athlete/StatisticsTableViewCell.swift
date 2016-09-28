@@ -27,10 +27,10 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
       view.layer.borderWidth = 3
     }
     
-    caloriesView.layer.borderColor = UIColor.redColor().CGColor
-    trainingsView.layer.borderColor = UIColor.blueAccentColor().CGColor
-    lengthView.layer.borderColor = UIColor.primaryYellowColor().CGColor
-    distanceView.layer.borderColor = UIColor.greenAccentColor().CGColor
+    caloriesView.layer.borderColor = UIColor.red.cgColor
+    trainingsView.layer.borderColor = UIColor.blueAccentColor().cgColor
+    lengthView.layer.borderColor = UIColor.primaryYellowColor().cgColor
+    distanceView.layer.borderColor = UIColor.greenAccentColor().cgColor
     
     [totalDistanceLabel, totalDurationLabel, totalWeightLabel, totalTrainingsLabel].forEach { label in
       label.text = "0"
@@ -45,12 +45,12 @@ class StatisticsTableViewCell: UITableViewCell, NibReusable {
   override func layoutSubviews() {
     super.layoutSubviews()
     [caloriesView, distanceView, lengthView, trainingsView].forEach { (view) in
-      view.layer.masksToBounds = true
-      view.layer.cornerRadius = view.bounds.width / 2
+      view?.layer.masksToBounds = true
+      view?.layer.cornerRadius = (view?.bounds.width)! / 2
     }
   }
   
-  func configureWith(viewModel: StatisticsPresentable) {
+  func configureWith(_ viewModel: StatisticsPresentable) {
     totalDistanceLabel.text = viewModel.totalDistance
     totalTrainingsLabel.text = viewModel.totalWorkouts
     totalDurationLabel.text = viewModel.totalDuration

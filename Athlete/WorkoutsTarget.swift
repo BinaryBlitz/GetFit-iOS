@@ -6,7 +6,7 @@ import Toucan
 extension GetFit {
   
   public enum Workouts {
-    case Index
+    case index
   }
   
 }
