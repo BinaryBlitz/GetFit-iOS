@@ -1,15 +1,41 @@
-//
-//  PostViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 22/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
+import Moya
+import RealmSwift
 
 struct PostViewModel {
   let post: Post
+  let postsProvider = APIProvider<GetFit.Posts>()
+  
+  enum PostReaction {
+    case Like
+    case Dislike
+  }
+  
+  func updateReaction(reaction: PostReaction) -> Cancellable {
+    return postsProvider.request(.CreateLike(postId: post.id)) { result in
+      switch result {
+      case .Success(let response):
+        do {
+          try response.filterSuccessfulStatusCodes()
+          print("yay! new like")
+        } catch {
+          self.addLikeToUploadQueueFor(self.post)
+        }
+      case .Failure(let error):
+        print(error)
+        self.addLikeToUploadQueueFor(self.post)
+      }
+    }
+  }
+  
+  private func addLikeToUploadQueueFor(post: Post) {
+    let realm = try! Realm()
+    try! realm.write {
+      let like = Like()
+      realm.add(like)
+      post.like = like
+    }
+  }
 }
 
 //MARK: - PostPresentable

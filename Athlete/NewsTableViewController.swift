@@ -195,33 +195,8 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     }
     
     SharedRequest.request?.cancel()
-    guard let indexPath = tableView.indexPathForCell(cell), post = posts?[indexPath.row]
-        where cell.likeButton.selected else {
-      return
-    }
-    
-    SharedRequest.request = postsProvider.request(.CreateLike(postId: post.id)) { result in
-      switch result {
-      case .Success(let response):
-        do {
-          try response.filterSuccessfulStatusCodes()
-          print("yay! new like")
-        } catch {
-          cell.liked = false
-        }
-      case .Failure(let error):
-        print(error)
-        self.addLikeToUploadQueueFor(post)
-      }
-    }
-  }
-  
-  private func addLikeToUploadQueueFor(post: Post) {
-    let realm = try! Realm()
-    try! realm.write {
-      let like = Like()
-      realm.add(like)
-      post.like = like
-    }
+    guard let indexPath = tableView.indexPathForCell(cell), post = posts?[indexPath.row] else { return }
+    SharedRequest.request =
+        PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
   }
 }

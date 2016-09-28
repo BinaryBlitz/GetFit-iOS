@@ -229,6 +229,7 @@ extension PostViewController: UITableViewDataSource {
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
       cell.state = .Normal
+      cell.delegate = self
       if let imageView = cell.contentImageView {
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImage)))
@@ -258,7 +259,14 @@ extension PostViewController: UITableViewDataSource {
   
 }
 
-//MARK: - MWPhotoBrowserDelegate
+// MARK: - PostTableViewCellDelegate 
+extension PostViewController: PostTableViewCellDelegate {
+  func didTouchLikeButton(cell: PostTableViewCell) {
+    PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
+  }
+}
+
+// MARK: - MWPhotoBrowserDelegate
 extension PostViewController: MWPhotoBrowserDelegate {
   
   func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
