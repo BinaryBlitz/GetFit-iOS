@@ -4,14 +4,14 @@ struct UserManager {
   
   static var apiToken: String? {
     didSet {
-      LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+      LocalStorageHelper.save(apiToken, forKey: .apiToken)
       print("API Token updated: \(apiToken)")
     }
   }
   
   static var deviceToken: String? {
     didSet {
-      LocalStorageHelper.save(deviceToken, forKey: .DeviceToken)
+      LocalStorageHelper.save(deviceToken, forKey: .deviceToken)
     }
   }
   

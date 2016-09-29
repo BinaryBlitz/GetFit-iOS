@@ -6,7 +6,7 @@ import Toucan
 extension GetFit {
   
   public enum Workouts {
-    case Index
+    case index
   }
   
 }
@@ -21,7 +21,7 @@ extension GetFit.Workouts: TargetType {
     return .GET
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     return nil
   }
   

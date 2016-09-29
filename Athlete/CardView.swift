@@ -10,9 +10,9 @@ import UIKit
 
 @objc class CardView: UIView {
   
-  private func baseInit() {
+  fileprivate func baseInit() {
     layer.cornerRadius = 2
-    layer.shadowColor = UIColor.lightGrayColor().CGColor
+    layer.shadowColor = UIColor.lightGray.cgColor
     layer.shadowOpacity = 0.5
     layer.shadowRadius = 1.3
     layer.shadowOffset = CGSize()

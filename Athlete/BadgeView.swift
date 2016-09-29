@@ -12,32 +12,32 @@ import PureLayout
 @objc class BadgeView: UIView {
   
   var label: UILabel
-  private var darkColor = UIColor.graySecondaryColor()
-  private var lightGrayColor = UIColor.whiteColor()
-  private var lightBlueColor = UIColor.blueAccentColor()
+  fileprivate var darkColor = UIColor.graySecondaryColor()
+  fileprivate var lightGrayColor = UIColor.white
+  fileprivate var lightBlueColor = UIColor.blueAccentColor()
   
   struct Style {
     let color: ColorScheme
     let height: HeightType
     
-    init(color: ColorScheme, height: HeightType = .Low) {
+    init(color: ColorScheme, height: HeightType = .low) {
       self.color = color
       self.height = height
     }
   }
   
   enum ColorScheme {
-    case Dark
-    case LightGray
-    case LightBlue
+    case dark
+    case lightGray
+    case lightBlue
   }
   
   enum HeightType {
-    case Low
-    case Tall
+    case low
+    case tall
   }
   
-  var style: Style = Style(color: .LightGray, height: .Low) {
+  var style: Style = Style(color: .lightGray, height: .low) {
     didSet {
       updateStyle(style)
     }
@@ -48,7 +48,7 @@ import PureLayout
       return label.font.pointSize
     }
     set(newFontSize) {
-      label.font = label.font.fontWithSize(newFontSize)
+      label.font = label.font.withSize(newFontSize)
     }
   }
   
@@ -57,7 +57,7 @@ import PureLayout
       return label.text
     }
     set(newText) {
-      label.text = newText?.uppercaseString
+      label.text = newText?.uppercased()
     }
   }
   
@@ -73,7 +73,7 @@ import PureLayout
     baseInit()
   }
   
-  private func baseInit() {
+  fileprivate func baseInit() {
     configureLabel()
     
     layer.borderWidth = 1
@@ -82,26 +82,26 @@ import PureLayout
     updateStyle(style)
   }
   
-  private func configureLabel() {
-    label.font = UIFont.boldSystemFontOfSize(13)
+  fileprivate func configureLabel() {
+    label.font = UIFont.boldSystemFont(ofSize: 13)
     
     addSubview(label)
     label.autoCenterInSuperview()
   }
   
-  private func updateStyle(style: Style) {
+  fileprivate func updateStyle(_ style: Style) {
     switch style.color {
-    case .LightGray:
-      layer.borderColor = darkColor.CGColor
-      backgroundColor = UIColor.whiteColor()
+    case .lightGray:
+      layer.borderColor = darkColor.cgColor
+      backgroundColor = UIColor.white
       label.textColor = darkColor
-    case .Dark:
-      layer.borderColor = darkColor.CGColor
+    case .dark:
+      layer.borderColor = darkColor.cgColor
       backgroundColor = darkColor
       label.textColor = lightGrayColor
-    case .LightBlue:
-      layer.borderColor = lightBlueColor.CGColor
-      backgroundColor = UIColor.whiteColor()
+    case .lightBlue:
+      layer.borderColor = lightBlueColor.cgColor
+      backgroundColor = UIColor.white
       label.textColor = lightBlueColor
     }
   }
@@ -110,11 +110,11 @@ import PureLayout
     super.updateConstraints()
     label.sizeToFit()
     switch style.height {
-    case .Low:
-      autoSetDimension(.Height, toSize: label.frame.height + 10)
-    case .Tall:
-      autoSetDimension(.Height, toSize: label.frame.height + 16)
+    case .low:
+      autoSetDimension(.height, toSize: label.frame.height + 10)
+    case .tall:
+      autoSetDimension(.height, toSize: label.frame.height + 16)
     }
-    autoSetDimension(.Width, toSize: label.frame.width + 26)
+    autoSetDimension(.width, toSize: label.frame.width + 26)
   }
 }

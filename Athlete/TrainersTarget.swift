@@ -6,9 +6,9 @@ import Toucan
 extension GetFit {
   
   public enum Trainers {
-    case Index(filter: TrainersFilter)
-    case Show(id: Int)
-    case Programs(trainerId: Int)
+    case index(filter: TrainersFilter)
+    case show(id: Int)
+    case programs(trainerId: Int)
   }
   
 }
@@ -17,11 +17,11 @@ extension GetFit.Trainers: TargetType {
   
   public var path: String {
     switch self {
-    case .Index(_):
+    case .index(_):
       return "/trainers"
-    case .Show(let id):
+    case .show(let id):
       return "/trainers/\(id)"
-    case .Programs(let trainerId):
+    case .programs(let trainerId):
       return "/trainers/\(trainerId)/programs"
     }
   }
@@ -30,11 +30,11 @@ extension GetFit.Trainers: TargetType {
     return .GET
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
-    case .Index(let filter):
+    case .index(let filter):
       return ["category": filter.category.rawValue]
-    case .Show(_), .Programs(_):
+    case .show(_), .programs(_):
       return nil
     }
   }

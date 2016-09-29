@@ -57,8 +57,8 @@ class Trainer: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, firstName = jsonData["first_name"].string,
-        lastName = jsonData["last_name"].string else {
+    guard let id = jsonData["id"].int, let firstName = jsonData["first_name"].string,
+        let lastName = jsonData["last_name"].string else {
       return nil
     }
     
@@ -87,7 +87,7 @@ class Trainer: Object, ALSwiftyJSONAble {
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

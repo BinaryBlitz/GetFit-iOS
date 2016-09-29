@@ -77,11 +77,11 @@ class Workout: Object, ALSwiftyJSONAble {
     try! realm.write {
       realm.add(exercises)
       self.exercises.removeAll()
-      self.exercises.appendContentsOf(exercises)
+      self.exercises.append(objectsIn: exercises)
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

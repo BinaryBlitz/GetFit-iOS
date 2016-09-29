@@ -10,7 +10,7 @@ import UIKit
 import Haneke
 import Reusable
 
-typealias PostCommentPresentable = protocol<DateTimePresentable, UserPresentable, TextPresentable>
+typealias PostCommentPresentable = DateTimePresentable & UserPresentable & TextPresentable
 
 class PostCommentTableViewCell: UITableViewCell, NibReusable {
 
@@ -22,12 +22,12 @@ class PostCommentTableViewCell: UITableViewCell, NibReusable {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    layoutMargins = UIEdgeInsetsZero
+    layoutMargins = UIEdgeInsets.zero
     
     userAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
   
-  func configureWith(viewModel: PostCommentPresentable) {
+  func configureWith(_ viewModel: PostCommentPresentable) {
     if let avatarURL = viewModel.avatarURL {
       userAvatarImageView.hnk_setImageFromURL(avatarURL)
     }

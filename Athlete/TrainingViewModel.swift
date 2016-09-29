@@ -20,7 +20,7 @@ extension TrainingViewModel: TrainingPresentable {
   }
   
   var trainingDurationString: String {
-    return "\(workoutSession.duration) min".uppercaseString
+    return "\(workoutSession.duration) min".uppercased()
   }
   
   var trainingDateString: String {

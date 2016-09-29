@@ -5,15 +5,15 @@ import SwiftyJSON
 import Moya_SwiftyJSONMapper
 import SwiftDate
 
-public class Subscription: Object, ALSwiftyJSONAble {
+open class Subscription: Object, ALSwiftyJSONAble {
   
   dynamic var id: Int = 0
   dynamic var lastMessage: Message?
   dynamic var trainer: Trainer!
-  dynamic var createdAt: NSDate = NSDate()
+  dynamic var createdAt: Date = Date()
   let messages = List<Message>()
   
-  public override static func primaryKey() -> String? {
+  open override static func primaryKey() -> String? {
     return "id"
   }
   
@@ -25,21 +25,21 @@ public class Subscription: Object, ALSwiftyJSONAble {
     super.init(realm: realm, schema: schema)
   }
   
-  public required init(value: AnyObject, schema: RLMSchema) {
+  public required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
   
   public required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, trainerId = jsonData["trainer_id"].int,
-          createdAtString = jsonData["created_at"].string else {
+    guard let id = jsonData["id"].int, let trainerId = jsonData["trainer_id"].int,
+          let createdAtString = jsonData["created_at"].string else {
         return nil
     }
     
     self.id = id
     let realm = try! Realm()
-    if let trainer = realm.objectForPrimaryKey(Trainer.self, key: trainerId) {
+    if let trainer = realm.object(ofType: Trainer.self, forPrimaryKey: trainerId) {
       self.trainer = trainer
     } else if let trainer = Trainer(jsonData: jsonData["trainer"]) {
       self.trainer = trainer
@@ -51,7 +51,7 @@ public class Subscription: Object, ALSwiftyJSONAble {
       self.lastMessage = lastMessage
     }
     
-    if let date = createdAtString.toDate(DateFormat.ISO8601Format(.Extended)) {
+    if let date = createdAtString.toDate(format: .iso8601Format(.extended)) {
       self.createdAt = date
     }
   }

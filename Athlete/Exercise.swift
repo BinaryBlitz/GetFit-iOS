@@ -32,7 +32,7 @@ class Exercise: Object, JSONSerializable {
     self.name = name
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }

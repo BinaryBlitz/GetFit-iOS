@@ -1,11 +1,11 @@
 import UIKit
 
 extension UITabBarController {
-  public override func shouldAutorotate() -> Bool {
+  open override var shouldAutorotate : Bool {
     return true
   }
   
-  public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    return UIInterfaceOrientationMask.Portrait
+  open override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.portrait
   }
 }

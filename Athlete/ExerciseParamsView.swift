@@ -24,18 +24,18 @@ class ExerciseParamsView: UIStackView {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    separatorViewHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+    separatorViewHeightConstraint.constant = 1 / UIScreen.main.scale
     separatorView.backgroundColor = UIColor.graySecondaryColor()
     titleLabel.textColor = UIColor.graySecondaryColor()
     valueLabel.textColor = UIColor.blackTextColor()
   }
   
-  func configureWithExerciseParameter(parameter: ExerciseParameter) {
-    titleLabel.text = parameter.name.uppercaseString
+  func configureWithExerciseParameter(_ parameter: ExerciseParameter) {
+    titleLabel.text = parameter.name.uppercased()
     updateValue(parameter.value)
   }
   
-  func updateValue(value: Int) {
+  func updateValue(_ value: Int) {
     valueLabel.text = String(value)
   }
 }

@@ -22,15 +22,15 @@ class User: Object, ALSwiftyJSONAble {
   dynamic var firstName: String = ""
   dynamic var lastName: String = ""
   dynamic var genderValue: String = ""
-  dynamic var birthdate: NSDate = NSDate()
+  dynamic var birthdate: Date = Date()
   dynamic var userDescription: String?
   dynamic var avatarURLString: String?
   dynamic var bannerURLString: String?
   
   // Statistics
-  dynamic private(set) var totalWorkouts: Int = 0
-  dynamic private(set) var totalDuration: Int = 0
-  dynamic private(set) var totalDistance: Int = 0
+  dynamic fileprivate(set) var totalWorkouts: Int = 0
+  dynamic fileprivate(set) var totalDuration: Int = 0
+  dynamic fileprivate(set) var totalDistance: Int = 0
   
   let comments = LinkingObjects(fromType: Comment.self, property: "author")
   
@@ -69,7 +69,7 @@ class User: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
     
-    if let id = jsonData["id"].int, firstName = jsonData["first_name"].string, lastName = jsonData["last_name"].string {
+    if let id = jsonData["id"].int, let firstName = jsonData["first_name"].string, let lastName = jsonData["last_name"].string {
       self.id = id
       self.firstName = firstName
       self.lastName = lastName
@@ -90,7 +90,7 @@ class User: Object, ALSwiftyJSONAble {
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }
 }
@@ -112,8 +112,8 @@ extension User {
     
     init?(jsonData: JSON) {
       guard let totalWorkouts = jsonData["workouts_count"].int,
-          totalDuration = jsonData["total_duration"].int,
-          totalDistance = jsonData["total_distance"].int else {
+          let totalDuration = jsonData["total_duration"].int,
+          let totalDistance = jsonData["total_distance"].int else {
         self.totalWorkouts = 0
         self.totalDuration = 0
         self.totalDistance = 0

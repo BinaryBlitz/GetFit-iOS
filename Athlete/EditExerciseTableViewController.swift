@@ -9,27 +9,27 @@
 import UIKit
 
 protocol EditExerciseViewControllerDelegate {
-  func didUpdateValueForExercise(exercise: ExerciseSession)
+  func didUpdateValueForExercise(_ exercise: ExerciseSession)
 }
 
 class EditExerciseTableViewController: UITableViewController {
   
   enum EditType {
-    case Weight
-    case Repetitions
+    case weight
+    case repetitions
   }
 
   var exercise: ExerciseSession!
-  var editType: EditType = .Weight
+  var editType: EditType = .weight
   var delegate: EditExerciseViewControllerDelegate?
   @IBOutlet weak var pickerView: UIPickerView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.title = editType == .Weight ? "Weight".uppercaseString : "Repetitions".uppercaseString
+    navigationItem.title = editType == .weight ? "Weight".uppercased() : "Repetitions".uppercased()
   
-    if editType == .Weight {
+    if editType == .weight {
       pickerView.selectRow(Int(exercise.weight.value ?? 1) / 10, inComponent: 0, animated: true)
     } else {
       pickerView.selectRow(Int(exercise.reps.value ?? 1), inComponent: 0, animated: true)
@@ -37,51 +37,52 @@ class EditExerciseTableViewController: UITableViewController {
     
   }
   
-  @IBAction func doneButtonAction(sender: AnyObject) {
-    let selectedRow = pickerView.selectedRowInComponent(0)
-    if editType == .Weight {
+  @IBAction func doneButtonAction(_ sender: Any) {
+    let selectedRow = pickerView.selectedRow(inComponent: 0)
+    if editType == .weight {
       exercise.weight.value = Int(selectedRow * 10)
     } else {
       exercise.reps.value = selectedRow
     }
     
     delegate?.didUpdateValueForExercise(exercise)
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func cancelButtonAction(sender: AnyObject) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func cancelButtonAction(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
   }
 }
 
 extension EditExerciseTableViewController: UIPickerViewDataSource {
   
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
   
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return 10
   }
   
-  func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+  func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     if let pickerLabel = view as? UILabel {
       pickerLabel.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
       return pickerLabel
     } else {
       let label = view as! UILabel
-      label.font = UIFont.boldSystemFontOfSize(19)
-      label.textAlignment = NSTextAlignment.Center
+      label.font = UIFont.boldSystemFont(ofSize: 19)
+      label.textAlignment = NSTextAlignment.center
       label.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
       
       return label
     }
   }
+  
 }
 
 extension EditExerciseTableViewController: UIPickerViewDelegate {
   
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return editType == .Weight ? "\(row * 10) KG" : "\(row) TIMES"
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return editType == .weight ? "\(row * 10) KG" : "\(row) TIMES"
   }
 }

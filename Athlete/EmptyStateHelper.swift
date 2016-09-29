@@ -4,16 +4,16 @@ import PureLayout
 class EmptyStateHelper {
   
   enum Screen {
-    case News
-    case Trainers
-    case Store
+    case news
+    case trainers
+    case store
   }
   
   static var avatarPlaceholderImage: UIImage {
     return UIImage(named: "AvatarPlaceholder")!
   }
   
-  static func generateBannerImageFor(object: NamedObject) -> UIImage? {
+  static func generateBannerImageFor(_ object: NamedObject) -> UIImage? {
     switch object.objectName.characters.count % 3 {
     case 0:
       return UIImage(color: .primaryYellowColor())
@@ -24,23 +24,23 @@ class EmptyStateHelper {
     }
   }
   
-  static func backgroundViewFor(screenType: Screen) -> UIView {
+  static func backgroundViewFor(_ screenType: Screen) -> UIView {
     let view = UIView()
     let titleLable = UILabel()
-    titleLable.textAlignment = .Center
-    titleLable.textColor = UIColor.graySecondaryColor().colorWithAlphaComponent(0.8)
-    titleLable.font = UIFont.systemFontOfSize(16)
+    titleLable.textAlignment = .center
+    titleLable.textColor = UIColor.graySecondaryColor().withAlphaComponent(0.8)
+    titleLable.font = UIFont.systemFont(ofSize: 16)
     titleLable.text = titleFor(screenType)
     
     let imageView = UIImageView()
-    imageView.contentMode = .ScaleAspectFit
-    imageView.autoSetDimensionsToSize(CGSize(width: 70, height: 70))
+    imageView.contentMode = .scaleAspectFit
+    imageView.autoSetDimensions(to: CGSize(width: 70, height: 70))
     imageView.image = UIImage(named: "FolderIcon")
     
     let stackView = UIStackView(arrangedSubviews: [imageView, titleLable])
-    stackView.axis = .Vertical
-    stackView.alignment = .Center
-    stackView.distribution = .EqualSpacing
+    stackView.axis = .vertical
+    stackView.alignment = .center
+    stackView.distribution = .equalSpacing
     stackView.spacing = 6
     
     view.addSubview(stackView)
@@ -49,13 +49,13 @@ class EmptyStateHelper {
     return view
   }
   
-  private static func titleFor(screenType: Screen) -> String {
+  fileprivate static func titleFor(_ screenType: Screen) -> String {
     switch screenType {
-    case .News:
+    case .news:
       return "No news to show"
-    case .Trainers:
+    case .trainers:
       return "No trainers to show"
-    case .Store:
+    case .store:
       return "No programs to show"
     }
   }
@@ -70,7 +70,7 @@ public extension UIImage {
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
-    guard let cgImage = image.CGImage else { return nil }
-    self.init(CGImage: cgImage)
+    guard let cgImage = image?.cgImage else { return nil }
+    self.init(cgImage: cgImage)
   }
 }

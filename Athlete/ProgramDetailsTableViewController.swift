@@ -19,21 +19,21 @@ class ProgramDetailsTableViewController: UITableViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     tableView.registerReusableCell(ProgramTableViewCell)
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
-    let headerNib = UINib(nibName: String(WorkoutHeaderView), bundle: nil)
-    tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: String(WorkoutHeaderView))
+    let headerNib = UINib(nibName: String(describing: WorkoutHeaderView.self), bundle: nil)
+    tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: String(describing: WorkoutHeaderView.self))
     
     let realm = try! Realm()
-    workouts = realm.objects(Workout).filter("programId == \(program.id)").sorted("position")
+    workouts = realm.objects(Workout).filter("programId == \(program.id)").sorted(byProperty:"position")
     
     updateProgramInfo()
   }
   
   func updateProgramInfo() {
-    programsProvider.request(.Show(id: program.id)) { (result) in
+    programsProvider.request(.show(id: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let programResponse = try response.filterSuccessfulStatusCodes()
           let program = try programResponse.mapObject(Program.self)
@@ -42,7 +42,7 @@ class ProgramDetailsTableViewController: UITableViewController {
         } catch let error {
           self.presentAlertWithMessage("error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("error: \(error)")
       }
     }
@@ -50,11 +50,11 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   // MARK: - Table view data source
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1 + (workouts?.count ?? 0)
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let workouts = workouts else { return 1 }
     
     if section == 0 {
@@ -69,9 +69,9 @@ class ProgramDetailsTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if indexPath.section == 0 {
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if (indexPath as NSIndexPath).section == 0 {
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.delegate = self
       cell.state = .Normal
       cell.configureWith(ProgramViewModel(program: program))
@@ -85,29 +85,29 @@ class ProgramDetailsTableViewController: UITableViewController {
       return cell
     } else {
       guard let exercises = workouts?[indexPath.section - 1].exercises else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCellWithIdentifier("exerciseCell")!
+      let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell")!
         
-      if indexPath.row < 2 {
+      if (indexPath as NSIndexPath).row < 2 {
         cell.textLabel?.text = exercises[indexPath.row].name
       } else {
         cell.textLabel?.textColor = UIColor.blueAccentColor()
         cell.textLabel?.text = "+\(exercises.count - 2) more exercises".uppercaseString
-        cell.textLabel?.font = UIFont.boldSystemFontOfSize(13)
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
       }
       
       return cell
     }
   }
   
-  @objc private func openTrainerPage() {
+  @objc fileprivate func openTrainerPage() {
     if program.trainer != nil {
-      performSegueWithIdentifier("showTrainerPage", sender: self)
+      performSegue(withIdentifier: "showTrainerPage", sender: self)
     } else {
       presentAlertWithMessage("On no! Cannot find trainer")
     }
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if section == 0 {
       return 0.01
     }
@@ -115,12 +115,12 @@ class ProgramDetailsTableViewController: UITableViewController {
     return 40
   }
   
-  override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
     return 9
   }
   
-  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    switch indexPath.section {
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    switch (indexPath as NSIndexPath).section {
     case 0:
       return 300
     default:
@@ -128,9 +128,9 @@ class ProgramDetailsTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard let workouts = workouts where section != 0 && workouts.count > 0 else { return nil }
-    let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(WorkoutHeaderView)) as! WorkoutHeaderView
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    guard let workouts = workouts , section != 0 && workouts.count > 0 else { return nil }
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: WorkoutHeaderView.self)) as! WorkoutHeaderView
     let workout = workouts[section - 1]
     headerView.configureWith(workout)
     
@@ -139,9 +139,9 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   //MARK: - Navigation 
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showTrainerPage" {
-      let destination = segue.destinationViewController as! ProfessionalTableViewController
+      let destination = segue.destination as! ProfessionalTableViewController
       destination.trainer = program.trainer!
     }
   }
@@ -149,17 +149,17 @@ class ProgramDetailsTableViewController: UITableViewController {
 
 //MARK: - ProgramCellDelegate
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
-  func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
-    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {
+    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
           self.presentAlertWithMessage("Error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }

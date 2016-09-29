@@ -12,27 +12,27 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+    avatarImageView.layer.borderColor = UIColor.white.cgColor
     avatarImageView.layer.borderWidth = 5
     avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
     avatarImageView.backgroundColor = UIColor.primaryYellowColor()
-    avatarImageView.contentMode = .ScaleAspectFill
+    avatarImageView.contentMode = .scaleAspectFill
     
     bannerImageView.image = nil
     bannerImageView.backgroundColor = UIColor.blueAccentColor()
-    bannerImageView.contentMode = .ScaleAspectFill
+    bannerImageView.contentMode = .scaleAspectFill
     
-    settingsBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
+    settingsBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     settingsBadge.text = "Settings"
   }
  
   
-  func configureWith(viewModel: UserPresentable) {
+  func configureWith(_ viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
     
     bannerImageView.hnk_cancelSetImage()
     if let bannerURL = viewModel.coverImageURL {
-      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
       bannerImageView.addSubview(activityIndicator)
       activityIndicator.autoCenterInSuperview()
       bannerImageView.hnk_setImageFromURL(bannerURL)

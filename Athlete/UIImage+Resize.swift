@@ -11,34 +11,34 @@ import UIKit
 extension UIImage {
   
   /// Load and resize an image using `CGContextDrawImage(...)`.
-  static func resizeImage(image: UIImage, withScalingFactor scalingFactor: Double) -> UIImage? {
-    let cgImage = image.CGImage
+  static func resizeImage(_ image: UIImage, withScalingFactor scalingFactor: Double) -> UIImage? {
+    let cgImage = image.cgImage
     
-    let width = Double(CGImageGetWidth(cgImage)) * scalingFactor
-    let height = Double(CGImageGetHeight(cgImage)) * scalingFactor
-    let bitsPerComponent = CGImageGetBitsPerComponent(cgImage)
-    let bytesPerRow = CGImageGetBytesPerRow(cgImage)
-    let colorSpace = CGImageGetColorSpace(cgImage)
-    let bitmapInfo = CGImageGetBitmapInfo(cgImage)
+    let width = Double((cgImage?.width)!) * scalingFactor
+    let height = Double((cgImage?.height)!) * scalingFactor
+    let bitsPerComponent = cgImage?.bitsPerComponent
+    let bytesPerRow = cgImage?.bytesPerRow
+    let colorSpace = cgImage?.colorSpace
+    let bitmapInfo = cgImage?.bitmapInfo
     
-    let context = CGBitmapContextCreate(nil, Int(width), Int(height), bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
+    let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: bitsPerComponent!, bytesPerRow: bytesPerRow!, space: colorSpace!, bitmapInfo: (bitmapInfo?.rawValue)!)
     
-    CGContextSetInterpolationQuality(context, .High)
+    context!.interpolationQuality = .high
     
-    CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), cgImage)
+    context?.draw(cgImage!, in: CGRect(origin: CGPoint.zero, size: CGSize(width: CGFloat(width), height: CGFloat(height))))
     
-    let scaledImage = CGBitmapContextCreateImage(context).flatMap { return UIImage(CGImage: $0) }
+    let scaledImage = context?.makeImage().flatMap { return UIImage(cgImage: $0) }
     return scaledImage
   }
   
-  static func cropToBounds(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage? {
-    let rect = CGRectMake(0, 0, width, height);
+  static func cropToBounds(_ image: UIImage, width: CGFloat, height: CGFloat) -> UIImage? {
+    let rect = CGRect(x: 0, y: 0, width: width, height: height);
     UIGraphicsBeginImageContext(rect.size);
-    image.drawInRect(rect)
+    image.draw(in: rect)
     let picture1 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    let imageData = UIImagePNGRepresentation(picture1)
+    let imageData = UIImagePNGRepresentation(picture1!)
     let img = UIImage(data: imageData!)
     return img
   }
