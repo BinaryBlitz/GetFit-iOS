@@ -1,19 +1,19 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
+  - Alamofire (3.5.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
-  - Crashlytics (3.7.2):
+  - Bolts/Tasks (1.8.4)
+  - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
-  - CVCalendar (1.2.9)
+  - CVCalendar (1.3.0)
   - DACircularProgress (2.3.1)
-  - Fabric (1.6.7)
-  - FBSDKCoreKit (4.13.1):
+  - Fabric (1.6.9)
+  - FBSDKCoreKit (4.16.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.13.1):
+  - FBSDKLoginKit (4.16.0):
     - FBSDKCoreKit
   - HanekeSwift (0.10.1)
   - InnerShadowView (1.0.0)
@@ -22,100 +22,148 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - MBProgressHUD (0.9.2)
   - MCSwipeTableViewCell (2.1.4)
-  - Moya (6.5.0):
-    - Moya/Core (= 6.5.0)
-  - Moya-SwiftyJSONMapper (1.0.4):
-    - Moya-SwiftyJSONMapper/Core (= 1.0.4)
-  - Moya-SwiftyJSONMapper/Core (1.0.4):
+  - Moya (7.0.2):
+    - Moya/Core (= 7.0.2)
+  - Moya-SwiftyJSONMapper (1.0.5):
+    - Moya-SwiftyJSONMapper/Core (= 1.0.5)
+  - Moya-SwiftyJSONMapper/Core (1.0.5):
     - Moya
     - SwiftyJSON (~> 2.3.2)
-  - Moya/Core (6.5.0):
-    - Alamofire (~> 3.0)
+  - Moya/Core (7.0.2):
+    - Alamofire (~> 3.5)
     - Result (~> 2.0)
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - PhoneNumberKit (0.8.4)
+  - PhoneNumberKit (0.8.5):
+    - PhoneNumberKit/PhoneNumberKitCore (= 0.8.5)
+    - PhoneNumberKit/UIKit (= 0.8.5)
+  - PhoneNumberKit/PhoneNumberKitCore (0.8.5)
+  - PhoneNumberKit/UIKit (0.8.5):
+    - PhoneNumberKit/PhoneNumberKitCore
   - PureLayout (3.0.2)
-  - Realm (1.0.1):
-    - Realm/Headers (= 1.0.1)
-  - Realm/Headers (1.0.1)
-  - RealmSwift (1.0.1):
-    - Realm (= 1.0.1)
-  - Result (2.1.2)
-  - Reusable (2.3.0)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - Realm (2.0.1):
+    - Realm/Headers (= 2.0.1)
+  - Realm/Headers (2.0.1)
+  - RealmSwift (2.0.1):
+    - Realm (= 2.0.1)
+  - Result (2.1.3)
+  - Reusable (2.5.0):
+    - Reusable/Storyboard (= 2.5.0)
+    - Reusable/View (= 2.5.0)
+  - Reusable/Storyboard (2.5.0)
+  - Reusable/View (2.5.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SVPullToRefresh (0.4.1)
-  - SwiftDate (3.0.8)
-  - SwiftSpinner (0.9.5)
+  - SwiftDate (3.0.9)
+  - SwiftSpinner (0.9.3)
   - SwiftyJSON (2.3.2)
   - Toucan (0.5.0)
   - UICountingLabel (1.4.0)
-  - VK-ios-sdk (1.4.2)
+  - VK-ios-sdk (1.4.4)
   - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
   - Crashlytics
-  - CVCalendar
+  - CVCalendar (from `https://github.com/BxSMobility/CVCalendar`)
   - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
-  - HanekeSwift
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-2.3`)
   - InnerShadowView
   - JSQMessagesViewController
   - MCSwipeTableViewCell
   - Moya
   - Moya-SwiftyJSONMapper
   - MWPhotoBrowser
-  - PhoneNumberKit
+  - PhoneNumberKit (from `https://github.com/marmelroy/PhoneNumberKit`, branch `swift2.3`)
   - PureLayout
   - RealmSwift
   - Reusable
   - SVPullToRefresh
-  - SwiftDate
-  - SwiftSpinner
-  - Toucan
+  - SwiftDate (from `https://github.com/malcommac/SwiftDate.git`, branch `feature/swift_23`)
+  - SwiftSpinner (from `https://github.com/OMsignal/SwiftSpinner`, branch `xcode8-swift2.3`)
+  - Toucan (from `https://github.com/gavinbunney/Toucan`, branch `develop-swift-2.3`)
   - UICountingLabel
   - VK-ios-sdk
   - XCDYouTubeKit
 
+EXTERNAL SOURCES:
+  CVCalendar:
+    :git: https://github.com/BxSMobility/CVCalendar
+  HanekeSwift:
+    :branch: feature/swift-2.3
+    :git: https://github.com/Haneke/HanekeSwift
+  PhoneNumberKit:
+    :branch: swift2.3
+    :git: https://github.com/marmelroy/PhoneNumberKit
+  SwiftDate:
+    :branch: feature/swift_23
+    :git: https://github.com/malcommac/SwiftDate.git
+  SwiftSpinner:
+    :branch: xcode8-swift2.3
+    :git: https://github.com/OMsignal/SwiftSpinner
+  Toucan:
+    :branch: develop-swift-2.3
+    :git: https://github.com/gavinbunney/Toucan
+
+CHECKOUT OPTIONS:
+  CVCalendar:
+    :commit: c3a95454395633b1bc412d02c06c1b2b80aa1695
+    :git: https://github.com/BxSMobility/CVCalendar
+  HanekeSwift:
+    :commit: b1ee15fa54a15759309461911c3c71d2fa80e093
+    :git: https://github.com/Haneke/HanekeSwift
+  PhoneNumberKit:
+    :commit: 53b4327ed2313d961509a95d70c99bb1afd3ae4e
+    :git: https://github.com/marmelroy/PhoneNumberKit
+  SwiftDate:
+    :commit: 1608e37a42a4f1fec52b324f4f96726d414bd04b
+    :git: https://github.com/malcommac/SwiftDate.git
+  SwiftSpinner:
+    :commit: 65fd7455b488bfb974d064c0625c4776eeb5ee89
+    :git: https://github.com/OMsignal/SwiftSpinner
+  Toucan:
+    :commit: ae49ac720f7aed13d7a28f852401b0d6529b36d4
+    :git: https://github.com/gavinbunney/Toucan
+
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
-  CVCalendar: '0799256e0bc3b43e83b7e86c0729ce9ff0624cb6'
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
+  CVCalendar: 160faf4e1797132875ba7df4a15a3bc9759af4f1
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
-  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  HanekeSwift: '08e47d3d0f2899ec58e5d257beba0de619aca9e8'
+  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
+  FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
+  FBSDKLoginKit: 9a514a55a7d05190f64d4ef09502737588b5b561
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
-  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
-  Moya-SwiftyJSONMapper: 174dfe333c4c06bae5b941448c443ff92ca4fa0a
+  Moya: 430be684a6a53d5ad8c0b8222c4232d4f1810848
+  Moya-SwiftyJSONMapper: 62ceac2d9604404623941c41743e04e0cf1a0a86
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  PhoneNumberKit: ec93d8c5e4614ecfc1ef333eb89f7eaadedcaa17
+  PhoneNumberKit: 5668a7af19d2e566d92831a632ee80f5047eff75
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
-  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
-  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
-  Reusable: 0fec1f7fedf69acbc7710fc7cab86a1a1a3f2542
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  Realm: 0557ee0e4ab4f0936c90e370056d1ed6265f93d6
+  RealmSwift: 64e00af79bdcd7d2a7a23fdc1cb3faf22b80ae4c
+  Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
+  Reusable: 1775ede04719c488bb04e809d923cbb7214168b8
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
-  SwiftSpinner: c6585a0ae5c67eb33e737695cce88f0262008cce
+  SwiftDate: fa487d9b7d8c3070ea2553486902494f4915465d
+  SwiftSpinner: 3c6d08921578421a39522b20c8aa737cdf20aca3
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  Toucan: '0519c341148252ae114c5a657d2a85bb9ada9e40'
+  Toucan: 0519c341148252ae114c5a657d2a85bb9ada9e40
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
-  VK-ios-sdk: ac7150f279fdce24f16f5e6f9561e547be33ebf8
+  VK-ios-sdk: 296c3be1bb45faf4d9f9a2ca69dcf6ec71d9d4df
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: 470e3e9917a388e87232a049870062caf2fde8a1
+PODFILE CHECKSUM: e2ec02f2526ef608ce34d4ec95631666d4d16db1
 
 COCOAPODS: 1.0.1
