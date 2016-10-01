@@ -27,10 +27,10 @@ enum ServerEnvironment<Target: TargetType> {
   
   /// Custom endpoint closure for MoyaProvider
   func endpointMapping(target: Target) -> Endpoint<Target> {
-    let url = baseURL.URLByAppendingPathComponent(target.path).absoluteString
+    let url = baseURL.URLByAppendingPathComponent(target.path)!.absoluteString
     
     return Endpoint<Target>(
-      URL: url, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)},
+      URL: url!, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)},
       method: target.method, parameters: parametersWithAPIToken(target.parameters)
     )
   }
@@ -50,4 +50,5 @@ enum ServerEnvironment<Target: TargetType> {
 extension TargetType {
   public var baseURL: NSURL { return NSURL() }
   public var sampleData: NSData { return NSData() }
+  public var multipartBody: [MultipartFormData]? { return nil }
 }

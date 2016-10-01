@@ -61,7 +61,7 @@ class WorkoutsTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
     let workout = workouts[indexPath.row]
     
     let workoutSession = WorkoutSession()

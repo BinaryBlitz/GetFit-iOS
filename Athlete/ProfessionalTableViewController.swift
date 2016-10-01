@@ -132,7 +132,7 @@ class ProfessionalTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTab == 0:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .Card
       cell.configureWith(ProgramViewModel(program: programs[indexPath.row]))
       

@@ -89,7 +89,7 @@ extension ExerciseViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)

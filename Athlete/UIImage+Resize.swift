@@ -12,16 +12,18 @@ extension UIImage {
   
   /// Load and resize an image using `CGContextDrawImage(...)`.
   static func resizeImage(image: UIImage, withScalingFactor scalingFactor: Double) -> UIImage? {
-    let cgImage = image.CGImage
+    let cgImage = image.CGImage!
     
     let width = Double(CGImageGetWidth(cgImage)) * scalingFactor
     let height = Double(CGImageGetHeight(cgImage)) * scalingFactor
     let bitsPerComponent = CGImageGetBitsPerComponent(cgImage)
     let bytesPerRow = CGImageGetBytesPerRow(cgImage)
-    let colorSpace = CGImageGetColorSpace(cgImage)
+    let colorSpace = CGImageGetColorSpace(cgImage)!
     let bitmapInfo = CGImageGetBitmapInfo(cgImage)
     
-    let context = CGBitmapContextCreate(nil, Int(width), Int(height), bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
+    guard let context = CGBitmapContextCreate(nil, Int(width), Int(height), bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue) else {
+      return nil
+    }
     
     CGContextSetInterpolationQuality(context, .High)
     
@@ -32,11 +34,11 @@ extension UIImage {
   }
   
   static func cropToBounds(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage? {
-    let rect = CGRectMake(0, 0, width, height);
-    UIGraphicsBeginImageContext(rect.size);
+    let rect = CGRectMake(0, 0, width, height)
+    UIGraphicsBeginImageContext(rect.size)
     image.drawInRect(rect)
-    let picture1 = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    let picture1 = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
     
     let imageData = UIImagePNGRepresentation(picture1)
     let img = UIImage(data: imageData!)
