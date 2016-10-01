@@ -70,7 +70,7 @@ public extension UIImage {
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
-    guard let cgImage = image.CGImage else { return nil }
+    guard let cgImage = image!.CGImage else { return nil }
     self.init(CGImage: cgImage)
   }
 }
