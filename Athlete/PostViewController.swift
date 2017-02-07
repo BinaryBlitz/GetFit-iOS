@@ -224,11 +224,12 @@ extension PostViewController: UITableViewDataSource {
     switch indexPath.section {
     case 0:
       guard let post = post else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
       
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
       cell.state = .Normal
+      cell.delegate = self
       if let imageView = cell.contentImageView {
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImage)))
@@ -246,7 +247,7 @@ extension PostViewController: UITableViewDataSource {
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostCommentTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as PostCommentTableViewCell
       
       cell.configureWith(CommentViewModel(comment: comment))
       
@@ -258,7 +259,14 @@ extension PostViewController: UITableViewDataSource {
   
 }
 
-//MARK: - MWPhotoBrowserDelegate
+// MARK: - PostTableViewCellDelegate 
+extension PostViewController: PostTableViewCellDelegate {
+  func didTouchLikeButton(cell: PostTableViewCell) {
+    PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
+  }
+}
+
+// MARK: - MWPhotoBrowserDelegate
 extension PostViewController: MWPhotoBrowserDelegate {
   
   func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {

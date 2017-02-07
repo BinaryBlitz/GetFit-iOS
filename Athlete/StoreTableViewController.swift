@@ -34,6 +34,8 @@ class StoreTableViewController: UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 265
     
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Store)
+    
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     header.backgroundColor = UIColor.clearColor()
     tableView.tableHeaderView = header
@@ -113,7 +115,7 @@ class StoreTableViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let program = programs[indexPath.row]
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
     cell.delegate = self
     cell.state = .Card
     cell.configureWith(ProgramViewModel(program: program))

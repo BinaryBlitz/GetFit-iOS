@@ -1,40 +1,30 @@
-//
-//  ExerciseSessionViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 05/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 struct ExerciseSessionViewModel {
   let exerciseSession: ExerciseSession
 }
 
 extension ExerciseSessionViewModel: ExerciseSessionPresentable {
   var exerciseName: String {
-    return exerciseSession.name ?? ""
+    return exerciseSession.name
   }
   
   var repetitions: String? {
-    let reps = exerciseSession.reps
-    guard reps > 0 else { return nil }
+    guard let reps = exerciseSession.reps.value else { return nil }
     return "\(reps) times".uppercaseString
   }
   
   var weight: String? {
-    let weight = exerciseSession.weight
-    guard weight > 0 else { return nil }
+    guard let weight = exerciseSession.weight.value else { return nil }
     return "\(weight) kg".uppercaseString
   }
   
   var distance: String? {
-    let dist = exerciseSession.distance
-    guard dist > 0 else { return nil }
+    guard let dist = exerciseSession.distance.value else { return nil }
     return "\(dist) m".uppercaseString
   }
   
   var sets: String? {
-    return "\(exerciseSession.sets)"
+    guard let sets = exerciseSession.sets.value else { return nil }
+    return "\(sets) sets".uppercaseString
   }
   
   var completed: Bool {

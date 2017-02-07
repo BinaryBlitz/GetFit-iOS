@@ -39,6 +39,8 @@ class NewsTableViewController: UITableViewController {
     headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.tableHeaderView = headerView
     
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.News)
+    
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -88,9 +90,11 @@ class NewsTableViewController: UITableViewController {
   }
   
   //MARK: - UITableViewDataSource
-  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts?.count ?? 0
+    let numberOfRows = posts?.count ?? 0
+    tableView.backgroundView?.hidden = numberOfRows != 0
+    
+    return numberOfRows
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -190,26 +194,9 @@ extension NewsTableViewController: PostTableViewCellDelegate {
       static var request: Cancellable?
     }
     
-    //FIXME: this is just wrong
     SharedRequest.request?.cancel()
-    if let indexPath = tableView.indexPathForCell(cell),
-        post = posts?[indexPath.row] {
-      if cell.likeButton.selected {
-        SharedRequest.request = postsProvider.request(.CreateLike(postId: post.id)) { result in
-          switch result {
-          case .Success(let response):
-            do {
-              try response.filterSuccessfulStatusCodes()
-              print("yay! new like")
-            } catch {
-              cell.liked = false
-            }
-          case .Failure(let error):
-            print(error)
-            //TODO: add likes queue
-          }
-        }
-      }
-    }
+    guard let indexPath = tableView.indexPathForCell(cell), post = posts?[indexPath.row] else { return }
+    SharedRequest.request =
+        PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
   }
 }

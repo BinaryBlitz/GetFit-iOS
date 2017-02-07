@@ -41,6 +41,8 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var followButtonIcon: UIImageView!
   @IBOutlet weak var followButtonLabel: UILabel!
   
+  var bannerMaskView: UIView?
+  
   weak var delegate: ProfessionalCellDelegate?
   
   private var following: Bool = false {
@@ -57,7 +59,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
     avatarImageView.layer.borderWidth = 3
     avatarImageView.backgroundColor = UIColor.yellowColor()
-    avatarImageView.image = nil
+    avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
     
     bannerImageView.contentMode = .ScaleAspectFill
     bannerImageView.layer.masksToBounds = true
@@ -71,6 +73,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
+    bannerMaskView = maskView
   }
   
   func setupFollowButton() {
@@ -118,9 +121,13 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
       avatarImageView.hnk_setImageFromURL(avatarURL)
     }
     
-    if let bannerURLString = trainer.bannerURLString,
-        bannerURL = NSURL(string: bannerURLString) {
-      bannerImageView.hnk_setImageFromURL(bannerURL)
+    bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
+    bannerMaskView?.hidden = true
+    if let bannerURLString = trainer.bannerURLString, bannerURL = NSURL(string: bannerURLString) {
+      bannerImageView.hnk_setImageFromURL(bannerURL) { (image) in
+        self.bannerImageView.image = image
+        self.bannerMaskView?.hidden = false
+      }
     }
     
     self.state = state

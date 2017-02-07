@@ -84,6 +84,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
     layoutMargins = UIEdgeInsetsZero
+    
+    trainerAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
   
   //MARK: - Cell configuration
@@ -147,7 +149,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   
   func loadProgramPreviewView() -> ProgramPreviewView {
     let nibName = String(ProgramPreviewView)
-    return NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).first as! ProgramPreviewView
+    return NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
   }
   
   //MARK: - Actions

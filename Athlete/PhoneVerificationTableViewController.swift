@@ -7,7 +7,7 @@ class PhoneVerificationTableViewController: UITableViewController {
   
   var loginProvider: APIProvider<GetFit.Login>!
   
-  @IBOutlet weak var submitButton: UIButton!
+  @IBOutlet weak var submitButton: ActionButton!
   @IBOutlet weak var verificationCodeTextField: UITextField!
   
   override func viewDidLoad() {
@@ -36,6 +36,7 @@ class PhoneVerificationTableViewController: UITableViewController {
       return
     }
     
+    submitButton.showActivityIndicator()
     loginProvider.request(GetFit.Login.ConfirmPhoneNumber(code: code)) { result in
       switch result {
       case .Success(let response):
@@ -62,6 +63,8 @@ class PhoneVerificationTableViewController: UITableViewController {
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
+      
+      self.submitButton.hideActivityIndicator()
     }
   }
   

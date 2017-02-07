@@ -84,17 +84,12 @@ extension ExerciseViewController: UITableViewDataSource {
     switch indexPath.section {
     case 0:
       let cell = tableView.dequeueReusableCellWithIdentifier("infoCell") as! ExerciseInfoTableViewCell
-      let session = ExerciseSession()
-      session.reps = 10
-//      session.weight = 100
-//      session.distance = 500
-      session.sets = 2
-      cell.configureWith(session)
+      cell.configureWith(exercise)
       cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), forControlEvents: .TouchUpInside)
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)
