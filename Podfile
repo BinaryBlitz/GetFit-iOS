@@ -11,7 +11,7 @@ target 'Athlete' do
   pod "Moya-SwiftyJSONMapper", '~> 1.0'
 
   # DB
-  pod 'RealmSwift', '~> 2.4'
+  pod 'RealmSwift', '~> 2.3.0'
 
   # UI
   pod 'UICountingLabel', '~> 1.4'

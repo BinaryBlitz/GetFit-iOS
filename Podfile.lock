@@ -43,11 +43,11 @@ PODS:
   - PhoneNumberKit/UIKit (0.8.5):
     - PhoneNumberKit/PhoneNumberKitCore
   - PureLayout (3.0.2)
-  - Realm (2.4.2):
-    - Realm/Headers (= 2.4.2)
-  - Realm/Headers (2.4.2)
-  - RealmSwift (2.4.2):
-    - Realm (= 2.4.2)
+  - Realm (2.3.0):
+    - Realm/Headers (= 2.3.0)
+  - Realm/Headers (2.3.0)
+  - RealmSwift (2.3.0):
+    - Realm (= 2.3.0)
   - Result (2.1.3)
   - Reusable (2.5.1):
     - Reusable/Storyboard (= 2.5.1)
@@ -81,7 +81,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 2.1)
   - PhoneNumberKit (from `https://github.com/marmelroy/PhoneNumberKit`, branch `swift2.3`)
   - PureLayout (~> 3.0)
-  - RealmSwift (~> 2.4)
+  - RealmSwift (~> 2.3.0)
   - Reusable (~> 2.5)
   - SVPullToRefresh (~> 0.4)
   - SwiftDate (from `https://github.com/malcommac/SwiftDate.git`, branch `feature/swift_23`)
@@ -149,8 +149,8 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   PhoneNumberKit: 5668a7af19d2e566d92831a632ee80f5047eff75
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  Realm: d27b758e12d62a3371879a065d4c40aa212c5a54
-  RealmSwift: 9556c0fe0f0cfecacfb755ae9e68ff379fc6bead
+  Realm: 69d7de9aa569a11eed490aaabc8f2109e3985ecf
+  RealmSwift: dc6f99ea55e59490cec69c860f91932b6bf7efb6
   Result: 18e1a7597fbcca5923c565b40a25a98afafdee02
   Reusable: '093546cefed77fd939ddfd681f499f059c1027a2'
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
@@ -163,6 +163,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: 2e7b5cff872b0faf5b38028647df06e284a2b502
+PODFILE CHECKSUM: 553417eab83dde8a3f8f9505cea63247d253a2e3
 
 COCOAPODS: 1.2.0
