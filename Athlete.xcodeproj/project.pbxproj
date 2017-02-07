@@ -14,6 +14,7 @@
 		3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD01D46141D00521932 /* ConversationViewController.swift */; };
 		3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD21D46270100521932 /* MessagesTarget.swift */; };
 		3718DCD51D46321B00521932 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD41D46321B00521932 /* Subscription.swift */; };
+		371B30001D932B5A00FA3636 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B2FFF1D932B5A00FA3636 /* Like.swift */; };
 		371E356D1BE16EC40011DF69 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */; };
 		3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */; };
 		372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372EAA4B1BE68BF40049DF73 /* PostViewController.swift */; };
@@ -163,6 +164,7 @@
 		3718DCD01D46141D00521932 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		3718DCD21D46270100521932 /* MessagesTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTarget.swift; sourceTree = "<group>"; };
 		3718DCD41D46321B00521932 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		371B2FFF1D932B5A00FA3636 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				37B483DE1CECAB0C00904662 /* Exercise.swift */,
 				37F01C8D1C77CD3800910D58 /* User.swift */,
 				37D7AD891C787A2800CA96E9 /* Post.swift */,
+				371B2FFF1D932B5A00FA3636 /* Like.swift */,
 				376F65781C7C9EDA0016071C /* Comment.swift */,
 				37D7AD8B1C787D1A00CA96E9 /* Trainter.swift */,
 				37493D101C8336D0009C6C1A /* TrainerCategory.swift */,
@@ -1074,6 +1077,7 @@
 				374E85591D32C531006887E3 /* UsersTarget.swift in Sources */,
 				37A295E71CDA2423000C0D57 /* TrainingViewModel.swift in Sources */,
 				3767BCA71C7F8DED00DF5D01 /* ProfileCardTableViewCell.swift in Sources */,
+				371B30001D932B5A00FA3636 /* Like.swift in Sources */,
 				377403111D7315CA00613E0C /* NamedObject.swift in Sources */,
 				37E4A4501BDF81B8004193BF /* StoreTableViewController.swift in Sources */,
 				37A295E91CDA28F1000C0D57 /* TrainingPresentable.swift in Sources */,
