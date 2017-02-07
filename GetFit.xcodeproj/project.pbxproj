@@ -481,13 +481,13 @@
 			name = ExerciseVideoTableViewCell;
 			sourceTree = "<group>";
 		};
-		374CF8491D4773F200D83A7A /* AthleteTests */ = {
+		374CF8491D4773F200D83A7A /* GetFitTests */ = {
 			isa = PBXGroup;
 			children = (
 				374CF84A1D4773F200D83A7A /* AthleteTests.swift */,
 				374CF84C1D4773F200D83A7A /* Info.plist */,
 			);
-			path = AthleteTests;
+			path = GetFitTests;
 			sourceTree = "<group>";
 		};
 		374E85661D32D276006887E3 /* TargetTypes */ = {
@@ -592,8 +592,8 @@
 		37A53C321BDE527F00D1DA70 = {
 			isa = PBXGroup;
 			children = (
-				37A53C3D1BDE527F00D1DA70 /* Athlete */,
-				374CF8491D4773F200D83A7A /* AthleteTests */,
+				37A53C3D1BDE527F00D1DA70 /* GetFit */,
+				374CF8491D4773F200D83A7A /* GetFitTests */,
 				37A53C3C1BDE527F00D1DA70 /* Products */,
 				892E18CF12D4EEB8163E0861 /* Frameworks */,
 				80CA89EA9C889C1B9451849F /* Pods */,
@@ -609,7 +609,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		37A53C3D1BDE527F00D1DA70 /* Athlete */ = {
+		37A53C3D1BDE527F00D1DA70 /* GetFit */ = {
 			isa = PBXGroup;
 			children = (
 				374DE5CB1E49EC1200928C24 /* Athlete.entitlements */,
@@ -625,7 +625,7 @@
 				374578941BDE5CF5004935BC /* Configuration */,
 				37A53C471BDE527F00D1DA70 /* Assets.xcassets */,
 			);
-			path = Athlete;
+			path = GetFit;
 			sourceTree = "<group>";
 		};
 		37A6A1211C7AEE65007F0944 /* Protocols */ = {
