@@ -169,6 +169,7 @@
 		371B2FFF1D932B5A00FA3636 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		371E356C1BE16EC40011DF69 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		3721768E1C94CC8B002B4007 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
+		372ABDBB1E49F5CE00D41212 /* GetFit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GetFit.entitlements; sourceTree = "<group>"; };
 		372EAA4B1BE68BF40049DF73 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		373297281CA36161008AEB05 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		3732972A1CA4856C008AEB05 /* PostTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCellDelegate.swift; sourceTree = "<group>"; };
@@ -612,6 +613,7 @@
 		37A53C3D1BDE527F00D1DA70 /* GetFit */ = {
 			isa = PBXGroup;
 			children = (
+				372ABDBB1E49F5CE00D41212 /* GetFit.entitlements */,
 				374DE5CB1E49EC1200928C24 /* Athlete.entitlements */,
 				374578951BDE5D11004935BC /* Views */,
 				374578931BDE5CCA004935BC /* Controllers */,
@@ -1285,7 +1287,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Athlete/Athlete.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GetFit/GetFit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 21;
@@ -1309,7 +1311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Athlete/Athlete.entitlements;
+				CODE_SIGN_ENTITLEMENTS = GetFit/GetFit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 21;
