@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37A53C3A1BDE527F00D1DA70"
-               BuildableName = "Athlete.app"
-               BlueprintName = "Athlete"
-               ReferencedContainer = "container:Athlete.xcodeproj">
+               BuildableName = "GetFit.app"
+               BlueprintName = "GetFit"
+               ReferencedContainer = "container:GetFit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "374CF8471D4773F200D83A7A"
-               BuildableName = "AthleteTests.xctest"
-               BlueprintName = "AthleteTests"
-               ReferencedContainer = "container:Athlete.xcodeproj">
+               BuildableName = "GetFitTests.xctest"
+               BlueprintName = "GetFitTests"
+               ReferencedContainer = "container:GetFit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37A53C3A1BDE527F00D1DA70"
-            BuildableName = "Athlete.app"
-            BlueprintName = "Athlete"
-            ReferencedContainer = "container:Athlete.xcodeproj">
+            BuildableName = "GetFit.app"
+            BlueprintName = "GetFit"
+            ReferencedContainer = "container:GetFit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37A53C3A1BDE527F00D1DA70"
-            BuildableName = "Athlete.app"
-            BlueprintName = "Athlete"
-            ReferencedContainer = "container:Athlete.xcodeproj">
+            BuildableName = "GetFit.app"
+            BlueprintName = "GetFit"
+            ReferencedContainer = "container:GetFit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37A53C3A1BDE527F00D1DA70"
-            BuildableName = "Athlete.app"
-            BlueprintName = "Athlete"
-            ReferencedContainer = "container:Athlete.xcodeproj">
+            BuildableName = "GetFit.app"
+            BlueprintName = "GetFit"
+            ReferencedContainer = "container:GetFit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

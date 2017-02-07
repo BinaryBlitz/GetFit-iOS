@@ -1,6 +1,6 @@
 platform :ios, '9.3'
 
-target 'Athlete' do
+target 'GetFit' do
   use_frameworks!
   # Fabric
   pod 'Fabric', '~> 1.6'

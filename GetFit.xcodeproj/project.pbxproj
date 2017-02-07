@@ -143,6 +143,7 @@
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
 		5BFBEA4CC135C35DBE58E634 /* Pods_Athlete.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */; };
+		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 
 /* Begin PBXFileReference section */
 		0CBAE558B91A460DF5F7AB23 /* Pods-Athlete.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athlete.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Athlete/Pods-Athlete.debug.xcconfig"; sourceTree = "<group>"; };
+		252ACEE0D79D009D8A2F7CA3 /* Pods-GetFit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.debug.xcconfig"; sourceTree = "<group>"; };
 		37038D051D8F5ABA0043C4D6 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
@@ -192,7 +194,7 @@
 		374A80AE1CDD514C0099225E /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+InterfaceOrientation.swift"; sourceTree = "<group>"; };
 		374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift"; sourceTree = "<group>"; };
-		374CF8481D4773F200D83A7A /* AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AthleteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		374CF8481D4773F200D83A7A /* GetFitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetFitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		374CF84A1D4773F200D83A7A /* AthleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteTests.swift; sourceTree = "<group>"; };
 		374CF84C1D4773F200D83A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTableViewCell.swift; sourceTree = "<group>"; };
@@ -250,7 +252,7 @@
 		37A295ED1CDAAA3D000C0D57 /* ExerciseSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseSession.swift; sourceTree = "<group>"; };
 		37A295EF1CDAB0C1000C0D57 /* ExerciseSessionPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseSessionPresentable.swift; sourceTree = "<group>"; };
 		37A295F11CDAB0DB000C0D57 /* ExerciseSessionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseSessionViewModel.swift; sourceTree = "<group>"; };
-		37A53C3B1BDE527F00D1DA70 /* Athlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A53C3B1BDE527F00D1DA70 /* GetFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A53C451BDE527F00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37A53C471BDE527F00D1DA70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -298,7 +300,9 @@
 		37FD38D71C962AA700600682 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		6C7E4CCFBF52ADFA67CEF53D /* Pods-Athlete.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Athlete.release.xcconfig"; path = "Pods/Target Support Files/Pods-Athlete/Pods-Athlete.release.xcconfig"; sourceTree = "<group>"; };
+		768AF447A23055493D573F09 /* Pods_GetFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Athlete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -315,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BFBEA4CC135C35DBE58E634 /* Pods_Athlete.framework in Frameworks */,
+				DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,8 +603,8 @@
 		37A53C3C1BDE527F00D1DA70 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37A53C3B1BDE527F00D1DA70 /* Athlete.app */,
-				374CF8481D4773F200D83A7A /* AthleteTests.xctest */,
+				37A53C3B1BDE527F00D1DA70 /* GetFit.app */,
+				374CF8481D4773F200D83A7A /* GetFitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -770,6 +775,8 @@
 			children = (
 				0CBAE558B91A460DF5F7AB23 /* Pods-Athlete.debug.xcconfig */,
 				6C7E4CCFBF52ADFA67CEF53D /* Pods-Athlete.release.xcconfig */,
+				252ACEE0D79D009D8A2F7CA3 /* Pods-GetFit.debug.xcconfig */,
+				8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -779,6 +786,7 @@
 			children = (
 				B9E4A795499BD0C36E4550CA /* Pods.framework */,
 				7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */,
+				768AF447A23055493D573F09 /* Pods_GetFit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -786,9 +794,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		374CF8471D4773F200D83A7A /* AthleteTests */ = {
+		374CF8471D4773F200D83A7A /* GetFitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 374CF84F1D4773F200D83A7A /* Build configuration list for PBXNativeTarget "AthleteTests" */;
+			buildConfigurationList = 374CF84F1D4773F200D83A7A /* Build configuration list for PBXNativeTarget "GetFitTests" */;
 			buildPhases = (
 				374CF8441D4773F200D83A7A /* Sources */,
 				374CF8451D4773F200D83A7A /* Frameworks */,
@@ -799,14 +807,14 @@
 			dependencies = (
 				374CF84E1D4773F200D83A7A /* PBXTargetDependency */,
 			);
-			name = AthleteTests;
+			name = GetFitTests;
 			productName = AthleteTests;
-			productReference = 374CF8481D4773F200D83A7A /* AthleteTests.xctest */;
+			productReference = 374CF8481D4773F200D83A7A /* GetFitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		37A53C3A1BDE527F00D1DA70 /* Athlete */ = {
+		37A53C3A1BDE527F00D1DA70 /* GetFit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37A53C5A1BDE527F00D1DA70 /* Build configuration list for PBXNativeTarget "Athlete" */;
+			buildConfigurationList = 37A53C5A1BDE527F00D1DA70 /* Build configuration list for PBXNativeTarget "GetFit" */;
 			buildPhases = (
 				BF861F3F47EE3D1A02061B2F /* [CP] Check Pods Manifest.lock */,
 				37A53C371BDE527F00D1DA70 /* Sources */,
@@ -820,9 +828,9 @@
 			);
 			dependencies = (
 			);
-			name = Athlete;
+			name = GetFit;
 			productName = Athlete;
-			productReference = 37A53C3B1BDE527F00D1DA70 /* Athlete.app */;
+			productReference = 37A53C3B1BDE527F00D1DA70 /* GetFit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -850,7 +858,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 37A53C361BDE527F00D1DA70 /* Build configuration list for PBXProject "Athlete" */;
+			buildConfigurationList = 37A53C361BDE527F00D1DA70 /* Build configuration list for PBXProject "GetFit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -863,8 +871,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37A53C3A1BDE527F00D1DA70 /* Athlete */,
-				374CF8471D4773F200D83A7A /* AthleteTests */,
+				37A53C3A1BDE527F00D1DA70 /* GetFit */,
+				374CF8471D4773F200D83A7A /* GetFitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -935,7 +943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Athlete/Pods-Athlete-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetFit/Pods-GetFit-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BF861F3F47EE3D1A02061B2F /* [CP] Check Pods Manifest.lock */ = {
@@ -965,7 +973,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Athlete/Pods-Athlete-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetFit/Pods-GetFit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1102,7 +1110,7 @@
 /* Begin PBXTargetDependency section */
 		374CF84E1D4773F200D83A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 37A53C3A1BDE527F00D1DA70 /* Athlete */;
+			target = 37A53C3A1BDE527F00D1DA70 /* GetFit */;
 			targetProxy = 374CF84D1D4773F200D83A7A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1170,7 +1178,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.AthleteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Athlete.app/Athlete";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";
 			};
 			name = Debug;
 		};
@@ -1184,7 +1192,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.AthleteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Athlete.app/Athlete";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";
 			};
 			name = Release;
 		};
@@ -1271,7 +1279,7 @@
 		};
 		37A53C5B1BDE527F00D1DA70 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CBAE558B91A460DF5F7AB23 /* Pods-Athlete.debug.xcconfig */;
+			baseConfigurationReference = 252ACEE0D79D009D8A2F7CA3 /* Pods-GetFit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1295,7 +1303,7 @@
 		};
 		37A53C5C1BDE527F00D1DA70 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C7E4CCFBF52ADFA67CEF53D /* Pods-Athlete.release.xcconfig */;
+			baseConfigurationReference = 8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1318,7 +1326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		374CF84F1D4773F200D83A7A /* Build configuration list for PBXNativeTarget "AthleteTests" */ = {
+		374CF84F1D4773F200D83A7A /* Build configuration list for PBXNativeTarget "GetFitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				374CF8501D4773F200D83A7A /* Debug */,
@@ -1327,7 +1335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37A53C361BDE527F00D1DA70 /* Build configuration list for PBXProject "Athlete" */ = {
+		37A53C361BDE527F00D1DA70 /* Build configuration list for PBXProject "GetFit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37A53C581BDE527F00D1DA70 /* Debug */,
@@ -1336,7 +1344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37A53C5A1BDE527F00D1DA70 /* Build configuration list for PBXNativeTarget "Athlete" */ = {
+		37A53C5A1BDE527F00D1DA70 /* Build configuration list for PBXNativeTarget "GetFit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37A53C5B1BDE527F00D1DA70 /* Debug */,
