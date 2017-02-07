@@ -1,28 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VxJ-0z-isC">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VxJ-0z-isC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Calendar Delegate-->
         <scene sceneID="o2H-Vp-xli">
             <objects>
-                <viewController id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bhw-Jn-tKn"/>
                         <viewControllerLayoutGuide type="bottom" id="fG1-tU-IoS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9Dm-j4-oWy">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-wI-McO">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QUI-wI-McO">
                                 <rect key="frame" x="0.0" y="64" width="400" height="300"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n46-x0-NcM" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n46-x0-NcM" customClass="CVCalendarMenuView" customModule="CVCalendar">
                                         <rect key="frame" x="4" y="4" width="392" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="s7V-S3-HJW"/>
@@ -31,14 +36,14 @@
                                             <outlet property="menuViewDelegate" destination="qIZ-am-TBk" id="Gf0-4O-RNu"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yad-zk-BN9" customClass="CVCalendarView" customModule="CVCalendar">
                                         <rect key="frame" x="4" y="52" width="392" height="244"/>
                                         <connections>
                                             <outlet property="calendarDelegate" destination="qIZ-am-TBk" id="xvD-s4-wiD"/>
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.8357924226267871" blue="0.0049915609029212993" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.8357924226267871" blue="0.0049915609029212993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="3xe-WE-QdO"/>
                                     <constraint firstAttribute="bottom" secondItem="yad-zk-BN9" secondAttribute="bottom" constant="4" id="DrT-Oq-olH"/>
@@ -50,16 +55,16 @@
                                     <constraint firstItem="n46-x0-NcM" firstAttribute="leading" secondItem="QUI-wI-McO" secondAttribute="leading" constant="4" id="zkY-ez-I6c"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uqR-9N-LfB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uqR-9N-LfB">
                                 <rect key="frame" x="0.0" y="364" width="400" height="387"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="qIZ-am-TBk" id="kAO-bb-OrQ"/>
                                     <outlet property="delegate" destination="qIZ-am-TBk" id="o0f-kz-ZQM"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QUI-wI-McO" firstAttribute="leading" secondItem="9Dm-j4-oWy" secondAttribute="leadingMargin" constant="-20" id="ADI-9f-Vx8"/>
                             <constraint firstItem="QUI-wI-McO" firstAttribute="top" secondItem="bhw-Jn-tKn" secondAttribute="bottom" id="FzI-rz-WYB"/>
@@ -77,7 +82,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I3q-Kc-UKm">
-                                    <rect key="frame" x="55.5" y="-2" width="49" height="36"/>
+                                    <rect key="frame" x="56" y="-2" width="49" height="36"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-b3-HeQ">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="36"/>
@@ -129,7 +134,6 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8tt-U3-SNB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -154,13 +158,13 @@
         <!--Calendar Delegate-->
         <scene sceneID="sR7-1m-PJl">
             <objects>
-                <viewController storyboardIdentifier="select_days" id="PSF-b6-s4x" customClass="CreateWorkoutSessionsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="select_days" id="PSF-b6-s4x" customClass="CreateWorkoutSessionsViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Al6-wr-jM0"/>
                         <viewControllerLayoutGuide type="bottom" id="n4W-2l-qaI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="byG-IS-ydD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Rt-aw-uHV">
@@ -178,7 +182,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="HD0-Oz-51C" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="top" constant="30" id="1Js-9S-0J1"/>
                                     <constraint firstItem="HD0-Oz-51C" firstAttribute="leading" secondItem="7Rt-aw-uHV" secondAttribute="leading" constant="13" id="WL1-Hu-bm9"/>
@@ -187,7 +191,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGH-Al-hb5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPo-Uh-ZSD" customClass="ActionButton" customModule="Athlete" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPo-Uh-ZSD" customClass="ActionButton" customModule="GetFit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="375" width="600" height="59"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="59" id="zcb-uj-ogt"/>
@@ -200,7 +204,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djj-BY-KmO" customClass="CVCalendarMenuView" customModule="CVCalendar">
                                         <rect key="frame" x="12" y="80" width="576" height="40"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Run-CR-MYx"/>
                                         </constraints>
@@ -221,7 +225,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Fz-Or-DXn" customClass="CVCalendarView" customModule="CVCalendar">
                                         <rect key="frame" x="12" y="120" width="576" height="411"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="n90-mF-FfA"/>
                                         </constraints>
@@ -230,7 +234,7 @@
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="bPo-Uh-ZSD" secondAttribute="trailing" id="3JL-DO-1Xq"/>
                                     <constraint firstAttribute="trailing" secondItem="9Fz-Or-DXn" secondAttribute="trailing" constant="8" id="7KQ-tC-I82"/>
@@ -249,7 +253,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pGH-Al-hb5" firstAttribute="top" secondItem="7Rt-aw-uHV" secondAttribute="bottom" id="6wL-di-2rg"/>
                             <constraint firstItem="pGH-Al-hb5" firstAttribute="leading" secondItem="byG-IS-ydD" secondAttribute="leading" id="9Ze-Dh-AfT"/>

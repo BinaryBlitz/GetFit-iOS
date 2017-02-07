@@ -11,6 +11,7 @@
 		37044EAE1C8B110300010AB7 /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */; };
 		37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */; };
 		3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706E9821CF33D1A00DF2FB1 /* Image.swift */; };
+		370A092D1E49FB5F00FC8B72 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 370A092C1E49FB5F00FC8B72 /* News.storyboard */; };
 		3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD01D46141D00521932 /* ConversationViewController.swift */; };
 		3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD21D46270100521932 /* MessagesTarget.swift */; };
 		3718DCD51D46321B00521932 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718DCD41D46321B00521932 /* Subscription.swift */; };
@@ -101,7 +102,6 @@
 		37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C441BDE527F00D1DA70 /* Main.storyboard */; };
 		37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C471BDE527F00D1DA70 /* Assets.xcassets */; };
 		37A53C4B1BDE527F00D1DA70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C491BDE527F00D1DA70 /* LaunchScreen.storyboard */; };
-		37A53C621BDE59C300D1DA70 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C601BDE59C300D1DA70 /* News.storyboard */; };
 		37A53C641BDE59DF00D1DA70 /* Professionals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C631BDE59DF00D1DA70 /* Professionals.storyboard */; };
 		37A53C671BDE5A6400D1DA70 /* Trainings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */; };
 		37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A53C681BDE5A9D00D1DA70 /* Store.storyboard */; };
@@ -162,6 +162,7 @@
 		37044EAC1C8B110300010AB7 /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		37044EAD1C8B110300010AB7 /* ProfessionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfessionalTableViewCell.xib; sourceTree = "<group>"; };
 		3706E9821CF33D1A00DF2FB1 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		370A092C1E49FB5F00FC8B72 /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		3718DCD01D46141D00521932 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		3718DCD21D46270100521932 /* MessagesTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTarget.swift; sourceTree = "<group>"; };
 		3718DCD41D46321B00521932 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
@@ -257,7 +258,6 @@
 		37A53C471BDE527F00D1DA70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37A53C4A1BDE527F00D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37A53C4C1BDE527F00D1DA70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37A53C611BDE59C300D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Athlete/Base.lproj/News.storyboard; sourceTree = "<group>"; };
 		37A53C631BDE59DF00D1DA70 /* Professionals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Professionals.storyboard; sourceTree = "<group>"; };
 		37A53C661BDE5A6400D1DA70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Trainings.storyboard; sourceTree = "<group>"; };
 		37A53C681BDE5A9D00D1DA70 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				37A53C441BDE527F00D1DA70 /* Main.storyboard */,
-				37A53C601BDE59C300D1DA70 /* News.storyboard */,
+				370A092C1E49FB5F00FC8B72 /* News.storyboard */,
 				37A53C631BDE59DF00D1DA70 /* Professionals.storyboard */,
 				37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */,
 				3760E91B1BE16C9900B62CB7 /* Training.storyboard */,
@@ -887,6 +887,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370A092D1E49FB5F00FC8B72 /* News.storyboard in Resources */,
 				379943F91CDCC9CD00A3F36A /* ExerciseParamsView.xib in Resources */,
 				374D46841CD6240900234FC5 /* ProgramTableViewCell.xib in Resources */,
 				3743BD7E1D478B4400303059 /* ChatsTableViewCell.xib in Resources */,
@@ -902,7 +903,6 @@
 				37A295E41CDA1B05000C0D57 /* TrainingTableViewCell.xib in Resources */,
 				37811F9E1CEFC57600AFB47E /* ProgramPreviewView.xib in Resources */,
 				37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */,
-				37A53C621BDE59C300D1DA70 /* News.storyboard in Resources */,
 				374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */,
 				37A295EB1CDA94D2000C0D57 /* ExerciseTableViewCell.xib in Resources */,
 				37A53C691BDE5A9D00D1DA70 /* Store.storyboard in Resources */,
@@ -1138,14 +1138,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		37A53C601BDE59C300D1DA70 /* News.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37A53C611BDE59C300D1DA70 /* Base */,
-			);
-			name = News.storyboard;
-			sourceTree = "<group>";
-		};
 		37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1170,10 +1162,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = AthleteTests/Info.plist;
+				INFOPLIST_FILE = GetFitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.AthleteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.GetFitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";
@@ -1185,10 +1177,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = AthleteTests/Info.plist;
+				INFOPLIST_FILE = GetFitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.AthleteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.GetFitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";

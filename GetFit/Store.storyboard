@@ -1,18 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GmK-rj-2cT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GmK-rj-2cT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--STORE-->
         <scene sceneID="fCc-4T-24h">
             <objects>
-                <tableViewController id="ikW-lv-FdO" customClass="StoreTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ikW-lv-FdO" customClass="StoreTableViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="168" sectionHeaderHeight="1" sectionFooterHeight="1" id="ENL-xJ-VW2">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="ikW-lv-FdO" id="adH-Oo-wrP"/>
                             <outlet property="delegate" destination="ikW-lv-FdO" id="QRd-pQ-9c6"/>
@@ -32,20 +37,20 @@
         <!--Program Details Table View Controller-->
         <scene sceneID="Mwz-tf-dIP">
             <objects>
-                <tableViewController storyboardIdentifier="ProgramDetails" hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProgramDetails" hidesBottomBarWhenPushed="YES" id="Syf-XJ-wxQ" customClass="ProgramDetailsTableViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="108" sectionHeaderHeight="18" sectionFooterHeight="18" id="h1E-Zo-NYf">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="108" id="yw0-Oe-epF">
-                                <rect key="frame" x="0.0" y="114" width="400" height="108"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="108"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yw0-Oe-epF" id="wMx-ID-rlo">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-ud-785">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-ud-785">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="108"/>
                                         </imageView>
                                     </subviews>
@@ -58,10 +63,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="exerciseCell" rowHeight="44" id="eX4-lO-rw7">
-                                <rect key="frame" x="0.0" y="222" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eX4-lO-rw7" id="Y7L-f4-aYP">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -96,7 +101,6 @@
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DHa-e2-16j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

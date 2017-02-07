@@ -1,44 +1,49 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pvK-mg-zyo">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pvK-mg-zyo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--TRAINING 1-->
         <scene sceneID="JbH-rs-wCC">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="pvK-mg-zyo" customClass="TrainingViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="pvK-mg-zyo" customClass="TrainingViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="prU-6f-sUp"/>
                         <viewControllerLayoutGuide type="bottom" id="J3W-2M-Mh0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6hm-H2-49W">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x35-ko-7LM">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x35-ko-7LM">
                                 <rect key="frame" x="0.0" y="694" width="400" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIo-CS-fNa" customClass="UICountingLabel">
                                         <rect key="frame" x="16" y="17" width="41" height="23"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4W-9a-Ykt">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4W-9a-Ykt">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="57"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <state key="normal" title="END TRAINING">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="endTrainingAction:" destination="pvK-mg-zyo" eventType="touchUpInside" id="ewd-8B-0MR"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="f4W-9a-Ykt" secondAttribute="trailing" id="E2z-XR-xxx"/>
                                     <constraint firstItem="aIo-CS-fNa" firstAttribute="leading" secondItem="x35-ko-7LM" secondAttribute="leading" constant="16" id="FgW-2M-rIW"/>
@@ -49,43 +54,43 @@
                                     <constraint firstItem="f4W-9a-Ykt" firstAttribute="top" secondItem="x35-ko-7LM" secondAttribute="top" id="hHQ-lv-BHx"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-Ju-fDc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-Ju-fDc">
                                 <rect key="frame" x="0.0" y="64" width="400" height="630"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="trainingInfoCell" rowHeight="126" id="hk5-7n-SXo">
-                                        <rect key="frame" x="0.0" y="49.5" width="400" height="126"/>
+                                        <rect key="frame" x="0.0" y="56" width="400" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hk5-7n-SXo" id="90F-hw-dmW">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="125.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Silvestri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNY-JA-5u0">
-                                                    <rect key="frame" x="43" y="53" width="91" height="18"/>
+                                                    <rect key="frame" x="43" y="52" width="91" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGi-gv-wZM">
-                                                    <rect key="frame" x="0.0" y="87" width="400" height="39"/>
-                                                    <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="0.0" y="86" width="400" height="39"/>
+                                                    <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="Wwc-fs-NO5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <state key="normal" title="SHOW ME TRAINING TIPS">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOq-G6-fle">
-                                                    <rect key="frame" x="15" y="8" width="362" height="36"/>
+                                                    <rect key="frame" x="15" y="8" width="362" height="35"/>
                                                     <string key="text">I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..</string>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="ueI-t7-4CT" customClass="CircleImageView" customModule="Athlete" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="52" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="ueI-t7-4CT" customClass="CircleImageView" customModule="GetFit" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="51" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="q4H-y5-JXE"/>
                                                         <constraint firstAttribute="height" constant="20" id="tsz-jJ-Bkh"/>
@@ -114,7 +119,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="L0B-Ju-fDc" firstAttribute="leading" secondItem="6hm-H2-49W" secondAttribute="leadingMargin" constant="-20" id="2bb-DZ-t18"/>
                             <constraint firstItem="x35-ko-7LM" firstAttribute="top" secondItem="L0B-Ju-fDc" secondAttribute="bottom" id="6BD-R4-TQL"/>
@@ -128,7 +133,6 @@
                     <navigationItem key="navigationItem" title="TRAINING 1" id="cTa-3g-tP5"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[heightClass=regular-widthClass=compact]"/>
                     <connections>
                         <outlet property="endTrainingButton" destination="f4W-9a-Ykt" id="pGg-7W-7Md"/>
                         <outlet property="endTrainingView" destination="x35-ko-7LM" id="fcy-f0-LZD"/>
@@ -146,34 +150,34 @@
         <!--POWER UPS-->
         <scene sceneID="RN1-dF-lOk">
             <objects>
-                <viewController id="Kad-Wi-IFN" customClass="ExerciseViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kad-Wi-IFN" customClass="ExerciseViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D7A-y1-6X8"/>
                         <viewControllerLayoutGuide type="bottom" id="zsP-4K-Y4w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lz6-rT-ZyC">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKs-KH-dix">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKs-KH-dix">
                                 <rect key="frame" x="0.0" y="699" width="400" height="52"/>
-                                <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="C1Z-ML-Fs4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="EXERCISE DONE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="endExerciseAction:" destination="Kad-Wi-IFN" eventType="touchUpInside" id="0nx-ZE-QdO"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="173" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BjM-ea-WDA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="173" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BjM-ea-WDA">
                                 <rect key="frame" x="0.0" y="64" width="400" height="635"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="226" id="mpi-be-cyy" customClass="ExerciseInfoTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="226" id="mpi-be-cyy" customClass="ExerciseInfoTableViewCell" customModule="GetFit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="400" height="226"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mpi-be-cyy" id="ysm-0A-IzO">
@@ -182,20 +186,20 @@
                                             <subviews>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-gd-Dsr">
                                                     <rect key="frame" x="0.0" y="187" width="400" height="39"/>
-                                                    <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.25679612590000001" green="0.75131637289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="rTg-9E-342"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <state key="normal" title="SHOW ME TRAINING TIPS">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up4-ze-e2z">
                                                     <rect key="frame" x="20" y="18" width="352" height="90"/>
                                                     <string key="text">I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..I will show you how to burn fat more efficiently and spend lass time in the gym..</string>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5eP-oL-BPu">
@@ -228,7 +232,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="OKs-KH-dix" firstAttribute="top" secondItem="BjM-ea-WDA" secondAttribute="bottom" id="8Zv-8Y-0gf"/>
                             <constraint firstAttribute="trailing" secondItem="OKs-KH-dix" secondAttribute="trailing" id="Ke3-1O-dp0"/>
@@ -253,22 +257,22 @@
         <!--Weight-->
         <scene sceneID="X4F-cK-745">
             <objects>
-                <tableViewController id="4vK-aP-EOW" customClass="EditExerciseTableViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4vK-aP-EOW" customClass="EditExerciseTableViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="199" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ugy-vW-xt7">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="Obz-GU-n1m">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="199" id="TVT-3M-dAQ">
-                                        <rect key="frame" x="0.0" y="99" width="400" height="199"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="199"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVT-3M-dAQ" id="wgF-H2-3ot">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="198.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="198"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNA-xk-Nod">
+                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iNA-xk-Nod">
                                                     <rect key="frame" x="8" y="8" width="384" height="183"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="4vK-aP-EOW" id="TKa-lM-lKD"/>
@@ -331,16 +335,16 @@
         <!--Training Tips View Controller-->
         <scene sceneID="u7T-0K-cEg">
             <objects>
-                <viewController id="mh2-UO-UDc" customClass="TrainingTipsViewController" customModule="Athlete" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mh2-UO-UDc" customClass="TrainingTipsViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ytf-eA-qgH"/>
                         <viewControllerLayoutGuide type="bottom" id="IhK-PM-31T"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SUh-jQ-041">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNW-Ng-qet">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNW-Ng-qet">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="123"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJ2-kA-bHc">
@@ -355,17 +359,17 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="GJ2-kA-bHc" firstAttribute="leading" secondItem="vNW-Ng-qet" secondAttribute="leading" constant="13" id="OjX-rU-qKy"/>
                                     <constraint firstItem="GJ2-kA-bHc" firstAttribute="top" secondItem="vNW-Ng-qet" secondAttribute="top" constant="30" id="ma2-Zi-RIB"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MsC-w1-b8m">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MsC-w1-b8m">
                                 <rect key="frame" x="0.0" y="123" width="400" height="677"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tipCell" id="O5L-Hj-3Zn" customClass="TrainingTipTableViewCell" customModule="Athlete" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tipCell" id="O5L-Hj-3Zn" customClass="TrainingTipTableViewCell" customModule="GetFit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="400" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O5L-Hj-3Zn" id="KWb-PS-VK6">
@@ -375,16 +379,16 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ow2-eB-l9K">
                                                     <rect key="frame" x="16" y="8" width="368" height="79"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-xg-gG6">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-xg-gG6">
                                                             <rect key="frame" x="0.0" y="0.0" width="53" height="24"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwK-JC-MVn">
-                                                            <rect key="frame" x="0.0" y="60" width="39" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwK-JC-MVn">
+                                                            <rect key="frame" x="0.0" y="59" width="39" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -409,7 +413,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vNW-Ng-qet" firstAttribute="top" secondItem="SUh-jQ-041" secondAttribute="top" id="E3h-on-eBs"/>
                             <constraint firstItem="MsC-w1-b8m" firstAttribute="leading" secondItem="SUh-jQ-041" secondAttribute="leading" id="GIs-Kf-DKJ"/>
