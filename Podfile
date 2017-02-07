@@ -28,7 +28,7 @@ target 'Athlete' do
   # Tools
   pod 'SwiftDate', git: 'https://github.com/malcommac/SwiftDate.git', branch: 'feature/swift_23'
   pod 'PureLayout', '~> 3.0'
-  pod 'HanekeSwift', '~> 0.10'
+  pod 'HanekeSwift', git: 'https://github.com/Haneke/HanekeSwift.git'
   pod 'Reusable', '~> 2.5'
   pod 'Toucan', git: 'https://github.com/gavinbunney/Toucan', branch: 'develop-swift-2.3'
 
