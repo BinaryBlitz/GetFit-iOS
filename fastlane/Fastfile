@@ -32,7 +32,7 @@ platform :ios do
     ensure_git_status_clean
     # Increment the build number (not the version number)
     increment_build_number
-    # Code signing
+    # Manage code signing
     match(type: 'development')
     # Build your app - more options available
     gym(scheme: 'GetFit')
