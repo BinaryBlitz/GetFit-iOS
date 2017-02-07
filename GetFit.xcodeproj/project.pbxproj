@@ -142,7 +142,6 @@
 		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
-		5BFBEA4CC135C35DBE58E634 /* Pods_Athlete.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */; };
 		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
 
@@ -200,7 +199,6 @@
 		374CF84C1D4773F200D83A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		374D46811CD6240900234FC5 /* ProgramTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTableViewCell.swift; sourceTree = "<group>"; };
 		374D46821CD6240900234FC5 /* ProgramTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramTableViewCell.xib; sourceTree = "<group>"; };
-		374DE5CB1E49EC1200928C24 /* Athlete.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Athlete.entitlements; sourceTree = "<group>"; };
 		374E85561D32C440006887E3 /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		374E85581D32C531006887E3 /* UsersTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTarget.swift; sourceTree = "<group>"; };
 		374E855A1D32D121006887E3 /* LoginTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BFBEA4CC135C35DBE58E634 /* Pods_Athlete.framework in Frameworks */,
 				DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,7 +611,6 @@
 			isa = PBXGroup;
 			children = (
 				372ABDBB1E49F5CE00D41212 /* GetFit.entitlements */,
-				374DE5CB1E49EC1200928C24 /* Athlete.entitlements */,
 				374578951BDE5D11004935BC /* Views */,
 				374578931BDE5CCA004935BC /* Controllers */,
 				37A6A1211C7AEE65007F0944 /* Protocols */,
@@ -1148,7 +1144,6 @@
 				37A53C611BDE59C300D1DA70 /* Base */,
 			);
 			name = News.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		37A53C651BDE5A6400D1DA70 /* Trainings.storyboard */ = {
