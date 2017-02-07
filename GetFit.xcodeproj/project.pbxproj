@@ -1287,8 +1287,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.GetFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "baee6f7c-85fb-4e77-9974-70303f884051";
-				PROVISIONING_PROFILE_SPECIFIER = "ru.binaryblitz.GetFit Development";
+				PROVISIONING_PROFILE = "af6c5c51-73bb-4475-af0f-2a8e62404556";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development ru.binaryblitz.GetFit";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
@@ -1312,8 +1312,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binaryblitz.GetFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "acc8ea30-4fdf-4f2f-961a-cf5beb612e7a";
-				PROVISIONING_PROFILE_SPECIFIER = "ru.binaryblitz.GetFit AppStore";
+				PROVISIONING_PROFILE = "99056105-5ba4-44f9-b5e3-29c99a8c8711";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore ru.binaryblitz.GetFit";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 2.3;
 			};
