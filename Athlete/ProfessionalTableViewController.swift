@@ -132,7 +132,7 @@ class ProfessionalTableViewController: UITableViewController {
 
       return cell
     case 1 where selectedTab == 0:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
       cell.state = .Card
       cell.configureWith(ProgramViewModel(program: programs[indexPath.row]))
 
@@ -243,7 +243,7 @@ extension ProfessionalTableViewController: MWPhotoBrowserDelegate {
       urlString = trainer.bannerURLString
     }
 
-    guard let imageURLString = urlString, url = NSURL(string: imageURLString) else { return nil }
+    guard let imageURLString = urlString, let url = NSURL(string: imageURLString) else { return nil }
 
     return MWPhoto(URL: url)
   }

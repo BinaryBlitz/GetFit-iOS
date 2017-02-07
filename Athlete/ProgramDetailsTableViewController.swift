@@ -71,7 +71,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
       cell.delegate = self
       cell.state = .Normal
       cell.configureWith(ProgramViewModel(program: program))

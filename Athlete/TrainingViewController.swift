@@ -216,7 +216,7 @@ extension TrainingViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
       
       let session = finishedExercises[indexPath.row]
@@ -225,7 +225,7 @@ extension TrainingViewController: UITableViewDataSource {
       
       return cell
     case 2:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
       
       let session = exercisesToDo[indexPath.row]

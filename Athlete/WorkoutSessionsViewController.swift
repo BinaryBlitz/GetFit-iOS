@@ -255,7 +255,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
 
     let model = tableViewDataSource[indexPath.row]
     cell.selectionStyle = .None

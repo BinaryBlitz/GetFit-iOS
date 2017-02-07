@@ -49,7 +49,7 @@ class TrainersListTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     guard let trainer = trainers?[indexPath.row] else { return UITableViewCell() }
     
-    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     
     return cell

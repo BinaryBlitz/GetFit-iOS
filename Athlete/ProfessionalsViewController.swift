@@ -153,7 +153,7 @@ extension ProfessionalsViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     guard let trainer = trainerAtIndexPath(indexPath) else { return UITableViewCell() }
-    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     cell.state = .Card
     cell.delegate = self

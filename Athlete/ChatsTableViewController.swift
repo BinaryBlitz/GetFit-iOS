@@ -86,7 +86,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(for: indexPath) as ChatsTableViewCell
+    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ChatsTableViewCell
     
     let subscription = subscriptions[indexPath.row]
     cell.configureWith(SubscriptionViewModel(subscription: subscription))

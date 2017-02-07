@@ -165,7 +165,7 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ProfileCardTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfileCardTableViewCell
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
       }
@@ -185,7 +185,7 @@ class ProfileTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTabIndex == 0:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticsTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as StatisticsTableViewCell
       cell.layoutSubviews()
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
@@ -193,7 +193,7 @@ class ProfileTableViewController: UITableViewController {
       
       return cell
     case 1 where selectedTabIndex == 1:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
       cell.state = .Card
       let program = programs![indexPath.row]
       cell.configureWith(ProgramViewModel(program: program))

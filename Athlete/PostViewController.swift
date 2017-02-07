@@ -224,7 +224,7 @@ extension PostViewController: UITableViewDataSource {
     switch indexPath.section {
     case 0:
       guard let post = post else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostTableViewCell
       
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
@@ -247,7 +247,7 @@ extension PostViewController: UITableViewDataSource {
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
-      let cell = tableView.dequeueReusableCell(for: indexPath) as PostCommentTableViewCell
+      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as PostCommentTableViewCell
       
       cell.configureWith(CommentViewModel(comment: comment))
       
