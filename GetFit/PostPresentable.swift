@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PostPresentable {
-  var imageURL: NSURL? { get }
+  var imageURL: URL? { get }
   var likesCount: String { get }
   var commentsCount: String { get }
   var liked: Bool { get }

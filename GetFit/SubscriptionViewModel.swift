@@ -26,9 +26,9 @@ extension SubscriptionViewModel: SubscriptionPresentable {
     }
   }
 
-  var avatarImageURL: NSURL? {
+  var avatarImageURL: URL? {
     guard let urlString = subscription.trainer.avatarURLString else { return nil }
 
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
 }

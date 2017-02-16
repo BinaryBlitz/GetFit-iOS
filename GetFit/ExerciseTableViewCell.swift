@@ -18,58 +18,58 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
   }
   
   //MARK: - Actions
-  @IBAction func weightButtonAction(sender: AnyObject) {
+  @IBAction func weightButtonAction(_ sender: AnyObject) {
     actionsDelegate?.didTapOnWeightButton?(self)
   }
   
-  @IBAction func repetitionsButtonAction(sender: AnyObject) {
+  @IBAction func repetitionsButtonAction(_ sender: AnyObject) {
     actionsDelegate?.didTapOnRepetitionsButton?(self)
   }
   
   //MARK: - Status
   enum Status {
-    case Uncomplete
-    case Complete
+    case uncomplete
+    case complete
   }
   
-  var status: Status = .Uncomplete {
+  var status: Status = .uncomplete {
     didSet {
       updateStatus(status)
     }
   }
   
-  private func updateStatus(status: Status) {
+  fileprivate func updateStatus(_ status: Status) {
     switch status {
-    case .Uncomplete:
+    case .uncomplete:
       badgesStack.arrangedSubviews.forEach { view in
-        view.layer.borderColor = UIColor.blueAccentColor().CGColor
+        view.layer.borderColor = UIColor.blueAccentColor().cgColor
         view.tintColor = UIColor.blueAccentColor()
         if let badge = view as? BadgeView {
-          badge.label.font = UIFont.boldSystemFontOfSize(12)
+          badge.label.font = UIFont.boldSystemFont(ofSize: 12)
         }
       }
       
       titleLabel.textColor = UIColor.blackTextColor()
       defaultColor = UIColor.greenAccentColor()
-      completeMarkImageView.hidden = true
-    case .Complete:
+      completeMarkImageView.isHidden = true
+    case .complete:
       badgesStack.arrangedSubviews.forEach { view in
-        view.layer.borderColor = UIColor.graySecondaryColor().CGColor
+        view.layer.borderColor = UIColor.graySecondaryColor().cgColor
         view.tintColor = UIColor.graySecondaryColor()
         if let badge = view as? BadgeView {
-          badge.label.font = UIFont.boldSystemFontOfSize(13)
+          badge.label.font = UIFont.boldSystemFont(ofSize: 13)
         }
       }
       
       titleLabel.textColor = UIColor.graySecondaryColor()
       defaultColor = UIColor.primaryYellowColor()
-      completeMarkImageView.hidden = false
+      completeMarkImageView.isHidden = false
     }
   }
   
   //MARK: - Configuration
-  func configureWith(viewModel: ExerciseSessionPresentable) {
-    status = viewModel.completed ? .Complete : .Uncomplete
+  func configureWith(_ viewModel: ExerciseSessionPresentable) {
+    status = viewModel.completed ? .complete : .uncomplete
     titleLabel.text = viewModel.exerciseName
     
     badgesStack.arrangedSubviews.forEach { view in badgesStack.removeArrangedSubview(view); view.removeFromSuperview() }
@@ -91,9 +91,9 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
     }
   }
   
-  private func createBadgeWith(title title: String) -> BadgeView {
+  fileprivate func createBadgeWith(title: String) -> BadgeView {
     let badge = BadgeView()
-    badge.style = BadgeView.Style(color: .LightBlue, height: .Low)
+    badge.style = BadgeView.Style(color: .lightBlue, height: .low)
     badge.text = title
     
     return badge

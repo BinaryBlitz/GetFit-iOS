@@ -34,15 +34,11 @@ class Program: Object, ALSwiftyJSONAble {
     super.init()
   }
   
-  required init(realm: RLMRealm, schema: RLMObjectSchema) {
-    super.init(realm: realm, schema: schema)
-  }
-  
   required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, name = jsonData["name"].string, preview = jsonData["preview"].string,
-          price = jsonData["price"].int, programDescription = jsonData["description"].string else {
+    guard let id = jsonData["id"].int, let name = jsonData["name"].string, let preview = jsonData["preview"].string,
+          let price = jsonData["price"].int, let programDescription = jsonData["description"].string else {
       return nil
     }
     
@@ -97,7 +93,11 @@ class Program: Object, ALSwiftyJSONAble {
     }
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
+  }
+
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
   }
 }

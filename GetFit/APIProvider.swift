@@ -4,7 +4,7 @@ import Moya
 /// MoyaProvider subclass with ServerEnvironment support
 class APIProvider<Target: TargetType>: MoyaProvider<Target> {
   
-  init(environment: ServerEnvironment<Target> = .Staging, plugins: [PluginType] = []) {
+  init(environment: ServerEnvironment<Target> = .staging, plugins: [PluginType] = []) {
     var plugins = plugins
     plugins.append(NetworkActivityManager.shared.plugin)
     super.init(endpointClosure: environment.endpointMapping, plugins: plugins)
@@ -13,33 +13,33 @@ class APIProvider<Target: TargetType>: MoyaProvider<Target> {
 
 /// Server environment specificaton. Use it to create a MoyaProvider
 enum ServerEnvironment<Target: TargetType> {
-  case Staging
-  case Production
+  case staging
+  case production
   
-  var baseURL: NSURL {
+  var baseURL: URL {
     switch self {
-    case .Staging:
-      return NSURL(string: "https://getfit-staging.herokuapp.com/api")!
-    case.Production:
-      return NSURL(string: "")! //TODO: Add production base url
+    case .staging:
+      return URL(string: "https://getfit-staging.herokuapp.com/api")!
+    case.production:
+      return URL(string: "")! //TODO: Add production base url
     }
   }
   
   /// Custom endpoint closure for MoyaProvider
-  func endpointMapping(target: Target) -> Endpoint<Target> {
-    let url = baseURL.URLByAppendingPathComponent(target.path)!.absoluteString
+  func endpointMapping(_ target: Target) -> Endpoint<Target> {
+    let url = baseURL.appendingPathComponent(target.path).absoluteString
     
     return Endpoint<Target>(
-      URL: url!, sampleResponseClosure: {.NetworkResponse(200, target.sampleData)},
+      url: url, sampleResponseClosure: {.networkResponse(200, target.sampleData)},
       method: target.method, parameters: parametersWithAPIToken(target.parameters)
     )
   }
   
   /// Creates parametes dictionary with api token
-  private func parametersWithAPIToken(parameters: [String: AnyObject]?) -> [String: AnyObject]? {
+  fileprivate func parametersWithAPIToken(_ parameters: [String: Any]?) -> [String: Any]? {
     var params = parameters ?? [:]
     if let token = UserManager.apiToken {
-      params["api_token"] = token
+      params["api_token"] = token as Any?
     }
     
     return params
@@ -48,7 +48,8 @@ enum ServerEnvironment<Target: TargetType> {
 
 /// Hides unused TargetType capabilities to clean up targets code
 extension TargetType {
-  public var baseURL: NSURL { return NSURL() }
-  public var sampleData: NSData { return NSData() }
+  public var baseURL: URL { return URL(string: "")! }
+  public var sampleData: Data { return Data() }
   public var multipartBody: [MultipartFormData]? { return nil }
+  public var task: Task { return .request }
 }

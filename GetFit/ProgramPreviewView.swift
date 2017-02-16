@@ -20,14 +20,14 @@ class ProgramPreviewView: UIView {
     
     contentView.layer.cornerRadius = 5
     contentView.layer.borderWidth = 0.8
-    contentView.layer.borderColor = UIColor.lightGrayColor().CGColor
+    contentView.layer.borderColor = UIColor.lightGray.cgColor
     titleLabel.textColor = UIColor.blueAccentColor()
   }
   
-  func configureWith(program: ProgramPresentable) {
+  func configureWith(_ program: ProgramPresentable) {
     titleLabel.text = program.title
     infoLabel.attributedText = program.info
-    priceBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
+    priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     priceBadge.text = program.price
   }
 }

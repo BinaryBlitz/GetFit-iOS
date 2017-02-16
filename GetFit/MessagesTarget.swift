@@ -4,9 +4,9 @@ import Moya
 extension GetFit {
   
   public enum Subscriptions {
-    case List
-    case ListMessages(subscriptionId: Int)
-    case CreateMessage(subscriptionId: Int, message: Message)
+    case list
+    case listMessages(subscriptionId: Int)
+    case createMessage(subscriptionId: Int, message: Message)
   }
 }
 
@@ -14,31 +14,40 @@ extension GetFit.Subscriptions : TargetType {
   
   public var path: String {
     switch self {
-    case .List:
+    case .list:
       return "/subscriptions"
-    case .ListMessages(let subscriptionId):
+    case .listMessages(let subscriptionId):
       return "/subscriptions/\(subscriptionId)/messages"
-    case .CreateMessage(let subscriptionId, _):
+    case .createMessage(let subscriptionId, _):
       return "/subscriptions/\(subscriptionId)/messages"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .List, .ListMessages(_):
-      return .GET
-    case .CreateMessage(_, _):
-      return .POST
+    case .list, .listMessages(_):
+      return .get
+    case .createMessage(_, _):
+      return .post
+    }
+  }
+
+  public var parameterEncoding: ParameterEncoding {
+    switch self {
+    case .list, .listMessages(_):
+      return URLEncoding.default
+    case .createMessage(_, _):
+      return JSONEncoding.default
     }
   }
   
-  public var parameters: [String: AnyObject]? {
+  public var parameters: [String: Any]? {
     switch self {
-    case .List, .ListMessages(_):
+    case .list, .listMessages(_):
       return nil
-    case .CreateMessage(_, let message):
-      let message: [String: AnyObject] = ["content": message.content!]
-      return ["message": message]
+    case .createMessage(_, let message):
+      let message: [String: Any] = ["content": message.content! as Any]
+      return ["message": message as Any]
     }
   }
   

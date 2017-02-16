@@ -7,28 +7,28 @@ struct PostViewModel {
   let postsProvider = APIProvider<GetFit.Posts>()
   
   enum PostReaction {
-    case Like
-    case Dislike
+    case like
+    case dislike
   }
   
-  func updateReaction(reaction: PostReaction) -> Cancellable {
-    return postsProvider.request(.CreateLike(postId: post.id)) { result in
+  func updateReaction(_ reaction: PostReaction) -> Cancellable {
+    return postsProvider.request(.createLike(postId: post.id)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           print("yay! new like")
         } catch {
           self.addLikeToUploadQueueFor(self.post)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.addLikeToUploadQueueFor(self.post)
       }
     }
   }
   
-  private func addLikeToUploadQueueFor(post: Post) {
+  fileprivate func addLikeToUploadQueueFor(_ post: Post) {
     let realm = try! Realm()
     try! realm.write {
       let like = Like()
@@ -41,9 +41,9 @@ struct PostViewModel {
 //MARK: - PostPresentable
 
 extension PostViewModel: PostPresentable {
-  var imageURL: NSURL? {
+  var imageURL: URL? {
     guard let imageURLString = post.imageURLString,
-        url = NSURL(string: imageURLString) else {
+        let url = URL(string: imageURLString) else {
       return nil
     }
     
@@ -78,13 +78,13 @@ extension PostViewModel: TextPresentable {
 //MARK: - TrainerPresentable
 
 extension PostViewModel: TrainerPresentable {
-  var trainerAvatarURL: NSURL? {
+  var trainerAvatarURL: URL? {
     guard let trainer = post.trainer,
-        avatarURLString = trainer.avatarURLString else {
+        let avatarURLString = trainer.avatarURLString else {
       return nil
     }
     
-    return NSURL(string: avatarURLString)
+    return URL(string: avatarURLString)
   }
   
   var trainerName: String {
@@ -100,9 +100,9 @@ extension PostViewModel: TrainerPresentable {
 
 extension PostViewModel: DateTimePresentable {
   var dateString: String {
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM"
     
-    return dateFormatter.stringFromDate(post.dateCreated)
+    return dateFormatter.string(from: post.dateCreated as Date)
   }
 }

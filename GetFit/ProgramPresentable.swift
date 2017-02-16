@@ -19,5 +19,5 @@ protocol ProgramPresentable {
   var followers: String { get }
   var rating: String { get }
   var duration: String { get }
-  var bannerURL: NSURL? { get }
+  var bannerURL: URL? { get }
 }

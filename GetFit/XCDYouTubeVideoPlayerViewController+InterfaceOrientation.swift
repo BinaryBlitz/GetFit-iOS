@@ -2,11 +2,11 @@ import XCDYouTubeKit
 
 extension XCDYouTubeVideoPlayerViewController {
   
-  public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    return .Landscape
+  open override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    return .landscape
   }
   
-  public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-    return .LandscapeLeft
+  open override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+    return .landscapeLeft
   }
 }

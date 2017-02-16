@@ -7,9 +7,9 @@
 //
 
 protocol ActionTableViewCellDelegate: class {
-  func didSelectActionCell(cell: ActionTableViewCell)
+  func didSelectActionCell(_ cell: ActionTableViewCell)
 }
 
 extension ActionTableViewCellDelegate {
-  func didSelectActionCell(cell: ActionTableViewCell) { }
+  func didSelectActionCell(_ cell: ActionTableViewCell) { }
 }

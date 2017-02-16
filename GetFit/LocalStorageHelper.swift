@@ -12,19 +12,19 @@ struct LocalStorageHelper {
   
   enum StorageKey: String {
     //TODO: save api token to the keychain
-    case ApiToken
-    case DeviceToken
-    case ShouldUpdateDeviceToken
+    case apiToken
+    case deviceToken
+    case shouldUpdateDeviceToken
   }
   
-  static func save(object: AnyObject?, forKey key: StorageKey) {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    userDefaults.setObject(object, forKey: key.rawValue)
+  static func save(_ object: Any?, forKey key: StorageKey) {
+    let userDefaults = UserDefaults.standard
+    userDefaults.set(object, forKey: key.rawValue)
   }
   
-  static func loadObjectForKey<T>(key: StorageKey) -> T? {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    let object = userDefaults.objectForKey(key.rawValue)
+  static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
+    let userDefaults = UserDefaults.standard
+    let object = userDefaults.object(forKey: key.rawValue)
     return object as? T
   }
 }

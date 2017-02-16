@@ -12,43 +12,43 @@ class ChatsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    subscriptions = realm.objects(Subscription.self).sorted("createdAt", ascending: true)
+    subscriptions = realm.objects(Subscription.self).sorted(byKeyPath: "createdAt", ascending: true)
     
     configureTableView()
     
     title = "Chats"
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     navigationItem.leftBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closeButtonAction(_:)))
+        UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(closeButtonAction(_:)))
     
     refresh()
   }
   
-  private func configureTableView() {
+  fileprivate func configureTableView() {
     tableView.registerReusableCell(ChatsTableViewCell)
     
-    tableView.backgroundColor = UIColor.whiteColor()
+    tableView.backgroundColor = UIColor.white
     tableView.tableFooterView = UIView()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 70
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
   
   //MARK: - Refresh
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
-  func beginRefreshWithCompletion(completion: () -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     subscriptionsProvider.request(.List) { (result) in
       switch result {
       case .Success(let response):
@@ -66,7 +66,7 @@ class ChatsTableViewController: UITableViewController {
     }
   }
   
-  private func updateDataWith(response: Response) throws {
+  fileprivate func updateDataWith(_ response: Response) throws {
     let subscriptions = try response.mapArray(Subscription.self)
     try self.realm.write {
       self.realm.delete(self.realm.objects(Subscription.self))
@@ -76,16 +76,16 @@ class ChatsTableViewController: UITableViewController {
   
   
   //MARK: - Actions
-  func closeButtonAction(sender: AnyObject) {
-    dismissViewControllerAnimated(true, completion: nil)
+  func closeButtonAction(_ sender: AnyObject) {
+    dismiss(animated: true, completion: nil)
   }
   
   //MARK: - TableView
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return subscriptions.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ChatsTableViewCell
     
     let subscription = subscriptions[indexPath.row]
@@ -94,7 +94,7 @@ class ChatsTableViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let subscription = subscriptions[indexPath.row]
     let conversationViewController = ConversationViewController()
     conversationViewController.subscriptionsProvider = subscriptionsProvider

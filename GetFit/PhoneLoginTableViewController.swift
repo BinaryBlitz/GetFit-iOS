@@ -26,19 +26,19 @@ class PhoneLoginTableViewController: UITableViewController {
     getCodeButton.backgroundColor = UIColor.blueAccentColor()
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     phoneNumberTextField.becomeFirstResponder()
   }
   
-  private func showNavigationBar() {
-    UIView.animateWithDuration(0.15) {
-      self.navigationController?.navigationBarHidden = false
-    }
+  fileprivate func showNavigationBar() {
+    UIView.animate(withDuration: 0.15, animations: {
+      self.navigationController?.isNavigationBarHidden = false
+    }) 
     
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
   
-  private func setupPhoneNumberTextField() {
+  fileprivate func setupPhoneNumberTextField() {
     phoneNumberTextField.placeholder = "8 926 123-45-67"
     phoneNumberTextField.defaultRegion = "RU"
   }
@@ -46,14 +46,14 @@ class PhoneLoginTableViewController: UITableViewController {
   //MARK: - Actions
   
   @IBAction func getCodeButtonAction() {
-    guard let phone = phoneNumberTextField.text where phone != "" else {
+    guard let phone = phoneNumberTextField.text, phone != "" else {
       presentAlertWithMessage("Номер телефона не может быть пустым!")
       return
     }
     
     getCodeButton.showActivityIndicator()
     do {
-      let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
+      let phoneNumber = try PhoneNumberKit().parse(phone)
       GetFit.Login.currentSessionData = LoginSessionData(phoneNumber: phoneNumber)
       requestLoginCodeFor(phoneNumber: phoneNumber)
     } catch let error {
@@ -63,23 +63,23 @@ class PhoneLoginTableViewController: UITableViewController {
     }
   }
   
-  private func requestLoginCodeFor(phoneNumber phoneNumber: PhoneNumber) {
-    loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
+  fileprivate func requestLoginCodeFor(phoneNumber: PhoneNumber) {
+    loginProvider.request(GetFit.Login.phone(phone: phoneNumber)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           try response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let token = json["token"].string else {
-            throw Error.JSONMapping(response)
+            throw MoyaError.jsonMapping(response)
           }
           
           GetFit.Login.currentSessionData?.verificationToken = token
-          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+          self.performSegue(withIdentifier: "verifyPhoneWithCode", sender: nil)
         } catch {
           self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
@@ -89,8 +89,8 @@ class PhoneLoginTableViewController: UITableViewController {
   
   //MARK: - Navigation
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? PhoneVerificationTableViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? PhoneVerificationTableViewController {
       destination.loginProvider = loginProvider
     }
   }

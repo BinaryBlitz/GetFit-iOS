@@ -20,43 +20,43 @@ class NewsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
     fetchPosts()
     configureTableView()
     refresh()
   }
   
-  private func configureTableView() {
+  fileprivate func configureTableView() {
     
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     let postCellNib = UINib(nibName: "PostTableViewCell", bundle: nil)
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithImage")
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCell")
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCellWithImage")
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
     
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.tableHeaderView = headerView
     
-    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.News)
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.news)
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
   
   func fetchPosts() {
     let realm = try! Realm()
-    posts = realm.objects(Post).sorted("dateCreated", ascending: false)
+    posts = realm.objects(Post).sorted(byKeyPath: "dateCreated", ascending: false)
   }
   
   //MARK: - Refresh
   
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.fetchPosts()
       self.tableView.reloadData()
@@ -64,7 +64,7 @@ class NewsTableViewController: UITableViewController {
     }
   }
   
-  func beginRefreshWithCompletion(completion: () -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     postsProvider.request(.Index) { (result) in
       switch result {
       case .Success(let response):
@@ -90,35 +90,35 @@ class NewsTableViewController: UITableViewController {
   }
   
   //MARK: - UITableViewDataSource
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = posts?.count ?? 0
-    tableView.backgroundView?.hidden = numberOfRows != 0
+    tableView.backgroundView?.isHidden = numberOfRows != 0
     
     return numberOfRows
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let post = posts?[indexPath.row] else { return UITableViewCell() }
     
     let cell: PostTableViewCell
     
     if post.imageURLString != nil {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithImage", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCellWithImage", for: indexPath) as! PostTableViewCell
     } else if post.program != nil {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithProgram", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCellWithProgram", for: indexPath) as! PostTableViewCell
     } else {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
     }
     
     cell.configureWith(PostViewModel(post: post))
     cell.displayAsPreview = true
-    cell.state = .Card
+    cell.state = .card
     cell.delegate = self
     
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let post = posts![indexPath.row]
     
     if post.imageURLString != nil {
@@ -130,7 +130,7 @@ class NewsTableViewController: UITableViewController {
     }
   }
   
-  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     let post = posts![indexPath.row]
     
     if post.imageURLString != nil {
@@ -144,22 +144,22 @@ class NewsTableViewController: UITableViewController {
   
   //MARK: - UITableViewDelegate
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let post = posts?[indexPath.row] else {
       return
     }
     
-    performSegueWithIdentifier("viewPost", sender: post)
+    performSegue(withIdentifier: "viewPost", sender: post)
   }
   
   // MARK: - Navigation
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? PostViewController, post = sender as? Post {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? PostViewController, let post = sender as? Post {
       destination.post = post
       destination.postsProvider = postsProvider
       switch segue.identifier {
-      case .Some("viewPostAndComment"):
+      case .some("viewPostAndComment"):
         destination.shouldShowKeyboadOnOpen = true
       default:
         break
@@ -169,10 +169,10 @@ class NewsTableViewController: UITableViewController {
   
   //MARK: - IBActions
   
-  @IBAction func chatsButtonAction(sender: AnyObject) {
-    let chatsViewController = ChatsTableViewController(style: .Plain)
+  @IBAction func chatsButtonAction(_ sender: AnyObject) {
+    let chatsViewController = ChatsTableViewController(style: .plain)
     let navigationController = UINavigationController(rootViewController: chatsViewController)
-    presentViewController(navigationController, animated: true, completion: nil)
+    present(navigationController, animated: true, completion: nil)
   }
   
 }
@@ -181,21 +181,21 @@ class NewsTableViewController: UITableViewController {
 
 extension NewsTableViewController: PostTableViewCellDelegate {
   
-  func didTouchCommentButton(cell: PostTableViewCell) {
-    guard let row = tableView.indexPathForCell(cell)?.row, post = posts?[row] else {
+  func didTouchCommentButton(_ cell: PostTableViewCell) {
+    guard let row = tableView.indexPath(for: cell)?.row, let post = posts?[row] else {
       return
     }
     
-    performSegueWithIdentifier("viewPostAndComment", sender: post)
+    performSegue(withIdentifier: "viewPostAndComment", sender: post)
   }
   
-  func didTouchLikeButton(cell: PostTableViewCell) {
+  func didTouchLikeButton(_ cell: PostTableViewCell) {
     struct SharedRequest {
       static var request: Cancellable?
     }
     
     SharedRequest.request?.cancel()
-    guard let indexPath = tableView.indexPathForCell(cell), post = posts?[indexPath.row] else { return }
+    guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
     SharedRequest.request =
         PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
   }
