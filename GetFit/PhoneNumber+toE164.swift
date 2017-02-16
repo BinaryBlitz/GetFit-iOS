@@ -11,6 +11,6 @@ import PhoneNumberKit
 
 extension PhoneNumber {
   func toE164() -> String? {
-    return PhoneNumberKit().format(phoneNumber, toType: .e164)
+    return PhoneNumberKit().format(self, toType: .e164)
   }
 }

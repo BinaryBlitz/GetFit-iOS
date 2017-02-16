@@ -70,9 +70,9 @@ class TrainingViewController: UIViewController {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ =  response.filterSuccessfulStatusCodes()
           try self.updateDataWith(response)
-        } catch let error {
+        } catch {
           self.presentAlertWithMessage("server response: \(response.statusCode)")
         }
       case .failure(let error):
@@ -114,7 +114,7 @@ class TrainingViewController: UIViewController {
       workoutSession.completed = true
       workoutSession.synced = false
     }
-    navigationController?.popViewController(animated: true)
+    _ = navigationController?.popViewController(animated: true)
   }
   
   func updateSessionProgress() {

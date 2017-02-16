@@ -35,7 +35,7 @@ class ProfessionalsViewController: UIViewController {
   
   fileprivate func setupTableView() {
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.registerReusableCell(ProfessionalTableViewCell)
+    tableView.register(cellType: ProfessionalTableViewCell.self)
     tableView.rowHeight = 370
     tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -64,14 +64,14 @@ class ProfessionalsViewController: UIViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    trainersProvider.request(.Index(filter: TrainersFilter(category: selectedCategory))) { (result) in
+    trainersProvider.request(.index(filter: TrainersFilter(category: selectedCategory))) { (result) in
       completion()
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
           let trainersResponse = try response.filterSuccessfulStatusCodes()
-          let trainers = try trainersResponse.mapArray(Trainer.self)
+          let trainers = try trainersResponse.map(to: [Trainer.self])
           
           let realm = try Realm()
           try realm.write {
@@ -89,12 +89,12 @@ class ProfessionalsViewController: UIViewController {
             }
           }
         
-          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+          self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.bottom)
         } catch {
           print("Cannot fetch trainers")
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
     }
@@ -152,9 +152,9 @@ extension ProfessionalsViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let trainer = trainerAtIndexPath(indexPath) else { return UITableViewCell() }
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
-    cell.state = .Card
+    cell.state = .card
     cell.delegate = self
     
     return cell

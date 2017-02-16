@@ -25,7 +25,7 @@ class PhoneVerificationTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
     guard let sessionData = GetFit.Login.currentSessionData, let phoneNumber = sessionData.phoneNumber else { return nil }
-    return "На номер \(phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
+    return "На номер \(PhoneNumberKit().format(phoneNumber, toType: .international)) должно прийти СМС сообщение с кодом подтверждения."
   }
   
   //MARK: - Actions
@@ -37,29 +37,29 @@ class PhoneVerificationTableViewController: UITableViewController {
     }
     
     submitButton.showActivityIndicator()
-    loginProvider.request(GetFit.Login.ConfirmPhoneNumber(code: code)) { result in
+    loginProvider.request(GetFit.Login.confirmPhoneNumber(code: code)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
-          try response.filterSuccessfulStatusCodes()
+          try  _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           if let apiToken = json["api_token"].string {
             UserManager.apiToken = apiToken
-            LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+            LocalStorageHelper.save(apiToken, forKey: .apiToken)
             registerForPushNotifications()
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-              self.presentViewController(initialViewController, animated: true, completion: nil)
+              self.present(initialViewController, animated: true, completion: nil)
             }
           } else {
-            self.performSegueWithIdentifier("registerNewUser", sender: nil)
+            self.performSegue(withIdentifier: "registerNewUser", sender: nil)
           }
         } catch let error {
           print(error)
           self.handleErrorIn(response)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }

@@ -114,7 +114,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     if let bannerURL = viewModel.bannerURL {
       bannerImageView.hnk_setImageFromURL(bannerURL) { image in
         self.bannerImageView.image = image
-        self.bannerMaskView?.hidden = false
+        self.bannerMaskView?.isHidden = false
       }
     }
   }

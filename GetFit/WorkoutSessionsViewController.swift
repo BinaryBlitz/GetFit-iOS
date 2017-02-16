@@ -81,7 +81,7 @@ class WorkoutSessionsViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession).filter("completed == false").sorted(byKeyPath: "date")
+    workoutSessions = realm.objects(WorkoutSession.self).filter("completed == false").sorted(byKeyPath: "date")
     updateTableViewDataFor(Date())
 
     updateTitleDateWithDate(Date())
@@ -135,7 +135,7 @@ class WorkoutSessionsViewController: UIViewController {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           let sessions = try response.map(to: [WorkoutSession.self])
           self.updateDataWith(sessions)
         } catch let error {
@@ -329,7 +329,7 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
     return false
   }
 
-  func presentedDateUpdated(_ date: Date) {
+  private func presentedDateUpdated(_ date: Date) {
     updateTitleDateWithDate(date)
   }
 

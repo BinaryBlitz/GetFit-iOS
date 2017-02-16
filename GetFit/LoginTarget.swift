@@ -61,9 +61,9 @@ extension GetFit.Login: TargetType {
     
     switch self {
     case .phone(let phone):
-      return ["phone_number" : phone.toE164()]
+      return ["phone_number" : phone.toE164() ?? ""]
     case .confirmPhoneNumber(let code):
-      return ["phone_number": sessionData!.phoneNumber!.toE164(), "code": code]
+      return ["phone_number": sessionData!.phoneNumber!.toE164() ?? "", "code": code]
     case .vk(let token):
       return ["token": token as Any]
     case .facebook(let token):

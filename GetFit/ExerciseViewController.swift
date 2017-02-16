@@ -30,7 +30,7 @@ class ExerciseViewController: UIViewController {
     super.viewDidLoad()
     
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.registerReusableCell(ExerciseVideoTableViewCell)
+    tableView.register(cellType: ExerciseVideoTableViewCell.self)
     tableView.rowHeight = UITableViewAutomaticDimension
     
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
@@ -56,7 +56,7 @@ class ExerciseViewController: UIViewController {
   //MARK: - Actions
   
   @IBAction func endExerciseAction(_ sender: AnyObject) {
-    navigationController?.popViewController(animated: true)
+    _ = navigationController?.popViewController(animated: true)
   }
   
   func showTrainingTips(_ recognizer: UITapGestureRecognizer) {
@@ -89,7 +89,7 @@ extension ExerciseViewController: UITableViewDataSource {
       
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)

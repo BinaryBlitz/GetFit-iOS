@@ -26,10 +26,10 @@ extension TrainingViewModel: TrainingPresentable {
   var trainingDateString: String {
     let date = workoutSession.date
     
-    if date.isInToday() {
+    if date.isToday {
       return "TODAY"
     } else {
-      return date.toString(.Custom("dd/MM"))!
+      return date.string(format: .custom("dd/MM"))
     }
   }
 }

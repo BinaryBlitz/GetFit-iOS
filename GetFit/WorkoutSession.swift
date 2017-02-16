@@ -22,7 +22,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   override static func primaryKey() -> String? {
     return "id"
   }
-  
+
   required init?(jsonData: JSON) {
     super.init()
     
@@ -33,7 +33,8 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     
     self.id = id
     self.workoutID = workoutID
-    self.date = scheduledFor.toDate(.ISO8601Format(.Date))!
+    let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTime)).absoluteDate
+    self.date = date ?? Date()
     
     guard let workoutName = jsonData["workout"]["name"].string,
       let duration = jsonData["workout"]["duration"].int,

@@ -45,19 +45,19 @@ class ProfileTableViewController: UITableViewController {
     if let user = UserManager.currentUser {
       self.user = user
     }
-    
+
     userProvider.request(.getCurrent) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          let user = try response.mapObject(User.self)
+          let user = try response.map(to: User.self)
           UserManager.currentUser = user
           self.user = user
           self.loadStatistics()
         } catch {
           print("kek")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         break
       }
@@ -69,14 +69,14 @@ class ProfileTableViewController: UITableViewController {
     guard let user = user else { return }
     userProvider.request(.getStatistics(forUserWithId: user.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          user.statistics = try response.mapObject(User.Statistics.self)
+          user.statistics = try response.map(to: User.Statistics.self)
           self.user = user
         } catch {
           print("Cannot map response")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
     }
@@ -84,8 +84,8 @@ class ProfileTableViewController: UITableViewController {
   
   fileprivate func setupTableView() {
     tableView.register(cellType: ProfileCardTableViewCell.self)
-    tableView.register(cellType: ProgramTableViewCell)
-    tableView.register(cellType: StatisticsTableViewCell)
+    tableView.register(cellType: ProgramTableViewCell.self)
+    tableView.register(cellType: StatisticsTableViewCell.self)
     
     tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -175,11 +175,11 @@ class ProfileTableViewController: UITableViewController {
       cell.settingsBadge.addSubview(button)
       button.autoPinEdgesToSuperviewEdges()
       
-      cell.avatarImageView.userInteractionEnabled = true
+      cell.avatarImageView.isUserInteractionEnabled = true
       let avatarTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateAvatar))
       cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
       
-      cell.bannerImageView.userInteractionEnabled = true
+      cell.bannerImageView.isUserInteractionEnabled = true
       let bannerTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateBanner))
       cell.bannerImageView.addGestureRecognizer(bannerTapGesture)
       
@@ -194,7 +194,7 @@ class ProfileTableViewController: UITableViewController {
       return cell
     case 1 where selectedTabIndex == 1:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
-      cell.state = .Card
+      cell.state = .card
       let program = programs![indexPath.row]
       cell.configureWith(ProgramViewModel(program: program))
       
@@ -266,16 +266,16 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     
     userProvider.request(.updateImage(type: imageType, image: image)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("\(imageType.rawValue) updated!")
           self.refresh()
         } catch {
           print("response is not successful")
           self.presentAlertWithMessage("Upload failed")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print("error: \(error)")
         self.presentAlertWithMessage("Error: \(error)")
       }

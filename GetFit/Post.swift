@@ -27,7 +27,8 @@ class Post: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.content = content
-    self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
+    let date = try? createdAt.date(format: .iso8601(options: .withInternetDateTime))
+    self.dateCreated = date?.absoluteDate ?? Date()
 
     if let likesCount = jsonData["likes_count"].int {
       self.likesCount = likesCount

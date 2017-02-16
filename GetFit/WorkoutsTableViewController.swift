@@ -15,7 +15,7 @@ class WorkoutsTableViewController: UITableViewController {
                                                        action: #selector(self.closeButtonAction(_:)))
     
     let realm = try! Realm()
-    workouts = realm.objects(Workout).sorted(byKeyPath: "duration")
+    workouts = realm.objects(Workout.self).sorted(byKeyPath: "duration")
     loadWorkouts()
     
     tableView.register(cellType: TrainingTableViewCell.self)

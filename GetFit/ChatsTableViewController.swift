@@ -25,7 +25,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   fileprivate func configureTableView() {
-    tableView.registerReusableCell(ChatsTableViewCell)
+    tableView.register(cellType: ChatsTableViewCell.self)
     
     tableView.backgroundColor = UIColor.white
     tableView.tableFooterView = UIView()
@@ -49,16 +49,16 @@ class ChatsTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    subscriptionsProvider.request(.List) { (result) in
+    subscriptionsProvider.request(.list) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           try self.updateDataWith(response)
         } catch let error {
           print(error)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
       
@@ -67,7 +67,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   fileprivate func updateDataWith(_ response: Response) throws {
-    let subscriptions = try response.mapArray(Subscription.self)
+    let subscriptions = try response.map(to: [Subscription.self])
     try self.realm.write {
       self.realm.delete(self.realm.objects(Subscription.self))
       self.realm.add(subscriptions, update: true)
@@ -86,7 +86,7 @@ class ChatsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ChatsTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ChatsTableViewCell
     
     let subscription = subscriptions[indexPath.row]
     cell.configureWith(SubscriptionViewModel(subscription: subscription))

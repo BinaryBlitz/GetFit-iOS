@@ -50,7 +50,7 @@ extension GetFit.Programs: TargetType {
   
   public var parameters: [String: Any]? {
     switch self {
-    case .index(let filter):
+    case .index(_):
       //TODO: Add real filter
       return ["order": "created_at" as Any]
     case .show(_):

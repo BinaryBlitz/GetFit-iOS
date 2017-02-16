@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try  _ = response.filterSuccessfulStatusCodes()
           print("Device token updated \(token)")
         } catch {
           LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)

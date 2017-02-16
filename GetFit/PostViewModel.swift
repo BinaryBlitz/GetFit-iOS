@@ -16,7 +16,7 @@ struct PostViewModel {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           print("yay! new like")
         } catch {
           self.addLikeToUploadQueueFor(self.post)

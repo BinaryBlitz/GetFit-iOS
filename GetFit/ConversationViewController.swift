@@ -94,17 +94,17 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   func beginRefreshWithcompletion(_ completion: () -> Void) {
-    subscriptionsProvider.request(GetFit.Subscriptions.ListMessages(subscriptionId: subscription.id)) { (result) in
+    subscriptionsProvider.request(GetFit.Subscriptions.listMessages(subscriptionId: subscription.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           try self.updateMessagesWith(response)
         } catch let error {
           print(error)
           self.presentAlertWithMessage("Try again later")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Check your internet connection")
       }
@@ -112,11 +112,11 @@ class ConversationViewController: JSQMessagesViewController {
   }
   
   fileprivate func updateMessagesWith(_ response: Response) throws {
-    let messages = try response.mapArray(Message.self)
+    let messages = try response.map(to: [Message.self])
     let realm = try Realm()
     try realm.write {
       self.subscription.messages.removeAll()
-      self.subscription.messages.appendContentsOf(messages)
+      self.subscription.messages.append(objectsIn: messages)
     }
     self.reloadMessages()
   }
@@ -135,29 +135,29 @@ class ConversationViewController: JSQMessagesViewController {
     message.content = text
     message.category = .User
     
-    subscriptionsProvider.request(.CreateMessage(subscriptionId: subscription.id, message: message)) { (result) in
+    subscriptionsProvider.request(.createMessage(subscriptionId: subscription.id, message: message)) { (result) in
       switch result  {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
-          let message = try response.mapObject(Message.self)
+          try _ = response.filterSuccessfulStatusCodes()
+          let message = try response.map(to: Message.self)
           let realm = try! Realm()
           try! realm.write {
             self.subscription.messages.append(message)
           }
           self.reloadMessages()
-          self.scrollToBottomAnimated(true)
+          self.scrollToBottom(animated: true)
         } catch let error {
           print(error)
           self.presentAlertWithMessage("Cannot send your message")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Cannot send your message. Check your internet conneciton")
       }
     
       self.reloadMessages()
-      self.finishSendingMessageAnimated(true)
+      self.finishSendingMessage(animated: true)
     }
   }
   

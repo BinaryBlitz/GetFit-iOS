@@ -64,22 +64,22 @@ class NewUserViewController: UITableViewController {
       case .success(let response):
         
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ =  response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
-          guard let apiToken = json["api_token"].string else  { throw Error.JSONMapping(response) }
+          guard let apiToken = json["api_token"].string else  { throw MoyaError.jsonMapping(response) }
           UserManager.apiToken = apiToken
-          LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+          LocalStorageHelper.save(apiToken, forKey: .apiToken)
         
 //          let user = try response.mapObject(User.self)
           registerForPushNotifications()
           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
           if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-            self.presentViewController(initialViewController, animated: true, completion: nil)
+            self.present(initialViewController, animated: true, completion: nil)
           }
         } catch {
           self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }

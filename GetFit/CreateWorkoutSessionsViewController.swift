@@ -80,11 +80,11 @@ class CreateWorkoutSessionsViewController: UIViewController {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try  _ = response.filterSuccessfulStatusCodes()
           self.dismiss(animated: true) {
             self.delegate?.didFinishWorkoutSessionsCreation()
           }
-        } catch let error {
+        } catch {
           self.presentAlertWithMessage("error with code: \(response.statusCode)")
         }
       case .failure(let error):
@@ -120,7 +120,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
     return false
   }
   
-  func presentedDateUpdated(_ date: Date) {
+  private func presentedDateUpdated(_ date: Date) {
     updateTitleDateWithDate(date)
   }
 

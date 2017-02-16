@@ -68,7 +68,7 @@ class PhoneLoginTableViewController: UITableViewController {
       switch result {
       case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let token = json["token"].string else {
             throw MoyaError.jsonMapping(response)

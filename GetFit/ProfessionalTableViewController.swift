@@ -66,7 +66,7 @@ class ProfessionalTableViewController: UITableViewController {
 
   fileprivate func programsResponseHandler(_ response: Response, completion: () -> Void) {
     do {
-      try response.filterSuccessfulStatusCodes()
+      try _ = response.filterSuccessfulStatusCodes()
       let programs = try response.map(to: [Program.self])
 
       let realm = try Realm()

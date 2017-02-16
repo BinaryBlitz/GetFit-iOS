@@ -51,7 +51,7 @@ class NewsTableViewController: UITableViewController {
   
   func fetchPosts() {
     let realm = try! Realm()
-    posts = realm.objects(Post).sorted(byKeyPath: "dateCreated", ascending: false)
+    posts = realm.objects(Post.self).sorted(byKeyPath: "dateCreated", ascending: false)
   }
   
   //MARK: - Refresh
@@ -65,12 +65,12 @@ class NewsTableViewController: UITableViewController {
   }
   
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
-    postsProvider.request(.Index) { (result) in
+    postsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let postsResponse = try response.filterSuccessfulStatusCodes()
-          let posts = try postsResponse.mapArray(Post.self)
+          let posts = try postsResponse.map(to: [Post.self])
           let realm = try! Realm()
           try realm.write {
             realm.add(posts, update: true)
@@ -81,7 +81,7 @@ class NewsTableViewController: UITableViewController {
           print("response is not successful")
           self.presentAlertWithMessage("Cannot update feed")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Oh, no!")
         completion()
@@ -197,6 +197,6 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     SharedRequest.request?.cancel()
     guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
     SharedRequest.request =
-        PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
+        PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
   }
 }
