@@ -136,7 +136,7 @@ class ProfileTableViewController: UITableViewController {
     }
   }
   
-  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping ()                                                                                                                                                                                                                                                           -> Void) {
     loadUser(completion)
   }
   

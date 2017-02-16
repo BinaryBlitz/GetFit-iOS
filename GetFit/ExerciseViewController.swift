@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 import XCDYouTubeKit
-import Haneke
+import Kingfisher
 
 struct Video {
   let youtubeId: String
@@ -92,7 +92,7 @@ extension ExerciseViewController: UITableViewDataSource {
       let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
-      cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)
+      cell.previewImageView.kf.setImage(with: video.previewImageURL!)
       cell.videoDurtionLabel.text = video.duration
       
       return cell

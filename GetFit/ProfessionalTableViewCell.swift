@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haneke
+import Kingfisher
 import PureLayout
 import Reusable
 
@@ -118,13 +118,13 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     
     if let avatarURLString = trainer.avatarURLString,
           let avatarURL = URL(string: avatarURLString) {
-      avatarImageView.hnk_setImageFromURL(avatarURL)
+      avatarImageView.kf.setImage(with: avatarURL)
     }
     
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
     bannerMaskView?.isHidden = true
     if let bannerURLString = trainer.bannerURLString, let bannerURL = URL(string: bannerURLString) {
-      bannerImageView.hnk_setImageFromURL(bannerURL) { (image) in
+      bannerImageView.kf.setImage(with: bannerURL) { image, _, _, _ in
         self.bannerImageView.image = image
         self.bannerMaskView?.isHidden = false
       }
@@ -134,8 +134,8 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   }
   
   fileprivate func resetImages() {
-    avatarImageView.hnk_cancelSetImage()
-    bannerImageView.hnk_cancelSetImage()
+    avatarImageView.kf.cancelDownloadTask()
+    bannerImageView.kf.cancelDownloadTask()
     avatarImageView.image = nil
     bannerImageView.image = nil
   }

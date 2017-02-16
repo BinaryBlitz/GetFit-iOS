@@ -8,7 +8,7 @@
 
 import UIKit
 import PureLayout
-import Haneke
+import Kingfisher
 import Reusable
 
 typealias ProgramCellPresentable = TrainerPresentable & ProgramPresentable & NamedObject
@@ -103,16 +103,16 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     
     trainerNameLabel.text = viewModel.trainerName
     
-    trainerAvatar.hnk_cancelSetImage()
+    trainerAvatar.kf.cancelDownloadTask()
     if let avatarURL = viewModel.trainerAvatarURL {
-      trainerAvatar.hnk_setImageFromURL(avatarURL)
+      trainerAvatar.kf.setImage(with: avatarURL)
     }
     
-    bannerImageView.hnk_cancelSetImage()
+    bannerImageView.kf.cancelDownloadTask()
     bannerMaskView?.isHidden = true
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(viewModel)
     if let bannerURL = viewModel.bannerURL {
-      bannerImageView.hnk_setImageFromURL(bannerURL) { image in
+      bannerImageView.kf.setImage(with: bannerURL) { image, _, _, _ in
         self.bannerImageView.image = image
         self.bannerMaskView?.isHidden = false
       }

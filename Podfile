@@ -24,11 +24,11 @@ target 'GetFit' do
   pod 'JSQMessagesViewController'
   pod 'MWPhotoBrowser', '~> 2.1'
   pod 'SVPullToRefresh', '~> 0.4'
+  pod 'Kingfisher'
 
   # Tools
   pod 'SwiftDate', '~> 4.0'
   pod 'PureLayout', '~> 3.0'
-  pod 'HanekeSwift', git: 'https://github.com/Haneke/HanekeSwift', branch: 'feature/swift-3'
   pod 'Reusable', '~> 3.0.0'
   pod 'Toucan'
 

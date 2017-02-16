@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haneke
+import Kingfisher
 import PureLayout
 import Reusable
 
@@ -102,7 +102,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     postContentLabel.text = viewModel.text
     
     if let trainerAvatarURL = viewModel.trainerAvatarURL {
-      trainerAvatarImageView.hnk_setImageFromURL(trainerAvatarURL)
+      trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
     
     likeButton.isSelected = viewModel.liked
@@ -131,7 +131,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       self.contentImageView = imageView
       imageView.contentMode = UIViewContentMode.scaleAspectFill
       imageView.layer.masksToBounds = true
-      imageView.hnk_setImageFromURL(photoURL)
+      imageView.kf.setImage(with: photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
       

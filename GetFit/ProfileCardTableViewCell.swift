@@ -1,5 +1,5 @@
 import UIKit
-import Haneke
+import Kingfisher
 import Reusable
 
 class ProfileCardTableViewCell: UITableViewCell, NibReusable {
@@ -30,17 +30,17 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
   func configureWith(_ viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
     
-    bannerImageView.hnk_cancelSetImage()
+    bannerImageView.kf.cancelDownloadTask()
     if let bannerURL = viewModel.coverImageURL {
       let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
       bannerImageView.addSubview(activityIndicator)
       activityIndicator.autoCenterInSuperview()
-      bannerImageView.hnk_setImageFromURL(bannerURL)
+      bannerImageView.kf.setImage(with: bannerURL)
     }
     
-    avatarImageView.hnk_cancelSetImage()
+    avatarImageView.kf.cancelDownloadTask()
     if let avatarURL = viewModel.avatarURL {
-      avatarImageView.hnk_setImageFromURL(avatarURL)
+      avatarImageView.kf.setImage(with: avatarURL)
     }
   }
 }

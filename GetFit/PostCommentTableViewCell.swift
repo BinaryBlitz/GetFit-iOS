@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Haneke
+import Kingfisher
 import Reusable
 
 typealias PostCommentPresentable = DateTimePresentable & UserPresentable & TextPresentable
@@ -29,7 +29,7 @@ class PostCommentTableViewCell: UITableViewCell, NibReusable {
   
   func configureWith(_ viewModel: PostCommentPresentable) {
     if let avatarURL = viewModel.avatarURL {
-      userAvatarImageView.hnk_setImageFromURL(avatarURL)
+      userAvatarImageView.kf.setImage(with: avatarURL)
     }
     
     usernameLabel.text = viewModel.name

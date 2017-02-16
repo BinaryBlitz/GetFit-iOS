@@ -1,6 +1,6 @@
 import UIKit
 import Reusable
-import Haneke
+import Kingfisher
 
 class ChatsTableViewCell: UITableViewCell, NibReusable {
 
@@ -19,7 +19,7 @@ class ChatsTableViewCell: UITableViewCell, NibReusable {
   override func prepareForReuse() {
     super.prepareForReuse()
 
-    roundedImageView.hnk_cancelSetImage()
+    roundedImageView.kf.cancelDownloadTask()
     roundedImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
 
@@ -34,7 +34,7 @@ class ChatsTableViewCell: UITableViewCell, NibReusable {
     subtitleLabel.text = viewModel.lastMessage ?? "No messages"
     createdAtLabel.text = viewModel.createdAt
     if let url = viewModel.avatarImageURL {
-      roundedImageView.hnk_setImageFromURL(url)
+      roundedImageView.kf.setImage(with: url)
     }
   }
 
