@@ -2,7 +2,7 @@ import UIKit
 import JSQMessagesViewController
 import RealmSwift
 import Moya
-import Haneke
+import Kingfisher
 
 class ConversationViewController: JSQMessagesViewController {
   
@@ -11,7 +11,7 @@ class ConversationViewController: JSQMessagesViewController {
   var incomingBubble: JSQMessagesBubbleImage!
   var outgoingBubble: JSQMessagesBubbleImage!
   var subscriptionsProvider: APIProvider<GetFit.Subscriptions>!
-  var timer: NSTimer?
+  var timer: Timer?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,13 +26,13 @@ class ConversationViewController: JSQMessagesViewController {
     configureChatViews()
     addAvatarToNavigationBar()
     reloadMessages()
-    scrollToBottomAnimated(true)
+    scrollToBottom(animated: true)
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(refresh),
+    NotificationCenter.default.addObserver(self, selector: #selector(refresh),
                                                      notification: .ReloadMessages)
     
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(
-      10,
+    self.timer = Timer.scheduledTimer(
+      timeInterval: 10,
       target: self,
       selector: #selector(refresh(_:)),
       userInfo: nil,
@@ -40,14 +40,14 @@ class ConversationViewController: JSQMessagesViewController {
     )
   }
   
-  private func addAvatarToNavigationBar() {
+  fileprivate func addAvatarToNavigationBar() {
     guard let imageURL = SubscriptionViewModel(subscription: subscription).avatarImageURL else { return }
     
     let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
     
     let imageView = UIImageView(frame: CGRect(x: 7, y: 0, width: 37, height: 37))
-    imageView.hnk_setImageFromURL(imageURL)
-    imageView.contentMode = .ScaleAspectFill
+    imageView.kf.setImage(with: imageURL)
+    imageView.contentMode = .scaleAspectFill
     imageView.layer.cornerRadius = imageView.frame.width / 2
     imageView.layer.shouldRasterize = true
     imageView.clipsToBounds = true
@@ -56,10 +56,10 @@ class ConversationViewController: JSQMessagesViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: contentView)
   }
   
-  private func configureChatViews() {
-    collectionView.backgroundColor = UIColor.whiteColor()
-    incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor.incomingMessageColor())
-    outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.blueAccentColor())
+  fileprivate func configureChatViews() {
+    collectionView.backgroundColor = UIColor.white
+    incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.incomingMessageColor())
+    outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.blueAccentColor())
     
     collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
     collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
@@ -68,14 +68,14 @@ class ConversationViewController: JSQMessagesViewController {
     automaticallyScrollsToMostRecentMessage = true
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     timer?.fire()
     refresh()
   }
 
-  override func viewDidDisappear(animated: Bool) {
+  override func viewDidDisappear(_ animated: Bool) {
     timer?.invalidate()
   }
   
@@ -85,107 +85,107 @@ class ConversationViewController: JSQMessagesViewController {
   
   //MARK: - Refresh
   
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithcompletion { () -> Void in
       self.collectionView?.reloadData()
       self.collectionView?.layoutIfNeeded()
-      self.finishReceivingMessageAnimated(true)
+      self.finishReceivingMessage(animated: true)
     }
   }
   
-  func beginRefreshWithcompletion(completion: () -> Void) {
-    subscriptionsProvider.request(GetFit.Subscriptions.ListMessages(subscriptionId: subscription.id)) { (result) in
+  func beginRefreshWithcompletion(_ completion: () -> Void) {
+    subscriptionsProvider.request(GetFit.Subscriptions.listMessages(subscriptionId: subscription.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           try self.updateMessagesWith(response)
         } catch let error {
           print(error)
           self.presentAlertWithMessage("Try again later")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Check your internet connection")
       }
     }
   }
   
-  private func updateMessagesWith(response: Response) throws {
-    let messages = try response.mapArray(Message.self)
+  fileprivate func updateMessagesWith(_ response: Response) throws {
+    let messages = try response.map(to: [Message.self])
     let realm = try Realm()
     try realm.write {
       self.subscription.messages.removeAll()
-      self.subscription.messages.appendContentsOf(messages)
+      self.subscription.messages.append(objectsIn: messages)
     }
     self.reloadMessages()
   }
   
   func reloadMessages() {
-    messages = subscription.messages.sorted("createdAt").map { message -> JSQMessage in
-      return JSQMessage(senderId: message.category?.rawValue, senderDisplayName: "", date: message.createdAt, text: message.content)
+    messages = subscription.messages.sorted(byKeyPath: "createdAt").map { message -> JSQMessage in
+      return JSQMessage(senderId: message.category?.rawValue, senderDisplayName: "", date: message.createdAt as Date, text: message.content)
     }
     collectionView?.reloadData()
   }
   
   // MARK: JSQMessagesViewController method overrides
   
-  override func didPressSendButton(button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: NSDate) {
+  override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
     let message = Message()
     message.content = text
     message.category = .User
     
-    subscriptionsProvider.request(.CreateMessage(subscriptionId: subscription.id, message: message)) { (result) in
+    subscriptionsProvider.request(.createMessage(subscriptionId: subscription.id, message: message)) { (result) in
       switch result  {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
-          let message = try response.mapObject(Message.self)
+          try _ = response.filterSuccessfulStatusCodes()
+          let message = try response.map(to: Message.self)
           let realm = try! Realm()
           try! realm.write {
             self.subscription.messages.append(message)
           }
           self.reloadMessages()
-          self.scrollToBottomAnimated(true)
+          self.scrollToBottom(animated: true)
         } catch let error {
           print(error)
           self.presentAlertWithMessage("Cannot send your message")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Cannot send your message. Check your internet conneciton")
       }
     
       self.reloadMessages()
-      self.finishSendingMessageAnimated(true)
+      self.finishSendingMessage(animated: true)
     }
   }
   
   //MARK: JSQMessages CollectionView DataSource
   
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return messages.count
   }
   
-  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
     
     let message = messages[indexPath.item]
     
     if message.senderId == self.senderId {
-      cell.textView!.textColor = UIColor.whiteColor()
+      cell.textView!.textColor = UIColor.white
     } else {
-      cell.textView!.textColor = UIColor.blackColor()
+      cell.textView!.textColor = UIColor.black
     }
     
     return cell
   }
   
-  override func collectionView(collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageBubbleImageDataSource? {
+  override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource? {
     return messages[indexPath.item].senderId == self.senderId ? outgoingBubble : incomingBubble
   }
   
-  override func collectionView(collectionView: JSQMessagesCollectionView, messageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageData {
+  override func collectionView(_ collectionView: JSQMessagesCollectionView, messageDataForItemAt indexPath: IndexPath) -> JSQMessageData {
     return messages[indexPath.item]
   }
   

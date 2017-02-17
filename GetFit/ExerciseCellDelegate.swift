@@ -9,6 +9,6 @@
 import UIKit
 
 @objc protocol ExerciseCellDelegate {
-  optional func didTapOnWeightButton(cell: UITableViewCell)
-  optional func didTapOnRepetitionsButton(cell: UITableViewCell)
+  @objc optional func didTapOnWeightButton(_ cell: UITableViewCell)
+  @objc optional func didTapOnRepetitionsButton(_ cell: UITableViewCell)
 }

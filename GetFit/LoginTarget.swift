@@ -9,11 +9,11 @@ private var sessionData: LoginSessionData? = nil
 extension GetFit {
   
   public enum Login {
-    case Phone(phone: PhoneNumber)
-    case ConfirmPhoneNumber(code: String)
-    case CreateUser(firstName: String, lastName: String)
-    case VK(token: String)
-    case Facebook(token: String)
+    case phone(phone: PhoneNumber)
+    case confirmPhoneNumber(code: String)
+    case createUser(firstName: String, lastName: String)
+    case vk(token: String)
+    case facebook(token: String)
   
     static var currentSessionData: LoginSessionData? {
       get {
@@ -31,40 +31,44 @@ extension GetFit.Login: TargetType {
   
   public var path: String {
     switch self {
-    case .VK(_):
+    case .vk(_):
       return "/user/authenticate_vk"
-    case .Facebook(_):
+    case .facebook(_):
       return "/user/authenticate_fb"
-    case .Phone(_):
+    case .phone(_):
       return "/verification_tokens"
-    case .ConfirmPhoneNumber(_):
+    case .confirmPhoneNumber(_):
       return "/verification_tokens/\(sessionData!.verificationToken!)"
-    case .CreateUser(_, _):
+    case .createUser(_, _):
       return "/user"
     }
   }
   
   public var method: Moya.Method {
     switch self {
-    case .Phone(_), .VK(_), .Facebook(_), .CreateUser(_, _):
-      return .POST
-    case .ConfirmPhoneNumber(_):
-      return .PATCH
+    case .phone(_), .vk(_), .facebook(_), .createUser(_, _):
+      return .post
+    case .confirmPhoneNumber(_):
+      return .patch
     }
   }
-  
-  public var parameters: [String: AnyObject]? {
+
+  public var parameterEncoding: ParameterEncoding {
+    return JSONEncoding.default
+  }
+
+  public var parameters: [String: Any]? {
     
     switch self {
-    case .Phone(let phone):
-      return ["phone_number" : phone.toE164()]
-    case .ConfirmPhoneNumber(let code):
-      return ["phone_number": sessionData!.phoneNumber!.toE164(), "code": code]
-    case .VK(let token):
-      return ["token": token]
-    case .Facebook(let token):
-      return ["token": token]
-    case let .CreateUser(firstName, lastName):
+    case .phone(let phone):
+      return ["phone_number" : phone.toE164() ?? ""]
+    case .confirmPhoneNumber(let code):
+      return ["phone_number": sessionData!.phoneNumber!.toE164() ?? "", "code": code]
+    case .vk(let token):
+      return ["token": token as Any]
+    case .facebook(let token):
+      return ["token": token as Any]
+    case let .createUser(firstName, lastName):
       let userData = [
         "phone_number": sessionData!.phoneNumber!.toE164(),
         "verification_token": sessionData!.verificationToken!,

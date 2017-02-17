@@ -142,6 +142,7 @@
 		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
+		889109D41E55AECC00C7DCD3 /* PhoneNumber+toE164.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */; };
 		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
 
@@ -302,6 +303,7 @@
 		768AF447A23055493D573F09 /* Pods_GetFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Athlete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
+		889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+toE164.swift"; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -399,6 +401,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				882AC3671E56F7EF0092682E /* PhotoBrowser */,
 				376142DF1C90C8B50073B5F4 /* Login */,
 				3718DCCF1D4613E300521932 /* Chat */,
 				37C5644B1C77D76000BC370E /* News */,
@@ -466,6 +469,7 @@
 				373BDDEA1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift */,
 				374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */,
 				374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */,
+				889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -779,6 +783,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		882AC3671E56F7EF0092682E /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PhotoBrowser;
+			sourceTree = "<group>";
+		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,16 +849,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = BinaryBlitz;
 				TargetAttributes = {
 					374CF8471D4773F200D83A7A = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = 37A53C3A1BDE527F00D1DA70;
 					};
 					37A53C3A1BDE527F00D1DA70 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 4WGG8V34K4;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1074,6 +1087,7 @@
 				37D7AD8A1C787A2800CA96E9 /* Post.swift in Sources */,
 				373C20A81D2FFB1A00DF72EB /* GetFitAPI.swift in Sources */,
 				37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */,
+				889109D41E55AECC00C7DCD3 /* PhoneNumber+toE164.swift in Sources */,
 				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
 				3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */,
@@ -1168,7 +1182,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.GetFitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";
 			};
 			name = Debug;
@@ -1183,7 +1197,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.binartblitz.GetFitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetFit.app/GetFit";
 			};
 			name = Release;
@@ -1201,8 +1215,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1245,8 +1261,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1265,6 +1283,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1291,7 +1310,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development ru.binaryblitz.GetFit";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1315,7 +1334,7 @@
 				PROVISIONING_PROFILE = "99056105-5ba4-44f9-b5e3-29c99a8c8711";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore ru.binaryblitz.GetFit";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

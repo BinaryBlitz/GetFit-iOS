@@ -14,52 +14,52 @@ class PhoneVerificationTableViewController: UITableViewController {
     super.viewDidLoad()
     
     submitButton.backgroundColor = UIColor.blueAccentColor()
-    submitButton.addTarget(self, action: #selector(self.submitButtonAction), forControlEvents: .TouchUpInside)
-    submitButton.setTitle("Подтвердить", forState: .Normal)
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    submitButton.addTarget(self, action: #selector(self.submitButtonAction), for: .touchUpInside)
+    submitButton.setTitle("Подтвердить", for: UIControlState())
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     verificationCodeTextField.becomeFirstResponder()
   }
   
-  override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard let sessionData = GetFit.Login.currentSessionData, phoneNumber = sessionData.phoneNumber else { return nil }
-    return "На номер \(phoneNumber.toInternational()) должно прийти СМС сообщение с кодом подтверждения."
+  override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    guard let sessionData = GetFit.Login.currentSessionData, let phoneNumber = sessionData.phoneNumber else { return nil }
+    return "На номер \(PhoneNumberKit().format(phoneNumber, toType: .international)) должно прийти СМС сообщение с кодом подтверждения."
   }
   
   //MARK: - Actions
   
   func submitButtonAction() {
-    guard let code = verificationCodeTextField.text where code != "" else {
+    guard let code = verificationCodeTextField.text, code != "" else {
       presentAlertWithMessage("Код не может быть пустым")
       return
     }
     
     submitButton.showActivityIndicator()
-    loginProvider.request(GetFit.Login.ConfirmPhoneNumber(code: code)) { result in
+    loginProvider.request(GetFit.Login.confirmPhoneNumber(code: code)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
-          try response.filterSuccessfulStatusCodes()
+          try  _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           if let apiToken = json["api_token"].string {
             UserManager.apiToken = apiToken
-            LocalStorageHelper.save(apiToken, forKey: .ApiToken)
+            LocalStorageHelper.save(apiToken, forKey: .apiToken)
             registerForPushNotifications()
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             if let initialViewController = mainStoryboard.instantiateInitialViewController() {
-              self.presentViewController(initialViewController, animated: true, completion: nil)
+              self.present(initialViewController, animated: true, completion: nil)
             }
           } else {
-            self.performSegueWithIdentifier("registerNewUser", sender: nil)
+            self.performSegue(withIdentifier: "registerNewUser", sender: nil)
           }
         } catch let error {
           print(error)
           self.handleErrorIn(response)
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
@@ -68,7 +68,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     }
   }
   
-  private func handleErrorIn(response: Response) {
+  fileprivate func handleErrorIn(_ response: Response) {
     switch response.statusCode {
     case 403:
       presentAlertWithTitle("Error", andMessage: "Invalid verification code")
@@ -81,9 +81,9 @@ class PhoneVerificationTableViewController: UITableViewController {
   
   //MARK: - Navigation
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "registerNewUser" {
-      let newUserController = segue.destinationViewController as! NewUserViewController
+      let newUserController = segue.destination as! NewUserViewController
       newUserController.loginProvider = loginProvider
     }
   }

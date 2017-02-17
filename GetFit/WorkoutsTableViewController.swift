@@ -10,27 +10,27 @@ class WorkoutsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.title = "choose training".uppercaseString
-    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self,
+    navigationItem.title = "choose training".uppercased()
+    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self,
                                                        action: #selector(self.closeButtonAction(_:)))
     
     let realm = try! Realm()
-    workouts = realm.objects(Workout).sorted("duration")
+    workouts = realm.objects(Workout.self).sorted(byKeyPath: "duration")
     loadWorkouts()
     
-    tableView.registerReusableCell(TrainingTableViewCell)
+    tableView.register(cellType: TrainingTableViewCell.self)
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 300
   }
   
   func loadWorkouts() {
-    workoutsProvider.request(.Index) { (result) in
+    workoutsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let workoutsResponse = try response.filterSuccessfulStatusCodes()
-          let workouts = try workoutsResponse.mapArray(Workout.self)
-          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+          let workouts = try workoutsResponse.map(to: [Workout.self])
+          self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
           
           let realm = try Realm()
           try realm.write {
@@ -42,7 +42,7 @@ class WorkoutsTableViewController: UITableViewController {
           self.presentAlertWithMessage("Error: \(error)")
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }
@@ -50,18 +50,18 @@ class WorkoutsTableViewController: UITableViewController {
   
   //MARK: - Actions
   
-  func closeButtonAction(sender: UIBarButtonItem) {
-    dismissViewControllerAnimated(true, completion: nil)
+  func closeButtonAction(_ sender: UIBarButtonItem) {
+    dismiss(animated: true, completion: nil)
   }
   
   //MARK: - UITableViewDataSource
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return workouts.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as TrainingTableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
     let workout = workouts[indexPath.row]
     
     let workoutSession = WorkoutSession()
@@ -71,31 +71,31 @@ class WorkoutsTableViewController: UITableViewController {
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 0.01
   }
   
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     return nil
   }
   
   //MARK: - UITableViewDelegate
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
-    let selectDaysController = trainingsStoryboard.instantiateViewControllerWithIdentifier("select_days") as! CreateWorkoutSessionsViewController
+    let selectDaysController = trainingsStoryboard.instantiateViewController(withIdentifier: "select_days") as! CreateWorkoutSessionsViewController
     selectDaysController.workout = workouts[indexPath.row]
     selectDaysController.delegate = self
     
-    selectDaysController.modalPresentationStyle = .OverCurrentContext
-    presentViewController(selectDaysController, animated: true, completion: nil)
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    selectDaysController.modalPresentationStyle = .overCurrentContext
+    present(selectDaysController, animated: true, completion: nil)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 
 //MARK: - CreateWorkoutSessionsControllerDelegate
 extension WorkoutsTableViewController: CreateWorkoutSessionsControllerDelegate {
   func didFinishWorkoutSessionsCreation() {
-    dismissViewControllerAnimated(true, completion: nil)
+    dismiss(animated: true, completion: nil)
   }
 }

@@ -14,14 +14,14 @@ extension UserViewModel: UserPresentable {
     return user.userDescription ?? "No description"
   }
   
-  var avatarURL: NSURL? {
+  var avatarURL: URL? {
     guard let urlString = user.avatarURLString else { return nil }
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
   
-  var coverImageURL: NSURL? {
+  var coverImageURL: URL? {
     guard let urlString = user.bannerURLString else { return nil }
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
 }
 

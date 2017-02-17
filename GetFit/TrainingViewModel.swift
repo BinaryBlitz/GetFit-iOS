@@ -20,16 +20,16 @@ extension TrainingViewModel: TrainingPresentable {
   }
   
   var trainingDurationString: String {
-    return "\(workoutSession.duration) min".uppercaseString
+    return "\(workoutSession.duration) min".uppercased()
   }
   
   var trainingDateString: String {
     let date = workoutSession.date
     
-    if date.isInToday() {
+    if date.isToday {
       return "TODAY"
     } else {
-      return date.toString(.Custom("dd/MM"))!
+      return date.string(format: .custom("dd/MM"))
     }
   }
 }

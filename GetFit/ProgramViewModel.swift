@@ -6,12 +6,12 @@ struct ProgramViewModel {
 }
 
 extension ProgramViewModel: TrainerPresentable {
-  var trainerAvatarURL: NSURL? {
-    guard let trainer = program.trainer, avatarURLString = trainer.avatarURLString else {
+  var trainerAvatarURL: URL? {
+    guard let trainer = program.trainer, let avatarURLString = trainer.avatarURLString else {
       return nil
     }
     
-    return NSURL(string: avatarURLString)
+    return URL(string: avatarURLString)
   }
   
   var trainerName: String {
@@ -64,14 +64,14 @@ extension ProgramViewModel: ProgramPresentable {
     return "\(program.duration) MIN"
   }
   
-  var bannerURL: NSURL? {
+  var bannerURL: URL? {
     guard let urlString = program.bannerURLString else { return nil }
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
   
   var info: NSAttributedString {
     let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
+    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: infoFontSize)]
     
     return NSMutableAttributedString(string: workoutsCount, attributes: boldTextAttrebutes)
   }

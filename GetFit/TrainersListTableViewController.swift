@@ -11,7 +11,7 @@ import RealmSwift
 import Reusable
 
 protocol TrainersListDelegate: class {
-  func trainersList(viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer)
+  func trainersList(_ viewController: TrainersListTableViewController, didSelectTrainer trainer: Trainer)
 }
 
 class TrainersListTableViewController: UITableViewController {
@@ -29,39 +29,39 @@ class TrainersListTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.registerReusableCell(ProfessionalTableViewCell)
+    tableView.register(cellType: ProfessionalTableViewCell.self)
     tableView.rowHeight = 370
-    tableView.separatorStyle = .None
+    tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
     let realm = try! Realm()
 
     //TODO: sort by popularity
-    trainers = realm.objects(Trainer).filter("categoryValue = '\(category.rawValue)'").sorted("id")
+    trainers = realm.objects(Trainer.self).filter("categoryValue = '\(category.rawValue)'").sorted(byKeyPath: "id")
   }
 
   //MARK: - UITableViewDataSource
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return trainers?.count ?? 0
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let trainer = trainers?[indexPath.row] else { return UITableViewCell() }
     
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
     
     return cell
   }
 
   //MARK: - UITableViewDelegate
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     if let trainer = trainers?[indexPath.row] {
       delegate?.trainersList(self, didSelectTrainer: trainer)
     }
 
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }

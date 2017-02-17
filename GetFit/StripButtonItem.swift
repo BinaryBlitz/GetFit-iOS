@@ -11,53 +11,53 @@ import UIKit
 internal class StripButtonItem: UIButton {
   
   enum ItemState {
-    case Selected
-    case Normal
+    case selected
+    case normal
   }
   
   var title: String = "" {
     didSet {
-      setTitle(title, forState: .Normal)
+      setTitle(title, for: UIControlState())
     }
   }
   
-  var titleColor: UIColor = UIColor.grayColor().colorWithAlphaComponent(0.5) {
+  var titleColor: UIColor = UIColor.gray.withAlphaComponent(0.5) {
     didSet {
-      if itemState == .Normal {
-        setTitleColor(titleColor, forState: .Normal)
+      if itemState == .normal {
+        setTitleColor(titleColor, for: UIControlState())
       }
     }
   }
   
-  var selectedTitleColor: UIColor = UIColor.grayColor() {
+  var selectedTitleColor: UIColor = UIColor.gray {
     didSet  {
-      if itemState == .Selected {
-        setTitleColor(selectedTitleColor, forState: .Normal)
+      if itemState == .selected {
+        setTitleColor(selectedTitleColor, for: UIControlState())
       }
     }
   }
   
-  var itemState: ItemState = .Normal {
+  var itemState: ItemState = .normal {
     didSet {
       switch itemState {
-      case .Selected:
-        setTitleColor(selectedTitleColor, forState: .Normal)
-      case .Normal:
-        setTitleColor(titleColor, forState: .Normal)
+      case .selected:
+        setTitleColor(selectedTitleColor, for: UIControlState())
+      case .normal:
+        setTitleColor(titleColor, for: UIControlState())
       }
     }
   }
   
   init(title: String) {
     super.init(frame: .zero)
-    self.backgroundColor = UIColor.whiteColor()
-    self.title = title.uppercaseString
-    setTitle(title.uppercaseString, forState: UIControlState.Normal)
-    titleColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
-    selectedTitleColor = UIColor.grayColor()
+    self.backgroundColor = UIColor.white
+    self.title = title.uppercased()
+    setTitle(title.uppercased(), for: UIControlState())
+    titleColor = UIColor.gray.withAlphaComponent(0.5)
+    selectedTitleColor = UIColor.gray
     //    setTitleColor(UIColor.blueColor().colorWithAlphaComponent(0.3), forState: .Highlighted)
     //    setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.3), forState: .Highlighted)
-    titleLabel?.font = UIFont.boldSystemFontOfSize(16)
+    titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
   }
   
   required init?(coder aDecoder: NSCoder) {

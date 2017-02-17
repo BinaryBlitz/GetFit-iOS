@@ -18,10 +18,6 @@ class Exercise: Object, JSONSerializable {
     super.init()
   }
   
-  required init(realm: RLMRealm, schema: RLMObjectSchema) {
-    super.init(realm: realm, schema: schema)
-  }
-  
   required init?(json: JSON) {
     super.init()
     
@@ -32,7 +28,11 @@ class Exercise: Object, JSONSerializable {
     self.name = name
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
+  }
+
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
   }
 }

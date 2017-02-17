@@ -15,13 +15,13 @@ class WorkoutHeaderView: UITableViewHeaderFooterView {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    contentView.backgroundColor = UIColor.clearColor()
-    titleLabel.textColor = UIColor.darkGrayColor()
+    contentView.backgroundColor = UIColor.clear
+    titleLabel.textColor = UIColor.darkGray
   }
   
-  func configureWith(workout: Workout) {
+  func configureWith(_ workout: Workout) {
     titleLabel.text = workout.name
     durationBadge.text = "\(workout.duration) MIN"
-    durationBadge.style = BadgeView.Style(color: .LightGray, height: .Low)
+    durationBadge.style = BadgeView.Style(color: .lightGray, height: .low)
   }
 }

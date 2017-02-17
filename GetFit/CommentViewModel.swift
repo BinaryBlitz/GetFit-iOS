@@ -24,10 +24,10 @@ extension CommentViewModel: TextPresentable {
 
 extension CommentViewModel: DateTimePresentable {
   var dateString: String {
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM"
     
-    return dateFormatter.stringFromDate(comment.dateCreated)
+    return dateFormatter.string(from: comment.dateCreated as Date)
   }
 }
 
@@ -43,16 +43,16 @@ extension CommentViewModel: UserPresentable {
     return ""
   }
   
-  var avatarURL: NSURL? {
+  var avatarURL: URL? {
     guard let avatarURLString = comment.author?.avatarURLString,
-        avatarURL = NSURL(string: avatarURLString) else {
+        let avatarURL = URL(string: avatarURLString) else {
       return nil
     }
     
     return avatarURL
   }
   
-  var coverImageURL: NSURL? {
+  var coverImageURL: URL? {
     return nil
   }
 }

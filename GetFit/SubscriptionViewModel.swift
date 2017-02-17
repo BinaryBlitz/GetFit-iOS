@@ -17,18 +17,18 @@ extension SubscriptionViewModel: SubscriptionPresentable {
   }
 
   var createdAt: String {
-    let dateFormat: DateFormat = .Custom("dd.MM")
+    let dateFormat: DateFormat = .custom("dd.MM")
 
     if let message = subscription.lastMessage {
-      return message.createdAt.toString(dateFormat)!
+      return message.createdAt.string(format: dateFormat)
     } else {
-      return subscription.createdAt.toString(dateFormat)!
+      return subscription.createdAt.string(format: dateFormat)
     }
   }
 
-  var avatarImageURL: NSURL? {
+  var avatarImageURL: URL? {
     guard let urlString = subscription.trainer.avatarURLString else { return nil }
 
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
 }

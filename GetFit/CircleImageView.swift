@@ -10,7 +10,7 @@ import UIKit
 
 class CircleImageView: UIImageView {
   
-  private func baseInit() {
+  fileprivate func baseInit() {
     layer.cornerRadius = frame.width / 2
     clipsToBounds = true
   }

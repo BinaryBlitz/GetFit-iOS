@@ -9,9 +9,9 @@
 import Foundation
 
 protocol ButtonStripViewDelegate: class {
-  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int)
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int)
 }
 
 extension ButtonStripViewDelegate {
-  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) { }
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) { }
 }

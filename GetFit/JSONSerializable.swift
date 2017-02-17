@@ -16,6 +16,6 @@ protocol JSONSerializable {
 extension JSONSerializable {
   
   func convertToJSON() -> JSON {
-    return JSON(nilLiteral: ())
+    return JSON.null
   }
 }

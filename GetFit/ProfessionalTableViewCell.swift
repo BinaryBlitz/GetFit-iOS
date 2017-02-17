@@ -7,22 +7,22 @@
 //
 
 import UIKit
-import Haneke
+import Kingfisher
 import PureLayout
 import Reusable
 
 protocol ProfessionalCellDelegate: class {
-  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
+  func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
 }
 
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   
   enum ProfessionalCellState {
-    case Normal
-    case Card
+    case normal
+    case card
   }
   
-  var state: ProfessionalCellState = .Card {
+  var state: ProfessionalCellState = .card {
     didSet {
       updateWithState(state)
     }
@@ -45,7 +45,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   
   weak var delegate: ProfessionalCellDelegate?
   
-  private var following: Bool = false {
+  fileprivate var following: Bool = false {
     didSet {
       updateFollowingStatus(following)
     }
@@ -54,14 +54,14 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    avatarImageView.contentMode = .ScaleAspectFill
+    avatarImageView.contentMode = .scaleAspectFill
     avatarImageView.layer.masksToBounds = true
-    avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+    avatarImageView.layer.borderColor = UIColor.white.cgColor
     avatarImageView.layer.borderWidth = 3
-    avatarImageView.backgroundColor = UIColor.yellowColor()
+    avatarImageView.backgroundColor = UIColor.yellow
     avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
     
-    bannerImageView.contentMode = .ScaleAspectFill
+    bannerImageView.contentMode = .scaleAspectFill
     bannerImageView.layer.masksToBounds = true
     bannerImageView.backgroundColor = UIColor.blueAccentColor()
     bannerImageView.image = nil
@@ -70,7 +70,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     updateFollowingStatus(following)
     
     let maskView = UIView()
-    maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
     bannerMaskView = maskView
@@ -80,71 +80,71 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     let button = UIButton()
     followButtonBackground.addSubview(button)
     button.autoPinEdgesToSuperviewEdges()
-    button.addTarget(self, action: #selector(followButtonAction(_:)), forControlEvents: .TouchUpInside)
+    button.addTarget(self, action: #selector(followButtonAction(_:)), for: .touchUpInside)
     followButtonBackground.layer.borderWidth = 1
     followButtonBackground.layer.cornerRadius = 2
-    followButtonLabel.text = "follow".uppercaseString
+    followButtonLabel.text = "follow".uppercased()
   }
   
-  func followButtonAction(sender: UIButton) {
+  func followButtonAction(_ sender: UIButton) {
     following = !following
     delegate?.professionalCell(self, didChangeFollowingTo: following)
   }
   
-  func updateFollowingStatus(following: Bool) {
+  func updateFollowingStatus(_ following: Bool) {
     if following {
-      followButtonLabel.textColor = UIColor.whiteColor()
-      followButtonIcon.tintColor = UIColor.whiteColor()
-      followButtonIcon.image = UIImage(named: "Checkmark")?.imageWithRenderingMode(.AlwaysTemplate)
+      followButtonLabel.textColor = UIColor.white
+      followButtonIcon.tintColor = UIColor.white
+      followButtonIcon.image = UIImage(named: "Checkmark")?.withRenderingMode(.alwaysTemplate)
       followButtonBackground.backgroundColor = UIColor.blueAccentColor()
-      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     } else {
       followButtonLabel.textColor = UIColor.blueAccentColor()
       followButtonIcon.tintColor = UIColor.blueAccentColor()
-      followButtonIcon.image = UIImage(named: "Add")?.imageWithRenderingMode(.AlwaysTemplate)
-      followButtonBackground.backgroundColor = UIColor.whiteColor()
-      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+      followButtonIcon.image = UIImage(named: "Add")?.withRenderingMode(.alwaysTemplate)
+      followButtonBackground.backgroundColor = UIColor.white
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     }
   }
   
-  func configureWith(trainer: Trainer, andState state: ProfessionalCellState = .Card) {
+  func configureWith(_ trainer: Trainer, andState state: ProfessionalCellState = .card) {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
-    if state == .Card {
-      programsBadge.text = "10 programs".uppercaseString
+    if state == .card {
+      programsBadge.text = "10 programs".uppercased()
     } else {
-      programsBadge.text = trainer.category.rawValue.uppercaseString
+      programsBadge.text = trainer.category.rawValue.uppercased()
     }
     
     if let avatarURLString = trainer.avatarURLString,
-          avatarURL = NSURL(string: avatarURLString) {
-      avatarImageView.hnk_setImageFromURL(avatarURL)
+          let avatarURL = URL(string: avatarURLString) {
+      avatarImageView.kf.setImage(with: avatarURL)
     }
     
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
-    bannerMaskView?.hidden = true
-    if let bannerURLString = trainer.bannerURLString, bannerURL = NSURL(string: bannerURLString) {
-      bannerImageView.hnk_setImageFromURL(bannerURL) { (image) in
+    bannerMaskView?.isHidden = true
+    if let bannerURLString = trainer.bannerURLString, let bannerURL = URL(string: bannerURLString) {
+      bannerImageView.kf.setImage(with: bannerURL) { image, _, _, _ in
         self.bannerImageView.image = image
-        self.bannerMaskView?.hidden = false
+        self.bannerMaskView?.isHidden = false
       }
     }
     
     self.state = state
   }
   
-  private func resetImages() {
-    avatarImageView.hnk_cancelSetImage()
-    bannerImageView.hnk_cancelSetImage()
+  fileprivate func resetImages() {
+    avatarImageView.kf.cancelDownloadTask()
+    bannerImageView.kf.cancelDownloadTask()
     avatarImageView.image = nil
     bannerImageView.image = nil
   }
   
-  private func updateWithState(state: ProfessionalCellState) {
+  fileprivate func updateWithState(_ state: ProfessionalCellState) {
     switch state {
-    case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
-    case .Normal:
+    case .card:
+      cardView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
+    case .normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }
   }

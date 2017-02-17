@@ -8,13 +8,13 @@
 
 import UIKit
 import PureLayout
-import Haneke
+import Kingfisher
 import Reusable
 
-typealias ProgramCellPresentable = protocol<TrainerPresentable, ProgramPresentable, NamedObject>
+typealias ProgramCellPresentable = TrainerPresentable & ProgramPresentable & NamedObject
 
 protocol ProgramCellDelegate: class {
-  func didTouchBuyButtonInCell(cell: ProgramTableViewCell)
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell)
 }
 
 class ProgramTableViewCell: UITableViewCell, NibReusable {
@@ -40,11 +40,11 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   var bannerMaskView: UIView?
   
   enum ProgramCellState {
-    case Card
-    case Normal
+    case card
+    case normal
   }
   
-  var state: ProgramCellState = .Card {
+  var state: ProgramCellState = .card {
     didSet {
       updateWithState(state)
     }
@@ -54,26 +54,26 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   
   func hideBanner() {
     bannerView.removeFromSuperview()
-    contentStackView.autoPinEdgeToSuperviewEdge(.Top, withInset: 14)
+    contentStackView.autoPinEdge(toSuperviewEdge: .top, withInset: 14)
   }
 
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    priceBadge.style = BadgeView.Style(color: .LightBlue, height: .Tall)
-    categoryBadge.style = BadgeView.Style(color: .LightGray)
+    priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
+    categoryBadge.style = BadgeView.Style(color: .lightGray)
     
-    trainerAvatar.layer.borderColor = UIColor.whiteColor().CGColor
+    trainerAvatar.layer.borderColor = UIColor.white.cgColor
     trainerAvatar.layer.borderWidth = 1
     trainerAvatar.image = EmptyStateHelper.avatarPlaceholderImage
     
     let buyButton = UIButton()
     priceBadge.addSubview(buyButton)
     buyButton.autoPinEdgesToSuperviewEdges()
-    buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), forControlEvents: .TouchUpInside)
+    buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), for: .touchUpInside)
     
     let maskView = UIView()
-    maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
     bannerMaskView = maskView
@@ -81,19 +81,19 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   
   //MARK: - Actions
   
-  func buyButtonAction(button: UIButton) {
+  func buyButtonAction(_ button: UIButton) {
     delegate?.didTouchBuyButtonInCell(self)
   }
   
   //MARK: - Cell configuration
   
-  func configureWith(viewModel: ProgramCellPresentable) {
+  func configureWith(_ viewModel: ProgramCellPresentable) {
     nameLabel.text = viewModel.title
     priceBadge.text = viewModel.price
     infoLabel.attributedText = viewModel.info
     categoryBadge.text = viewModel.category
     
-    if state == .Card {
+    if state == .card {
       descriptionLabel.text = viewModel.preview
     } else {
       descriptionLabel.text = viewModel.description
@@ -103,27 +103,27 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     
     trainerNameLabel.text = viewModel.trainerName
     
-    trainerAvatar.hnk_cancelSetImage()
+    trainerAvatar.kf.cancelDownloadTask()
     if let avatarURL = viewModel.trainerAvatarURL {
-      trainerAvatar.hnk_setImageFromURL(avatarURL)
+      trainerAvatar.kf.setImage(with: avatarURL)
     }
     
-    bannerImageView.hnk_cancelSetImage()
-    bannerMaskView?.hidden = true
+    bannerImageView.kf.cancelDownloadTask()
+    bannerMaskView?.isHidden = true
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(viewModel)
     if let bannerURL = viewModel.bannerURL {
-      bannerImageView.hnk_setImageFromURL(bannerURL) { image in
+      bannerImageView.kf.setImage(with: bannerURL) { image, _, _, _ in
         self.bannerImageView.image = image
-        self.bannerMaskView?.hidden = false
+        self.bannerMaskView?.isHidden = false
       }
     }
   }
   
-  private func updateWithState(state: ProgramCellState) {
+  fileprivate func updateWithState(_ state: ProgramCellState) {
     switch state {
-    case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
-    case .Normal:
+    case .card:
+      cardView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
+    case .normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }
   }

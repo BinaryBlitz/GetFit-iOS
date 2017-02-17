@@ -20,7 +20,7 @@ class StoreTableViewController: UITableViewController {
     super.viewDidLoad()
     
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     configureTableView()
     fetchPrograms()
   }
@@ -28,24 +28,24 @@ class StoreTableViewController: UITableViewController {
   func configureTableView() {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     
-    tableView.registerReusableCell(ProgramTableViewCell)
+    tableView.register(cellType: ProgramTableViewCell.self)
     
     tableView.backgroundView = createBackgroundView()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 265
     
-    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Store)
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.store)
     
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
-    header.backgroundColor = UIColor.clearColor()
+    header.backgroundColor = UIColor.clear
     tableView.tableHeaderView = header
     
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
     
     refresh()
   }
@@ -54,40 +54,40 @@ class StoreTableViewController: UITableViewController {
       let view = UIView()
       let label = UILabel()
       label.text = "No data 😓"
-      label.textAlignment = .Center
-      label.font = UIFont.systemFontOfSize(22)
+      label.textAlignment = .center
+      label.font = UIFont.systemFont(ofSize: 22)
       label.textColor = UIColor.graySecondaryColor()
       view.addSubview(label)
-      label.autoPinEdgeToSuperviewEdge(.Left)
-      label.autoPinEdgeToSuperviewEdge(.Right)
-      label.autoPinEdgeToSuperviewEdge(.Bottom)
-      label.autoPinEdgeToSuperviewEdge(.Top, withInset: -50, relation: .Equal)
+      label.autoPinEdge(toSuperviewEdge: .left)
+      label.autoPinEdge(toSuperviewEdge: .right)
+      label.autoPinEdge(toSuperviewEdge: .bottom)
+      label.autoPinEdge(toSuperviewEdge: .top, withInset: -50, relation: .equal)
     
       return view
   }
   
   func fetchPrograms() {
     let realm = try! Realm()
-    programs = Array(realm.objects(Program).sorted("usersCount"))
+    programs = Array(realm.objects(Program.self).sorted(byKeyPath: "usersCount"))
   }
   
   //MARK: - Refresh
   
-  func refresh(sender: AnyObject? = nil) {
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
   
-  func beginRefreshWithCompletion(completion: () -> Void) {
-    programsProvider.request(.Index(filter: ProgramsFilter())) { (result) in
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
+    programsProvider.request(.index(filter: ProgramsFilter())) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         
         do {
           let programsResponse = try response.filterSuccessfulStatusCodes()
-          let programs = try programsResponse.mapArray(Program.self)
+          let programs = try programsResponse.map(to: [Program.self])
           self.programs = programs
           let realm = try Realm()
           try realm.write {
@@ -97,7 +97,7 @@ class StoreTableViewController: UITableViewController {
           print("Cannot update programs")
         }
         
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
       }
       completion()
@@ -106,35 +106,35 @@ class StoreTableViewController: UITableViewController {
   
   //MARK: - TableView DataSource and Delegate
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = programs.count
-    tableView.backgroundView?.hidden = numberOfRows != 0
+    tableView.backgroundView?.isHidden = numberOfRows != 0
     
     return numberOfRows
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let program = programs[indexPath.row]
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProgramTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
     cell.delegate = self
-    cell.state = .Card
+    cell.state = .card
     cell.configureWith(ProgramViewModel(program: program))
     
     return cell
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("programDetails", sender: indexPath)
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "programDetails", sender: indexPath)
   }
   
   // MARK: - Navigation
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
     switch identifier {
     case "programDetails":
-      let destination = segue.destinationViewController as! ProgramDetailsTableViewController
-      let indexPath = sender as! NSIndexPath
+      let destination = segue.destination as! ProgramDetailsTableViewController
+      let indexPath = sender as! IndexPath
       destination.program = programs[indexPath.row]
       destination.programsProvider = programsProvider
     default:
@@ -146,20 +146,20 @@ class StoreTableViewController: UITableViewController {
 //MARK: - ProgramCellDelegate
 
 extension StoreTableViewController: ProgramCellDelegate {
-  func didTouchBuyButtonInCell(cell: ProgramTableViewCell) {
-    guard let indexPath = tableView.indexPathForCell(cell) else { return }
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {
+    guard let indexPath = tableView.indexPath(for: cell) else { return }
     let program = programs[indexPath.row]
     
-    programsProvider.request(.CreatePurchase(programId: program.id)) { (result) in
+    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           self.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
           self.presentAlertWithMessage("Error: \(error)")
         }
-      case .Failure(let error):
+      case .failure(let error):
         self.presentAlertWithMessage("Error: \(error)")
       }
     }

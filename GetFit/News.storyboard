@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yFY-Tg-v2i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yFY-Tg-v2i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,6 +51,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="EU2-Os-GML">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPost" id="18Q-JA-Oub"/>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPostAndComment" id="1W4-iT-S2E"/>
@@ -146,7 +149,7 @@
                 <viewControllerPlaceholder storyboardName="Store" referencedIdentifier="ProgramDetails" id="3XN-UQ-p6X" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDz-iI-t4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2939.5" y="-776"/>
+            <point key="canvasLocation" x="3242" y="-887"/>
         </scene>
         <!--TrainerViewController-->
         <scene sceneID="NCa-g0-3Pl">
@@ -154,7 +157,7 @@
                 <viewControllerPlaceholder storyboardName="Professionals" referencedIdentifier="TrainerViewController" id="oHT-Am-BYv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tap-tu-m1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2921" y="-600"/>
+            <point key="canvasLocation" x="3159" y="-466"/>
         </scene>
     </scenes>
     <resources>

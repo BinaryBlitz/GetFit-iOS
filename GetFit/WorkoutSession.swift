@@ -13,7 +13,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   dynamic var programName: String = ""
   dynamic var programId: Int = 0
   dynamic var completed: Bool = false
-  dynamic var date: NSDate = NSDate()
+  dynamic var date: Date = Date()
   dynamic var position: Int = 0
   dynamic var exercisesCount: Int = 0
   dynamic var synced: Bool = true
@@ -22,24 +22,25 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   override static func primaryKey() -> String? {
     return "id"
   }
-  
+
   required init?(jsonData: JSON) {
     super.init()
     
-    guard let id = jsonData["id"].int, workoutID = jsonData["workout_id"].int,
-        scheduledFor = jsonData["scheduled_for"].string else {
+    guard let id = jsonData["id"].int, let workoutID = jsonData["workout_id"].int,
+        let scheduledFor = jsonData["scheduled_for"].string else {
       return nil
     }
     
     self.id = id
     self.workoutID = workoutID
-    self.date = scheduledFor.toDate(.ISO8601Format(.Date))!
+    let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTime)).absoluteDate
+    self.date = date ?? Date()
     
     guard let workoutName = jsonData["workout"]["name"].string,
-      duration = jsonData["workout"]["duration"].int,
-      exercisesCount = jsonData["workout"]["exercises_count"].int,
-      programName = jsonData["workout"]["program"]["name"].string,
-      programID = jsonData["workout"]["program"]["id"].int
+      let duration = jsonData["workout"]["duration"].int,
+      let exercisesCount = jsonData["workout"]["exercises_count"].int,
+      let programName = jsonData["workout"]["program"]["name"].string,
+      let programID = jsonData["workout"]["program"]["id"].int
     else {
         return nil
     }
@@ -60,7 +61,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.programName = programName
   }
   
-  func updateWith(workout: Workout) {
+  func updateWith(_ workout: Workout) {
     self.workoutID = workout.id
     self.workoutName = workout.name
     self.programId = workout.programId
@@ -70,14 +71,14 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.exercisesCount = workout.exercisesCount
   }
   
-  required init(value: AnyObject, schema: RLMSchema) {
-    super.init(value: value, schema: schema)
-  }
-  
   required init() {
     super.init()
   }
   
+  required init(value: Any, schema: RLMSchema) {
+    super.init(value: value, schema: schema)
+  }
+
   required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }

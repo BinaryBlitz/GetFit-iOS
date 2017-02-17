@@ -7,10 +7,10 @@ import SwiftDate
 extension GetFit {
   
   enum WorkoutSessions {
-    case Index
-    case Create(sessions: [WorkoutSession])
-    case ExerciseSessions(workoutSession: Int)
-    case UpdateExerciseSession(session: ExerciseSession)
+    case index
+    case create(sessions: [WorkoutSession])
+    case exerciseSessions(workoutSession: Int)
+    case updateExerciseSession(session: ExerciseSession)
   }
   
 }
@@ -19,40 +19,49 @@ extension GetFit.WorkoutSessions: TargetType {
   
   var path: String {
     switch self {
-    case .Index:
+    case .index:
       return "/workout_sessions"
-    case .Create(_):
+    case .create(_):
       return "/user"
-    case .ExerciseSessions(let workoutSession):
+    case .exerciseSessions(let workoutSession):
       return "/workout_sessions/\(workoutSession)/exercise_sessions"
-    case .UpdateExerciseSession(let session):
+    case .updateExerciseSession(let session):
       return "/exercise_sessions/\(session.id)"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .Index, .ExerciseSessions(_):
-      return .GET
-    case .Create(_), .UpdateExerciseSession(_):
-      return .PATCH
+    case .index, .exerciseSessions(_):
+      return .get
+    case .create(_), .updateExerciseSession(_):
+      return .patch
+    }
+  }
+
+  public var parameterEncoding: ParameterEncoding {
+    switch self {
+    case .index, .exerciseSessions(_):
+      return URLEncoding.default
+    case .create(_), .updateExerciseSession(_):
+      return JSONEncoding.default
     }
   }
   
-  var parameters: [String: AnyObject]? {
+  var parameters: [String: Any]? {
     switch self {
-    case .Index, .ExerciseSessions(_):
+    case .index, .exerciseSessions(_):
       return nil
-    case .Create(let workoutSessions):
-      let sessions = workoutSessions.map { session -> [String: AnyObject] in
-        return ["workout_id": session.workoutID,
-            "scheduled_for": session.date.toString(.ISO8601Format(.Date))!
+    case .create(let workoutSessions):
+      let sessions = workoutSessions.map { session -> [String: Any] in
+        return ["workout_id": session.workoutID as AnyObject,
+            "scheduled_for": session.date.iso8601(opts: .withInternetDateTime) 
         ]
       }
       return ["user": ["workout_sessions_attributes": sessions]]
-    case .UpdateExerciseSession(let session):
+    case .updateExerciseSession(let session):
       let sessionData = ["completed": session.completed]
-      return ["exercise_session": sessionData]
+      return ["exercise_session": sessionData as AnyObject]
     }
   }
   
