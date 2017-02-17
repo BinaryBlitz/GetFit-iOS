@@ -10,10 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import VK_ios_sdk
-import SwiftSpinner
 import SwiftyJSON
-
-typealias Spinner = SwiftSpinner
 
 class LoginViewController: UIViewController {
 
@@ -52,24 +49,24 @@ class LoginViewController: UIViewController {
   @IBAction func facebookButtonAction(_ sender: AnyObject) {
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.loginBehavior = FBSDKLoginBehavior.browser
-    fbLoginManager.logIn(withReadPermissions: ["public_profile"], from: self) { (result, error) in
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    fbLoginManager.logIn(withReadPermissions: ["public_profile"], from: self) { [weak self] (result, error) in
+      UIApplication.shared.isNetworkActivityIndicatorVisible = false
       guard error == nil else {
         print(error.debugDescription)
-        Spinner.hide()
-        self.presentAlertWithMessage("Не удалось войти через Facebook")
+        self?.presentAlertWithMessage("Не удалось войти через Facebook")
         return
       }
       
       if let result = result {
         if result.isCancelled {
           print("cancelled")
+          self?.view.isUserInteractionEnabled = true
         } else {
           print("loggend in!")
           let token = result.token
           
-          Spinner.show("Идет авторизация")
-          self.loginProvider.request(.facebook(token: token?.tokenString ?? "")) { (result) in
-            Spinner.hide()
+          self?.loginProvider.request(.facebook(token: token?.tokenString ?? "")) { (result) in
             switch result {
             case .success(let response):
               do {
@@ -84,14 +81,15 @@ class LoginViewController: UIViewController {
                 UserManager.currentUser = user
                 registerForPushNotifications()
                 
-                self.performSegue(withIdentifier: "home", sender: self)
+                self?.performSegue(withIdentifier: "home", sender: self)
               } catch {
-                self.presentAlertWithMessage("Server response code: \(response.statusCode)")
+                self?.presentAlertWithMessage("Server response code: \(response.statusCode)")
               }
             case .failure(let error):
               print(error)
-              self.presentAlertWithMessage("Ошибка! Попробуйте позже!")
+              self?.presentAlertWithMessage("Ошибка! Попробуйте позже!")
             }
+            self?.view.isUserInteractionEnabled = true
           }
         }
       }
@@ -99,7 +97,8 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func vkButtonAction(_ sender: AnyObject) {
-    Spinner.show("Идет авторизация")
+    view.isUserInteractionEnabled = false
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
     let VKAppId = Bundle.main.object(forInfoDictionaryKey: "VKAppID") as! String
     let vk = VKSdk.initialize(withAppId: VKAppId)
     vk?.register(self)
@@ -114,15 +113,16 @@ class LoginViewController: UIViewController {
 extension LoginViewController: VKSdkDelegate {
   
   func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
     if let error = result.error {
       print(error)
-      Spinner.hide()
+      view.isUserInteractionEnabled = true
       presentAlertWithMessage("Не удалось авторизироваться чере VK")
     }
     
     if let token = result.token.accessToken {
       loginProvider.request(.vk(token: token)) { result in
-        Spinner.hide()
+        self.view.isUserInteractionEnabled = true
         switch result {
         case .success(let response):
           do {
@@ -149,7 +149,7 @@ extension LoginViewController: VKSdkDelegate {
   }
   
   func vkSdkUserAuthorizationFailed() {
-    Spinner.hide()
+    self.view.isUserInteractionEnabled = true
     presentAlertWithMessage("Не удалось авторизироваться чере VK")
   }
 }

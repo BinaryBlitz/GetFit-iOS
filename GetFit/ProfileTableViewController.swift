@@ -12,12 +12,12 @@ import RealmSwift
 import Moya
 
 class ProfileTableViewController: UITableViewController {
-  
+
   fileprivate let tabsLabels = ["statistic", "programs"]
   fileprivate var selectedTabIndex = 0
   fileprivate var imageTypeToSelect: Image?
   let userProvider = APIProvider<GetFit.Users>()
-  
+
   var programs: Results<Program>?
   var user: User? {
     didSet {
@@ -31,7 +31,11 @@ class ProfileTableViewController: UITableViewController {
     loadUser()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     setupTableView()
-    
+
+    refreshControl = UIRefreshControl()
+    refreshControl?.addTarget(self, action: #selector(ProfileTableViewController.refresh(_:)), for
+      : UIControlEvents.valueChanged)
+
 //    let realm = try! Realm()
 //    programs = realm.objects(Program)
   }

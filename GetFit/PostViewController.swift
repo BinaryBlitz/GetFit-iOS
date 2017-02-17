@@ -1,8 +1,6 @@
 import UIKit
 import RealmSwift
 import Reusable
-import MWPhotoBrowser
-import SVPullToRefresh
 
 class PostViewController: UIViewController {
 
@@ -72,10 +70,13 @@ class PostViewController: UIViewController {
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubview(toBack: refreshControl)
-    
-    tableView.addInfiniteScrolling {
-      self.refresh()
-    }
+
+    tableView.tableFooterView?.isHidden = true
+
+    // TODO: implement infinite scrolling
+    //tableView.addInfiniteScrolling {
+      //self.refresh()
+    //}
   }
   
   //MARK: - Refresh
@@ -88,7 +89,8 @@ class PostViewController: UIViewController {
         self.reloadCommentsSection()
       }
       self.refreshControl?.endRefreshing()
-      self.tableView.infiniteScrollingView.stopAnimating()
+      // TODO: implement infinite scrolling
+      // self.tableView.infiniteScrollingView.stopAnimating()
       self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
   }
@@ -166,13 +168,7 @@ class PostViewController: UIViewController {
       presentAlertWithMessage("Cannot load program")
     }
   }
-  
-  @objc fileprivate func showImage() {
-    let browser = MWPhotoBrowser(delegate: self)
-    browser?.setCurrentPhotoIndex(0)
-    navigationController?.pushViewController(browser!, animated: true)
-  }
-  
+
   //MARK: - Tools
   func reloadCommentsSection() {
     if tableView.numberOfSections >= 2 {
@@ -232,7 +228,6 @@ extension PostViewController: UITableViewDataSource {
       cell.delegate = self
       if let imageView = cell.contentImageView {
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showImage)))
       }
 
       let interactiveViews: [UIView] = [cell.trainerNameLabel, cell.trainerAvatarImageView]
@@ -265,20 +260,6 @@ extension PostViewController: UITableViewDataSource {
 extension PostViewController: PostTableViewCellDelegate {
   func didTouchLikeButton(_ cell: PostTableViewCell) {
     _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
-  }
-}
-
-// MARK: - MWPhotoBrowserDelegate
-extension PostViewController: MWPhotoBrowserDelegate {
-  
-  func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
-    return 1
-  }
-  
-  func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
-    guard let imageURLString = post.imageURLString, let url = URL(string: imageURLString) else { return nil }
-    
-    return MWPhoto(url: url)
   }
 }
 

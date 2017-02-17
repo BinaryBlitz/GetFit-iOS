@@ -401,6 +401,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				882AC3671E56F7EF0092682E /* PhotoBrowser */,
 				376142DF1C90C8B50073B5F4 /* Login */,
 				3718DCCF1D4613E300521932 /* Chat */,
 				37C5644B1C77D76000BC370E /* News */,
@@ -780,6 +781,13 @@
 				8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		882AC3671E56F7EF0092682E /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {

@@ -15,7 +15,6 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - InnerShadowView (1.0.0)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -57,9 +56,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SVPullToRefresh (0.4.1)
   - SwiftDate (4.0.13)
-  - SwiftSpinner (1.1.0)
   - SwiftyJSON (3.1.4)
   - Toucan (0.6.0)
   - UICountingLabel (1.4.0)
@@ -72,7 +69,6 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit (~> 4.16)
   - FBSDKLoginKit (~> 4.16)
-  - InnerShadowView (~> 1.0)
   - JSQMessagesViewController
   - Kingfisher
   - MCSwipeTableViewCell (~> 2.1.4)
@@ -83,9 +79,7 @@ DEPENDENCIES:
   - PureLayout (~> 3.0)
   - RealmSwift
   - Reusable (~> 3.0.0)
-  - SVPullToRefresh (~> 0.4)
   - SwiftDate (~> 4.0)
-  - SwiftSpinner
   - Toucan
   - UICountingLabel
   - VK-ios-sdk (~> 1.4)
@@ -100,7 +94,6 @@ SPEC CHECKSUMS:
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
-  InnerShadowView: 1b9a599b944c97baa8be6ae81eca896a15f2e12e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Kingfisher: 5690cfb3d1bddf3a98d679a3a34d0b7294974ed2
@@ -116,15 +109,13 @@ SPEC CHECKSUMS:
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   Reusable: 5362d10271ca8316b104698a21e90498f47e8339
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
-  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
-  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toucan: 47485bbc9cb4541ef6318d6886103e6eaf16e919
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: 2ddf767c5de15840d3a3d1fbc8082cbbb3155054
+PODFILE CHECKSUM: 97545d66b5639a3ee8bc3766a2ca1a979fe773a0
 
 COCOAPODS: 1.2.0

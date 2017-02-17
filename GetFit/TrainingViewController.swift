@@ -1,5 +1,5 @@
 import UIKit
-import UICountingLabel
+import MCSwipeTableViewCell
 import Reusable
 import Moya
 import RealmSwift
@@ -10,7 +10,7 @@ class TrainingViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var endTrainingView: UIView!
-  @IBOutlet weak var trainingStatusLabel: UICountingLabel!
+  @IBOutlet weak var trainingStatusLabel: UILabel!
   @IBOutlet weak var endTrainingButton: UIButton!
   var refreshControl: UIRefreshControl!
   
@@ -127,8 +127,7 @@ class TrainingViewController: UIViewController {
     }
     
     let finishedCount = finishedExercises.count
-    trainingStatusLabel.format = "%d%%"
-    trainingStatusLabel.countFromCurrentValue(to: CGFloat((finishedCount * 100) / total), withDuration: 0.4)
+    trainingStatusLabel.text = "\(Int((finishedCount * 100) / total))%"
     if Float((finishedCount * 100) / total) == 100 {
       trainingStatusLabel.textColor = UIColor.blackTextColor()
       endTrainingView.backgroundColor = UIColor.primaryYellowColor()

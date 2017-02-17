@@ -8,7 +8,6 @@
 
 import UIKit
 import PureLayout
-import InnerShadowView
 
 class ActionTableViewCell: UITableViewCell {
 
@@ -46,7 +45,6 @@ class ActionTableViewCell: UITableViewCell {
   
   override func updateConstraints() {
     super.updateConstraints()
-    contentView.addInsetShadows(withRadius: 0.7, at: ShadowDirections.SHADOW_TOP)
     contentView.bringSubview(toFront: button)
   }
 }

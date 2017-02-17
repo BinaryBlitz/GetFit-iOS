@@ -1,6 +1,5 @@
 import UIKit
 import RealmSwift
-import MWPhotoBrowser
 import Moya
 import Reusable
 
@@ -106,12 +105,6 @@ class ProfessionalTableViewController: UITableViewController {
         break
       }
       cell.configureWith(trainer, andState: .normal)
-      cell.avatarImageView.isUserInteractionEnabled = true
-      cell.avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAvatar)))
-
-      cell.bannerImageView.isUserInteractionEnabled = true
-      cell.bannerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showBanner)))
-
       return cell
     case 0 where indexPath.row == 1:
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "getPersonalTrainingCell") as? ActionTableViewCell else {
@@ -142,18 +135,6 @@ class ProfessionalTableViewController: UITableViewController {
     }
 
     return UITableViewCell()
-  }
-
-  @objc fileprivate func showAvatar() {
-    let browser = MWPhotoBrowser(delegate: self)
-    browser?.setCurrentPhotoIndex(0)
-    navigationController?.pushViewController(browser!, animated: true)
-  }
-
-  @objc fileprivate func showBanner() {
-    let browser = MWPhotoBrowser(delegate: self)
-    browser?.setCurrentPhotoIndex(1)
-    navigationController?.pushViewController(browser!, animated: true)
   }
 
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -227,24 +208,3 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
 }
 
 extension ProfessionalTableViewController: PostTableViewCellDelegate { }
-
-//MARK: - MWPhotoBrowserDelegate
-extension ProfessionalTableViewController: MWPhotoBrowserDelegate {
-
-  func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
-    return 2
-  }
-
-  func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
-    let urlString: String?
-    if index == 0 {
-      urlString = trainer.avatarURLString
-    } else {
-      urlString = trainer.bannerURLString
-    }
-
-    guard let imageURLString = urlString, let url = URL(string: imageURLString) else { return nil }
-
-    return MWPhoto(url: url)
-  }
-}

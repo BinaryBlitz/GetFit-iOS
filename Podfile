@@ -18,12 +18,8 @@ target 'GetFit' do
   pod 'MCSwipeTableViewCell', '~> 2.1.4'
   pod 'CVCalendar'
   pod 'PhoneNumberKit'
-  pod 'InnerShadowView', '~> 1.0'
-  pod 'SwiftSpinner'
   pod 'XCDYouTubeKit', '~> 2.5'
   pod 'JSQMessagesViewController'
-  pod 'MWPhotoBrowser', '~> 2.1'
-  pod 'SVPullToRefresh', '~> 0.4'
   pod 'Kingfisher'
 
   # Tools
