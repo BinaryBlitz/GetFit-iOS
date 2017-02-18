@@ -28,11 +28,11 @@ class TrainersListTableViewController: UITableViewController {
 
     let realm = try! Realm()
 
-    //TODO: sort by popularity
+    // TODO: sort by popularity
     trainers = realm.objects(Trainer.self).filter("categoryValue = '\(category.rawValue)'").sorted(byKeyPath: "id")
   }
 
-  //MARK: - UITableViewDataSource
+  // MARK: - UITableViewDataSource
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return trainers?.count ?? 0
@@ -47,7 +47,7 @@ class TrainersListTableViewController: UITableViewController {
     return cell
   }
 
-  //MARK: - UITableViewDelegate
+  // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     if let trainer = trainers?[indexPath.row] {

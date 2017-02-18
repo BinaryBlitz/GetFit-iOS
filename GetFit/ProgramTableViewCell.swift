@@ -11,7 +11,7 @@ protocol ProgramCellDelegate: class {
 
 class ProgramTableViewCell: UITableViewCell, NibReusable {
 
-  //MARK: - Base
+  // MARK: - Base
   @IBOutlet weak var cardView: CardView!
 
   @IBOutlet weak var nameLabel: UILabel!
@@ -71,13 +71,13 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     bannerMaskView = maskView
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func buyButtonAction(_ button: UIButton) {
     delegate?.didTouchBuyButtonInCell(self)
   }
 
-  //MARK: - Cell configuration
+  // MARK: - Cell configuration
 
   func configureWith(_ viewModel: ProgramCellPresentable) {
     nameLabel.text = viewModel.title

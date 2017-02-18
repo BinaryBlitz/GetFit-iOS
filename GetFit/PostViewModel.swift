@@ -38,7 +38,7 @@ struct PostViewModel {
   }
 }
 
-//MARK: - PostPresentable
+// MARK: - PostPresentable
 
 extension PostViewModel: PostPresentable {
   var imageURL: URL? {
@@ -67,7 +67,7 @@ extension PostViewModel: PostPresentable {
   }
 }
 
-//MARK: - TextPresentable
+// MARK: - TextPresentable
 
 extension PostViewModel: TextPresentable {
   var text: String {
@@ -75,7 +75,7 @@ extension PostViewModel: TextPresentable {
   }
 }
 
-//MARK: - TrainerPresentable
+// MARK: - TrainerPresentable
 
 extension PostViewModel: TrainerPresentable {
   var trainerAvatarURL: URL? {
@@ -96,7 +96,7 @@ extension PostViewModel: TrainerPresentable {
   }
 }
 
-//MARK: - DateTimePresentable
+// MARK: - DateTimePresentable
 
 extension PostViewModel: DateTimePresentable {
   var dateString: String {

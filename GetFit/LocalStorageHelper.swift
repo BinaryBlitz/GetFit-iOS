@@ -3,7 +3,7 @@ import Foundation
 struct LocalStorageHelper {
 
   enum StorageKey: String {
-    //TODO: save api token to the keychain
+    // TODO: save api token to the keychain
     case apiToken
     case deviceToken
     case shouldUpdateDeviceToken

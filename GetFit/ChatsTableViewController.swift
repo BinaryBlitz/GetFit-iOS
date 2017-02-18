@@ -40,7 +40,7 @@ class ChatsTableViewController: UITableViewController {
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -75,12 +75,12 @@ class ChatsTableViewController: UITableViewController {
   }
 
 
-  //MARK: - Actions
+  // MARK: - Actions
   func closeButtonAction(_ sender: AnyObject) {
     dismiss(animated: true, completion: nil)
   }
 
-  //MARK: - TableView
+  // MARK: - TableView
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return subscriptions.count
   }

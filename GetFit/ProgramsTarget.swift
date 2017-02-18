@@ -4,7 +4,7 @@ import Moya_SwiftyJSONMapper
 import Toucan
 
 public struct ProgramsFilter {
-  //TODO: Add filter paramters
+  // TODO: Add filter paramters
 }
 
 extension GetFit {
@@ -51,7 +51,7 @@ extension GetFit.Programs: TargetType {
   public var parameters: [String: Any]? {
     switch self {
     case .index(_):
-      //TODO: Add real filter
+      // TODO: Add real filter
       return ["order": "created_at" as Any]
     case .show(_):
       return nil

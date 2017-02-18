@@ -12,7 +12,7 @@ class Conversation: Object {
   dynamic var senderId: Int = 0
   dynamic var senderTypeValue: String = SenderType.Trainer.rawValue
 
-  //MARK: - Properties
+  // MARK: - Properties
 
   var senderType: SenderType {
     get {

@@ -46,7 +46,7 @@ class ProfessionalsViewController: UIViewController {
     selectedCategory = category
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -92,7 +92,7 @@ class ProfessionalsViewController: UIViewController {
     }
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? ProfessionalTableViewController,
@@ -123,7 +123,7 @@ class ProfessionalsViewController: UIViewController {
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ProfessionalsViewController: UITableViewDataSource {
 

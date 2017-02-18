@@ -48,13 +48,13 @@ class WorkoutsTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func closeButtonAction(_ sender: UIBarButtonItem) {
     dismiss(animated: true, completion: nil)
   }
 
-  //MARK: - UITableViewDataSource
+  // MARK: - UITableViewDataSource
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return workouts.count
@@ -79,7 +79,7 @@ class WorkoutsTableViewController: UITableViewController {
     return nil
   }
 
-  //MARK: - UITableViewDelegate
+  // MARK: - UITableViewDelegate
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
@@ -93,7 +93,7 @@ class WorkoutsTableViewController: UITableViewController {
   }
 }
 
-//MARK: - CreateWorkoutSessionsControllerDelegate
+// MARK: - CreateWorkoutSessionsControllerDelegate
 
 extension WorkoutsTableViewController: CreateWorkoutSessionsControllerDelegate {
   func didFinishWorkoutSessionsCreation() {

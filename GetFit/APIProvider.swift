@@ -23,7 +23,7 @@ enum ServerEnvironment<Target:TargetType> {
     case .staging:
       return URL(string: "https://getfit-staging.herokuapp.com/api")!
     case .production:
-      return URL(string: "")! //TODO: Add production base url
+      return URL(string: "")! // TODO: Add production base url
     }
   }
 

@@ -17,7 +17,7 @@ class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
     updateStatus(status)
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
   @IBAction func weightButtonAction(_ sender: AnyObject) {
     actionsDelegate?.didTapOnWeightButton?(self)
   }
@@ -26,7 +26,7 @@ class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
     actionsDelegate?.didTapOnRepetitionsButton?(self)
   }
 
-  //MARK: - Status
+  // MARK: - Status
 
   enum Status {
     case uncomplete
@@ -68,7 +68,7 @@ class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
     }
   }
 
-  //MARK: - Configuration
+  // MARK: - Configuration
   func configureWith(_ viewModel: ExerciseSessionPresentable) {
     status = viewModel.completed ? .complete : .uncomplete
     titleLabel.text = viewModel.exerciseName

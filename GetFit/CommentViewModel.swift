@@ -4,7 +4,7 @@ struct CommentViewModel {
   let comment: Comment
 }
 
-//MARK: - TextPresentable
+// MARK: - TextPresentable
 
 extension CommentViewModel: TextPresentable {
   var text: String {
@@ -12,7 +12,7 @@ extension CommentViewModel: TextPresentable {
   }
 }
 
-//MARK: - DateTimePresentable
+// MARK: - DateTimePresentable
 
 extension CommentViewModel: DateTimePresentable {
   var dateString: String {
@@ -23,7 +23,7 @@ extension CommentViewModel: DateTimePresentable {
   }
 }
 
-//MARK: - UserPresentable
+// MARK: - UserPresentable
 
 extension CommentViewModel: UserPresentable {
   var name: String {

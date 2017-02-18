@@ -2,5 +2,5 @@
 
 public struct TrainersFilter {
   let category: TrainerCategory
-  //TODO: Add more filters
+  // TODO: Add more filters
 }

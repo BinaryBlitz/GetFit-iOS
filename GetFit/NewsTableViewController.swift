@@ -46,7 +46,7 @@ class NewsTableViewController: UITableViewController {
     posts = realm.objects(Post.self).sorted(byKeyPath: "dateCreated", ascending: false)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -81,7 +81,7 @@ class NewsTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - UITableViewDataSource
+  // MARK: - UITableViewDataSource
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = posts?.count ?? 0
     tableView.backgroundView?.isHidden = numberOfRows != 0
@@ -134,7 +134,7 @@ class NewsTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - UITableViewDelegate
+  // MARK: - UITableViewDelegate
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let post = posts?[indexPath.row] else {
@@ -159,7 +159,7 @@ class NewsTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - IBActions
+  // MARK: - IBActions
 
   @IBAction func chatsButtonAction(_ sender: AnyObject) {
     let chatsViewController = ChatsTableViewController(style: .plain)
@@ -169,7 +169,7 @@ class NewsTableViewController: UITableViewController {
 
 }
 
-//MARK: - PostTableViewCellDelegate
+// MARK: - PostTableViewCellDelegate
 
 extension NewsTableViewController: PostTableViewCellDelegate {
 

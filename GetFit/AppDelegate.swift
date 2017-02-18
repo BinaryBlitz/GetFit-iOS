@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  //MARK: - App configuration
+  // MARK: - App configuration
 
   func configureRealm() {
     let realmDefaultConfig = Realm.Configuration(
@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       annotation: annotation)
   }
 
-  //MARK: - Push notifications
+  // MARK: - Push notifications
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
     var token = ""

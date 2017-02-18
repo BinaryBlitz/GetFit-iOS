@@ -74,7 +74,7 @@ class WorkoutSessionsViewController: UIViewController {
     titleButton.setTitle(formatter.string(from: date).uppercased(), for: UIControlState())
   }
 
-  //MARK: - View controller lifecycle
+  // MARK: - View controller lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -108,7 +108,7 @@ class WorkoutSessionsViewController: UIViewController {
     }
   }
 
-  //MARK: - Setup
+  // MARK: - Setup
 
   func setupTableView() {
     tableView.register(cellType: TrainingTableViewCell.self)
@@ -120,7 +120,7 @@ class WorkoutSessionsViewController: UIViewController {
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -196,7 +196,7 @@ class WorkoutSessionsViewController: UIViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func toggleCurrentDayView() {
     calendarView.toggleCurrentDayView()
@@ -216,7 +216,7 @@ class WorkoutSessionsViewController: UIViewController {
     present(navigation, animated: true, completion: nil)
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
@@ -232,7 +232,7 @@ class WorkoutSessionsViewController: UIViewController {
     }
   }
 
-  //MARK: - UIScrollViewDelegate
+  // MARK: - UIScrollViewDelegate
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let translation = scrollView.panGestureRecognizer.translation(in: view)
@@ -247,7 +247,7 @@ class WorkoutSessionsViewController: UIViewController {
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension WorkoutSessionsViewController: UITableViewDataSource {
 
@@ -267,7 +267,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension WorkoutSessionsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -275,7 +275,7 @@ extension WorkoutSessionsViewController: UITableViewDelegate {
   }
 }
 
-//MARK: - CVCalendarViewDelegate
+// MARK: - CVCalendarViewDelegate
 
 extension WorkoutSessionsViewController: CVCalendarViewDelegate {
 
@@ -351,7 +351,7 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
 
 }
 
-//MARK: - CVCalendarMenuViewDelegate
+// MARK: - CVCalendarMenuViewDelegate
 
 extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
@@ -372,7 +372,7 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
   }
 }
 
-//MARK: - SwipeTableViewCellDelegate
+// MARK: - SwipeTableViewCellDelegate
 
 extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {

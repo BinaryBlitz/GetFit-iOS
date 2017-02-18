@@ -83,7 +83,7 @@ class ConversationViewController: JSQMessagesViewController {
     timer?.invalidate()
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithcompletion { () -> Void in
@@ -161,7 +161,7 @@ class ConversationViewController: JSQMessagesViewController {
     }
   }
 
-  //MARK: JSQMessages CollectionView DataSource
+  // MARK: JSQMessages CollectionView DataSource
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return messages.count

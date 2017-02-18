@@ -28,7 +28,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     return "На номер \(PhoneNumberKit().format(phoneNumber, toType: .international)) должно прийти СМС сообщение с кодом подтверждения."
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func submitButtonAction() {
     guard let code = verificationCodeTextField.text, code != "" else {
@@ -79,7 +79,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "registerNewUser" {

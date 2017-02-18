@@ -63,7 +63,7 @@ class StoreTableViewController: UITableViewController {
     programs = Array(realm.objects(Program.self).sorted(byKeyPath: "usersCount"))
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -96,7 +96,7 @@ class StoreTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - TableView DataSource and Delegate
+  // MARK: - TableView DataSource and Delegate
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = programs.count
@@ -135,7 +135,7 @@ class StoreTableViewController: UITableViewController {
   }
 }
 
-//MARK: - ProgramCellDelegate
+// MARK: - ProgramCellDelegate
 
 extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {

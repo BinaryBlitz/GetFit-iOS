@@ -87,7 +87,7 @@ class User: Object, ALSwiftyJSONAble {
   }
 }
 
-//MARK: - Statistics
+// MARK: - Statistics
 
 extension User {
 

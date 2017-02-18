@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController {
     tableView.tableFooterView = footerView
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func saveButtonAction(_ sender: AnyObject) {
     guard let firstName = firstNameLabel.text, let lastName = lastNameLabel.text else {

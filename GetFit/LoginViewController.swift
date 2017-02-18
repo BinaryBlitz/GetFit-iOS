@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
     return true
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func facebookButtonAction(_ sender: AnyObject) {
     let fbLoginManager = FBSDKLoginManager()

@@ -45,7 +45,7 @@ class ExerciseViewController: UIViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func endExerciseAction(_ sender: AnyObject) {
     _ = navigationController?.popViewController(animated: true)
@@ -56,7 +56,7 @@ class ExerciseViewController: UIViewController {
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ExerciseViewController: UITableViewDataSource {
 
@@ -94,7 +94,7 @@ extension ExerciseViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ExerciseViewController: UITableViewDelegate {
 

@@ -94,7 +94,7 @@ class ProfileTableViewController: UITableViewController {
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
   func updateAvatar() {
     update(.Avatar)
   }
@@ -124,7 +124,7 @@ class ProfileTableViewController: UITableViewController {
     present(imagePicker, animated: true, completion: nil)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -136,7 +136,7 @@ class ProfileTableViewController: UITableViewController {
     loadUser(completion)
   }
 
-  //MARK: - UITableViewDataSource
+  // MARK: - UITableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
@@ -227,9 +227,9 @@ class ProfileTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - UITableViewDelegate
+  // MARK: - UITableViewDelegate
 
-  //MARK: - Header configuration
+  // MARK: - Header configuration
 
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard section == 1 else { return nil }
@@ -252,7 +252,7 @@ class ProfileTableViewController: UITableViewController {
   }
 }
 
-//MARK: - UIImagePickerControllerDelegate
+// MARK: - UIImagePickerControllerDelegate
 
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

@@ -137,7 +137,7 @@ class ProgramDetailsTableViewController: UITableViewController {
     return headerView
   }
 
-  //MARK: - Navigation 
+  // MARK: - Navigation 
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showTrainerPage" {
@@ -147,7 +147,7 @@ class ProgramDetailsTableViewController: UITableViewController {
   }
 }
 
-//MARK: - ProgramCellDelegate
+// MARK: - ProgramCellDelegate
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {

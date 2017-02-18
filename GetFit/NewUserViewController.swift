@@ -30,7 +30,7 @@ class NewUserViewController: UITableViewController {
     firstNameTextField.becomeFirstResponder()
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func doneButtonAction() {
 

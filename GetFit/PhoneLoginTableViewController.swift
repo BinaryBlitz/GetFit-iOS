@@ -35,7 +35,7 @@ class PhoneLoginTableViewController: UITableViewController {
     phoneNumberTextField.defaultRegion = "RU"
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func getCodeButtonAction() {
     guard let phone = phoneNumberTextField.text, phone != "" else {
@@ -79,7 +79,7 @@ class PhoneLoginTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? PhoneVerificationTableViewController {

@@ -43,7 +43,7 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -80,7 +80,7 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - UITableViewDelegate && UITableViewDataSource
+  // MARK: - UITableViewDelegate && UITableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }

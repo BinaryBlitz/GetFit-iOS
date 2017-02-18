@@ -44,7 +44,7 @@ class PostViewController: UIViewController {
     refresh()
   }
 
-  //MARK: - Setup methods
+  // MARK: - Setup methods
   func setupKeyboard() {
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
@@ -79,7 +79,7 @@ class PostViewController: UIViewController {
     //}
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     let oldCommentsCount = post.comments.count
@@ -123,7 +123,7 @@ class PostViewController: UIViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
   @IBAction func createCommentButtonAction(_ sender: AnyObject) {
     guard let content = commentTextField.text else { return }
     sendCommentButton.isUserInteractionEnabled = false
@@ -169,7 +169,7 @@ class PostViewController: UIViewController {
     }
   }
 
-  //MARK: - Tools
+  // MARK: - Tools
   func reloadCommentsSection() {
     if tableView.numberOfSections >= 2 {
       tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
@@ -185,7 +185,7 @@ class PostViewController: UIViewController {
     }
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showTrainerPage" {
       let destination = segue.destination as! ProfessionalTableViewController
@@ -198,7 +198,7 @@ class PostViewController: UIViewController {
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension PostViewController: UITableViewDataSource {
 
@@ -265,7 +265,7 @@ extension PostViewController: PostTableViewCellDelegate {
   }
 }
 
-//MARK: - Keyboard events
+// MARK: - Keyboard events
 
 extension PostViewController {
 

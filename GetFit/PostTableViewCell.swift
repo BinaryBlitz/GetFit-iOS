@@ -7,20 +7,20 @@ typealias PostCellPresentable = PostPresentable & TrainerPresentable & DateTimeP
 
 class PostTableViewCell: UITableViewCell, NibReusable {
 
-  //MARK: - Constants
+  // MARK: - Constants
   fileprivate let imageContentHeight: CGFloat = 208
   fileprivate let programContrentHeight: CGFloat = 100
   fileprivate let spaceBetweenTextAndContent: CGFloat = 12
   fileprivate let numberOfLinesInPostPreview = 5
 
-  //MARK: - Base
+  // MARK: - Base
   @IBOutlet weak var cardView: CardView!
 
-  //MARK: - Header
+  // MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
   @IBOutlet weak var trainerNameLabel: UILabel!
 
-  //MARK: - Body
+  // MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
 
   var contentImageView: UIImageView?
@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var containerHeight: NSLayoutConstraint!
   @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
 
-  //MARK: - Footer
+  // MARK: - Footer
   @IBOutlet weak var dateView: BadgeView!
   @IBOutlet weak var commentsCountLabel: UILabel!
   @IBOutlet weak var commentButton: UIButton!
@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     }
   }
 
-  //MARK: - Delegate
+  // MARK: - Delegate
 
   weak var delegate: PostTableViewCellDelegate?
 
@@ -80,7 +80,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     trainerAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
 
-  //MARK: - Cell configuration
+  // MARK: - Cell configuration
 
   func configureWith(_ viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
@@ -144,7 +144,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     return Bundle.main.loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func commentButtonAction(_ sender: AnyObject) {
     delegate?.didTouchCommentButton(self)
@@ -174,7 +174,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   }
 }
 
-//MARK: - Previewable
+// MARK: - Previewable
 
 extension PostTableViewCell: Previewable {
   var displayAsPreview: Bool {

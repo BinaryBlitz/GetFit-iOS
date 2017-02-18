@@ -56,7 +56,7 @@ class TrainingViewController: UIViewController {
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -93,10 +93,10 @@ class TrainingViewController: UIViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   @IBAction func endTrainingAction(_ sender: AnyObject) {
-    //TODO: update db
+    // TODO: update db
     if finishedExercises.count != workoutSession.exercises.count {
       let alert = UIAlertController(title: nil, message: "You didn't complete all your exercises. Finish workout anyway?", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
@@ -139,7 +139,7 @@ class TrainingViewController: UIViewController {
     }
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
@@ -166,7 +166,7 @@ class TrainingViewController: UIViewController {
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension TrainingViewController: UITableViewDataSource {
 
@@ -231,7 +231,7 @@ extension TrainingViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension TrainingViewController: UITableViewDelegate {
 
@@ -283,7 +283,7 @@ extension TrainingViewController: UITableViewDelegate {
   }
 }
 
-//MARK: - TrainingTipsDelegate
+// MARK: - TrainingTipsDelegate
 
 extension TrainingViewController: TrainingTipsDelegate {
   func didDismissViewController() {
@@ -291,7 +291,7 @@ extension TrainingViewController: TrainingTipsDelegate {
   }
 }
 
-//MARK: - ExerciseCellDelegate
+// MARK: - ExerciseCellDelegate
 
 extension TrainingViewController: ExerciseCellDelegate {
 
@@ -331,7 +331,7 @@ extension TrainingViewController: ExerciseCellDelegate {
   }
 }
 
-//MARK: - EditExerciseViewControllerDelegate
+// MARK: - EditExerciseViewControllerDelegate
 
 extension TrainingViewController: EditExerciseViewControllerDelegate {
   func didUpdateValueForExercise(_ exercise: ExerciseSession) {

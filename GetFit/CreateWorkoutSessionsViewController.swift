@@ -61,7 +61,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
     mounthLabel.text = formatter.string(from: date).uppercased()
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
   @IBAction func closeButtonAction(_ sender: UIButton) {
     dismiss(animated: true, completion: nil)
   }
@@ -97,7 +97,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
 
 }
 
-//MARK: - CVCalendarViewDelegate
+// MARK: - CVCalendarViewDelegate
 
 extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 
@@ -197,7 +197,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 
 }
 
-//MARK: - CVCalendarMenuViewDelegate
+// MARK: - CVCalendarMenuViewDelegate
 
 extension CreateWorkoutSessionsViewController: MenuViewDelegate {
 
