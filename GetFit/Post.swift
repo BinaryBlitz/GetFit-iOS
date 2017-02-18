@@ -53,7 +53,7 @@ class Post: Object, ALSwiftyJSONAble {
         realm.add(trainer, update: true)
       }
     }
-    
+
     if let program = Program(jsonData: jsonData["program"]) {
       self.program = program
       let realm = try! Realm()
@@ -70,13 +70,12 @@ class Post: Object, ALSwiftyJSONAble {
   required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
-  
+
   required init() {
     super.init()
   }
-  
+
   override static func primaryKey() -> String? {
     return "id"
   }
 }
-

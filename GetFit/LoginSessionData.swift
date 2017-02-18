@@ -1,10 +1,10 @@
 import PhoneNumberKit
 
 public struct LoginSessionData {
-  
+
   var phoneNumber: PhoneNumber?
   var verificationToken: String?
-  
+
   init(phoneNumber: PhoneNumber) {
     self.phoneNumber = phoneNumber
   }

@@ -1,11 +1,3 @@
-//
-//  ProfessionalTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 05/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Kingfisher
 import PureLayout
@@ -16,12 +8,12 @@ protocol ProfessionalCellDelegate: class {
 }
 
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
-  
+
   enum ProfessionalCellState {
     case normal
     case card
   }
-  
+
   var state: ProfessionalCellState = .card {
     didSet {
       updateWithState(state)
@@ -36,46 +28,46 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var avatarImageView: CircleImageView!
-  
+
   @IBOutlet weak var followButtonBackground: UIView!
   @IBOutlet weak var followButtonIcon: UIImageView!
   @IBOutlet weak var followButtonLabel: UILabel!
-  
+
   var bannerMaskView: UIView?
-  
+
   weak var delegate: ProfessionalCellDelegate?
-  
+
   fileprivate var following: Bool = false {
     didSet {
       updateFollowingStatus(following)
     }
   }
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     avatarImageView.contentMode = .scaleAspectFill
     avatarImageView.layer.masksToBounds = true
     avatarImageView.layer.borderColor = UIColor.white.cgColor
     avatarImageView.layer.borderWidth = 3
     avatarImageView.backgroundColor = UIColor.yellow
     avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
-    
+
     bannerImageView.contentMode = .scaleAspectFill
     bannerImageView.layer.masksToBounds = true
     bannerImageView.backgroundColor = UIColor.blueAccentColor()
     bannerImageView.image = nil
-    
+
     setupFollowButton()
     updateFollowingStatus(following)
-    
+
     let maskView = UIView()
     maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
     bannerMaskView = maskView
   }
-  
+
   func setupFollowButton() {
     let button = UIButton()
     followButtonBackground.addSubview(button)
@@ -85,12 +77,12 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     followButtonBackground.layer.cornerRadius = 2
     followButtonLabel.text = "follow".uppercased()
   }
-  
+
   func followButtonAction(_ sender: UIButton) {
     following = !following
     delegate?.professionalCell(self, didChangeFollowingTo: following)
   }
-  
+
   func updateFollowingStatus(_ following: Bool) {
     if following {
       followButtonLabel.textColor = UIColor.white
@@ -106,7 +98,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
       followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     }
   }
-  
+
   func configureWith(_ trainer: Trainer, andState state: ProfessionalCellState = .card) {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
@@ -115,12 +107,12 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     } else {
       programsBadge.text = trainer.category.rawValue.uppercased()
     }
-    
+
     if let avatarURLString = trainer.avatarURLString,
-          let avatarURL = URL(string: avatarURLString) {
+       let avatarURL = URL(string: avatarURLString) {
       avatarImageView.kf.setImage(with: avatarURL)
     }
-    
+
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
     bannerMaskView?.isHidden = true
     if let bannerURLString = trainer.bannerURLString, let bannerURL = URL(string: bannerURLString) {
@@ -129,17 +121,17 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
         self.bannerMaskView?.isHidden = false
       }
     }
-    
+
     self.state = state
   }
-  
+
   fileprivate func resetImages() {
     avatarImageView.kf.cancelDownloadTask()
     bannerImageView.kf.cancelDownloadTask()
     avatarImageView.image = nil
     bannerImageView.image = nil
   }
-  
+
   fileprivate func updateWithState(_ state: ProfessionalCellState) {
     switch state {
     case .card:

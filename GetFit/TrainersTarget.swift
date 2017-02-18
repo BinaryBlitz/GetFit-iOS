@@ -4,17 +4,17 @@ import Moya_SwiftyJSONMapper
 import Toucan
 
 extension GetFit {
-  
+
   public enum Trainers {
     case index(filter: TrainersFilter)
     case show(id: Int)
     case programs(trainerId: Int)
   }
-  
+
 }
 
 extension GetFit.Trainers: TargetType {
-  
+
   public var path: String {
     switch self {
     case .index(_):
@@ -25,7 +25,7 @@ extension GetFit.Trainers: TargetType {
       return "/trainers/\(trainerId)/programs"
     }
   }
-  
+
   public var method: Moya.Method {
     return .get
   }
@@ -34,7 +34,6 @@ extension GetFit.Trainers: TargetType {
     return URLEncoding.default
   }
 
-  
   public var parameters: [String: Any]? {
     switch self {
     case .index(let filter):
@@ -43,5 +42,5 @@ extension GetFit.Trainers: TargetType {
       return nil
     }
   }
-  
+
 }

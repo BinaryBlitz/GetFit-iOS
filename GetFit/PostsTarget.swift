@@ -4,18 +4,18 @@ import Moya_SwiftyJSONMapper
 import Toucan
 
 extension GetFit {
-  
+
   public enum Posts {
     case index
     case createLike(postId: Int)
     case getComments(postId: Int)
     case createComment(comment: Comment, postId: Int)
   }
-  
+
 }
 
 extension GetFit.Posts: TargetType {
-  
+
   public var path: String {
     switch self {
     case .index:
@@ -37,7 +37,7 @@ extension GetFit.Posts: TargetType {
       return JSONEncoding.default
     }
   }
-  
+
   public var method: Moya.Method {
     switch self {
     case .index, .getComments(_):
@@ -46,7 +46,7 @@ extension GetFit.Posts: TargetType {
       return .post
     }
   }
-  
+
   public var parameters: [String: Any]? {
     switch self {
     case .index, .getComments(_), .createLike(_):

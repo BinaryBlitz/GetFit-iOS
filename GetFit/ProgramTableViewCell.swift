@@ -1,11 +1,3 @@
-//
-//  ProgramTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 01/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import PureLayout
 import Kingfisher
@@ -18,10 +10,10 @@ protocol ProgramCellDelegate: class {
 }
 
 class ProgramTableViewCell: UITableViewCell, NibReusable {
-  
-  //MARK: - Base
+
+  // MARK: - Base
   @IBOutlet weak var cardView: CardView!
-  
+
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var priceBadge: BadgeView!
   @IBOutlet weak var infoLabel: UILabel!
@@ -31,27 +23,27 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var trainerNameLabel: UILabel!
   @IBOutlet weak var trainerAvatar: CircleImageView!
   @IBOutlet weak var bannerImageView: UIImageView!
-  
+
   @IBOutlet weak var categoryBadge: BadgeView!
-  
+
   @IBOutlet weak var bannerView: UIView!
   @IBOutlet weak var contentStackView: UIStackView!
-  
+
   var bannerMaskView: UIView?
-  
+
   enum ProgramCellState {
     case card
     case normal
   }
-  
+
   var state: ProgramCellState = .card {
     didSet {
       updateWithState(state)
     }
   }
-  
+
   weak var delegate: ProgramCellDelegate?
-  
+
   func hideBanner() {
     bannerView.removeFromSuperview()
     contentStackView.autoPinEdge(toSuperviewEdge: .top, withInset: 14)
@@ -59,40 +51,40 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     categoryBadge.style = BadgeView.Style(color: .lightGray)
-    
+
     trainerAvatar.layer.borderColor = UIColor.white.cgColor
     trainerAvatar.layer.borderWidth = 1
     trainerAvatar.image = EmptyStateHelper.avatarPlaceholderImage
-    
+
     let buyButton = UIButton()
     priceBadge.addSubview(buyButton)
     buyButton.autoPinEdgesToSuperviewEdges()
     buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), for: .touchUpInside)
-    
+
     let maskView = UIView()
     maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
     bannerMaskView = maskView
   }
-  
-  //MARK: - Actions
-  
+
+  // MARK: - Actions
+
   func buyButtonAction(_ button: UIButton) {
     delegate?.didTouchBuyButtonInCell(self)
   }
-  
-  //MARK: - Cell configuration
-  
+
+  // MARK: - Cell configuration
+
   func configureWith(_ viewModel: ProgramCellPresentable) {
     nameLabel.text = viewModel.title
     priceBadge.text = viewModel.price
     infoLabel.attributedText = viewModel.info
     categoryBadge.text = viewModel.category
-    
+
     if state == .card {
       descriptionLabel.text = viewModel.preview
     } else {
@@ -100,14 +92,14 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     }
     followersLabel.text = viewModel.followers
     ratingLabel.text = viewModel.rating
-    
+
     trainerNameLabel.text = viewModel.trainerName
-    
+
     trainerAvatar.kf.cancelDownloadTask()
     if let avatarURL = viewModel.trainerAvatarURL {
       trainerAvatar.kf.setImage(with: avatarURL)
     }
-    
+
     bannerImageView.kf.cancelDownloadTask()
     bannerMaskView?.isHidden = true
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(viewModel)
@@ -118,7 +110,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
       }
     }
   }
-  
+
   fileprivate func updateWithState(_ state: ProgramCellState) {
     switch state {
     case .card:

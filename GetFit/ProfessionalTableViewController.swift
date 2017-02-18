@@ -36,14 +36,14 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.separatorStyle = .none
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(refresh(_:)) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
@@ -80,7 +80,7 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
 
-  //MARK: - UITableViewDelegate && UITableViewDataSource
+  // MARK: - UITableViewDelegate && UITableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
@@ -207,4 +207,5 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
   }
 }
 
-extension ProfessionalTableViewController: PostTableViewCellDelegate { }
+extension ProfessionalTableViewController: PostTableViewCellDelegate {
+}

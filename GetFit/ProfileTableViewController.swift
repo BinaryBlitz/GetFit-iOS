@@ -1,11 +1,3 @@
-//
-//  ProfileTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 01/11/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Reusable
 import RealmSwift
@@ -24,27 +16,27 @@ class ProfileTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     loadUser()
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     setupTableView()
 
     refreshControl = UIRefreshControl()
     refreshControl?.addTarget(self, action: #selector(ProfileTableViewController.refresh(_:)), for
-      : UIControlEvents.valueChanged)
+    : UIControlEvents.valueChanged)
 
 //    let realm = try! Realm()
 //    programs = realm.objects(Program)
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     loadUser()
   }
-  
+
   fileprivate func loadUser(_ completion: (() -> Void)? = nil) {
     if let user = UserManager.currentUser {
       self.user = user
@@ -68,7 +60,7 @@ class ProfileTableViewController: UITableViewController {
     }
     completion?()
   }
-  
+
   fileprivate func loadStatistics() {
     guard let user = user else { return }
     userProvider.request(.getStatistics(forUserWithId: user.id)) { (result) in
@@ -85,32 +77,32 @@ class ProfileTableViewController: UITableViewController {
       }
     }
   }
-  
+
   fileprivate func setupTableView() {
     tableView.register(cellType: ProfileCardTableViewCell.self)
     tableView.register(cellType: ProgramTableViewCell.self)
     tableView.register(cellType: StatisticsTableViewCell.self)
-    
+
     tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    
+
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(refresh) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubview(toBack: refreshControl)
   }
-  
-  //MARK: - Actions
+
+  // MARK: - Actions
   func updateAvatar() {
     update(.Avatar)
   }
-  
+
   func updateBanner() {
     update(.Banner)
   }
-  
+
   fileprivate func update(_ image: Image) {
     let title = "Update \(image.rawValue.lowercased())"
     let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
@@ -123,7 +115,7 @@ class ProfileTableViewController: UITableViewController {
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     present(alert, animated: true, completion: nil)
   }
-  
+
   func presentImagePickerWithImagesFrom(_ sourceType: UIImagePickerControllerSourceType, toUpdate image: Image) {
     self.imageTypeToSelect = image
     let imagePicker = UIImagePickerController()
@@ -131,24 +123,24 @@ class ProfileTableViewController: UITableViewController {
     imagePicker.sourceType = sourceType
     present(imagePicker, animated: true, completion: nil)
   }
-  
-  //MARK: - Refresh
+
+  // MARK: - Refresh
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
-  
-  func beginRefreshWithCompletion(_ completion: @escaping ()                                                                                                                                                                                                                                                           -> Void) {
+
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     loadUser(completion)
   }
-  
-  //MARK: - UITableViewDataSource
+
+  // MARK: - UITableViewDataSource
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case 0:
@@ -165,7 +157,7 @@ class ProfileTableViewController: UITableViewController {
       return 0
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
@@ -173,20 +165,20 @@ class ProfileTableViewController: UITableViewController {
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
       }
-      
+
       let button = UIButton()
       button.addTarget(self, action: #selector(settingsButtonAction(_:)), for: .touchUpInside)
       cell.settingsBadge.addSubview(button)
       button.autoPinEdgesToSuperviewEdges()
-      
+
       cell.avatarImageView.isUserInteractionEnabled = true
       let avatarTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateAvatar))
       cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
-      
+
       cell.bannerImageView.isUserInteractionEnabled = true
       let bannerTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateBanner))
       cell.bannerImageView.addGestureRecognizer(bannerTapGesture)
-      
+
       return cell
     case 1 where selectedTabIndex == 0:
       let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticsTableViewCell
@@ -194,26 +186,26 @@ class ProfileTableViewController: UITableViewController {
       if let user = user {
         cell.configureWith(UserViewModel(user: user))
       }
-      
+
       return cell
     case 1 where selectedTabIndex == 1:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .card
       let program = programs![indexPath.row]
       cell.configureWith(ProgramViewModel(program: program))
-      
+
       return cell
     default:
       return UITableViewCell()
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if let statistics = cell as? StatisticsTableViewCell {
       statistics.layoutSubviews()
     }
   }
-  
+
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     if selectedTabIndex == 0 {
@@ -221,7 +213,7 @@ class ProfileTableViewController: UITableViewController {
       cell?.layoutSubviews()
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
@@ -234,40 +226,40 @@ class ProfileTableViewController: UITableViewController {
       return 0
     }
   }
-  
-  //MARK: - UITableViewDelegate
-  
-  //MARK: - Header configuration
-  
+
+  // MARK: - UITableViewDelegate
+
+  // MARK: - Header configuration
+
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard section == 1 else { return nil }
-    
+
     let labels = tabsLabels.map { $0.uppercased() }
     let buttonStrip = ButtonsStripView(labels: labels)
     buttonStrip.delegate = self
     buttonStrip.selectedIndex = selectedTabIndex
-    
+
     return buttonStrip
   }
-  
+
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     guard section == 1 else { return 0 }
     return 50
   }
-  
+
   func settingsButtonAction(_ sender: UIButton) {
     performSegue(withIdentifier: "settings", sender: nil)
   }
 }
 
-//MARK: - UIImagePickerControllerDelegate
+// MARK: - UIImagePickerControllerDelegate
 
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
     guard let imageType = imageTypeToSelect else { return }
     picker.dismiss(animated: true, completion: nil)
-    
+
     userProvider.request(.updateImage(type: imageType, image: image)) { (result) in
       switch result {
       case .success(let response):
@@ -285,14 +277,14 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
       }
     }
   }
-  
+
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion: nil)
   }
 }
 
 extension ProfileTableViewController: ButtonStripViewDelegate {
-  
+
   func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedTabIndex = index
     let offset = tableView.contentOffset

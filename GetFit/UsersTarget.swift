@@ -4,7 +4,7 @@ import Moya_SwiftyJSONMapper
 import Toucan
 
 extension GetFit {
-  
+
   public enum Users {
     case getCurrent
     case update(firstName: String, lastName: String)
@@ -12,11 +12,11 @@ extension GetFit {
     case getStatistics(forUserWithId: Int)
     case updateDeviceToken(token: String)
   }
-  
+
 }
 
 extension GetFit.Users: TargetType {
-  
+
   public var path: String {
     switch self {
     case .getCurrent, .updateImage(_, _), .update(_, _):
@@ -31,7 +31,7 @@ extension GetFit.Users: TargetType {
   public var parameterEncoding: ParameterEncoding {
     return URLEncoding.default
   }
-  
+
   public var method: Moya.Method {
     switch self {
     case .getCurrent, .getStatistics(_):
@@ -40,9 +40,9 @@ extension GetFit.Users: TargetType {
       return .get
     }
   }
-  
+
   public var parameters: [String: Any]? {
-    
+
     switch self {
     case .getCurrent, .getStatistics(_):
       return nil

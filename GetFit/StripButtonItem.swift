@@ -1,26 +1,18 @@
-//
-//  StripButtonItem.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 27/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 internal class StripButtonItem: UIButton {
-  
+
   enum ItemState {
     case selected
     case normal
   }
-  
+
   var title: String = "" {
     didSet {
       setTitle(title, for: UIControlState())
     }
   }
-  
+
   var titleColor: UIColor = UIColor.gray.withAlphaComponent(0.5) {
     didSet {
       if itemState == .normal {
@@ -28,15 +20,15 @@ internal class StripButtonItem: UIButton {
       }
     }
   }
-  
+
   var selectedTitleColor: UIColor = UIColor.gray {
-    didSet  {
+    didSet {
       if itemState == .selected {
         setTitleColor(selectedTitleColor, for: UIControlState())
       }
     }
   }
-  
+
   var itemState: ItemState = .normal {
     didSet {
       switch itemState {
@@ -47,7 +39,7 @@ internal class StripButtonItem: UIButton {
       }
     }
   }
-  
+
   init(title: String) {
     super.init(frame: .zero)
     self.backgroundColor = UIColor.white
@@ -59,7 +51,7 @@ internal class StripButtonItem: UIButton {
     //    setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.3), forState: .Highlighted)
     titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

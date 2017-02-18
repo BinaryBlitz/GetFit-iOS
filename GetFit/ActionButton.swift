@@ -2,11 +2,12 @@ import UIKit
 import PureLayout
 
 /// Button with activity indicator
+
 class ActionButton: UIButton {
-  
+
   fileprivate var activityIndicator: UIActivityIndicatorView?
   fileprivate var originalTitle: String?
-  
+
   func showActivityIndicator() {
     originalTitle = currentTitle
     isUserInteractionEnabled = false
@@ -18,7 +19,7 @@ class ActionButton: UIButton {
     spinner.autoCenterInSuperview()
     spinner.startAnimating()
   }
-  
+
   func hideActivityIndicator() {
     if let indicator = activityIndicator {
       indicator.stopAnimating()
@@ -26,8 +27,8 @@ class ActionButton: UIButton {
       activityIndicator = nil
       setTitle(originalTitle, for: UIControlState())
     }
-    
+
     isUserInteractionEnabled = true
   }
-  
+
 }

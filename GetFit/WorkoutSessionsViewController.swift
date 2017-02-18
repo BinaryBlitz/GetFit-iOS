@@ -58,7 +58,7 @@ class WorkoutSessionsViewController: UIViewController {
 
         calendarViewTopConstaraint.constant = 0
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Today", style: .done,
-                                                           target: self, action: #selector(toggleCurrentDayView))
+          target: self, action: #selector(toggleCurrentDayView))
       case .closed:
         calendarViewTopConstaraint.constant = -(calendarViewHeight)
         navigationItem.leftBarButtonItem = nil
@@ -74,7 +74,7 @@ class WorkoutSessionsViewController: UIViewController {
     titleButton.setTitle(formatter.string(from: date).uppercased(), for: UIControlState())
   }
 
-  //MARK: - View controller lifecycle
+  // MARK: - View controller lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -107,20 +107,20 @@ class WorkoutSessionsViewController: UIViewController {
       tabBarController.tabBar.tintColor = UIColor.white
     }
   }
-  
-  //MARK: - Setup
+
+  // MARK: - Setup
 
   func setupTableView() {
     tableView.register(cellType: TrainingTableViewCell.self)
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubview(toBack: refreshControl)
   }
 
-  //MARK: - Refresh
+  // MARK: - Refresh
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
@@ -153,7 +153,7 @@ class WorkoutSessionsViewController: UIViewController {
     let indexes = workoutSessions.map { (session) -> Int in return session.id }
 
     let realm = try! Realm()
-    
+
     let storedSessions = realm.objects(WorkoutSession.self)
     try! realm.write {
       workoutSessions.forEach { session in
@@ -188,7 +188,7 @@ class WorkoutSessionsViewController: UIViewController {
       return session.date.isAfter(date: date, granularity: .day)
     }
   }
-  
+
   fileprivate func updateTableViewData() {
     if let date = calendarView.presentedDate.convertedDate(calendar: calendar()!) {
       updateTableViewDataFor(date)
@@ -196,7 +196,7 @@ class WorkoutSessionsViewController: UIViewController {
     }
   }
 
-  //MARK: - Actions
+  // MARK: - Actions
 
   func toggleCurrentDayView() {
     calendarView.toggleCurrentDayView()
@@ -207,7 +207,7 @@ class WorkoutSessionsViewController: UIViewController {
 
     UIView.animate(withDuration: 0.4, animations: { () -> Void in
       self.view.layoutSubviews()
-    }) 
+    })
   }
 
   @IBAction func addWorkoutSessionsButtonAction(_ sender: UIButton) {
@@ -216,7 +216,7 @@ class WorkoutSessionsViewController: UIViewController {
     present(navigation, animated: true, completion: nil)
   }
 
-  //MARK: - Navigation
+  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
@@ -232,7 +232,7 @@ class WorkoutSessionsViewController: UIViewController {
     }
   }
 
-  //MARK: - UIScrollViewDelegate
+  // MARK: - UIScrollViewDelegate
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let translation = scrollView.panGestureRecognizer.translation(in: view)
@@ -242,12 +242,13 @@ class WorkoutSessionsViewController: UIViewController {
 
       UIView.animate(withDuration: 0.2, animations: { () -> Void in
         self.view.layoutSubviews()
-      }) 
+      })
     }
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
+
 extension WorkoutSessionsViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -266,7 +267,7 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension WorkoutSessionsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -274,7 +275,7 @@ extension WorkoutSessionsViewController: UITableViewDelegate {
   }
 }
 
-//MARK: - CVCalendarViewDelegate
+// MARK: - CVCalendarViewDelegate
 
 extension WorkoutSessionsViewController: CVCalendarViewDelegate {
 
@@ -332,8 +333,8 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
 
   fileprivate func isDate(_ date: Date, theSameDayAs otherDate: Date) -> Bool {
     return date.year == otherDate.year &&
-           date.month == otherDate.month &&
-           date.day == otherDate.day
+      date.month == otherDate.month &&
+      date.day == otherDate.day
   }
 
   func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
@@ -350,13 +351,14 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
 
 }
 
-//MARK: - CVCalendarMenuViewDelegate
+// MARK: - CVCalendarMenuViewDelegate
 
 extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
   func weekdaySymbolType() -> WeekdaySymbolType {
     return WeekdaySymbolType.veryShort
   }
+
   func dayOfWeekTextColor() -> UIColor {
     return UIColor.blackTextColor()
   }
@@ -370,8 +372,8 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
   }
 }
 
+// MARK: - SwipeTableViewCellDelegate
 
-//MARK: - SwipeTableViewCellDelegate
 extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {
     guard let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return [] }
@@ -385,21 +387,21 @@ extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
       self.tableViewDataSource.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
     }
-    doneAction.image = #imageLiteral(resourceName: "Checkmark")
+    doneAction.image = #imageLiteral(resourceName:"Checkmark")
     doneAction.backgroundColor = UIColor.greenAccentColor()
 
     let laterAction = SwipeAction(style: .default, title: nil) { _, _ in
       print("Later!")
       //if let indexPath = tableView.indexPath(for: cell) {
-        //self.workoutSessions.remove(indexPath.row)
-        //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+      //self.workoutSessions.remove(indexPath.row)
+      //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
       //}
       self.calendarState = .opened
       UIView.animate(withDuration: 0.4, animations: { () -> Void in
         self.view.layoutSubviews()
       })
     }
-    laterAction.image = #imageLiteral(resourceName: "Clock")
+    laterAction.image = #imageLiteral(resourceName:"Clock")
     laterAction.backgroundColor = UIColor.primaryYellowColor()
 
     return [doneAction, laterAction]

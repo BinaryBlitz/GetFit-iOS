@@ -2,16 +2,17 @@ import Foundation
 import Moya
 
 extension GetFit {
-  
+
   public enum Subscriptions {
     case list
     case listMessages(subscriptionId: Int)
     case createMessage(subscriptionId: Int, message: Message)
   }
+
 }
 
-extension GetFit.Subscriptions : TargetType {
-  
+extension GetFit.Subscriptions: TargetType {
+
   public var path: String {
     switch self {
     case .list:
@@ -22,7 +23,7 @@ extension GetFit.Subscriptions : TargetType {
       return "/subscriptions/\(subscriptionId)/messages"
     }
   }
-  
+
   public var method: Moya.Method {
     switch self {
     case .list, .listMessages(_):
@@ -40,7 +41,7 @@ extension GetFit.Subscriptions : TargetType {
       return JSONEncoding.default
     }
   }
-  
+
   public var parameters: [String: Any]? {
     switch self {
     case .list, .listMessages(_):
@@ -50,5 +51,5 @@ extension GetFit.Subscriptions : TargetType {
       return ["message": message as Any]
     }
   }
-  
+
 }

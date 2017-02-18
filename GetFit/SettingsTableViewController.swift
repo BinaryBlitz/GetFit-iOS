@@ -1,15 +1,7 @@
-//
-//  SettingsTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 07/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-  
+
   @IBOutlet weak var firstNameLabel: UITextField!
   @IBOutlet weak var lastNameLabel: UITextField!
   let userProvider = APIProvider<GetFit.Users>()
@@ -19,17 +11,17 @@ class SettingsTableViewController: UITableViewController {
     let buildVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     return "Version: \(appVersion) (\(buildVersion))"
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     firstNameLabel.placeholder = "First name"
     lastNameLabel.placeholder = "Last name"
     if let user = UserManager.currentUser {
       firstNameLabel.text = user.firstName
       lastNameLabel.text = user.lastName
     }
-    
+
     let footerView = UIView()
     footerView.backgroundColor = UIColor.clear
     let label = UILabel()
@@ -38,29 +30,29 @@ class SettingsTableViewController: UITableViewController {
     label.text = versionNumber
     footerView.addSubview(label)
     label.autoCenterInSuperview()
-    
+
     tableView.tableFooterView = footerView
   }
-  
-  //MARK: - Actions
-  
+
+  // MARK: - Actions
+
   @IBAction func saveButtonAction(_ sender: AnyObject) {
     guard let firstName = firstNameLabel.text, let lastName = lastNameLabel.text else {
       return
     }
-    
+
     if firstName == "" {
       presentAlertWithMessage("First name cannot be blank")
       return
     }
-    
+
     if lastName == "" {
       presentAlertWithMessage("Last name cannot be blank")
       return
     }
-    
+
     if let user = UserManager.currentUser, user.firstName != firstName || user.lastName != lastName {
-      
+
       userProvider.request(.update(firstName: firstName, lastName: lastName)) { result in
         switch result {
         case .success(let response):
@@ -81,10 +73,10 @@ class SettingsTableViewController: UITableViewController {
           self.presentAlertWithMessage("error: \(error)")
         }
       }
-      
+
     }
   }
-  
+
   @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
@@ -92,5 +84,5 @@ class SettingsTableViewController: UITableViewController {
     LocalStorageHelper.save(nil, forKey: .apiToken)
     present(loginViewController, animated: true, completion: nil)
   }
-  
+
 }
