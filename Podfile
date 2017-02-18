@@ -7,26 +7,25 @@ target 'GetFit' do
   pod 'Crashlytics'
 
   # Networking
-  pod 'Moya'
-  pod 'Moya-SwiftyJSONMapper'
+  pod 'Moya', '~> 8.0'
+  pod 'Moya-SwiftyJSONMapper', '~> 2.2'
 
   # DB
-  pod 'RealmSwift'
+  pod 'RealmSwift', '~> 2.4'
 
   # UI
-  pod 'UICountingLabel'
-  pod 'SwipeCellKit'
-  pod 'CVCalendar'
-  pod 'PhoneNumberKit'
+  pod 'SwipeCellKit', '~> 1.1'
+  pod 'CVCalendar', '~> 1.4'
+  pod 'PhoneNumberKit', '~> 1.2'
   pod 'XCDYouTubeKit', '~> 2.5'
-  pod 'JSQMessagesViewController'
-  pod 'Kingfisher'
+  pod 'JSQMessagesViewController', '~> 7.3'
+  pod 'Kingfisher', '~> 3.4'
 
   # Tools
   pod 'SwiftDate', '~> 4.0'
   pod 'PureLayout', '~> 3.0'
-  pod 'Reusable', '~> 3.0.0'
-  pod 'Toucan'
+  pod 'Reusable', '~> 3.0'
+  pod 'Toucan', '~> 0.6'
 
   # Facebook SDK
   pod 'FBSDKCoreKit', '~> 4.16'

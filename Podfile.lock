@@ -50,28 +50,26 @@ PODS:
   - SwiftyJSON (3.1.4)
   - SwipeCellKit (1.1.0)
   - Toucan (0.6.0)
-  - UICountingLabel (1.4.0)
   - VK-ios-sdk (1.4.6)
   - XCDYouTubeKit (2.5.4)
 
 DEPENDENCIES:
   - Crashlytics
-  - CVCalendar
+  - CVCalendar (~> 1.4)
   - Fabric
   - FBSDKCoreKit (~> 4.16)
   - FBSDKLoginKit (~> 4.16)
-  - JSQMessagesViewController
-  - Kingfisher
-  - Moya
-  - Moya-SwiftyJSONMapper
-  - PhoneNumberKit
+  - JSQMessagesViewController (~> 7.3)
+  - Kingfisher (~> 3.4)
+  - Moya (~> 8.0)
+  - Moya-SwiftyJSONMapper (~> 2.2)
+  - PhoneNumberKit (~> 1.2)
   - PureLayout (~> 3.0)
-  - RealmSwift
-  - Reusable (~> 3.0.0)
+  - RealmSwift (~> 2.4)
+  - Reusable (~> 3.0)
   - SwiftDate (~> 4.0)
-  - SwipeCellKit
-  - Toucan
-  - UICountingLabel
+  - SwipeCellKit (~> 1.1)
+  - Toucan (~> 0.6)
   - VK-ios-sdk (~> 1.4)
   - XCDYouTubeKit (~> 2.5)
 
@@ -98,10 +96,9 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwipeCellKit: 027b1df87c42b3c88a0b407f9d0fa1718d521d62
   Toucan: 47485bbc9cb4541ef6318d6886103e6eaf16e919
-  UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: ea0e01e567cac22e69dcc88863cd89f53686ee86
+PODFILE CHECKSUM: 4a5300fe22e7ad1826751fb086b8d20223f323cb
 
 COCOAPODS: 1.2.0
