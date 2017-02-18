@@ -48,7 +48,7 @@ PODS:
   - Reusable/View (3.0.1)
   - SwiftDate (4.0.13)
   - SwiftyJSON (3.1.4)
-  - SwipeCellKit (1.1.0)
+  - SwipeCellKit (1.1.1)
   - Toucan (0.6.0)
   - VK-ios-sdk (1.4.6)
   - XCDYouTubeKit (2.5.4)
@@ -94,7 +94,7 @@ SPEC CHECKSUMS:
   Reusable: 5362d10271ca8316b104698a21e90498f47e8339
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  SwipeCellKit: 027b1df87c42b3c88a0b407f9d0fa1718d521d62
+  SwipeCellKit: 2b78bda95f5b7dfa7db6756d8b0980ca2ab27695
   Toucan: 47485bbc9cb4541ef6318d6886103e6eaf16e919
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
