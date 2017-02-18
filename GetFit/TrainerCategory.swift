@@ -1,11 +1,3 @@
-//
-//  TrainerCategory.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 28/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 enum TrainerCategory: String {
   case Coach = "trainer"
   case Doctor = "physician"

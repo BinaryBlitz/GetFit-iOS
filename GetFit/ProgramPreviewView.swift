@@ -1,11 +1,3 @@
-//
-//  ProgramPreviewView.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 21/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 class ProgramPreviewView: UIView {

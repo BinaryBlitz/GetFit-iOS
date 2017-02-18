@@ -1,11 +1,3 @@
-//
-//  CardView.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 21/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 @objc class CardView: UIView {

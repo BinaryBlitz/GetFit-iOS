@@ -1,11 +1,3 @@
-//
-//  LoginViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 10/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit

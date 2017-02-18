@@ -1,11 +1,3 @@
-//
-//  UIImage+Resize.swift
-//  GetHelp
-//
-//  Created by Dan Shevlyuk on 08/01/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 extension UIImage {

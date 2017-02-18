@@ -1,11 +1,3 @@
-//
-//  StripButtonItem.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 27/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 internal class StripButtonItem: UIButton {

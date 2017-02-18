@@ -1,11 +1,3 @@
-//
-//  UIViewController+PresentAlert.swift
-//  GetHelp
-//
-//  Created by Dan Shevlyuk on 07/01/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 extension UIViewController {

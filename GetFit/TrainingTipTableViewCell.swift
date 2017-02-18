@@ -1,11 +1,3 @@
-//
-//  TrainingTipTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 30/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 
 class TrainingTipTableViewCell: UITableViewCell {

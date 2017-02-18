@@ -1,11 +1,3 @@
-//
-//  ProfessionalTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 05/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Kingfisher
 import PureLayout

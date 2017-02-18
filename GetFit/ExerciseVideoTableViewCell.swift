@@ -1,11 +1,3 @@
-//
-//  ExerciseVideoTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 06/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Reusable
 

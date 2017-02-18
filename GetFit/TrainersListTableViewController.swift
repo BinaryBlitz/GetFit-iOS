@@ -1,11 +1,3 @@
-//
-//  TrainersListTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 28/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import Reusable

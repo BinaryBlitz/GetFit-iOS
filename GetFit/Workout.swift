@@ -1,11 +1,3 @@
-//
-//  Workout.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 15/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Realm
 import RealmSwift
 import SwiftyJSON

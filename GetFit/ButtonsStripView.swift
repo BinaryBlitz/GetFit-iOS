@@ -1,11 +1,3 @@
-//
-//  ButtonsStripView.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 26/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import PureLayout
 

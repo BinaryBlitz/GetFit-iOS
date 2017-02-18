@@ -1,11 +1,3 @@
-//
-//  ExerciseViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 31/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Reusable
 import XCDYouTubeKit
