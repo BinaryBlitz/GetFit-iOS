@@ -71,7 +71,7 @@ extension ProgramViewModel: ProgramPresentable {
 
   var info: NSAttributedString {
     let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: infoFontSize)]
+    let boldTextAttrebutes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: infoFontSize)]
 
     return NSMutableAttributedString(string: workoutsCount, attributes: boldTextAttrebutes)
   }

@@ -26,7 +26,7 @@ class ProfileTableViewController: UITableViewController {
 
     refreshControl = UIRefreshControl()
     refreshControl?.addTarget(self, action: #selector(ProfileTableViewController.refresh(_:)), for
-      : UIControlEvents.valueChanged)
+    : UIControlEvents.valueChanged)
 
 //    let realm = try! Realm()
 //    programs = realm.objects(Program)
@@ -87,7 +87,7 @@ class ProfileTableViewController: UITableViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(refresh) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -132,7 +132,7 @@ class ProfileTableViewController: UITableViewController {
     }
   }
 
-  func beginRefreshWithCompletion(_ completion: @escaping ()                                                                                                                                                                                                                                                           -> Void) {
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     loadUser(completion)
   }
 
@@ -256,7 +256,7 @@ class ProfileTableViewController: UITableViewController {
 
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
     guard let imageType = imageTypeToSelect else { return }
     picker.dismiss(animated: true, completion: nil)
 

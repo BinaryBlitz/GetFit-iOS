@@ -96,7 +96,7 @@ class ProfessionalsViewController: UIViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? ProfessionalTableViewController,
-        let trainer = sender as? Trainer, segue.identifier == "professionalInfo" {
+       let trainer = sender as? Trainer, segue.identifier == "professionalInfo" {
       destination.trainer = trainer
     }
   }
@@ -165,7 +165,6 @@ extension ProfessionalsViewController: UITableViewDataSource {
     return 50
   }
 }
-
 
 extension ProfessionalsViewController: UITableViewDelegate {
 

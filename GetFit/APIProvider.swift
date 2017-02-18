@@ -2,7 +2,8 @@ import Foundation
 import Moya
 
 /// MoyaProvider subclass with ServerEnvironment support
-class APIProvider<Target: TargetType>: MoyaProvider<Target> {
+
+class APIProvider<Target:TargetType>: MoyaProvider<Target> {
 
   init(environment: ServerEnvironment<Target> = .staging, plugins: [PluginType] = []) {
     var plugins = plugins
@@ -12,7 +13,8 @@ class APIProvider<Target: TargetType>: MoyaProvider<Target> {
 }
 
 /// Server environment specificaton. Use it to create a MoyaProvider
-enum ServerEnvironment<Target: TargetType> {
+
+enum ServerEnvironment<Target:TargetType> {
   case staging
   case production
 
@@ -20,7 +22,7 @@ enum ServerEnvironment<Target: TargetType> {
     switch self {
     case .staging:
       return URL(string: "https://getfit-staging.herokuapp.com/api")!
-    case.production:
+    case .production:
       return URL(string: "")! //TODO: Add production base url
     }
   }
@@ -30,7 +32,7 @@ enum ServerEnvironment<Target: TargetType> {
     let url = baseURL.appendingPathComponent(target.path).absoluteString
 
     return Endpoint<Target>(
-      url: url, sampleResponseClosure: {.networkResponse(200, target.sampleData)},
+      url: url, sampleResponseClosure: { .networkResponse(200, target.sampleData) },
       method: target.method, parameters: parametersWithAPIToken(target.parameters)
     )
   }
@@ -47,6 +49,7 @@ enum ServerEnvironment<Target: TargetType> {
 }
 
 /// Hides unused TargetType capabilities to clean up targets code
+
 extension TargetType {
   public var baseURL: URL { return URL(string: "")! }
   public var sampleData: Data { return Data() }

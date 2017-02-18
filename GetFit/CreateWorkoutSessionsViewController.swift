@@ -80,7 +80,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
       switch result {
       case .success(let response):
         do {
-          try  _ = response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           self.dismiss(animated: true) {
             self.delegate?.didFinishWorkoutSessionsCreation()
           }
@@ -98,6 +98,7 @@ class CreateWorkoutSessionsViewController: UIViewController {
 }
 
 //MARK: - CVCalendarViewDelegate
+
 extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 
   func calendar() -> Calendar? {
@@ -165,8 +166,8 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 
   fileprivate func isDate(_ date: Date, theSameDayAs otherDate: Date) -> Bool {
     return date.year == otherDate.year &&
-           date.month == otherDate.month &&
-           date.day == otherDate.day
+      date.month == otherDate.month &&
+      date.day == otherDate.day
   }
 
   func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
@@ -197,11 +198,13 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 }
 
 //MARK: - CVCalendarMenuViewDelegate
+
 extension CreateWorkoutSessionsViewController: MenuViewDelegate {
 
   func weekdaySymbolType() -> WeekdaySymbolType {
     return WeekdaySymbolType.veryShort
   }
+
   func dayOfWeekTextColor() -> UIColor {
     return UIColor.blackTextColor()
   }

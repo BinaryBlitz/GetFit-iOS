@@ -48,10 +48,10 @@ class PostViewController: UIViewController {
   func setupKeyboard() {
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
-                                   name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+      name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
-                                   name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
     view.addGestureRecognizer(tapGesture)
   }
@@ -65,7 +65,7 @@ class PostViewController: UIViewController {
     tableView.register(cellType: PostCommentTableViewCell.self)
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -75,7 +75,7 @@ class PostViewController: UIViewController {
 
     // TODO: implement infinite scrolling
     //tableView.addInfiniteScrolling {
-      //self.refresh()
+    //self.refresh()
     //}
   }
 
@@ -199,6 +199,7 @@ class PostViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
+
 extension PostViewController: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -257,6 +258,7 @@ extension PostViewController: UITableViewDataSource {
 }
 
 // MARK: - PostTableViewCellDelegate
+
 extension PostViewController: PostTableViewCellDelegate {
   func didTouchLikeButton(_ cell: PostTableViewCell) {
     _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
@@ -264,6 +266,7 @@ extension PostViewController: PostTableViewCellDelegate {
 }
 
 //MARK: - Keyboard events
+
 extension PostViewController {
 
   func keyboardWillShow(_ notification: Foundation.Notification) {
@@ -275,7 +278,7 @@ extension PostViewController {
     let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
     let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
     let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions().rawValue
-    let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+    let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
     keyboardHeight.constant = endFrame?.size.height ?? 0
     UIView.animate(withDuration: duration, delay: 0,
       options: animationCurve,
@@ -295,13 +298,13 @@ extension PostViewController {
     let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
     let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
     let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions().rawValue
-    let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+    let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
     keyboardHeight.constant = 0
     UIView.animate(withDuration: duration, delay: 0, options: animationCurve,
-        animations: { self.view.layoutIfNeeded() }, completion: nil)
+      animations: { self.view.layoutIfNeeded() }, completion: nil)
   }
 
   func dismissKeyboard(_ sender: AnyObject) {
-     view.endEditing(true)
+    view.endEditing(true)
   }
 }

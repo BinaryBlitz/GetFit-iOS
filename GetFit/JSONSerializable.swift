@@ -2,6 +2,7 @@ import SwiftyJSON
 
 protocol JSONSerializable {
   init?(json: JSON)
+
   func convertToJSON() -> JSON
 }
 

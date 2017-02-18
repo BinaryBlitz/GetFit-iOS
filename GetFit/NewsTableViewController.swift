@@ -34,7 +34,7 @@ class NewsTableViewController: UITableViewController {
     tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.news)
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -182,6 +182,7 @@ extension NewsTableViewController: PostTableViewCellDelegate {
   }
 
   func didTouchLikeButton(_ cell: PostTableViewCell) {
+
     struct SharedRequest {
       static var request: Cancellable?
     }
@@ -189,6 +190,6 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     SharedRequest.request?.cancel()
     guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
     SharedRequest.request =
-        PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
+      PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
   }
 }

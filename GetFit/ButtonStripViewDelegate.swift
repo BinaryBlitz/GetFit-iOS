@@ -5,5 +5,6 @@ protocol ButtonStripViewDelegate: class {
 }
 
 extension ButtonStripViewDelegate {
-  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) { }
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
+  }
 }

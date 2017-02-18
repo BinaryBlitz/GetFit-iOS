@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FBSDKApplicationDelegate.sharedInstance().application(application,
-                                                          didFinishLaunchingWithOptions: launchOptions)
+        didFinishLaunchingWithOptions: launchOptions)
     Fabric.with([Crashlytics.self])
     configureRealm()
     configureNavigationBar()
@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func configureRealm() {
     let realmDefaultConfig = Realm.Configuration(
-    schemaVersion: 1,
-            migrationBlock: { migration, oldSchemaVersion in
-              if oldSchemaVersion < 1 {}
-            }
+      schemaVersion: 1,
+      migrationBlock: { migration, oldSchemaVersion in
+        if oldSchemaVersion < 1 {}
+      }
     )
     Realm.Configuration.defaultConfiguration = realmDefaultConfig
   }
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = UIColor.blackTextColor()
     UINavigationBar.appearance().titleTextAttributes =
       [NSForegroundColorAttributeName: UIColor.blackTextColor(),
-        NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20) ]
+       NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)]
   }
 
   fileprivate func configureTabBar() {
@@ -85,7 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-
   func applicationDidBecomeActive(_ application: UIApplication) {
     FBSDKAppEvents.activateApp()
   }
@@ -93,9 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     VKSdk.processOpen(url, fromApplication: sourceApplication)
     return FBSDKApplicationDelegate.sharedInstance().application(application,
-                                                          open: url,
-                                                          sourceApplication: sourceApplication,
-                                                          annotation: annotation)
+      open: url,
+      sourceApplication: sourceApplication,
+      annotation: annotation)
   }
 
   //MARK: - Push notifications
@@ -114,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func updateDeviceTokenIfNeeded() {
     guard let shouldUpdateToken: Bool = LocalStorageHelper.loadObjectForKey(.shouldUpdateDeviceToken),
-        let token: String = LocalStorageHelper.loadObjectForKey(.deviceToken), shouldUpdateToken else {
+          let token: String = LocalStorageHelper.loadObjectForKey(.deviceToken), shouldUpdateToken else {
       return
     }
 
@@ -123,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       switch result {
       case .success(let response):
         do {
-          try  _ = response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           print("Device token updated \(token)")
         } catch {
           LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)
@@ -152,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 func registerForPushNotifications() {
   UIApplication.shared
     .registerUserNotificationSettings(
-      UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
   )
 
   UIApplication.shared.registerForRemoteNotifications()

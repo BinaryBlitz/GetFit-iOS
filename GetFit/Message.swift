@@ -40,7 +40,7 @@ open class Message: Object, ALSwiftyJSONAble {
     super.init()
 
     guard let id = jsonData["id"].int, let content = jsonData["content"].string,
-        let createdAtString = jsonData["created_at"].string else {
+          let createdAtString = jsonData["created_at"].string else {
       return nil
     }
 

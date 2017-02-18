@@ -49,7 +49,7 @@ class TrainingViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -70,7 +70,7 @@ class TrainingViewController: UIViewController {
       switch result {
       case .success(let response):
         do {
-          try _ =  response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           try self.updateDataWith(response)
         } catch {
           self.presentAlertWithMessage("server response: \(response.statusCode)")
@@ -167,6 +167,7 @@ class TrainingViewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
+
 extension TrainingViewController: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -230,8 +231,8 @@ extension TrainingViewController: UITableViewDataSource {
   }
 }
 
-
 //MARK: - UITableViewDelegate
+
 extension TrainingViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -258,7 +259,7 @@ extension TrainingViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     switch section {
     case 0:
-     return 7
+      return 7
     case 1:
       return finishedExercises.count == 0 ? 0.01 : 7
     case 2:
@@ -283,6 +284,7 @@ extension TrainingViewController: UITableViewDelegate {
 }
 
 //MARK: - TrainingTipsDelegate
+
 extension TrainingViewController: TrainingTipsDelegate {
   func didDismissViewController() {
     view.alpha = 1
@@ -290,6 +292,7 @@ extension TrainingViewController: TrainingTipsDelegate {
 }
 
 //MARK: - ExerciseCellDelegate
+
 extension TrainingViewController: ExerciseCellDelegate {
 
   class EditExerciseData {
@@ -329,6 +332,7 @@ extension TrainingViewController: ExerciseCellDelegate {
 }
 
 //MARK: - EditExerciseViewControllerDelegate
+
 extension TrainingViewController: EditExerciseViewControllerDelegate {
   func didUpdateValueForExercise(_ exercise: ExerciseSession) {
     tableView.reloadData()
@@ -341,7 +345,7 @@ extension TrainingViewController: SwipeTableViewCellDelegate {
     guard let cell = tableView.cellForRow(at: indexPath) as? ExerciseTableViewCell else { return [] }
     switch cell.status {
     case .complete:
-      let action = SwipeAction(style: .default, title: "") { _ , _ in
+      let action = SwipeAction(style: .default, title: "") { _, _ in
         if let indexPath = self.tableView.indexPath(for: cell) {
           self.tableView.beginUpdates()
           let session = self.finishedExercises[indexPath.row]
@@ -354,7 +358,7 @@ extension TrainingViewController: SwipeTableViewCellDelegate {
         }
         self.updateSessionProgress()
       }
-      action.image = #imageLiteral(resourceName: "first")
+      action.image = #imageLiteral(resourceName:"first")
       action.backgroundColor = UIColor.primaryYellowColor()
       return [action]
     case .uncomplete:
@@ -371,7 +375,7 @@ extension TrainingViewController: SwipeTableViewCellDelegate {
         }
         self.updateSessionProgress()
       }
-      action.image = #imageLiteral(resourceName: "Checkmark")
+      action.image = #imageLiteral(resourceName:"Checkmark")
       action.backgroundColor = UIColor.greenAccentColor()
       return [action]
     }

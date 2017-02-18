@@ -29,7 +29,7 @@ class ConversationViewController: JSQMessagesViewController {
     scrollToBottom(animated: true)
 
     NotificationCenter.default.addObserver(self, selector: #selector(refresh),
-                                                     notification: .ReloadMessages)
+      notification: .ReloadMessages)
 
     self.timer = Timer.scheduledTimer(
       timeInterval: 10,
@@ -136,7 +136,7 @@ class ConversationViewController: JSQMessagesViewController {
     message.category = .User
 
     subscriptionsProvider.request(.createMessage(subscriptionId: subscription.id, message: message)) { (result) in
-      switch result  {
+      switch result {
       case .success(let response):
         do {
           try _ = response.filterSuccessfulStatusCodes()

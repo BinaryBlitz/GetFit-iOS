@@ -41,9 +41,9 @@ class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
 
   fileprivate func updateInfoLabelWithTitle(_ title: String, andSubtitle subtitle: String) {
     let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: infoFontSize)]
-    let infoString = NSMutableAttributedString(string: title, attributes:boldTextAttrebutes)
-    let plainTextAttrebutes = [NSFontAttributeName : UIFont.systemFont(ofSize: infoFontSize)]
+    let boldTextAttrebutes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: infoFontSize)]
+    let infoString = NSMutableAttributedString(string: title, attributes: boldTextAttrebutes)
+    let plainTextAttrebutes = [NSFontAttributeName: UIFont.systemFont(ofSize: infoFontSize)]
     infoString.append(NSMutableAttributedString(string: ", \(subtitle)", attributes: plainTextAttrebutes))
     infoLabel.attributedText = infoString
   }

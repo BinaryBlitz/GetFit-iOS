@@ -155,7 +155,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     likeButton.isSelected = !likeButton.isSelected
 
     if let likesString = likesCountLabel.text,
-        let likes = Int(likesString) {
+       let likes = Int(likesString) {
       if likeButton.isSelected {
         likesCountLabel.text = String(likes + 1)
       } else {

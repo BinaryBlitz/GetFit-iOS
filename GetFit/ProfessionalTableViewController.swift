@@ -36,7 +36,7 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.separatorStyle = .none
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(refresh(_:)) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -207,4 +207,5 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
   }
 }
 
-extension ProfessionalTableViewController: PostTableViewCellDelegate { }
+extension ProfessionalTableViewController: PostTableViewCellDelegate {
+}

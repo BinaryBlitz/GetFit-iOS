@@ -37,7 +37,7 @@ extension CommentViewModel: UserPresentable {
 
   var avatarURL: URL? {
     guard let avatarURLString = comment.author?.avatarURLString,
-        let avatarURL = URL(string: avatarURLString) else {
+          let avatarURL = URL(string: avatarURLString) else {
       return nil
     }
 

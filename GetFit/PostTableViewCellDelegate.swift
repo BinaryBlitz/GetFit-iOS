@@ -1,5 +1,6 @@
 protocol PostTableViewCellDelegate: class {
   func didTouchLikeButton(_ cell: PostTableViewCell)
+
   func didTouchCommentButton(_ cell: PostTableViewCell)
 }
 

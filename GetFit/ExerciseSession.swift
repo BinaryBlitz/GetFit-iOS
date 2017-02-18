@@ -23,7 +23,7 @@ class ExerciseSession: Object, ALSwiftyJSONAble {
     super.init()
 
     guard let id = jsonData["id"].int, let completed = jsonData["completed"].bool,
-        let name = jsonData["exercise"]["exercise_type"]["name"].string else {
+          let name = jsonData["exercise"]["exercise_type"]["name"].string else {
       return nil
     }
 

@@ -31,17 +31,17 @@ class ExerciseViewController: UIViewController {
 
     ["LeMVDuIO3J0", "yN7KoXI9J0M"].forEach { (youtubeId) in
       XCDYouTubeClient.default().getVideoWithIdentifier(youtubeId) { (video, error) in
-        if let xcdVideo = video {
+          if let xcdVideo = video {
 
-          let formatter = DateComponentsFormatter()
-          formatter.allowedUnits = [.minute, .second]
-          formatter.zeroFormattingBehavior = .pad
-          let duration = formatter.string(from: xcdVideo.duration)
-          let video = Video(youtubeId: youtubeId!, previewImageURL: xcdVideo.smallThumbnailURL, title: xcdVideo.title, duration: duration!)
-          self.videos.append(video)
-          self.tableView.reloadData()
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.minute, .second]
+            formatter.zeroFormattingBehavior = .pad
+            let duration = formatter.string(from: xcdVideo.duration)
+            let video = Video(youtubeId: youtubeId!, previewImageURL: xcdVideo.smallThumbnailURL, title: xcdVideo.title, duration: duration!)
+            self.videos.append(video)
+            self.tableView.reloadData()
+          }
         }
-      }
     }
   }
 

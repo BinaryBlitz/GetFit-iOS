@@ -34,7 +34,6 @@ extension GetFit.Trainers: TargetType {
     return URLEncoding.default
   }
 
-
   public var parameters: [String: Any]? {
     switch self {
     case .index(let filter):

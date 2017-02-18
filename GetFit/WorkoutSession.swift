@@ -27,7 +27,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     super.init()
 
     guard let id = jsonData["id"].int, let workoutID = jsonData["workout_id"].int,
-        let scheduledFor = jsonData["scheduled_for"].string else {
+          let scheduledFor = jsonData["scheduled_for"].string else {
       return nil
     }
 
@@ -37,12 +37,12 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.date = date ?? Date()
 
     guard let workoutName = jsonData["workout"]["name"].string,
-      let duration = jsonData["workout"]["duration"].int,
-      let exercisesCount = jsonData["workout"]["exercises_count"].int,
-      let programName = jsonData["workout"]["program"]["name"].string,
-      let programID = jsonData["workout"]["program"]["id"].int
-    else {
-        return nil
+          let duration = jsonData["workout"]["duration"].int,
+          let exercisesCount = jsonData["workout"]["exercises_count"].int,
+          let programName = jsonData["workout"]["program"]["name"].string,
+          let programID = jsonData["workout"]["program"]["id"].int
+      else {
+      return nil
     }
 
     if let position = jsonData["workout"]["position"].int {

@@ -1,4 +1,5 @@
 // Struct for managing logged in user data
+
 struct UserManager {
   static var currentUser: User?
 

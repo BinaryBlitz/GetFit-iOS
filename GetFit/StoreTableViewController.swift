@@ -33,7 +33,7 @@ class StoreTableViewController: UITableViewController {
     tableView.tableHeaderView = header
 
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
@@ -43,19 +43,19 @@ class StoreTableViewController: UITableViewController {
   }
 
   func createBackgroundView() -> UIView {
-      let view = UIView()
-      let label = UILabel()
-      label.text = "No data 😓"
-      label.textAlignment = .center
-      label.font = UIFont.systemFont(ofSize: 22)
-      label.textColor = UIColor.graySecondaryColor()
-      view.addSubview(label)
-      label.autoPinEdge(toSuperviewEdge: .left)
-      label.autoPinEdge(toSuperviewEdge: .right)
-      label.autoPinEdge(toSuperviewEdge: .bottom)
-      label.autoPinEdge(toSuperviewEdge: .top, withInset: -50, relation: .equal)
+    let view = UIView()
+    let label = UILabel()
+    label.text = "No data 😓"
+    label.textAlignment = .center
+    label.font = UIFont.systemFont(ofSize: 22)
+    label.textColor = UIColor.graySecondaryColor()
+    view.addSubview(label)
+    label.autoPinEdge(toSuperviewEdge: .left)
+    label.autoPinEdge(toSuperviewEdge: .right)
+    label.autoPinEdge(toSuperviewEdge: .bottom)
+    label.autoPinEdge(toSuperviewEdge: .top, withInset: -50, relation: .equal)
 
-      return view
+    return view
   }
 
   func fetchPrograms() {

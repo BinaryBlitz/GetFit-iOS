@@ -26,7 +26,6 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     settingsBadge.text = "Settings"
   }
 
-
   func configureWith(_ viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
 

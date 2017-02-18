@@ -12,7 +12,7 @@ class WorkoutsTableViewController: UITableViewController {
 
     navigationItem.title = "choose training".uppercased()
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self,
-                                                       action: #selector(self.closeButtonAction(_:)))
+      action: #selector(self.closeButtonAction(_:)))
 
     let realm = try! Realm()
     workouts = realm.objects(Workout.self).sorted(byKeyPath: "duration")
@@ -94,6 +94,7 @@ class WorkoutsTableViewController: UITableViewController {
 }
 
 //MARK: - CreateWorkoutSessionsControllerDelegate
+
 extension WorkoutsTableViewController: CreateWorkoutSessionsControllerDelegate {
   func didFinishWorkoutSessionsCreation() {
     dismiss(animated: true, completion: nil)

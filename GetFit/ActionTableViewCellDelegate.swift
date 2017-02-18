@@ -3,5 +3,6 @@ protocol ActionTableViewCellDelegate: class {
 }
 
 extension ActionTableViewCellDelegate {
-  func didSelectActionCell(_ cell: ActionTableViewCell) { }
+  func didSelectActionCell(_ cell: ActionTableViewCell) {
+  }
 }

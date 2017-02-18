@@ -42,7 +42,7 @@ class PhoneVerificationTableViewController: UITableViewController {
       case .success(let response):
 
         do {
-          try  _ = response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           if let apiToken = json["api_token"].string {
             UserManager.apiToken = apiToken
@@ -72,7 +72,7 @@ class PhoneVerificationTableViewController: UITableViewController {
     switch response.statusCode {
     case 403:
       presentAlertWithTitle("Error", andMessage: "Invalid verification code")
-    case 500...599:
+    case 500 ... 599:
       presentAlertWithTitle("Error", andMessage: "Looks like our server was broken. Try again later.")
     default:
       presentAlertWithTitle("Error", andMessage: "Something was broken. Try again later.")

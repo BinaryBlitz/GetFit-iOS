@@ -46,7 +46,7 @@ class Trainer: Object, ALSwiftyJSONAble {
     super.init()
 
     guard let id = jsonData["id"].int, let firstName = jsonData["first_name"].string,
-        let lastName = jsonData["last_name"].string else {
+          let lastName = jsonData["last_name"].string else {
       return nil
     }
 
@@ -71,7 +71,7 @@ class Trainer: Object, ALSwiftyJSONAble {
     }
 
     if let programsCount = jsonData["programs_count"].int {
-     self.programsCount = programsCount
+      self.programsCount = programsCount
     }
   }
 

@@ -109,7 +109,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     }
 
     if let avatarURLString = trainer.avatarURLString,
-          let avatarURL = URL(string: avatarURLString) {
+       let avatarURL = URL(string: avatarURLString) {
       avatarImageView.kf.setImage(with: avatarURL)
     }
 

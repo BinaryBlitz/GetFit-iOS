@@ -104,8 +104,8 @@ extension User {
 
     init?(jsonData: JSON) {
       guard let totalWorkouts = jsonData["workouts_count"].int,
-          let totalDuration = jsonData["total_duration"].int,
-          let totalDistance = jsonData["total_distance"].int else {
+            let totalDuration = jsonData["total_duration"].int,
+            let totalDistance = jsonData["total_distance"].int else {
         self.totalWorkouts = 0
         self.totalDuration = 0
         self.totalDistance = 0

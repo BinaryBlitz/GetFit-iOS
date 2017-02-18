@@ -43,7 +43,7 @@ struct PostViewModel {
 extension PostViewModel: PostPresentable {
   var imageURL: URL? {
     guard let imageURLString = post.imageURLString,
-        let url = URL(string: imageURLString) else {
+          let url = URL(string: imageURLString) else {
       return nil
     }
 
@@ -80,7 +80,7 @@ extension PostViewModel: TextPresentable {
 extension PostViewModel: TrainerPresentable {
   var trainerAvatarURL: URL? {
     guard let trainer = post.trainer,
-        let avatarURLString = trainer.avatarURLString else {
+          let avatarURLString = trainer.avatarURLString else {
       return nil
     }
 

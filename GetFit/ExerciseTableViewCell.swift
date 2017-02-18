@@ -27,6 +27,7 @@ class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
   }
 
   //MARK: - Status
+
   enum Status {
     case uncomplete
     case complete
@@ -72,7 +73,10 @@ class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
     status = viewModel.completed ? .complete : .uncomplete
     titleLabel.text = viewModel.exerciseName
 
-    badgesStack.arrangedSubviews.forEach { view in badgesStack.removeArrangedSubview(view); view.removeFromSuperview() }
+    badgesStack.arrangedSubviews.forEach { view in
+      badgesStack.removeArrangedSubview(view);
+      view.removeFromSuperview()
+    }
 
     if let reps = viewModel.repetitions {
       badgesStack.addArrangedSubview(createBadgeWith(title: reps))

@@ -2,6 +2,7 @@ import UIKit
 import PureLayout
 
 /// Button with activity indicator
+
 class ActionButton: UIButton {
 
   fileprivate var activityIndicator: UIActivityIndicatorView?

@@ -26,7 +26,7 @@ open class Subscription: Object, ALSwiftyJSONAble {
 
     guard let id = jsonData["id"].int, let trainerId = jsonData["trainer_id"].int,
           let createdAtString = jsonData["created_at"].string else {
-        return nil
+      return nil
     }
 
     self.id = id

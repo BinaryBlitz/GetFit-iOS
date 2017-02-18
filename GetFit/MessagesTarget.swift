@@ -8,9 +8,10 @@ extension GetFit {
     case listMessages(subscriptionId: Int)
     case createMessage(subscriptionId: Int, message: Message)
   }
+
 }
 
-extension GetFit.Subscriptions : TargetType {
+extension GetFit.Subscriptions: TargetType {
 
   public var path: String {
     switch self {

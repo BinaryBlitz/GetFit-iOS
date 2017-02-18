@@ -22,7 +22,7 @@ internal class StripButtonItem: UIButton {
   }
 
   var selectedTitleColor: UIColor = UIColor.gray {
-    didSet  {
+    didSet {
       if itemState == .selected {
         setTitleColor(selectedTitleColor, for: UIControlState())
       }

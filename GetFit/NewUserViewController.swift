@@ -56,9 +56,9 @@ class NewUserViewController: UITableViewController {
       case .success(let response):
 
         do {
-          try _ =  response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
-          guard let apiToken = json["api_token"].string else  { throw MoyaError.jsonMapping(response) }
+          guard let apiToken = json["api_token"].string else { throw MoyaError.jsonMapping(response) }
           UserManager.apiToken = apiToken
           LocalStorageHelper.save(apiToken, forKey: .apiToken)
 

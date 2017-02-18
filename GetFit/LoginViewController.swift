@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     navigationController?.isNavigationBarHidden = true
   }
 
-  override var prefersStatusBarHidden : Bool {
+  override var prefersStatusBarHidden: Bool {
     return true
   }
 
