@@ -1,4 +1,4 @@
-platform :ios, '9.3'
+platform :ios, '10.0'
 
 target 'GetFit' do
   use_frameworks!
@@ -15,7 +15,7 @@ target 'GetFit' do
 
   # UI
   pod 'UICountingLabel'
-  pod 'MCSwipeTableViewCell', '~> 2.1.4'
+  pod 'SwipeCellKit'
   pod 'CVCalendar'
   pod 'PhoneNumberKit'
   pod 'XCDYouTubeKit', '~> 2.5'

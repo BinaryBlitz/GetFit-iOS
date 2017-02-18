@@ -1,8 +1,8 @@
 import UIKit
-import MCSwipeTableViewCell
 import Reusable
+import SwipeCellKit
 
-class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
+class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
   
   @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
@@ -12,7 +12,7 @@ class TrainingTableViewCell: MCSwipeTableViewCell, NibReusable {
     super.awakeFromNib()
     
     titleLabel.textColor = UIColor.blueAccentColor()
-    defaultColor = UIColor.graySecondaryColor()
+    //defaultColor = UIColor.graySecondaryColor()
     
     let dateBadge = BadgeView()
     dateBadge.style = BadgeView.Style(color: .dark, height: .low)

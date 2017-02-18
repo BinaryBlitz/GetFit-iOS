@@ -1,8 +1,8 @@
 import UIKit
-import MCSwipeTableViewCell
 import Reusable
 import Moya
 import RealmSwift
+import SwipeCellKit
 
 class TrainingViewController: UIViewController {
   
@@ -212,7 +212,7 @@ extension TrainingViewController: UITableViewDataSource {
       
       let session = finishedExercises[indexPath.row]
       cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
-      addSwipesToCell(cell)
+      cell.delegate = self
       
       return cell
     case 2:
@@ -221,56 +221,15 @@ extension TrainingViewController: UITableViewDataSource {
       
       let session = exercisesToDo[indexPath.row]
       cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
-      addSwipesToCell(cell)
-      
+      cell.delegate = self
+
       return cell
     default:
       return UITableViewCell()
     }
   }
-  
-  fileprivate func addSwipesToCell(_ cell: ExerciseTableViewCell) {
-    switch cell.status {
-    case .complete:
-      let doneView = UIImageView(image: UIImage(named: "first"))
-      doneView.contentMode = .center
-
-      cell.setSwipeGestureWith(doneView, color: UIColor.primaryYellowColor(),
-          mode: .exit, state: .state3) { (swipeCell, _, _) -> Void in
-            if let indexPath = self.tableView.indexPath(for: swipeCell!) {
-              self.tableView.beginUpdates()
-              let session = self.finishedExercises[indexPath.row]
-              try! session.realm?.write {
-                session.completed = false
-              }
-              self.tableView.deleteRows(at: [indexPath], with: .fade)
-              self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 2), section: 2)], with: .fade)
-              self.tableView.endUpdates()
-            }
-            self.updateSessionProgress()
-      }
-    case .uncomplete:
-      let doneView = UIImageView(image: UIImage(named: "Checkmark"))
-      doneView.contentMode = .center
-    
-      cell.setSwipeGestureWith(doneView, color: UIColor.greenAccentColor(),
-          mode: .exit, state: .state1) { (swipeCell, _, _) -> Void in
-            if let indexPath = self.tableView.indexPath(for: swipeCell!) {
-              self.tableView.beginUpdates()
-              let session = self.exercisesToDo[indexPath.row]
-              try! session.realm?.write {
-                session.completed = true
-              }
-              self.tableView.deleteRows(at: [indexPath], with: .fade)
-              self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 1), section: 1)], with: .fade)
-              self.tableView.endUpdates()
-            }
-            
-            self.updateSessionProgress()
-      }
-    }
-  }
 }
+
 
 //MARK: - UITableViewDelegate
 extension TrainingViewController: UITableViewDelegate {
@@ -373,5 +332,48 @@ extension TrainingViewController: ExerciseCellDelegate {
 extension TrainingViewController: EditExerciseViewControllerDelegate {
   func didUpdateValueForExercise(_ exercise: ExerciseSession) {
     tableView.reloadData()
+  }
+}
+
+extension TrainingViewController: SwipeTableViewCellDelegate {
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {
+    guard indexPath.section == 1 || indexPath.section == 2 else { return [] }
+    guard let cell = tableView.cellForRow(at: indexPath) as? ExerciseTableViewCell else { return [] }
+    switch cell.status {
+    case .complete:
+      let action = SwipeAction(style: .default, title: "") { _ , _ in
+        if let indexPath = self.tableView.indexPath(for: cell) {
+          self.tableView.beginUpdates()
+          let session = self.finishedExercises[indexPath.row]
+          try! session.realm?.write {
+            session.completed = false
+          }
+          self.tableView.deleteRows(at: [indexPath], with: .fade)
+          self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 2), section: 2)], with: .fade)
+          self.tableView.endUpdates()
+        }
+        self.updateSessionProgress()
+      }
+      action.image = #imageLiteral(resourceName: "first")
+      action.backgroundColor = UIColor.primaryYellowColor()
+      return [action]
+    case .uncomplete:
+      let action = SwipeAction(style: .default, title: "") { _, _ in
+        if let indexPath = self.tableView.indexPath(for: cell) {
+          self.tableView.beginUpdates()
+          let session = self.exercisesToDo[indexPath.row]
+          try! session.realm?.write {
+            session.completed = true
+          }
+          self.tableView.deleteRows(at: [indexPath], with: .fade)
+          self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 1), section: 1)], with: .fade)
+          self.tableView.endUpdates()
+        }
+        self.updateSessionProgress()
+      }
+      action.image = #imageLiteral(resourceName: "Checkmark")
+      action.backgroundColor = UIColor.greenAccentColor()
+      return [action]
+    }
   }
 }

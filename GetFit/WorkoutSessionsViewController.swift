@@ -2,8 +2,8 @@ import UIKit
 import CVCalendar
 import Reusable
 import RealmSwift
+import SwipeCellKit
 import SwiftDate
-import MCSwipeTableViewCell
 
 class WorkoutSessionsViewController: UIViewController {
 
@@ -259,45 +259,10 @@ extension WorkoutSessionsViewController: UITableViewDataSource {
 
     let model = tableViewDataSource[indexPath.row]
     cell.selectionStyle = .none
-    setSwipeGesturesFor(cell, in: tableView)
+    cell.delegate = self
     cell.configureWith(TrainingViewModel(workoutSession: model))
 
     return cell
-  }
-
-  fileprivate func setSwipeGesturesFor(_ cell: MCSwipeTableViewCell, in tableView: UITableView) {
-    let doneView = UIImageView(image: UIImage(named: "Checkmark"))
-    doneView.contentMode = .center
-
-    let laterView = UIImageView(image: UIImage(named: "Clock"))
-    laterView.contentMode = .center
-
-    cell.setSwipeGestureWith(doneView, color: UIColor.greenAccentColor(),
-        mode: .exit, state: .state1) { (swipeCell, _, _) -> Void in
-          guard let indexPath = tableView.indexPath(for: swipeCell!) else { return }
-
-          let session = self.tableViewDataSource[indexPath.row]
-          try! session.realm!.write {
-            session.completed = true
-            session.synced = false
-          }
-          self.tableViewDataSource.remove(at: indexPath.row)
-          tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-    }
-
-    cell.setSwipeGestureWith(laterView, color: UIColor.primaryYellowColor(),
-        mode: .exit, state: .state3) { (swipeCell, _, _) -> Void in
-          print("Later!")
-//          if let indexPath = tableView.indexPathForCell(swipeCell) {
-//            self.workoutSessions.removeAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//          }
-
-          self.calendarState = .opened
-          UIView.animate(withDuration: 0.4, animations: { () -> Void in
-            self.view.layoutSubviews()
-          }) 
-    }
   }
 }
 
@@ -402,5 +367,41 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
   func dayOfWeekFont() -> UIFont {
     return UIFont.boldSystemFont(ofSize: 15)
+  }
+}
+
+
+//MARK: - SwipeTableViewCellDelegate
+extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {
+    guard let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return [] }
+    let doneAction = SwipeAction(style: .default, title: nil) { _, _ in
+      guard let indexPath = self.tableView.indexPath(for: cell) else { return }
+      let session = self.tableViewDataSource[indexPath.row]
+      try! session.realm!.write {
+        session.completed = true
+        session.synced = false
+      }
+      self.tableViewDataSource.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+    }
+    doneAction.image = #imageLiteral(resourceName: "Checkmark")
+    doneAction.backgroundColor = UIColor.greenAccentColor()
+
+    let laterAction = SwipeAction(style: .default, title: nil) { _, _ in
+      print("Later!")
+      //if let indexPath = tableView.indexPath(for: cell) {
+        //self.workoutSessions.remove(indexPath.row)
+        //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+      //}
+      self.calendarState = .opened
+      UIView.animate(withDuration: 0.4, animations: { () -> Void in
+        self.view.layoutSubviews()
+      })
+    }
+    laterAction.image = #imageLiteral(resourceName: "Clock")
+    laterAction.backgroundColor = UIColor.primaryYellowColor()
+
+    return [doneAction, laterAction]
   }
 }

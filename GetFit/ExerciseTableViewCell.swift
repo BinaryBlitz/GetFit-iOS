@@ -1,8 +1,8 @@
 import UIKit
-import MCSwipeTableViewCell
+import SwipeCellKit
 import Reusable
 
-class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
+class ExerciseTableViewCell: SwipeTableViewCell, NibReusable {
 
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var badgesStack: UIStackView!
@@ -13,7 +13,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     updateStatus(status)
   }
   
@@ -50,7 +50,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
       }
       
       titleLabel.textColor = UIColor.blackTextColor()
-      defaultColor = UIColor.greenAccentColor()
+      //defaultColor = UIColor.greenAccentColor()
       completeMarkImageView.isHidden = true
     case .complete:
       badgesStack.arrangedSubviews.forEach { view in
@@ -62,7 +62,7 @@ class ExerciseTableViewCell: MCSwipeTableViewCell, NibReusable {
       }
       
       titleLabel.textColor = UIColor.graySecondaryColor()
-      defaultColor = UIColor.primaryYellowColor()
+      //defaultColor = UIColor.primaryYellowColor()
       completeMarkImageView.isHidden = false
     }
   }
