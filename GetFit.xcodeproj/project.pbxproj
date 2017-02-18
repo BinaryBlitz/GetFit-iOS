@@ -413,13 +413,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		374578941BDE5CF5004935BC /* Configuration */ = {
+		374578941BDE5CF5004935BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				372ABDBB1E49F5CE00D41212 /* GetFit.entitlements */,
 				37A53C3E1BDE527F00D1DA70 /* AppDelegate.swift */,
 				37A53C4C1BDE527F00D1DA70 /* Info.plist */,
 			);
-			name = Configuration;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		374578951BDE5D11004935BC /* Views */ = {
@@ -614,17 +615,16 @@
 		37A53C3D1BDE527F00D1DA70 /* GetFit */ = {
 			isa = PBXGroup;
 			children = (
-				372ABDBB1E49F5CE00D41212 /* GetFit.entitlements */,
-				374578951BDE5D11004935BC /* Views */,
-				374578931BDE5CCA004935BC /* Controllers */,
-				37A6A1211C7AEE65007F0944 /* Protocols */,
-				376142DC1C8C7BF60073B5F4 /* View models */,
-				3741A0071D6A6DFB00C84B87 /* Helpers */,
 				379E912E1C95F73300D96175 /* API */,
-				374578961BDE5D19004935BC /* Models */,
-				374578921BDE5C29004935BC /* UI */,
+				374578931BDE5CCA004935BC /* Controllers */,
 				374578971BDE5D28004935BC /* Extensions */,
-				374578941BDE5CF5004935BC /* Configuration */,
+				3741A0071D6A6DFB00C84B87 /* Helpers */,
+				374578961BDE5D19004935BC /* Models */,
+				37A6A1211C7AEE65007F0944 /* Protocols */,
+				374578941BDE5CF5004935BC /* Supporting Files */,
+				374578951BDE5D11004935BC /* Views */,
+				376142DC1C8C7BF60073B5F4 /* View models */,
+				374578921BDE5C29004935BC /* UI */,
 				37A53C471BDE527F00D1DA70 /* Assets.xcassets */,
 			);
 			path = GetFit;
