@@ -1,13 +1,13 @@
 import UIKit
 
 @objc class LoginButton: UIButton {
-  
+
   var text: String? {
     didSet {
       setTitle(text, for: UIControlState())
     }
   }
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     basicInit()
@@ -17,7 +17,7 @@ import UIKit
     super.init(coder: aDecoder)
     basicInit()
   }
-  
+
   func basicInit() {
     layer.borderColor = UIColor.primaryYellowColor().cgColor
     layer.borderWidth = 2.4

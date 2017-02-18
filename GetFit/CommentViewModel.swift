@@ -18,7 +18,7 @@ extension CommentViewModel: DateTimePresentable {
   var dateString: String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM"
-    
+
     return dateFormatter.string(from: comment.dateCreated as Date)
   }
 }
@@ -30,20 +30,20 @@ extension CommentViewModel: UserPresentable {
     guard let author = comment.author else { return "" }
     return "\(author.firstName) \(author.lastName)"
   }
-  
+
   var info: String {
     return ""
   }
-  
+
   var avatarURL: URL? {
     guard let avatarURLString = comment.author?.avatarURLString,
         let avatarURL = URL(string: avatarURLString) else {
       return nil
     }
-    
+
     return avatarURL
   }
-  
+
   var coverImageURL: URL? {
     return nil
   }

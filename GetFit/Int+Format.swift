@@ -1,5 +1,5 @@
 extension Int {
-  
+
   func format() -> String {
     if self >= 1000000 {
       return "\(self / 1000000)m"

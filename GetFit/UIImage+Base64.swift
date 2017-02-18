@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIImage {
-  
+
   var base64String: String? {
     let imageData = UIImagePNGRepresentation(self)
     let base64ImageString = imageData?.base64EncodedString(options: .lineLength64Characters)

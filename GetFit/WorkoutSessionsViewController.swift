@@ -107,7 +107,7 @@ class WorkoutSessionsViewController: UIViewController {
       tabBarController.tabBar.tintColor = UIColor.white
     }
   }
-  
+
   //MARK: - Setup
 
   func setupTableView() {
@@ -153,7 +153,7 @@ class WorkoutSessionsViewController: UIViewController {
     let indexes = workoutSessions.map { (session) -> Int in return session.id }
 
     let realm = try! Realm()
-    
+
     let storedSessions = realm.objects(WorkoutSession.self)
     try! realm.write {
       workoutSessions.forEach { session in
@@ -188,7 +188,7 @@ class WorkoutSessionsViewController: UIViewController {
       return session.date.isAfter(date: date, granularity: .day)
     }
   }
-  
+
   fileprivate func updateTableViewData() {
     if let date = calendarView.presentedDate.convertedDate(calendar: calendar()!) {
       updateTableViewDataFor(date)
@@ -207,7 +207,7 @@ class WorkoutSessionsViewController: UIViewController {
 
     UIView.animate(withDuration: 0.4, animations: { () -> Void in
       self.view.layoutSubviews()
-    }) 
+    })
   }
 
   @IBAction func addWorkoutSessionsButtonAction(_ sender: UIButton) {
@@ -242,7 +242,7 @@ class WorkoutSessionsViewController: UIViewController {
 
       UIView.animate(withDuration: 0.2, animations: { () -> Void in
         self.view.layoutSubviews()
-      }) 
+      })
     }
   }
 }

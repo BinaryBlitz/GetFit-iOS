@@ -5,7 +5,7 @@ import SwiftDate
 import Moya_SwiftyJSONMapper
 
 class WorkoutSession: Object, ALSwiftyJSONAble {
-  
+
   dynamic var id: Int = 0
   dynamic var workoutID: Int = 0
   dynamic var workoutName: String = ""
@@ -18,24 +18,24 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   dynamic var exercisesCount: Int = 0
   dynamic var synced: Bool = true
   var exercises = List<ExerciseSession>()
-  
+
   override static func primaryKey() -> String? {
     return "id"
   }
 
   required init?(jsonData: JSON) {
     super.init()
-    
+
     guard let id = jsonData["id"].int, let workoutID = jsonData["workout_id"].int,
         let scheduledFor = jsonData["scheduled_for"].string else {
       return nil
     }
-    
+
     self.id = id
     self.workoutID = workoutID
     let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTime)).absoluteDate
     self.date = date ?? Date()
-    
+
     guard let workoutName = jsonData["workout"]["name"].string,
       let duration = jsonData["workout"]["duration"].int,
       let exercisesCount = jsonData["workout"]["exercises_count"].int,
@@ -44,15 +44,15 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     else {
         return nil
     }
-    
+
     if let position = jsonData["workout"]["position"].int {
       self.position = position
     }
-    
+
     if let completed = jsonData["completed"].bool {
       self.completed = completed
     }
-    
+
     self.workoutID = workoutID
     self.workoutName = workoutName
     self.duration = duration
@@ -60,7 +60,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.programId = programID
     self.programName = programName
   }
-  
+
   func updateWith(_ workout: Workout) {
     self.workoutID = workout.id
     self.workoutName = workout.name
@@ -70,11 +70,11 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     self.duration = workout.duration
     self.exercisesCount = workout.exercisesCount
   }
-  
+
   required init() {
     super.init()
   }
-  
+
   required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
   }

@@ -6,7 +6,7 @@ protocol JSONSerializable {
 }
 
 extension JSONSerializable {
-  
+
   func convertToJSON() -> JSON {
     return JSON.null
   }

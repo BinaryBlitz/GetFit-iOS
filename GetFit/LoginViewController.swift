@@ -10,9 +10,9 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var facebookButton: LoginButton!
   @IBOutlet weak var vkButton: LoginButton!
   @IBOutlet weak var phoneButton: LoginButton!
-  
+
   let loginProvider = APIProvider<GetFit.Login>()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -20,24 +20,24 @@ class LoginViewController: UIViewController {
     let overlay = UIView(frame: backgroundImageView.frame)
     overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.51)
     backgroundImageView.addSubview(overlay)
-    
+
     facebookButton.text = "facebook".uppercased()
     vkButton.text = "vkontakte".uppercased()
     phoneButton.text = "phone".uppercased()
-    
+
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.isNavigationBarHidden = true
   }
-  
+
   override var prefersStatusBarHidden : Bool {
     return true
   }
-  
+
   //MARK: - Actions
-  
+
   @IBAction func facebookButtonAction(_ sender: AnyObject) {
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.loginBehavior = FBSDKLoginBehavior.browser
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         self?.presentAlertWithMessage("Не удалось войти через Facebook")
         return
       }
-      
+
       if let result = result {
         if result.isCancelled {
           print("cancelled")
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         } else {
           print("loggend in!")
           let token = result.token
-          
+
           self?.loginProvider.request(.facebook(token: token?.tokenString ?? "")) { (result) in
             switch result {
             case .success(let response):
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
                 print("User: \(user)")
                 UserManager.currentUser = user
                 registerForPushNotifications()
-                
+
                 self?.performSegue(withIdentifier: "home", sender: self)
               } catch {
                 self?.presentAlertWithMessage("Server response code: \(response.statusCode)")
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction func vkButtonAction(_ sender: AnyObject) {
     view.isUserInteractionEnabled = false
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -96,14 +96,14 @@ class LoginViewController: UIViewController {
     vk?.register(self)
     VKSdk.authorize([], with: VKAuthorizationOptions.unlimitedToken)
   }
-  
+
   @IBAction func phoneButtonAction(_ sender: AnyObject) {
     print("phone")
   }
 }
 
 extension LoginViewController: VKSdkDelegate {
-  
+
   func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
     UIApplication.shared.isNetworkActivityIndicatorVisible = false
     if let error = result.error {
@@ -111,7 +111,7 @@ extension LoginViewController: VKSdkDelegate {
       view.isUserInteractionEnabled = true
       presentAlertWithMessage("Не удалось авторизироваться чере VK")
     }
-    
+
     if let token = result.token.accessToken {
       loginProvider.request(.vk(token: token)) { result in
         self.view.isUserInteractionEnabled = true
@@ -139,7 +139,7 @@ extension LoginViewController: VKSdkDelegate {
       }
     }
   }
-  
+
   func vkSdkUserAuthorizationFailed() {
     self.view.isUserInteractionEnabled = true
     presentAlertWithMessage("Не удалось авторизироваться чере VK")

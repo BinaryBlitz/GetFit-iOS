@@ -6,4 +6,3 @@ protocol ExerciseSessionPresentable {
   var sets: String? { get }
   var completed: Bool { get }
 }
-

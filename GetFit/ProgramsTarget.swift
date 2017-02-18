@@ -8,17 +8,17 @@ public struct ProgramsFilter {
 }
 
 extension GetFit {
-  
+
   public enum Programs {
     case index(filter: ProgramsFilter)
     case show(id: Int)
     case createPurchase(programId: Int)
   }
-  
+
 }
 
 extension GetFit.Programs: TargetType {
-  
+
   public var path: String {
     switch self {
     case .index(_):
@@ -38,7 +38,7 @@ extension GetFit.Programs: TargetType {
       return JSONEncoding.default
     }
   }
-  
+
   public var method: Moya.Method {
     switch self {
     case .index, .show(_):
@@ -47,7 +47,7 @@ extension GetFit.Programs: TargetType {
       return .post
     }
   }
-  
+
   public var parameters: [String: Any]? {
     switch self {
     case .index(_):
@@ -59,5 +59,5 @@ extension GetFit.Programs: TargetType {
       return nil
     }
   }
-  
+
 }

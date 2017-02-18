@@ -6,7 +6,7 @@ import Reusable
 typealias PostCellPresentable = PostPresentable & TrainerPresentable & DateTimePresentable & TextPresentable
 
 class PostTableViewCell: UITableViewCell, NibReusable {
-  
+
   //MARK: - Constants
   fileprivate let imageContentHeight: CGFloat = 208
   fileprivate let programContrentHeight: CGFloat = 100
@@ -15,43 +15,43 @@ class PostTableViewCell: UITableViewCell, NibReusable {
 
   //MARK: - Base
   @IBOutlet weak var cardView: CardView!
-  
+
   //MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
   @IBOutlet weak var trainerNameLabel: UILabel!
-  
+
   //MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
-  
+
   var contentImageView: UIImageView?
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerHeight: NSLayoutConstraint!
   @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
-  
+
   //MARK: - Footer
   @IBOutlet weak var dateView: BadgeView!
   @IBOutlet weak var commentsCountLabel: UILabel!
   @IBOutlet weak var commentButton: UIButton!
   @IBOutlet weak var likesCountLabel: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  
+
   enum ContentType {
     case none
     case photo(photoURL: URL)
     case trainingProgram(program: Program)
   }
-  
+
   enum PostCellState {
     case normal
     case card
   }
-  
+
   var state: PostCellState = .card {
     didSet {
       updateWithState(state)
     }
   }
-  
+
   var liked: Bool {
     get {
       return likeButton.isSelected
@@ -60,28 +60,28 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       likeButton.isSelected = newValue
     }
   }
-  
+
   //MARK: - Delegate
-  
+
   weak var delegate: PostTableViewCellDelegate?
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     contentView.backgroundColor = .lightGrayBackgroundColor()
-    
+
     likeButton.setImage(UIImage(named: "Likes"), for: UIControlState())
     likeButton.setImage(UIImage(named: "LikesSelected"), for: .selected)
     likeButton.setImage(UIImage(named: "LikesSelected"), for: .highlighted)
-    
+
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
     layoutMargins = UIEdgeInsets.zero
-    
+
     trainerAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
-  
+
   //MARK: - Cell configuration
-  
+
   func configureWith(_ viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
       updateContentWith(.photo(photoURL: imageURL as URL))
@@ -90,22 +90,22 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     } else {
       updateContentWith(.none)
     }
-    
+
     postContentLabel.text = viewModel.text
-    
+
     if let trainerAvatarURL = viewModel.trainerAvatarURL {
       trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
-    
+
     likeButton.isSelected = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
-    
+
     dateView.text = viewModel.dateString
-    
+
     likesCountLabel.text = viewModel.likesCount
     commentsCountLabel.text = viewModel.commentsCount
   }
-  
+
   fileprivate func updateContentWith(_ type: ContentType) {
     switch type {
     case .none:
@@ -117,7 +117,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.isHidden = false
       containerView.backgroundColor = UIColor.lightGray
-      
+
       // create image view
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: imageContentHeight))
       self.contentImageView = imageView
@@ -126,7 +126,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       imageView.kf.setImage(with: photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
-      
+
     case .trainingProgram(let program):
       containerHeight.constant = programContrentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent
@@ -138,22 +138,22 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       programView.autoPinEdgesToSuperviewEdges()
     }
   }
-  
+
   func loadProgramPreviewView() -> ProgramPreviewView {
     let nibName = String(describing: ProgramPreviewView.self)
     return Bundle.main.loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
   }
-  
+
   //MARK: - Actions
-  
+
   @IBAction func commentButtonAction(_ sender: AnyObject) {
     delegate?.didTouchCommentButton(self)
   }
-  
+
   @IBAction func likeButtonAction(_ sender: AnyObject) {
     defer { delegate?.didTouchLikeButton(self) }
     likeButton.isSelected = !likeButton.isSelected
-    
+
     if let likesString = likesCountLabel.text,
         let likes = Int(likesString) {
       if likeButton.isSelected {
@@ -163,7 +163,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       }
     }
   }
-  
+
   fileprivate func updateWithState(_ state: PostCellState) {
     switch state {
     case .card:

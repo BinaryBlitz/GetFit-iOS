@@ -6,56 +6,56 @@ class PostViewController: UIViewController {
 
   var post: Post!
   var postsProvider: APIProvider<GetFit.Posts>!
-  
+
   var refreshControl: UIRefreshControl!
-  
+
   @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var commentTextField: UITextField!
   @IBOutlet weak var commentFieldCard: UIView!
   @IBOutlet weak var sendCommentButton: UIButton!
-  
+
   var shouldShowKeyboadOnOpen = false
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    
+
     setupKeyboard()
     setupTableView()
-    
+
     commentFieldCard.layer.borderColor = UIColor.graySecondaryColor().withAlphaComponent(0.2).cgColor
     commentFieldCard.layer.borderWidth = 1
     sendCommentButton.tintColor = UIColor.blueAccentColor()
     sendCommentButton.setTitle("Send", for: UIControlState())
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
+
     tableView.reloadData()
-    
+
     if shouldShowKeyboadOnOpen {
       commentTextField.becomeFirstResponder()
       shouldShowKeyboadOnOpen = false
     }
-    
+
     refresh()
   }
-  
+
   //MARK: - Setup methods
   func setupKeyboard() {
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)),
                                    name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    
+
     notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)),
                                    name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
     view.addGestureRecognizer(tapGesture)
   }
-  
+
   func setupTableView() {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.rowHeight = UITableViewAutomaticDimension
@@ -63,7 +63,7 @@ class PostViewController: UIViewController {
     tableView.tableFooterView = UIView()
     tableView.register(cellType: PostTableViewCell.self)
     tableView.register(cellType: PostCommentTableViewCell.self)
-    
+
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
@@ -78,9 +78,9 @@ class PostViewController: UIViewController {
       //self.refresh()
     //}
   }
-  
+
   //MARK: - Refresh
-  
+
   func refresh(_ sender: AnyObject? = nil) {
     let oldCommentsCount = post.comments.count
     beginRefreshWithCompletion {
@@ -94,16 +94,16 @@ class PostViewController: UIViewController {
       self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
   }
-  
+
   func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
     postsProvider.request(.getComments(postId: post.id)) { (result) in
       switch result {
       case .success(let response):
-        
+
         do {
           try _ = response.filterSuccessfulStatusCodes()
           let comments = try response.map(to: [Comment.self])
-          
+
           let realm = try Realm()
           try realm.write {
             self.post.comments.removeAll()
@@ -118,11 +118,11 @@ class PostViewController: UIViewController {
       case .failure(let error):
         print("error in fetchComments: \(error)")
       }
-      
+
       completion()
     }
   }
-  
+
   //MARK: - Actions
   @IBAction func createCommentButtonAction(_ sender: AnyObject) {
     guard let content = commentTextField.text else { return }
@@ -131,7 +131,7 @@ class PostViewController: UIViewController {
     comment.content = content
     comment.dateCreated = Date()
     comment.author = UserManager.currentUser
-    
+
     postsProvider.request(.createComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.isUserInteractionEnabled = true
       switch result {
@@ -144,7 +144,7 @@ class PostViewController: UIViewController {
       }
     }
   }
-  
+
   fileprivate func insert(_ comment: Comment, inSection section: Int) {
     guard tableView.numberOfSections >= 2 else { return }
     let lastRowIndex = tableView.numberOfRows(inSection: 1)
@@ -152,7 +152,7 @@ class PostViewController: UIViewController {
     tableView.insertRows(at: [indexPath], with: .bottom)
     tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
   }
-  
+
   @objc func showTrainerPage() {
     if post.trainer != nil {
       performSegue(withIdentifier: "showTrainerPage", sender: self)
@@ -160,7 +160,7 @@ class PostViewController: UIViewController {
       presentAlertWithMessage("Cannot load trainer")
     }
   }
-  
+
   @objc func showProgramPage() {
     if post.program != nil {
       performSegue(withIdentifier: "showProgramPage", sender: self)
@@ -175,7 +175,7 @@ class PostViewController: UIViewController {
       tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
     }
   }
-  
+
   func scrollToBottom() {
     let lastSection = tableView.numberOfSections - 1
     let lastRowInLastSection = tableView.numberOfRows(inSection: lastSection) - 1
@@ -184,8 +184,8 @@ class PostViewController: UIViewController {
       tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
   }
-  
-  //MARK: - Navigation 
+
+  //MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showTrainerPage" {
       let destination = segue.destination as! ProfessionalTableViewController
@@ -194,17 +194,17 @@ class PostViewController: UIViewController {
       let destination = segue.destination as! ProgramDetailsTableViewController
       destination.program = post.program
     }
-    
+
   }
 }
 
 //MARK: - UITableViewDataSource
 extension PostViewController: UITableViewDataSource {
-  
+
   func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case 0:
@@ -215,13 +215,13 @@ extension PostViewController: UITableViewDataSource {
       return 0
     }
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
       guard let post = post else { return UITableViewCell() }
       let cell = tableView.dequeueReusableCell(for: indexPath) as PostTableViewCell
-      
+
       cell.configureWith(PostViewModel(post: post))
       cell.displayAsPreview = false
       cell.state = .normal
@@ -231,32 +231,32 @@ extension PostViewController: UITableViewDataSource {
       }
 
       let interactiveViews: [UIView] = [cell.trainerNameLabel, cell.trainerAvatarImageView]
-      
+
       interactiveViews.forEach { view in
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showTrainerPage)))
       }
-      
+
       if post.program != nil {
         cell.containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showProgramPage)))
       }
-      
+
       return cell
     case 1:
       guard let comment = post?.comments[indexPath.row] else { return UITableViewCell() }
       let cell = tableView.dequeueReusableCell(for: indexPath) as PostCommentTableViewCell
-      
+
       cell.configureWith(CommentViewModel(comment: comment))
-      
+
       return cell
     default:
       return UITableViewCell()
     }
   }
-  
+
 }
 
-// MARK: - PostTableViewCellDelegate 
+// MARK: - PostTableViewCellDelegate
 extension PostViewController: PostTableViewCellDelegate {
   func didTouchLikeButton(_ cell: PostTableViewCell) {
     _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
@@ -265,12 +265,12 @@ extension PostViewController: PostTableViewCellDelegate {
 
 //MARK: - Keyboard events
 extension PostViewController {
-  
+
   func keyboardWillShow(_ notification: Foundation.Notification) {
     guard let userInfo = notification.userInfo else {
       return
     }
-  
+
     let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
     let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
     let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
@@ -291,7 +291,7 @@ extension PostViewController {
     guard let userInfo = notification.userInfo else {
       return
     }
-    
+
     let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
     let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
     let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions().rawValue

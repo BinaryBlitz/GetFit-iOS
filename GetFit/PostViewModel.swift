@@ -5,12 +5,12 @@ import RealmSwift
 struct PostViewModel {
   let post: Post
   let postsProvider = APIProvider<GetFit.Posts>()
-  
+
   enum PostReaction {
     case like
     case dislike
   }
-  
+
   func updateReaction(_ reaction: PostReaction) -> Cancellable {
     return postsProvider.request(.createLike(postId: post.id)) { result in
       switch result {
@@ -27,7 +27,7 @@ struct PostViewModel {
       }
     }
   }
-  
+
   fileprivate func addLikeToUploadQueueFor(_ post: Post) {
     let realm = try! Realm()
     try! realm.write {
@@ -46,22 +46,22 @@ extension PostViewModel: PostPresentable {
         let url = URL(string: imageURLString) else {
       return nil
     }
-    
+
     return url
   }
-  
+
   var likesCount: String {
     return post.likesCount.format()
   }
-  
+
   var commentsCount: String {
     return post.commentsCount.format()
   }
-  
+
   var liked: Bool {
     return post.likeId != -1
   }
-  
+
   var program: Program? {
     return post.program
   }
@@ -83,15 +83,15 @@ extension PostViewModel: TrainerPresentable {
         let avatarURLString = trainer.avatarURLString else {
       return nil
     }
-    
+
     return URL(string: avatarURLString)
   }
-  
+
   var trainerName: String {
     guard let trainer = post.trainer else {
       return ""
     }
-    
+
     return "\(trainer.firstName) \(trainer.lastName)"
   }
 }
@@ -102,7 +102,7 @@ extension PostViewModel: DateTimePresentable {
   var dateString: String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM"
-    
+
     return dateFormatter.string(from: post.dateCreated as Date)
   }
 }

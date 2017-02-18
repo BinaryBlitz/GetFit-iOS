@@ -6,4 +6,3 @@ protocol UserPresentable {
   var avatarURL: URL? { get }
   var coverImageURL: URL? { get }
 }
-

@@ -10,7 +10,7 @@ import VK_ios_sdk
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  
+
   let usersProvider = APIProvider<GetFit.Users>()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -21,18 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureNavigationBar()
     configureServerManager()
     configureTabBar()
-    
+
     if !UserManager.authenticated {
       let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
       let login = loginStoryboard.instantiateInitialViewController()
       window?.rootViewController = login
     }
-    
+
     return true
   }
-  
+
   //MARK: - App configuration
-  
+
   func configureRealm() {
     let realmDefaultConfig = Realm.Configuration(
     schemaVersion: 1,
@@ -42,13 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     )
     Realm.Configuration.defaultConfiguration = realmDefaultConfig
   }
-  
+
   func configureServerManager() {
     if let apiToken: String = LocalStorageHelper.loadObjectForKey(.apiToken) {
       UserManager.apiToken = apiToken
     }
   }
-  
+
   func configureNavigationBar() {
     UINavigationBar.appearance().backIndicatorImage = UIImage(named: "Back")
     UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "Back")
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       [NSForegroundColorAttributeName: UIColor.blackTextColor(),
         NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20) ]
   }
-  
+
   fileprivate func configureTabBar() {
     UITabBar.appearance().barTintColor = UIColor.tabBarBackgroundColor()
     UITabBar.appearance().barStyle = UIBarStyle.black
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidBecomeActive(_ application: UIApplication) {
     FBSDKAppEvents.activateApp()
   }
-  
+
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
     VKSdk.processOpen(url, fromApplication: sourceApplication)
     return FBSDKApplicationDelegate.sharedInstance().application(application,
@@ -97,27 +97,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                           sourceApplication: sourceApplication,
                                                           annotation: annotation)
   }
-  
+
   //MARK: - Push notifications
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
     var token = ""
-    
+
     for i in 0 ..< deviceToken.count {
       token += String(format: "%02.2hhx", arguments: [tokenChars[i]])
     }
-    
+
     LocalStorageHelper.save(token, forKey: .deviceToken)
     LocalStorageHelper.save(true, forKey: .shouldUpdateDeviceToken)
     updateDeviceTokenIfNeeded()
   }
-  
+
   func updateDeviceTokenIfNeeded() {
     guard let shouldUpdateToken: Bool = LocalStorageHelper.loadObjectForKey(.shouldUpdateDeviceToken),
         let token: String = LocalStorageHelper.loadObjectForKey(.deviceToken), shouldUpdateToken else {
       return
     }
-    
+
     LocalStorageHelper.save(false, forKey: .shouldUpdateDeviceToken)
     usersProvider.request(GetFit.Users.updateDeviceToken(token: token)) { (result) in
       switch result {
@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
     }
   }
-  
+
   func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     // develper.layOnTheFloor()
     // do {
@@ -142,13 +142,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //    developer.cryALot()
     // }
   }
-  
+
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
 //    NSNotificationCenter.defaultCenter().postNotificationName(ReloadMessagesNotification, object: nil)
     NotificationCenter.default.post(.ReloadMessages)
   }
 }
-  
+
 func registerForPushNotifications() {
   UIApplication.shared
     .registerUserNotificationSettings(

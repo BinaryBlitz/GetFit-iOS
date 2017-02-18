@@ -4,5 +4,5 @@ import PhoneNumberKit
 
 /// GetFit server requests
 public struct GetFit {
-  
+
 }
