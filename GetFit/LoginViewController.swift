@@ -4,6 +4,10 @@ import FBSDKCoreKit
 import VK_ios_sdk
 import SwiftyJSON
 
+enum LoginError: Error {
+  case invalidResponse
+}
+
 class LoginViewController: UIViewController {
 
   @IBOutlet weak var backgroundImageView: UIImageView!
@@ -13,6 +17,8 @@ class LoginViewController: UIViewController {
 
   let loginProvider = APIProvider<GetFit.Login>()
 
+  private let facebookPermissions = ["public_profile"]
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -20,13 +26,6 @@ class LoginViewController: UIViewController {
     let overlay = UIView(frame: backgroundImageView.frame)
     overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.5)
     backgroundImageView.addSubview(overlay)
-
-    navigationItem.backBarButtonItem = UIBarButtonItem(
-      title: "",
-      style: .plain,
-      target: nil,
-      action: nil
-    )
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -42,51 +41,42 @@ class LoginViewController: UIViewController {
   @IBAction func facebookButtonAction(_ sender: AnyObject) {
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.loginBehavior = FBSDKLoginBehavior.browser
+
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
-    fbLoginManager.logIn(withReadPermissions: ["public_profile"], from: self) { [weak self] (result, error) in
+    fbLoginManager.logIn(withReadPermissions: facebookPermissions, from: self) { [weak self] (result, error) in
+
       UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
       guard error == nil else {
-        print(error.debugDescription)
         self?.presentAlertWithMessage("Не удалось войти через Facebook")
         return
       }
+      guard let result = result else {
+        return
+      }
+      guard !result.isCancelled else {
+        self?.view.isUserInteractionEnabled = true
+        return
+      }
 
-      if let result = result {
-        if result.isCancelled {
-          print("Canceled")
-          self?.view.isUserInteractionEnabled = true
-        } else {
-          print("Logged in")
-          let token = result.token
-
-          self?.loginProvider.request(.facebook(token: token?.tokenString ?? "")) { (result) in
-            switch result {
-            case .success(let response):
-              do {
-                let userResponse = try response.filterSuccessfulStatusCodes()
-                let json = try JSON(userResponse.mapJSON())
-                if let apiToken = json["api_token"].string {
-                  UserManager.apiToken = apiToken
-                  print("api_token: \(apiToken)")
-                }
-                let user = try userResponse.map(to: User.self)
-                print("User: \(user)")
-                UserManager.currentUser = user
-                registerForPushNotifications()
-
-                self?.performSegue(withIdentifier: "home", sender: self)
-              } catch {
-                self?.presentAlertWithMessage("Server response code: \(response.statusCode)")
-              }
-            case .failure(let error):
-              print(error)
-              self?.presentAlertWithMessage("Ошибка! Попробуйте позже!")
+      self?
+        .loginProvider
+        .request(.facebook(token: result.token?.tokenString ?? "")) { (result) in
+          switch result {
+          case .success(let response):
+            do {
+              let userResponse = try response.filterSuccessfulStatusCodes()
+              let userJSON = try JSON(userResponse.mapJSON())
+              try self?.finishFacebookAuthentication(withUser: userJSON)
+            } catch {
+              self?.presentAlertWithMessage("Ошибка. Попробуйте позже.")
             }
-            self?.view.isUserInteractionEnabled = true
+          case .failure(_):
+            self?.presentAlertWithMessage("Ошибка. Попробуйте позже.")
           }
-        }
+
+          self?.view.isUserInteractionEnabled = true
       }
     }
   }
@@ -94,14 +84,24 @@ class LoginViewController: UIViewController {
   @IBAction func vkButtonAction(_ sender: AnyObject) {
     view.isUserInteractionEnabled = false
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    let VKAppId = Bundle.main.object(forInfoDictionaryKey: "VKAppID") as! String
-    let vk = VKSdk.initialize(withAppId: VKAppId)
+
+    let vkAppId = Bundle.main.object(forInfoDictionaryKey: "VKAppID") as! String
+    let vk = VKSdk.initialize(withAppId: vkAppId)
+
     vk?.register(self)
     VKSdk.authorize([], with: VKAuthorizationOptions.unlimitedToken)
   }
 
   @IBAction func phoneButtonAction(_ sender: AnyObject) {
-    print("phone")
+  }
+
+  private func finishFacebookAuthentication(withUser userJSON: JSON) throws {
+    guard let _ = userJSON["api_token"].string else { throw LoginError.invalidResponse }
+
+    UserManager.currentUser = User(jsonData: userJSON)
+    registerForPushNotifications()
+
+    performSegue(withIdentifier: "home", sender: self)
   }
 }
 

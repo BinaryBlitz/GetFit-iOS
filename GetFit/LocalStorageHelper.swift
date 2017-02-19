@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 struct LocalStorageHelper {
 
@@ -15,6 +16,11 @@ struct LocalStorageHelper {
   }
 
   static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
+    if key == StorageKey.apiToken {
+      let realm = try! Realm()
+      if let user = realm.objects(User.self).first { return user.apiToken as? T }
+    }
+
     let userDefaults = UserDefaults.standard
     let object = userDefaults.object(forKey: key.rawValue)
     return object as? T

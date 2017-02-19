@@ -13,6 +13,7 @@ class User: Object, ALSwiftyJSONAble {
   dynamic var id: Int = 0
   dynamic var firstName: String = ""
   dynamic var lastName: String = ""
+  dynamic var apiToken: String = ""
   dynamic var genderValue: String = ""
   dynamic var birthdate: Date = Date()
   dynamic var userDescription: String?
@@ -65,25 +66,20 @@ class User: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
 
-    if let id = jsonData["id"].int, let firstName = jsonData["first_name"].string, let lastName = jsonData["last_name"].string {
-      self.id = id
-      self.firstName = firstName
-      self.lastName = lastName
-    } else {
+    guard let id = jsonData["id"].int,
+          let firstName = jsonData["first_name"].string,
+          let lastName = jsonData["last_name"].string else {
       return nil
     }
 
-    if let genderValue = jsonData["gender"].string {
-      self.genderValue = genderValue
-    }
+    self.id = id
+    self.firstName = firstName
+    self.lastName = lastName
 
-    if let avatarPath = jsonData["avatar_url"].string {
-      self.avatarURLString = avatarPath
-    }
-
-    if let bannerPath = jsonData["banner_url"].string {
-      self.bannerURLString = bannerPath
-    }
+    if let apiToken = jsonData["apiToken"].string { self.apiToken = apiToken }
+    if let genderValue = jsonData["gender"].string { self.genderValue = genderValue }
+    if let avatarPath = jsonData["avatar_url"].string { self.avatarURLString = avatarPath }
+    if let bannerPath = jsonData["banner_url"].string { self.bannerURLString = bannerPath }
   }
 }
 
