@@ -16,16 +16,17 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    backgroundImageView.image = UIImage(named: "LoginBG")
+    // Add overlay
     let overlay = UIView(frame: backgroundImageView.frame)
-    overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.51)
+    overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.5)
     backgroundImageView.addSubview(overlay)
 
-    facebookButton.text = "facebook".uppercased()
-    vkButton.text = "vkontakte".uppercased()
-    phoneButton.text = "phone".uppercased()
-
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(
+      title: "",
+      style: .plain,
+      target: nil,
+      action: nil
+    )
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +43,10 @@ class LoginViewController: UIViewController {
     let fbLoginManager = FBSDKLoginManager()
     fbLoginManager.loginBehavior = FBSDKLoginBehavior.browser
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
     fbLoginManager.logIn(withReadPermissions: ["public_profile"], from: self) { [weak self] (result, error) in
       UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
       guard error == nil else {
         print(error.debugDescription)
         self?.presentAlertWithMessage("Не удалось войти через Facebook")
@@ -52,10 +55,10 @@ class LoginViewController: UIViewController {
 
       if let result = result {
         if result.isCancelled {
-          print("cancelled")
+          print("Canceled")
           self?.view.isUserInteractionEnabled = true
         } else {
-          print("loggend in!")
+          print("Logged in")
           let token = result.token
 
           self?.loginProvider.request(.facebook(token: token?.tokenString ?? "")) { (result) in
