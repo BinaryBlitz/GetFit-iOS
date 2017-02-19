@@ -40,12 +40,7 @@ extension GetFit.WorkoutSessions: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    switch self {
-    case .index, .exerciseSessions(_):
-      return URLEncoding.default
-    case .create(_), .updateExerciseSession(_):
-      return JSONEncoding.default
-    }
+    return JSONEncoding.default
   }
 
   var parameters: [String: Any]? {

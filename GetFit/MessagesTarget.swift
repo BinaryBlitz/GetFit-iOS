@@ -34,12 +34,7 @@ extension GetFit.Subscriptions: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    switch self {
-    case .list, .listMessages(_):
-      return URLEncoding.default
-    case .createMessage(_, _):
-      return JSONEncoding.default
-    }
+    return JSONEncoding.default
   }
 
   public var parameters: [String: Any]? {

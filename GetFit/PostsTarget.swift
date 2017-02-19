@@ -30,12 +30,7 @@ extension GetFit.Posts: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    switch self {
-    case .index, .getComments(_):
-      return URLEncoding.default
-    case .createComment(_, _), .createLike(_):
-      return JSONEncoding.default
-    }
+    return JSONEncoding.default
   }
 
   public var method: Moya.Method {

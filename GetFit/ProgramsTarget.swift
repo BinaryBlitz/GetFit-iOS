@@ -31,12 +31,7 @@ extension GetFit.Programs: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    switch self {
-    case .index, .show(_):
-      return URLEncoding.default
-    case .createPurchase(_):
-      return JSONEncoding.default
-    }
+    return JSONEncoding.default
   }
 
   public var method: Moya.Method {

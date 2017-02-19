@@ -23,7 +23,7 @@ enum ServerEnvironment<Target:TargetType> {
     case .staging:
       return URL(string: "https://getfit-staging.herokuapp.com/api")!
     case .production:
-      return URL(string: "")! // TODO: Add production base url
+      return URL(string: "https://getfit-production.herokuapp.com/api")!
     }
   }
 
@@ -40,6 +40,7 @@ enum ServerEnvironment<Target:TargetType> {
   /// Creates parametes dictionary with api token
   fileprivate func parametersWithAPIToken(_ parameters: [String: Any]?) -> [String: Any]? {
     var params = parameters ?? [:]
+
     if let token = UserManager.apiToken {
       params["api_token"] = token as Any?
     }

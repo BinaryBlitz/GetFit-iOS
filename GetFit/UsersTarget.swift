@@ -29,7 +29,7 @@ extension GetFit.Users: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    return URLEncoding.default
+    return JSONEncoding.default
   }
 
   public var method: Moya.Method {
@@ -37,7 +37,7 @@ extension GetFit.Users: TargetType {
     case .getCurrent, .getStatistics(_):
       return .get
     case .update(_, _), .updateImage(_, _), .updateDeviceToken(_):
-      return .get
+      return .patch
     }
   }
 

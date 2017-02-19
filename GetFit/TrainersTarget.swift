@@ -31,7 +31,7 @@ extension GetFit.Trainers: TargetType {
   }
 
   public var parameterEncoding: ParameterEncoding {
-    return URLEncoding.default
+    return JSONEncoding.default
   }
 
   public var parameters: [String: Any]? {
