@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
 
     let vkAppId = Bundle.main.object(forInfoDictionaryKey: "VKAppID") as! String
     let vk = VKSdk.initialize(withAppId: vkAppId)
-
+    vk?.uiDelegate = self
     vk?.register(self)
     VKSdk.authorize([], with: VKAuthorizationOptions.unlimitedToken)
   }
@@ -113,6 +113,7 @@ extension LoginViewController: VKSdkDelegate {
       print(error)
       view.isUserInteractionEnabled = true
       presentAlertWithMessage("Не удалось авторизироваться чере VK")
+      return
     }
 
     if let token = result.token.accessToken {
@@ -146,5 +147,14 @@ extension LoginViewController: VKSdkDelegate {
   func vkSdkUserAuthorizationFailed() {
     self.view.isUserInteractionEnabled = true
     presentAlertWithMessage("Не удалось авторизироваться чере VK")
+  }
+}
+
+extension LoginViewController: VKSdkUIDelegate {
+  func vkSdkShouldPresent(_ controller: UIViewController!) {
+    present(controller, animated: true, completion: nil)
+  }
+
+  func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
   }
 }

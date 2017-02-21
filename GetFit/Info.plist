@@ -47,7 +47,7 @@
 	<key>FacebookAppID</key>
 	<string>789940354469829</string>
 	<key>FacebookDisplayName</key>
-	<string>getfitapp</string>
+	<string>GetFit</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

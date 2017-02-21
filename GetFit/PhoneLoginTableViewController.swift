@@ -31,7 +31,6 @@ class PhoneLoginTableViewController: UITableViewController {
   }
 
   fileprivate func setupPhoneNumberTextField() {
-    phoneNumberTextField.placeholder = "8 926 123-45-67"
     phoneNumberTextField.defaultRegion = "RU"
   }
 
@@ -51,7 +50,7 @@ class PhoneLoginTableViewController: UITableViewController {
     } catch let error {
       print(error)
       getCodeButton.hideActivityIndicator()
-      presentAlertWithMessage("Invalid phone number")
+      presentAlertWithMessage("Неправильный номер телефона")
     }
   }
 
