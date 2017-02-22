@@ -50,7 +50,7 @@ extension GetFit.WorkoutSessions: TargetType {
     case .create(let workoutSessions):
       let sessions = workoutSessions.map { session -> [String: Any] in
         return ["workout_id": session.workoutID as AnyObject,
-                "scheduled_for": session.date.iso8601(opts: .withInternetDateTime)
+                "scheduled_for": session.date.iso8601(opts: .withInternetDateTimeExtended)
         ]
       }
       return ["user": ["workout_sessions_attributes": sessions]]

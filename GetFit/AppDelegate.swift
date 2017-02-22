@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureServerManager()
     configureTabBar()
 
-    if !UserManager.authenticated {
+    if !UserManager.instance.authenticated {
       let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
       let login = loginStoryboard.instantiateInitialViewController()
       window?.rootViewController = login
@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func configureServerManager() {
-    if let apiToken: String = LocalStorageHelper.loadObjectForKey(.apiToken) {
-      UserManager.apiToken = apiToken
+    if let apiToken: String = UserManager.instance.apiToken {
+      UserManager.instance.apiToken = apiToken
     }
   }
 

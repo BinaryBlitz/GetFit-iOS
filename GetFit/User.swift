@@ -76,7 +76,7 @@ class User: Object, ALSwiftyJSONAble {
     self.firstName = firstName
     self.lastName = lastName
 
-    if let apiToken = jsonData["apiToken"].string { self.apiToken = apiToken }
+    if let apiToken = jsonData["api_token"].string { self.apiToken = apiToken }
     if let genderValue = jsonData["gender"].string { self.genderValue = genderValue }
     if let avatarPath = jsonData["avatar_url"].string { self.avatarURLString = avatarPath }
     if let bannerPath = jsonData["banner_url"].string { self.bannerURLString = bannerPath }

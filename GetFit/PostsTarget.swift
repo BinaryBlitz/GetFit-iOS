@@ -8,6 +8,7 @@ extension GetFit {
   public enum Posts {
     case index
     case createLike(postId: Int)
+    case destroyLike(postId: Int)
     case getComments(postId: Int)
     case createComment(comment: Comment, postId: Int)
   }
@@ -21,6 +22,8 @@ extension GetFit.Posts: TargetType {
     case .index:
       return "/posts"
     case .createLike(let postId):
+      return "/posts/\(postId)/likes"
+    case .destroyLike(let postId):
       return "/posts/\(postId)/likes"
     case .getComments(let postId):
       return "/posts/\(postId)/comments"
@@ -39,12 +42,14 @@ extension GetFit.Posts: TargetType {
       return .get
     case .createComment(_, _), .createLike(_):
       return .post
+    case .destroyLike(_):
+      return .delete
     }
   }
 
   public var parameters: [String: Any]? {
     switch self {
-    case .index, .getComments(_), .createLike(_):
+    case .index, .getComments(_), .createLike(_), .destroyLike(_):
       return nil
     case let .createComment(comment, _):
       return ["comment": ["content": comment.content]]

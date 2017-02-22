@@ -81,6 +81,11 @@ class NewsTableViewController: UITableViewController {
     }
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
+
   // MARK: - UITableViewDataSource
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = posts?.count ?? 0

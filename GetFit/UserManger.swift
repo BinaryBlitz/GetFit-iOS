@@ -1,22 +1,45 @@
-// Struct for managing logged in user data
+import Realm
+import RealmSwift
+// Class for managing logged in user data
 
-struct UserManager {
-  static var currentUser: User?
+class UserManager {
+  static let instance = UserManager()
+  let realm = try! Realm()
 
-  static var apiToken: String? {
+  var currentUser: User? {
     didSet {
-      LocalStorageHelper.save(apiToken, forKey: .apiToken)
-      print("API Token updated: \(apiToken)")
+      guard let user = currentUser else { return }
+      try? realm.write {
+        realm.add(user, update: true)
+      }
+      LocalStorageHelper.save(user.id, forKey: .userId)
     }
   }
 
-  static var deviceToken: String? {
+  var apiToken: String? {
+    set {
+      try? realm.write {
+        currentUser?.apiToken = newValue ?? ""
+      }
+      print("API Token updated: \(newValue)")
+    }
+    get {
+      return currentUser?.apiToken
+    }
+  }
+
+  var deviceToken: String? {
     didSet {
       LocalStorageHelper.save(deviceToken, forKey: .deviceToken)
     }
   }
 
-  static var authenticated: Bool {
+  var authenticated: Bool {
     return apiToken != nil
+  }
+
+  private init() {
+    guard let userId: String? = LocalStorageHelper.loadObjectForKey(.userId) else { return }
+    currentUser = realm.object(ofType: User.self, forPrimaryKey: userId)
   }
 }

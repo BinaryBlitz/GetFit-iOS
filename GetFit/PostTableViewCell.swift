@@ -97,7 +97,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
 
-    likeButton.isSelected = viewModel.liked
+    liked = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
 
     dateView.text = viewModel.dateString

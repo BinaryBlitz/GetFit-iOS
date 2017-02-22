@@ -45,8 +45,7 @@ class PhoneVerificationTableViewController: UITableViewController {
           try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           if let apiToken = json["api_token"].string {
-            UserManager.apiToken = apiToken
-            LocalStorageHelper.save(apiToken, forKey: .apiToken)
+            UserManager.instance.apiToken = apiToken
             registerForPushNotifications()
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             if let initialViewController = mainStoryboard.instantiateInitialViewController() {

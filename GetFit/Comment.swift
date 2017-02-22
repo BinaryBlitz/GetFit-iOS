@@ -27,7 +27,7 @@ open class Comment: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.content = content
-    let date = try? dateCreatedString.date(format: .iso8601(options: .withInternetDateTime))
+    let date = try? dateCreatedString.date(format: .iso8601(options: .withInternetDateTimeExtended))
     self.dateCreated = date?.absoluteDate ?? Date()
     if let author = User(jsonData: jsonData["author"]) {
       self.author = author

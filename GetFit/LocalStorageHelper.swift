@@ -5,7 +5,7 @@ struct LocalStorageHelper {
 
   enum StorageKey: String {
     // TODO: save api token to the keychain
-    case apiToken
+    case userId
     case deviceToken
     case shouldUpdateDeviceToken
   }
@@ -16,11 +16,6 @@ struct LocalStorageHelper {
   }
 
   static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
-    if key == StorageKey.apiToken {
-      let realm = try! Realm()
-      if let user = realm.objects(User.self).first { return user.apiToken as? T }
-    }
-
     let userDefaults = UserDefaults.standard
     let object = userDefaults.object(forKey: key.rawValue)
     return object as? T

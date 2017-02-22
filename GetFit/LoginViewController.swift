@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
   private func finishFacebookAuthentication(withUser userJSON: JSON) throws {
     guard let _ = userJSON["api_token"].string else { throw LoginError.invalidResponse }
 
-    UserManager.currentUser = User(jsonData: userJSON)
+    UserManager.instance.currentUser = User(jsonData: userJSON)
     registerForPushNotifications()
 
     performSegue(withIdentifier: "home", sender: self)
@@ -112,7 +112,6 @@ extension LoginViewController: VKSdkDelegate {
     if let error = result.error {
       print(error)
       view.isUserInteractionEnabled = true
-      presentAlertWithMessage("Не удалось авторизироваться чере VK")
       return
     }
 
@@ -125,12 +124,11 @@ extension LoginViewController: VKSdkDelegate {
             let userResponse = try response.filterSuccessfulStatusCodes()
             let json = try JSON(userResponse.mapJSON())
             if let apiToken = json["api_token"].string {
-              UserManager.apiToken = apiToken
               print("api_token: \(apiToken)")
             }
             let user = try userResponse.map(to: User.self)
             print("User: \(user)")
-            UserManager.currentUser = user
+            UserManager.instance.currentUser = user
             registerForPushNotifications()
             self.performSegue(withIdentifier: "home", sender: self)
           } catch {

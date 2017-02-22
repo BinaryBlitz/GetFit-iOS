@@ -41,7 +41,7 @@ enum ServerEnvironment<Target:TargetType> {
   fileprivate func parametersWithAPIToken(_ parameters: [String: Any]?) -> [String: Any]? {
     var params = parameters ?? [:]
 
-    if let token = UserManager.apiToken {
+    if let token = UserManager.instance.apiToken {
       params["api_token"] = token as Any?
     }
 

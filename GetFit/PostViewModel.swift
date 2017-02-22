@@ -12,29 +12,52 @@ struct PostViewModel {
   }
 
   func updateReaction(_ reaction: PostReaction) -> Cancellable {
-    return postsProvider.request(.createLike(postId: post.id)) { result in
-      switch result {
-      case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          print("yay! new like")
-        } catch {
-          self.addLikeToUploadQueueFor(self.post)
+    switch reaction {
+    case .like:
+      addLike()
+      return postsProvider.request(.createLike(postId: post.id)) { result in
+        switch result {
+        case .success(let response):
+          do {
+            try _ = response.filterSuccessfulStatusCodes()
+            let like = try response.map(to: Like.self)
+            self.addLikeId(self.post, like: like)
+          } catch {
+          }
+        case .failure(let error):
+          print(error)
         }
-      case .failure(let error):
-        print(error)
-        self.addLikeToUploadQueueFor(self.post)
       }
+    case .dislike:
+      self.removeLike(self.post)
+      return postsProvider.request(.destroyLike(postId: post.id)) { _ in }
     }
   }
 
-  fileprivate func addLikeToUploadQueueFor(_ post: Post) {
+
+  fileprivate func addLike() {
     let realm = try! Realm()
     try! realm.write {
-      let like = Like()
-      realm.add(like)
-      post.like = like
+      post.liked = true
+      post.likesCount += 1
     }
+  }
+
+  fileprivate func addLikeId(_ post: Post, like: Like) {
+    let realm = try! Realm()
+    try! realm.write {
+      post.likeId = like.id
+    }
+  }
+
+  fileprivate func removeLike(_ post: Post) {
+    let realm = try! Realm()
+    try! realm.write {
+      post.liked = false
+      post.likeId = -1
+      post.likesCount -= 1
+    }
+
   }
 }
 
@@ -59,7 +82,7 @@ extension PostViewModel: PostPresentable {
   }
 
   var liked: Bool {
-    return post.likeId != -1
+    return post.liked
   }
 
   var program: Program? {

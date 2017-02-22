@@ -33,7 +33,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.workoutID = workoutID
-    let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTime)).absoluteDate
+    let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTimeExtended)).absoluteDate
     self.date = date ?? Date()
 
     guard let workoutName = jsonData["workout"]["name"].string,

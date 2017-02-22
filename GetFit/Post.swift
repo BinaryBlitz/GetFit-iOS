@@ -14,8 +14,22 @@ class Post: Object, ALSwiftyJSONAble {
   dynamic var dateCreated: Date = Date()
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
-  dynamic var likeId: Int = -1
-  var like: Like?
+  dynamic var liked: Bool = false {
+    didSet {
+      guard let realm = self.realm, !liked else { return }
+      try? realm.write {
+        self.likeId = -1
+      }
+    }
+  }
+  dynamic var likeId: Int = -1 {
+    didSet {
+      guard let realm = self.realm, likeId == -1 else { return }
+      try? realm.write {
+        self.liked = false
+      }
+    }
+  }
   let comments = List<Comment>()
 
   required init?(jsonData: JSON) {
@@ -27,7 +41,7 @@ class Post: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.content = content
-    let date = try? createdAt.date(format: .iso8601(options: .withInternetDateTime))
+    let date = try? createdAt.date(format: .iso8601(options: .withInternetDateTimeExtended))
     self.dateCreated = date?.absoluteDate ?? Date()
 
     if let likesCount = jsonData["likes_count"].int {
@@ -40,6 +54,10 @@ class Post: Object, ALSwiftyJSONAble {
 
     if let likeId = jsonData["like_id"].int {
       self.likeId = likeId
+      self.liked = likeId != -1
+    } else {
+      self.likeId = -1
+      self.liked = false
     }
 
     if let url = jsonData["image_url"].string {

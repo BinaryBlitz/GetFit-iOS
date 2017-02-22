@@ -130,7 +130,7 @@ class PostViewController: UIViewController {
     let comment = Comment()
     comment.content = content
     comment.dateCreated = Date()
-    comment.author = UserManager.currentUser
+    comment.author = UserManager.instance.currentUser
 
     postsProvider.request(.createComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.isUserInteractionEnabled = true
