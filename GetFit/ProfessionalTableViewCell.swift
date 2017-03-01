@@ -9,6 +9,8 @@ protocol ProfessionalCellDelegate: class {
 
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
 
+  let animationDuration = 0.2
+
   enum ProfessionalCellState {
     case normal
     case card
@@ -35,11 +37,24 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
 
   var bannerMaskView: UIView?
 
+
+  var followersCount: Int = 0 {
+    didSet {
+      followersLabel.text = "\(followersCount)"
+    }
+  }
+
   weak var delegate: ProfessionalCellDelegate?
 
   fileprivate var following: Bool = false {
     didSet {
       updateFollowingStatus(following)
+    }
+  }
+
+  var followingIsHighlighted: Bool = false {
+    didSet {
+      updateHighlightedStatus(followingIsHighlighted)
     }
   }
 
@@ -59,7 +74,6 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     bannerImageView.image = nil
 
     setupFollowButton()
-    updateFollowingStatus(following)
 
     let maskView = UIView()
     maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -73,24 +87,56 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     followButtonBackground.addSubview(button)
     button.autoPinEdgesToSuperviewEdges()
     button.addTarget(self, action: #selector(followButtonAction(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(followButtonDidTouch(_:)), for: .touchDown)
+    button.addTarget(self, action: #selector(followButtonDidEndTouch(_:)), for: .touchDragExit)
+
     followButtonBackground.layer.borderWidth = 1
     followButtonBackground.layer.cornerRadius = 2
     followButtonLabel.text = "follow".uppercased()
   }
 
+  func followButtonDidTouch(_ sender: UIButton) {
+    followingIsHighlighted = true
+  }
+
+  func followButtonDidEndTouch(_ sender: UIButton) {
+    followingIsHighlighted = false
+  }
+
   func followButtonAction(_ sender: UIButton) {
+    followingIsHighlighted = false
     following = !following
     delegate?.professionalCell(self, didChangeFollowingTo: following)
   }
 
+
+  func updateHighlightedStatus(_ isHighlighted: Bool) {
+    UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+      guard let `self` = self else { return }
+      if isHighlighted {
+        self.followButtonLabel.textColor = UIColor.white
+        self.followButtonIcon.tintColor = UIColor.white
+        self.followButtonBackground.backgroundColor = UIColor.blueAccentColor()
+        self.followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
+      } else {
+        self.followButtonLabel.textColor = UIColor.blueAccentColor()
+        self.followButtonIcon.tintColor = UIColor.blueAccentColor()
+        self.followButtonBackground.backgroundColor = UIColor.white
+        self.followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
+      }
+    }, completion: nil)
+  }
+
   func updateFollowingStatus(_ following: Bool) {
     if following {
+      followersCount += 1
       followButtonLabel.textColor = UIColor.white
       followButtonIcon.tintColor = UIColor.white
       followButtonIcon.image = UIImage(named: "Checkmark")?.withRenderingMode(.alwaysTemplate)
       followButtonBackground.backgroundColor = UIColor.blueAccentColor()
       followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     } else {
+      followersCount -= 1
       followButtonLabel.textColor = UIColor.blueAccentColor()
       followButtonIcon.tintColor = UIColor.blueAccentColor()
       followButtonIcon.image = UIImage(named: "Add")?.withRenderingMode(.alwaysTemplate)
@@ -103,7 +149,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
     if state == .card {
-      programsBadge.text = "10 programs".uppercased()
+      programsBadge.text = "\(trainer.programsCount) programs".uppercased()
     } else {
       programsBadge.text = trainer.category.rawValue.uppercased()
     }
@@ -111,7 +157,14 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     if let avatarURLString = trainer.avatarURLString,
        let avatarURL = URL(string: avatarURLString) {
       avatarImageView.kf.setImage(with: avatarURL)
+    } else {
+      avatarImageView.image = nil
     }
+
+    following = trainer.following
+
+    followersCount = trainer.followersCount
+    ratingLabel.text = "\(Int(trainer.rating))"
 
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
     bannerMaskView?.isHidden = true

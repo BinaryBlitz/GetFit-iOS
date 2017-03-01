@@ -9,6 +9,8 @@ extension GetFit {
     case index(filter: TrainersFilter)
     case show(id: Int)
     case programs(trainerId: Int)
+    case createFollowing(trainerId: Int)
+    case destroyFollowing(followingId: Int)
   }
 
 }
@@ -23,11 +25,22 @@ extension GetFit.Trainers: TargetType {
       return "/trainers/\(id)"
     case .programs(let trainerId):
       return "/trainers/\(trainerId)/programs"
+    case .createFollowing(let trainerId):
+      return "trainers/\(trainerId)/followings"
+    case .destroyFollowing(let followingId):
+      return "followings/\(followingId)"
     }
   }
 
   public var method: Moya.Method {
-    return .get
+    switch self {
+    case .createFollowing(_):
+      return .post
+    case .destroyFollowing(_):
+      return .delete
+    default:
+      return .get
+    }
   }
 
   public var parameterEncoding: ParameterEncoding {
@@ -38,7 +51,7 @@ extension GetFit.Trainers: TargetType {
     switch self {
     case .index(let filter):
       return ["category": filter.category.rawValue as Any]
-    case .show(_), .programs(_):
+    case .show(_), .programs(_), .createFollowing(_), .destroyFollowing(_):
       return nil
     }
   }

@@ -11,11 +11,21 @@ class Trainer: Object, ALSwiftyJSONAble {
   dynamic var lastName: String = ""
   dynamic var info: String = ""
   dynamic var email: String = ""
+  dynamic var followingId: Int = -1
+  dynamic var following: Bool = false {
+    didSet {
+      guard let realm = self.realm, !following else { return }
+      try? realm.write {
+        self.followingId = -1
+      }
+    }
+  }
   dynamic var categoryValue: String = TrainerCategory.Coach.rawValue
   dynamic var avatarURLString: String? = ""
   dynamic var bannerURLString: String? = ""
   dynamic var programsCount: Int = 0
   dynamic var followersCount: Int = 0
+  dynamic var rating: Double = 0
 
   var category: TrainerCategory {
     get {
@@ -54,6 +64,14 @@ class Trainer: Object, ALSwiftyJSONAble {
     self.firstName = firstName
     self.lastName = lastName
 
+    if let followingId = jsonData["following_id"].int {
+      self.followingId = followingId
+      self.following = followingId != -1
+    } else {
+      self.followingId = -1
+      self.following = false
+    }
+
     if let description = jsonData["description"].string {
       self.info = description
     }
@@ -72,6 +90,10 @@ class Trainer: Object, ALSwiftyJSONAble {
 
     if let programsCount = jsonData["programs_count"].int {
       self.programsCount = programsCount
+    }
+
+    if let rating = jsonData["rating"].double {
+      self.rating = rating
     }
   }
 

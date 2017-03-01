@@ -105,6 +105,7 @@ class ProfessionalTableViewController: UITableViewController {
         break
       }
       cell.configureWith(trainer, andState: .normal)
+      cell.delegate = self
       return cell
     case 0 where indexPath.row == 1:
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "getPersonalTrainingCell") as? ActionTableViewCell else {
@@ -189,8 +190,6 @@ class ProfessionalTableViewController: UITableViewController {
 extension ProfessionalTableViewController: ButtonStripViewDelegate {
   func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedTab = index
-//    let indexSet =
-//    tableView.reloadSections(NSIndexSet(index: 1, index: 0), withRowAnimation: UITableViewRowAnimation.Top)
     let offset = tableView.contentOffset
     tableView.reloadData()
     if tableView.numberOfRows(inSection: selectedTab) >= 2 {
@@ -208,4 +207,39 @@ extension ProfessionalTableViewController: ActionTableViewCellDelegate {
 }
 
 extension ProfessionalTableViewController: PostTableViewCellDelegate {
+
+}
+
+extension ProfessionalTableViewController: ProfessionalCellDelegate {
+  func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
+    let realm = try! Realm()
+    try! realm.write {
+      trainer.following = didChangeFollowingTo
+      if didChangeFollowingTo {
+        trainer.followersCount += 1
+      } else {
+        trainer.followersCount -= 1
+      }
+    }
+    if didChangeFollowingTo {
+      createFollowing()
+    } else {
+      trainersProvider.request(.destroyFollowing(followingId: trainer.followingId)) { _ in }
+    }
+  }
+
+  func createFollowing() {
+    trainersProvider.request(.createFollowing(trainerId: trainer.id)) { [weak self] result in
+      switch result {
+      case .success(let response):
+        guard let following = try? response.map(to: Following.self) else { return }
+        let realm = try! Realm()
+        try! realm.write {
+          self?.trainer.followingId = following.id
+        }
+      case .failure(_):
+        return
+      }
+    }
+  }
 }

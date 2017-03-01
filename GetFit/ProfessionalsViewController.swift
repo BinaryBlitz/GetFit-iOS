@@ -1,6 +1,5 @@
 import UIKit
 import RealmSwift
-
 class ProfessionalsViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
@@ -22,6 +21,11 @@ class ProfessionalsViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     setupTableView()
 
+    refresh()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     refresh()
   }
 
@@ -50,8 +54,8 @@ class ProfessionalsViewController: UIViewController {
 
   func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
-      self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
+      self.tableView.reloadData()
     }
   }
 
@@ -63,7 +67,7 @@ class ProfessionalsViewController: UIViewController {
 
         do {
           let trainersResponse = try response.filterSuccessfulStatusCodes()
-          let trainers = try trainersResponse.map(to: [Trainer.self])
+          let trainers = try trainersResponse.map(to: [Trainer.self]).sorted { $0.id > $1.id }
 
           let realm = try Realm()
           try realm.write {
@@ -81,7 +85,7 @@ class ProfessionalsViewController: UIViewController {
             }
           }
 
-          self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.bottom)
+          self.tableView.reloadData()
         } catch {
           print("Cannot fetch trainers")
         }
@@ -182,7 +186,6 @@ extension ProfessionalsViewController: ButtonStripViewDelegate {
     selectedCategory = categories[index]
     refresh()
     tableView.contentOffset = CGPoint.zero
-    tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.bottom)
   }
 }
 
@@ -191,7 +194,35 @@ extension ProfessionalsViewController: ProfessionalCellDelegate {
     guard let indexPath = tableView.indexPath(for: cell), let trainer = trainerAtIndexPath(indexPath) else {
       return
     }
+    let realm = try! Realm()
+    try! realm.write {
+      trainer.following = didChangeFollowingTo
+      if didChangeFollowingTo {
+        trainer.followersCount += 1
+      } else {
+        trainer.followersCount -= 1
+      }
+    }
 
-    print("trainer: \(trainer.firstName)")
+    if didChangeFollowingTo {
+      createFollowing(trainer: trainer)
+    } else {
+      trainersProvider.request(.destroyFollowing(followingId: trainer.followingId)) { _ in }
+    }
+  }
+
+  func createFollowing(trainer: Trainer) {
+    trainersProvider.request(.createFollowing(trainerId: trainer.id)) { result in
+      switch result {
+      case .success(let response):
+        guard let following = try? response.map(to: Following.self) else { return }
+        let realm = try! Realm()
+        try! realm.write {
+          trainer.followingId = following.id
+        }
+      case .failure(_):
+        return
+      }
+    }
   }
 }

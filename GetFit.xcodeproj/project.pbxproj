@@ -144,6 +144,7 @@
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
 		8838A5431E66221100A57D9C /* EmptyTablePlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */; };
 		8838A5451E6623A700A57D9C /* EmptyTablePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */; };
+		888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D3F6C1E671AF3001C06D9 /* Following.swift */; };
 		889109D41E55AECC00C7DCD3 /* PhoneNumber+toE164.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */; };
 		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
@@ -307,6 +308,7 @@
 		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
 		8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTablePlaceholderView.xib; sourceTree = "<group>"; };
 		8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTablePlaceholderView.swift; sourceTree = "<group>"; };
+		888D3F6C1E671AF3001C06D9 /* Following.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
 		889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PhoneNumber+toE164.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -357,6 +359,7 @@
 				376A346D1C8709E800400FAF /* Conversation.swift */,
 				376A346F1C870F6600400FAF /* Message.swift */,
 				3718DCD41D46321B00521932 /* Subscription.swift */,
+				888D3F6C1E671AF3001C06D9 /* Following.swift */,
 			);
 			name = "Domain Model";
 			sourceTree = "<group>";
@@ -1025,6 +1028,7 @@
 				3718DCD51D46321B00521932 /* Subscription.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */,
+				888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */,
 				37DA527A1CA87DBD00FD58B8 /* ActionTableViewCell.swift in Sources */,
 				3706E9831CF33D1A00DF2FB1 /* Image.swift in Sources */,
 				37D7AD9F1C79D93100CA96E9 /* BadgeView.swift in Sources */,

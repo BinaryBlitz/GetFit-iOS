@@ -22,14 +22,7 @@ class Post: Object, ALSwiftyJSONAble {
       }
     }
   }
-  dynamic var likeId: Int = -1 {
-    didSet {
-      guard let realm = self.realm, likeId == -1 else { return }
-      try? realm.write {
-        self.liked = false
-      }
-    }
-  }
+  dynamic var likeId: Int = -1
   let comments = List<Comment>()
 
   required init?(jsonData: JSON) {
