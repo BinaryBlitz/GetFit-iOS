@@ -2,9 +2,6 @@ platform :ios, '10.0'
 
 target 'GetFit' do
   use_frameworks!
-  # Fabric
-  pod 'Fabric'
-  pod 'Crashlytics'
 
   # Networking
   pod 'Moya', '~> 8.0'
@@ -32,12 +29,10 @@ target 'GetFit' do
   pod 'FBSDKCoreKit', '~> 4.16'
   pod 'FBSDKLoginKit', '~> 4.16'
 
-  # VK
+  # VK SDK
   pod 'VK-ios-sdk', '~> 1.4'
-end
 
-post_install do |installer|
-  installer.pods_project.build_configurations.each do |config|
-    config.build_settings['SWIFT_VERSION'] = '3.0'
-  end
+  # Fabric
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
