@@ -87,7 +87,6 @@ class PostViewController: UIViewController {
     beginRefreshWithCompletion {
       if oldCommentsCount != self.post.comments.count {
         self.tableView.reloadData()
-        self.reloadCommentsSection()
       }
       self.refreshControl?.endRefreshing()
       // TODO: implement infinite scrolling
@@ -184,13 +183,6 @@ class PostViewController: UIViewController {
     } else {
       presentAlertWithMessage("Cannot load program")
     }
-  }
-
-  // MARK: - Tools
-  func reloadCommentsSection() {
-    //if tableView.numberOfSections >= 2 {
-      //tableView.reloadSections(IndexSet(integer: 1), with: .none)
-    //}
   }
 
   func scrollToBottom() {

@@ -65,10 +65,8 @@ class User: Object, ALSwiftyJSONAble {
   required init?(jsonData: JSON) {
     super.init()
     guard let id = jsonData["id"].int,
-      let firstName = jsonData["first_name"].string,
-      let lastName = jsonData["last_name"].string else {
-        return nil
-    }
+          let firstName = jsonData["first_name"].string,
+          let lastName = jsonData["last_name"].string else { return nil }
 
     self.id = id
     self.firstName = firstName
