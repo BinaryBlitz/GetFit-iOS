@@ -15,6 +15,9 @@ class PostViewController: UIViewController {
   @IBOutlet weak var commentFieldCard: UIView!
   @IBOutlet weak var sendCommentButton: UIButton!
 
+  let noCommentsView = EmptyTablePlaceholderView.nibInstance()
+  let noCommentsViewHeight: CGFloat = 100
+
   var shouldShowKeyboadOnOpen = false
 
   override func viewDidLoad() {
@@ -60,9 +63,9 @@ class PostViewController: UIViewController {
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 400
-    tableView.tableFooterView = UIView()
     tableView.register(cellType: PostTableViewCell.self)
     tableView.register(cellType: PostCommentTableViewCell.self)
+    tableView.delegate = self
 
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -70,8 +73,6 @@ class PostViewController: UIViewController {
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
     tableView.sendSubview(toBack: refreshControl)
-
-    tableView.tableFooterView?.isHidden = true
 
     // TODO: implement infinite scrolling
     //tableView.addInfiniteScrolling {
@@ -106,6 +107,7 @@ class PostViewController: UIViewController {
 
           let realm = try Realm()
           try realm.write {
+            self.post.commentsCount = comments.count
             self.post.comments.removeAll()
             realm.add(comments, update: true)
             comments.forEach { comment in
@@ -127,22 +129,37 @@ class PostViewController: UIViewController {
   @IBAction func createCommentButtonAction(_ sender: AnyObject) {
     guard let content = commentTextField.text else { return }
     sendCommentButton.isUserInteractionEnabled = false
+    view.endEditing(true)
+    self.commentTextField.text = nil
+
     let comment = Comment()
     comment.content = content
     comment.dateCreated = Date()
-    comment.author = UserManager.instance.currentUser
+    comment.author = UserManager.currentUser
 
     postsProvider.request(.createComment(comment: comment, postId: post.id)) { (result) in
       self.sendCommentButton.isUserInteractionEnabled = true
       switch result {
-      case .success(_):
-        self.commentTextField.text = nil
-        self.refresh()
+      case .success(let response):
+        guard let newComment = try? response.map(to: Comment.self), let realm = try? Realm() else { return }
+        try? realm.write {
+          self.post.commentsCount += 1
+          realm.add(newComment, update: true)
+          self.post.comments.append(newComment)
+        }
+        self.addNewPostCell()
       case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Ну удалось отправить комментарий")
       }
     }
+  }
+
+  func addNewPostCell() {
+    let newIndexPath = IndexPath(row: post.comments.count - 1, section: 1)
+    tableView.reloadData()
+    tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+
   }
 
   fileprivate func insert(_ comment: Comment, inSection section: Int) {
@@ -171,9 +188,9 @@ class PostViewController: UIViewController {
 
   // MARK: - Tools
   func reloadCommentsSection() {
-    if tableView.numberOfSections >= 2 {
-      tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
-    }
+    //if tableView.numberOfSections >= 2 {
+      //tableView.reloadSections(IndexSet(integer: 1), with: .none)
+    //}
   }
 
   func scrollToBottom() {
@@ -196,6 +213,8 @@ class PostViewController: UIViewController {
     }
 
   }
+
+
 }
 
 // MARK: - UITableViewDataSource
@@ -306,5 +325,17 @@ extension PostViewController {
 
   func dismissKeyboard(_ sender: AnyObject) {
     view.endEditing(true)
+  }
+}
+
+extension PostViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    guard section == 1, post.commentsCount == 0 else { return nil }
+    return noCommentsView
+  }
+
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    guard section == 1, post.commentsCount == 0 else { return 0 }
+    return noCommentsViewHeight
   }
 }

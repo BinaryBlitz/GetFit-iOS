@@ -2,44 +2,26 @@ import Realm
 import RealmSwift
 // Class for managing logged in user data
 
-class UserManager {
-  static let instance = UserManager()
-  let realm = try! Realm()
+struct UserManager {
+  static var currentUser: User?
 
-  var currentUser: User? {
-    didSet {
-      guard let user = currentUser else { return }
-      try? realm.write {
-        realm.add(user, update: true)
-      }
-      LocalStorageHelper.save(user.id, forKey: .userId)
+  static var apiToken: String? {
+    get {
+      return LocalStorageHelper.loadObjectForKey(.apiToken)
     }
-  }
-
-  var apiToken: String? {
     set {
-      try? realm.write {
-        currentUser?.apiToken = newValue ?? ""
-      }
+      LocalStorageHelper.save(newValue, forKey: .apiToken)
       print("API Token updated: \(newValue)")
     }
-    get {
-      return currentUser?.apiToken
-    }
   }
 
-  var deviceToken: String? {
+  static var deviceToken: String? {
     didSet {
       LocalStorageHelper.save(deviceToken, forKey: .deviceToken)
     }
   }
 
-  var authenticated: Bool {
+  static var authenticated: Bool {
     return apiToken != nil
-  }
-
-  private init() {
-    guard let userId: String? = LocalStorageHelper.loadObjectForKey(.userId) else { return }
-    currentUser = realm.object(ofType: User.self, forPrimaryKey: userId)
   }
 }

@@ -12,6 +12,7 @@ target 'GetFit' do
 
   # DB
   pod 'RealmSwift', '~> 2.4'
+  pod 'KeychainSwift', '~> 7.0'
 
   # UI
   pod 'SwipeCellKit', '~> 1.1'

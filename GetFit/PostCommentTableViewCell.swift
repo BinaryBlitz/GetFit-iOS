@@ -20,14 +20,17 @@ class PostCommentTableViewCell: UITableViewCell, NibReusable {
   }
 
   func configureWith(_ viewModel: PostCommentPresentable) {
-    if let avatarURL = viewModel.avatarURL {
-      userAvatarImageView.kf.setImage(with: avatarURL)
-    }
+    userAvatarImageView.kf.setImage(with: viewModel.avatarURL)
 
     usernameLabel.text = viewModel.name
     contentLabel.text = viewModel.text
     dateLabel.text = viewModel.dateString
 
     usernameLabel.textColor = UIColor.graySecondaryColor()
+  }
+
+
+  override func prepareForReuse() {
+    userAvatarImageView.kf.cancelDownloadTask()
   }
 }

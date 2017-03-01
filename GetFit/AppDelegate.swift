@@ -19,10 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     configureRealm()
     configureNavigationBar()
-    configureServerManager()
     configureTabBar()
 
-    if !UserManager.instance.authenticated {
+    if !UserManager.authenticated {
       let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
       let login = loginStoryboard.instantiateInitialViewController()
       window?.rootViewController = login
@@ -41,12 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
     )
     Realm.Configuration.defaultConfiguration = realmDefaultConfig
-  }
-
-  func configureServerManager() {
-    if let apiToken: String = UserManager.instance.apiToken {
-      UserManager.instance.apiToken = apiToken
-    }
   }
 
   func configureNavigationBar() {

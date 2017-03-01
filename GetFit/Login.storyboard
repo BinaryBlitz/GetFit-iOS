@@ -101,7 +101,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="Esa-YR-M2f" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9PO-pW-3pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1349.5" y="559"/>
+            <point key="canvasLocation" x="1331" y="615"/>
         </scene>
         <!--Phone Login Table View Controller-->
         <scene sceneID="Adx-KH-W67">

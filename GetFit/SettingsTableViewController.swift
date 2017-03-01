@@ -17,7 +17,7 @@ class SettingsTableViewController: UITableViewController {
 
     firstNameLabel.placeholder = "First name"
     lastNameLabel.placeholder = "Last name"
-    if let user = UserManager.instance.currentUser {
+    if let user = UserManager.currentUser {
       firstNameLabel.text = user.firstName
       lastNameLabel.text = user.lastName
     }
@@ -51,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
       return
     }
 
-    if let user = UserManager.instance.currentUser, user.firstName != firstName || user.lastName != lastName {
+    if let user = UserManager.currentUser, user.firstName != firstName || user.lastName != lastName {
 
       userProvider.request(.update(firstName: firstName, lastName: lastName)) { result in
         switch result {
@@ -60,10 +60,10 @@ class SettingsTableViewController: UITableViewController {
             try _ = response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
             self.presentAlertWithMessage("Yay! Your profile is updated!")
-            if let user = UserManager.instance.currentUser {
+            if let user = UserManager.currentUser {
               user.firstName = firstName
               user.lastName = lastName
-              UserManager.instance.currentUser = user
+              UserManager.currentUser = user
             }
           } catch {
             self.view.endEditing(true)
@@ -80,7 +80,7 @@ class SettingsTableViewController: UITableViewController {
   @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
-    UserManager.instance.apiToken = nil
+    UserManager.apiToken = nil
     present(loginViewController, animated: true, completion: nil)
   }
 

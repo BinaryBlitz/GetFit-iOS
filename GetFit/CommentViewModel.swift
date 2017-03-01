@@ -17,7 +17,7 @@ extension CommentViewModel: TextPresentable {
 extension CommentViewModel: DateTimePresentable {
   var dateString: String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM"
+    dateFormatter.dateFormat = "dd.MM.yyyy"
 
     return dateFormatter.string(from: comment.dateCreated as Date)
   }

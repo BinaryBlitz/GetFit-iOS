@@ -59,7 +59,7 @@ class NewUserViewController: UITableViewController {
           try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let apiToken = json["api_token"].string else { throw MoyaError.jsonMapping(response) }
-          UserManager.instance.apiToken = apiToken
+          UserManager.apiToken = apiToken
 
 //          let user = try response.mapObject(User.self)
           registerForPushNotifications()

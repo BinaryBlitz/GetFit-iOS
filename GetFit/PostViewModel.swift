@@ -124,7 +124,7 @@ extension PostViewModel: TrainerPresentable {
 extension PostViewModel: DateTimePresentable {
   var dateString: String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM"
+    dateFormatter.dateFormat = "dd.MM.yyyy"
 
     return dateFormatter.string(from: post.dateCreated as Date)
   }
