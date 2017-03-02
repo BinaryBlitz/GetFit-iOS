@@ -375,7 +375,7 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 // MARK: - SwipeTableViewCellDelegate
 
 extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
-  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
     guard let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return [] }
     let doneAction = SwipeAction(style: .default, title: nil) { _, _ in
       guard let indexPath = self.tableView.indexPath(for: cell) else { return }

@@ -1,5 +1,5 @@
 app_identifier 'ru.binaryblitz.GetFit' # The bundle identifier of your app
-apple_id 'itsdanya@gmail.com' # Your Apple email address
+apple_id ‘aleksey.glebow@gmail.com’ # Your Apple email address
 
 team_id '4WGG8V34K4'  # Developer Portal Team ID
 

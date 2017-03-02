@@ -340,7 +340,7 @@ extension TrainingViewController: EditExerciseViewControllerDelegate {
 }
 
 extension TrainingViewController: SwipeTableViewCellDelegate {
-  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction] {
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
     guard indexPath.section == 1 || indexPath.section == 2 else { return [] }
     guard let cell = tableView.cellForRow(at: indexPath) as? ExerciseTableViewCell else { return [] }
     switch cell.status {
