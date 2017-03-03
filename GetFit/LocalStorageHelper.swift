@@ -1,6 +1,6 @@
 import Foundation
 import RealmSwift
-import KeychainSwift
+import KeychainAccess
 
 struct LocalStorageHelper {
 
@@ -13,8 +13,8 @@ struct LocalStorageHelper {
 
   static func save(_ object: Any?, forKey key: StorageKey) {
     if key == .apiToken, let tokenString = object as? String {
-      let keychain = KeychainSwift()
-      keychain.set(tokenString, forKey: key.rawValue)
+      let keychain = Keychain()
+      keychain[key.rawValue] = tokenString
     } else {
       let userDefaults = UserDefaults.standard
       userDefaults.set(object, forKey: key.rawValue)
@@ -23,8 +23,8 @@ struct LocalStorageHelper {
 
   static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
     if key == .apiToken {
-      let keychain = KeychainSwift()
-      let object = keychain.get(key.rawValue)
+      let keychain = Keychain()
+      let object = keychain[key.rawValue]
       return object as? T
     } else {
       let userDefaults = UserDefaults.standard
