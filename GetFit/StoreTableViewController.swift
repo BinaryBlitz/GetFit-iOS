@@ -12,7 +12,13 @@ class StoreTableViewController: UITableViewController {
     super.viewDidLoad()
 
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(
+      title: "",
+      style: .plain,
+      target: nil,
+      action: nil
+    )
+
     configureTableView()
     fetchPrograms()
   }
@@ -45,10 +51,13 @@ class StoreTableViewController: UITableViewController {
   func createBackgroundView() -> UIView {
     let view = UIView()
     let label = UILabel()
-    label.text = "No data 😓"
+
+    // TODO: localize
+    label.text = "No programs"
     label.textAlignment = .center
     label.font = UIFont.systemFont(ofSize: 22)
     label.textColor = UIColor.graySecondaryColor()
+
     view.addSubview(label)
     label.autoPinEdge(toSuperviewEdge: .left)
     label.autoPinEdge(toSuperviewEdge: .right)
@@ -105,7 +114,9 @@ class StoreTableViewController: UITableViewController {
     return numberOfRows
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
     let program = programs[indexPath.row]
     let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
     cell.delegate = self
@@ -123,6 +134,7 @@ class StoreTableViewController: UITableViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
+
     switch identifier {
     case "programDetails":
       let destination = segue.destination as! ProgramDetailsTableViewController
