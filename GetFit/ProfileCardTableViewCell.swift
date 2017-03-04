@@ -18,24 +18,12 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     avatarImageView.backgroundColor = UIColor.primaryYellowColor()
     avatarImageView.contentMode = .scaleAspectFill
 
-    bannerImageView.image = nil
-    bannerImageView.backgroundColor = UIColor.blueAccentColor()
-    bannerImageView.contentMode = .scaleAspectFill
-
     settingsBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     settingsBadge.text = "Settings"
   }
 
   func configureWith(_ viewModel: UserPresentable) {
     nameLabel.text = viewModel.name
-
-    bannerImageView.kf.cancelDownloadTask()
-    if let bannerURL = viewModel.coverImageURL {
-      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-      bannerImageView.addSubview(activityIndicator)
-      activityIndicator.autoCenterInSuperview()
-      bannerImageView.kf.setImage(with: bannerURL)
-    }
 
     avatarImageView.kf.cancelDownloadTask()
     if let avatarURL = viewModel.avatarURL {
