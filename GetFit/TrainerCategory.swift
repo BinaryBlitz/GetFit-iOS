@@ -3,6 +3,17 @@ enum TrainerCategory: String {
   case Doctor = "physician"
   case Nutritionist = "nutritionist"
 
+  var name: String {
+    switch self {
+    case .Coach:
+      return "Coach"
+    case .Doctor:
+      return "Doctor"
+    case .Nutritionist:
+      return "Nutritionist"
+    }
+  }
+
   func pluralName() -> String {
     switch self {
     case .Coach:

@@ -67,7 +67,7 @@
         <!--POST-->
         <scene sceneID="F2q-58-2Uy">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="eHR-Y0-aBE" customClass="PostViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostViewController" hidesBottomBarWhenPushed="YES" id="eHR-Y0-aBE" customClass="PostViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1b-Kn-aMs"/>
                         <viewControllerLayoutGuide type="bottom" id="j57-hm-Aq4"/>

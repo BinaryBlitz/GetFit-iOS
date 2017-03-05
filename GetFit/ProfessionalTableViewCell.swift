@@ -154,6 +154,8 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
       programsBadge.text = trainer.category.rawValue.uppercased()
     }
 
+    descriptionLabel.text = trainer.info
+
     if let avatarURLString = trainer.avatarURLString,
        let avatarURL = URL(string: avatarURLString) {
       avatarImageView.kf.setImage(with: avatarURL)

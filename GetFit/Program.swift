@@ -12,6 +12,7 @@ class Program: Object, ALSwiftyJSONAble {
   dynamic var bannerURLString: String? = ""
   dynamic var trainer: Trainer?
   dynamic var type: String = ""
+  dynamic var programType: ProgramType? = nil
   dynamic var price: Int = 0
   dynamic var duration: Int = 0
   dynamic var workoutsCount: Int = 0
@@ -70,6 +71,14 @@ class Program: Object, ALSwiftyJSONAble {
 
     if let rating = jsonData["rating"].double {
       self.rating = rating
+    }
+
+    if let programType = ProgramType(jsonData: jsonData["program_type"]) {
+      self.programType = programType
+      let realm = try! Realm()
+      try! realm.write {
+        realm.add(programType, update: true)
+      }
     }
 
     let workouts = jsonData["workouts"].flatMap { (_, workoutJSON) -> Workout? in

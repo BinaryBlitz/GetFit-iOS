@@ -3,6 +3,9 @@ import RealmSwift
 import Moya
 import Reusable
 
+private let showProgramDetailsIdentifier = "showProgramDetails"
+private let showNewsPostIdentifier = "showNewsPost"
+
 class ProfessionalTableViewController: UITableViewController {
 
   var trainer: Trainer!
@@ -17,6 +20,8 @@ class ProfessionalTableViewController: UITableViewController {
     super.viewDidLoad()
 
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+    navigationItem.title = trainer.category.name.uppercased()
 
     news = trainer.posts.sorted(byKeyPath: "dateCreated")
     programs = trainer.programs.sorted(byKeyPath: "id")
@@ -34,6 +39,8 @@ class ProfessionalTableViewController: UITableViewController {
     tableView.register(postCellNib, forCellReuseIdentifier: "postCell")
     tableView.register(cellType: ProgramTableViewCell.self)
     tableView.separatorStyle = .none
+
+    tableView.register(headerFooterViewType: EmptyTablePlaceholderView.self)
 
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
@@ -138,6 +145,18 @@ class ProfessionalTableViewController: UITableViewController {
     return UITableViewCell()
   }
 
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard indexPath.section == 1 else { return }
+    switch selectedTab {
+    case 0:
+      performSegue(withIdentifier: showProgramDetailsIdentifier, sender: programs[indexPath.row])
+    case 1:
+      performSegue(withIdentifier: showNewsPostIdentifier, sender: news[indexPath.row])
+    default:
+      break
+    }
+  }
+
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     switch section {
     case 0:
@@ -153,6 +172,20 @@ class ProfessionalTableViewController: UITableViewController {
     }
   }
 
+  override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    guard section == 1 else { return nil }
+    let footerView = tableView.dequeueReusableHeaderFooterView(EmptyTablePlaceholderView.self)
+    switch selectedTab {
+    case 0 where programs.isEmpty:
+      footerView?.noItemsLabel.text = "No programs"
+    case 1 where news.isEmpty:
+      footerView?.noItemsLabel.text = "No news"
+    default:
+      return nil
+    }
+    return footerView
+  }
+
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     switch section {
     case 0:
@@ -162,6 +195,12 @@ class ProfessionalTableViewController: UITableViewController {
     default:
       return 0
     }
+  }
+
+  override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    guard section == 1 else { return 0 }
+    guard selectedTab == 0 && programs.isEmpty || selectedTab == 1 && news.isEmpty else { return 0 }
+    return 100
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -183,6 +222,19 @@ class ProfessionalTableViewController: UITableViewController {
       return 400
     default:
       return 0
+    }
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == showProgramDetailsIdentifier {
+      guard let program = sender as? Program else { return }
+      let destination = segue.destination as! ProgramDetailsTableViewController
+      destination.program = program
+    } else if segue.identifier == showNewsPostIdentifier {
+      guard let post = sender as? Post else { return }
+      let destination = segue.destination as! PostViewController
+      destination.post = post
+      destination.postsProvider = APIProvider<GetFit.Posts>()
     }
   }
 }

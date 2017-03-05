@@ -94,6 +94,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     ratingLabel.text = viewModel.rating
 
     trainerNameLabel.text = viewModel.trainerName
+    categoryBadge.text = viewModel.category
 
     trainerAvatar.kf.cancelDownloadTask()
     if let avatarURL = viewModel.trainerAvatarURL {

@@ -37,7 +37,7 @@ extension ProgramViewModel: ProgramPresentable {
   }
 
   var category: String {
-    return program.type
+    return program.programType?.name ?? ""
   }
 
   var workoutsCount: String {
@@ -47,7 +47,7 @@ extension ProgramViewModel: ProgramPresentable {
   var description: String {
     return program.programDescription
   }
-
+  
   var preview: String {
     return program.programPreview
   }

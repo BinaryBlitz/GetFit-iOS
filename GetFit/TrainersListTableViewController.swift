@@ -22,6 +22,7 @@ class TrainersListTableViewController: UITableViewController {
     super.viewDidLoad()
 
     tableView.register(cellType: ProfessionalTableViewCell.self)
+    tableView.rowHeight = UITableViewAutomaticDimension
     tableView.rowHeight = 370
     tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
