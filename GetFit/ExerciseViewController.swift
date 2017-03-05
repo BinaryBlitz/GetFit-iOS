@@ -14,7 +14,7 @@ class ExerciseViewController: UIViewController {
 
   @IBOutlet weak var endExerciseButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
-  var exercise: ExerciseSession!
+  var exerciseSession: ExerciseSession!
 
   var videos = [Video]()
 
@@ -27,7 +27,7 @@ class ExerciseViewController: UIViewController {
 
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
 
-    navigationItem.title = exercise.name.uppercased()
+    navigationItem.title = exerciseSession.name.uppercased()
 
     ["LeMVDuIO3J0", "yN7KoXI9J0M"].forEach { (youtubeId) in
       XCDYouTubeClient.default().getVideoWithIdentifier(youtubeId) { (video, error) in
@@ -42,6 +42,18 @@ class ExerciseViewController: UIViewController {
             self.tableView.reloadData()
           }
         }
+    }
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "trainingTips":
+      let destination = segue.destination as! TrainingTipsViewController
+      destination.tips = exerciseSession.exerciseTips
+    default:
+      break
     }
   }
 
@@ -76,12 +88,13 @@ extension ExerciseViewController: UITableViewDataSource {
     switch indexPath.section {
     case 0:
       let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell") as! ExerciseInfoTableViewCell
-      cell.configureWith(exercise)
+      cell.configureWith(exerciseSession)
       cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), for: .touchUpInside)
 
       return cell
     case 1:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
+      cell.selectionStyle = .none
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
       cell.previewImageView.kf.setImage(with: video.previewImageURL!)
@@ -110,7 +123,7 @@ extension ExerciseViewController: UITableViewDelegate {
     guard indexPath.section != 0 else { return }
 
     let video = videos[indexPath.row]
-    let videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: video.youtubeId)
+    let videoPlayerViewController = YouTubeVideoViewController(videoIdentifier: video.youtubeId)
     present(videoPlayerViewController, animated: true, completion: nil)
   }
 }

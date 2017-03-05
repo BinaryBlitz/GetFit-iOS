@@ -172,6 +172,10 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
 
   func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
     guard let date = dayView.date.convertedDate(calendar: calendar()!) else { return }
+    guard date.day >= Date().day else {
+      presentAlertWithMessage("You can not select past date")
+      return calendarView.animator.animateDeselectionOnDayView(dayView)
+    }
 
     if let index = selectedDates.index(of: date) {
       selectedDates.remove(at: index)

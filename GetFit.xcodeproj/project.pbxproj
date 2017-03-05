@@ -146,6 +146,7 @@
 		8838A5451E6623A700A57D9C /* EmptyTablePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */; };
 		888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D3F6C1E671AF3001C06D9 /* Following.swift */; };
 		889109D41E55AECC00C7DCD3 /* PhoneNumber+toE164.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */; };
+		8891F7251E6C6567000B06D7 /* YouTubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891F7241E6C6567000B06D7 /* YouTubeVideoViewController.swift */; };
 		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
 
@@ -310,6 +311,7 @@
 		8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTablePlaceholderView.swift; sourceTree = "<group>"; };
 		888D3F6C1E671AF3001C06D9 /* Following.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
 		889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PhoneNumber+toE164.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8891F7241E6C6567000B06D7 /* YouTubeVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideoViewController.swift; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -557,6 +559,7 @@
 				37D3DD7F1BE2D04D00208543 /* TrainingTipsViewController.swift */,
 				378A3F401BE80E7B00715658 /* EditExerciseTableViewController.swift */,
 				37A80DA61BE4E793001B36E5 /* ExerciseViewController.swift */,
+				8891F7241E6C6567000B06D7 /* YouTubeVideoViewController.swift */,
 			);
 			name = Session;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				374E85651D32D171006887E3 /* WorkoutSessionsTarget.swift in Sources */,
 				37D65EDD1D5157FF008FE301 /* NetworkActivityManager.swift in Sources */,
 				37DA52761CA8298B00FD58B8 /* StripButtonItem.swift in Sources */,
+				8891F7251E6C6567000B06D7 /* YouTubeVideoViewController.swift in Sources */,
 				37B7BD191D48E75C003432D1 /* WorkoutsTableViewController.swift in Sources */,
 				374E85571D32C440006887E3 /* APIProvider.swift in Sources */,
 				379943F61CDCC05E00A3F36A /* ExerciseParamsView.swift in Sources */,

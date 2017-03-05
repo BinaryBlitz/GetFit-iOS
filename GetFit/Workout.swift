@@ -11,6 +11,7 @@ class Workout: Object, ALSwiftyJSONAble {
   dynamic var programName: String = ""
   dynamic var programId: Int = 0
   dynamic var position: Int = 0
+  dynamic var tips: String = ""
   dynamic var exercisesCount: Int = 0
   let exercises = List<Exercise>()
 
@@ -63,6 +64,10 @@ class Workout: Object, ALSwiftyJSONAble {
 
     if let duration = jsonData["duration"].int {
       self.duration = duration
+    }
+
+    if let tips = jsonData["tips"].string {
+      self.tips = tips
     }
 
     let exercises = jsonData["exercises"].flatMap { (_, exerciseJSON) -> Exercise? in

@@ -1,5 +1,6 @@
 import UIKit
 import RealmSwift
+import SwiftyJSON
 import Reusable
 
 class ProgramDetailsTableViewController: UITableViewController {
@@ -61,7 +62,7 @@ class ProgramDetailsTableViewController: UITableViewController {
       return 1
     } else {
       let exercisesCount = workouts[section - 1].exercises.count
-      if exercisesCount <= 2 {
+      if exercisesCount <= 2 || program.purchaseId != -1 {
         return exercisesCount
       }
 
@@ -87,7 +88,7 @@ class ProgramDetailsTableViewController: UITableViewController {
       guard let exercises = workouts?[indexPath.section - 1].exercises else { return UITableViewCell() }
       let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell")!
 
-      if indexPath.row < 2 {
+      if indexPath.row < 2 || program.purchaseId != -1 {
         cell.textLabel?.text = exercises[indexPath.row].name
       } else {
         cell.textLabel?.textColor = UIColor.blueAccentColor()
@@ -150,18 +151,27 @@ class ProgramDetailsTableViewController: UITableViewController {
 // MARK: - ProgramCellDelegate
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
-  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {
-    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
+    button.isEnabled = false
+    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
+      button.isEnabled = true
       switch result {
       case .success(let response):
         do {
           try _ = response.filterSuccessfulStatusCodes()
-          self.presentAlertWithMessage("Yeah! Program is yours")
+          if let purchaseId = try JSON(response.mapJSON())["id"].int {
+            let realm = try Realm()
+            try realm.write {
+              self?.program.purchaseId = purchaseId
+            }
+            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+          }
+          self?.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
-          self.presentAlertWithMessage("Error: \(error)")
+          self?.presentAlertWithMessage("Error: \(error)")
         }
       case .failure(let error):
-        self.presentAlertWithMessage("Error: \(error)")
+        self?.presentAlertWithMessage("Error: \(error)")
       }
     }
   }

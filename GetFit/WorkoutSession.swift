@@ -15,6 +15,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
   dynamic var completed: Bool = false
   dynamic var date: Date = Date()
   dynamic var position: Int = 0
+  dynamic var programTips: String = ""
   dynamic var exercisesCount: Int = 0
   dynamic var synced: Bool = true
   var exercises = List<ExerciseSession>()
@@ -33,7 +34,7 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.workoutID = workoutID
-    let date = try? scheduledFor.date(format: .iso8601(options: .withInternetDateTimeExtended)).absoluteDate
+    let date = try? scheduledFor.date(format: .iso8601(options: .withFullDate)).absoluteDate
     self.date = date ?? Date()
 
     guard let workoutName = jsonData["workout"]["name"].string,
@@ -52,6 +53,11 @@ class WorkoutSession: Object, ALSwiftyJSONAble {
     if let completed = jsonData["completed"].bool {
       self.completed = completed
     }
+
+    if let programTips = jsonData["workout"]["tips"].string {
+      self.programTips = programTips
+    }
+
 
     self.workoutID = workoutID
     self.workoutName = workoutName

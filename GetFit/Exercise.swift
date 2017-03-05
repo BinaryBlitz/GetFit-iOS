@@ -3,8 +3,8 @@ import RealmSwift
 import SwiftyJSON
 
 class Exercise: Object, JSONSerializable {
-
   dynamic var name: String = ""
+  dynamic var tips: String = ""
 
   required init() {
     super.init()
@@ -15,6 +15,10 @@ class Exercise: Object, JSONSerializable {
 
     guard let name = json["exercise_type"]["name"].string else {
       return nil
+    }
+
+    if let tips = json["exercise_type"]["tips"].string {
+      self.tips = tips
     }
 
     self.name = name

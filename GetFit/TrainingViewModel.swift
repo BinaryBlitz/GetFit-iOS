@@ -29,7 +29,7 @@ extension TrainingViewModel: TrainingPresentable {
     if date.isToday {
       return "TODAY"
     } else {
-      return date.string(format: .custom("dd/MM"))
+      return date.string(format: .custom("dd.MM.yyyy"))
     }
   }
 }

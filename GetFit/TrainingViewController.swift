@@ -16,17 +16,20 @@ class TrainingViewController: UIViewController {
 
   var workoutSession: WorkoutSession!
 
-  var finishedExercises: Results<ExerciseSession>!
-  var exercisesToDo: Results<ExerciseSession>!
+  var finishedExercises: Results<ExerciseSession> {
+    return workoutSession.exercises.filter("completed == true")
+  }
+  var exercisesToDo: Results<ExerciseSession> {
+    return workoutSession.exercises.filter("completed == false")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.title = workoutSession.workoutName.uppercased()
+
     endTrainingView.backgroundColor = UIColor.blueAccentColor()
     trainingStatusLabel.text = "0%"
-
-    finishedExercises = workoutSession.exercises.filter("completed == true")
-    exercisesToDo = workoutSession.exercises.filter("completed == false")
 
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
@@ -146,11 +149,12 @@ class TrainingViewController: UIViewController {
 
     switch identifier {
     case "trainingTips":
-      break
+      let destination = segue.destination as! TrainingTipsViewController
+      destination.tips = workoutSession.programTips
     case "exerciseInfo":
       let destination = segue.destination as! ExerciseViewController
-      let exercise = sender as! ExerciseSession
-      destination.exercise = exercise
+      let exerciseSession = sender as! ExerciseSession
+      destination.exerciseSession = exerciseSession
     case "editExercise":
       let destinationNavController = segue.destination as! UINavigationController
       let destination = destinationNavController.viewControllers.first as! EditExerciseTableViewController
@@ -219,7 +223,6 @@ extension TrainingViewController: UITableViewDataSource {
     case 2:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseTableViewCell
       cell.actionsDelegate = self
-
       let session = exercisesToDo[indexPath.row]
       cell.configureWith(ExerciseSessionViewModel(exerciseSession: session))
       cell.delegate = self
@@ -341,6 +344,7 @@ extension TrainingViewController: EditExerciseViewControllerDelegate {
 
 extension TrainingViewController: SwipeTableViewCellDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    guard orientation == .right else { return nil }
     guard indexPath.section == 1 || indexPath.section == 2 else { return [] }
     guard let cell = tableView.cellForRow(at: indexPath) as? ExerciseTableViewCell else { return [] }
     switch cell.status {
@@ -353,7 +357,7 @@ extension TrainingViewController: SwipeTableViewCellDelegate {
             session.completed = false
           }
           self.tableView.deleteRows(at: [indexPath], with: .fade)
-          self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 2), section: 2)], with: .fade)
+          self.tableView.insertRows(at: [IndexPath(row: self.exercisesToDo.index(of: session)!, section: 2)], with: .fade)
           self.tableView.endUpdates()
         }
         self.updateSessionProgress()
@@ -370,7 +374,7 @@ extension TrainingViewController: SwipeTableViewCellDelegate {
             session.completed = true
           }
           self.tableView.deleteRows(at: [indexPath], with: .fade)
-          self.tableView.insertRows(at: [IndexPath(row: self.tableView.numberOfRows(inSection: 1), section: 1)], with: .fade)
+          self.tableView.insertRows(at: [IndexPath(row: self.finishedExercises.index(of: session)!, section: 1)], with: .fade)
           self.tableView.endUpdates()
         }
         self.updateSessionProgress()

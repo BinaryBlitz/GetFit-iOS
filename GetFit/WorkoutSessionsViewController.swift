@@ -2,6 +2,7 @@ import UIKit
 import CVCalendar
 import Reusable
 import RealmSwift
+import PureLayout
 import SwipeCellKit
 import SwiftDate
 
@@ -201,14 +202,15 @@ class WorkoutSessionsViewController: UIViewController {
   func toggleCurrentDayView() {
     calendarView.toggleCurrentDayView()
   }
-
-  @IBAction func titleButtonAction(_ sender: AnyObject) {
+  
+  @IBAction func navigationtTitleAction(_ sender: Any) {
     calendarState.changeToOpositeState()
 
     UIView.animate(withDuration: 0.4, animations: { () -> Void in
       self.view.layoutSubviews()
     })
   }
+
 
   @IBAction func addWorkoutSessionsButtonAction(_ sender: UIButton) {
     let workoutsViewController = WorkoutsTableViewController(style: .grouped)
@@ -376,8 +378,9 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
 extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    guard orientation == .right else { return nil }
     guard let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return [] }
-    let doneAction = SwipeAction(style: .default, title: nil) { _, _ in
+    let doneAction = SwipeAction(style: .destructive, title: nil) { _, _ in
       guard let indexPath = self.tableView.indexPath(for: cell) else { return }
       let session = self.tableViewDataSource[indexPath.row]
       try! session.realm!.write {
@@ -389,21 +392,13 @@ extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
     }
     doneAction.image = #imageLiteral(resourceName:"Checkmark")
     doneAction.backgroundColor = UIColor.greenAccentColor()
+    return [doneAction]
+  }
 
-    let laterAction = SwipeAction(style: .default, title: nil) { _, _ in
-      print("Later!")
-      //if let indexPath = tableView.indexPath(for: cell) {
-      //self.workoutSessions.remove(indexPath.row)
-      //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-      //}
-      self.calendarState = .opened
-      UIView.animate(withDuration: 0.4, animations: { () -> Void in
-        self.view.layoutSubviews()
-      })
-    }
-    laterAction.image = #imageLiteral(resourceName:"Clock")
-    laterAction.backgroundColor = UIColor.primaryYellowColor()
-
-    return [doneAction, laterAction]
+  func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+    var options = SwipeTableOptions()
+    options.expansionStyle = .destructive
+    options.transitionStyle = .border
+    return options
   }
 }

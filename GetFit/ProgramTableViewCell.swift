@@ -6,7 +6,7 @@ import Reusable
 typealias ProgramCellPresentable = TrainerPresentable & ProgramPresentable & NamedObject
 
 protocol ProgramCellDelegate: class {
-  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell)
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton)
 }
 
 class ProgramTableViewCell: UITableViewCell, NibReusable {
@@ -28,6 +28,8 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
 
   @IBOutlet weak var bannerView: UIView!
   @IBOutlet weak var contentStackView: UIStackView!
+
+  let buyButton = UIButton()
 
   var bannerMaskView: UIView?
 
@@ -59,10 +61,11 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     trainerAvatar.layer.borderWidth = 1
     trainerAvatar.image = EmptyStateHelper.avatarPlaceholderImage
 
-    let buyButton = UIButton()
     priceBadge.addSubview(buyButton)
     buyButton.autoPinEdgesToSuperviewEdges()
     buyButton.addTarget(self, action: #selector(buyButtonAction(_:)), for: .touchUpInside)
+    buyButton.addTarget(self, action: #selector(buyButtonDidTouch(_:)), for: .touchDown)
+    buyButton.addTarget(self, action: #selector(buyButtonDidEndTouch(_:)), for: .touchDragExit)
 
     let maskView = UIView()
     maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -74,14 +77,25 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   // MARK: - Actions
 
   func buyButtonAction(_ button: UIButton) {
-    delegate?.didTouchBuyButtonInCell(self)
+    guard button.isEnabled else { return }
+    priceBadge.isHighlighted = false
+    delegate?.didTouchBuyButtonInCell(self, button: buyButton)
+  }
+
+  func buyButtonDidTouch(_ button: UIButton) {
+    guard button.isEnabled else { return }
+    priceBadge.isHighlighted = true
+  }
+
+  func buyButtonDidEndTouch(_ button: UIButton) {
+    guard button.isEnabled else { return }
+    priceBadge.isHighlighted = false
   }
 
   // MARK: - Cell configuration
 
   func configureWith(_ viewModel: ProgramCellPresentable) {
     nameLabel.text = viewModel.title
-    priceBadge.text = viewModel.price
     infoLabel.attributedText = viewModel.info
     categoryBadge.text = viewModel.category
 
@@ -99,6 +113,16 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
     trainerAvatar.kf.cancelDownloadTask()
     if let avatarURL = viewModel.trainerAvatarURL {
       trainerAvatar.kf.setImage(with: avatarURL)
+    }
+
+    buyButton.isEnabled = !viewModel.isPurchased
+
+    if viewModel.isPurchased {
+      priceBadge.text = "purchased"
+      priceBadge.style = BadgeView.Style(color: .lightGray, height: .tall)
+    } else {
+      priceBadge.text = viewModel.price
+      priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     }
 
     bannerImageView.kf.cancelDownloadTask()

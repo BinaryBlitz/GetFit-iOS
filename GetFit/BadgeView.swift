@@ -1,12 +1,14 @@
 import UIKit
 import PureLayout
 
+private var darkColor = UIColor.graySecondaryColor()
+private var lightGrayColor = UIColor.white
+private var lightBlueColor = UIColor.blueAccentColor()
+
 @objc class BadgeView: UIView {
+  let animationDuration = 0.2
 
   var label: UILabel
-  fileprivate var darkColor = UIColor.graySecondaryColor()
-  fileprivate var lightGrayColor = UIColor.white
-  fileprivate var lightBlueColor = UIColor.blueAccentColor()
 
   struct Style {
     let color: ColorScheme
@@ -18,10 +20,31 @@ import PureLayout
     }
   }
 
+  var isHighlighted: Bool = false {
+    didSet {
+      UIView.animate(withDuration: animationDuration, animations: {
+        self.label.textColor = self.isHighlighted ? UIColor.white : self.style.color.primaryColor
+        self.backgroundColor = self.isHighlighted ? self.style.color.primaryColor : UIColor.white
+      }, completion: nil)
+    }
+  }
+
   enum ColorScheme {
     case dark
     case lightGray
     case lightBlue
+
+    var primaryColor: UIColor {
+      switch self {
+      case .lightGray:
+        return lightGrayColor
+      case .dark:
+        return darkColor
+      case .lightBlue:
+        return lightBlueColor
+      }
+
+    }
   }
 
   enum HeightType {
@@ -50,6 +73,7 @@ import PureLayout
     }
     set(newText) {
       label.text = newText?.uppercased()
+      updateConstraints()
     }
   }
 
@@ -101,6 +125,11 @@ import PureLayout
   override func updateConstraints() {
     super.updateConstraints()
     label.sizeToFit()
+    setNeedsLayout()
+    layoutIfNeeded()
+    superview?.updateConstraints()
+    superview?.setNeedsLayout()
+    superview?.layoutIfNeeded()
     switch style.height {
     case .low:
       autoSetDimension(.height, toSize: label.frame.height + 10)

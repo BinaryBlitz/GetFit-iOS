@@ -8,6 +8,7 @@ protocol ProgramPresentable {
   var workoutsCount: String { get }
   var description: String { get }
   var preview: String { get }
+  var isPurchased: Bool { get }
   var followers: String { get }
   var rating: String { get }
   var duration: String { get }

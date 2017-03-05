@@ -10,6 +10,7 @@ class ExerciseSession: Object, ALSwiftyJSONAble {
   let reps = RealmOptional<Int>()
   let weight = RealmOptional<Int>()
   let distance = RealmOptional<Int>()
+  dynamic var exerciseTips: String = ""
   dynamic var completed: Bool = false
   dynamic var name: String = ""
   dynamic var videoID: String = ""
@@ -37,6 +38,11 @@ class ExerciseSession: Object, ALSwiftyJSONAble {
 
     if let reps = jsonData["reps"].int {
       self.reps.value = reps
+    }
+
+    if let exerciseTips = jsonData["exercise_type"]["tips"].string {
+
+      self.exerciseTips = exerciseTips
     }
 
     if let weight = jsonData["weight"].int {

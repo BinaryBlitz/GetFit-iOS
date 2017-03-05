@@ -40,6 +40,11 @@ extension ProgramViewModel: ProgramPresentable {
     return program.programType?.name ?? ""
   }
 
+
+  var isPurchased: Bool {
+    return program.purchaseId != -1
+  }
+
   var workoutsCount: String {
     return "\(program.workoutsCount) workouts"
   }
@@ -53,11 +58,11 @@ extension ProgramViewModel: ProgramPresentable {
   }
 
   var followers: String {
-    return String(100)
+    return String(program.usersCount)
   }
 
   var rating: String {
-    return String(4.7)
+    return String(program.rating)
   }
 
   var duration: String {

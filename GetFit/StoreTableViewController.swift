@@ -1,5 +1,6 @@
 import UIKit
 import RealmSwift
+import SwiftyJSON
 import PureLayout
 import Reusable
 
@@ -150,21 +151,30 @@ class StoreTableViewController: UITableViewController {
 // MARK: - ProgramCellDelegate
 
 extension StoreTableViewController: ProgramCellDelegate {
-  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell) {
+  func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
+    button.isEnabled = false
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     let program = programs[indexPath.row]
 
-    programsProvider.request(.createPurchase(programId: program.id)) { (result) in
+    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
+      button.isEnabled = true
       switch result {
       case .success(let response):
         do {
           try _ = response.filterSuccessfulStatusCodes()
-          self.presentAlertWithMessage("Yeah! Program is yours")
+          if let purchaseId = try JSON(response.mapJSON())["id"].int {
+            let realm = try Realm()
+            try realm.write {
+              program.purchaseId = purchaseId
+            }
+            self?.tableView.reloadRows(at: [indexPath], with: .none)
+          }
+          self?.presentAlertWithMessage("Yeah! Program is yours")
         } catch let error {
-          self.presentAlertWithMessage("Error: \(error)")
+          self?.presentAlertWithMessage("Error: \(error)")
         }
       case .failure(let error):
-        self.presentAlertWithMessage("Error: \(error)")
+        self?.presentAlertWithMessage("Error: \(error)")
       }
     }
   }

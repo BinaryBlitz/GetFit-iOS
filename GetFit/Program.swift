@@ -15,6 +15,7 @@ class Program: Object, ALSwiftyJSONAble {
   dynamic var programType: ProgramType? = nil
   dynamic var price: Int = 0
   dynamic var duration: Int = 0
+  dynamic var purchaseId: Int = -1
   dynamic var workoutsCount: Int = 0
   dynamic var usersCount: Int = 0
   dynamic var rating: Double = 0
@@ -51,6 +52,10 @@ class Program: Object, ALSwiftyJSONAble {
 
     if let type = jsonData["program_type"]["name"].string {
       self.type = type
+    }
+
+    if let purchaseId = jsonData["purchase_id"].int {
+      self.purchaseId = purchaseId
     }
 
     if let trainer = Trainer(jsonData: jsonData["trainer"]) {
