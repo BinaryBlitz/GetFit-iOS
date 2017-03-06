@@ -18,6 +18,10 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Camera is used to update user profile picture</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Photo library is used to update user profile picture</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

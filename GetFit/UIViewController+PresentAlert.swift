@@ -8,9 +8,9 @@ extension UIViewController {
     self.present(alert, animated: true, completion: nil)
   }
 
-  func presentAlertWithMessage(_ message: String?) {
+  func presentAlertWithMessage(_ message: String?, _ okButtonHandler: ((UIAlertAction) -> Void)? = nil) {
     let alert = UIAlertController(title: nil, message: message ?? "", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: okButtonHandler))
     self.present(alert, animated: true, completion: nil)
   }
 }

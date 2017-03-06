@@ -4,6 +4,8 @@ class SettingsTableViewController: UITableViewController {
 
   @IBOutlet weak var firstNameLabel: UITextField!
   @IBOutlet weak var lastNameLabel: UITextField!
+  @IBOutlet weak var saveButtonItem: UIBarButtonItem!
+
   let userProvider = APIProvider<GetFit.Users>()
 
   var versionNumber: String {
@@ -14,6 +16,7 @@ class SettingsTableViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    saveButtonItem.isEnabled = false
 
     firstNameLabel.placeholder = "First name"
     lastNameLabel.placeholder = "Last name"
@@ -37,6 +40,7 @@ class SettingsTableViewController: UITableViewController {
   // MARK: - Actions
 
   @IBAction func saveButtonAction(_ sender: AnyObject) {
+    saveButtonItem.isEnabled = false
     guard let firstName = firstNameLabel.text, let lastName = lastNameLabel.text else {
       return
     }
@@ -59,23 +63,34 @@ class SettingsTableViewController: UITableViewController {
           do {
             try _ = response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
-            self.presentAlertWithMessage("Yay! Your profile is updated!")
+            self.presentAlertWithMessage("Your profile is updated!") { _ in
+              _ = self.navigationController?.popViewController(animated: true)
+            }
+            
             if let user = UserManager.currentUser {
               user.firstName = firstName
               user.lastName = lastName
               UserManager.currentUser = user
             }
           } catch {
+            self.saveButtonItem.isEnabled = true
             self.view.endEditing(true)
             self.presentAlertWithMessage("Error with code \(response.statusCode)")
           }
         case .failure(let error):
+          self.saveButtonItem.isEnabled = true
           self.presentAlertWithMessage("error: \(error)")
         }
       }
 
     }
   }
+
+
+  @IBAction func editingDidBeginAction(_ sender: AnyObject) {
+    saveButtonItem.isEnabled = true
+  }
+
 
   @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)

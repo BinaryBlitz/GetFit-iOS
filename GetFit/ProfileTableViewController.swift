@@ -28,8 +28,8 @@ class ProfileTableViewController: UITableViewController {
     refreshControl?.addTarget(self, action: #selector(ProfileTableViewController.refresh(_:)), for
     : UIControlEvents.valueChanged)
 
-//    let realm = try! Realm()
-//    programs = realm.objects(Program)
+    let realm = try! Realm()
+    programs = realm.objects(Program.self).filter("purchaseId != %@", -1)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +49,7 @@ class ProfileTableViewController: UITableViewController {
           let user = try response.map(to: User.self)
           UserManager.currentUser = user
           self.user = user
+          self.loadPrograms()
           self.loadStatistics()
         } catch {
           print("kek")
@@ -63,11 +64,32 @@ class ProfileTableViewController: UITableViewController {
 
   fileprivate func loadStatistics() {
     guard let user = user else { return }
-    userProvider.request(.getStatistics(forUserWithId: user.id)) { (result) in
+    userProvider.request(.getStatistics(forUserWithId: user.id)) { [weak self] (result) in
       switch result {
       case .success(let response):
         do {
           user.statistics = try response.map(to: User.Statistics.self)
+          self?.tableView.reloadData()
+        } catch {
+          print("Cannot map response")
+        }
+      case .failure(let error):
+        print(error)
+      }
+    }
+  }
+
+  fileprivate func loadPrograms() {
+    guard let user = user else { return }
+    userProvider.request(.getPrograms()) { (result) in
+      switch result {
+      case .success(let response):
+        do {
+          let programs = try response.map(to: [Program.self])
+          let realm = try Realm()
+          try realm.write {
+            realm.add(programs, update: true)
+          }
           self.user = user
         } catch {
           print("Cannot map response")
@@ -166,18 +188,10 @@ class ProfileTableViewController: UITableViewController {
         cell.configureWith(UserViewModel(user: user))
       }
 
-      let button = UIButton()
-      button.addTarget(self, action: #selector(settingsButtonAction(_:)), for: .touchUpInside)
-      cell.settingsBadge.addSubview(button)
-      button.autoPinEdgesToSuperviewEdges()
-
+      cell.settingsButton.addTarget(self, action: #selector(settingsButtonAction(_:)), for: .touchUpInside)
       cell.avatarImageView.isUserInteractionEnabled = true
       let avatarTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateAvatar))
       cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
-
-      cell.bannerImageView.isUserInteractionEnabled = true
-      let bannerTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.updateBanner))
-      cell.bannerImageView.addGestureRecognizer(bannerTapGesture)
 
       return cell
     case 1 where selectedTabIndex == 0:
@@ -217,7 +231,7 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 230
+      return 180
     case 1 where selectedTabIndex == 0:
       return tableView.frame.width
     case 1 where selectedTabIndex == 1:

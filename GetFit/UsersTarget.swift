@@ -10,6 +10,7 @@ extension GetFit {
     case update(firstName: String, lastName: String)
     case updateImage(type: Image, image: UIImage)
     case getStatistics(forUserWithId: Int)
+    case getPrograms()
     case updateDeviceToken(token: String)
   }
 
@@ -25,6 +26,8 @@ extension GetFit.Users: TargetType {
       return "/users/\(id)/statistics"
     case .updateDeviceToken(_):
       return "/user"
+    case .getPrograms:
+      return "/user/programs"
     }
   }
 
@@ -34,7 +37,7 @@ extension GetFit.Users: TargetType {
 
   public var method: Moya.Method {
     switch self {
-    case .getCurrent, .getStatistics(_):
+    case .getCurrent, .getStatistics(_), .getPrograms:
       return .get
     case .update(_, _), .updateImage(_, _), .updateDeviceToken(_):
       return .patch
@@ -44,7 +47,7 @@ extension GetFit.Users: TargetType {
   public var parameters: [String: Any]? {
 
     switch self {
-    case .getCurrent, .getStatistics(_):
+    case .getCurrent, .getStatistics(_), .getPrograms:
       return nil
     case let .update(firstName, lastName):
       return ["user": ["first_name": firstName, "last_name": lastName]]

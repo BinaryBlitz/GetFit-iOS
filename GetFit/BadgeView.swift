@@ -127,9 +127,7 @@ private var lightBlueColor = UIColor.blueAccentColor()
     label.sizeToFit()
     setNeedsLayout()
     layoutIfNeeded()
-    superview?.updateConstraints()
-    superview?.setNeedsLayout()
-    superview?.layoutIfNeeded()
+
     switch style.height {
     case .low:
       autoSetDimension(.height, toSize: label.frame.height + 10)

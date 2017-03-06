@@ -4,10 +4,11 @@ import Reusable
 
 class ProfileCardTableViewCell: UITableViewCell, NibReusable {
 
-  @IBOutlet weak var bannerImageView: UIImageView!
   @IBOutlet weak var avatarImageView: CircleImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var settingsBadge: BadgeView!
+
+  let settingsButton = UIButton()
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -20,6 +21,23 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
 
     settingsBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     settingsBadge.text = "Settings"
+
+
+    settingsBadge.addSubview(settingsButton)
+    settingsButton.autoPinEdgesToSuperviewEdges()
+
+    settingsButton.addTarget(self, action: #selector(settingsButtonDidEndTouch(_:)), for: .touchUpInside)
+    settingsButton.addTarget(self, action: #selector(settingsButtonDidTouch(_:)), for: .touchDown)
+    settingsButton.addTarget(self, action: #selector(settingsButtonDidEndTouch(_:)), for: .touchDragExit)
+
+  }
+
+  func settingsButtonDidTouch(_ button: UIButton) {
+    settingsBadge.isHighlighted = true
+  }
+
+  func settingsButtonDidEndTouch(_ button: UIButton) {
+    settingsBadge.isHighlighted = false
   }
 
   func configureWith(_ viewModel: UserPresentable) {
