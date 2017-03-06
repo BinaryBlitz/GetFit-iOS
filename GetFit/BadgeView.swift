@@ -101,6 +101,8 @@ private var lightBlueColor = UIColor.blueAccentColor()
   fileprivate func configureLabel() {
     label.font = UIFont.boldSystemFont(ofSize: 13)
 
+    label.textAlignment = .center
+
     addSubview(label)
     label.autoCenterInSuperview()
   }
@@ -124,16 +126,22 @@ private var lightBlueColor = UIColor.blueAccentColor()
 
   override func updateConstraints() {
     super.updateConstraints()
+
     label.sizeToFit()
-    setNeedsLayout()
-    layoutIfNeeded()
+
+    let labelSize = label.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+    autoSetDimension(.width, toSize: labelSize.width + 26)
+    label.autoPinEdge(.leading, to: .leading, of: self)
+    label.autoPinEdge(.trailing, to: .trailing, of: self)
 
     switch style.height {
     case .low:
-      autoSetDimension(.height, toSize: label.frame.height + 10)
+      autoSetDimension(.height, toSize: labelSize.height + 10)
     case .tall:
-      autoSetDimension(.height, toSize: label.frame.height + 16)
+      autoSetDimension(.height, toSize: labelSize.height + 16)
     }
-    autoSetDimension(.width, toSize: label.frame.width + 26)
+    setNeedsLayout()
+    layoutIfNeeded()
+
   }
 }

@@ -68,13 +68,12 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-Q7-RWO" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIz-Q7-RWO" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
                                                 <rect key="frame" x="453" y="1.5" width="90" height="37"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" placeholder="YES" id="Oxz-dV-j9K"/>
                                                     <constraint firstAttribute="height" constant="37" placeholder="YES" id="TZL-dg-hid"/>
-                                                    <constraint firstAttribute="width" priority="250" constant="90" id="WqJ-lO-gd5"/>
+                                                    <constraint firstAttribute="width" constant="90" id="WqJ-lO-gd5"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -86,7 +85,6 @@
                                             <constraint firstAttribute="trailing" secondItem="jIz-Q7-RWO" secondAttribute="trailing" id="XdI-qH-0uY"/>
                                             <constraint firstItem="szk-b8-WiK" firstAttribute="top" secondItem="AKV-I1-ayx" secondAttribute="top" id="gUP-hI-ZUH"/>
                                             <constraint firstItem="szk-b8-WiK" firstAttribute="leading" secondItem="AKV-I1-ayx" secondAttribute="leading" id="sKy-D9-aZp"/>
-                                            <constraint firstItem="jIz-Q7-RWO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="szk-b8-WiK" secondAttribute="trailing" id="tJQ-R6-jLX"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 exercises" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeM-mm-uKs">
