@@ -187,7 +187,7 @@ extension NewsTableViewController: PostTableViewCellDelegate {
   }
 
   func didTouchLikeButton(_ cell: PostTableViewCell) {
-
+    cell.likeButton.isEnabled = false
     struct SharedRequest {
       static var request: Cancellable?
     }
@@ -195,6 +195,8 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     SharedRequest.request?.cancel()
     guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
     SharedRequest.request =
-      PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
+      PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
+        cell.likeButton.isEnabled = true
+    }
   }
 }

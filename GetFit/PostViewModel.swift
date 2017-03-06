@@ -11,11 +11,12 @@ struct PostViewModel {
     case dislike
   }
 
-  func updateReaction(_ reaction: PostReaction) -> Cancellable {
+  func updateReaction(_ reaction: PostReaction, _ completion: (() -> Void)? = nil) -> Cancellable {
     switch reaction {
     case .like:
       addLike()
       return postsProvider.request(.createLike(postId: post.id)) { result in
+        completion?()
         switch result {
         case .success(let response):
           do {
@@ -30,7 +31,7 @@ struct PostViewModel {
       }
     case .dislike:
       self.removeLike(self.post)
-      return postsProvider.request(.destroyLike(postId: post.id)) { _ in }
+      return postsProvider.request(.destroyLike(postId: post.id)) { _ in completion?() }
     }
   }
 

@@ -272,7 +272,10 @@ extension PostViewController: UITableViewDataSource {
 
 extension PostViewController: PostTableViewCellDelegate {
   func didTouchLikeButton(_ cell: PostTableViewCell) {
-    _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike)
+    cell.likeButton.isEnabled = false
+    _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
+      cell.likeButton.isEnabled = true
+    }
   }
 }
 
