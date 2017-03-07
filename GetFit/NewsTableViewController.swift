@@ -1,126 +1,123 @@
-//
-//  NewsTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 26/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 import Alamofire
 import Moya
 
 class NewsTableViewController: UITableViewController {
-  
+
   var posts: Results<Post>?
   let postsProvider = APIProvider<GetFit.Posts>()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     extendedLayoutIncludesOpaqueBars = true
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-    
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
     fetchPosts()
     configureTableView()
     refresh()
   }
-  
-  private func configureTableView() {
-    
+
+  fileprivate func configureTableView() {
+
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
     let postCellNib = UINib(nibName: "PostTableViewCell", bundle: nil)
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCell")
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithImage")
-    tableView.registerNib(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
-    
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCell")
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCellWithImage")
+    tableView.register(postCellNib, forCellReuseIdentifier: "postCellWithProgram")
+
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 14))
     headerView.backgroundColor = UIColor.lightGrayBackgroundColor()
     tableView.tableHeaderView = headerView
-    
-    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.News)
-    
+
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.news)
+
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)) , forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
-  
+
   func fetchPosts() {
     let realm = try! Realm()
-    posts = realm.objects(Post).sorted("dateCreated", ascending: false)
+    posts = realm.objects(Post.self).sorted(byKeyPath: "dateCreated", ascending: false)
   }
-  
-  //MARK: - Refresh
-  
-  func refresh(sender: AnyObject? = nil) {
+
+  // MARK: - Refresh
+
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
       self.fetchPosts()
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
   }
-  
-  func beginRefreshWithCompletion(completion: () -> Void) {
-    postsProvider.request(.Index) { (result) in
+
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
+    postsProvider.request(.index) { (result) in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
           let postsResponse = try response.filterSuccessfulStatusCodes()
-          let posts = try postsResponse.mapArray(Post.self)
+          let posts = try postsResponse.map(to: [Post.self])
           let realm = try! Realm()
           try realm.write {
             realm.add(posts, update: true)
           }
-          
+
           completion()
         } catch {
           print("response is not successful")
           self.presentAlertWithMessage("Cannot update feed")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithMessage("Oh, no!")
         completion()
       }
     }
   }
-  
-  //MARK: - UITableViewDataSource
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
+
+  // MARK: - UITableViewDataSource
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows = posts?.count ?? 0
-    tableView.backgroundView?.hidden = numberOfRows != 0
-    
+    tableView.backgroundView?.isHidden = numberOfRows != 0
+
     return numberOfRows
   }
-  
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let post = posts?[indexPath.row] else { return UITableViewCell() }
-    
+
     let cell: PostTableViewCell
-    
+
     if post.imageURLString != nil {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithImage", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCellWithImage", for: indexPath) as! PostTableViewCell
     } else if post.program != nil {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCellWithProgram", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCellWithProgram", for: indexPath) as! PostTableViewCell
     } else {
-      cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostTableViewCell
+      cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
     }
-    
+
     cell.configureWith(PostViewModel(post: post))
     cell.displayAsPreview = true
-    cell.state = .Card
+    cell.state = .card
     cell.delegate = self
-    
+
     return cell
   }
-  
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let post = posts![indexPath.row]
-    
+
     if post.imageURLString != nil {
       return 400
     } else if post.program != nil {
@@ -129,10 +126,10 @@ class NewsTableViewController: UITableViewController {
       return UITableViewAutomaticDimension
     }
   }
-  
-  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     let post = posts![indexPath.row]
-    
+
     if post.imageURLString != nil {
       return 400
     } else if post.program != nil {
@@ -141,62 +138,65 @@ class NewsTableViewController: UITableViewController {
       return 180
     }
   }
-  
-  //MARK: - UITableViewDelegate
-  
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+  // MARK: - UITableViewDelegate
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let post = posts?[indexPath.row] else {
       return
     }
-    
-    performSegueWithIdentifier("viewPost", sender: post)
+
+    performSegue(withIdentifier: "viewPost", sender: post)
   }
-  
+
   // MARK: - Navigation
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? PostViewController, post = sender as? Post {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? PostViewController, let post = sender as? Post {
       destination.post = post
       destination.postsProvider = postsProvider
       switch segue.identifier {
-      case .Some("viewPostAndComment"):
+      case .some("viewPostAndComment"):
         destination.shouldShowKeyboadOnOpen = true
       default:
         break
       }
     }
   }
-  
-  //MARK: - IBActions
-  
-  @IBAction func chatsButtonAction(sender: AnyObject) {
-    let chatsViewController = ChatsTableViewController(style: .Plain)
+
+  // MARK: - IBActions
+
+  @IBAction func chatsButtonAction(_ sender: AnyObject) {
+    let chatsViewController = ChatsTableViewController(style: .plain)
     let navigationController = UINavigationController(rootViewController: chatsViewController)
-    presentViewController(navigationController, animated: true, completion: nil)
+    present(navigationController, animated: true, completion: nil)
   }
-  
+
 }
 
-//MARK: - PostTableViewCellDelegate
+// MARK: - PostTableViewCellDelegate
 
 extension NewsTableViewController: PostTableViewCellDelegate {
-  
-  func didTouchCommentButton(cell: PostTableViewCell) {
-    guard let row = tableView.indexPathForCell(cell)?.row, post = posts?[row] else {
+
+  func didTouchCommentButton(_ cell: PostTableViewCell) {
+    guard let row = tableView.indexPath(for: cell)?.row, let post = posts?[row] else {
       return
     }
-    
-    performSegueWithIdentifier("viewPostAndComment", sender: post)
+
+    performSegue(withIdentifier: "viewPostAndComment", sender: post)
   }
-  
-  func didTouchLikeButton(cell: PostTableViewCell) {
+
+  func didTouchLikeButton(_ cell: PostTableViewCell) {
+    cell.likeButton.isEnabled = false
     struct SharedRequest {
       static var request: Cancellable?
     }
-    
+
     SharedRequest.request?.cancel()
-    guard let indexPath = tableView.indexPathForCell(cell), post = posts?[indexPath.row] else { return }
+    guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
     SharedRequest.request =
-        PostViewModel(post: post).updateReaction(cell.likeButton.selected ? .Like : .Dislike)
+      PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
+        cell.likeButton.isEnabled = true
+    }
   }
 }

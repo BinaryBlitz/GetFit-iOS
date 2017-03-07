@@ -1,53 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="206" id="KGk-i7-Jjw" customClass="ProfileCardTableViewCell" customModule="Athlete" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="206" id="KGk-i7-Jjw" customClass="ProfileCardTableViewCell" customModule="GetFit" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="451" height="206"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="451" height="206"/>
+                <rect key="frame" x="0.0" y="0.0" width="451" height="205"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dId-sN-znf" customClass="CardView" customModule="Athlete" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="451" height="206"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dId-sN-znf" customClass="CardView" customModule="GetFit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="451" height="205"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-U0-gjC">
-                                <rect key="frame" x="0.0" y="0.0" width="451" height="206"/>
+                                <rect key="frame" x="0.0" y="20" width="451" height="185"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hsv-Kr-S6d">
-                                        <rect key="frame" x="0.0" y="0.0" width="451" height="110"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="110" id="nNH-9W-ieK"/>
-                                        </constraints>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bL-fE-pPX">
-                                        <rect key="frame" x="0.0" y="110" width="451" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="451" height="185"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iud-hi-xaE">
-                                                <rect key="frame" x="13" y="55" width="48" height="28"/>
+                                                <rect key="frame" x="13" y="150.5" width="48" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-c6-9D4" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-c6-9D4" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
                                                 <rect key="frame" x="358" y="16" width="80" height="31"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" placeholder="YES" id="NeK-pC-KWb"/>
                                                     <constraint firstAttribute="height" constant="31" placeholder="YES" id="ZCJ-Ev-919"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Iud-hi-xaE" firstAttribute="leading" secondItem="6bL-fE-pPX" secondAttribute="leading" constant="13" id="0yu-KY-jhO"/>
                                             <constraint firstItem="u4D-c6-9D4" firstAttribute="top" secondItem="6bL-fE-pPX" secondAttribute="top" constant="16" id="8rl-ER-a6J"/>
-                                            <constraint firstItem="Iud-hi-xaE" firstAttribute="top" secondItem="6bL-fE-pPX" secondAttribute="top" constant="55" id="GZC-Tm-HMG"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Iud-hi-xaE" secondAttribute="trailing" constant="13" id="LD1-9w-5m8"/>
                                             <constraint firstAttribute="bottom" secondItem="Iud-hi-xaE" secondAttribute="bottom" constant="13" id="PTf-VO-htZ"/>
                                             <constraint firstAttribute="trailing" secondItem="u4D-c6-9D4" secondAttribute="trailing" constant="13" id="RKO-jK-diZ"/>
@@ -55,20 +53,20 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="FJZ-Eo-Sdh" customClass="CircleImageView" customModule="Athlete" customModuleProvider="target">
-                                <rect key="frame" x="13" y="60" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="FJZ-Eo-Sdh" customClass="CircleImageView" customModule="GetFit" customModuleProvider="target">
+                                <rect key="frame" x="13" y="20" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="dgr-j4-ftO"/>
                                     <constraint firstAttribute="height" constant="100" id="uM4-Yt-eEv"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ejm-U0-gjC" firstAttribute="top" secondItem="dId-sN-znf" secondAttribute="top" id="Cbl-Xm-VXT"/>
+                            <constraint firstItem="FJZ-Eo-Sdh" firstAttribute="top" secondItem="dId-sN-znf" secondAttribute="top" constant="20" id="0zX-U3-ceR"/>
+                            <constraint firstItem="ejm-U0-gjC" firstAttribute="top" secondItem="dId-sN-znf" secondAttribute="top" constant="20" id="Cbl-Xm-VXT"/>
                             <constraint firstAttribute="bottom" secondItem="ejm-U0-gjC" secondAttribute="bottom" id="emA-Cr-Wtq"/>
                             <constraint firstItem="ejm-U0-gjC" firstAttribute="leading" secondItem="dId-sN-znf" secondAttribute="leading" id="iOX-Kd-SSJ"/>
-                            <constraint firstItem="FJZ-Eo-Sdh" firstAttribute="top" secondItem="hsv-Kr-S6d" secondAttribute="bottom" constant="-50" id="qSy-wb-AEu"/>
                             <constraint firstAttribute="trailing" secondItem="ejm-U0-gjC" secondAttribute="trailing" id="vU2-X2-IAb"/>
                             <constraint firstItem="FJZ-Eo-Sdh" firstAttribute="leading" secondItem="dId-sN-znf" secondAttribute="leading" constant="13" id="x5s-sv-9mJ"/>
                         </constraints>
@@ -83,7 +81,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="FJZ-Eo-Sdh" id="dwZ-da-BxF"/>
-                <outlet property="bannerImageView" destination="hsv-Kr-S6d" id="a5X-gL-ONA"/>
                 <outlet property="nameLabel" destination="Iud-hi-xaE" id="L7I-sq-Vwr"/>
                 <outlet property="settingsBadge" destination="u4D-c6-9D4" id="ZMs-bV-UdZ"/>
             </connections>

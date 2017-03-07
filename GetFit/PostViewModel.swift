@@ -5,69 +5,93 @@ import RealmSwift
 struct PostViewModel {
   let post: Post
   let postsProvider = APIProvider<GetFit.Posts>()
-  
+
   enum PostReaction {
-    case Like
-    case Dislike
+    case like
+    case dislike
   }
-  
-  func updateReaction(reaction: PostReaction) -> Cancellable {
-    return postsProvider.request(.CreateLike(postId: post.id)) { result in
-      switch result {
-      case .Success(let response):
-        do {
-          try response.filterSuccessfulStatusCodes()
-          print("yay! new like")
-        } catch {
-          self.addLikeToUploadQueueFor(self.post)
+
+  func updateReaction(_ reaction: PostReaction, _ completion: (() -> Void)? = nil) -> Cancellable {
+    switch reaction {
+    case .like:
+      addLike()
+      return postsProvider.request(.createLike(postId: post.id)) { result in
+        completion?()
+        switch result {
+        case .success(let response):
+          do {
+            try _ = response.filterSuccessfulStatusCodes()
+            let like = try response.map(to: Like.self)
+            self.addLikeId(self.post, like: like)
+          } catch {
+          }
+        case .failure(let error):
+          print(error)
         }
-      case .Failure(let error):
-        print(error)
-        self.addLikeToUploadQueueFor(self.post)
       }
+    case .dislike:
+      self.removeLike(self.post)
+      return postsProvider.request(.destroyLike(postId: post.id)) { _ in completion?() }
     }
   }
-  
-  private func addLikeToUploadQueueFor(post: Post) {
+
+
+  fileprivate func addLike() {
     let realm = try! Realm()
     try! realm.write {
-      let like = Like()
-      realm.add(like)
-      post.like = like
+      post.liked = true
+      post.likesCount += 1
     }
+  }
+
+  fileprivate func addLikeId(_ post: Post, like: Like) {
+    let realm = try! Realm()
+    try! realm.write {
+      post.likeId = like.id
+    }
+  }
+
+  fileprivate func removeLike(_ post: Post) {
+    let realm = try! Realm()
+    try! realm.write {
+      post.liked = false
+      post.likeId = -1
+      post.likesCount -= 1
+    }
+
   }
 }
 
-//MARK: - PostPresentable
+// MARK: - PostPresentable
 
 extension PostViewModel: PostPresentable {
-  var imageURL: NSURL? {
+  var imageURL: URL? {
     guard let imageURLString = post.imageURLString,
-        url = NSURL(string: imageURLString) else {
+          let url = URL(string: imageURLString) else {
       return nil
     }
-    
+
     return url
   }
-  
+
   var likesCount: String {
     return post.likesCount.format()
   }
-  
+
   var commentsCount: String {
     return post.commentsCount.format()
   }
-  
+
   var liked: Bool {
-    return post.likeId != -1
+    return post.liked
   }
-  
+
   var program: Program? {
     return post.program
   }
 }
 
-//MARK: - TextPresentable
+// MARK: - TextPresentable
 
 extension PostViewModel: TextPresentable {
   var text: String {
@@ -75,34 +99,34 @@ extension PostViewModel: TextPresentable {
   }
 }
 
-//MARK: - TrainerPresentable
+// MARK: - TrainerPresentable
 
 extension PostViewModel: TrainerPresentable {
-  var trainerAvatarURL: NSURL? {
+  var trainerAvatarURL: URL? {
     guard let trainer = post.trainer,
-        avatarURLString = trainer.avatarURLString else {
+          let avatarURLString = trainer.avatarURLString else {
       return nil
     }
-    
-    return NSURL(string: avatarURLString)
+
+    return URL(string: avatarURLString)
   }
-  
+
   var trainerName: String {
     guard let trainer = post.trainer else {
       return ""
     }
-    
+
     return "\(trainer.firstName) \(trainer.lastName)"
   }
 }
 
-//MARK: - DateTimePresentable
+// MARK: - DateTimePresentable
 
 extension PostViewModel: DateTimePresentable {
   var dateString: String {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd.MM"
-    
-    return dateFormatter.stringFromDate(post.dateCreated)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+
+    return dateFormatter.string(from: post.dateCreated as Date)
   }
 }

@@ -1,47 +1,38 @@
-platform :ios, '9.3'
+platform :ios, '10.0'
 
 target 'GetFit' do
   use_frameworks!
-  # Fabric
-  pod 'Fabric', '~> 1.6'
-  pod 'Crashlytics', '~> 3.8'
 
   # Networking
-  pod 'Moya', '~> 7.0'
-  pod "Moya-SwiftyJSONMapper", '~> 1.0'
+  pod 'Moya', '~> 8.0'
+  pod 'Moya-SwiftyJSONMapper', '~> 2.2'
 
   # DB
-  pod 'RealmSwift', '~> 2.3.0'
+  pod 'RealmSwift', '~> 2.4'
+  pod 'KeychainAccess', '~> 3.0'
 
   # UI
-  pod 'UICountingLabel', '~> 1.4'
-  pod 'MCSwipeTableViewCell', '~> 2.1'
-  pod 'CVCalendar', git: 'https://github.com/BxSMobility/CVCalendar'
-  pod 'PhoneNumberKit', git: 'https://github.com/marmelroy/PhoneNumberKit', branch: 'swift2.3'
-  pod 'InnerShadowView', '~> 1.0'
-  pod 'SwiftSpinner', git: 'https://github.com/OMsignal/SwiftSpinner', branch: 'xcode8-swift2.3'
+  pod 'SwipeCellKit', '~> 1.1'
+  pod 'CVCalendar', '~> 1.4'
+  pod 'PhoneNumberKit', '~> 1.2'
   pod 'XCDYouTubeKit', '~> 2.5'
   pod 'JSQMessagesViewController', '~> 7.3'
-  pod 'MWPhotoBrowser', '~> 2.1'
-  pod 'SVPullToRefresh', '~> 0.4'
+  pod 'Kingfisher', '~> 3.4'
 
   # Tools
-  pod 'SwiftDate', git: 'https://github.com/malcommac/SwiftDate.git', branch: 'feature/swift_23'
+  pod 'SwiftDate', '~> 4.0'
   pod 'PureLayout', '~> 3.0'
-  pod 'HanekeSwift', git: 'https://github.com/Haneke/HanekeSwift.git'
-  pod 'Reusable', '~> 2.5'
-  pod 'Toucan', git: 'https://github.com/gavinbunney/Toucan', branch: 'develop-swift-2.3'
+  pod 'Reusable', '~> 3.0'
+  pod 'Toucan', '~> 0.6'
 
   # Facebook SDK
   pod 'FBSDKCoreKit', '~> 4.16'
   pod 'FBSDKLoginKit', '~> 4.16'
 
-  # VK
+  # VK SDK
   pod 'VK-ios-sdk', '~> 1.4'
-end
 
-post_install do |installer|
-  installer.pods_project.build_configurations.each do |config|
-    config.build_settings['SWIFT_VERSION'] = '2.3'
-  end
+  # Fabric
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

@@ -1,16 +1,19 @@
-//
-//  TrainerCategory.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 28/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 enum TrainerCategory: String {
   case Coach = "trainer"
   case Doctor = "physician"
   case Nutritionist = "nutritionist"
-  
+
+  var name: String {
+    switch self {
+    case .Coach:
+      return "Coach"
+    case .Doctor:
+      return "Doctor"
+    case .Nutritionist:
+      return "Nutritionist"
+    }
+  }
+
   func pluralName() -> String {
     switch self {
     case .Coach:

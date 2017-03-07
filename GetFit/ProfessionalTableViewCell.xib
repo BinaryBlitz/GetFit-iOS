@@ -1,56 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="362" id="KGk-i7-Jjw" customClass="ProfessionalTableViewCell" customModule="Athlete" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="362" id="KGk-i7-Jjw" customClass="ProfessionalTableViewCell" customModule="GetFit" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="573" height="362"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="573" height="361.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="573" height="361"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-Op-ZxF" customClass="CardView" customModule="Athlete" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="573" height="362"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-Op-ZxF" customClass="CardView" customModule="GetFit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="573" height="361"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP8-Tq-DMg" customClass="BadgeView" customModule="Athlete" customModuleProvider="target">
-                                <rect key="frame" x="17" y="318" width="135" height="24"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP8-Tq-DMg" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
+                                <rect key="frame" x="17" y="317" width="135" height="24"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="Wub-eX-rOC"/>
                                     <constraint firstAttribute="height" constant="24" id="ZKB-aE-Bbo"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-fY-lwl">
-                                <rect key="frame" x="506" y="318" width="24" height="23"/>
+                                <rect key="frame" x="506" y="317" width="24" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-0e-VoB">
-                                <rect key="frame" x="536" y="320" width="20" height="19"/>
+                                <rect key="frame" x="536" y="319" width="20" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tRp-0e-VoB" secondAttribute="height" multiplier="100:95" id="5k0-2M-0AP"/>
                                 </constraints>
                                 <state key="normal" image="Rating"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTW-pg-3Nu">
-                                <rect key="frame" x="470" y="320" width="20" height="19"/>
+                                <rect key="frame" x="470" y="319" width="20" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RTW-pg-3Nu" secondAttribute="height" multiplier="100:99" id="PdS-9p-Myn"/>
                                 </constraints>
                                 <state key="normal" image="Followers"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJM-ez-Yse">
-                                <rect key="frame" x="453" y="318" width="11" height="23"/>
+                                <rect key="frame" x="453" y="317" width="11" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sa5-jg-ueE">
@@ -60,19 +65,19 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-IC-YhJ">
-                                <rect key="frame" x="0.0" y="129" width="573" height="181"/>
+                                <rect key="frame" x="0.0" y="129" width="573" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dan Shevlyuk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8O-ei-c6v">
                                         <rect key="frame" x="15" y="68" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAB-wH-cce">
                                         <rect key="frame" x="15" y="96" width="545" height="36"/>
                                         <string key="text">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back,</string>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pw6-8V-zAr">
@@ -94,13 +99,13 @@
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ygK-hC-WW2"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="MnO-QB-AUu" firstAttribute="leading" secondItem="pw6-8V-zAr" secondAttribute="leading" constant="8" id="5Zm-si-dS8"/>
                                             <constraint firstItem="MnO-QB-AUu" firstAttribute="top" secondItem="pw6-8V-zAr" secondAttribute="top" id="YVn-2z-Gb6"/>
@@ -111,7 +116,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mAB-wH-cce" secondAttribute="bottom" constant="2" id="0BS-yy-Ml2"/>
                                     <constraint firstItem="pw6-8V-zAr" firstAttribute="top" secondItem="FZ1-IC-YhJ" secondAttribute="top" constant="13" id="2aX-nW-d6r"/>
@@ -122,7 +127,7 @@
                                     <constraint firstAttribute="trailing" secondItem="mAB-wH-cce" secondAttribute="trailing" constant="13" id="pMz-U6-fRx"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="Phj-1b-VbW" customClass="CircleImageView" customModule="Athlete" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="Phj-1b-VbW" customClass="CircleImageView" customModule="GetFit" customModuleProvider="target">
                                 <rect key="frame" x="12" y="74" width="110" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="bZo-F1-nkV"/>
@@ -130,7 +135,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Sa5-jg-ueE" firstAttribute="top" secondItem="gfg-Op-ZxF" secondAttribute="top" id="0Uc-al-k0o"/>
                             <constraint firstItem="L8O-ei-c6v" firstAttribute="leading" secondItem="Phj-1b-VbW" secondAttribute="leading" constant="3" id="0in-1h-AtC"/>
@@ -160,7 +165,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="gfg-Op-ZxF" secondAttribute="bottom" constant="-8" placeholder="YES" id="Vhj-xv-iDg"/>
                     <constraint firstItem="gfg-Op-ZxF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" placeholder="YES" id="ehy-MS-Nfs"/>
@@ -168,7 +173,7 @@
                     <constraint firstItem="gfg-Op-ZxF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" placeholder="YES" id="yiP-DV-5hb"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="avatarImageView" destination="Phj-1b-VbW" id="eGk-Hg-aTq"/>
                 <outlet property="bannerImageView" destination="Sa5-jg-ueE" id="NW6-tS-4Yc"/>

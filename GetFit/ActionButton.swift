@@ -2,32 +2,33 @@ import UIKit
 import PureLayout
 
 /// Button with activity indicator
+
 class ActionButton: UIButton {
-  
-  private var activityIndicator: UIActivityIndicatorView?
-  private var originalTitle: String?
-  
+
+  fileprivate var activityIndicator: UIActivityIndicatorView?
+  fileprivate var originalTitle: String?
+
   func showActivityIndicator() {
     originalTitle = currentTitle
-    userInteractionEnabled = false
-    setTitle("", forState: .Normal)
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+    isUserInteractionEnabled = false
+    setTitle("", for: UIControlState())
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
     activityIndicator = spinner
-    spinner.autoSetDimensionsToSize(CGSize(width: 20, height: 20)) // TODO: remove harcodes values
+    spinner.autoSetDimensions(to: CGSize(width: 20, height: 20)) // TODO: remove harcodes values
     addSubview(spinner)
     spinner.autoCenterInSuperview()
     spinner.startAnimating()
   }
-  
+
   func hideActivityIndicator() {
     if let indicator = activityIndicator {
       indicator.stopAnimating()
       indicator.removeFromSuperview()
       activityIndicator = nil
-      setTitle(originalTitle, forState: .Normal)
+      setTitle(originalTitle, for: UIControlState())
     }
-    
-    userInteractionEnabled = true
+
+    isUserInteractionEnabled = true
   }
-  
+
 }

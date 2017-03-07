@@ -1,120 +1,146 @@
-//
-//  BadgeView.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 21/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import PureLayout
 
+private var darkColor = UIColor.graySecondaryColor()
+private var lightGrayColor = UIColor.white
+private var lightBlueColor = UIColor.blueAccentColor()
+
 @objc class BadgeView: UIView {
-  
+  let animationDuration = 0.2
+  var widthConstraint: NSLayoutConstraint? = nil
+  var heightConstraint: NSLayoutConstraint? = nil
+
   var label: UILabel
-  private var darkColor = UIColor.graySecondaryColor()
-  private var lightGrayColor = UIColor.whiteColor()
-  private var lightBlueColor = UIColor.blueAccentColor()
-  
+
   struct Style {
     let color: ColorScheme
     let height: HeightType
-    
-    init(color: ColorScheme, height: HeightType = .Low) {
+
+    init(color: ColorScheme, height: HeightType = .low) {
       self.color = color
       self.height = height
     }
   }
-  
+
+  var isHighlighted: Bool = false {
+    didSet {
+      UIView.animate(withDuration: animationDuration, animations: {
+        self.label.textColor = self.isHighlighted ? UIColor.white : self.style.color.primaryColor
+        self.backgroundColor = self.isHighlighted ? self.style.color.primaryColor : UIColor.white
+      }, completion: nil)
+    }
+  }
+
   enum ColorScheme {
-    case Dark
-    case LightGray
-    case LightBlue
+    case dark
+    case lightGray
+    case lightBlue
+
+    var primaryColor: UIColor {
+      switch self {
+      case .lightGray:
+        return lightGrayColor
+      case .dark:
+        return darkColor
+      case .lightBlue:
+        return lightBlueColor
+      }
+
+    }
   }
-  
+
   enum HeightType {
-    case Low
-    case Tall
+    case low
+    case tall
   }
-  
-  var style: Style = Style(color: .LightGray, height: .Low) {
+
+  var style: Style = Style(color: .lightGray, height: .low) {
     didSet {
       updateStyle(style)
     }
   }
-  
+
   var fontSize: CGFloat {
     get {
       return label.font.pointSize
     }
     set(newFontSize) {
-      label.font = label.font.fontWithSize(newFontSize)
+      label.font = label.font.withSize(newFontSize)
+      updateConstraints()
     }
   }
-  
+
   var text: String? {
     get {
       return label.text
     }
     set(newText) {
-      label.text = newText?.uppercaseString
+      label.text = newText?.uppercased()
+      updateConstraints()
+
     }
   }
-  
+
   override init(frame: CGRect) {
     label = UILabel()
     super.init(frame: frame)
     baseInit()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     label = UILabel()
     super.init(coder: aDecoder)
     baseInit()
   }
-  
-  private func baseInit() {
+
+  fileprivate func baseInit() {
     configureLabel()
-    
+
     layer.borderWidth = 1
     layer.cornerRadius = 2
-    
+
     updateStyle(style)
   }
-  
-  private func configureLabel() {
-    label.font = UIFont.boldSystemFontOfSize(13)
-    
+
+  fileprivate func configureLabel() {
+    label.font = UIFont.boldSystemFont(ofSize: 13)
+
+    label.textAlignment = .center
+
     addSubview(label)
     label.autoCenterInSuperview()
+    widthConstraint = autoSetDimension(.width, toSize: label.frame.width)
+    heightConstraint = autoSetDimension(.height, toSize: label.frame.height)
+    autoMatch(.width, to: .width, of: label, withMultiplier: 1, relation: .greaterThanOrEqual)
   }
-  
-  private func updateStyle(style: Style) {
+
+  fileprivate func updateStyle(_ style: Style) {
     switch style.color {
-    case .LightGray:
-      layer.borderColor = darkColor.CGColor
-      backgroundColor = UIColor.whiteColor()
+    case .lightGray:
+      layer.borderColor = darkColor.cgColor
+      backgroundColor = UIColor.white
       label.textColor = darkColor
-    case .Dark:
-      layer.borderColor = darkColor.CGColor
+    case .dark:
+      layer.borderColor = darkColor.cgColor
       backgroundColor = darkColor
       label.textColor = lightGrayColor
-    case .LightBlue:
-      layer.borderColor = lightBlueColor.CGColor
-      backgroundColor = UIColor.whiteColor()
+    case .lightBlue:
+      layer.borderColor = lightBlueColor.cgColor
+      backgroundColor = UIColor.white
       label.textColor = lightBlueColor
     }
   }
-  
+
   override func updateConstraints() {
     super.updateConstraints()
-    label.sizeToFit()
+    let labelSize = label.systemLayoutSizeFitting(UILayoutFittingExpandedSize)
+    widthConstraint?.constant = labelSize.width + 26
+
     switch style.height {
-    case .Low:
-      autoSetDimension(.Height, toSize: label.frame.height + 10)
-    case .Tall:
-      autoSetDimension(.Height, toSize: label.frame.height + 16)
+    case .low:
+      heightConstraint?.constant = labelSize.height + 10
+    case .tall:
+      heightConstraint?.constant = labelSize.height + 16
     }
-    autoSetDimension(.Width, toSize: label.frame.width + 26)
   }
 }

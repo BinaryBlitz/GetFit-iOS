@@ -18,6 +18,10 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Camera is used to update user profile picture</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Photo library is used to update user profile picture</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -29,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>23</string>
+	<string>25</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -47,7 +51,7 @@
 	<key>FacebookAppID</key>
 	<string>789940354469829</string>
 	<key>FacebookDisplayName</key>
-	<string>getfitapp</string>
+	<string>GetFit</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

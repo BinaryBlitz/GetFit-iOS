@@ -1,18 +1,10 @@
-//
-//  CommentViewModel.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 23/02/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
 
 struct CommentViewModel {
   let comment: Comment
 }
 
-//MARK: - TextPresentable
+// MARK: - TextPresentable
 
 extension CommentViewModel: TextPresentable {
   var text: String {
@@ -20,39 +12,39 @@ extension CommentViewModel: TextPresentable {
   }
 }
 
-//MARK: - DateTimePresentable
+// MARK: - DateTimePresentable
 
 extension CommentViewModel: DateTimePresentable {
   var dateString: String {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd.MM"
-    
-    return dateFormatter.stringFromDate(comment.dateCreated)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+
+    return dateFormatter.string(from: comment.dateCreated as Date)
   }
 }
 
-//MARK: - UserPresentable
+// MARK: - UserPresentable
 
 extension CommentViewModel: UserPresentable {
   var name: String {
     guard let author = comment.author else { return "" }
     return "\(author.firstName) \(author.lastName)"
   }
-  
+
   var info: String {
     return ""
   }
-  
-  var avatarURL: NSURL? {
+
+  var avatarURL: URL? {
     guard let avatarURLString = comment.author?.avatarURLString,
-        avatarURL = NSURL(string: avatarURLString) else {
+          let avatarURL = URL(string: avatarURLString) else {
       return nil
     }
-    
+
     return avatarURL
   }
-  
-  var coverImageURL: NSURL? {
+
+  var coverImageURL: URL? {
     return nil
   }
 }

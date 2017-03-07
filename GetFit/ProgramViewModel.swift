@@ -6,19 +6,19 @@ struct ProgramViewModel {
 }
 
 extension ProgramViewModel: TrainerPresentable {
-  var trainerAvatarURL: NSURL? {
-    guard let trainer = program.trainer, avatarURLString = trainer.avatarURLString else {
+  var trainerAvatarURL: URL? {
+    guard let trainer = program.trainer, let avatarURLString = trainer.avatarURLString else {
       return nil
     }
-    
-    return NSURL(string: avatarURLString)
+
+    return URL(string: avatarURLString)
   }
-  
+
   var trainerName: String {
     guard let trainer = program.trainer else {
       return ""
     }
-    
+
     return "\(trainer.firstName) \(trainer.lastName)"
   }
 }
@@ -27,23 +27,28 @@ extension ProgramViewModel: ProgramPresentable {
   var title: String {
     return program.name
   }
-  
+
   var price: String {
     if program.price == 0 {
       return "free"
     }
-    
+
     return "$\(program.price)"
   }
-  
+
   var category: String {
-    return program.type
+    return program.programType?.name ?? ""
   }
-  
+
+
+  var isPurchased: Bool {
+    return program.purchaseId != -1
+  }
+
   var workoutsCount: String {
     return "\(program.workoutsCount) workouts"
   }
-  
+
   var description: String {
     return program.programDescription
   }
@@ -51,28 +56,28 @@ extension ProgramViewModel: ProgramPresentable {
   var preview: String {
     return program.programPreview
   }
-  
+
   var followers: String {
-    return String(100)
+    return String(program.usersCount)
   }
-  
+
   var rating: String {
-    return String(4.7)
+    return String(program.rating)
   }
-  
+
   var duration: String {
     return "\(program.duration) MIN"
   }
-  
-  var bannerURL: NSURL? {
+
+  var bannerURL: URL? {
     guard let urlString = program.bannerURLString else { return nil }
-    return NSURL(string: urlString)
+    return URL(string: urlString)
   }
-  
+
   var info: NSAttributedString {
     let infoFontSize: CGFloat = 15
-    let boldTextAttrebutes = [NSFontAttributeName : UIFont.boldSystemFontOfSize(infoFontSize)]
-    
+    let boldTextAttrebutes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: infoFontSize)]
+
     return NSMutableAttributedString(string: workoutsCount, attributes: boldTextAttrebutes)
   }
 }

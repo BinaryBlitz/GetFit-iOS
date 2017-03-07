@@ -1,28 +1,22 @@
-//
-//  ProfessionalTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 05/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
-import Haneke
+import Kingfisher
 import PureLayout
 import Reusable
 
 protocol ProfessionalCellDelegate: class {
-  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
+  func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
 }
 
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
-  
+
+  let animationDuration = 0.2
+
   enum ProfessionalCellState {
-    case Normal
-    case Card
+    case normal
+    case card
   }
-  
-  var state: ProfessionalCellState = .Card {
+
+  var state: ProfessionalCellState = .card {
     didSet {
       updateWithState(state)
     }
@@ -36,115 +30,168 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var avatarImageView: CircleImageView!
-  
+
   @IBOutlet weak var followButtonBackground: UIView!
   @IBOutlet weak var followButtonIcon: UIImageView!
   @IBOutlet weak var followButtonLabel: UILabel!
-  
+
   var bannerMaskView: UIView?
-  
+
+
+  var followersCount: Int = 0 {
+    didSet {
+      followersLabel.text = "\(followersCount)"
+    }
+  }
+
   weak var delegate: ProfessionalCellDelegate?
-  
-  private var following: Bool = false {
+
+  fileprivate var following: Bool = false {
     didSet {
       updateFollowingStatus(following)
     }
   }
-  
+
+  var followingIsHighlighted: Bool = false {
+    didSet {
+      updateHighlightedStatus(followingIsHighlighted)
+    }
+  }
+
   override func awakeFromNib() {
     super.awakeFromNib()
-    
-    avatarImageView.contentMode = .ScaleAspectFill
+
+    avatarImageView.contentMode = .scaleAspectFill
     avatarImageView.layer.masksToBounds = true
-    avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+    avatarImageView.layer.borderColor = UIColor.white.cgColor
     avatarImageView.layer.borderWidth = 3
-    avatarImageView.backgroundColor = UIColor.yellowColor()
+    avatarImageView.backgroundColor = UIColor.yellow
     avatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
-    
-    bannerImageView.contentMode = .ScaleAspectFill
+
+    bannerImageView.contentMode = .scaleAspectFill
     bannerImageView.layer.masksToBounds = true
     bannerImageView.backgroundColor = UIColor.blueAccentColor()
     bannerImageView.image = nil
-    
+
     setupFollowButton()
-    updateFollowingStatus(following)
-    
+
     let maskView = UIView()
-    maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     bannerImageView.addSubview(maskView)
     maskView.autoPinEdgesToSuperviewEdges()
     bannerMaskView = maskView
   }
-  
+
   func setupFollowButton() {
     let button = UIButton()
     followButtonBackground.addSubview(button)
     button.autoPinEdgesToSuperviewEdges()
-    button.addTarget(self, action: #selector(followButtonAction(_:)), forControlEvents: .TouchUpInside)
+    button.addTarget(self, action: #selector(followButtonAction(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(followButtonDidTouch(_:)), for: .touchDown)
+    button.addTarget(self, action: #selector(followButtonDidEndTouch(_:)), for: .touchDragExit)
+
     followButtonBackground.layer.borderWidth = 1
     followButtonBackground.layer.cornerRadius = 2
-    followButtonLabel.text = "follow".uppercaseString
+    followButtonLabel.text = "follow".uppercased()
   }
-  
-  func followButtonAction(sender: UIButton) {
+
+  func followButtonDidTouch(_ sender: UIButton) {
+    followingIsHighlighted = true
+  }
+
+  func followButtonDidEndTouch(_ sender: UIButton) {
+    followingIsHighlighted = false
+  }
+
+  func followButtonAction(_ sender: UIButton) {
+    followingIsHighlighted = false
     following = !following
     delegate?.professionalCell(self, didChangeFollowingTo: following)
   }
-  
-  func updateFollowingStatus(following: Bool) {
+
+
+  func updateHighlightedStatus(_ isHighlighted: Bool) {
+    UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+      guard let `self` = self else { return }
+      if isHighlighted {
+        self.followButtonLabel.textColor = UIColor.white
+        self.followButtonIcon.tintColor = UIColor.white
+        self.followButtonBackground.backgroundColor = UIColor.blueAccentColor()
+        self.followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
+      } else {
+        self.followButtonLabel.textColor = UIColor.blueAccentColor()
+        self.followButtonIcon.tintColor = UIColor.blueAccentColor()
+        self.followButtonBackground.backgroundColor = UIColor.white
+        self.followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
+      }
+    }, completion: nil)
+  }
+
+  func updateFollowingStatus(_ following: Bool) {
     if following {
-      followButtonLabel.textColor = UIColor.whiteColor()
-      followButtonIcon.tintColor = UIColor.whiteColor()
-      followButtonIcon.image = UIImage(named: "Checkmark")?.imageWithRenderingMode(.AlwaysTemplate)
+      followersCount += 1
+      followButtonLabel.textColor = UIColor.white
+      followButtonIcon.tintColor = UIColor.white
+      followButtonIcon.image = UIImage(named: "Checkmark")?.withRenderingMode(.alwaysTemplate)
       followButtonBackground.backgroundColor = UIColor.blueAccentColor()
-      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     } else {
+      followersCount -= 1
       followButtonLabel.textColor = UIColor.blueAccentColor()
       followButtonIcon.tintColor = UIColor.blueAccentColor()
-      followButtonIcon.image = UIImage(named: "Add")?.imageWithRenderingMode(.AlwaysTemplate)
-      followButtonBackground.backgroundColor = UIColor.whiteColor()
-      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().CGColor
+      followButtonIcon.image = UIImage(named: "Add")?.withRenderingMode(.alwaysTemplate)
+      followButtonBackground.backgroundColor = UIColor.white
+      followButtonBackground.layer.borderColor = UIColor.blueAccentColor().cgColor
     }
   }
-  
-  func configureWith(trainer: Trainer, andState state: ProfessionalCellState = .Card) {
+
+  func configureWith(_ trainer: Trainer, andState state: ProfessionalCellState = .card) {
     resetImages()
     nameLabel.text = "\(trainer.firstName) \(trainer.lastName)"
-    if state == .Card {
-      programsBadge.text = "10 programs".uppercaseString
+    if state == .card {
+      programsBadge.text = "\(trainer.programsCount) programs".uppercased()
     } else {
-      programsBadge.text = trainer.category.rawValue.uppercaseString
+      programsBadge.text = trainer.category.rawValue.uppercased()
     }
-    
+
+    descriptionLabel.text = trainer.info
+
     if let avatarURLString = trainer.avatarURLString,
-          avatarURL = NSURL(string: avatarURLString) {
-      avatarImageView.hnk_setImageFromURL(avatarURL)
+       let avatarURL = URL(string: avatarURLString) {
+      avatarImageView.kf.setImage(with: avatarURL)
+    } else {
+      avatarImageView.image = nil
     }
-    
+
+    following = trainer.following
+
+    followersCount = trainer.followersCount
+    ratingLabel.text = "\(Int(trainer.rating))"
+
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
-    bannerMaskView?.hidden = true
-    if let bannerURLString = trainer.bannerURLString, bannerURL = NSURL(string: bannerURLString) {
-      bannerImageView.hnk_setImageFromURL(bannerURL) { (image) in
+    bannerMaskView?.isHidden = true
+    if let bannerURLString = trainer.bannerURLString, let bannerURL = URL(string: bannerURLString) {
+      bannerImageView.kf.setImage(with: bannerURL) { image, _, _, _ in
         self.bannerImageView.image = image
-        self.bannerMaskView?.hidden = false
+        self.bannerMaskView?.isHidden = false
       }
     }
-    
+
     self.state = state
   }
-  
-  private func resetImages() {
-    avatarImageView.hnk_cancelSetImage()
-    bannerImageView.hnk_cancelSetImage()
+
+  fileprivate func resetImages() {
+    avatarImageView.kf.cancelDownloadTask()
+    bannerImageView.kf.cancelDownloadTask()
     avatarImageView.image = nil
     bannerImageView.image = nil
   }
-  
-  private func updateWithState(state: ProfessionalCellState) {
+
+  fileprivate func updateWithState(_ state: ProfessionalCellState) {
     switch state {
-    case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
-    case .Normal:
+    case .card:
+      cardView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
+    case .normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }
   }

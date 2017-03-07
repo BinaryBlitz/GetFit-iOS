@@ -1,8 +1,5 @@
-import Foundation
-import UIKit
-import PhoneNumberKit
+/// This struct is extended by target types
 
-/// GetFit server requests
 public struct GetFit {
-  
+
 }

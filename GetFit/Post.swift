@@ -11,31 +11,31 @@ class Post: Object, ALSwiftyJSONAble {
   dynamic var trainer: Trainer?
   dynamic var program: Program?
   dynamic var imageURLString: String?
-  dynamic var dateCreated: NSDate = NSDate()
+  dynamic var dateCreated: Date = Date()
   dynamic var likesCount: Int = 0
   dynamic var commentsCount: Int = 0
+  dynamic var liked: Bool = false {
+    didSet {
+      guard let realm = self.realm, !liked else { return }
+      try? realm.write {
+        self.likeId = -1
+      }
+    }
+  }
   dynamic var likeId: Int = -1
-  var like: Like?
   let comments = List<Comment>()
-
-  required init() {
-    super.init()
-  }
-
-  required init(realm: RLMRealm, schema: RLMObjectSchema) {
-    super.init(realm: realm, schema: schema)
-  }
 
   required init?(jsonData: JSON) {
     super.init()
 
-    guard let id = jsonData["id"].int, content = jsonData["content"].string, createdAt = jsonData["created_at"].string else {
+    guard let id = jsonData["id"].int, let content = jsonData["content"].string, let createdAt = jsonData["created_at"].string else {
       return nil
     }
 
     self.id = id
     self.content = content
-    self.dateCreated = createdAt.toDate(.ISO8601Format(.Extended)) ?? NSDate()
+    let date = try? createdAt.date(format: .iso8601(options: .withInternetDateTimeExtended))
+    self.dateCreated = date?.absoluteDate ?? Date()
 
     if let likesCount = jsonData["likes_count"].int {
       self.likesCount = likesCount
@@ -47,6 +47,10 @@ class Post: Object, ALSwiftyJSONAble {
 
     if let likeId = jsonData["like_id"].int {
       self.likeId = likeId
+      self.liked = likeId != -1
+    } else {
+      self.likeId = -1
+      self.liked = false
     }
 
     if let url = jsonData["image_url"].string {
@@ -60,7 +64,7 @@ class Post: Object, ALSwiftyJSONAble {
         realm.add(trainer, update: true)
       }
     }
-    
+
     if let program = Program(jsonData: jsonData["program"]) {
       self.program = program
       let realm = try! Realm()
@@ -70,12 +74,19 @@ class Post: Object, ALSwiftyJSONAble {
     }
   }
 
-  required init(value: AnyObject, schema: RLMSchema) {
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
+  }
+
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
+  }
+
+  required init() {
+    super.init()
   }
 
   override static func primaryKey() -> String? {
     return "id"
   }
 }
-

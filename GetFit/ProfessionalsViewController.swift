@@ -1,83 +1,79 @@
-//
-//  ProfessionalsViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 27/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
-
 class ProfessionalsViewController: UIViewController {
-  
+
   @IBOutlet weak var tableView: UITableView!
-  
-  private(set) var selectedCategory: TrainerCategory = .Coach
+
+  fileprivate(set) var selectedCategory: TrainerCategory = .Coach
   let categories: [TrainerCategory] = [.Coach, .Doctor, .Nutritionist]
-  
+
   let trainersProvider = APIProvider<GetFit.Trainers>()
-  
+
   var coaches = [Trainer]()
   var doctors = [Trainer]()
   var nutritionists = [Trainer]()
-  
+
   var refreshControl: UIRefreshControl?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     setupTableView()
-    
+
     refresh()
   }
-  
-  private func setupTableView() {
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    refresh()
+  }
+
+  fileprivate func setupTableView() {
     view.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.registerReusableCell(ProfessionalTableViewCell)
+    tableView.register(cellType: ProfessionalTableViewCell.self)
     tableView.rowHeight = 370
-    tableView.separatorStyle = .None
+    tableView.separatorStyle = .none
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    
-    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.Trainers)
-    
+
+    tableView.backgroundView = EmptyStateHelper.backgroundViewFor(.trainers)
+
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: #selector(self.refresh), forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     refreshControl.backgroundColor = UIColor.lightGrayBackgroundColor()
     self.refreshControl = refreshControl
     tableView.addSubview(refreshControl)
-    tableView.sendSubviewToBack(refreshControl)
+    tableView.sendSubview(toBack: refreshControl)
   }
-  
-  func reloadTableViewWith(category: TrainerCategory) {
+
+  func reloadTableViewWith(_ category: TrainerCategory) {
     selectedCategory = category
   }
-  
-  //MARK: - Refresh
-  
-  func refresh(sender: AnyObject? = nil) {
+
+  // MARK: - Refresh
+
+  func refresh(_ sender: AnyObject? = nil) {
     beginRefreshWithCompletion {
-      self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
+      self.tableView.reloadData()
     }
   }
-  
-  func beginRefreshWithCompletion(completion: () -> Void) {
-    trainersProvider.request(.Index(filter: TrainersFilter(category: selectedCategory))) { (result) in
+
+  func beginRefreshWithCompletion(_ completion: @escaping () -> Void) {
+    trainersProvider.request(.index(filter: TrainersFilter(category: selectedCategory))) { (result) in
       completion()
       switch result {
-      case .Success(let response):
-        
+      case .success(let response):
+
         do {
           let trainersResponse = try response.filterSuccessfulStatusCodes()
-          let trainers = try trainersResponse.mapArray(Trainer.self)
-          
+          let trainers = try trainersResponse.map(to: [Trainer.self]).sorted { $0.id > $1.id }
+
           let realm = try Realm()
           try realm.write {
             realm.add(trainers, update: true)
           }
-          
+
           if let trainer = trainers.first {
             switch trainer.category {
             case .Coach:
@@ -88,31 +84,30 @@ class ProfessionalsViewController: UIViewController {
               self.nutritionists = trainers
             }
           }
-        
-          self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+
+          self.tableView.reloadData()
         } catch {
           print("Cannot fetch trainers")
         }
-        
-      case .Failure(let error):
+
+      case .failure(let error):
         print(error)
       }
     }
   }
-  
-  //MARK: - Navigation
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? ProfessionalTableViewController,
-        trainer = sender as? Trainer
-        where segue.identifier == "professionalInfo" {
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? ProfessionalTableViewController,
+       let trainer = sender as? Trainer, segue.identifier == "professionalInfo" {
       destination.trainer = trainer
     }
   }
-  
-  private func trainerAtIndexPath(indexPath: NSIndexPath) -> Trainer? {
+
+  fileprivate func trainerAtIndexPath(_ indexPath: IndexPath) -> Trainer? {
     var trainer: Trainer? = nil
-    
+
     switch selectedCategory {
     case .Coach:
       if indexPath.row < coaches.count {
@@ -127,16 +122,16 @@ class ProfessionalsViewController: UIViewController {
         trainer = nutritionists[indexPath.row]
       }
     }
-    
+
     return trainer
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ProfessionalsViewController: UITableViewDataSource {
-  
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     let numberOfRows: Int
     switch selectedCategory {
     case .Coach:
@@ -146,62 +141,88 @@ extension ProfessionalsViewController: UITableViewDataSource {
     case .Doctor:
       numberOfRows = doctors.count
     }
-    
-    tableView.backgroundView?.hidden = numberOfRows != 0
+
+    tableView.backgroundView?.isHidden = numberOfRows != 0
     return numberOfRows
   }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let trainer = trainerAtIndexPath(indexPath) else { return UITableViewCell() }
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ProfessionalTableViewCell
+    let cell = tableView.dequeueReusableCell(for: indexPath) as ProfessionalTableViewCell
     cell.configureWith(trainer)
-    cell.state = .Card
+    cell.state = .card
     cell.delegate = self
-    
+
     return cell
   }
-  
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let labels = categories.map { $0.pluralName() }
     let buttonStrip = ButtonsStripView(labels: labels)
     buttonStrip.delegate = self
-    buttonStrip.selectedIndex = categories.indexOf(selectedCategory) ?? 0
-    
+    buttonStrip.selectedIndex = categories.index(of: selectedCategory) ?? 0
+
     return buttonStrip
   }
-  
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
 }
 
-
 extension ProfessionalsViewController: UITableViewDelegate {
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let trainer = trainerAtIndexPath(indexPath) else {
       return
     }
-    performSegueWithIdentifier("professionalInfo", sender: trainer)
+    performSegue(withIdentifier: "professionalInfo", sender: trainer)
   }
 }
 
 extension ProfessionalsViewController: ButtonStripViewDelegate {
-  
-  func stripView(view: ButtonsStripView, didSelectItemAtIndex index: Int) {
+
+  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedCategory = categories[index]
     refresh()
     tableView.contentOffset = CGPoint.zero
-    tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
   }
 }
 
 extension ProfessionalsViewController: ProfessionalCellDelegate {
-  func professionalCell(cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
-    guard let indexPath = tableView.indexPathForCell(cell), trainer = trainerAtIndexPath(indexPath) else {
+  func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool) {
+    guard let indexPath = tableView.indexPath(for: cell), let trainer = trainerAtIndexPath(indexPath) else {
       return
     }
-    
-    print("trainer: \(trainer.firstName)")
+    let realm = try! Realm()
+    try! realm.write {
+      trainer.following = didChangeFollowingTo
+      if didChangeFollowingTo {
+        trainer.followersCount += 1
+      } else {
+        trainer.followersCount -= 1
+      }
+    }
+
+    if didChangeFollowingTo {
+      createFollowing(trainer: trainer)
+    } else {
+      trainersProvider.request(.destroyFollowing(followingId: trainer.followingId)) { _ in }
+    }
+  }
+
+  func createFollowing(trainer: Trainer) {
+    trainersProvider.request(.createFollowing(trainerId: trainer.id)) { result in
+      switch result {
+      case .success(let response):
+        guard let following = try? response.map(to: Following.self) else { return }
+        let realm = try! Realm()
+        try! realm.write {
+          trainer.followingId = following.id
+        }
+      case .failure(_):
+        return
+      }
+    }
   }
 }

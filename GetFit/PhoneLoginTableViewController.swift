@@ -1,11 +1,3 @@
-//
-//  PhoneLoginTableViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 13/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import PhoneNumberKit
 import SwiftyJSON
@@ -14,83 +6,85 @@ import Moya
 class PhoneLoginTableViewController: UITableViewController {
 
   let loginProvider = APIProvider<GetFit.Login>()
-  
+
   @IBOutlet weak var phoneNumberTextField: PhoneNumberTextField!
   @IBOutlet weak var getCodeButton: ActionButton!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
     showNavigationBar()
     setupPhoneNumberTextField()
     getCodeButton.backgroundColor = UIColor.blueAccentColor()
   }
-  
-  override func viewDidAppear(animated: Bool) {
+
+  override func viewDidAppear(_ animated: Bool) {
     phoneNumberTextField.becomeFirstResponder()
+    showNavigationBar()
   }
-  
-  private func showNavigationBar() {
-    UIView.animateWithDuration(0.15) {
-      self.navigationController?.navigationBarHidden = false
-    }
-    
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
+  fileprivate func showNavigationBar() {
+    guard let navigationController = self.navigationController, navigationController.isNavigationBarHidden else { return }
+    UIView.animate(withDuration: 0.15, animations: {
+      self.navigationController?.isNavigationBarHidden = false
+    })
+
   }
-  
-  private func setupPhoneNumberTextField() {
-    phoneNumberTextField.placeholder = "8 926 123-45-67"
+
+  fileprivate func setupPhoneNumberTextField() {
     phoneNumberTextField.defaultRegion = "RU"
   }
-  
-  //MARK: - Actions
-  
+
+  // MARK: - Actions
+
   @IBAction func getCodeButtonAction() {
-    guard let phone = phoneNumberTextField.text where phone != "" else {
+    guard let phone = phoneNumberTextField.text, phone != "" else {
       presentAlertWithMessage("Номер телефона не может быть пустым!")
       return
     }
-    
+
     getCodeButton.showActivityIndicator()
     do {
-      let phoneNumber = try PhoneNumber(rawNumber: phone, region: "RU")
+      let phoneNumber = try PhoneNumberKit().parse(phone)
       GetFit.Login.currentSessionData = LoginSessionData(phoneNumber: phoneNumber)
       requestLoginCodeFor(phoneNumber: phoneNumber)
     } catch let error {
       print(error)
       getCodeButton.hideActivityIndicator()
-      presentAlertWithMessage("Invalid phone number")
+      presentAlertWithMessage("Неправильный номер телефона")
     }
   }
-  
-  private func requestLoginCodeFor(phoneNumber phoneNumber: PhoneNumber) {
-    loginProvider.request(GetFit.Login.Phone(phone: phoneNumber)) { result in
+
+  fileprivate func requestLoginCodeFor(phoneNumber: PhoneNumber) {
+    loginProvider.request(GetFit.Login.phone(phone: phoneNumber)) { result in
       switch result {
-      case .Success(let response):
+      case .success(let response):
         do {
-          try response.filterSuccessfulStatusCodes()
+          try _ = response.filterSuccessfulStatusCodes()
           let json = try JSON(response.mapJSON())
           guard let token = json["token"].string else {
-            throw Error.JSONMapping(response)
+            throw MoyaError.jsonMapping(response)
           }
-          
+
           GetFit.Login.currentSessionData?.verificationToken = token
-          self.performSegueWithIdentifier("verifyPhoneWithCode", sender: nil)
+          self.performSegue(withIdentifier: "verifyPhoneWithCode", sender: nil)
         } catch {
           self.presentAlertWithTitle("Error", andMessage: "Something was broken")
         }
-      case .Failure(let error):
+      case .failure(let error):
         print(error)
         self.presentAlertWithTitle("Error", andMessage: "Check your internet connection")
       }
       self.getCodeButton.hideActivityIndicator()
     }
   }
-  
-  //MARK: - Navigation
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let destination = segue.destinationViewController as? PhoneVerificationTableViewController {
+
+  // MARK: - Navigation
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? PhoneVerificationTableViewController {
       destination.loginProvider = loginProvider
     }
   }

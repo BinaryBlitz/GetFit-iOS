@@ -1,38 +1,34 @@
-//
-//  Exercise.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 18/05/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Realm
 import RealmSwift
 import SwiftyJSON
 
 class Exercise: Object, JSONSerializable {
-  
   dynamic var name: String = ""
-  
+  dynamic var tips: String = ""
+
   required init() {
     super.init()
   }
-  
-  required init(realm: RLMRealm, schema: RLMObjectSchema) {
-    super.init(realm: realm, schema: schema)
-  }
-  
+
   required init?(json: JSON) {
     super.init()
-    
+
     guard let name = json["exercise_type"]["name"].string else {
       return nil
     }
-    
+
+    if let tips = json["exercise_type"]["tips"].string {
+      self.tips = tips
+    }
+
     self.name = name
   }
-  
-  required init(value: AnyObject, schema: RLMSchema) {
+
+  required init(value: Any, schema: RLMSchema) {
     super.init(value: value, schema: schema)
+  }
+
+  required init(realm: RLMRealm, schema: RLMObjectSchema) {
+    super.init(realm: realm, schema: schema)
   }
 }

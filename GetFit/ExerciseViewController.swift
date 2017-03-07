@@ -1,100 +1,105 @@
-//
-//  ExerciseViewController.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 31/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
 import Reusable
 import XCDYouTubeKit
-import Haneke
+import Kingfisher
 
 struct Video {
   let youtubeId: String
-  var previewImageURL: NSURL?
+  var previewImageURL: URL?
   var title: String
   var duration: String
 }
 
 class ExerciseViewController: UIViewController {
-  
+
   @IBOutlet weak var endExerciseButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
-  var exercise: ExerciseSession!
+  var exerciseSession: ExerciseSession!
 
   var videos = [Video]()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     tableView.backgroundColor = UIColor.lightGrayBackgroundColor()
-    tableView.registerReusableCell(ExerciseVideoTableViewCell)
+    tableView.register(cellType: ExerciseVideoTableViewCell.self)
     tableView.rowHeight = UITableViewAutomaticDimension
-    
+
     endExerciseButton.backgroundColor = UIColor.blueAccentColor()
-    
-    navigationItem.title = exercise.name.uppercaseString
-    
+
+    navigationItem.title = exerciseSession.name.uppercased()
+
     ["LeMVDuIO3J0", "yN7KoXI9J0M"].forEach { (youtubeId) in
-      XCDYouTubeClient.defaultClient().getVideoWithIdentifier(youtubeId) { (video, error) in
-        if let xcdVideo = video {
-          
-          let formatter = NSDateComponentsFormatter()
-          formatter.allowedUnits = [.Minute, .Second]
-          formatter.zeroFormattingBehavior = .Pad
-          let duration = formatter.stringFromTimeInterval(xcdVideo.duration)
-          let video = Video(youtubeId: youtubeId!, previewImageURL: xcdVideo.smallThumbnailURL, title: xcdVideo.title, duration: duration!)
-          self.videos.append(video)
-          self.tableView.reloadData()
+      XCDYouTubeClient.default().getVideoWithIdentifier(youtubeId) { (video, error) in
+          if let xcdVideo = video {
+
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.minute, .second]
+            formatter.zeroFormattingBehavior = .pad
+            let duration = formatter.string(from: xcdVideo.duration)
+            let video = Video(youtubeId: youtubeId!, previewImageURL: xcdVideo.smallThumbnailURL, title: xcdVideo.title, duration: duration!)
+            self.videos.append(video)
+            self.tableView.reloadData()
+          }
         }
-      }
     }
   }
-  
-  //MARK: - Actions
-  
-  @IBAction func endExerciseAction(sender: AnyObject) {
-    navigationController?.popViewControllerAnimated(true)
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "trainingTips":
+      let destination = segue.destination as! TrainingTipsViewController
+      destination.tips = exerciseSession.exerciseTips
+    default:
+      break
+    }
   }
-  
-  func showTrainingTips(recognizer: UITapGestureRecognizer) {
-    performSegueWithIdentifier("trainingTips", sender: self)
+
+  // MARK: - Actions
+
+  @IBAction func endExerciseAction(_ sender: AnyObject) {
+    _ = navigationController?.popViewController(animated: true)
+  }
+
+  func showTrainingTips(_ recognizer: UITapGestureRecognizer) {
+    performSegue(withIdentifier: "trainingTips", sender: self)
   }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ExerciseViewController: UITableViewDataSource {
-  
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 2
   }
-  
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == 0 {
       return 1
     }
-    
+
     return videos.count
   }
-  
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
     case 0:
-      let cell = tableView.dequeueReusableCellWithIdentifier("infoCell") as! ExerciseInfoTableViewCell
-      cell.configureWith(exercise)
-      cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), forControlEvents: .TouchUpInside)
-      
+      let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell") as! ExerciseInfoTableViewCell
+      cell.configureWith(exerciseSession)
+      cell.showTipsButton.addTarget(self, action: #selector(showTrainingTips(_:)), for: .touchUpInside)
+
       return cell
     case 1:
-      let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ExerciseVideoTableViewCell
+      let cell = tableView.dequeueReusableCell(for: indexPath) as ExerciseVideoTableViewCell
+      cell.selectionStyle = .none
       let video = videos[indexPath.row]
       cell.videoTitleLabel.text = video.title
-      cell.previewImageView.hnk_setImageFromURL(video.previewImageURL!)
+      cell.previewImageView.kf.setImage(with: video.previewImageURL!)
       cell.videoDurtionLabel.text = video.duration
-      
+
       return cell
     default:
       return UITableViewCell()
@@ -102,23 +107,23 @@ extension ExerciseViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ExerciseViewController: UITableViewDelegate {
-  
-  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 0 {
       return 260
     }
-    
+
     return 123
   }
-  
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard indexPath.section != 0 else { return }
-    
+
     let video = videos[indexPath.row]
-    let videoPlayerViewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: video.youtubeId)
-    presentViewController(videoPlayerViewController, animated: true, completion: nil)
+    let videoPlayerViewController = YouTubeVideoViewController(videoIdentifier: video.youtubeId)
+    present(videoPlayerViewController, animated: true, completion: nil)
   }
 }

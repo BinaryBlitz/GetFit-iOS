@@ -1,11 +1,3 @@
-//
-//  AthleteTests.swift
-//  AthleteTests
-//
-//  Created by Dan Shevlyuk on 26/07/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import XCTest
 
 class AthleteTests: XCTestCase {
@@ -27,7 +19,7 @@ class AthleteTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

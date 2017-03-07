@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GmK-rj-2cT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GmK-rj-2cT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,9 +23,7 @@
                             <outlet property="delegate" destination="ikW-lv-FdO" id="QRd-pQ-9c6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="STORE" id="FUI-ha-9iV">
-                        <barButtonItem key="rightBarButtonItem" image="Filter" id="EPh-S0-ugy"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="STORE" id="FUI-ha-9iV"/>
                     <connections>
                         <segue destination="Syf-XJ-wxQ" kind="show" identifier="programDetails" id="Wd8-f0-QRc"/>
                     </connections>
@@ -83,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tB2-ql-Ih8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2258" y="265"/>
+            <point key="canvasLocation" x="2471" y="265"/>
         </scene>
         <!--TrainerViewController-->
         <scene sceneID="EWL-8m-QIY">
@@ -91,7 +89,7 @@
                 <viewControllerPlaceholder storyboardName="Professionals" referencedIdentifier="TrainerViewController" id="nZd-3X-1IP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="31J-Za-Lym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2750" y="265"/>
+            <point key="canvasLocation" x="3099" y="264"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rwY-Ym-sgX">
@@ -115,7 +113,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Filter" width="22" height="20"/>
         <image name="Search" width="25" height="22"/>
     </resources>
 </document>

@@ -1,30 +1,35 @@
-//
-//  LocalStorageHelper.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 15/03/2016.
-//  Copyright © 2016 BinaryBlitz. All rights reserved.
-//
-
 import Foundation
+import RealmSwift
+import KeychainAccess
 
 struct LocalStorageHelper {
-  
+
   enum StorageKey: String {
-    //TODO: save api token to the keychain
-    case ApiToken
-    case DeviceToken
-    case ShouldUpdateDeviceToken
+    // TODO: save api token to the keychain
+    case apiToken
+    case deviceToken
+    case shouldUpdateDeviceToken
   }
-  
-  static func save(object: AnyObject?, forKey key: StorageKey) {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    userDefaults.setObject(object, forKey: key.rawValue)
+
+  static func save(_ object: Any?, forKey key: StorageKey) {
+    if key == .apiToken, let tokenString = object as? String {
+      let keychain = Keychain()
+      keychain[key.rawValue] = tokenString
+    } else {
+      let userDefaults = UserDefaults.standard
+      userDefaults.set(object, forKey: key.rawValue)
+    }
   }
-  
-  static func loadObjectForKey<T>(key: StorageKey) -> T? {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    let object = userDefaults.objectForKey(key.rawValue)
-    return object as? T
+
+  static func loadObjectForKey<T>(_ key: StorageKey) -> T? {
+    if key == .apiToken {
+      let keychain = Keychain()
+      let object = keychain[key.rawValue]
+      return object as? T
+    } else {
+      let userDefaults = UserDefaults.standard
+      let object = userDefaults.object(forKey: key.rawValue)
+      return object as? T
+    }
   }
 }

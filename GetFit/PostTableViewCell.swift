@@ -1,188 +1,180 @@
-//
-//  PostTableViewCell.swift
-//  Athlete
-//
-//  Created by Dan Shevlyuk on 26/10/15.
-//  Copyright © 2015 BinaryBlitz. All rights reserved.
-//
-
 import UIKit
-import Haneke
+import Kingfisher
 import PureLayout
 import Reusable
 
-typealias PostCellPresentable = protocol<PostPresentable, TrainerPresentable, DateTimePresentable, TextPresentable>
+typealias PostCellPresentable = PostPresentable & TrainerPresentable & DateTimePresentable & TextPresentable
 
 class PostTableViewCell: UITableViewCell, NibReusable {
-  
-  //MARK: - Constants
-  private let imageContentHeight: CGFloat = 208
-  private let programContrentHeight: CGFloat = 100
-  private let spaceBetweenTextAndContent: CGFloat = 12
-  private let numberOfLinesInPostPreview = 5
 
-  //MARK: - Base
+  // MARK: - Constants
+  fileprivate let imageContentHeight: CGFloat = 208
+  fileprivate let programContrentHeight: CGFloat = 100
+  fileprivate let spaceBetweenTextAndContent: CGFloat = 12
+  fileprivate let numberOfLinesInPostPreview = 5
+
+  // MARK: - Base
   @IBOutlet weak var cardView: CardView!
-  
-  //MARK: - Header
+
+  // MARK: - Header
   @IBOutlet weak var trainerAvatarImageView: CircleImageView!
   @IBOutlet weak var trainerNameLabel: UILabel!
-  
-  //MARK: - Body
+
+  // MARK: - Body
   @IBOutlet weak var postContentLabel: UILabel!
-  
+
   var contentImageView: UIImageView?
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerHeight: NSLayoutConstraint!
   @IBOutlet weak var containerToTextSpace: NSLayoutConstraint!
-  
-  //MARK: - Footer
+
+  // MARK: - Footer
   @IBOutlet weak var dateView: BadgeView!
   @IBOutlet weak var commentsCountLabel: UILabel!
   @IBOutlet weak var commentButton: UIButton!
   @IBOutlet weak var likesCountLabel: UILabel!
   @IBOutlet weak var likeButton: UIButton!
-  
+
   enum ContentType {
-    case None
-    case Photo(photoURL: NSURL)
-    case TrainingProgram(program: Program)
+    case none
+    case photo(photoURL: URL)
+    case trainingProgram(program: Program)
   }
-  
+
   enum PostCellState {
-    case Normal
-    case Card
+    case normal
+    case card
   }
-  
-  var state: PostCellState = .Card {
+
+  var state: PostCellState = .card {
     didSet {
       updateWithState(state)
     }
   }
-  
+
   var liked: Bool {
     get {
-      return likeButton.selected
+      return likeButton.isSelected
     }
     set(newValue) {
-      likeButton.selected = newValue
+      likeButton.isSelected = newValue
     }
   }
-  
-  //MARK: - Delegate
-  
+
+  // MARK: - Delegate
+
   weak var delegate: PostTableViewCellDelegate?
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     contentView.backgroundColor = .lightGrayBackgroundColor()
-    
-    likeButton.setImage(UIImage(named: "Likes"), forState: .Normal)
-    likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Selected)
-    likeButton.setImage(UIImage(named: "LikesSelected"), forState: .Highlighted)
-    
+
+    likeButton.setImage(UIImage(named: "Likes"), for: UIControlState())
+    likeButton.setImage(UIImage(named: "LikesSelected"), for: .selected)
+    likeButton.setImage(UIImage(named: "LikesSelected"), for: .highlighted)
+
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
-    layoutMargins = UIEdgeInsetsZero
-    
+    layoutMargins = UIEdgeInsets.zero
+
     trainerAvatarImageView.image = EmptyStateHelper.avatarPlaceholderImage
   }
-  
-  //MARK: - Cell configuration
-  
-  func configureWith(viewModel: PostCellPresentable) {
+
+  // MARK: - Cell configuration
+
+  func configureWith(_ viewModel: PostCellPresentable) {
     if let imageURL = viewModel.imageURL {
-      updateContentWith(.Photo(photoURL: imageURL))
+      updateContentWith(.photo(photoURL: imageURL as URL))
     } else if let program = viewModel.program {
-      updateContentWith(.TrainingProgram(program: program))
+      updateContentWith(.trainingProgram(program: program))
     } else {
-      updateContentWith(.None)
+      updateContentWith(.none)
     }
-    
+
     postContentLabel.text = viewModel.text
-    
+
     if let trainerAvatarURL = viewModel.trainerAvatarURL {
-      trainerAvatarImageView.hnk_setImageFromURL(trainerAvatarURL)
+      trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
-    
-    likeButton.selected = viewModel.liked
+
+    liked = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
-    
+
     dateView.text = viewModel.dateString
-    
+
     likesCountLabel.text = viewModel.likesCount
     commentsCountLabel.text = viewModel.commentsCount
   }
-  
-  private func updateContentWith(type: ContentType) {
+
+  fileprivate func updateContentWith(_ type: ContentType) {
     switch type {
-    case .None:
+    case .none:
       containerHeight.constant = 0
       containerToTextSpace.constant = 0
-      containerView.hidden = true
-    case .Photo(let photoURL):
+      containerView.isHidden = true
+    case .photo(let photoURL):
       containerHeight.constant = imageContentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent
-      containerView.hidden = false
-      containerView.backgroundColor = UIColor.lightGrayColor()
-      
+      containerView.isHidden = false
+      containerView.backgroundColor = UIColor.lightGray
+
       // create image view
       let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: imageContentHeight))
       self.contentImageView = imageView
-      imageView.contentMode = UIViewContentMode.ScaleAspectFill
+      imageView.contentMode = UIViewContentMode.scaleAspectFill
       imageView.layer.masksToBounds = true
-      imageView.hnk_setImageFromURL(photoURL)
+      imageView.kf.setImage(with: photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
-      
-    case .TrainingProgram(let program):
+
+    case .trainingProgram(let program):
       containerHeight.constant = programContrentHeight
       containerToTextSpace.constant = spaceBetweenTextAndContent
-      containerView.hidden = false
-      containerView.backgroundColor = UIColor.lightGrayColor()
+      containerView.isHidden = false
+      containerView.backgroundColor = UIColor.lightGray
       let programView = loadProgramPreviewView()
       programView.configureWith(ProgramViewModel(program: program))
       containerView.addSubview(programView)
       programView.autoPinEdgesToSuperviewEdges()
     }
   }
-  
+
   func loadProgramPreviewView() -> ProgramPreviewView {
-    let nibName = String(ProgramPreviewView)
-    return NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
+    let nibName = String(describing: ProgramPreviewView.self)
+    return Bundle.main.loadNibNamed(nibName, owner: self, options: nil)!.first as! ProgramPreviewView
   }
-  
-  //MARK: - Actions
-  
-  @IBAction func commentButtonAction(sender: AnyObject) {
+
+  // MARK: - Actions
+
+  @IBAction func commentButtonAction(_ sender: AnyObject) {
     delegate?.didTouchCommentButton(self)
   }
-  
-  @IBAction func likeButtonAction(sender: AnyObject) {
+
+  @IBAction func likeButtonAction(_ sender: AnyObject) {
     defer { delegate?.didTouchLikeButton(self) }
-    likeButton.selected = !likeButton.selected
-    
+    likeButton.isSelected = !likeButton.isSelected
+
     if let likesString = likesCountLabel.text,
-        likes = Int(likesString) {
-      if likeButton.selected {
+       let likes = Int(likesString) {
+      if likeButton.isSelected {
         likesCountLabel.text = String(likes + 1)
       } else {
         likesCountLabel.text = String(likes - 1)
       }
     }
   }
-  
-  private func updateWithState(state: PostCellState) {
+
+  fileprivate func updateWithState(_ state: PostCellState) {
     switch state {
-    case .Card:
-      cardView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
-    case .Normal:
+    case .card:
+      cardView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 5, left: 7, bottom: 5, right: 7))
+    case .normal:
       cardView.autoPinEdgesToSuperviewEdges()
     }
   }
 }
 
-//MARK: - Previewable
+// MARK: - Previewable
 
 extension PostTableViewCell: Previewable {
   var displayAsPreview: Bool {
