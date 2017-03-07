@@ -23,9 +23,7 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var trainerNameLabel: UILabel!
   @IBOutlet weak var trainerAvatar: CircleImageView!
   @IBOutlet weak var bannerImageView: UIImageView!
-
   @IBOutlet weak var categoryBadge: BadgeView!
-
   @IBOutlet weak var bannerView: UIView!
   @IBOutlet weak var contentStackView: UIStackView!
 

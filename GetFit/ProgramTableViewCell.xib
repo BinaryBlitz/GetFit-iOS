@@ -84,6 +84,7 @@
                                             <constraint firstAttribute="height" constant="40" id="UQB-w4-eRP"/>
                                             <constraint firstAttribute="trailing" secondItem="jIz-Q7-RWO" secondAttribute="trailing" id="XdI-qH-0uY"/>
                                             <constraint firstItem="szk-b8-WiK" firstAttribute="top" secondItem="AKV-I1-ayx" secondAttribute="top" id="gUP-hI-ZUH"/>
+                                            <constraint firstItem="jIz-Q7-RWO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="szk-b8-WiK" secondAttribute="trailing" constant="5" id="qUc-6h-JWy"/>
                                             <constraint firstItem="szk-b8-WiK" firstAttribute="leading" secondItem="AKV-I1-ayx" secondAttribute="leading" id="sKy-D9-aZp"/>
                                         </constraints>
                                     </view>

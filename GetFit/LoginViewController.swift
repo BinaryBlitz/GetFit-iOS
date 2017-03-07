@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     // Add overlay
     let overlay = UIView(frame: backgroundImageView.frame)

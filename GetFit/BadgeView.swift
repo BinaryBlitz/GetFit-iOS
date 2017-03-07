@@ -7,6 +7,8 @@ private var lightBlueColor = UIColor.blueAccentColor()
 
 @objc class BadgeView: UIView {
   let animationDuration = 0.2
+  var widthConstraint: NSLayoutConstraint? = nil
+  var heightConstraint: NSLayoutConstraint? = nil
 
   var label: UILabel
 
@@ -64,6 +66,7 @@ private var lightBlueColor = UIColor.blueAccentColor()
     }
     set(newFontSize) {
       label.font = label.font.withSize(newFontSize)
+      updateConstraints()
     }
   }
 
@@ -74,6 +77,7 @@ private var lightBlueColor = UIColor.blueAccentColor()
     set(newText) {
       label.text = newText?.uppercased()
       updateConstraints()
+
     }
   }
 
@@ -105,6 +109,9 @@ private var lightBlueColor = UIColor.blueAccentColor()
 
     addSubview(label)
     label.autoCenterInSuperview()
+    widthConstraint = autoSetDimension(.width, toSize: label.frame.width)
+    heightConstraint = autoSetDimension(.height, toSize: label.frame.height)
+    autoMatch(.width, to: .width, of: label, withMultiplier: 1, relation: .greaterThanOrEqual)
   }
 
   fileprivate func updateStyle(_ style: Style) {
@@ -126,22 +133,14 @@ private var lightBlueColor = UIColor.blueAccentColor()
 
   override func updateConstraints() {
     super.updateConstraints()
-
-    label.sizeToFit()
-
-    let labelSize = label.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-    autoSetDimension(.width, toSize: labelSize.width + 26)
-    label.autoPinEdge(.leading, to: .leading, of: self)
-    label.autoPinEdge(.trailing, to: .trailing, of: self)
+    let labelSize = label.systemLayoutSizeFitting(UILayoutFittingExpandedSize)
+    widthConstraint?.constant = labelSize.width + 26
 
     switch style.height {
     case .low:
-      autoSetDimension(.height, toSize: labelSize.height + 10)
+      heightConstraint?.constant = labelSize.height + 10
     case .tall:
-      autoSetDimension(.height, toSize: labelSize.height + 16)
+      heightConstraint?.constant = labelSize.height + 16
     }
-    setNeedsLayout()
-    layoutIfNeeded()
-
   }
 }

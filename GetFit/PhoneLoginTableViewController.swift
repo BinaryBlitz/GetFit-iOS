@@ -13,6 +13,8 @@ class PhoneLoginTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
     showNavigationBar()
     setupPhoneNumberTextField()
     getCodeButton.backgroundColor = UIColor.blueAccentColor()
@@ -20,14 +22,15 @@ class PhoneLoginTableViewController: UITableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     phoneNumberTextField.becomeFirstResponder()
+    showNavigationBar()
   }
 
   fileprivate func showNavigationBar() {
+    guard let navigationController = self.navigationController, navigationController.isNavigationBarHidden else { return }
     UIView.animate(withDuration: 0.15, animations: {
       self.navigationController?.isNavigationBarHidden = false
     })
 
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
 
   fileprivate func setupPhoneNumberTextField() {
