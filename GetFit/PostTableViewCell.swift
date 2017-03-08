@@ -74,6 +74,11 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     likeButton.setImage(UIImage(named: "LikesSelected"), for: .selected)
     likeButton.setImage(UIImage(named: "LikesSelected"), for: .highlighted)
 
+    likeButton.imageView?.contentMode = .scaleAspectFit
+    likeButton.imageEdgeInsets = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
+    commentButton.imageView?.contentMode = .scaleAspectFit
+    commentButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
     layoutMargins = UIEdgeInsets.zero
 
