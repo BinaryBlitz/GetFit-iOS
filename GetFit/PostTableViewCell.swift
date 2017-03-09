@@ -32,8 +32,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var dateView: BadgeView!
   @IBOutlet weak var commentsCountLabel: UILabel!
   @IBOutlet weak var commentButton: UIButton!
-  @IBOutlet weak var likesCountLabel: UILabel!
-  @IBOutlet weak var likeButton: UIButton!
 
   enum ContentType {
     case none
@@ -52,15 +50,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     }
   }
 
-  var liked: Bool {
-    get {
-      return likeButton.isSelected
-    }
-    set(newValue) {
-      likeButton.isSelected = newValue
-    }
-  }
-
   // MARK: - Delegate
 
   weak var delegate: PostTableViewCellDelegate?
@@ -70,12 +59,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
 
     contentView.backgroundColor = .lightGrayBackgroundColor()
 
-    likeButton.setImage(UIImage(named: "Likes"), for: UIControlState())
-    likeButton.setImage(UIImage(named: "LikesSelected"), for: .selected)
-    likeButton.setImage(UIImage(named: "LikesSelected"), for: .highlighted)
-
-    likeButton.imageView?.contentMode = .scaleAspectFit
-    likeButton.imageEdgeInsets = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
     commentButton.imageView?.contentMode = .scaleAspectFit
     commentButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 
@@ -102,12 +85,10 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
 
-    liked = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
 
     dateView.text = viewModel.dateString
 
-    likesCountLabel.text = viewModel.likesCount
     commentsCountLabel.text = viewModel.commentsCount
   }
 
@@ -158,20 +139,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
 
   @IBAction func commentButtonAction(_ sender: AnyObject) {
     delegate?.didTouchCommentButton(self)
-  }
-
-  @IBAction func likeButtonAction(_ sender: AnyObject) {
-    defer { delegate?.didTouchLikeButton(self) }
-    likeButton.isSelected = !likeButton.isSelected
-
-    if let likesString = likesCountLabel.text,
-       let likes = Int(likesString) {
-      if likeButton.isSelected {
-        likesCountLabel.text = String(likes + 1)
-      } else {
-        likesCountLabel.text = String(likes - 1)
-      }
-    }
   }
 
   fileprivate func updateWithState(_ state: PostCellState) {

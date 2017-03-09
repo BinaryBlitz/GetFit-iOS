@@ -185,18 +185,4 @@ extension NewsTableViewController: PostTableViewCellDelegate {
 
     performSegue(withIdentifier: "viewPostAndComment", sender: post)
   }
-
-  func didTouchLikeButton(_ cell: PostTableViewCell) {
-    cell.likeButton.isEnabled = false
-    struct SharedRequest {
-      static var request: Cancellable?
-    }
-
-    SharedRequest.request?.cancel()
-    guard let indexPath = tableView.indexPath(for: cell), let post = posts?[indexPath.row] else { return }
-    SharedRequest.request =
-      PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
-        cell.likeButton.isEnabled = true
-    }
-  }
 }

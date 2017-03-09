@@ -242,12 +242,11 @@ class ProfessionalTableViewController: UITableViewController {
 extension ProfessionalTableViewController: ButtonStripViewDelegate {
   func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
     selectedTab = index
-    let offset = tableView.contentOffset
     tableView.reloadData()
     if tableView.numberOfRows(inSection: selectedTab) >= 2 {
-      tableView.setContentOffset(offset, animated: true)
+      tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
     } else {
-      tableView.setContentOffset(CGPoint.zero, animated: true)
+      tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
   }
 }

@@ -84,7 +84,7 @@ class PostViewController: UIViewController {
         self.tableView.reloadData()
       }
       if self.shouldScrollToFirstComment && self.post.comments.count > 0 {
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .bottom, animated: true)
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
       }
       self.shouldScrollToFirstComment = false
       self.refreshControl?.endRefreshing()
@@ -270,12 +270,6 @@ extension PostViewController: UITableViewDataSource {
 // MARK: - PostTableViewCellDelegate
 
 extension PostViewController: PostTableViewCellDelegate {
-  func didTouchLikeButton(_ cell: PostTableViewCell) {
-    cell.likeButton.isEnabled = false
-    _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
-      cell.likeButton.isEnabled = true
-    }
-  }
 
   func didTouchImageView(_ cell: PostTableViewCell) {
     guard let imageUrlString = post.imageURLString else { return }
