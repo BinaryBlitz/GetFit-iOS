@@ -58,12 +58,21 @@ class Program: Object, ALSwiftyJSONAble {
       self.purchaseId = purchaseId
     }
 
-    if let trainer = Trainer(jsonData: jsonData["trainer"]) {
-      self.trainer = trainer
+    if let trainerId = jsonData["trainer"]["id"].int {
       let realm = try! Realm()
-      try! realm.write {
-        realm.add(trainer, update: true)
+      if let realmTrainer = realm.object(ofType: Trainer.self, forPrimaryKey: trainerId) {
+        try! realm.write {
+          self.trainer = realmTrainer
+        }
+      } else {
+        if let trainer = Trainer(jsonData: jsonData["trainer"]) {
+          try! realm.write {
+            realm.add(trainer)
+            self.trainer = trainer
+          }
+        }
       }
+
     }
 
     if let workoutsCount = jsonData["workouts_count"].int {
