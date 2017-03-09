@@ -5,6 +5,11 @@ import Reusable
 
 protocol ProfessionalCellDelegate: class {
   func professionalCell(_ cell: ProfessionalTableViewCell, didChangeFollowingTo: Bool)
+  func avatarViewDidTap()
+}
+
+extension ProfessionalCellDelegate {
+  func avatarViewDidTap() { }
 }
 
 class ProfessionalTableViewCell: UITableViewCell, NibReusable {
@@ -74,6 +79,9 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     bannerImageView.image = nil
 
     setupFollowButton()
+
+    avatarImageView.isUserInteractionEnabled = true
+    avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarViewDidTap)))
 
     let maskView = UIView()
     maskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -178,6 +186,10 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     }
 
     self.state = state
+  }
+
+  func avatarViewDidTap() {
+    delegate?.avatarViewDidTap()
   }
 
   fileprivate func resetImages() {

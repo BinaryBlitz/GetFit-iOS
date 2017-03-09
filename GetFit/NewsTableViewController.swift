@@ -157,7 +157,7 @@ class NewsTableViewController: UITableViewController {
       destination.postsProvider = postsProvider
       switch segue.identifier {
       case .some("viewPostAndComment"):
-        destination.shouldShowKeyboadOnOpen = true
+        destination.shouldScrollToFirstComment = true
       default:
         break
       }

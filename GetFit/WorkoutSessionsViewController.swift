@@ -388,7 +388,6 @@ extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
         session.synced = false
       }
       self.tableViewDataSource.remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
     }
     doneAction.image = #imageLiteral(resourceName:"Checkmark")
     doneAction.backgroundColor = UIColor.greenAccentColor()

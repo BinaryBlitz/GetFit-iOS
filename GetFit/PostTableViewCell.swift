@@ -131,6 +131,7 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       imageView.kf.setImage(with: photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
+      self.contentImageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageDidTap)))
 
     case .trainingProgram(let program):
       containerHeight.constant = programContrentHeight
@@ -150,6 +151,10 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   }
 
   // MARK: - Actions
+
+  func imageDidTap() {
+    delegate?.didTouchImageView(self)
+  }
 
   @IBAction func commentButtonAction(_ sender: AnyObject) {
     delegate?.didTouchCommentButton(self)

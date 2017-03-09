@@ -18,7 +18,7 @@ class PostViewController: UIViewController {
   let noCommentsView = EmptyTablePlaceholderView.nibInstance()
   let noCommentsViewHeight: CGFloat = 100
 
-  var shouldShowKeyboadOnOpen = false
+  var shouldScrollToFirstComment = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,11 +38,6 @@ class PostViewController: UIViewController {
     super.viewDidAppear(animated)
 
     tableView.reloadData()
-
-    if shouldShowKeyboadOnOpen {
-      commentTextField.becomeFirstResponder()
-      shouldShowKeyboadOnOpen = false
-    }
 
     refresh()
   }
@@ -88,6 +83,10 @@ class PostViewController: UIViewController {
       if oldCommentsCount != self.post.comments.count {
         self.tableView.reloadData()
       }
+      if self.shouldScrollToFirstComment && self.post.comments.count > 0 {
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .bottom, animated: true)
+      }
+      self.shouldScrollToFirstComment = false
       self.refreshControl?.endRefreshing()
       // TODO: implement infinite scrolling
       // self.tableView.infiniteScrollingView.stopAnimating()
@@ -276,6 +275,13 @@ extension PostViewController: PostTableViewCellDelegate {
     _ = PostViewModel(post: post).updateReaction(cell.likeButton.isSelected ? .like : .dislike) {
       cell.likeButton.isEnabled = true
     }
+  }
+
+  func didTouchImageView(_ cell: PostTableViewCell) {
+    guard let imageUrlString = post.imageURLString else { return }
+    let photoBrowserViewController = PhotoBrowserViewController()
+    photoBrowserViewController.imageURL = URL(string: imageUrlString)
+    navigationController?.pushViewController(photoBrowserViewController, animated: true)
   }
 }
 

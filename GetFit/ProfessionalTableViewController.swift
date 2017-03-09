@@ -280,6 +280,14 @@ extension ProfessionalTableViewController: ProfessionalCellDelegate {
     }
   }
 
+  func avatarViewDidTap() {
+    guard let imageUrlString = trainer.avatarURLString else { return }
+    let photoBrowserViewController = PhotoBrowserViewController()
+    photoBrowserViewController.imageURL = URL(string: imageUrlString)
+    navigationController?.pushViewController(photoBrowserViewController, animated: true)
+
+  }
+
   func createFollowing() {
     trainersProvider.request(.createFollowing(trainerId: trainer.id)) { [weak self] result in
       switch result {

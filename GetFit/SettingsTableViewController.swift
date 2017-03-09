@@ -63,10 +63,8 @@ class SettingsTableViewController: UITableViewController {
           do {
             try _ = response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
-            self.presentAlertWithMessage("Your profile is updated!") { _ in
-              _ = self.navigationController?.popViewController(animated: true)
-            }
-            
+            _ = self.navigationController?.popViewController(animated: true)
+
             if let user = UserManager.currentUser {
               user.firstName = firstName
               user.lastName = lastName

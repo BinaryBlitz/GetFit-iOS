@@ -142,6 +142,7 @@
 		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
+		881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */; };
 		8838A5431E66221100A57D9C /* EmptyTablePlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */; };
 		8838A5451E6623A700A57D9C /* EmptyTablePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */; };
 		888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D3F6C1E671AF3001C06D9 /* Following.swift */; };
@@ -307,6 +308,7 @@
 		768AF447A23055493D573F09 /* Pods_GetFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Athlete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
+		881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTablePlaceholderView.xib; sourceTree = "<group>"; };
 		8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTablePlaceholderView.swift; sourceTree = "<group>"; };
 		888D3F6C1E671AF3001C06D9 /* Following.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 		882AC3671E56F7EF0092682E /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */,
 			);
 			name = PhotoBrowser;
 			sourceTree = "<group>";
@@ -1116,6 +1119,7 @@
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
 				3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
+				881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */,
 				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
 				374D46831CD6240900234FC5 /* ProgramTableViewCell.swift in Sources */,
 				372EAA4C1BE68BF40049DF73 /* PostViewController.swift in Sources */,
