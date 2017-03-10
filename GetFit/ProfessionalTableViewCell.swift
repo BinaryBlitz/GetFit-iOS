@@ -174,7 +174,7 @@ class ProfessionalTableViewCell: UITableViewCell, NibReusable {
     following = trainer.following
 
     followersCount = trainer.followersCount
-    ratingLabel.text = "\(Int(trainer.rating))"
+    ratingLabel.text = "\(trainer.rating.roundedString())"
 
     bannerImageView.image = EmptyStateHelper.generateBannerImageFor(trainer)
     bannerMaskView?.isHidden = true

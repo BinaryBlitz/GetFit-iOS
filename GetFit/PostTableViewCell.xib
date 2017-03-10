@@ -49,7 +49,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdf-XJ-I8w">
-                                <rect key="frame" x="397" y="211" width="30" height="35"/>
+                                <rect key="frame" x="393" y="211" width="30" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="iXJ-cl-heC"/>
                                 </constraints>
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pub-Ln-za6">
-                                <rect key="frame" x="387" y="218" width="10" height="21"/>
+                                <rect key="frame" x="383" y="218" width="10" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                             <constraint firstAttribute="trailing" secondItem="gwh-5v-zGq" secondAttribute="trailing" id="7FC-4V-sDG"/>
                             <constraint firstItem="SuA-0M-2Gl" firstAttribute="leading" secondItem="xsk-yN-fJ7" secondAttribute="leading" id="AYQ-68-lXT"/>
                             <constraint firstAttribute="bottom" secondItem="SuA-0M-2Gl" secondAttribute="bottom" constant="20" id="AmK-vB-lFv"/>
-                            <constraint firstAttribute="trailing" secondItem="xdf-XJ-I8w" secondAttribute="trailing" constant="5" id="BQc-Ec-aET"/>
+                            <constraint firstAttribute="trailing" secondItem="xdf-XJ-I8w" secondAttribute="trailing" constant="9" id="BQc-Ec-aET"/>
                             <constraint firstItem="gwh-5v-zGq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SSw-3e-gir" secondAttribute="bottom" constant="12" id="CEk-7r-Urx"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VPq-gb-Gxg" secondAttribute="trailing" constant="17" id="Cg0-PQ-xVl"/>
                             <constraint firstItem="VPq-gb-Gxg" firstAttribute="leading" secondItem="xsk-yN-fJ7" secondAttribute="trailing" constant="12" id="HOd-oC-y4u"/>

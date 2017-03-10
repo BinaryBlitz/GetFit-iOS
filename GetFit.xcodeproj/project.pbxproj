@@ -143,6 +143,7 @@
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
 		881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */; };
+		881BB76B1E729760008781C6 /* Double+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB76A1E729760008781C6 /* Double+round.swift */; };
 		8838A5431E66221100A57D9C /* EmptyTablePlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */; };
 		8838A5451E6623A700A57D9C /* EmptyTablePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */; };
 		888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D3F6C1E671AF3001C06D9 /* Following.swift */; };
@@ -309,6 +310,7 @@
 		7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Athlete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
 		881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
+		881BB76A1E729760008781C6 /* Double+round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+round.swift"; sourceTree = "<group>"; };
 		8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTablePlaceholderView.xib; sourceTree = "<group>"; };
 		8838A5441E6623A700A57D9C /* EmptyTablePlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTablePlaceholderView.swift; sourceTree = "<group>"; };
 		888D3F6C1E671AF3001C06D9 /* Following.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				374A9ABB1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift */,
 				374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */,
 				889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */,
+				881BB76A1E729760008781C6 /* Double+round.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 				37E4A4541BDF8739004193BF /* WorkoutSessionsViewController.swift in Sources */,
 				378A3F411BE80E7B00715658 /* EditExerciseTableViewController.swift in Sources */,
 				37D7AD991C79D5E000CA96E9 /* CardView.swift in Sources */,
+				881BB76B1E729760008781C6 /* Double+round.swift in Sources */,
 				3721768F1C94CC8B002B4007 /* UIViewController+PresentAlert.swift in Sources */,
 				376F657B1C7CA0B30016071C /* CommentViewModel.swift in Sources */,
 				37C7F5BD1BDF9826007BA0A9 /* TrainingTableViewCell.swift in Sources */,
