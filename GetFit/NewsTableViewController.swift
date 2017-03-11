@@ -120,8 +120,6 @@ class NewsTableViewController: UITableViewController {
 
     if post.imageURLString != nil {
       return 400
-    } else if post.program != nil {
-      return 300
     } else {
       return UITableViewAutomaticDimension
     }
@@ -133,7 +131,7 @@ class NewsTableViewController: UITableViewController {
     if post.imageURLString != nil {
       return 400
     } else if post.program != nil {
-      return 300
+      return 432
     } else {
       return 180
     }
@@ -152,15 +150,21 @@ class NewsTableViewController: UITableViewController {
   // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let destination = segue.destination as? PostViewController, let post = sender as? Post {
+
+    switch segue.identifier {
+    case .some("showProgramDetails"):
+      guard let program = sender as? Program else { return }
+      let destination = segue.destination as! ProgramDetailsTableViewController
+      destination.program = program
+    case .some("viewPostAndComment"), .some("viewPost"):
+      guard let destination = segue.destination as? PostViewController, let post = sender as? Post else { return }
       destination.post = post
       destination.postsProvider = postsProvider
-      switch segue.identifier {
-      case .some("viewPostAndComment"):
+      if segue.identifier == "viewPostAndComment" {
         destination.shouldScrollToFirstComment = true
-      default:
-        break
       }
+    default:
+      break
     }
   }
 
@@ -184,5 +188,9 @@ extension NewsTableViewController: PostTableViewCellDelegate {
     }
 
     performSegue(withIdentifier: "viewPostAndComment", sender: post)
+  }
+
+  func didTouchProgramView(_ program: Program) {
+    performSegue(withIdentifier: "showProgramDetails", sender: program)
   }
 }

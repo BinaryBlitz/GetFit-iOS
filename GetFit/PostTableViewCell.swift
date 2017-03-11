@@ -7,6 +7,8 @@ typealias PostCellPresentable = PostPresentable & TrainerPresentable & DateTimeP
 
 class PostTableViewCell: UITableViewCell, NibReusable {
 
+  var viewModel: PostCellPresentable? = nil
+
   // MARK: - Constants
   fileprivate let imageContentHeight: CGFloat = 208
   fileprivate let programContrentHeight: CGFloat = 100
@@ -71,6 +73,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   // MARK: - Cell configuration
 
   func configureWith(_ viewModel: PostCellPresentable) {
+    self.viewModel = viewModel
+
     if let imageURL = viewModel.imageURL {
       updateContentWith(.photo(photoURL: imageURL as URL))
     } else if let program = viewModel.program {
@@ -115,12 +119,14 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       self.contentImageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageDidTap)))
 
     case .trainingProgram(let program):
-      containerHeight.constant = programContrentHeight
+      let programView = loadProgramPreviewView()
+      programView.configureWith(ProgramViewModel(program: program))
+      programView.layoutIfNeeded()
+      containerHeight.constant = programView.frame.height + 10
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.isHidden = false
       containerView.backgroundColor = UIColor.lightGray
-      let programView = loadProgramPreviewView()
-      programView.configureWith(ProgramViewModel(program: program))
+      programView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(programDidTap)))
       containerView.addSubview(programView)
       programView.autoPinEdgesToSuperviewEdges()
     }
@@ -132,6 +138,11 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   }
 
   // MARK: - Actions
+
+  func programDidTap() {
+    guard let program = viewModel?.program else { return }
+    delegate?.didTouchProgramView(program)
+  }
 
   func imageDidTap() {
     delegate?.didTouchImageView(self)

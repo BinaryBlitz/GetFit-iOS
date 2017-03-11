@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class ProgramPreviewView: UIView {
 
@@ -6,6 +7,7 @@ class ProgramPreviewView: UIView {
   @IBOutlet weak var infoLabel: UILabel!
   @IBOutlet weak var priceBadge: BadgeView!
   @IBOutlet weak var contentView: UIView!
+  @IBOutlet weak var bannerView: UIImageView!
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -21,5 +23,6 @@ class ProgramPreviewView: UIView {
     infoLabel.attributedText = program.info
     priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     priceBadge.text = program.price
+    bannerView.kf.setImage(with: program.bannerURL)
   }
 }
