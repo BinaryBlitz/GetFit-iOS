@@ -2,6 +2,7 @@ import UIKit
 import Reusable
 import RealmSwift
 import Moya
+import RSKImageCropper
 
 class ProfileTableViewController: UITableViewController {
 
@@ -271,25 +272,11 @@ class ProfileTableViewController: UITableViewController {
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
-    guard let imageType = imageTypeToSelect else { return }
     picker.dismiss(animated: true, completion: nil)
 
-    userProvider.request(.updateImage(type: imageType, image: image)) { (result) in
-      switch result {
-      case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          self.presentAlertWithMessage("\(imageType.rawValue) updated!")
-          self.refresh()
-        } catch {
-          print("response is not successful")
-          self.presentAlertWithMessage("Upload failed")
-        }
-      case .failure(let error):
-        print("error: \(error)")
-        self.presentAlertWithMessage("Error: \(error)")
-      }
-    }
+    let imageCropViewController = RSKImageCropViewController(image: image)
+    imageCropViewController.delegate = self
+    present(imageCropViewController, animated: true, completion: nil)
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -308,5 +295,33 @@ extension ProfileTableViewController: ButtonStripViewDelegate {
     } else {
       tableView.setContentOffset(CGPoint.zero, animated: true)
     }
+  }
+}
+
+extension ProfileTableViewController: RSKImageCropViewControllerDelegate {
+  func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+    controller.dismiss(animated: true, completion: nil)
+    guard let imageType = imageTypeToSelect else { return }
+
+    userProvider.request(.updateImage(type: imageType, image: croppedImage)) { (result) in
+      switch result {
+      case .success(let response):
+        do {
+          try _ = response.filterSuccessfulStatusCodes()
+          self.presentAlertWithMessage("\(imageType.rawValue) updated!")
+          self.refresh()
+        } catch {
+          print("response is not successful")
+          self.presentAlertWithMessage("Upload failed")
+        }
+      case .failure(let error):
+        print("error: \(error)")
+        self.presentAlertWithMessage("Error: \(error)")
+      }
+    }
+  }
+
+  func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+    controller.dismiss(animated: true, completion: nil)
   }
 }

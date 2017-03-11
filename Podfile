@@ -18,6 +18,7 @@ target 'GetFit' do
   pod 'XCDYouTubeKit', '~> 2.5'
   pod 'JSQMessagesViewController', '~> 7.3'
   pod 'Kingfisher', '~> 3.4'
+  pod 'RSKImageCropper'
 
   # Tools
   pod 'SwiftDate', '~> 4.0'

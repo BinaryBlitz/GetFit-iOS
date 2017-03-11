@@ -47,6 +47,7 @@ PODS:
     - Reusable/View (= 3.0.1)
   - Reusable/Storyboard (3.0.1)
   - Reusable/View (3.0.1)
+  - RSKImageCropper (1.6.0)
   - SwiftDate (4.0.13)
   - SwiftyJSON (3.1.4)
   - SwipeCellKit (1.3.0)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - PureLayout (~> 3.0)
   - RealmSwift (~> 2.4)
   - Reusable (~> 3.0)
+  - RSKImageCropper
   - SwiftDate (~> 4.0)
   - SwipeCellKit (~> 1.1)
   - Toucan (~> 0.6)
@@ -95,6 +97,7 @@ SPEC CHECKSUMS:
   RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   Reusable: 5362d10271ca8316b104698a21e90498f47e8339
+  RSKImageCropper: 6903235c7a8a79acb1e1f3490e2c911b858f8208
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwipeCellKit: 153abf7c9837ed70b8bca0d0e74dbad17cf6ed49
@@ -102,6 +105,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: '09fb42ad3fc9130bad50b4eda655ce12785e52cb'
+PODFILE CHECKSUM: 4b8bfe8e43cc74accded358e5d2e0562776f6648
 
 COCOAPODS: 1.2.0
