@@ -21,6 +21,14 @@ struct UserManager {
     }
   }
 
+  static func logout() {
+    apiToken = nil
+    let realm = try! Realm()
+    try! realm.write {
+      realm.deleteAll()
+    }
+  }
+
   static var authenticated: Bool {
     return apiToken != nil
   }

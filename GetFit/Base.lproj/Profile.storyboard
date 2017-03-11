@@ -79,7 +79,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
-                                                        <action selector="editingDidBeginAction:" destination="6M5-xo-PYs" eventType="editingDidBegin" id="tNB-ZM-Fle"/>
+                                                        <action selector="editingChangedAction:" destination="6M5-xo-PYs" eventType="editingChanged" id="q16-VJ-z0c"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -102,7 +102,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
-                                                        <action selector="editingDidBeginAction:" destination="6M5-xo-PYs" eventType="editingDidBegin" id="e8V-Lz-FUt"/>
+                                                        <action selector="editingChangedAction:" destination="6M5-xo-PYs" eventType="editingChanged" id="Ri4-FO-lGJ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

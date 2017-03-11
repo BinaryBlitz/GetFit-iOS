@@ -12,7 +12,7 @@ struct LocalStorageHelper {
   }
 
   static func save(_ object: Any?, forKey key: StorageKey) {
-    if key == .apiToken, let tokenString = object as? String {
+    if key == .apiToken, let tokenString = object as? String? {
       let keychain = Keychain()
       keychain[key.rawValue] = tokenString
     } else {

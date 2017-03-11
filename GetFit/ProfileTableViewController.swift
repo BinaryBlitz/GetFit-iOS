@@ -6,8 +6,6 @@ import RSKImageCropper
 
 class ProfileTableViewController: UITableViewController {
 
-  fileprivate let tabsLabels = ["statistic", "programs"]
-  fileprivate var selectedTabIndex = 0
   fileprivate var imageTypeToSelect: Image?
   let userProvider = APIProvider<GetFit.Users>()
 
@@ -168,9 +166,7 @@ class ProfileTableViewController: UITableViewController {
     switch section {
     case 0:
       return 1
-    case 1 where selectedTabIndex == 0:
-      return 1
-    case 1 where selectedTabIndex == 1:
+    case 1:
       if let programs = programs {
         return programs.count
       } else {
@@ -195,15 +191,7 @@ class ProfileTableViewController: UITableViewController {
       cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
 
       return cell
-    case 1 where selectedTabIndex == 0:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticsTableViewCell
-      cell.layoutSubviews()
-      if let user = user {
-        cell.configureWith(UserViewModel(user: user))
-      }
-
-      return cell
-    case 1 where selectedTabIndex == 1:
+    case 1:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .card
       let program = programs![indexPath.row]
@@ -215,51 +203,15 @@ class ProfileTableViewController: UITableViewController {
     }
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    if let statistics = cell as? StatisticsTableViewCell {
-      statistics.layoutSubviews()
-    }
-  }
-
-  override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    if selectedTabIndex == 0 {
-      let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
-      cell?.layoutSubviews()
-    }
-  }
-
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 180
-    case 1 where selectedTabIndex == 0:
-      return tableView.frame.width
-    case 1 where selectedTabIndex == 1:
+      return 200
+    case 1:
       return 320
     default:
       return 0
     }
-  }
-
-  // MARK: - UITableViewDelegate
-
-  // MARK: - Header configuration
-
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard section == 1 else { return nil }
-
-    let labels = tabsLabels.map { $0.uppercased() }
-    let buttonStrip = ButtonsStripView(labels: labels)
-    buttonStrip.delegate = self
-    buttonStrip.selectedIndex = selectedTabIndex
-
-    return buttonStrip
-  }
-
-  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    guard section == 1 else { return 0 }
-    return 50
   }
 
   func settingsButtonAction(_ sender: UIButton) {
@@ -281,20 +233,6 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion: nil)
-  }
-}
-
-extension ProfileTableViewController: ButtonStripViewDelegate {
-
-  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
-    selectedTabIndex = index
-    let offset = tableView.contentOffset
-    tableView.reloadData()
-    if tableView.numberOfRows(inSection: index) >= 2 {
-      tableView.setContentOffset(offset, animated: true)
-    } else {
-      tableView.setContentOffset(CGPoint.zero, animated: true)
-    }
   }
 }
 

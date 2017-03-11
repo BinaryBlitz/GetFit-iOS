@@ -63,13 +63,13 @@ class SettingsTableViewController: UITableViewController {
           do {
             try _ = response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
-            _ = self.navigationController?.popViewController(animated: true)
 
             if let user = UserManager.currentUser {
               user.firstName = firstName
               user.lastName = lastName
               UserManager.currentUser = user
             }
+            _ = self.navigationController?.popViewController(animated: true)
           } catch {
             self.saveButtonItem.isEnabled = true
             self.view.endEditing(true)
@@ -84,16 +84,14 @@ class SettingsTableViewController: UITableViewController {
     }
   }
 
-
-  @IBAction func editingDidBeginAction(_ sender: AnyObject) {
+  @IBAction func editingChangedAction(_ sender: AnyObject) {
     saveButtonItem.isEnabled = true
   }
-
 
   @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
-    UserManager.apiToken = nil
+    UserManager.logout()
     present(loginViewController, animated: true, completion: nil)
   }
 
