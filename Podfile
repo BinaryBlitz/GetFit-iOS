@@ -19,6 +19,7 @@ target 'GetFit' do
   pod 'JSQMessagesViewController', '~> 7.3'
   pod 'Kingfisher', '~> 3.4'
   pod 'RSKImageCropper'
+  pod 'SwiftyStoreKit'
 
   # Tools
   pod 'SwiftDate', '~> 4.0'

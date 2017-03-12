@@ -51,6 +51,7 @@ PODS:
   - SwiftDate (4.0.13)
   - SwiftyJSON (3.1.4)
   - SwipeCellKit (1.4.0)
+  - SwiftyStoreKit (0.8.3)
   - Toucan (0.6.0)
   - VK-ios-sdk (1.4.6)
   - XCDYouTubeKit (2.5.5)
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - Reusable (~> 3.0)
   - RSKImageCropper
   - SwiftDate (~> 4.0)
+  - SwiftyStoreKit
   - SwipeCellKit (~> 1.1)
   - Toucan (~> 0.6)
   - VK-ios-sdk (~> 1.4)
@@ -101,10 +103,11 @@ SPEC CHECKSUMS:
   SwiftDate: 8ec416bb1b5129d1f35e8efaed720421f41d42df
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwipeCellKit: 32af5e255019fe3bea14e89039ecb5c1a961177e
+  SwiftyStoreKit: e68cbff072e0bcc4b87d820c24de4f0eb52c16d7
   Toucan: 47485bbc9cb4541ef6318d6886103e6eaf16e919
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
-PODFILE CHECKSUM: 4b8bfe8e43cc74accded358e5d2e0562776f6648
+PODFILE CHECKSUM: e4079e56886a3dfe499260759e062c0fd8d3b14c
 
 COCOAPODS: 1.2.0

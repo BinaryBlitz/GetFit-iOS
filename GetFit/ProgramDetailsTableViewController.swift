@@ -153,23 +153,11 @@ class ProgramDetailsTableViewController: UITableViewController {
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
     button.isEnabled = false
-    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
+    PurchaseManager.instance.buy(program: program) { [weak self] result in
       button.isEnabled = true
       switch result {
-      case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          if let purchaseId = try JSON(response.mapJSON())["id"].int {
-            let realm = try Realm()
-            try realm.write {
-              self?.program.purchaseId = purchaseId
-            }
-            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-          }
-          self?.presentAlertWithMessage("Yeah! Program is yours")
-        } catch let error {
-          self?.presentAlertWithMessage("Error: \(error)")
-        }
+      case .success:
+        self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")
       }

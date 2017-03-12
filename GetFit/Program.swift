@@ -12,6 +12,7 @@ class Program: Object, ALSwiftyJSONAble {
   dynamic var bannerURLString: String? = ""
   dynamic var trainer: Trainer?
   dynamic var type: String = ""
+  dynamic var productIdentifier: String = "com.binaryblitz.getfittest"
   dynamic var programType: ProgramType? = nil
   dynamic var price: Int = 0
   dynamic var duration: Int = 0

@@ -149,6 +149,8 @@
 		888D3F6D1E671AF3001C06D9 /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D3F6C1E671AF3001C06D9 /* Following.swift */; };
 		889109D41E55AECC00C7DCD3 /* PhoneNumber+toE164.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */; };
 		8891F7251E6C6567000B06D7 /* YouTubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891F7241E6C6567000B06D7 /* YouTubeVideoViewController.swift */; };
+		88CC729C1E759987003A24D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CC729B1E759987003A24D8 /* StoreKit.framework */; };
+		88CC729E1E7599A7003A24D8 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC729D1E7599A7003A24D8 /* PurchaseManager.swift */; };
 		DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768AF447A23055493D573F09 /* Pods_GetFit.framework */; };
 /* End PBXBuildFile section */
 
@@ -316,6 +318,8 @@
 		888D3F6C1E671AF3001C06D9 /* Following.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
 		889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PhoneNumber+toE164.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8891F7241E6C6567000B06D7 /* YouTubeVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideoViewController.swift; sourceTree = "<group>"; };
+		88CC729B1E759987003A24D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		88CC729D1E7599A7003A24D8 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		B9E4A795499BD0C36E4550CA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -332,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB9E551A3653549E208D6F3C /* Pods_GetFit.framework in Frameworks */,
+				88CC729C1E759987003A24D8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +591,7 @@
 				374E85561D32C440006887E3 /* APIProvider.swift */,
 				373C20A71D2FFB1A00DF72EB /* GetFitAPI.swift */,
 				374E85661D32D276006887E3 /* TargetTypes */,
+				88CC729D1E7599A7003A24D8 /* PurchaseManager.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -819,6 +825,7 @@
 		892E18CF12D4EEB8163E0861 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88CC729B1E759987003A24D8 /* StoreKit.framework */,
 				B9E4A795499BD0C36E4550CA /* Pods.framework */,
 				7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */,
 				768AF447A23055493D573F09 /* Pods_GetFit.framework */,
@@ -889,6 +896,9 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1066,6 +1076,7 @@
 				374A9ABC1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift in Sources */,
 				373BDDEB1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
+				88CC729E1E7599A7003A24D8 /* PurchaseManager.swift in Sources */,
 				374E85631D32D15C006887E3 /* WorkoutsTarget.swift in Sources */,
 				3781B2731CD915230059D841 /* ProgramPresentable.swift in Sources */,
 				379081371D4795B100A7CD28 /* SubscriptionPresentable.swift in Sources */,

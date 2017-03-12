@@ -148,31 +148,17 @@ class StoreTableViewController: UITableViewController {
   }
 }
 
-// MARK: - ProgramCellDelegate
-
 extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
     button.isEnabled = false
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     let program = programs[indexPath.row]
 
-    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
+    PurchaseManager.instance.buy(program: program) { [weak self] result in
       button.isEnabled = true
       switch result {
-      case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          if let purchaseId = try JSON(response.mapJSON())["id"].int {
-            let realm = try Realm()
-            try realm.write {
-              program.purchaseId = purchaseId
-            }
-            self?.tableView.reloadRows(at: [indexPath], with: .none)
-          }
-          self?.presentAlertWithMessage("Yeah! Program is yours")
-        } catch let error {
-          self?.presentAlertWithMessage("Error: \(error)")
-        }
+      case .success:
+        self?.tableView.reloadRows(at: [indexPath], with: .none)
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")
       }
