@@ -22,26 +22,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="432" height="263"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarExample" translatesAutoresizingMaskIntoConstraints="NO" id="xsk-yN-fJ7" customClass="CircleImageView" customModule="GetFit" customModuleProvider="target">
-                                <rect key="frame" x="17" y="15" width="28" height="28"/>
+                                <rect key="frame" x="13" y="15" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="eZt-Fj-LG0"/>
                                     <constraint firstAttribute="width" constant="28" id="yan-oT-GkC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Selvestri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPq-gb-Gxg">
-                                <rect key="frame" x="57" y="18" width="105" height="21"/>
+                                <rect key="frame" x="53" y="18" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwh-5v-zGq">
-                                <rect key="frame" x="0.0" y="193" width="432" height="0.0"/>
+                                <rect key="frame" x="3" y="193" width="426" height="0.0"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" id="skO-Qq-vNO"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuA-0M-2Gl" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
-                                <rect key="frame" x="17" y="213" width="83" height="30"/>
+                                <rect key="frame" x="13" y="213" width="83" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="D1d-0j-ZxQ"/>
@@ -65,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSw-3e-gir">
-                                <rect key="frame" x="17" y="57" width="396" height="81.5"/>
+                                <rect key="frame" x="13" y="57" width="406" height="81.5"/>
                                 <string key="text">Исследование указанной связи должно опираться на тот факт, что математический горизонт прочно прекращает космический азимут. Кряж недоступно пододвигается под керн. Габбро, в первом приближении, деформирует далекий лимб. Метеорный дождь покрывает голоцен. </string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,7 +75,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SuA-0M-2Gl" firstAttribute="top" secondItem="gwh-5v-zGq" secondAttribute="bottom" constant="20" id="6Jg-Ii-fXB"/>
-                            <constraint firstAttribute="trailing" secondItem="gwh-5v-zGq" secondAttribute="trailing" id="7FC-4V-sDG"/>
+                            <constraint firstAttribute="trailing" secondItem="gwh-5v-zGq" secondAttribute="trailing" constant="3" id="7FC-4V-sDG"/>
                             <constraint firstItem="SuA-0M-2Gl" firstAttribute="leading" secondItem="xsk-yN-fJ7" secondAttribute="leading" id="AYQ-68-lXT"/>
                             <constraint firstAttribute="bottom" secondItem="SuA-0M-2Gl" secondAttribute="bottom" constant="20" id="AmK-vB-lFv"/>
                             <constraint firstAttribute="trailing" secondItem="xdf-XJ-I8w" secondAttribute="trailing" constant="9" id="BQc-Ec-aET"/>
@@ -83,10 +83,10 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VPq-gb-Gxg" secondAttribute="trailing" constant="17" id="Cg0-PQ-xVl"/>
                             <constraint firstItem="VPq-gb-Gxg" firstAttribute="leading" secondItem="xsk-yN-fJ7" secondAttribute="trailing" constant="12" id="HOd-oC-y4u"/>
                             <constraint firstItem="VPq-gb-Gxg" firstAttribute="centerY" secondItem="xsk-yN-fJ7" secondAttribute="centerY" id="Rjd-w9-zkX"/>
-                            <constraint firstItem="SSw-3e-gir" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" constant="17" id="TZq-tp-I6d"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SSw-3e-gir" secondAttribute="trailing" constant="17" id="VMe-CL-Ses"/>
-                            <constraint firstItem="xsk-yN-fJ7" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" constant="17" id="Vfq-na-4CX"/>
-                            <constraint firstItem="gwh-5v-zGq" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" id="a3Q-t3-ktc"/>
+                            <constraint firstItem="SSw-3e-gir" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" constant="13" id="TZq-tp-I6d"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SSw-3e-gir" secondAttribute="trailing" constant="13" id="VMe-CL-Ses"/>
+                            <constraint firstItem="xsk-yN-fJ7" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" constant="13" id="Vfq-na-4CX"/>
+                            <constraint firstItem="gwh-5v-zGq" firstAttribute="leading" secondItem="VR9-ZD-QiT" secondAttribute="leading" constant="3" id="a3Q-t3-ktc"/>
                             <constraint firstItem="pub-Ln-za6" firstAttribute="centerY" secondItem="xdf-XJ-I8w" secondAttribute="centerY" id="h2x-84-LqI"/>
                             <constraint firstItem="xsk-yN-fJ7" firstAttribute="top" secondItem="VR9-ZD-QiT" secondAttribute="top" constant="15" id="i8y-2S-C7A"/>
                             <constraint firstItem="xdf-XJ-I8w" firstAttribute="centerY" secondItem="SuA-0M-2Gl" secondAttribute="centerY" id="mYJ-Be-FSg"/>

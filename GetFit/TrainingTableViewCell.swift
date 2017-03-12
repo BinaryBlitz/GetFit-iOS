@@ -26,7 +26,7 @@ class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
   func configureWith(_ viewModel: TrainingPresentable) {
     titleLabel.text = viewModel.trainingTitle
 
-    updateInfoLabelWithTitle(viewModel.trainingInfo, andSubtitle: "\(viewModel.trainingExercisesCount) exercises")
+    updateInfoLabelWithTitle(viewModel.trainingInfo, andSubtitle: "\(viewModel.trainingExercisesCount)")
 
     if let dateBadge = badgesStackView.arrangedSubviews.first as? BadgeView {
       dateBadge.text = viewModel.trainingDateString

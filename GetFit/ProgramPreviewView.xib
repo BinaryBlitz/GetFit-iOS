@@ -12,43 +12,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="eIv-j7-Zyx" customClass="ProgramPreviewView" customModule="GetFit" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="337" height="244"/>
+            <rect key="frame" x="0.0" y="0.0" width="337" height="212"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-kx-PyW">
-                    <rect key="frame" x="10" y="10" width="317" height="224"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-kx-PyW">
+                    <rect key="frame" x="10" y="10" width="317" height="192"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cJK-nV-M0m">
-                            <rect key="frame" x="7" y="139" width="303" height="75"/>
+                            <rect key="frame" x="7" y="139" width="303" height="43"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wok-JC-es6">
-                                    <rect key="frame" x="0.0" y="15.5" width="203" height="44"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wok-JC-es6">
+                                    <rect key="frame" x="0.0" y="4" width="203" height="35.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11P-Jz-nMw">
-                                            <rect key="frame" x="0.0" y="0.0" width="38.5" height="23"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="31" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category, 8 workouts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDx-Ca-jJo">
-                                            <rect key="frame" x="0.0" y="26" width="144.5" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <rect key="frame" x="0.0" y="21" width="119.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                            <color key="textColor" red="0.54503643509999999" green="0.54513353109999996" blue="0.54503029579999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-cd-7CB" customClass="BadgeView" customModule="GetFit" customModuleProvider="target">
-                                    <rect key="frame" x="203" y="7.5" width="100" height="60"/>
+                                    <rect key="frame" x="203" y="1.5" width="100" height="40"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" placeholder="YES" id="G0e-6Y-yzO"/>
-                                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="upv-sw-0hw"/>
+                                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="upv-sw-0hw"/>
                                     </constraints>
                                 </view>
                             </subviews>
                         </stackView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qV8-gm-5G2">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qV8-gm-5G2">
                             <rect key="frame" x="0.0" y="0.0" width="317" height="132"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="132" id="30b-vg-1nM"/>
@@ -83,7 +83,7 @@
                 <outlet property="priceBadge" destination="Kb1-cd-7CB" id="7Ja-aQ-dgd"/>
                 <outlet property="titleLabel" destination="11P-Jz-nMw" id="cE0-W1-I2n"/>
             </connections>
-            <point key="canvasLocation" x="282.5" y="400"/>
+            <point key="canvasLocation" x="282.5" y="384"/>
         </view>
     </objects>
 </document>

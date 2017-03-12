@@ -206,12 +206,26 @@ class ProfileTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
-      return 200
+      return 180
     case 1:
       return 320
     default:
       return 0
     }
+  }
+
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    guard section == 1 else { return nil }
+
+    let buttonStrip = ButtonsStripView(labels: ["programs".uppercased()])
+    buttonStrip.selectedIndex = 0
+
+    return buttonStrip
+  }
+
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    guard section == 1 else { return 0 }
+    return 50
   }
 
   func settingsButtonAction(_ sender: UIButton) {
