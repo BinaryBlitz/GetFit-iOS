@@ -21,6 +21,10 @@ class Program: Object, ALSwiftyJSONAble {
   dynamic var usersCount: Int = 0
   dynamic var rating: Double = 0
 
+  var isPurchased: Bool {
+    return purchaseId != -1
+  }
+
   override static func primaryKey() -> String? {
     return "id"
   }

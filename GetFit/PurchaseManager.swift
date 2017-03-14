@@ -32,33 +32,34 @@ class PurchaseManager {
   func buy(program: Program, _ completion: ((PurchaseResult) -> Void)? = nil) {
     print("Buying \(program.productIdentifier)")
     SwiftyStoreKit.purchaseProduct(program.productIdentifier, atomically: false) { result in
+      self.programsProvider.request(.createPurchase(programId: program.id)) { result in
+        switch result {
+        case .success(let response):
+          do {
+            try _ = response.filterSuccessfulStatusCodes()
+            if let purchaseId = try JSON(response.mapJSON())["id"].int {
+              let realm = try Realm()
+              try realm.write {
+                program.purchaseId = purchaseId
+              }
+            }
+            //if product.needsFinishTransaction {
+              //SwiftyStoreKit.finishTransaction(product.transaction)
+            //}
+            completion?(.success)
+          } catch {
+            completion?(.failure(.responseServerError))
+          }
+        case .failure(let _):
+          completion?(.failure(.unknown))
+        }
+      }
+      /*
       switch result {
       case .success(let product):
-        self.programsProvider.request(.createPurchase(programId: program.id)) { result in
-          switch result {
-            case .success(let response):
-              do {
-                try _ = response.filterSuccessfulStatusCodes()
-                if let purchaseId = try JSON(response.mapJSON())["id"].int {
-                  let realm = try Realm()
-                  try realm.write {
-                    program.purchaseId = purchaseId
-                  }
-                }
-                if product.needsFinishTransaction {
-                  SwiftyStoreKit.finishTransaction(product.transaction)
-                }
-                completion?(.success)
-              } catch {
-                completion?(.failure(.responseServerError))
-            }
-            case .failure(let error):
-              completion?(.failure(.unknown))
-          }
-        }
       case .error(let error):
         completion?(.failure(.storeKitError(error)))
-      }
+      } */
     }
   }
 }

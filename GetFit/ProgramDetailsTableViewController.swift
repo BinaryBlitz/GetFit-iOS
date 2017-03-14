@@ -90,6 +90,8 @@ class ProgramDetailsTableViewController: UITableViewController {
 
       if indexPath.row < 2 || program.purchaseId != -1 {
         cell.textLabel?.text = exercises[indexPath.row].name
+        cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
       } else {
         cell.textLabel?.textColor = UIColor.blueAccentColor()
         cell.textLabel?.text = "+\(exercises.count - 2) more exercises".uppercased()
@@ -152,12 +154,23 @@ class ProgramDetailsTableViewController: UITableViewController {
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
+    if program.isPurchased {
+      let workoutsViewController = WorkoutsTableViewController(style: .grouped)
+      workoutsViewController.program = program
+      let navigation = UINavigationController(rootViewController: workoutsViewController)
+      present(navigation, animated: true, completion: nil)
+    } else {
+      purchaseProgram(button: button)
+    }
+  }
+
+  func purchaseProgram(button: UIButton) {
     button.isEnabled = false
     PurchaseManager.instance.buy(program: program) { [weak self] result in
       button.isEnabled = true
       switch result {
       case .success:
-        self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        self?.tableView.reloadData()
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")
       }

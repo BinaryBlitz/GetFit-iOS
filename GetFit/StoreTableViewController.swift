@@ -154,8 +154,19 @@ extension StoreTableViewController: ProgramCellDelegate {
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     let program = programs[indexPath.row]
 
+    if program.isPurchased {
+      let workoutsViewController = WorkoutsTableViewController(style: .grouped)
+      workoutsViewController.program = program
+      let navigation = UINavigationController(rootViewController: workoutsViewController)
+      present(navigation, animated: true, completion: nil)
+    } else {
+      purchase(program: program, buyButton: button, indexPath: indexPath)
+    }
+  }
+
+  func purchase(program: Program, buyButton: UIButton, indexPath: IndexPath) {
     PurchaseManager.instance.buy(program: program) { [weak self] result in
-      button.isEnabled = true
+      buyButton.isEnabled = true
       switch result {
       case .success:
         self?.tableView.reloadRows(at: [indexPath], with: .none)
