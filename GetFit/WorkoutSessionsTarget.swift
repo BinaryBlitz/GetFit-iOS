@@ -61,7 +61,7 @@ extension GetFit.WorkoutSessions: TargetType {
       let sessionData = ["completed": session.completed]
       return ["exercise_session": sessionData as AnyObject]
     case .updateWorkoutSession(let workoutSession):
-      let sessionData = ["completed": workoutSession.completed]
+      let sessionData = ["completed": workoutSession.completed, "scheduled_for": workoutSession.date.iso8601(opts: .withInternetDateTimeExtended)] as [String : Any]
       return ["workout_session": sessionData as AnyObject]
     }
   }

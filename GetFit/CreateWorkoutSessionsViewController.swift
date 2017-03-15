@@ -5,12 +5,19 @@ import Moya
 import PureLayout
 
 protocol CreateWorkoutSessionsControllerDelegate: class {
+  func willDismissWorkoutController()
   func didFinishWorkoutSessionsCreation()
+}
+
+extension CreateWorkoutSessionsControllerDelegate {
+  func willDismissWorkoutController() { }
 }
 
 class CreateWorkoutSessionsViewController: UIViewController {
 
   var workout: Workout!
+
+  var workoutSession: WorkoutSession? = nil
 
   weak var delegate: CreateWorkoutSessionsControllerDelegate?
 
@@ -32,7 +39,15 @@ class CreateWorkoutSessionsViewController: UIViewController {
     super.viewDidLoad()
 
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession.self)
+    var predicates: [NSPredicate] = []
+    predicates.append(NSPredicate(format: "completed == NO"))
+    
+    if let workoutSession = workoutSession {
+      predicates.append(NSPredicate(format: "id != %@", NSNumber(integerLiteral: workoutSession.id)))
+      selectedDates.append(workoutSession.date)
+    }
+
+    workoutSessions = realm.objects(WorkoutSession.self).filter(NSCompoundPredicate(andPredicateWithSubpredicates: predicates))
 
     titleLabel.text = "choose date".uppercased()
 
@@ -63,24 +78,19 @@ class CreateWorkoutSessionsViewController: UIViewController {
 
   // MARK: - Actions
   @IBAction func closeButtonAction(_ sender: UIButton) {
+    delegate?.willDismissWorkoutController()
     dismiss(animated: true, completion: nil)
   }
 
   @IBAction func doneButtonAction(_ sender: ActionButton) {
     sender.showActivityIndicator()
 
-    let newSessions = selectedDates.map { (date) -> WorkoutSession in
-      let session = WorkoutSession()
-      session.updateWith(workout)
-      session.date = date
-      return session
-    }
-
-    workoutSessionsProvider.request(.create(sessions: newSessions)) { (result) in
+    let responseCompletionBlock: Moya.Completion = { result in
       switch result {
       case .success(let response):
         do {
           try _ = response.filterSuccessfulStatusCodes()
+          self.delegate?.willDismissWorkoutController()
           self.dismiss(animated: true) {
             self.delegate?.didFinishWorkoutSessionsCreation()
           }
@@ -90,11 +100,25 @@ class CreateWorkoutSessionsViewController: UIViewController {
       case .failure(let error):
         self.presentAlertWithMessage("error with code: \(error.errorDescription ?? "")")
       }
-
       sender.hideActivityIndicator()
     }
-  }
 
+    if let workoutSession = workoutSession {
+      let realm = try! Realm()
+      try! realm.write {
+        workoutSession.date = selectedDates.first ?? Date()
+      }
+      workoutSessionsProvider.request(.updateWorkoutSession(session: workoutSession), completion: responseCompletionBlock)
+    } else {
+      let newSessions = selectedDates.map { (date) -> WorkoutSession in
+        let session = WorkoutSession()
+        session.updateWith(workout)
+        session.date = date
+        return session
+      }
+      workoutSessionsProvider.request(.create(sessions: newSessions), completion: responseCompletionBlock)
+    }
+  }
 }
 
 // MARK: - CVCalendarViewDelegate
@@ -180,6 +204,7 @@ extension CreateWorkoutSessionsViewController: CVCalendarViewDelegate {
     if let index = selectedDates.index(of: date) {
       selectedDates.remove(at: index)
     } else {
+      if workoutSession != nil { selectedDates.removeAll() }
       selectedDates.append(date)
     }
 
