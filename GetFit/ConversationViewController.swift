@@ -143,6 +143,7 @@ class ConversationViewController: JSQMessagesViewController {
           let message = try response.map(to: Message.self)
           let realm = try! Realm()
           try! realm.write {
+            realm.add(message)
             self.subscription.messages.append(message)
           }
           self.reloadMessages()

@@ -9,6 +9,7 @@ open class Message: Object, ALSwiftyJSONAble {
   dynamic var id: Int = 0
   dynamic var content: String?
   dynamic var createdAt: Date = Date()
+  dynamic var imageUrl: String = ""
   fileprivate dynamic var categoryValue: String?
 
   var category: Category? {
@@ -46,14 +47,18 @@ open class Message: Object, ALSwiftyJSONAble {
 
     self.id = id
     self.content = content
-    if let date = try? createdAtString.date(format: .extended).absoluteDate {
+    if let date = try? createdAtString.date(format: .iso8601(options: .withInternetDateTimeExtended)).absoluteDate {
       self.createdAt = date
     } else {
-      return nil
+      self.createdAt = Date()
     }
 
     if let categoryValue = jsonData["category"].string, let category = Category(rawValue: categoryValue) {
       self.category = category
+    }
+
+    if let imageUrl = jsonData["image_url"].string{
+      self.imageUrl = imageUrl
     }
   }
 
