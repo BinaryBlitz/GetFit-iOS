@@ -322,8 +322,8 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
     return false
   }
 
-  private func presentedDateUpdated(_ date: Date) {
-    updateTitleDateWithDate(date)
+  func presentedDateUpdated(_ date: CVDate) {
+    updateTitleDateWithDate(date.convertedDate(calendar: calendar()!) ?? Date())
   }
 
   func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {

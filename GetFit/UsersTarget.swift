@@ -54,7 +54,7 @@ extension GetFit.Users: TargetType {
     case let .updateImage(type, image):
       let image = Toucan(image: image).resizeByCropping(type.imageSize).image
       let imageKey = type.rawValue.lowercased()
-      return ["user": [imageKey: (image.base64String)]]
+      return ["user": [imageKey: (image.base64String ?? "")]]
     case .updateDeviceToken(let token):
       return ["user": ["device_token": token, "platform": "ios"]]
     }
