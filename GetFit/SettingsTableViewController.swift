@@ -85,7 +85,11 @@ class SettingsTableViewController: UITableViewController {
   }
 
   @IBAction func editingChangedAction(_ sender: AnyObject) {
-    saveButtonItem.isEnabled = true
+    guard let firstNameText = firstNameLabel.text,
+      firstNameText.characters.count > 0, let lastNameText = lastNameLabel.text, lastNameText.characters.count > 0 else {
+        return saveButtonItem.isEnabled = false
+    }
+    saveButtonItem.isEnabled = firstNameText != UserManager.currentUser?.firstName || lastNameText != UserManager.currentUser?.lastName
   }
 
   @IBAction func logoutButtonAction(_ sender: AnyObject) {

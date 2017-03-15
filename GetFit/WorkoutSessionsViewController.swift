@@ -74,7 +74,9 @@ class WorkoutSessionsViewController: UIViewController {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMMM"
     formatter.locale = Locale(identifier: "en_US")
-    titleButton.setTitle(formatter.string(from: date).uppercased(), for: UIControlState())
+    let title = formatter.string(from: date).uppercased()
+    titleButton.setTitle(title, for: .normal)
+    navigationItem.title = title
   }
 
   // MARK: - View controller lifecycle
