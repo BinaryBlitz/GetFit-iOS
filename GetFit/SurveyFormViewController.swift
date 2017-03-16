@@ -41,7 +41,7 @@ class SurveyFormViewController: UITableViewController {
 
   var trainingGoal: TrainingGoal = .weightLoss {
     didSet {
-      trainingLevelLabel.text = trainingGoal.localizedDesctiption
+      goalLabel.text = trainingGoal.localizedDesctiption
     }
   }
 
@@ -49,6 +49,23 @@ class SurveyFormViewController: UITableViewController {
     didSet {
       inventoryLabel.text = inventory.localizedDesctiption
     }
+  }
+
+  override func viewDidLoad() {
+    configureForm()
+
+    let toolbarDone = UIToolbar.init()
+    toolbarDone.sizeToFit()
+    let barBtnDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneButtonClicked))
+
+    toolbarDone.items = [barBtnDone]
+    ageField.inputAccessoryView = toolbarDone
+    weightField.inputAccessoryView = toolbarDone
+    homeInventoryField.inputAccessoryView = toolbarDone
+  }
+
+  func doneButtonClicked() {
+    tableView.endEditing(true)
   }
 
   var delegate: SurveyFormViewControllerDelegate? = nil
@@ -74,14 +91,13 @@ class SurveyFormViewController: UITableViewController {
     static let count = 7
   }
 
-  override func viewDidLoad() {
-  }
-
   func configureForm() {
     guard let surveyData = UserManager.currentUser?.surveyFormData else { return }
     gender = surveyData.gender
     ageField.text = "\(surveyData.age)"
     weightField.text = "\(surveyData.weight)"
+    trainingDaysCountLabel.text = "\(surveyData.trainingDaysCount)"
+    trainingDaysStepper.value = Double(surveyData.trainingDaysCount)
     trainingLevel = surveyData.trainingLevel
     trainingGoal = surveyData.trainingGoal
     inventory = surveyData.inventory

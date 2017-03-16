@@ -13,7 +13,7 @@ import RealmSwift
 
 class SurveyViewController: UIViewController {
   var formViewController: SurveyFormViewController? = nil
-  var surveyFormCompletedHandler: (() -> Void)? = nil
+  var surveyFormCompletedHandler: ((Bool) -> Void)? = nil
 
   static var storyboardInstance: SurveyViewController! {
     let storyboard = UIStoryboard(name: "SurveyForm", bundle: nil)
@@ -22,6 +22,7 @@ class SurveyViewController: UIViewController {
 
   override func viewDidLoad() {
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.closeButtonAction))
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,6 +34,7 @@ class SurveyViewController: UIViewController {
   }
 
   func closeButtonAction() {
+    surveyFormCompletedHandler?(false)
     dismiss(animated: true, completion: nil)
   }
 
@@ -43,10 +45,14 @@ class SurveyViewController: UIViewController {
     let realm = try! Realm()
 
     guard let ageText = formViewController.ageField.text, let age = Int(ageText), age < 120 && age > 0 else {
-      return presentAlertWithMessage("Age is incorrect")
+      return presentAlertWithMessage("Age is incorrect") { _ in
+        sender.isEnabled = true
+      }
     }
     guard let weightText = formViewController.weightField.text, let weight = Int(weightText), weight > 0 else {
-      return presentAlertWithMessage("Weight is incorrect")
+      return presentAlertWithMessage("Weight is incorrect") { _ in
+        sender.isEnabled = true
+      }
     }
     let trainingDaysCount = Int(formViewController.trainingDaysStepper.value)
     try! realm.write {
@@ -59,9 +65,10 @@ class SurveyViewController: UIViewController {
       surveyFormData.trainingDaysCount = trainingDaysCount
       surveyFormData.trainingLevel = formViewController.trainingLevel
       surveyFormData.trainingGoal = formViewController.trainingGoal
+      UserManager.currentUser?.surveyFormData = surveyFormData
     }
     dismiss(animated: true, completion: { [weak self] in
-      self?.surveyFormCompletedHandler?()
+      self?.surveyFormCompletedHandler?(true)
     })
   }
 
@@ -104,6 +111,7 @@ extension SurveyViewController: SurveyFormViewControllerDelegate {
 
   func didSelectTrainingGoalCell() {
     let trainingGoalSelectViewController = TrainingGoalSelectViewController()
+    trainingGoalSelectViewController.selectedGoal = formViewController?.trainingGoal ?? .weightLoss
     trainingGoalSelectViewController.didSelectGoalHandler = { [weak self] goal in
       self?.formViewController?.trainingGoal = goal
     }

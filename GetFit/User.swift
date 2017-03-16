@@ -65,19 +65,24 @@ class User: Object, ALSwiftyJSONAble {
 
   required init?(jsonData: JSON) {
     super.init()
-    guard let id = jsonData["id"].int,
-          let firstName = jsonData["first_name"].string,
-          let lastName = jsonData["last_name"].string else { return nil }
-
+    guard let id = jsonData["id"].int, jsonData["first_name"].string != nil,
+      jsonData["last_name"].string != nil else { return }
     self.id = id
+    map(jsonData: jsonData)
+
+    // TODO: Map surveyFormData
+  }
+
+  func map(jsonData: JSON) {
+    guard let firstName = jsonData["first_name"].string,
+      let lastName = jsonData["last_name"].string else { return }
+
     self.firstName = firstName
     self.lastName = lastName
 
     if let genderValue = jsonData["gender"].string { self.genderValue = genderValue }
     if let avatarPath = jsonData["avatar_url"].string { self.avatarURLString = avatarPath }
     if let bannerPath = jsonData["banner_url"].string { self.bannerURLString = bannerPath }
-
-    // TODO: Map surveyFormData
   }
 }
 

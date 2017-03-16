@@ -48,5 +48,6 @@ class TrainingGoalSelectViewController: UITableViewController {
     tableView.deselectRow(at: indexPath, animated: true)
     selectedGoal = goalOptions[indexPath.row]
     tableView.reloadRows(at: [indexPath], with: .automatic)
+    tableView.reloadData()
   }
 }

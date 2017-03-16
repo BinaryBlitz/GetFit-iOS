@@ -38,7 +38,10 @@ class ProgramDetailsTableViewController: UITableViewController {
         do {
           let programResponse = try response.filterSuccessfulStatusCodes()
           let program = try programResponse.map(to: Program.self)
-          self.program = program
+          let realm = try! Realm()
+          try? realm.write {
+            realm.add(program, update: true)
+          }
           self.tableView.reloadData()
         } catch let error {
           self.presentAlertWithMessage("error: \(error)")
@@ -160,7 +163,20 @@ extension ProgramDetailsTableViewController: ProgramCellDelegate {
       let navigation = UINavigationController(rootViewController: workoutsViewController)
       present(navigation, animated: true, completion: nil)
     } else {
-      purchaseProgram(button: button)
+      guard UserManager.currentUser?.surveyFormData == nil else {
+        return purchaseProgram(button: button)
+      }
+      let surveyViewController = SurveyViewController.storyboardInstance!
+      let viewController = UINavigationController(rootViewController: surveyViewController)
+      surveyViewController.surveyFormCompletedHandler = { [weak self] finished in
+        if finished {
+           self?.purchaseProgram(button: button)
+        } else {
+          button.isEnabled = true
+        }
+      }
+      present(viewController, animated: true, completion: nil)
+
     }
   }
 
@@ -169,7 +185,7 @@ extension ProgramDetailsTableViewController: ProgramCellDelegate {
     PurchaseManager.instance.buy(program: program) { [weak self] result in
       button.isEnabled = true
       switch result {
-      case .success:
+      case .success(let response):
         self?.tableView.reloadData()
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")

@@ -2,6 +2,7 @@ import UIKit
 import Reusable
 import RealmSwift
 import Moya
+import SwiftyJSON
 import RSKImageCropper
 
 class ProfileTableViewController: UITableViewController {
@@ -45,9 +46,12 @@ class ProfileTableViewController: UITableViewController {
       switch result {
       case .success(let response):
         do {
-          let user = try response.map(to: User.self)
-          UserManager.currentUser = user
-          self.user = user
+          let userJSON = try response.mapJSON()
+          let realm = try Realm()
+          try realm.write {
+            UserManager.currentUser?.map(jsonData: JSON(userJSON))
+          }
+          self.user = UserManager.currentUser
           self.loadPrograms()
           self.loadStatistics()
         } catch {
