@@ -142,6 +142,11 @@
 		37FD38D61C961F1000600682 /* PhoneVerificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D51C961F1000600682 /* PhoneVerificationTableViewController.swift */; };
 		37FD38D81C962AA700600682 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD38D71C962AA700600682 /* NewUserViewController.swift */; };
 		37FE685E1BDE73D100EE6C9A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FE685D1BDE73D100EE6C9A /* PostTableViewCell.swift */; };
+		880CBFFE1E7ACFB500CF92EA /* SurveyForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880CBFFD1E7ACFB500CF92EA /* SurveyForm.storyboard */; };
+		880CC0011E7AE0DA00CF92EA /* SurveyFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0001E7AE0DA00CF92EA /* SurveyFormViewController.swift */; };
+		880CC0031E7AEBA600CF92EA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0021E7AEBA600CF92EA /* SurveyViewController.swift */; };
+		880CC0051E7AEC3F00CF92EA /* SurveyFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0041E7AEC3F00CF92EA /* SurveyFormData.swift */; };
+		880CC0071E7B085F00CF92EA /* TrainingGoalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0061E7B085E00CF92EA /* TrainingGoalSelectViewController.swift */; };
 		881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */; };
 		881BB76B1E729760008781C6 /* Double+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB76A1E729760008781C6 /* Double+round.swift */; };
 		8838A5431E66221100A57D9C /* EmptyTablePlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */; };
@@ -311,6 +316,11 @@
 		768AF447A23055493D573F09 /* Pods_GetFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E26FD3E7130AE818E5D480F /* Pods_Athlete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Athlete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8379634E0418613968EC1F29 /* Pods-GetFit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetFit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetFit/Pods-GetFit.release.xcconfig"; sourceTree = "<group>"; };
+		880CBFFD1E7ACFB500CF92EA /* SurveyForm.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SurveyForm.storyboard; sourceTree = "<group>"; };
+		880CC0001E7AE0DA00CF92EA /* SurveyFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFormViewController.swift; sourceTree = "<group>"; };
+		880CC0021E7AEBA600CF92EA /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
+		880CC0041E7AEC3F00CF92EA /* SurveyFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFormData.swift; sourceTree = "<group>"; };
+		880CC0061E7B085E00CF92EA /* TrainingGoalSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingGoalSelectViewController.swift; sourceTree = "<group>"; };
 		881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		881BB76A1E729760008781C6 /* Double+round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+round.swift"; sourceTree = "<group>"; };
 		8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTablePlaceholderView.xib; sourceTree = "<group>"; };
@@ -371,6 +381,7 @@
 				376A346F1C870F6600400FAF /* Message.swift */,
 				3718DCD41D46321B00521932 /* Subscription.swift */,
 				888D3F6C1E671AF3001C06D9 /* Following.swift */,
+				880CC0041E7AEC3F00CF92EA /* SurveyFormData.swift */,
 			);
 			name = "Domain Model";
 			sourceTree = "<group>";
@@ -412,6 +423,7 @@
 				37A53C6A1BDE5ACD00D1DA70 /* Profile.storyboard */,
 				37A53C491BDE527F00D1DA70 /* LaunchScreen.storyboard */,
 				376142DD1C90C6700073B5F4 /* Login.storyboard */,
+				880CBFFD1E7ACFB500CF92EA /* SurveyForm.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -419,6 +431,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				880CBFFF1E7AE0C600CF92EA /* Survey */,
 				882AC3671E56F7EF0092682E /* PhotoBrowser */,
 				376142DF1C90C8B50073B5F4 /* Login */,
 				3718DCCF1D4613E300521932 /* Chat */,
@@ -805,6 +818,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		880CBFFF1E7AE0C600CF92EA /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				880CC0001E7AE0DA00CF92EA /* SurveyFormViewController.swift */,
+				880CC0021E7AEBA600CF92EA /* SurveyViewController.swift */,
+				880CC0061E7B085E00CF92EA /* TrainingGoalSelectViewController.swift */,
+			);
+			name = Survey;
+			sourceTree = "<group>";
+		};
 		882AC3671E56F7EF0092682E /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -947,6 +970,7 @@
 				374A80A91CDCF9D40099225E /* ExerciseVideoTableViewCell.xib in Resources */,
 				37A53C6C1BDE5ACD00D1DA70 /* Profile.storyboard in Resources */,
 				37A53C481BDE527F00D1DA70 /* Assets.xcassets in Resources */,
+				880CBFFE1E7ACFB500CF92EA /* SurveyForm.storyboard in Resources */,
 				37C564491C77D2E600BC370E /* PostTableViewCell.xib in Resources */,
 				37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */,
 				3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */,
@@ -1044,6 +1068,7 @@
 				374A78431C977C99004D30AD /* LocalStorageHelper.swift in Sources */,
 				376142E31C91C17B0073B5F4 /* LoginButton.swift in Sources */,
 				376142E11C90C8CB0073B5F4 /* LoginViewController.swift in Sources */,
+				880CC0051E7AEC3F00CF92EA /* SurveyFormData.swift in Sources */,
 				3718DCD51D46321B00521932 /* Subscription.swift in Sources */,
 				37A6A12B1C7B1510007F0944 /* PostViewModel.swift in Sources */,
 				379943F41CDBEFA300A3F36A /* ExerciseInfoTableViewCell.swift in Sources */,
@@ -1074,6 +1099,7 @@
 				3741A0091D6A6E1600C84B87 /* EmptyStateHelper.swift in Sources */,
 				37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */,
 				374A9ABC1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift in Sources */,
+				880CC0031E7AEBA600CF92EA /* SurveyViewController.swift in Sources */,
 				373BDDEB1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
 				88CC729E1E7599A7003A24D8 /* PurchaseManager.swift in Sources */,
@@ -1133,6 +1159,7 @@
 				37E949B51CF0B731008F3CA5 /* UIImage+Resize.swift in Sources */,
 				37B483DC1CEC8A0300904662 /* WorkoutHeaderView.swift in Sources */,
 				3718DCD11D46141D00521932 /* ConversationViewController.swift in Sources */,
+				880CC0071E7B085F00CF92EA /* TrainingGoalSelectViewController.swift in Sources */,
 				376A346E1C8709E800400FAF /* Conversation.swift in Sources */,
 				881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */,
 				3781B2751CD917B70059D841 /* ProgramViewModel.swift in Sources */,
@@ -1152,6 +1179,7 @@
 				374E855D1D32D12E006887E3 /* PostsTarget.swift in Sources */,
 				3745789B1BDE6B18004935BC /* NewsTableViewController.swift in Sources */,
 				374A78411C970707004D30AD /* LoginSessionData.swift in Sources */,
+				880CC0011E7AE0DA00CF92EA /* SurveyFormViewController.swift in Sources */,
 				37A80DA71BE4E793001B36E5 /* ExerciseViewController.swift in Sources */,
 				377C391A1CE3583900BF5ABC /* StatisticsPresentable.swift in Sources */,
 				374E85611D32D14F006887E3 /* ProgramsTarget.swift in Sources */,

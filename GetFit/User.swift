@@ -13,6 +13,7 @@ class User: Object, ALSwiftyJSONAble {
   dynamic var id: Int = 0
   dynamic var firstName: String = ""
   dynamic var lastName: String = ""
+  dynamic var surveyFormData: SurveyFormData? = nil
   dynamic var genderValue: String = ""
   dynamic var birthdate: Date = Date()
   dynamic var userDescription: String?
@@ -75,6 +76,8 @@ class User: Object, ALSwiftyJSONAble {
     if let genderValue = jsonData["gender"].string { self.genderValue = genderValue }
     if let avatarPath = jsonData["avatar_url"].string { self.avatarURLString = avatarPath }
     if let bannerPath = jsonData["banner_url"].string { self.bannerURLString = bannerPath }
+
+    // TODO: Map surveyFormData
   }
 }
 

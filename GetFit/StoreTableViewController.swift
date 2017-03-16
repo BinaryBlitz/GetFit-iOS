@@ -160,11 +160,21 @@ extension StoreTableViewController: ProgramCellDelegate {
       let navigation = UINavigationController(rootViewController: workoutsViewController)
       present(navigation, animated: true, completion: nil)
     } else {
-      purchase(program: program, buyButton: button, indexPath: indexPath)
+      guard UserManager.currentUser?.surveyFormData == nil else {
+        return purchase(program: program, buyButton: button, indexPath: indexPath)
+      }
+      let surveyViewController = SurveyViewController.storyboardInstance!
+      let viewController = UINavigationController(rootViewController: surveyViewController)
+      surveyViewController.surveyFormCompletedHandler = { [weak self] in
+        self?.purchase(program: program, buyButton: button, indexPath: indexPath)
+      }
+      present(viewController, animated: true, completion: nil)
+
     }
   }
 
   func purchase(program: Program, buyButton: UIButton, indexPath: IndexPath) {
+
     PurchaseManager.instance.buy(program: program) { [weak self] result in
       buyButton.isEnabled = true
       switch result {
