@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Cosmos (8.0.2)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CVCalendar (1.4.1)
@@ -57,6 +58,7 @@ PODS:
   - XCDYouTubeKit (2.5.5)
 
 DEPENDENCIES:
+  - Cosmos (~> 8.0)
   - Crashlytics
   - CVCalendar (~> 1.4)
   - Fabric
@@ -82,6 +84,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CVCalendar: 61912eb5dc39c3bcfe22a731147a559a696fbc15
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -108,6 +111,6 @@ SPEC CHECKSUMS:
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
   XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
-PODFILE CHECKSUM: e4079e56886a3dfe499260759e062c0fd8d3b14c
+PODFILE CHECKSUM: d702f719b6f844b641a0b2f526d760113d35aaea
 
 COCOAPODS: 1.2.0

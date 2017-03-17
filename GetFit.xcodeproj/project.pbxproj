@@ -147,6 +147,9 @@
 		880CC0031E7AEBA600CF92EA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0021E7AEBA600CF92EA /* SurveyViewController.swift */; };
 		880CC0051E7AEC3F00CF92EA /* SurveyFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0041E7AEC3F00CF92EA /* SurveyFormData.swift */; };
 		880CC0071E7B085F00CF92EA /* TrainingGoalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC0061E7B085E00CF92EA /* TrainingGoalSelectViewController.swift */; };
+		880CC0091E7C926A00CF92EA /* Rating.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880CC0081E7C926A00CF92EA /* Rating.storyboard */; };
+		880CC00C1E7C935900CF92EA /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC00B1E7C935900CF92EA /* RatingViewController.swift */; };
+		880CC00E1E7C982C00CF92EA /* UIViewController+hideKeyboardWhenTapOutside.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880CC00D1E7C982C00CF92EA /* UIViewController+hideKeyboardWhenTapOutside.swift */; };
 		881BB7651E7174EF008781C6 /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */; };
 		881BB76B1E729760008781C6 /* Double+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BB76A1E729760008781C6 /* Double+round.swift */; };
 		8838A5431E66221100A57D9C /* EmptyTablePlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */; };
@@ -321,6 +324,9 @@
 		880CC0021E7AEBA600CF92EA /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		880CC0041E7AEC3F00CF92EA /* SurveyFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyFormData.swift; sourceTree = "<group>"; };
 		880CC0061E7B085E00CF92EA /* TrainingGoalSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingGoalSelectViewController.swift; sourceTree = "<group>"; };
+		880CC0081E7C926A00CF92EA /* Rating.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Rating.storyboard; sourceTree = "<group>"; };
+		880CC00B1E7C935900CF92EA /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		880CC00D1E7C982C00CF92EA /* UIViewController+hideKeyboardWhenTapOutside.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+hideKeyboardWhenTapOutside.swift"; sourceTree = "<group>"; };
 		881BB7641E7174EF008781C6 /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		881BB76A1E729760008781C6 /* Double+round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+round.swift"; sourceTree = "<group>"; };
 		8838A5421E66221100A57D9C /* EmptyTablePlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTablePlaceholderView.xib; sourceTree = "<group>"; };
@@ -424,6 +430,7 @@
 				37A53C491BDE527F00D1DA70 /* LaunchScreen.storyboard */,
 				376142DD1C90C6700073B5F4 /* Login.storyboard */,
 				880CBFFD1E7ACFB500CF92EA /* SurveyForm.storyboard */,
+				880CC0081E7C926A00CF92EA /* Rating.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -431,6 +438,7 @@
 		374578931BDE5CCA004935BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				880CC00A1E7C934A00CF92EA /* Rating */,
 				880CBFFF1E7AE0C600CF92EA /* Survey */,
 				882AC3671E56F7EF0092682E /* PhotoBrowser */,
 				376142DF1C90C8B50073B5F4 /* Login */,
@@ -504,6 +512,7 @@
 				374A9ABD1D74748B002DEBA0 /* XCDYouTubeVideoPlayerViewController+InterfaceOrientation.swift */,
 				889109D31E55AECC00C7DCD3 /* PhoneNumber+toE164.swift */,
 				881BB76A1E729760008781C6 /* Double+round.swift */,
+				880CC00D1E7C982C00CF92EA /* UIViewController+hideKeyboardWhenTapOutside.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -828,6 +837,14 @@
 			name = Survey;
 			sourceTree = "<group>";
 		};
+		880CC00A1E7C934A00CF92EA /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				880CC00B1E7C935900CF92EA /* RatingViewController.swift */,
+			);
+			name = Rating;
+			sourceTree = "<group>";
+		};
 		882AC3671E56F7EF0092682E /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -975,6 +992,7 @@
 				37044EAF1C8B110300010AB7 /* ProfessionalTableViewCell.xib in Resources */,
 				3760E91D1BE16C9900B62CB7 /* Training.storyboard in Resources */,
 				37A295E41CDA1B05000C0D57 /* TrainingTableViewCell.xib in Resources */,
+				880CC0091E7C926A00CF92EA /* Rating.storyboard in Resources */,
 				37811F9E1CEFC57600AFB47E /* ProgramPreviewView.xib in Resources */,
 				37A53C461BDE527F00D1DA70 /* Main.storyboard in Resources */,
 				374A80AD1CDD466B0099225E /* StatisticsTableViewCell.xib in Resources */,
@@ -1099,6 +1117,7 @@
 				3741A0091D6A6E1600C84B87 /* EmptyStateHelper.swift in Sources */,
 				37811F9C1CEFC56400AFB47E /* ProgramPreviewView.swift in Sources */,
 				374A9ABC1D74744D002DEBA0 /* UITabBarController+InterfaceOrientation.swift in Sources */,
+				880CC00E1E7C982C00CF92EA /* UIViewController+hideKeyboardWhenTapOutside.swift in Sources */,
 				880CC0031E7AEBA600CF92EA /* SurveyViewController.swift in Sources */,
 				373BDDEB1D73B6C900A4C64D /* UINavigationController+InterfaceOrientation.swift in Sources */,
 				37D7AD8E1C788FC300CA96E9 /* Program.swift in Sources */,
@@ -1148,6 +1167,7 @@
 				37493D111C8336D0009C6C1A /* TrainerCategory.swift in Sources */,
 				376F65771C7C97EE0016071C /* TextPresentable.swift in Sources */,
 				379C641D1CA6E71600A32C90 /* ButtonsStripView.swift in Sources */,
+				880CC00C1E7C935900CF92EA /* RatingViewController.swift in Sources */,
 				379081391D47981400A7CD28 /* SubscriptionViewModel.swift in Sources */,
 				3718DCD31D46270100521932 /* MessagesTarget.swift in Sources */,
 				377C39181CE3251800BF5ABC /* UserViewModel.swift in Sources */,

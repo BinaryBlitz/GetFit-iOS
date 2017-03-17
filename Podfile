@@ -14,6 +14,7 @@ target 'GetFit' do
   # UI
   pod 'SwipeCellKit', '~> 1.1'
   pod 'CVCalendar', '~> 1.4'
+  pod 'Cosmos', '~> 8.0'
   pod 'PhoneNumberKit', '~> 1.2'
   pod 'XCDYouTubeKit', '~> 2.5'
   pod 'JSQMessagesViewController', '~> 7.3'
