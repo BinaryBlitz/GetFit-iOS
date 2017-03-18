@@ -4,4 +4,5 @@ protocol TrainingPresentable {
   var trainingExercisesCount: String { get }
   var trainingDurationString: String { get }
   var trainingDateString: String { get }
+  var completed: Bool { get }
 }

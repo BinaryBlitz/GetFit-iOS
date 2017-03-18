@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 class SettingsTableViewController: UITableViewController {
 
@@ -65,9 +66,12 @@ class SettingsTableViewController: UITableViewController {
             self.view.endEditing(true)
 
             if let user = UserManager.currentUser {
-              user.firstName = firstName
-              user.lastName = lastName
-              UserManager.currentUser = user
+              let realm = try! Realm()
+              try? realm.write {
+                user.firstName = firstName
+                user.lastName = lastName
+                UserManager.currentUser = user
+              }
             }
             _ = self.navigationController?.popViewController(animated: true)
           } catch {

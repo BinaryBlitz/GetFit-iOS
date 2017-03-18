@@ -71,7 +71,10 @@ class ProfileTableViewController: UITableViewController {
       switch result {
       case .success(let response):
         do {
-          user.statistics = try response.map(to: User.Statistics.self)
+          let realm = try! Realm()
+          try realm.write {
+            user.statistics = try response.map(to: User.Statistics.self)
+          }
           self?.tableView.reloadData()
         } catch {
           print("Cannot map response")

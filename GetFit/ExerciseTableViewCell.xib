@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="344" height="142"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OEK-Ae-c4s" id="eOL-p6-fgf">
-                <rect key="frame" x="0.0" y="0.0" width="344" height="141.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="344" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="FinishedExerciseMark" translatesAutoresizingMaskIntoConstraints="NO" id="Cpi-YI-6mM">
-                        <rect key="frame" x="272" y="26" width="72" height="72"/>
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinishedExerciseMark" translatesAutoresizingMaskIntoConstraints="NO" id="Cpi-YI-6mM">
+                        <rect key="frame" x="272" y="69.5" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="72" id="cWf-ea-UDz"/>
                             <constraint firstAttribute="height" constant="72" id="hqW-DN-EQo"/>

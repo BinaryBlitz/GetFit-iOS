@@ -8,6 +8,32 @@ class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var badgesStackView: UIStackView!
 
+  @IBOutlet weak var completedMarkImageView: UIImageView!
+
+  enum Status {
+    case uncomplete
+    case complete
+  }
+
+  var status: Status = .uncomplete {
+    didSet {
+      updateStatus(status)
+    }
+  }
+
+  fileprivate func updateStatus(_ status: Status) {
+    switch status {
+    case .uncomplete:
+      titleLabel.textColor = UIColor.blackTextColor()
+      infoLabel.textColor = UIColor.blackTextColor()
+      completedMarkImageView.isHidden = true
+    case .complete:
+      titleLabel.textColor = UIColor.graySecondaryColor()
+      infoLabel.textColor = UIColor.graySecondaryColor()
+      completedMarkImageView.isHidden = false
+    }
+  }
+
   override func awakeFromNib() {
     super.awakeFromNib()
 
@@ -24,6 +50,7 @@ class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
   }
 
   func configureWith(_ viewModel: TrainingPresentable) {
+    status = viewModel.completed ? .complete : .uncomplete
     titleLabel.text = viewModel.trainingTitle
 
     updateInfoLabelWithTitle(viewModel.trainingInfo, andSubtitle: "\(viewModel.trainingExercisesCount)")
@@ -32,6 +59,7 @@ class TrainingTableViewCell: SwipeTableViewCell, NibReusable {
       dateBadge.text = viewModel.trainingDateString
       dateBadge.updateConstraints()
     }
+    
 
     if let durationBadge = badgesStackView.arrangedSubviews.last as? BadgeView {
       durationBadge.text = viewModel.trainingDurationString
