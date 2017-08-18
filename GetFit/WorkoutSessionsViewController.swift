@@ -9,9 +9,12 @@ import SwiftDate
 class WorkoutSessionsViewController: UIViewController {
 
   lazy var workoutSessionsProvider: APIProvider<GetFit.WorkoutSessions> = APIProvider<GetFit.WorkoutSessions>()
+  lazy var workoutsProvider: APIProvider<GetFit.Workouts> = APIProvider<GetFit.Workouts>()
 
-  var workoutSessions: Results<WorkoutSession>?
-  var tableViewDataSource: [WorkoutSession] = []
+  var currentWorkoutSessions: Results<WorkoutSession>?
+  var completedWorkoutSessions: Results<WorkoutSession>?
+  var completedSectionDataSource: [WorkoutSession] = []
+  var currentSectionDataSource: [WorkoutSession] = []
 
   @IBOutlet weak var calendarViewTopConstaraint: NSLayoutConstraint!
   @IBOutlet weak var titleButton: UIButton!
@@ -72,7 +75,10 @@ class WorkoutSessionsViewController: UIViewController {
   func updateTitleDateWithDate(_ date: Date) {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMMM"
-    titleButton.setTitle(formatter.string(from: date).uppercased(), for: UIControlState())
+    formatter.locale = Locale(identifier: "en_US")
+    let title = formatter.string(from: date).uppercased()
+    titleButton.setTitle(title, for: .normal)
+    navigationItem.title = title
   }
 
   // MARK: - View controller lifecycle
@@ -82,7 +88,8 @@ class WorkoutSessionsViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     let realm = try! Realm()
-    workoutSessions = realm.objects(WorkoutSession.self).filter("completed == false").sorted(byKeyPath: "date")
+    currentWorkoutSessions = realm.objects(WorkoutSession.self).filter("completed == false")
+    completedWorkoutSessions = realm.objects(WorkoutSession.self).filter("completed == true")
     updateTableViewDataFor(Date())
 
     updateTitleDateWithDate(Date())
@@ -145,8 +152,29 @@ class WorkoutSessionsViewController: UIViewController {
       case .failure(let error):
         self.presentAlertWithMessage(error.errorDescription ?? "")
       }
-
+      self.fetchWorkouts()
       completion()
+    }
+
+  }
+
+  func fetchWorkouts() {
+    workoutsProvider.request(.index) { result in
+      switch result {
+      case .success(let response):
+        do {
+          try _ = response.filterSuccessfulStatusCodes()
+          let workouts = try response.map(to: [Workout.self])
+          let realm = try! Realm()
+          try! realm.write {
+            realm.add(workouts, update: true)
+          }
+        } catch let error {
+          self.presentAlertWithMessage(error.localizedDescription)
+        }
+      case .failure(let error):
+        self.presentAlertWithMessage(error.errorDescription ?? "")
+      }
     }
   }
 
@@ -183,17 +211,21 @@ class WorkoutSessionsViewController: UIViewController {
   }
 
   fileprivate func updateTableViewDataFor(_ date: Date) {
-    guard let sessions = workoutSessions else { return }
+    guard let currentWorkoutSessions = self.currentWorkoutSessions else { return }
+    guard let completedWorkoutSessions = self.completedWorkoutSessions else { return }
+    currentSectionDataSource = currentWorkoutSessions.filter { (session) -> Bool in
+      return session.date.isAfter(date: date, orEqual: true, granularity: .day)
+    }
 
-    tableViewDataSource = sessions.filter { (session) -> Bool in
-      return session.date.isAfter(date: date, granularity: .day)
+    completedSectionDataSource = completedWorkoutSessions.filter { (session) -> Bool in
+      return session.date.isAfter(date: date, orEqual: true, granularity: .day)
     }
   }
 
-  fileprivate func updateTableViewData() {
+  fileprivate func updateTableViewData(needReload: Bool = true) {
     if let date = calendarView.presentedDate.convertedDate(calendar: calendar()!) {
       updateTableViewDataFor(date)
-      tableView.reloadData()
+      if needReload { tableView.reloadData() }
     }
   }
 
@@ -227,7 +259,7 @@ class WorkoutSessionsViewController: UIViewController {
     case "trainingInfo":
       let destination = segue.destination as! TrainingViewController
       let indexPath = sender as! IndexPath
-      destination.workoutSession = workoutSessions![indexPath.row]
+      destination.workoutSession = indexPath.section == 0 ? completedWorkoutSessions![indexPath.row] : currentWorkoutSessions![indexPath.row]
       destination.workoutSessionsProvider = workoutSessionsProvider
     default:
       break
@@ -253,14 +285,25 @@ class WorkoutSessionsViewController: UIViewController {
 
 extension WorkoutSessionsViewController: UITableViewDataSource {
 
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 2
+  }
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tableViewDataSource.count
+    switch section {
+    case 0:
+      return completedSectionDataSource.count
+    case 1:
+      return currentSectionDataSource.count
+    default:
+      return 0
+    }
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(for: indexPath) as TrainingTableViewCell
 
-    let model = tableViewDataSource[indexPath.row]
+    let model = indexPath.section == 0 ? completedSectionDataSource[indexPath.row] : currentSectionDataSource[indexPath.row]
     cell.selectionStyle = .none
     cell.delegate = self
     cell.configureWith(TrainingViewModel(workoutSession: model))
@@ -297,8 +340,8 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
     return false
   }
 
-  private func presentedDateUpdated(_ date: Date) {
-    updateTitleDateWithDate(date)
+  func presentedDateUpdated(_ date: CVDate) {
+    updateTitleDateWithDate(date.convertedDate(calendar: calendar()!) ?? Date())
   }
 
   func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
@@ -311,13 +354,13 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
   func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
     guard let date = dayView.date.convertedDate(calendar: calendar()!) else { return false }
 
-    return workoutSessionsFor(date).count != 0
+    return currentWorkoutSessionsFor(date).count != 0
   }
 
   func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
     guard let date = dayView.date.convertedDate(calendar: calendar()!) else { return [] }
 
-    let sessionsCount = workoutSessionsFor(date).count
+    let sessionsCount = currentWorkoutSessionsFor(date).count
     if sessionsCount > 3 {
       return Array(repeating: UIColor.blackTextColor(), count: 3)
     } else {
@@ -325,8 +368,8 @@ extension WorkoutSessionsViewController: CVCalendarViewDelegate {
     }
   }
 
-  fileprivate func workoutSessionsFor(_ date: Date) -> [WorkoutSession] {
-    let filteredSessions = workoutSessions?.filter { (session) -> Bool in
+  fileprivate func currentWorkoutSessionsFor(_ date: Date) -> [WorkoutSession] {
+    let filteredSessions = currentWorkoutSessions?.filter { (session) -> Bool in
       return self.isDate(session.date as Date, theSameDayAs: date)
     }
     guard let sessions = filteredSessions else { return [] }
@@ -378,27 +421,98 @@ extension WorkoutSessionsViewController: CVCalendarMenuViewDelegate {
 
 extension WorkoutSessionsViewController: SwipeTableViewCellDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-    guard orientation == .right else { return nil }
-    guard let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return [] }
-    let doneAction = SwipeAction(style: .destructive, title: nil) { _, _ in
-      guard let indexPath = self.tableView.indexPath(for: cell) else { return }
-      let session = self.tableViewDataSource[indexPath.row]
-      try! session.realm!.write {
-        session.completed = true
-        session.synced = false
+    guard orientation == .right, let cell = tableView.cellForRow(at: indexPath) as? TrainingTableViewCell else { return nil }
+
+    switch indexPath.section {
+    case 0:
+      let action = SwipeAction(style: .default, title: nil) { [weak self ] _, _ in
+        guard let indexPath = self?.tableView.indexPath(for: cell),
+              let session = self?.completedSectionDataSource[indexPath.row] else { return }
+        self?.switchCompleted(session: session, indexPath: indexPath)
       }
-      self.tableViewDataSource.remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+      action.image = #imageLiteral(resourceName:"first")
+      action.backgroundColor = UIColor.primaryYellowColor()
+      return [action]
+    case 1:
+      let doneAction = SwipeAction(style: .default, title: nil) { [weak self] _, _ in
+        guard let indexPath = self?.tableView.indexPath(for: cell),
+          let session = self?.currentSectionDataSource[indexPath.row] else { return }
+        self?.switchCompleted(session: session, indexPath: indexPath)
+      }
+      doneAction.image = #imageLiteral(resourceName:"Checkmark")
+      doneAction.backgroundColor = UIColor.greenAccentColor()
+
+      let laterAction = SwipeAction(style: .default, title: nil) { [weak self] _, _ in
+        guard let indexPath = self?.tableView.indexPath(for: cell),
+          let session = self?.currentSectionDataSource[indexPath.row] else { return }
+        let realm = try! Realm()
+        let trainingsStoryboard = UIStoryboard(name: "Trainings", bundle: nil)
+        let selectDaysController = trainingsStoryboard.instantiateViewController(withIdentifier: "select_days") as! CreateWorkoutSessionsViewController
+        selectDaysController.workout = realm.object(ofType: Workout.self, forPrimaryKey: session.workoutID)
+        selectDaysController.workoutSession = session
+        self?.tabBarController?.tabBar.isHidden = true
+        selectDaysController.delegate = self
+        selectDaysController.modalPresentationStyle = .overCurrentContext
+        self?.present(selectDaysController, animated: true, completion: nil)
+      }
+      laterAction.image = #imageLiteral(resourceName:"Clock")
+      laterAction.backgroundColor = UIColor.primaryYellowColor()
+      
+      return [doneAction, laterAction]
+    default:
+      return nil
     }
-    doneAction.image = #imageLiteral(resourceName:"Checkmark")
-    doneAction.backgroundColor = UIColor.greenAccentColor()
-    return [doneAction]
+  }
+
+
+  func switchCompleted(session: WorkoutSession, indexPath: IndexPath) {
+    try! session.realm!.write {
+      session.completed = !session.completed
+      session.synced = false
+    }
+    workoutSessionsProvider.request(.updateWorkoutSession(session: session)) { [weak self] result in
+      switch result {
+      case .success(_):
+        try! session.realm!.write {
+          session.synced = true
+        }
+        self?.updateTableViewData(needReload: false)
+        guard let tableView = self?.tableView else { return }
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        if session.completed {
+          guard let index = self?.completedSectionDataSource.index(of: session) else { return tableView.reloadData() }
+          tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+          guard let index = self?.currentSectionDataSource.index(of: session) else { return tableView.reloadData() }
+          tableView.insertRows(at: [IndexPath(row: index, section: 1)], with: .automatic)
+        }
+        tableView.endUpdates()
+      case .failure(_):
+        try! session.realm!.write {
+          session.completed = false
+          session.synced = true
+        }
+        self?.presentAlertWithMessage("An error occured. Please try again")
+        self?.tableView.reloadData()
+      }
+    }
   }
 
   func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
     var options = SwipeTableOptions()
-    options.expansionStyle = .destructive
     options.transitionStyle = .border
     return options
+  }
+}
+
+extension WorkoutSessionsViewController: CreateWorkoutSessionsControllerDelegate {
+  func didFinishWorkoutSessionsCreation() {
+    tableView.reloadData()
+  }
+  
+  func willDismissWorkoutController() {
+    tabBarController?.tabBar.isHidden = false
+
   }
 }

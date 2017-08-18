@@ -113,14 +113,10 @@ class ProgramTableViewCell: UITableViewCell, NibReusable {
       trainerAvatar.kf.setImage(with: avatarURL)
     }
 
-    buyButton.isEnabled = !viewModel.isPurchased
-
     if viewModel.isPurchased {
-      priceBadge.text = "purchased"
-      priceBadge.style = BadgeView.Style(color: .lightGray, height: .tall)
+      priceBadge.text = "schedule"
     } else {
       priceBadge.text = viewModel.price
-      priceBadge.style = BadgeView.Style(color: .lightBlue, height: .tall)
     }
 
     bannerImageView.kf.cancelDownloadTask()

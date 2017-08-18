@@ -1,8 +1,8 @@
 import UIKit
 
 public enum Image: String {
-  case Banner
-  case Avatar
+  case Banner = "banner"
+  case Avatar = "avatar"
 
   var imageSize: CGSize {
     switch self {

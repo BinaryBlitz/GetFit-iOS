@@ -13,6 +13,7 @@ class User: Object, ALSwiftyJSONAble {
   dynamic var id: Int = 0
   dynamic var firstName: String = ""
   dynamic var lastName: String = ""
+  dynamic var surveyFormData: SurveyFormData? = nil
   dynamic var genderValue: String = ""
   dynamic var birthdate: Date = Date()
   dynamic var userDescription: String?
@@ -64,11 +65,18 @@ class User: Object, ALSwiftyJSONAble {
 
   required init?(jsonData: JSON) {
     super.init()
-    guard let id = jsonData["id"].int,
-          let firstName = jsonData["first_name"].string,
-          let lastName = jsonData["last_name"].string else { return nil }
-
+    guard let id = jsonData["id"].int, jsonData["first_name"].string != nil,
+      jsonData["last_name"].string != nil else { return }
     self.id = id
+    map(jsonData: jsonData)
+
+    // TODO: Map surveyFormData
+  }
+
+  func map(jsonData: JSON) {
+    guard let firstName = jsonData["first_name"].string,
+      let lastName = jsonData["last_name"].string else { return }
+
     self.firstName = firstName
     self.lastName = lastName
 

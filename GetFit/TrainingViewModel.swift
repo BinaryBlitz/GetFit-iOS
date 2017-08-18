@@ -32,4 +32,8 @@ extension TrainingViewModel: TrainingPresentable {
       return date.string(format: .custom("dd.MM.yyyy"))
     }
   }
+
+  var completed: Bool {
+    return workoutSession.completed
+  }
 }

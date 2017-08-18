@@ -2,6 +2,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import RealmSwift
+import SwiftyJSON
 import FBSDKCoreKit
 import FBSDKLoginKit
 import VK_ios_sdk
@@ -20,17 +21,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     configureRealm()
     configureNavigationBar()
     configureTabBar()
-
-    if !UserManager.authenticated {
-      let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-      let login = loginStoryboard.instantiateInitialViewController()
-      window?.rootViewController = login
-    }
+    configureUser()
 
     return true
   }
 
   // MARK: - App configuration
+
+  func configureUser() {
+    usersProvider.request(.getCurrent, completion: { response in
+      switch response {
+      case .success(let result):
+        if UserManager.currentUser == nil {
+          let realm = try! Realm()
+          try? realm.write {
+            guard let user = try? result.map(to: User.self) else { return }
+            realm.add(user, update: true)
+            UserManager.currentUser = user
+          }
+        } else {
+          guard let userJSON = try? result.mapJSON() else { return }
+          let realm = try! Realm()
+          try? realm.write {
+            UserManager.currentUser?.map(jsonData: JSON(userJSON))
+          }
+        }
+      default:
+        break
+      }
+    })
+  }
 
   func configureRealm() {
     let realmDefaultConfig = Realm.Configuration(

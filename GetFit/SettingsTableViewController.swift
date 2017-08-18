@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 class SettingsTableViewController: UITableViewController {
 
@@ -63,15 +64,16 @@ class SettingsTableViewController: UITableViewController {
           do {
             try _ = response.filterSuccessfulStatusCodes()
             self.view.endEditing(true)
-            self.presentAlertWithMessage("Your profile is updated!") { _ in
-              _ = self.navigationController?.popViewController(animated: true)
-            }
-            
+
             if let user = UserManager.currentUser {
-              user.firstName = firstName
-              user.lastName = lastName
-              UserManager.currentUser = user
+              let realm = try! Realm()
+              try? realm.write {
+                user.firstName = firstName
+                user.lastName = lastName
+                UserManager.currentUser = user
+              }
             }
+            _ = self.navigationController?.popViewController(animated: true)
           } catch {
             self.saveButtonItem.isEnabled = true
             self.view.endEditing(true)
@@ -86,16 +88,18 @@ class SettingsTableViewController: UITableViewController {
     }
   }
 
-
-  @IBAction func editingDidBeginAction(_ sender: AnyObject) {
-    saveButtonItem.isEnabled = true
+  @IBAction func editingChangedAction(_ sender: AnyObject) {
+    guard let firstNameText = firstNameLabel.text,
+      firstNameText.characters.count > 0, let lastNameText = lastNameLabel.text, lastNameText.characters.count > 0 else {
+        return saveButtonItem.isEnabled = false
+    }
+    saveButtonItem.isEnabled = firstNameText != UserManager.currentUser?.firstName || lastNameText != UserManager.currentUser?.lastName
   }
-
 
   @IBAction func logoutButtonAction(_ sender: AnyObject) {
     let storyboard = UIStoryboard(name: "Login", bundle: nil)
     let loginViewController = storyboard.instantiateInitialViewController()!
-    UserManager.apiToken = nil
+    UserManager.logout()
     present(loginViewController, animated: true, completion: nil)
   }
 

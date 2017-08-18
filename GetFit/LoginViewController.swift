@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
 
   let loginProvider = APIProvider<GetFit.Login>()
 
+  lazy var overlay: UIView? = nil
+
   private let facebookPermissions = ["public_profile"]
 
   override func viewDidLoad() {
@@ -24,9 +26,14 @@ class LoginViewController: UIViewController {
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
     // Add overlay
-    let overlay = UIView(frame: backgroundImageView.frame)
-    overlay.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.5)
-    backgroundImageView.addSubview(overlay)
+    overlay = UIView(frame: backgroundImageView.frame)
+    overlay?.backgroundColor = UIColor(r: 0, g: 0, b: 0, alpha: 0.5)
+    backgroundImageView.addSubview(overlay!)
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    overlay?.frame = backgroundImageView.bounds
   }
 
   override func viewWillAppear(_ animated: Bool) {

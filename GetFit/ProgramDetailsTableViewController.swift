@@ -38,7 +38,10 @@ class ProgramDetailsTableViewController: UITableViewController {
         do {
           let programResponse = try response.filterSuccessfulStatusCodes()
           let program = try programResponse.map(to: Program.self)
-          self.program = program
+          let realm = try! Realm()
+          try? realm.write {
+            realm.add(program, update: true)
+          }
           self.tableView.reloadData()
         } catch let error {
           self.presentAlertWithMessage("error: \(error)")
@@ -90,6 +93,8 @@ class ProgramDetailsTableViewController: UITableViewController {
 
       if indexPath.row < 2 || program.purchaseId != -1 {
         cell.textLabel?.text = exercises[indexPath.row].name
+        cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
       } else {
         cell.textLabel?.textColor = UIColor.blueAccentColor()
         cell.textLabel?.text = "+\(exercises.count - 2) more exercises".uppercased()
@@ -152,24 +157,36 @@ class ProgramDetailsTableViewController: UITableViewController {
 
 extension ProgramDetailsTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
+    if program.isPurchased {
+      let workoutsViewController = WorkoutsTableViewController(style: .grouped)
+      workoutsViewController.program = program
+      let navigation = UINavigationController(rootViewController: workoutsViewController)
+      present(navigation, animated: true, completion: nil)
+    } else {
+      guard UserManager.currentUser?.surveyFormData == nil else {
+        return purchaseProgram(button: button)
+      }
+      let surveyViewController = SurveyViewController.storyboardInstance!
+      let viewController = UINavigationController(rootViewController: surveyViewController)
+      surveyViewController.surveyFormCompletedHandler = { [weak self] finished in
+        if finished {
+           self?.purchaseProgram(button: button)
+        } else {
+          button.isEnabled = true
+        }
+      }
+      present(viewController, animated: true, completion: nil)
+
+    }
+  }
+
+  func purchaseProgram(button: UIButton) {
     button.isEnabled = false
-    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
+    PurchaseManager.instance.buy(program: program) { [weak self] result in
       button.isEnabled = true
       switch result {
       case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          if let purchaseId = try JSON(response.mapJSON())["id"].int {
-            let realm = try Realm()
-            try realm.write {
-              self?.program.purchaseId = purchaseId
-            }
-            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-          }
-          self?.presentAlertWithMessage("Yeah! Program is yours")
-        } catch let error {
-          self?.presentAlertWithMessage("Error: \(error)")
-        }
+        self?.tableView.reloadData()
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")
       }

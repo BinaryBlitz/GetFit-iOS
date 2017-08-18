@@ -61,7 +61,10 @@ class NewUserViewController: UITableViewController {
           guard let apiToken = json["api_token"].string else { throw MoyaError.jsonMapping(response) }
           UserManager.apiToken = apiToken
 
-//          let user = try response.mapObject(User.self)
+          if let user = try? response.map(to: User.self) {
+            print("User: \(user)")
+            UserManager.currentUser = user
+          }
           registerForPushNotifications()
           let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
           if let initialViewController = mainStoryboard.instantiateInitialViewController() {

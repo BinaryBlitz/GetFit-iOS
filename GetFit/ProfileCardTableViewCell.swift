@@ -2,11 +2,17 @@ import UIKit
 import Kingfisher
 import Reusable
 
+typealias ProfileCardPresentable = UserPresentable & StatisticsPresentable
+
 class ProfileCardTableViewCell: UITableViewCell, NibReusable {
 
   @IBOutlet weak var avatarImageView: CircleImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var settingsBadge: BadgeView!
+  @IBOutlet weak var workoutsLabel: UILabel!
+  @IBOutlet weak var weightLabel: UILabel!
+  @IBOutlet weak var distanceLabel: UILabel!
+  @IBOutlet weak var durationLabel: UILabel!
 
   let settingsButton = UIButton()
 
@@ -40,8 +46,12 @@ class ProfileCardTableViewCell: UITableViewCell, NibReusable {
     settingsBadge.isHighlighted = false
   }
 
-  func configureWith(_ viewModel: UserPresentable) {
+  func configureWith(_ viewModel: ProfileCardPresentable) {
     nameLabel.text = viewModel.name
+    distanceLabel.text = viewModel.totalDistance
+    workoutsLabel.text = viewModel.totalWorkouts
+    durationLabel.text = viewModel.totalDuration
+    weightLabel.text = viewModel.totalWeight
 
     avatarImageView.kf.cancelDownloadTask()
     if let avatarURL = viewModel.avatarURL {

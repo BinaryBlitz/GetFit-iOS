@@ -11,6 +11,7 @@ extension GetFit {
     case create(sessions: [WorkoutSession])
     case exerciseSessions(workoutSession: Int)
     case updateExerciseSession(session: ExerciseSession)
+    case updateWorkoutSession(session: WorkoutSession)
   }
 
 }
@@ -27,6 +28,8 @@ extension GetFit.WorkoutSessions: TargetType {
       return "/workout_sessions/\(workoutSession)/exercise_sessions"
     case .updateExerciseSession(let session):
       return "/exercise_sessions/\(session.id)"
+    case .updateWorkoutSession(let workoutSession):
+      return "/workout_sessions/\(workoutSession.id)"
     }
   }
 
@@ -34,7 +37,7 @@ extension GetFit.WorkoutSessions: TargetType {
     switch self {
     case .index, .exerciseSessions(_):
       return .get
-    case .create(_), .updateExerciseSession(_):
+    case .create(_), .updateExerciseSession(_), .updateWorkoutSession(_):
       return .patch
     }
   }
@@ -57,6 +60,9 @@ extension GetFit.WorkoutSessions: TargetType {
     case .updateExerciseSession(let session):
       let sessionData = ["completed": session.completed]
       return ["exercise_session": sessionData as AnyObject]
+    case .updateWorkoutSession(let workoutSession):
+      let sessionData = ["completed": workoutSession.completed, "scheduled_for": workoutSession.date.iso8601(opts: .withInternetDateTimeExtended)] as [String : Any]
+      return ["workout_session": sessionData as AnyObject]
     }
   }
 

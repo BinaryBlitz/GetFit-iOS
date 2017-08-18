@@ -7,6 +7,8 @@ typealias PostCellPresentable = PostPresentable & TrainerPresentable & DateTimeP
 
 class PostTableViewCell: UITableViewCell, NibReusable {
 
+  var viewModel: PostCellPresentable? = nil
+
   // MARK: - Constants
   fileprivate let imageContentHeight: CGFloat = 208
   fileprivate let programContrentHeight: CGFloat = 100
@@ -32,8 +34,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   @IBOutlet weak var dateView: BadgeView!
   @IBOutlet weak var commentsCountLabel: UILabel!
   @IBOutlet weak var commentButton: UIButton!
-  @IBOutlet weak var likesCountLabel: UILabel!
-  @IBOutlet weak var likeButton: UIButton!
 
   enum ContentType {
     case none
@@ -52,15 +52,6 @@ class PostTableViewCell: UITableViewCell, NibReusable {
     }
   }
 
-  var liked: Bool {
-    get {
-      return likeButton.isSelected
-    }
-    set(newValue) {
-      likeButton.isSelected = newValue
-    }
-  }
-
   // MARK: - Delegate
 
   weak var delegate: PostTableViewCellDelegate?
@@ -70,9 +61,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
 
     contentView.backgroundColor = .lightGrayBackgroundColor()
 
-    likeButton.setImage(UIImage(named: "Likes"), for: UIControlState())
-    likeButton.setImage(UIImage(named: "LikesSelected"), for: .selected)
-    likeButton.setImage(UIImage(named: "LikesSelected"), for: .highlighted)
+    commentButton.imageView?.contentMode = .scaleAspectFit
+    commentButton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 
     trainerNameLabel.textColor = UIColor.graySecondaryColor()
     layoutMargins = UIEdgeInsets.zero
@@ -83,6 +73,8 @@ class PostTableViewCell: UITableViewCell, NibReusable {
   // MARK: - Cell configuration
 
   func configureWith(_ viewModel: PostCellPresentable) {
+    self.viewModel = viewModel
+
     if let imageURL = viewModel.imageURL {
       updateContentWith(.photo(photoURL: imageURL as URL))
     } else if let program = viewModel.program {
@@ -97,12 +89,10 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       trainerAvatarImageView.kf.setImage(with: trainerAvatarURL)
     }
 
-    liked = viewModel.liked
     trainerNameLabel.text = viewModel.trainerName
 
     dateView.text = viewModel.dateString
 
-    likesCountLabel.text = viewModel.likesCount
     commentsCountLabel.text = viewModel.commentsCount
   }
 
@@ -126,14 +116,17 @@ class PostTableViewCell: UITableViewCell, NibReusable {
       imageView.kf.setImage(with: photoURL)
       containerView.addSubview(imageView)
       imageView.autoPinEdgesToSuperviewEdges()
+      self.contentImageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageDidTap)))
 
     case .trainingProgram(let program):
-      containerHeight.constant = programContrentHeight
+      let programView = loadProgramPreviewView()
+      programView.configureWith(ProgramViewModel(program: program))
+      programView.layoutIfNeeded()
+      containerHeight.constant = programView.frame.height + 10
       containerToTextSpace.constant = spaceBetweenTextAndContent
       containerView.isHidden = false
       containerView.backgroundColor = UIColor.lightGray
-      let programView = loadProgramPreviewView()
-      programView.configureWith(ProgramViewModel(program: program))
+      programView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(programDidTap)))
       containerView.addSubview(programView)
       programView.autoPinEdgesToSuperviewEdges()
     }
@@ -146,22 +139,17 @@ class PostTableViewCell: UITableViewCell, NibReusable {
 
   // MARK: - Actions
 
-  @IBAction func commentButtonAction(_ sender: AnyObject) {
-    delegate?.didTouchCommentButton(self)
+  func programDidTap() {
+    guard let program = viewModel?.program else { return }
+    delegate?.didTouchProgramView(program)
   }
 
-  @IBAction func likeButtonAction(_ sender: AnyObject) {
-    defer { delegate?.didTouchLikeButton(self) }
-    likeButton.isSelected = !likeButton.isSelected
+  func imageDidTap() {
+    delegate?.didTouchImageView(self)
+  }
 
-    if let likesString = likesCountLabel.text,
-       let likes = Int(likesString) {
-      if likeButton.isSelected {
-        likesCountLabel.text = String(likes + 1)
-      } else {
-        likesCountLabel.text = String(likes - 1)
-      }
-    }
+  @IBAction func commentButtonAction(_ sender: AnyObject) {
+    delegate?.didTouchCommentButton(self)
   }
 
   fileprivate func updateWithState(_ state: PostCellState) {

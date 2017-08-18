@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Cardio,... ... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFJ-6j-Tzj">
-                                <rect key="frame" x="0.0" y="24" width="91" height="18"/>
+                                <rect key="frame" x="0.0" y="24" width="90.5" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,20 +42,33 @@
                             </stackView>
                         </subviews>
                     </stackView>
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FinishedExerciseMark" translatesAutoresizingMaskIntoConstraints="NO" id="fJU-TJ-jSO">
+                        <rect key="frame" x="248" y="42.5" width="72" height="72"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="72" id="2KZ-Xs-skt"/>
+                            <constraint firstAttribute="height" constant="72" id="OfO-QX-zvq"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="fJU-TJ-jSO" secondAttribute="bottom" id="LYc-gH-LxJ"/>
                     <constraint firstItem="r53-x2-eq9" firstAttribute="leading" secondItem="LA7-N4-dnF" secondAttribute="leadingMargin" constant="7" id="aNh-ie-to4"/>
                     <constraint firstItem="r53-x2-eq9" firstAttribute="top" secondItem="LA7-N4-dnF" secondAttribute="topMargin" constant="11" id="kDH-pz-Wjw"/>
+                    <constraint firstAttribute="trailing" secondItem="fJU-TJ-jSO" secondAttribute="trailing" id="qho-pq-bUr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="r53-x2-eq9" secondAttribute="bottom" constant="11" id="tG8-eV-oui"/>
                     <constraint firstAttribute="trailingMargin" secondItem="r53-x2-eq9" secondAttribute="trailing" constant="7" id="wdk-K8-Vtz"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="badgesStackView" destination="YOU-Rn-9Lt" id="XE7-w7-LBC"/>
+                <outlet property="completedMarkImageView" destination="fJU-TJ-jSO" id="YZl-5K-0sC"/>
                 <outlet property="infoLabel" destination="NFJ-6j-Tzj" id="yye-gv-CB8"/>
                 <outlet property="titleLabel" destination="kyf-5A-gSD" id="0F4-es-ttT"/>
             </connections>
             <point key="canvasLocation" x="87" y="251.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="FinishedExerciseMark" width="213" height="211"/>
+    </resources>
 </document>

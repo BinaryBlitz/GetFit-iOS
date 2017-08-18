@@ -113,11 +113,22 @@ class TrainingViewController: UIViewController {
   }
 
   fileprivate func finishWorkoutSession() {
-    try! workoutSession.realm?.write {
-      workoutSession.completed = true
-      workoutSession.synced = false
+    workoutSessionsProvider.request(.updateWorkoutSession(session: workoutSession)) { [weak self] result in
+      switch result {
+      case .success(let response):
+        do {
+          try _ = response.filterSuccessfulStatusCodes()
+          try self?.workoutSession.realm?.write {
+            self?.workoutSession.completed = true
+          }
+          _ = self?.navigationController?.popViewController(animated: true)
+        } catch {
+          self?.presentAlertWithMessage("server response: \(response.statusCode)")
+        }
+      case .failure(let error):
+        self?.presentAlertWithMessage(error.errorDescription)
+      }
     }
-    _ = navigationController?.popViewController(animated: true)
   }
 
   func updateSessionProgress() {

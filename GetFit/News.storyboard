@@ -58,11 +58,12 @@
                     <connections>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPost" id="18Q-JA-Oub"/>
                         <segue destination="eHR-Y0-aBE" kind="show" identifier="viewPostAndComment" id="1W4-iT-S2E"/>
+                        <segue destination="2TF-uv-Q0Y" kind="show" identifier="showProgramDetails" id="TKb-AP-Ndz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBc-d0-PnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="-600"/>
+            <point key="canvasLocation" x="1641" y="-600"/>
         </scene>
         <!--POST-->
         <scene sceneID="F2q-58-2Uy">
@@ -142,7 +143,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKo-hu-vU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2479.5" y="-600"/>
+            <point key="canvasLocation" x="2788" y="-440"/>
+        </scene>
+        <!--ProgramDetails-->
+        <scene sceneID="g0n-Mz-b0R">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ProgramDetails" storyboardName="Store" referencedIdentifier="ProgramDetails" id="2TF-uv-Q0Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ovr-W1-g66" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2338" y="-903"/>
         </scene>
         <!--ProgramDetails-->
         <scene sceneID="zaC-0f-eco">

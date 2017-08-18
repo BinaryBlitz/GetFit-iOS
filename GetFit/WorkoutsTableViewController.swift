@@ -5,6 +5,7 @@ import Reusable
 class WorkoutsTableViewController: UITableViewController {
 
   var workouts: Results<Workout>!
+  var program: Program? = nil
   let workoutsProvider = APIProvider<GetFit.Workouts>()
 
   override func viewDidLoad() {
@@ -16,6 +17,9 @@ class WorkoutsTableViewController: UITableViewController {
 
     let realm = try! Realm()
     workouts = realm.objects(Workout.self).sorted(byKeyPath: "duration")
+    if let program = self.program {
+      workouts = workouts.filter("programId == %@", program.id)
+    }
     loadWorkouts()
 
     tableView.register(cellType: TrainingTableViewCell.self)

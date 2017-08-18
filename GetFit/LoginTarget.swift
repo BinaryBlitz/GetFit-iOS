@@ -70,10 +70,10 @@ extension GetFit.Login: TargetType {
       return ["token": token as Any]
     case let .createUser(firstName, lastName):
       let userData = [
-        "phone_number": sessionData!.phoneNumber!.toE164(),
+        "phone_number": sessionData!.phoneNumber!.toE164() as Any,
         "verification_token": sessionData!.verificationToken!,
-        "first_name": firstName,
-        "last_name": lastName
+        "first_name": firstName as Any,
+        "last_name": lastName as Any
       ]
 
       return ["user": userData]

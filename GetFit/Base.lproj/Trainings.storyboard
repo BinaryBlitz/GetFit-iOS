@@ -15,7 +15,7 @@
         <!--Calendar Delegate-->
         <scene sceneID="o2H-Vp-xli">
             <objects>
-                <viewController id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WorkoutSessionsViewController" id="qIZ-am-TBk" customClass="WorkoutSessionsViewController" customModule="GetFit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bhw-Jn-tKn"/>
                         <viewControllerLayoutGuide type="bottom" id="fG1-tU-IoS"/>
@@ -159,7 +159,7 @@
                 <viewControllerPlaceholder storyboardName="Training" id="A5r-Qw-WnD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMB-Wu-YMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2138" y="151"/>
+            <point key="canvasLocation" x="2563" y="-69"/>
         </scene>
         <!--Calendar Delegate-->
         <scene sceneID="sR7-1m-PJl">

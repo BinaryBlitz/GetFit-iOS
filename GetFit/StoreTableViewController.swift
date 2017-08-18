@@ -6,7 +6,7 @@ import Reusable
 
 class StoreTableViewController: UITableViewController {
 
-  var programs = [Program]()
+  var programs: Results<Program>? = nil
   let programsProvider = APIProvider<GetFit.Programs>()
 
   override func viewDidLoad() {
@@ -49,6 +49,11 @@ class StoreTableViewController: UITableViewController {
     refresh()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
+
   func createBackgroundView() -> UIView {
     let view = UIView()
     let label = UILabel()
@@ -70,7 +75,7 @@ class StoreTableViewController: UITableViewController {
 
   func fetchPrograms() {
     let realm = try! Realm()
-    programs = Array(realm.objects(Program.self).sorted(byKeyPath: "usersCount"))
+    programs = realm.objects(Program.self).sorted(byKeyPath: "usersCount")
   }
 
   // MARK: - Refresh
@@ -90,11 +95,11 @@ class StoreTableViewController: UITableViewController {
         do {
           let programsResponse = try response.filterSuccessfulStatusCodes()
           let programs = try programsResponse.map(to: [Program.self])
-          self.programs = programs
           let realm = try Realm()
           try realm.write {
             realm.add(programs, update: true)
           }
+          self.tableView.reloadData()
         } catch {
           print("Cannot update programs")
         }
@@ -109,7 +114,7 @@ class StoreTableViewController: UITableViewController {
   // MARK: - TableView DataSource and Delegate
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let numberOfRows = programs.count
+    let numberOfRows = programs?.count ?? 0
     tableView.backgroundView?.isHidden = numberOfRows != 0
 
     return numberOfRows
@@ -118,7 +123,7 @@ class StoreTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let program = programs[indexPath.row]
+    guard let program = programs?[indexPath.row] else { return UITableViewCell() }
     let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
     cell.delegate = self
     cell.state = .card
@@ -140,7 +145,8 @@ class StoreTableViewController: UITableViewController {
     case "programDetails":
       let destination = segue.destination as! ProgramDetailsTableViewController
       let indexPath = sender as! IndexPath
-      destination.program = programs[indexPath.row]
+      guard let program = programs?[indexPath.row] else { return }
+      destination.program = program
       destination.programsProvider = programsProvider
     default:
       break
@@ -148,31 +154,41 @@ class StoreTableViewController: UITableViewController {
   }
 }
 
-// MARK: - ProgramCellDelegate
-
 extension StoreTableViewController: ProgramCellDelegate {
   func didTouchBuyButtonInCell(_ cell: ProgramTableViewCell, button: UIButton) {
     button.isEnabled = false
-    guard let indexPath = tableView.indexPath(for: cell) else { return }
-    let program = programs[indexPath.row]
+    guard let indexPath = tableView.indexPath(for: cell), let program = programs?[indexPath.row] else { return }
 
-    programsProvider.request(.createPurchase(programId: program.id)) { [weak self] (result) in
-      button.isEnabled = true
-      switch result {
-      case .success(let response):
-        do {
-          try _ = response.filterSuccessfulStatusCodes()
-          if let purchaseId = try JSON(response.mapJSON())["id"].int {
-            let realm = try Realm()
-            try realm.write {
-              program.purchaseId = purchaseId
-            }
-            self?.tableView.reloadRows(at: [indexPath], with: .none)
-          }
-          self?.presentAlertWithMessage("Yeah! Program is yours")
-        } catch let error {
-          self?.presentAlertWithMessage("Error: \(error)")
+    if program.isPurchased {
+      let workoutsViewController = WorkoutsTableViewController(style: .grouped)
+      workoutsViewController.program = program
+      let navigation = UINavigationController(rootViewController: workoutsViewController)
+      present(navigation, animated: true, completion: nil)
+    } else {
+      guard UserManager.currentUser?.surveyFormData == nil else {
+        return purchase(program: program, buyButton: button, indexPath: indexPath)
+      }
+      let surveyViewController = SurveyViewController.storyboardInstance!
+      let viewController = UINavigationController(rootViewController: surveyViewController)
+      surveyViewController.surveyFormCompletedHandler = { [weak self] finished in
+        if finished {
+          self?.purchase(program: program, buyButton: button, indexPath: indexPath)
+        } else {
+          button.isEnabled = true
         }
+      }
+      present(viewController, animated: true, completion: nil)
+
+    }
+  }
+
+  func purchase(program: Program, buyButton: UIButton, indexPath: IndexPath) {
+
+    PurchaseManager.instance.buy(program: program) { [weak self] result in
+      buyButton.isEnabled = true
+      switch result {
+      case .success:
+        self?.tableView.reloadRows(at: [indexPath], with: .none)
       case .failure(let error):
         self?.presentAlertWithMessage("Error: \(error)")
       }

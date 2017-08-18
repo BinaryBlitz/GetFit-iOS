@@ -2,11 +2,11 @@ import UIKit
 import Reusable
 import RealmSwift
 import Moya
+import SwiftyJSON
+import RSKImageCropper
 
 class ProfileTableViewController: UITableViewController {
 
-  fileprivate let tabsLabels = ["statistic", "programs"]
-  fileprivate var selectedTabIndex = 0
   fileprivate var imageTypeToSelect: Image?
   let userProvider = APIProvider<GetFit.Users>()
 
@@ -46,9 +46,12 @@ class ProfileTableViewController: UITableViewController {
       switch result {
       case .success(let response):
         do {
-          let user = try response.map(to: User.self)
-          UserManager.currentUser = user
-          self.user = user
+          let userJSON = try response.mapJSON()
+          let realm = try Realm()
+          try realm.write {
+            UserManager.currentUser?.map(jsonData: JSON(userJSON))
+          }
+          self.user = UserManager.currentUser
           self.loadPrograms()
           self.loadStatistics()
         } catch {
@@ -68,7 +71,10 @@ class ProfileTableViewController: UITableViewController {
       switch result {
       case .success(let response):
         do {
-          user.statistics = try response.map(to: User.Statistics.self)
+          let realm = try! Realm()
+          try realm.write {
+            user.statistics = try response.map(to: User.Statistics.self)
+          }
           self?.tableView.reloadData()
         } catch {
           print("Cannot map response")
@@ -167,9 +173,7 @@ class ProfileTableViewController: UITableViewController {
     switch section {
     case 0:
       return 1
-    case 1 where selectedTabIndex == 0:
-      return 1
-    case 1 where selectedTabIndex == 1:
+    case 1:
       if let programs = programs {
         return programs.count
       } else {
@@ -194,15 +198,7 @@ class ProfileTableViewController: UITableViewController {
       cell.avatarImageView.addGestureRecognizer(avatarTapGesture)
 
       return cell
-    case 1 where selectedTabIndex == 0:
-      let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticsTableViewCell
-      cell.layoutSubviews()
-      if let user = user {
-        cell.configureWith(UserViewModel(user: user))
-      }
-
-      return cell
-    case 1 where selectedTabIndex == 1:
+    case 1:
       let cell = tableView.dequeueReusableCell(for: indexPath) as ProgramTableViewCell
       cell.state = .card
       let program = programs![indexPath.row]
@@ -214,44 +210,22 @@ class ProfileTableViewController: UITableViewController {
     }
   }
 
-  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    if let statistics = cell as? StatisticsTableViewCell {
-      statistics.layoutSubviews()
-    }
-  }
-
-  override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    if selectedTabIndex == 0 {
-      let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
-      cell?.layoutSubviews()
-    }
-  }
-
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.section {
     case 0:
       return 180
-    case 1 where selectedTabIndex == 0:
-      return tableView.frame.width
-    case 1 where selectedTabIndex == 1:
+    case 1:
       return 320
     default:
       return 0
     }
   }
 
-  // MARK: - UITableViewDelegate
-
-  // MARK: - Header configuration
-
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard section == 1 else { return nil }
 
-    let labels = tabsLabels.map { $0.uppercased() }
-    let buttonStrip = ButtonsStripView(labels: labels)
-    buttonStrip.delegate = self
-    buttonStrip.selectedIndex = selectedTabIndex
+    let buttonStrip = ButtonsStripView(labels: ["programs".uppercased()])
+    buttonStrip.selectedIndex = 0
 
     return buttonStrip
   }
@@ -271,10 +245,24 @@ class ProfileTableViewController: UITableViewController {
 extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
-    guard let imageType = imageTypeToSelect else { return }
     picker.dismiss(animated: true, completion: nil)
 
-    userProvider.request(.updateImage(type: imageType, image: image)) { (result) in
+    let imageCropViewController = RSKImageCropViewController(image: image)
+    imageCropViewController.delegate = self
+    present(imageCropViewController, animated: true, completion: nil)
+  }
+
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+}
+
+extension ProfileTableViewController: RSKImageCropViewControllerDelegate {
+  func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+    controller.dismiss(animated: true, completion: nil)
+    guard let imageType = imageTypeToSelect else { return }
+
+    userProvider.request(.updateImage(type: imageType, image: croppedImage)) { (result) in
       switch result {
       case .success(let response):
         do {
@@ -292,21 +280,7 @@ extension ProfileTableViewController: UIImagePickerControllerDelegate, UINavigat
     }
   }
 
-  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    picker.dismiss(animated: true, completion: nil)
-  }
-}
-
-extension ProfileTableViewController: ButtonStripViewDelegate {
-
-  func stripView(_ view: ButtonsStripView, didSelectItemAtIndex index: Int) {
-    selectedTabIndex = index
-    let offset = tableView.contentOffset
-    tableView.reloadData()
-    if tableView.numberOfRows(inSection: index) >= 2 {
-      tableView.setContentOffset(offset, animated: true)
-    } else {
-      tableView.setContentOffset(CGPoint.zero, animated: true)
-    }
+  func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+    controller.dismiss(animated: true, completion: nil)
   }
 }
